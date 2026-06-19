@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/design/*"],
+      "~sh/*": ["src/design/shared/*"],
+      "~st/*": ["src/design/styles/*"],
+      "~l/*": ["src/design/layout/*"],
+      "~ty/*": ["src/design/typography/*"],
+      "~tr/*": ["src/design/triggers/*"],
+      "~a/*": ["src/design/assets/*"],
+
+    }
+  }
+}

@@ -1,0 +1,49 @@
+/* ============================================================
+   button.css
+   ─────────────────────────────────────────────────────────────
+   Spatial styles for the Button component.
+   Visual styles (color, variant, focus, states) come from
+   triggers.css via the .trigger class.
+
+   Reads --button--* channels written by resolveButtonSize.
+   ============================================================ */
+
+.button,
+[data-visual="button"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--button--p) * 0.75);
+  padding-block:  var(--button--p);
+  padding-inline: var(--button--pi);
+  min-height:     var(--button--h);
+  font-size:      var(--button--fs);
+  font-weight:    var(--weight--medium);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  user-select: none;
+}
+
+/* ─── MODIFIERS ───────────────────────────────────────────── */
+
+.button--icon-only {
+  padding-inline: var(--button--p);
+  aspect-ratio: 1;
+}
+
+.button--full-width {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ─── REDUCED MOTION ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+  .button:active {
+    transform: none;
+  }
+}

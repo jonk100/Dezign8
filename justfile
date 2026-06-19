@@ -1,0 +1,126 @@
+# Open Claude Code in the current repo
+[group('open')]
+open-claude:
+    claude
+
+# Launch Windsurf on the repo root (backgrounded)
+[group('open')]
+open-windsurf:
+    windsurf "{{justfile_directory()}}" &
+
+# Open the repo's GitHub page in the browser
+[group('open')]
+open-github:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # Convert the SSH remote URL (git@github.com:...) to an https:// URL and strip the trailing .git
+    remote=$(git config --get remote.origin.url | sed -E 's#git@github.com:#https://github.com/#; s#\.git$##')
+    xdg-open "$remote"
+
+# Fuzzy-pick a branch (local or remote) and check it out
+[group('git')]
+git-branch:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # List all branches, strip the leading "* " / spaces, then pick one with fzf
+    branch=$(git branch -a | sed 's/^[* ]*//' | fzf --prompt="Branch > ")
+    # Drop the "remotes/origin/" prefix so checkout creates/tracks the right branch
+    [ -n "$branch" ] && git checkout "${branch##remotes/origin/}"
+
+# Browse the last 30 commits with a graph + diff preview
+[group('git')]
+git-log:
+    # fzf preview extracts the commit hash from the selected line and runs git show on it
+    git log --oneline --graph --decorate -30 | fzf --prompt="Log > " --preview 'git show $(echo {} | grep -o "[a-f0-9]\{7,\}" | head -1)'
+    
+
+# Deploy to Cloudflare via Wrangler
+[group('deploy')]
+deploy-cloudflare:
+    wrangler deploy
+
+# Deploy to Netlify production
+[group('deploy')]
+deploy-netlify:
+    netlify deploy --prod
+    
+# Remove build output and installed dependencies
+[group('project')]
+clean:
+    rm -rf dist node_modules
+
+# Wipe node_modules + lockfile and reinstall dependencies from scratch
+[group('project')]
+reset:
+    rm -rf node_modules pnpm-lock.yaml && pnpm install
+
+# Run typecheck and lint together
+[group('project')]
+check:
+    pnpm astro check && pnpm lint
+
+# Run dev server
+[group('project')]
+dev:
+    pnpm dev
+
+# Watch .ts/.astro files and re-run check on every change
+[group('project')]
+watch:
+    watchexec -e ts,tsx,astro -- just check
+    
+# Fuzzy-find any file in the repo and open it in neovim, with a syntax-highlighted preview
+[group('edit')]
+edit-file:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    file=$(find . -type f -not -path './node_modules/*' -not -path './.git/*' | fzf --prompt="Edit > " --preview 'bat --color=always --style=numbers {}')
+    [ -n "$file" ] && nvim "$file"
+    
+# Fuzzy-search recent zsh history and re-run whatever you pick
+[group('shell')]
+history:
+    #!/usr/bin/env zsh
+    set -euo pipefail
+    cmd=$(tac ~/.zsh_history | sed -E 's/^: [0-9]+:[0-9]+;//' | fzf --prompt="History > " --no-sort)
+    [[ -n "$cmd" ]] && eval "$cmd"
+    
+# Kill whatever's listening on the given port
+[group('project')]
+port-kill port:
+	#!/usr/bin/env bash
+	set -euo pipefail
+	pid=$(lsof -ti tcp:{{port}} || true)
+	if [ -n "$pid" ]; then
+	    kill -9 $pid
+	    echo "Killed process on port {{port}} (pid $pid)"
+	else
+	    echo "Nothing listening on port {{port}}"
+	fi
+	
+# Find TODO/FIXME comments across the codebase
+[group('project')]
+todo-scan:
+    grep -rn --exclude-dir=node_modules --exclude-dir=.git -E 'TODO|FIXME' --include='*.ts' --include='*.astro' --include='*.css' . || echo "No TODOs found"
+    
+# Check for outdated pnpm dependencies
+[group('project')]
+outdated:
+    pnpm outdated
+    
+# Auto-fix lint and formatting issues
+[group('project')]
+lint-fix:
+    pnpm lint --fix
+
+# Auto-fix lint issues, then hand any leftovers to Claude Code
+[group('project')]
+lint-fix-ai:
+	#!/usr/bin/env bash
+	set -euo pipefail
+	pnpm lint --fix || true
+	if ! output=$(pnpm lint 2>&1); then
+	    echo "$output" | claude -p "Fix these lint/type errors in this project"
+	else
+	    echo "Lint is clean."
+	fi
