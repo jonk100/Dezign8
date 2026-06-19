@@ -112,7 +112,7 @@ port-kill port:
 	else
 	    echo "Nothing listening on port {{port}}"
 	fi
-	
+    
 # Find TODO/FIXME comments across the codebase
 [group('project')]
 todo-scan:
@@ -139,3 +139,34 @@ lint-fix-ai:
 	else
 	    echo "Lint is clean."
 	fi
+
+go:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    root=$(git rev-parse --show-toplevel)
+    cd "$root"
+
+    target=$(printf "%s\n" \
+      "design" \
+      "src/components" \
+      "src/pages" \
+      "src/lib" \
+      "src/styles" \
+      | fzf --prompt="Go zone > ")
+
+    [ -n "$target" ] || exit 0
+
+    case "$target" in
+      design)
+        dir=$(find src/design -maxdepth 1 -mindepth 1 -type d \
+          | xargs -n 1 basename \
+          | fzf --prompt="Design > ")
+        [ -n "$dir" ] && cd "src/design/$dir"
+        ;;
+      *)
+        cd "$target"
+        ;;
+    esac
+
+    exec "$SHELL"

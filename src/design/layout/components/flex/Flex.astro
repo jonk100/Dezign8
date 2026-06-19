@@ -1,0 +1,8 @@
+---
+import type { FlexProps } from "./flex.props";
+import { useFlex } from "./flex.hook";
+import "./flex.css";
+
+const { Tag, props } = useFlex(Astro.props as FlexProps);
+---
+<Tag {...props}><slot /></Tag>

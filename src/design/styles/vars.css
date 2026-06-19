@@ -35,25 +35,38 @@
      padding, container margins, display type.
      All values clamp between a min and max across viewports.
   ────────────────────────────────────────────────────────── */
-  --size-0:  clamp(1rem,    1.125rem + 0.25vi, 1.3rem);
-  --size-1:  clamp(1.125rem,  1.25rem + 0.4vi, 1.5rem);
-  --size-2:  clamp(1.25rem,   1.5rem  + 0.6vi, 1.75rem);
-  --size-3:  clamp(1.5rem,    1.75rem + 0.8vi, 2.25rem);
-  --size-4:  clamp(1.75rem,   2rem    + 1vi,   3rem);
-  --size-5:  clamp(2.125rem,  2.4rem  + 1.5vi, 3.5rem);
-  --size-6:  clamp(2.6rem,    2.8rem  + 2vi,   4.25rem);
-  --size-7:  clamp(3.25rem,   3.5rem  + 2.5vi, 4.75rem);
-  --size-8:  clamp(3.75rem,   4.25rem + 3vi,   5.5rem);
-  --size-9:  clamp(4.5rem,    5rem    + 4vi,   6.5rem);
-  --size-10: clamp(5.25rem,   5.75rem + 5vi,   7.5rem);
-  --size-11: clamp(6.25rem,   6.5rem  + 6vi,   8.75rem);
-  --size-12: clamp(7.25rem,   7.5rem  + 7vi,   10rem);
-  --size-13: clamp(8.5rem,    8.5rem  + 8vi,   11.25rem);
-  --size-14: clamp(9.5rem,    9.5rem  + 9vi,   12.5rem);
-  --size-15: clamp(10.75rem, 11.25rem + 10vi,  13.75rem);
+  /* Step -2 to -1 (Shrinking below base) */
+  --size-0:  clamp(0.79rem,   0.78rem + 0.017vi,  0.8rem);
+  --size-1:  clamp(0.889rem,  0.85rem + 0.185vi,  1rem);
+
+  /* Step 0 (Base Size) */
+  --size-2:  clamp(1rem,      0.91rem + 0.417vi,  1.25rem);
+  --size-3:  clamp(1.125rem,  0.97rem + 0.730vi,  1.53rem);
+  --size-4:  clamp(1.266rem,  1.03rem + 1.145vi,  1.953rem);
+  --size-5:  clamp(1.424rem,  1.085rem + 1.695vi,  2.441rem);
+  --size-6:  clamp(1.602rem,  1.119rem + 2.417vi,  3.052rem);
+  --size-7:  clamp(1.802rem,  1.131rem + 3.355vi,  3.815rem);
+  --size-8:  clamp(2.027rem,  1.113rem + 4.568vi,  4.768rem);
+  --size-9:  clamp(2.281rem,  1.055rem + 6.132vi,  5.96rem);
+  --size-10: clamp(2.566rem,  0.938rem + 8.142vi,  7.451rem);
+  --size-11: clamp(2.887rem,  0.745rem + 10.71vi,  9.313rem);
+  --size-12: clamp(3.248rem,  0.450rem + 13.99vi,  11.642rem);
+  --size-13: clamp(3.653rem,  0.020rem + 18.165vi, 14.552rem);
+  --size-14: clamp(4.11rem,  -0.583rem + 23.467vi, 18.19rem);
+  --size-15: clamp(4.624rem, -1.414rem + 30.188vi, 22.737rem);
+  --size-16: clamp(5.202rem, -2.538rem + 38.7vi,   28.422rem);
+  --size-17: clamp(5.853rem, -4.038rem + 49.457vi, 35.527rem);
 
   /* Pill / capsule shape */
   --size-full: 9999px;
+
+  /* ─── CONTAINERS ──────────────────────────────────────────
+  ────────────────────────────────────────────────────────── */
+  --container-sm: 40rem;  /* 640px */
+  --container-md: 48rem;  /* 768px */
+  --container-lg: 64rem;  /* 1024px */
+  --container-xl: 80rem;  /* 1280px */
+  --container-2xl: 96rem; /* 1536px */
 
   /* ─── TYPOGRAPHY ──────────────────────────────────────────
   ────────────────────────────────────────────────────────── */

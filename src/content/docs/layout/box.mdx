@@ -1,0 +1,111 @@
+---
+title: Box Component
+description: The fundamental layout primitive providing robust spacing and flow control.
+category: Layout
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/layout/components/box"
+---
+import Box from "../../../design/layout/components/box/Box.astro";
+
+## Overview
+
+The `Box` component is the workhorse of your application's layout. It acts as a universal container, replacing standard `<div>` elements to provide a predictable, token-driven approach to spacing, margins, padding, and basic flexbox alignment.
+
+## Usage & Examples
+
+### Basic Container
+By default, `Box` renders as a `<div>`.
+
+```astro
+<Box p="md" bg="var(--bg--1)">Base surface background</Box>
+<Box p="md" bg="var(--bg--2)">Elevated surface background</Box>
+<Box p="md" bg="var(--primary--subtle)" style="color: var(--primary--text)">Primary subtle background</Box>
+<Box p="md" bg="var(--secondary--subtle)" style="color: var(--secondary--text)">Secondary subtle background</Box>
+<Box p="md" bg="var(--danger--subtle)" style="color: var(--danger--text)">Danger subtle background</Box>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md, 8px); overflow: hidden; display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem;">
+  <Box p="md" bg="var(--bg--1)">Base surface background</Box>
+  <Box p="md" bg="var(--bg--2)">Elevated surface background</Box>
+  <Box p="md" bg="var(--primary--subtle)" style="color: var(--primary--text)">Primary subtle background</Box>
+  <Box p="md" bg="var(--secondary--subtle)" style="color: var(--secondary--text)">Secondary subtle background</Box>
+  <Box p="md" bg="var(--danger--subtle)" style="color: var(--danger--text)">Danger subtle background</Box>
+</div>
+
+### Spacing Shorthands
+`Box` inherits `SpacingProps`, allowing you to easily apply consistent margins and paddings using layout tokens.
+
+```astro
+<Box px="lg" py="md" mt="xl" radius="md" bg="var(--bg--2)">
+  Custom x and y padding, with a large top margin and rounded corners.
+</Box>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md, 8px); overflow: hidden; padding: 1rem;">
+  <Box px="lg" py="md" mt="xl" radius="md" bg="var(--bg--2)">
+    Custom x and y padding, with a large top margin and rounded corners.
+  </Box>
+</div>
+
+### Flex Flow & Alignment
+You can control the internal layout of the box using `gap`, `align`, and `justify`.
+
+```astro
+<Box gap="md" align="center" p="md" radius="md" bg="var(--bg--2)">
+  <span>Item 1</span>
+  <span>Item 2</span>
+  <span>Item 3</span>
+</Box>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md, 8px); overflow: hidden;">
+  <Box gap="md" align="center" p="md" radius="md" bg="var(--bg--2)">
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Item 1</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Item 2</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Item 3</div>
+  </Box>
+</div>
+
+### Semantic Polymorphism
+Change the underlying HTML element using the `as` prop to maintain semantic document structure.
+
+```astro
+<Box as="section" p="xl" radius="lg">
+  <Box as="header" mb="lg">
+    <!-- Header Content -->
+  </Box>
+  <Box as="article">
+    <!-- Article Content -->
+  </Box>
+</Box>
+```
+
+## Props API
+
+### Box Props
+
+| Prop | Type | Description |
+|---|---|---|
+| `as` | `BoxTag` | The HTML element to render (e.g., `div`, `section`, `article`, `main`). Defaults to `div`. |
+| `radius` | `BoxRadius` | Border radius token. |
+
+### Layout Props (Inherited)
+
+| Prop | Type | Description |
+|---|---|---|
+| `gap` | `LayoutGap` | Controls the space between flex/grid items. |
+| `align` | `LayoutAlign` | Cross-axis alignment (`align-items`). |
+| `justify` | `LayoutJustify` | Main-axis alignment (`justify-content`). |
+
+### Spacing Props (Inherited)
+The `Box` accepts all standard spacing shorthands:
+- Padding: `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl`
+- Margin: `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`
+
+*Note: These spacing props can accept either a single primitive space token (e.g., `"md"`) or a space-separated string of tokens.*
+
+### Base Component Props
+All components accept standard `HTMLAttributes` along with utility props like `class`, `style`, and `bg`.
+
+## Design Decisions
+- **Separation of Concerns**: The Box explicitly separates flow and spacing (managed by `.layout`) from visual container styling (managed by `.box`). This guarantees that spacing tokens are resolved universally.
+- **The Spacing Cascade**: Thanks to the underlying layout CSS, spacing properties elegantly cascade. For example, setting `--layout--py` acts as a fallback for `--layout--pt` and `--layout--pb` automatically.

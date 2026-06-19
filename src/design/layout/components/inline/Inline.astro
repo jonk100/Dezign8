@@ -1,0 +1,8 @@
+---
+import type { InlineProps } from "./inline.props";
+import { useInline } from "./inline.hook";
+import "./inline.css";
+
+const { Tag, props } = useInline(Astro.props as InlineProps);
+---
+<Tag {...props}><slot /></Tag>

@@ -1,0 +1,8 @@
+---
+import type { GridProps } from "./grid.props";
+import { useGrid } from "./grid.hook";
+import "./grid.css";
+
+const { Tag, props } = useGrid(Astro.props as GridProps);
+---
+<Tag {...props}><slot /></Tag>

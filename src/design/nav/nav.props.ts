@@ -12,13 +12,13 @@
  * @prop prefetch - THOUGHT: Optimizes Single Page App (SPA) performance by fetching the route's assets/data silently when the user hovers over the link.
  * @prop collapsible - Allows vertical navs (like sidebars) to collapse down to just their icons.
  */
-// export interface NavProps extends BaseComponentProps {
-//   items:        NavItemData[];
-//   orientation?: "horizontal" | "vertical";
-//   activeId?:    string;
-//   onChange?:    (id: string) => void;
-//   exactMatch?:  boolean;
-//   replace?:     boolean;
-//   prefetch?:    boolean;
-//   collapsible?: boolean;
-// }
+export interface NavProps extends BaseComponentProps {
+  items:        NavItemData[];
+  orientation?: "horizontal" | "vertical";
+  activeId?:    string;
+  onChange?:    (id: string) => void;
+  exactMatch?:  boolean;
+  replace?:     boolean;
+  prefetch?:    boolean;
+  collapsible?: boolean;
+}

@@ -1,0 +1,61 @@
+---
+title: Typography Category
+description: Core typography system providing hooks, props, and tokens to ensure consistent text rendering across all components.
+category: Typography
+---
+
+## Overview
+
+The Typography category provides a foundational framework for rendering text. Rather than letting individual components define arbitrary font sizes or colors, they tap into the centralized `useTypography` hook. 
+
+This guarantees:
+1. Strict adherence to the design tokens (e.g., sizes, weights, leading).
+2. DRY code where all typographic properties map exactly to CSS variables.
+3. Clean prop interfaces that are easily extensible by specialized text components (like Headings or Links).
+
+## Architecture
+
+The typography system is split into three main pieces:
+
+1. **Tokens (`typography.tokens.ts`)**: Defines mapping of properties (like `size` or `weight`) to the core primitives. It establishes the CSS variable contract (e.g. `size` maps to `--typography--size`).
+2. **Hook (`typography.hook.ts`)**: `useTypography` resolves these token props into a consolidated set of inline styles and classes. It handles special cases like line clamping or text truncation safely.
+3. **Props (`typography.props.ts`)**: Defines `TypographyProps`, exposing standard attributes like `align`, `leading`, `fam`, and `tracking` for any component that deals with text.
+
+### How it Works
+
+When you build a text-based component, you simply extend `TypographyProps`. When it renders, you pass the props through `useTypography`:
+
+```tsx
+import type { TypographyProps } from "~ty/typography.props";
+import { useTypography } from "~ty/typography.hook";
+
+interface CustomHeadingProps extends TypographyProps {
+  // You can narrow types here, e.g., restricting to only bold weights
+  weight?: "bold" | "extrabold"; 
+}
+
+export function CustomHeading(props: CustomHeadingProps) {
+  const { typographyAttributes } = useTypography(props);
+  // typographyAttributes automatically contains resolved CSS vars and base classes
+}
+```
+
+## Available Props
+
+Components extending `TypographyProps` gain access to these core visual adjustments:
+
+| Prop | Purpose | Mapped CSS Variable |
+|---|---|---|
+| `size` | Font scale (e.g., `sm`, `xl`, `4xl`) | `--typography--size` |
+| `weight` | Font weight (e.g., `bold`, `medium`) | `--typography--weight` |
+| `color` | Semantic color | `--typography--color` |
+| `align` | Text alignment | `--typography--align` |
+| `leading` | Line height | `--typography--leading` |
+| `tracking` | Letter spacing | `--typography--tracking` |
+| `transform` | Uppercase, capitalize, etc. | `--typography--transform` |
+| `decoration` | Underline, strikethrough | `--typography--decoration` |
+| `wrap` | `text-wrap` (e.g., `balance`) | `--typography--wrap` |
+| `clamp` | Multi-line truncation via Webkit | `--typography--clamp` |
+| `truncate` | Single-line overflow | `text-overflow: ellipsis` class |
+
+Any component in this category essentially provides a Semantic HTML wrapper around these core mechanics.

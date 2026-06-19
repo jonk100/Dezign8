@@ -1,0 +1,12 @@
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--image--radius);
+  object-fit: var(--image--fit);
+}
+
+.image--ratio {
+  aspect-ratio: var(--image--ratio);
+  width: 100%;
+}

@@ -6,12 +6,12 @@
 
 These are the foundational building blocks. Nearly every single web page, from a basic blog to a complex web app, uses these components.
 
-- [ ] 01. `Text` (typography) - 
-- [ ] 02. `Heading` (typography) -
-- [ ] 03. `Link` (nav) -
-- [ ] 04. `Image` (assets) - 
-- [ ] 05. `Button` (trigger) -
-- [ ] 06. `Box` (layout) - 
+- [x] 01. `Text` (typography) - 
+- [x] 02. `Heading` (typography) -
+- [x] 03. `Link` (nav) -
+- [x] 04. `Image` (assets) - 
+- [x] 05. `Button` (trigger) -
+- [x] 06. `Box` (layout) - 
 - [ ] 07. `Container` (layout) -
 - [ ] 08. `Flex` (layout) -
 - [ ] 09. `Grid` (layout) -

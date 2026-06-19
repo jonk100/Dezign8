@@ -60,6 +60,7 @@
   --text--disabled:  var(--slate-11);
   --text--inverse:   var(--slate-01);
   --text--on-color:  var(--slate-30);  /* text on any solid accent bg */
+  --text--muted: var(--slate-19);
 
   /* ── Borders ──────────────────────────────────────────────── */
   --border--subtle:  var(--slate-05);
@@ -79,7 +80,7 @@
   /* ── Secondary — Purple ───────────────────────────────────── */
   --secondary--subtle:  var(--purple-03);
   --secondary--muted:   var(--purple-06);
-  --secondary--base:    var(--purple-16);
+  --secondary--base:    var(--purple-10);
   --secondary--vivid:   var(--purple-14);
   --secondary--deep:    var(--purple-22);
   --secondary--border:  var(--purple-11);
@@ -190,31 +191,34 @@
   --text--disabled:  var(--slate-19);
   --text--inverse:   var(--slate-28);
   --text--on-color:  var(--slate-30);
+  --text--muted: var(--slate-11);
 
   /* ── Borders ──────────────────────────────────────────────── */
-  --border--subtle:  color-mix(in oklch, var(--slate-01) 7%,  transparent);
-  --border--default: color-mix(in oklch, var(--slate-01) 12%, transparent);
-  --border--strong:  color-mix(in oklch, var(--slate-01) 20%, transparent);
+  --border--subtle:  color-mix(in oklch, var(--slate-01) 57%,  transparent);
+  --border--default: color-mix(in oklch, var(--slate-01) 62%, transparent);
+  --border--strong:  color-mix(in oklch, var(--slate-01) 40%, transparent);
   --border--focus:   var(--cyan-13);
+  --border--secondary: var(--purple-13);
+  --border--tertiary: var(--lime-13);
 
   /* ── Primary — Cyan ───────────────────────────────────────── */
   /* In dark mode accents are more vivid — they glow.           */
   --primary--subtle:  color-mix(in oklch, var(--cyan-16) 10%, var(--slate-29));
   --primary--muted:   color-mix(in oklch, var(--cyan-16) 18%, var(--slate-27));
-  --primary--base:    var(--cyan-15);
+  --primary--base:    var(--cyan-17);
   --primary--vivid:   var(--cyan-12);
-  --primary--deep:    var(--cyan-09);
+  --primary--deep:    var(--cyan-19);
   --primary--border:  var(--cyan-19);
   --primary--text:    var(--cyan-10);
 
   /* ── Secondary — Purple ───────────────────────────────────── */
-  --secondary--subtle:  color-mix(in oklch, var(--purple-16) 10%, var(--slate-29));
-  --secondary--muted:   color-mix(in oklch, var(--purple-16) 18%, var(--slate-27));
-  --secondary--base:    var(--purple-15);
-  --secondary--vivid:   var(--purple-12);
-  --secondary--deep:    var(--purple-09);
-  --secondary--border:  var(--purple-19);
-  --secondary--text:    var(--purple-10);
+  --secondary--subtle:  color-mix(in oklch, var(--purple-14) 12%, var(--slate-29));
+  --secondary--muted:   color-mix(in oklch, var(--purple-14) 20%, var(--slate-27));
+  --secondary--base:    var(--purple-14);
+  --secondary--vivid:   var(--purple-11);
+  --secondary--deep:    var(--purple-08);
+  --secondary--border:  var(--purple-15);
+  --secondary--text:    var(--purple-09);
 
   /* ── Accent — Lime ────────────────────────────────────────── */
   --accent--subtle:  color-mix(in oklch, var(--lime-16) 10%, var(--slate-29));

@@ -1,0 +1,30 @@
+/* ============================================================
+   box.css
+   ─────────────────────────────────────────────────────────────
+   Visual styles specifically for the Box component.
+   
+   The Box component combines the `.layout` class with `.box`.
+   The .layout class manages all spacing (margins, padding) through
+   cascading CSS variables. This file focuses only on the visual
+   shell of the container (background, radius, etc.).
+   ============================================================ */
+
+.box {
+  /* Box specific dimension: border-radius */
+  border-radius: var(--box--radius);
+  
+  /* Layout can pass down a background property */
+  background: var(--layout--bg, transparent);
+  
+  /* Flexbox fallback context if gap/align/justify are used.
+     Ideally layout.css handles layout mechanisms, but setting flex
+     safely enables those alignment properties when present. */
+  display: flex;
+  flex-direction: column; /* Common default for standard stacking boxes */
+  gap: var(--layout--gap);
+  align-items: var(--layout--align);
+  justify-content: var(--layout--justify);
+}
+
+/* If a box explicitly wants to be inline-flex or grid, that might require
+   modifiers, but flex-column handles 90% of basic block stacking. */

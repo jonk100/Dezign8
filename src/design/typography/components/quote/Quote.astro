@@ -1,0 +1,10 @@
+---
+import type { QuoteProps } from "./quote.props";
+import { useQuote } from "./quote.hook";
+import "../../typography.css";
+import "./quote.css";
+
+const { Tag, props } = useQuote(Astro.props as QuoteProps);
+---
+
+<Tag {...props}><slot /></Tag>

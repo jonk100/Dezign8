@@ -1,0 +1,62 @@
+/* ============================================================
+   heading.css
+   ─────────────────────────────────────────────────────────────
+   Heading-specific styles for the H component.
+
+   H always carries both "typography" and "h" class names.
+   All typographic values flow through --typography--* channels
+   declared inline by useHeading and consumed by typography.css.
+
+   This file only adds heading-specific concerns on top of
+   the shared typography baseline.
+
+   LEVEL DEFAULTS
+   ──────────────
+   Each level sets size, weight, leading, and tracking fallbacks
+   so that unset props produce appropriate heading defaults.
+   Passing any of these props explicitly overrides the fallback.
+   ============================================================ */
+
+/* ─── LEVEL DEFAULTS ──────────────────────────────────────── */
+
+.h--1 {
+  --typography--size:    var(--fs--4xl);
+  --typography--weight:  var(--weight--bold);
+  --typography--leading: var(--leading--none);
+  --typography--tracking:var(--tracking--tight);
+}
+
+.h--2 {
+  --typography--size:    var(--fs--3xl);
+  --typography--weight:  var(--weight--bold);
+  --typography--leading: var(--leading--tight);
+  --typography--tracking:var(--tracking--tight);
+}
+
+.h--3 {
+  --typography--size:    var(--fs--2xl);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--tight);
+  --typography--tracking:var(--tracking--tight);
+}
+
+.h--4 {
+  --typography--size:    var(--fs--xl);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--snug);
+  --typography--tracking:var(--tracking--normal);
+}
+
+.h--5 {
+  --typography--size:    var(--fs--lg);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--snug);
+  --typography--tracking:var(--tracking--normal);
+}
+
+.h--6 {
+  --typography--size:    var(--fs--md);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--normal);
+  --typography--tracking:var(--tracking--normal);
+}

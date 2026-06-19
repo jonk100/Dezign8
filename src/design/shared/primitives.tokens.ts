@@ -117,12 +117,14 @@ export const COLOR_ROLE = scale({
   danger:    null,
   warning:   null,
   success:   null,
+  info:      null,
   neutral:   null,
 });
 
 export const TEXT_COLOR = scale({
   primary:   "var(--text--primary)",
   secondary: "var(--text--secondary)",
+  muted:      "var(--text--muted)",   
   tertiary:  "var(--text--tertiary)",
   disabled:  "var(--text--disabled)",
   inverse:   "var(--text--inverse)",
@@ -224,6 +226,15 @@ export const COLOR_STEPS = {
     deep:   "var(--success--text)",
     border: "var(--success--border)",
     text:   "var(--success--text)",
+  },
+  info: {
+    subtle: "var(--info--subtle)",
+    muted:  "var(--info--muted)",
+    base:   "var(--info--base)",
+    vivid:  "var(--info--base)",
+    deep:   "var(--info--text)",
+    border: "var(--info--border)",
+    text:   "var(--info--text)",
   },
   neutral: {
     subtle: "var(--bg--3)",

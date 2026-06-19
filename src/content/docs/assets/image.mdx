@@ -1,0 +1,100 @@
+---
+title: Image Component
+description: Responsive image component with aspect ratio and object-fit controls.
+category: Assets
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/assets/components/image"
+---
+import Image from "../../../design/assets/components/image/Image.astro";
+
+## Overview
+
+The `Image` component is a robust wrapper around the native HTML `<img>` element. It provides a standardized way to handle aspect ratios, object fit, and border radii using design tokens.
+
+## Usage & Examples
+
+### Basic Usage
+
+```astro
+<Image src="/shell_lounge.png" alt="Shell Lounge" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <Image src="/shell_lounge.png" alt="Shell Lounge" />
+</div>
+
+### Aspect Ratios
+
+Use the `ratio` prop to constrain the image to a specific aspect ratio, combined with `fit` (defaulting to `cover`) to control how the image scales within its container.
+
+```astro
+<Image src="/king_kong_bar.png" alt="King Kong Bar" ratio="video" />
+<Image src="/king_kong_bar.png" alt="King Kong Bar" ratio="square" />
+<Image src="/king_kong_bar.png" alt="King Kong Bar" ratio="landscape" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text--muted, #666);">Video (16:9)</p>
+    <Image src="/king_kong_bar.png" alt="King Kong Bar" ratio="video" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text--muted, #666);">Square (1:1)</p>
+    <Image src="/king_kong_bar.png" alt="King Kong Bar" ratio="square" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text--muted, #666);">Landscape (4:3)</p>
+    <Image src="/king_kong_bar.png" alt="King Kong Bar" ratio="landscape" />
+  </div>
+</div>
+
+### Border Radius
+
+Apply border radius tokens directly to the image using the `radius` prop.
+
+```astro
+<Image src="/design8_mushrooms1 (Edit).webp" alt="Mushrooms" ratio="square" radius="md" />
+<Image src="/design8_mushrooms1 (Edit).webp" alt="Mushrooms" ratio="square" radius="full" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; gap: 1rem;">
+  <div style="width: 200px;">
+    <Image src="/design8_mushrooms1 (Edit).webp" alt="Mushrooms" ratio="square" radius="md" />
+  </div>
+  <div style="width: 200px;">
+    <Image src="/design8_mushrooms1 (Edit).webp" alt="Mushrooms" ratio="square" radius="full" />
+  </div>
+</div>
+
+### Object Fit
+
+You can control how the image content should be resized to fit its container using the `fit` prop. The default is `cover`.
+
+```astro
+<Image src="/weed_bar.jpeg" alt="Weed Bar" ratio="square" fit="cover" />
+<Image src="/weed_bar.jpeg" alt="Weed Bar" ratio="square" fit="contain" style="background-color: var(--bg--muted, #f3f4f6);" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; gap: 1rem;">
+  <div style="width: 200px;">
+    <p style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text--muted, #666);">Cover (Default)</p>
+    <Image src="/weed_bar.jpeg" alt="Weed Bar" ratio="square" fit="cover" />
+  </div>
+  <div style="width: 200px;">
+    <p style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text--muted, #666);">Contain</p>
+    <Image src="/weed_bar.jpeg" alt="Weed Bar" ratio="square" fit="contain" style="background-color: var(--bg--muted, #f3f4f6);" />
+  </div>
+</div>
+
+## Props API
+
+| Prop | Type | Description |
+|---|---|---|
+| `src` | `string` | Image source URL. (Required) |
+| `alt` | `string` | Alt text. Pass empty string for decorative images. (Required) |
+| `ratio` | `ImageRatio` | Aspect ratio preset (e.g., `square`, `landscape`, `video`, `portrait`, `wide`). |
+| `fit` | `ImageFit` | object-fit behaviour (e.g., `cover`, `contain`, `fill`, `none`). Defaults to `cover`. |
+| `loading` | `"lazy" \| "eager"` | Native loading strategy. Defaults to `lazy`. |
+| `radius` | `ImageRadius` | Border radius token. |
+| `width` | `number \| string` | Intrinsic width. |
+| `height` | `number \| string` | Intrinsic height. |
+
+*Inherits all `BaseComponentProps`.*

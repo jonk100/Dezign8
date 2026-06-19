@@ -9,13 +9,13 @@ import { useBaseCompose, composeClass, composeStyle } from "~/shared/base.hook";
 export function useTrigger(props: TriggerProps) {
   const {
     size     = "md",
-    variant  = "solid",
+    v,
+    variant  = v ?? "solid",
     color    = "primary",
     radius   = "md",
     disabled = false,
     loading  = false,
     class: className,
-    v: _v,
     testId: _testId,
     bg,
     animation,

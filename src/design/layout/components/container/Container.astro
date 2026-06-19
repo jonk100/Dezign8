@@ -1,0 +1,8 @@
+---
+import type { ContainerProps } from "./container.props";
+import { useContainer } from "./container.hook";
+import "./container.css";
+
+const { Tag, props } = useContainer(Astro.props as ContainerProps);
+---
+<Tag {...props}><slot /></Tag>

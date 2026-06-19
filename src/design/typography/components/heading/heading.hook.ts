@@ -3,6 +3,7 @@
 import type { HeadingProps } from "./heading.props";
 import { HEADING_DEFAULTS } from "./heading.tokens";
 import { useTypography } from "../../typography.hook";
+import { composeClass } from "~/shared/base.hook";
 
 /**
  * Heading-specific wrapper around `useTypography`.
@@ -30,26 +31,21 @@ import { useTypography } from "../../typography.hook";
  *   const { Tag, props } = useHeading({ level: 1, weight: "bold" });
  *   <Tag {...props}>Page Title</Tag>
  */
-export function useHeading(props: HeadingProps) {
-  const {
-    level = HEADING_DEFAULTS.level,
-    class: className,
-    ...rest
-  } = props;
-
-  const headingClass = [
-    "h",
-    `h--${level}`,
-    className,
-  ].filter(Boolean).join(" ");
-
-  const { typographyAttributes } = useTypography({
-    ...rest,
-    class: headingClass,
-  });
-
-  return {
-    Tag: `h${level}` as const,
-    props: typographyAttributes,
-  };
-}
+  export function useHeading(props: HeadingProps) {
+    const {
+      level = HEADING_DEFAULTS.level,
+      class: className,
+      ...typographyProps
+    } = props;
+  
+    const { typographyAttributes } = useTypography({
+      ...typographyProps,
+      class: composeClass("h", `h--${level}`, className),
+    });
+  
+    return {
+      Tag:   `h${level}` as const,
+      props: typographyAttributes,
+    };
+  }
+  

@@ -21,7 +21,6 @@
 
 .trigger--solid {
   background-color: var(--trigger--color-base);
-  border: none;
   color: var(--text--on-color);
 }
 

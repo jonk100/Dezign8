@@ -1,17 +1,153 @@
 ---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
 
+const allDocs = await getCollection('docs');
+
+const categoriesMap = new Map<string, { categoryDoc: any, components: any[] }>();
+
+allDocs.forEach(doc => {
+	const parts = doc.id.split('/');
+	const name = parts[parts.length - 1].replace(/\.mdx?$/, '');
+	const isCategoryDoc = parts.length >= 2 && parts[parts.length - 2] === name;
+
+	const categoryName = doc.data.category || 'Uncategorized';
+	
+	if (!categoriesMap.has(categoryName)) {
+		categoriesMap.set(categoryName, { categoryDoc: null, components: [] });
+	}
+	
+	if (isCategoryDoc) {
+		categoriesMap.get(categoryName)!.categoryDoc = { frontmatter: doc.data };
+	} else {
+		categoriesMap.get(categoryName)!.components.push(doc);
+	}
+});
+
+const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) => ({
+	name,
+	slug: name.toLowerCase().replace(/\s+/g, '-'),
+	...data
+})).sort((a, b) => a.name.localeCompare(b.name));
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Dezign8 Component Library">
+	<section class="container">
+		<img src="/dezign83.png" alt="Dezign8 Logo" style="height: 48px; margin-bottom: 1rem; display: block;" />
+		<h1>Dezign8 Library</h1>
+		<p class="subtitle">Available components, organized by design category.</p>
+		
+		<div class="categories-list">
+			{categorizedLists.map(cat => (
+				<div class="category-group">
+					<h2 class="category-title">
+						<a href={`/docs/${cat.slug}`} class="category-link">{cat.name}</a>
+					</h2>
+					{cat.categoryDoc && cat.categoryDoc.frontmatter?.description && (
+						<p class="category-desc">{cat.categoryDoc.frontmatter.description}</p>
+					)}
+					
+					<ul class="component-list">
+						{cat.components.length > 0 ? cat.components.map((doc: any) => (
+							<li>
+								<a href={`/docs/${doc.id}`} class="component-link">↳ {doc.data.title}</a>
+								<p class="desc">{doc.data.description}</p>
+							</li>
+						)) : (
+							<li><p class="desc empty">No components documented in this category yet.</p></li>
+						)}
+					</ul>
+				</div>
+			))}
+			
+			{categorizedLists.length === 0 && (
+				<p>No documentation entries found yet.</p>
+			)}
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 2rem 1rem;
+	}
+	h1 {
+		font-size: var(--fs--3xl, 2.5rem);
+		font-weight: var(--weight--bold, 700);
+		margin-bottom: 0.5rem;
+	}
+	.subtitle {
+		font-size: var(--fs--lg, 1.125rem);
+		color: var(--text--secondary, #6b7280);
+		margin-bottom: 3rem;
+	}
+	
+	.categories-list {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+	
+	.category-title {
+		margin: 0 0 0.5rem 0;
+		font-size: var(--fs--2xl, 1.5rem);
+	}
+	
+	.category-link {
+		color: var(--text--primary, #111827);
+		text-decoration: none;
+		border-bottom: 2px solid transparent;
+		transition: border-color 0.2s;
+	}
+	
+	.category-link:hover {
+		border-bottom-color: var(--primary--base, #3b82f6);
+	}
+	
+	.category-desc {
+		margin: 0 0 1.5rem 0;
+		color: var(--text--secondary, #6b7280);
+		line-height: var(--leading--relaxed, 1.6);
+	}
+	
+	.component-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 0 1rem;
+		border-left: 2px solid var(--border--subtle, #f3f4f6);
+	}
+	
+	.component-list li {
+		margin-bottom: 1.5rem;
+		padding-left: 1rem;
+	}
+	
+	.component-list li:last-child {
+		margin-bottom: 0;
+	}
+	
+	.component-link {
+		font-size: var(--fs--lg, 1.125rem);
+		font-weight: var(--weight--semibold, 600);
+		color: var(--primary--text, #3b82f6);
+		text-decoration: none;
+		display: inline-block;
+		margin-bottom: 0.25rem;
+	}
+	
+	.component-link:hover {
+		text-decoration: underline;
+	}
+	
+	.desc {
+		margin: 0;
+		color: var(--text--muted, #6b7280);
+		font-size: var(--fs--sm, 0.875rem);
+	}
+	
+	.desc.empty {
+		font-style: italic;
+	}
+</style>

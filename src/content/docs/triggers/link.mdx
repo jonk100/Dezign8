@@ -1,0 +1,84 @@
+---
+title: Link Component
+description: An interactive navigational element based on the Typography interface with built-in security features for external linking.
+category: Triggers
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/triggers/components/link"
+---
+import Link from "../../../design/triggers/components/link/Link.astro";
+
+## Overview
+
+The `Link` component provides a consistent and accessible way to handle navigation. Because links are primarily textual, this component inherits the complete suite of `TypographyProps`. This ensures that your links seamlessly blend with the surrounding text while still providing the necessary interactive cues.
+
+## Usage & Examples
+
+### Basic Link
+By default, the `Link` component renders as an `<a>` tag with hover-only underlining.
+
+```astro
+<Link href="/about">About Us</Link>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <Link href="/about">About Us</Link>
+</div>
+
+### Typography Inheritance
+Since `Link` extends the typography system, you can pass any typography tokens directly to it.
+
+```astro
+<Link href="/brand" size="xl" weight="bold" color="primary">Primary Brand Link</Link>
+<Link href="/terms" size="sm" color="muted">Terms of Service</Link>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+  <Link href="/brand" size="xl" weight="bold" color="primary">Primary Brand Link</Link>
+  <Link href="/terms" size="sm" color="muted">Terms of Service</Link>
+</div>
+
+### Underline Behaviors
+Control when the underline is visible using the `underline` prop.
+
+```astro
+<Link href="#1" underline="always">Always Underlined</Link>
+<Link href="#2" underline="hover">Hover Underlined (Default)</Link>
+<Link href="#3" underline="never">Never Underlined</Link>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+  <Link href="#1" underline="always">Always Underlined</Link>
+  <Link href="#2" underline="hover">Hover Underlined (Default)</Link>
+  <Link href="#3" underline="never">Never Underlined</Link>
+</div>
+
+### External Linking
+Use the `external` boolean prop to safely link to outside domains. This automatically sets `target="_blank"` and `rel="noopener noreferrer"`.
+
+```astro
+<Link href="https://example.com" external color="primary">Visit External Site</Link>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <Link href="https://example.com" external color="primary">Visit External Site</Link>
+</div>
+
+## Props API
+
+### Link Props
+
+| Prop | Type | Description |
+|---|---|---|
+| `href` | `string` | **Required.** The destination URL for the link. |
+| `target` | `string` | Specifies where to open the linked document. |
+| `rel` | `string` | Specifies the relationship to the linked document. |
+| `external` | `boolean` | Shorthand to automatically apply `target="_blank"` and secure `rel`. |
+| `underline` | `"always" \| "hover" \| "never"` | Controls when the underline appears. Defaults to `"hover"`. |
+
+### Typography Props (Inherited)
+The component also accepts all props from the `Typography` interface (`size`, `weight`, `color`, `align`, etc.).
+
+### Base Component Props
+All components accept standard `HTMLAttributes` along with utility props like `class` and `style`.
+
+## Design Decisions
+- **Security by Default**: The `external` prop guarantees that you won't accidentally expose your users to reverse tabnabbing vulnerabilities.
+- **Typography First**: Links are text. By inheriting typography props rather than defining bespoke sizing/coloring, the design system remains DRY and consistent.

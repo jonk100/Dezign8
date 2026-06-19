@@ -1,0 +1,139 @@
+---
+title: Button Component
+description: Interactive trigger element for forms and user actions.
+category: Triggers
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/triggers/components/button"
+---
+import Button from "../../../design/triggers/components/button/Button.astro";
+
+## Overview
+
+The `Button` component is the primary interactive element for user actions. It supports multiple sizes, visual variants, and automatically handles routing semantics if an `href` is provided.
+
+## Usage & Examples
+
+### Basic Button
+
+```astro
+<Button>Click Me</Button>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <Button>Click Me</Button>
+</div>
+
+### Sizes
+The button component supports fluid padding and text mapping perfectly to the `label` and `space-in` design tokens.
+
+```astro
+<Button size="xs">Extra Small</Button>
+<Button size="sm">Small</Button>
+<Button size="md">Medium (Default)</Button>
+<Button size="lg">Large</Button>
+<Button color="secondary" size="xl">Extra Large</Button>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+  <Button size="xs">Extra Small</Button>
+  <Button size="sm">Small</Button>
+  <Button size="md">Medium (Default)</Button>
+  <Button size="lg">Large</Button>
+  <Button color="secondary" size="xl">Extra Large</Button>
+</div>
+
+### Variants & Colors
+Buttons inherit visual variants from the global `v` (visual) prop, composing structural styles with semantic color roles.
+
+```astro
+<!-- Solid Buttons -->
+<Button v="solid" color="primary">Primary</Button>
+<Button v="solid" color="secondary">Secondary</Button>
+<Button v="solid" color="accent">Accent</Button>
+<Button v="solid" color="danger">Danger</Button>
+<Button v="solid" color="success">Success</Button>
+
+<!-- Outlined Buttons -->
+<Button v="outlined" color="primary">Primary</Button>
+<Button v="outlined" color="secondary">Secondary</Button>
+<Button v="outlined" color="warning">Warning</Button>
+<Button v="outlined" color="info">Info</Button>
+
+<!-- Soft Buttons -->
+<Button v="soft" color="primary">Primary Soft</Button>
+<Button v="soft" color="danger">Danger Soft</Button>
+<Button v="soft" color="success">Success Soft</Button>
+
+<!-- Ghost Buttons -->
+<Button v="ghost" color="primary">Primary Ghost</Button>
+<Button v="ghost" color="secondary">Secondary Ghost</Button>
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+    <Button v="solid" color="primary">Primary</Button>
+    <Button v="solid" color="secondary">Secondary</Button>
+    <Button v="solid" color="accent">Accent</Button>
+    <Button v="solid" color="danger">Danger</Button>
+    <Button v="solid" color="success">Success</Button>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+    <Button v="outlined" color="primary">Primary</Button>
+    <Button v="outlined" color="secondary">Secondary</Button>
+    <Button v="outlined" color="warning">Warning</Button>
+    <Button v="outlined" color="info">Info</Button>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+    <Button v="soft" color="primary">Primary Soft</Button>
+    <Button v="soft" color="danger">Danger Soft</Button>
+    <Button v="soft" color="success">Success Soft</Button>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+    <Button v="ghost" color="primary">Primary Ghost</Button>
+    <Button v="ghost" color="secondary">Secondary Ghost</Button>
+  </div>
+</div>
+
+### Layout Modifiers
+
+```astro
+<!-- Full width button -->
+<Button fullWidth>Sign In</Button>
+
+<!-- Icon-only button (forces 1:1 aspect ratio) -->
+<Button iconOnly aria-label="Close">
+  X
+</Button>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;">
+  <div style="width: 100%; max-width: 400px;">
+    <Button fullWidth>Sign In</Button>
+  </div>
+  <Button iconOnly aria-label="Close">X</Button>
+</div>
+
+### Links vs Buttons
+If you provide an `href` prop, the Button automatically renders as an `<a>` tag while retaining button styling. If you use `target="_blank"`, it safely injects `rel="noopener noreferrer"`.
+
+```astro
+<Button href="/dashboard">Go to Dashboard</Button>
+<Button href="https://google.com" target="_blank">External Link</Button>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; gap: 1rem;">
+  <Button href="/dashboard">Go to Dashboard</Button>
+  <Button href="https://google.com" target="_blank">External Link</Button>
+</div>
+
+## Props API
+
+### Button Props
+
+| Prop | Type | Description |
+|---|---|---|
+| `size` | `ButtonSize` | Controls padding and text size (`2xs` to `2xl`). Defaults to `md`. |
+| `type` | `"button" \| "submit" \| "reset"` | HTML button type. Defaults to `"button"`. |
+| `href` | `string` | If provided, renders as an anchor `<a>` tag. |
+| `target` | `string` | Standard HTML anchor target. |
+| `iconOnly` | `boolean` | Forces 1:1 aspect ratio and removes inline text padding. |
+| `fullWidth` | `boolean` | Expands to 100% of the parent container width. |
+
+*Inherits all `TriggerProps` and `BaseComponentProps`.*

@@ -1,0 +1,39 @@
+---
+title: Heading Component
+description: Semantic typography component for rendering section headings with appropriate hierarchy and visual styles.
+category: Typography
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/typography/components/heading"
+---
+import Heading from "../../../design/typography/components/heading/Heading.astro";
+
+## Overview
+
+The `Heading` component renders semantic HTML headings (`h1` through `h6`) mapped directly to our typography tokens.
+
+## Usage
+
+```astro
+<Heading level={1}>Page Title</Heading>
+<Heading level={2}>Section Title</Heading>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+  <Heading level={1}>Page Title</Heading>
+  <Heading level={2}>Section Title</Heading>
+</div>
+
+### Semantic Colors
+Headings can also take semantic color roles.
+
+```astro
+<Heading level={3} color="primary">Primary Heading</Heading>
+<Heading level={3} color="secondary">Secondary Heading</Heading>
+<Heading level={3} color="success">Success Heading</Heading>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+  <Heading level={3} color="primary">Primary Heading</Heading>
+  <Heading level={3} color="secondary">Secondary Heading</Heading>
+  <Heading level={3} color="success">Success Heading</Heading>
+</div>

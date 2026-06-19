@@ -1,0 +1,31 @@
+---
+/**
+ * Link Component
+ * 
+ * An interactive navigational element extending the Typography interface.
+ * Used for inline text links, external references, and semantic navigation.
+ * 
+ * Supports:
+ * - All typography tokens (size, weight, family, color)
+ * - Safe external linking (`external` prop)
+ * - Underline behaviors (`always`, `hover`, `never`)
+ * 
+ * @example
+ * ```astro
+ * <Link href="/about" color="primary">About Us</Link>
+ * <Link href="https://google.com" external underline="always">Google</Link>
+ * ```
+ */
+
+import type { LinkProps } from "./link.props";
+import { useLink } from "./link.hook";
+import "./link.css";
+
+type Props = LinkProps;
+
+const { Tag, props: linkProps } = useLink(Astro.props);
+---
+
+<Tag {...linkProps}>
+  <slot />
+</Tag>

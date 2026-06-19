@@ -1,0 +1,42 @@
+/* ============================================================
+   link.css
+   ─────────────────────────────────────────────────────────────
+   Visual styles for the Link component.
+   Since Link extends Typography, most base styling (font, color)
+   is handled by the typography system. Here we manage the
+   interactive behaviors and underline states.
+   ============================================================ */
+
+.link {
+  text-decoration: none;
+  cursor: pointer;
+  /* Smooth transition for color changes on hover, assuming typography handles the initial color */
+  transition:
+    color var(--transition--fast, 0.2s ease),
+    text-decoration-color var(--transition--fast, 0.2s ease);
+}
+
+/* ─── UNDERLINE VARIANTS ──────────────────────────────────── */
+
+.link--underline-always {
+  text-decoration: underline;
+  text-underline-offset: 0.2em; /* Gives breathing room to the text */
+}
+
+.link--underline-hover:hover,
+.link--underline-hover:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.link--underline-never {
+  text-decoration: none !important;
+}
+
+/* ─── FOCUS OUTLINE ───────────────────────────────────────── */
+
+.link:focus-visible {
+  outline: 2px solid var(--color--focus, currentColor);
+  outline-offset: 2px;
+  border-radius: 2px; /* Small radius for a softer focus ring */
+}

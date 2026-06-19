@@ -1,0 +1,10 @@
+---
+import type { HeadingProps } from "./heading.props";
+import { useHeading } from "./heading.hook";
+import "../../typography.css";
+import "./heading.css";
+
+const { Tag, props } = useHeading(Astro.props as HeadingProps);
+---
+
+<Tag {...props}><slot /></Tag>

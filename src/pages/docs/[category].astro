@@ -1,0 +1,107 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const allDocs = await getCollection('docs');
+  
+  // A category doc is one where the filename matches the directory name, e.g., typography/typography
+  const categoryDocs = allDocs.filter(doc => {
+      const parts = doc.id.split('/');
+      // Remove extension if present in id
+      const name = parts[parts.length - 1].replace(/\.mdx?$/, '');
+      return parts.length >= 2 && parts[parts.length - 2] === name;
+  });
+  
+  return categoryDocs.map(catDoc => {
+      const categoryName = catDoc.data.category;
+      if (!categoryName) return null;
+      
+      const slugified = categoryName.toLowerCase().replace(/\s+/g, '-');
+      const components = allDocs.filter(d => 
+          d.data.category === categoryName && d.id !== catDoc.id
+      );
+      
+      return {
+          params: { category: slugified },
+          props: { 
+              categoryName, 
+              components,
+              docEntry: catDoc
+          }
+      };
+  }).filter(Boolean);
+}
+
+const { categoryName, components, docEntry } = Astro.props;
+
+const { Content } = await render(docEntry);
+const { title = `${categoryName} Category`, description = `Index of components in the ${categoryName} category.` } = docEntry.data;
+---
+
+<Layout title={`${title} | Dezign8 Docs`} description={description}>
+	<slot name="head">
+		<style>
+			.docs-container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+			.header { border-bottom: 1px solid var(--border--default, #e5e7eb); padding-bottom: 2rem; margin-bottom: 2rem; }
+			.back-link { color: var(--text--secondary, #6b7280); text-decoration: none; margin-bottom: 2rem; display: inline-block; }
+			.back-link:hover { text-decoration: underline; }
+			
+			.component-list { list-style: none; padding: 0; display: grid; gap: 1rem; margin-top: 2rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+			.component-card {
+				display: block;
+				padding: 1.5rem;
+				border: 1px solid var(--border--default, #e5e7eb);
+				border-radius: var(--radius--md, 0.5rem);
+				text-decoration: none;
+				color: inherit;
+				background: var(--bg--1, #fff);
+				transition: border-color 0.2s, transform 0.2s;
+			}
+			.component-card:hover {
+				border-color: var(--primary--base, #3b82f6);
+				transform: translateY(-2px);
+			}
+			.component-card h3 { margin: 0 0 0.5rem 0; color: var(--primary--text, #3b82f6); }
+			.component-card p { margin: 0; color: var(--text--secondary, #6b7280); font-size: var(--fs--sm, 0.875rem); }
+			
+			/* Basic Markdown Element Reset for MDX content */
+			:global(.docs-content pre) { background: var(--bg--4, #1f2937); color: var(--text--inverse, #f9fafb); padding: 1.25rem; border-radius: var(--radius--md, 0.5rem); overflow-x: auto; margin-bottom: 1.5rem; }
+			:global(.docs-content code) { font-family: var(--family--mono, monospace); font-size: 0.9em; }
+			:global(.docs-content :not(pre) > code) { background: var(--bg--2, #f3f4f6); padding: 0.125rem 0.25rem; border-radius: var(--radius--sm, 0.25rem); color: var(--danger--text, #ef4444); }
+			:global(.docs-content table) { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+			:global(.docs-content th), :global(.docs-content td) { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border--subtle, #e5e7eb); }
+			:global(.docs-content th) { background: var(--bg--1, #f9fafb); font-weight: var(--weight--semibold, 600); }
+			:global(.docs-content h2) { border-bottom: 1px solid var(--border--subtle, #e5e7eb); padding-bottom: 0.5rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+			:global(.docs-content h3) { margin-top: 1.5rem; margin-bottom: 0.5rem; }
+			:global(.docs-content p) { margin-bottom: 1rem; }
+		</style>
+	</slot>
+
+	<div class="docs-container">
+		<header class="header">
+			<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+				<a href="/" class="back-link" style="margin-bottom: 0;">← Back to Home</a>
+				<a href="/"><img src="/dezign83.png" alt="Dezign8 Logo" style="height: 32px; width: auto; display: block;" /></a>
+			</div>
+			<h1 style="font-size: var(--fs--3xl); font-weight: var(--weight--bold); margin-bottom: 0.5rem;">{title}</h1>
+			<p style="font-size: var(--fs--lg); color: var(--text--secondary); margin-bottom: 1.5rem;">{description}</p>
+		</header>
+
+		<main class="docs-content">
+			{Content ? <Content /> : <p>No detailed documentation provided for this category.</p>}
+			
+			<h2>Components in {categoryName}</h2>
+			<ul class="component-list">
+				{components.map((component: any) => (
+					<li>
+						<a href={`/docs/${component.id}`} class="component-card">
+							<h3>{component.data.title}</h3>
+							<p>{component.data.description}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+		</main>
+	</div>
+</Layout>

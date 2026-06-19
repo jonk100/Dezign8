@@ -1,0 +1,9 @@
+---
+import type { TextProps } from "./text.props";
+import { useText } from "./text.hook";
+import "../../typography.css";
+
+const { Tag, props } = useText(Astro.props as TextProps);
+---
+
+<Tag {...props}><slot /></Tag>

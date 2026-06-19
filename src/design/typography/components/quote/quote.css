@@ -1,0 +1,30 @@
+/* ============================================================
+   quote.css
+   ─────────────────────────────────────────────────────────────
+   Fallback variables for Quote components.
+   ============================================================ */
+
+.quote {
+  /* All quotes render italic by default */
+  --typography--style: italic;
+}
+
+/* ─── MODIFIERS ───────────────────────────────────────────── */
+
+.quote--block {
+  /* Standard quotes are slightly subdued */
+  --typography--color: var(--text--muted, inherit);
+}
+
+.quote--pull {
+  /* Pull quotes are prominent and stand out */
+  --typography--size: var(--fs--xl);
+  --typography--weight: var(--weight--medium);
+  --typography--color: var(--text--primary, inherit);
+  --typography--align: center;
+  --typography--wrap: balance;
+}
+
+.quote--inline {
+  /* Inline quotes inherit size and color from surroundings */
+}

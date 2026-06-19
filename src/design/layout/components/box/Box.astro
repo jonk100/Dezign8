@@ -1,0 +1,34 @@
+---
+/**
+ * Box Component
+ * 
+ * The fundamental layout container. Box leverages the `useLayout` hook to
+ * consume a rich set of structural properties.
+ * 
+ * By extending `LayoutProps` (and thereby `SpacingProps`), the Box exposes
+ * the entire spacing shorthand chain. You can pass properties like:
+ * - `p`, `px`, `py`, `pt`, `pr`, `pb`, `pl` for padding.
+ * - `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml` for margin.
+ * - `gap`, `align`, `justify` for flex/grid flow.
+ * 
+ * It also applies container-specific styles such as `radius`.
+ * 
+ * @example
+ * ```astro
+ * <Box as="section" p="xl" bg="--color--surface" radius="md">
+ *   <Box p="md" gap="sm">Content goes here</Box>
+ * </Box>
+ * ```
+ */
+import type { BoxProps } from "./box.props";
+import { useBox } from "./box.hook";
+import "./box.css";
+
+type Props = BoxProps;
+
+const { Tag, props: boxProps } = useBox(Astro.props);
+---
+
+<Tag {...boxProps}>
+  <slot />
+</Tag>

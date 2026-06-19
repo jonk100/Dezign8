@@ -1,0 +1,39 @@
+---
+import Head from "./Head.astro";
+import "../design/styles/global.css";
+
+export interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Automatically injects advanced SEO and meta tags -->
+    <Head title={title} description={description} image={image} />
+    
+    <!-- Pass-through for any page-specific head injections -->
+    <slot name="head" />
+  </head>
+  <body>
+    <!-- Top-level layout slots -->
+    <slot name="header" />
+    <slot name="hero" />
+    
+    <!-- Main content area -->
+    <main>
+      <slot name="main-top" />
+      <slot />
+      <slot name="main-bottom" />
+    </main>
+    
+    <!-- Bottom-level layout slots -->
+    <slot name="zero" />
+    <slot name="footer" />
+  </body>
+</html>

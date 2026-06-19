@@ -1,5 +1,5 @@
 // design/typography/text/text.props.ts
-import type { TypographyProps } from "../../typography.props";
+import type { TypographyProps } from "~ty/typography.props";
 
 export type TextTag =
   | "p" | "span" | "div" | "li"

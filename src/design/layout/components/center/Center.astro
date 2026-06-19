@@ -1,0 +1,8 @@
+---
+import type { CenterProps } from "./center.props";
+import { useCenter } from "./center.hook";
+import "./center.css";
+
+const { Tag, props } = useCenter(Astro.props as CenterProps);
+---
+<Tag {...props}><slot /></Tag>

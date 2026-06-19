@@ -1,0 +1,70 @@
+---
+title: Quote Component
+description: Semantic typography component for blockquotes, pull quotes, and inline quotes.
+category: Typography
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/typography/components/quote"
+---
+import Quote from "../../../design/typography/components/quote/Quote.astro";
+import Text from "../../../design/typography/components/text/Text.astro";
+
+## Overview
+
+The `Quote` component handles semantic quotes in your application. It automatically maps to `<blockquote>` or `<q>` based on the visual `type` you provide, ensuring screen-readers and visual presentation are always aligned.
+
+## Usage & Examples
+
+### Block Quote (Default)
+Standard blockquotes render as `<blockquote>` with slightly muted, italic text.
+
+```astro
+<Quote type="block" cite="https://example.com">
+  "Simplicity is the ultimate sophistication."
+</Quote>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <Quote type="block" cite="https://example.com">
+    "Simplicity is the ultimate sophistication."
+  </Quote>
+</div>
+
+### Pull Quote
+Pull quotes are prominent, larger text blocks used to highlight key excerpts in editorial content. Renders as a `<blockquote>` with centered, balanced, and larger text.
+
+```astro
+<Quote type="pull">
+  "The best code is the code never written."
+</Quote>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <Quote type="pull">
+    "The best code is the code never written."
+  </Quote>
+</div>
+
+### Inline Quote
+For quoting within the flow of a paragraph. Renders as a `<q>` tag, inheriting the surrounding text properties but retaining italic styling.
+
+```astro
+<Text>
+  As the architect said, <Quote type="inline">we should probably delete that</Quote>, and I agreed.
+</Text>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <Text>
+    As the architect said, <Quote type="inline">we should probably delete that</Quote>, and I agreed.
+  </Text>
+</div>
+
+## Props API
+
+### Quote Props
+
+| Prop | Type | Description |
+|---|---|---|
+| `type` | `"block" \| "pull" \| "inline"` | The visual and semantic type of the quote. Defaults to `"block"`. |
+| `cite` | `string` | Standard HTML attribute for the source URL. Automatically passed to the underlying DOM element. |
+
+*Inherits all `TypographyProps` and `BaseComponentProps`.*

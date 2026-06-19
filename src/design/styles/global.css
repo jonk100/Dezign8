@@ -3,11 +3,10 @@
    ─────────────────────────────────────────────────────────────
    Import order matters:
 
-     @import "./color-vars.css";
+     @import "./color.vars.css";
      @import "./vars.css";
      @import "./tokens.css";
-     @import "./tokens-color.css";
-     @import "./global.css";
+     @import "./color.tokens.css";
 
    This file:
      1. Resets browser defaults
@@ -18,11 +17,10 @@
    buttons, code — is handled by components. Nothing here
    should clash with component stylesheets.
    ============================================================ */
-@import "./color-vars.css";
+@import "./color.vars.css";
 @import "./vars.css";
 @import "./tokens.css";
-@import "./tokens-color.css";
-@import "./global.css";
+@import "./color.tokens.css";
 
 /* ─── BOX MODEL ───────────────────────────────────────────── */
 
@@ -70,7 +68,7 @@ html {
 
 body {
   font-family: var(--family--sans);
-  font-size: var(--fs--2xs);
+  /* font-size: var(--fs--2xs); */
   line-height: var(--leading--normal);
   color: var(--text--primary);
   background-color: var(--bg--0);
