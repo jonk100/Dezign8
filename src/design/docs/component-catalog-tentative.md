@@ -146,7 +146,6 @@ focus-trap, Escape-key, and scroll-lock behaviour.
 | `Portal` | Renders children into a separate DOM node. No visual output. | `target` |
 | `Popover` | Small floating panel anchored to a trigger element. | `trigger`, `placement`, `isOpen`, `onClose`, `sideOffset` |
 | `Tooltip` | Brief floating label on hover or focus. | `label`, `placement`, `delay`, `sideOffset` |
-| `Menu` | Generic floating menu attached to a trigger. | `trigger`, `isOpen`, `onClose`, `placement` |
 | `DropdownMenu` | Trigger + floating list of actions or links. | `trigger`, `items`, `placement`, `onSelect` |
 | `ContextMenu` | Right-click/long-press menu with contextual actions. | `items`, `onSelect` |
 
@@ -187,6 +186,7 @@ and sequential progression.
 | Component | Purpose | Key props |
 |---|---|---|
 | `Navbar` | Primary navigation bar containing logo, links, and actions. | `items`, `logo`, `actions`, `sticky` |
+| `Menu` | Generic menu of items with actions attached. | `trigger`, `isOpen`, `onClose`, `placement` |
 | `Toolbar` | Horizontal bar of grouped actions, filters, or controls. | `gap`, `align` |
 | `Breadcrumbs` | Trail of links showing the current page's location in the hierarchy. | `items`, `separator`, `maxItems` |
 | `Tabs` | Tabbed interface for switching between content panels. | `items`, `value`, `onChange`, `orientation`, `variant` |

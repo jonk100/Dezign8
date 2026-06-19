@@ -32,6 +32,21 @@ git-branch:
 git-log:
     # fzf preview extracts the commit hash from the selected line and runs git show on it
     git log --oneline --graph --decorate -30 | fzf --prompt="Log > " --preview 'git show $(echo {} | grep -o "[a-f0-9]\{7,\}" | head -1)'
+
+# add, commit
+[group('git')]
+git-commit:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    git status --short
+    echo
+    read -rp "Commit message: " msg
+    [ -n "$msg" ] || {
+        echo "Commit message required"
+        exit 1
+    }
+    git add .
+    git commit -m "$msg"
     
 
 # Deploy to Cloudflare via Wrangler
