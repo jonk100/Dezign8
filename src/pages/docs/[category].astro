@@ -6,19 +6,19 @@ export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
   
   // A category doc is one where the filename matches the directory name, e.g., typography/typography
-  const categoryDocs = allDocs.filter(doc => {
+  const categoryDocs = allDocs.filter((doc: any) => {
       const parts = doc.id.split('/');
       // Remove extension if present in id
       const name = parts[parts.length - 1].replace(/\.mdx?$/, '');
       return parts.length >= 2 && parts[parts.length - 2] === name;
   });
   
-  return categoryDocs.map(catDoc => {
+  return categoryDocs.map((catDoc: any) => {
       const categoryName = catDoc.data.category;
       if (!categoryName) return null;
       
       const slugified = categoryName.toLowerCase().replace(/\s+/g, '-');
-      const components = allDocs.filter(d => 
+      const components = allDocs.filter((d: any) => 
           d.data.category === categoryName && d.id !== catDoc.id
       );
       
@@ -33,7 +33,7 @@ export async function getStaticPaths() {
   }).filter(Boolean);
 }
 
-const { categoryName, components, docEntry } = Astro.props;
+const { categoryName, components, docEntry } = Astro.props as { categoryName: string, components: any[], docEntry: any };
 
 const { Content } = await render(docEntry);
 const { title = `${categoryName} Category`, description = `Index of components in the ${categoryName} category.` } = docEntry.data;

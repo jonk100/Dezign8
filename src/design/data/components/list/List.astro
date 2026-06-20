@@ -1,0 +1,17 @@
+---
+import type { ListProps } from "./list.props";
+import { useList } from "./list.hook";
+import "./list.css";
+
+const { Tag, itemClass, itemGap, items, renderItem, rest } = useList(Astro.props as ListProps<unknown>);
+---
+<Tag class="list" style={`--list--gap: var(--space-${itemGap})`} {...rest}>
+
+  <!-- @todo: TOODO not ideal typing here: -->
+  {items.map((item: unknown, i: number) => (
+    
+    <li class={itemClass}>
+      {renderItem(item, i)}
+    </li>
+  ))}
+</Tag>

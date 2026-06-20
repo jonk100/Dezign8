@@ -4,7 +4,7 @@ import type { TriggerProps } from "./trigger.props";
 import { TRIGGER_TOKENS } from "./trigger.tokens";
 import { resolveTokens } from "~/shared/tokens";
 import { resolveColorChannels } from "~/shared/primitives.tokens";
-import { useBaseCompose, composeClass, composeStyle } from "~/shared/base.hook";
+import { useBaseCompose } from "~/shared/base.hook";
 
 export function useTrigger(props: TriggerProps) {
   const {

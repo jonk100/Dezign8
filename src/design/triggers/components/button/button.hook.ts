@@ -1,7 +1,7 @@
 // design/triggers/button/button.hook.ts
 
 import type { ButtonProps } from "./button.props";
-import { BUTTON_DEFAULTS, ButtonSize, resolveButtonSize } from "./button.tokens";
+import { BUTTON_DEFAULTS, resolveButtonSize } from "./button.tokens";
 import { useTrigger } from "../../trigger.hook";
 import { composeClass, composeStyle } from "~/shared/base.hook";
 

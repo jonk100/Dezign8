@@ -1,0 +1,11 @@
+---
+import { useInput } from "./input.hook";
+import { InputProps } from "./input.props";
+
+const { Tag, props, inputAttrs } = useInput(Astro.props as InputProps);
+---
+<Tag {...props}>
+  {Astro.slots.has("start") && <div class="input__start"><slot name="start" /></div>}
+  <input class="input__control" {...inputAttrs} />
+  {Astro.slots.has("end") && <div class="input__end"><slot name="end" /></div>}
+</Tag>

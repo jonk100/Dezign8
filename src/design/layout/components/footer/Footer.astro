@@ -1,0 +1,47 @@
+---
+/**
+ * Footer Component
+ *
+ * The site-wide page footer. Renders as a semantic `<footer>` element with an
+ * opinionated default layout (row, space-between, centered children) and
+ * `--bg--1` background — no props required for a presentable result.
+ *
+ * Inherits the full `LayoutProps` + `SpacingProps` chain, so all spacing
+ * shorthands (`px`, `py`, `p`, `m`, …) and flex controls (`gap`, `align`,
+ * `justify`) are available as props.
+ *
+ * Named slots:
+ *   `start`   — left side: copyright notice, brand mark.
+ *   (default) — center: nav links, social icons, or other stretch content.
+ *   `end`     — right side: legal links, locale picker, back-to-top.
+ *
+ * @example Minimal (all defaults apply)
+ * ```astro
+ * <Footer>
+ *   <span slot="start">© 2026 Acme Co.</span>
+ *   <NavLinks />
+ *   <LegalLinks slot="end" />
+ * </Footer>
+ * ```
+ *
+ * @example Custom vertical padding and background
+ * ```astro
+ * <Footer py="xl" bg="var(--bg--0)">
+ *   <span slot="start">© 2026 Acme Co.</span>
+ * </Footer>
+ * ```
+ */
+import type { FooterProps } from "./footer.props";
+import { useFooter } from "./footer.hook";
+import "./footer.css";
+
+type Props = FooterProps;
+
+const { Tag, props: footerProps } = useFooter(Astro.props);
+---
+
+<Tag {...footerProps}>
+  <slot name="start" />
+  <slot />
+  <slot name="end" />
+</Tag>

@@ -1,0 +1,44 @@
+/* ============================================================
+   footer.css
+   ─────────────────────────────────────────────────────────────
+   Visual styles for the Footer component.
+
+   The Footer combines the `.layout` class (spacing channels) with
+   `.footer` (this file) for the footer-specific visual shell.
+
+   DEFAULT VISUAL CONTRACT
+   ────────────────────────
+   The footer looks presentable with zero props passed:
+   - --bg--1 background  (same elevation as the header, consistent page frame)
+   - min-block-size: 3.5rem  (~56px — a compact but comfortable footer bar)
+   - full viewport width
+   - a subtle top border to lift it visually off the page body
+   - horizontal padding from the FOOTER_DEFAULTS.px applied via useLayout
+
+   All defaults are overridable via explicit props or the `bg` pass-through.
+
+   UNLIKE HEADER
+   ────────────────
+   Footer has no sticky modifier — sticky footers are an anti-pattern on most
+   sites and are better achieved with CSS grid / min-height layout on the page
+   body (push footer to bottom without locking it to viewport).
+   ============================================================ */
+
+.footer {
+  /* Sizing — full width, minimum comfortable height */
+  width: 100%;
+  min-block-size: 3.5rem;
+
+  /* Background: prefer the consumer-set channel, fall back to layer-1 elevation */
+  background: var(--layout--bg, var(--bg--1));
+
+  /* Hairline top border mirrors the header's bottom border, framing the page */
+  border-block-start: 1px solid var(--border--subtle, var(--border--default));
+
+  /* Flex row so start / default / end slots line up horizontally */
+  display: flex;
+  flex-direction: row;
+  align-items: var(--layout--align, center);
+  justify-content: var(--layout--justify, space-between);
+  gap: var(--layout--gap);
+}

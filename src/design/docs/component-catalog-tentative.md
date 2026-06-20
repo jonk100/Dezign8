@@ -68,9 +68,10 @@ weight, family, color, leading, tracking.
 |---|---|---|
 | `Heading` | Semantic h1–h6 with decoupled visual size. `level` drives the DOM; `size` drives appearance. | `level`, `size`, `weight`, `family`, `color`, `balance` |
 | `Text` | Body copy — paragraphs, captions, list items, any flowing prose. | `size`, `weight`, `color`, `leading`, `truncate`, `italic`, `balance`, `as` |
+| `Quote` | Block quotation with optional attribution. | `size`, `color`, `cite` |
+
 | `Caption` | Small supporting text. Semantically subordinate — image captions, metadata, fine print. | `size`, `color`, `as` |
 | `Prose` | Long-form reading container. Enforces max line length, vertical rhythm, and spacing for rich text. | `size`, `leading`, `maxWidth` |
-| `Quote` | Block quotation with optional attribution. | `size`, `color`, `cite` |
 | `Code` | Inline or block code display. Monospace family. | `block`, `language`, `size` |
 | `Kbd` | Keyboard shortcut or key name display. Styled to look like a physical key. | `size` |
 | `VisuallyHidden` | Hides content visually while keeping it accessible to screen readers. | — |
@@ -88,11 +89,12 @@ or navigate the user.
 | Component | Purpose | Key props |
 |---|---|---|
 | `Button` | Primary action trigger. Renders as `<button>` or `<a>` based on `href`. | `variant`, `size`, `color`, `disabled`, `loading`, `href`, `iconOnly`, `fullWidth`, `type` |
-| `ButtonGroup` | Groups related buttons with shared borders and consistent sizing. | `size`, `variant`, `attached` |
+| `ThemeToggle` | Switches between light, dark, or system color schemes. | `defaultTheme`, `onChange` |
 | `Link` | Styled inline anchor for navigation, not actions. | `href`, `target`, `size`, `color`, `underline` |
+
+| `ButtonGroup` | Groups related buttons with shared borders and consistent sizing. | `size`, `variant`, `attached` |
 | `SkipLink` | Accessibility link that jumps to main content. Visually hidden until focused. | `href` |
 | `SegmentedControl` | Horizontally grouped set of mutually exclusive option buttons. | `value`, `onChange`, `options`, `size`, `fullWidth` |
-| `ThemeToggle` | Switches between light, dark, or system color schemes. | `defaultTheme`, `onChange` |
 | `CommandPalette` | Global keyboard-driven command and search interface. Renders in a portal, triggered by shortcut. | `isOpen`, `onClose`, `commands`, `placeholder` |
 
 ---
@@ -106,9 +108,10 @@ Interactive data capture components. Share accessibility conventions:
 
 | Component | Purpose | Key props |
 |---|---|---|
+| `Input` | Single-line text input. | `type`, `placeholder`, `value`, `size`, `invalid`, `readOnly` |
+
 | `Field` | Wrapper binding a label, control, hint, and error into one accessible unit. | `label`, `hint`, `error`, `required`, `htmlFor` |
 | `InputGroup` | Wraps an input with prepended/appended elements — icons, buttons, text. | `prepend`, `append` |
-| `Input` | Single-line text input. | `type`, `placeholder`, `value`, `size`, `invalid`, `readOnly` |
 | `Textarea` | Multi-line text input. | `rows`, `resize`, `placeholder`, `value`, `invalid` |
 | `NumberInput` | Numeric input with increment/decrement stepper buttons. | `value`, `min`, `max`, `step`, `size` |
 | `Checkbox` | Single boolean checkbox with label. | `checked`, `defaultChecked`, `indeterminate`, `value`, `label` |

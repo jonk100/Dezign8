@@ -6,19 +6,19 @@ export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
   
   // Exclude category index pages from generating component routes
-  const componentDocs = allDocs.filter(doc => {
+  const componentDocs = allDocs.filter((doc: any) => {
       const parts = doc.id.split('/');
       const name = parts[parts.length - 1].replace(/\.mdx?$/, '');
       return !(parts.length >= 2 && parts[parts.length - 2] === name);
   });
 
-  return componentDocs.map(entry => ({
+  return componentDocs.map((entry: any) => ({
     params: { slug: entry.id },
     props: { entry },
   }));
 }
 
-const { entry } = Astro.props;
+const { entry } = Astro.props as { entry: any };
 const { Content } = await render(entry);
 
 const { title, description, category, status, version, links } = entry.data;

@@ -4,9 +4,14 @@ import { useLayout } from "../../layout.hook";
 import { resolveTokens } from "~/shared/tokens";
 import { composeClass, composeStyle } from "~/shared/base.hook";
 
+
+/**
+ * @todo compare with ../header/header.hook.ts
+ * layout props handled right? i dunno im tired
+ */
 export function useInline(props: InlineProps) {
   const {
-    as = INLINE_DEFAULTS.as,
+    as: Tag = INLINE_DEFAULTS.as,
     ...layoutProps
   } = props;
 

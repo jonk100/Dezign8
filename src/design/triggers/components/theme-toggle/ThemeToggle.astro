@@ -1,0 +1,117 @@
+---
+/**
+ * ThemeToggle Component
+ *
+ * An icon button that toggles between light and dark colour themes.
+ * Wraps the existing `Button` component so all trigger-level props
+ * (`variant`, `color`, `size`, `radius`) work out of the box.
+ *
+ * Behaviour (client-side):
+ *   1. On click, reads the current `data-theme` on `<html>`.
+ *   2. Flips it between `"dark"` ↔ removed (light).
+ *   3. Persists the choice to `localStorage("theme")`.
+ *
+ * The initial theme is resolved synchronously by the inline script in
+ * `Head.astro` (prevents FOUC), so this component only needs to handle
+ * the toggle action.
+ *
+ * Default SVG icons (sun / moon) are baked in. Override them later by
+ * swapping the SVGs inside this file or by slotting your own icon
+ * component once Dezign8 supports an icon system.
+ *
+ * @example Minimal — ghost icon button with neutral colour
+ * ```astro
+ * <ThemeToggle />
+ * ```
+ *
+ * @example Small outlined toggle
+ * ```astro
+ * <ThemeToggle variant="outlined" size="sm" />
+ * ```
+ *
+ * @example Inside a Header
+ * ```astro
+ * <Header>
+ *   <Logo slot="start" />
+ *   <ThemeToggle slot="end" />
+ * </Header>
+ * ```
+ */
+import type { ThemeToggleProps } from "./theme-toggle.props";
+import { useThemeToggle } from "./theme-toggle.hook";
+import "../../trigger.css";
+import "../button/button.css";
+import "./theme-toggle.css";
+
+type Props = ThemeToggleProps;
+
+const { Tag, props } = useThemeToggle(Astro.props as ThemeToggleProps);
+---
+
+<Tag {...props}>
+  {/* ── Sun icon (visible in light mode) ──────────────────── */}
+  <svg
+    class="theme-toggle__icon theme-toggle__icon--sun"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1"  x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1"  y1="12" x2="3"  y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78"  x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22" />
+  </svg>
+
+  {/* ── Moon icon (visible in dark mode) ──────────────────── */}
+  <svg
+    class="theme-toggle__icon theme-toggle__icon--moon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+</Tag>
+
+{/* ── Client-side toggle behaviour ────────────────────────── */}
+<script>
+  function initThemeToggles() {
+    const STORAGE_KEY = "theme";
+
+    document.querySelectorAll<HTMLElement>(".theme-toggle").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const root = document.documentElement;
+        const isDark = root.getAttribute("data-theme") === "dark";
+
+        if (isDark) {
+          root.removeAttribute("data-theme");
+          localStorage.setItem(STORAGE_KEY, "light");
+        } else {
+          root.setAttribute("data-theme", "dark");
+          localStorage.setItem(STORAGE_KEY, "dark");
+        }
+      });
+    });
+  }
+
+  // Run immediately — Astro scripts are deferred by default
+  initThemeToggles();
+
+  // Re-initialise after Astro client-side navigation (View Transitions)
+  document.addEventListener("astro:after-swap", initThemeToggles);
+</script>

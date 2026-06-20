@@ -12,27 +12,25 @@ These are the foundational building blocks. Nearly every single web page, from a
 - [x] 04. `Image` (assets) - 
 - [x] 05. `Button` (trigger) -
 - [x] 06. `Box` (layout) - 
-- [ ] 07. `Container` (layout) -
-- [ ] 08. `Flex` (layout) -
-- [ ] 09. `Grid` (layout) -
-- [ ] 10. `Section` (layout) -
-- [ ] 11. `Header` (layout) - 
-- [ ] 12. `Footer` (layout) - 
-- [ ] 13. `List` (data) - 
-- [ ] 14. `Image` (assets) - 
-- [ ] 15. `Link` (trigger) - 
+- [x] 07. `Container` (layout) -
+- [x] 08. `Flex` (layout) -
+- [x] 09. `Grid` (layout) -
+- [x] 10. `Section` (layout) -
+- [x] 11. `Header` (layout) - 
+- [x] 12. `Footer` (layout) - 
+- [x] 13. `List` (data) - 
 
 ### Tier 2 - Very Common (Standard Web Design)
 
 These components are standard for forms, typical data display, and basic navigation. You will find them on the vast majority of commercial and informational websites.
 
-- [ ] 16. `Input` (form) - 
-- [ ] 17. `Label` (typography) - 
-- [ ] 18. `Checkbox` (form) - 
-- [ ] 19. `Radio` (form) - 
-- [ ] 20. `Select` (form) -
+- [o] 16. `Input` (form) - 
+- [ ] 17. `Label` (typography) - Form field label. Associates with a control via `for`. | `for`, `required`, `size`, `weight`, `uppercase` |
+- [ ] 18. `Checkbox` (form) - Single boolean checkbox with label. | `checked`, `defaultChecked`, `indeterminate`, `value`, `label` |
+- [ ] 19. `Radio` (form) - Single radio button. Used inside `RadioGroup`. | `value`, `label`, `checked` |
+- [ ] 20. `Select` (form) - Dropdown for selecting one option from a list. | `value`, `options`, `placeholder`, `size`, `invalid` |
 - [ ] 21. `Textarea` (form) - 
-- [ ] 22. `Search` (form) - 
+- [ ] 22. `Search` (form) - Search input with clear button and optional debounce. | `value`, `onSearch`, `debounce`, `placeholder`, `size` |
 - [ ] 23. `Navbar` (nav) - 
 - [ ] 24. `Menu` (nav) - 
 - [ ] 25. `Card` (surface) - 
@@ -70,7 +68,7 @@ This tier represents the shift from static websites to interactive web applicati
 
 These components are used heavily in SaaS (Software as a Service) platforms, admin dashboards, and e-commerce sites, but you won't typically see them on simple landing pages or blogs.
 
-- [ ] 50. `Switch` (form) - 
+- [ ] 50. `Switch` (form) - Toggle switch for binary on/off state. | `checked`, `defaultChecked`, `onChange`, `size`, `label` |
 - [ ] 51. `Slider` (form) - 
 - [ ] 52. `RangeSlider` (form) - 
 - [ ] 53. `DatePicker` (form) - 
@@ -92,7 +90,7 @@ These components are used heavily in SaaS (Software as a Service) platforms, adm
 - [ ] 69. `EmptyState` (feedback) - 
 - [ ] 70. `Carousel` (data) - 
 - [ ] 71. `Gallery` (data) - 
-- [ ] 72. `ThemeToggle` (trigger) -
+- [o] 72. `ThemeToggle` (trigger) -
 
 ### Tier 5: Niche (Highly Specific Use Cases)
 

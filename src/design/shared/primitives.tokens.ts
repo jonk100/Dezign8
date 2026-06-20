@@ -51,6 +51,124 @@ export const TEXT_SIZE = scale({
   "4xl": "var(--fs--4xl)",
 });
 
+/**
+ * Fixed (non-responsive) font-size scale for UI elements that live
+ * _inside_ components and must not reflow with viewport changes.
+ *
+ * **When to use `TEXT_SIZE_FIXED` vs {@link TEXT_SIZE}:**
+ *
+ * | Scale             | Token prefix | Intended for                                      |
+ * |-------------------|--------------|---------------------------------------------------|
+ * | `TEXT_SIZE`       | `--fs--*`    | Body text, headings — may use `clamp()` for fluid |
+ * | `TEXT_SIZE_FIXED` | `--fsf--*`   | Labels, captions, badges, form helper text        |
+ *
+ * Use `TEXT_SIZE_FIXED` any time the element:
+ * - Sits inside a component with constrained space (form field, badge, chip)
+ * - Must stay at a predictable fixed size regardless of viewport
+ * - Would break layout if it grew with the page's fluid type scale
+ *
+ * @remarks
+ * The `f` suffix in `--fsf--*` stands for "fixed" and distinguishes these
+ * vars from the responsive `--fs--*` vars in `vars.css` / `tokens.css`.
+ * Define both families in your global token file.
+ *
+ * Approximate pixel values (example — set your own in `vars.css`):
+ * ```
+ * 2xs → 10px   xs → 11px   sm → 12px   md → 14px   lg → 16px
+ * xl  → 18px   2xl → 20px  3xl → 24px  4xl → 28px
+ * ```
+ *
+ * @example
+ * ```ts
+ * // In typography/label/label.tokens.ts
+ * import { TEXT_SIZE_FIXED } from "~/shared/primitives.tokens";
+ *
+ * export const LABEL_TOKENS = composeTokens(TYPOGRAPHY_TOKENS, {
+ *   size: pickValues(
+ *     dimension("size", TEXT_SIZE_FIXED),
+ *     ["xs", "sm", "md", "lg", "xl"] as const,
+ *   ),
+ * });
+ * ```
+ *
+ * @see {@link TEXT_SIZE}  — responsive counterpart
+ * @see {@link TextSizeFixed} — the derived union type
+ */
+export const TEXT_SIZE_FIXED = scale({
+  "2xs": "var(--fsf--2xs)",
+  xs:    "var(--fsf--xs)",
+  sm:    "var(--fsf--sm)",
+  md:    "var(--fsf--md)",
+  lg:    "var(--fsf--lg)",
+  xl:    "var(--fsf--xl)",
+  "2xl": "var(--fsf--2xl)",
+  "3xl": "var(--fsf--3xl)",
+  "4xl": "var(--fsf--4xl)",
+});
+
+// ─────────────────────────────────────────────────────────────────
+// INSERT IN: DERIVED TYPES section (after existing type exports)
+// ─────────────────────────────────────────────────────────────────
+
+
+
+
+// ─────────────────────────────────────────────────────────────────
+// AMEND: COLOR_ROLE scale
+//
+// Per `color-typescript.md`, COLOR_ROLE values must be `null` so that
+// resolveTokens emits a class modifier ONLY (e.g. `.form--primary`) and
+// does NOT write a CSS custom property. The actual color-step channel
+// values (--form--color-base etc.) are written separately by
+// resolveColorChannels(role, prefix).
+//
+// Current file has:
+//   primary: "var(--token-color-primary)",  ← should be null
+//
+// Corrected version:
+// ─────────────────────────────────────────────────────────────────
+
+/**
+ * Color role scale. All values are intentionally `null`.
+ *
+ * This dimension emits a **class modifier only** (e.g. `.control--primary`,
+ * `.form--danger`). No CSS custom property is written for the role itself.
+ *
+ * The seven color-step channels per role (`--{prefix}--color-base`,
+ * `--{prefix}--color-subtle`, etc.) are written separately by
+ * {@link resolveColorChannels}, which is called alongside
+ * {@link resolveTokens} in category hooks.
+ *
+ * Having null values here keeps the two concerns cleanly separated:
+ * - `resolveTokens`       → class modifier
+ * - `resolveColorChannels` → CSS channel vars
+ *
+ * @remarks
+ * To add a new color role: add `roleName: null` here, add its 7 steps
+ * to `COLOR_STEPS`, and ensure `--roleName--{step}` vars exist in
+ * `tokens-color.css` for both themes. No component files change.
+ *
+ * @see `color-typescript.md` — full implementation spec including COLOR_STEPS
+ * @see `color-overview.md`   — role descriptions and usage guidance
+ * @see {@link resolveColorChannels} — writes the actual channel vars
+ *
+ * @todo Implement {@link resolveColorChannels} and {@link COLOR_STEPS}
+ *   in this file per the spec in `color-typescript.md`.
+ */
+// export const COLOR_ROLE = scale({
+//   primary:   null,
+//   secondary: null,
+//   success:   null,
+//   warning:   null,
+//   danger:    null,
+//   neutral:   null,
+// });
+
+// NOTE: After updating COLOR_ROLE, COLOR_DIM needs no change —
+// it is already defined as:
+//   export const COLOR_DIM = dimension("color", COLOR_ROLE, { modifier: true });
+// which is correct.
+
 export const LABEL_SIZE = scale({
   "2xs": "var(--label--2xs)",
   xs:    "var(--label--xs)",
@@ -150,6 +268,13 @@ export const TEXT_COLOR_DIM = dimension("color", TEXT_COLOR);
 export type Space     = keyof typeof SPACE;
 export type Radius    = keyof typeof RADIUS;
 export type TextSize  = keyof typeof TEXT_SIZE;
+/**
+ * Valid values for the fixed font-size scale.
+ * Derived from {@link TEXT_SIZE_FIXED} — never hand-written.
+ *
+ * @see {@link TextSize} — responsive counterpart
+ */
+export type TextSizeFixed = keyof typeof TEXT_SIZE_FIXED;
 export type LabelSize = keyof typeof LABEL_SIZE;
 export type Weight    = keyof typeof WEIGHT;
 export type Family    = keyof typeof FAMILY;

@@ -1,0 +1,54 @@
+/* ============================================================
+   header.css
+   ─────────────────────────────────────────────────────────────
+   Visual styles for the Header component.
+
+   The Header combines the `.layout` class (which handles all
+   spacing and flex alignment via CSS channels) with `.header`
+   (this file), which handles the header-specific shell.
+
+   DEFAULT VISUAL CONTRACT
+   ────────────────────────
+   The header looks presentable with zero props passed:
+   - --bg--1 background  (nav / sidebar elevation, one step above page canvas)
+   - min-block-size: 4rem  (~64px — standard header height)
+   - full viewport width
+   - a subtle bottom border to lift it visually off the page body
+   - horizontal padding from the HEADER_DEFAULTS.px applied via useLayout
+
+   All of these are overridable by the consumer via explicit props or
+   the `bg` pass-through on LayoutProps.
+
+   STICKY MODIFIER
+   ────────────────
+   `.header--sticky` activates sticky positioning and applies --z--sticky
+   so the header always sits above dropdowns and other raised content.
+   ============================================================ */
+
+.header {
+  width: 100%;
+  min-block-size: 4rem;
+
+  /* Background: prefer the consumer-set channel, fall back to layer-1 elevation */
+  background: var(--layout--bg, var(--bg--1));
+
+  /* Hairline bottom border to visually separate header from page body */
+  border-block-end: 1px solid var(--border--subtle, var(--border--default));
+
+  /* Flex row so start / default / end slots line up horizontally.
+     align and justify are driven by --layout--align / --layout--justify channels
+     set by useHeader's defaults (center / space-between). */
+  display: flex;
+  flex-direction: row;
+  align-items: var(--layout--align, center);
+  justify-content: var(--layout--justify, space-between);
+  gap: var(--layout--gap);
+}
+
+/* ── Sticky modifier ─────────────────────────────────────── */
+
+.header--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--z--sticky);
+}

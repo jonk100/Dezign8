@@ -1,5 +1,5 @@
 .flex {
   display: flex;
-  flex-direction: var(--flex-direction, row);
-  flex-wrap: var(--flex-wrap, nowrap);
+  flex-direction: var(--flex--direction, row);
+  flex-wrap: var(--flex--wrap, nowrap);
 }

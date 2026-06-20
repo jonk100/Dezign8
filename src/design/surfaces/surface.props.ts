@@ -13,14 +13,14 @@
  * @prop themeForce - Forces a specific color scheme ("light" or "dark"). THOUGHT: Highly critical for sections that must remain dark (like a hero image with white text) even if the user switches their app to a light theme.
  * @prop hoverShadow - Elevation transformation on mouse hover.
  */
-export interface SurfaceProps extends BaseComponentProps {
-  variant?:     SurfaceVariant;
-  radius?:      SurfaceRadius;
-  shadow?:      SurfaceElevation;
-  border?:      SurfaceBorderWidth;
-  borderColor?: SurfaceColor;
-  bg?:          SurfaceColor;
-  blur?:        SurfaceBlur;
-  themeForce?:  "light" | "dark";
-  hoverShadow?: SurfaceElevation;
-}
+// export interface SurfaceProps extends BaseComponentProps {
+//   variant?:     SurfaceVariant;
+//   radius?:      SurfaceRadius;
+//   shadow?:      SurfaceElevation;
+//   border?:      SurfaceBorderWidth;
+//   borderColor?: SurfaceColor;
+//   bg?:          SurfaceColor;
+//   blur?:        SurfaceBlur;
+//   themeForce?:  "light" | "dark";
+//   hoverShadow?: SurfaceElevation;
+// }

@@ -1,0 +1,119 @@
+---
+title: Footer Component
+description: Semantic page footer with opinionated layout defaults for bottom-of-page content.
+category: Layout
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/layout/components/footer"
+---
+import Footer from "../../../design/layout/components/footer/Footer.astro";
+
+## Overview
+
+The `Footer` component renders a semantic `<footer>` element with an opinionated default layout that mirrors the Header: a horizontal flex row with `space-between` justification and vertically centred children. It provides a consistent bottom frame for every page.
+
+It inherits the full `LayoutProps` + `SpacingProps` chain, so all spacing shorthands and flex controls work as props.
+
+## Usage & Examples
+
+### Minimal Footer
+
+With no props, the footer provides a full-width bar with `--bg--1` background, a top border, and comfortable padding:
+
+```astro
+<Footer>
+  <span slot="start">© 2026 Acme Co.</span>
+  <nav>Privacy · Terms · Contact</nav>
+  <span slot="end">Built with Dezign8</span>
+</Footer>
+```
+<div style="border: 1px solid var(--border--default); border-radius: var(--radius--md, 8px); margin-bottom: 1rem; overflow: hidden;">
+  <Footer>
+    <span slot="start">© 2026 Acme Co.</span>
+    <nav>Privacy · Terms · Contact</nav>
+    <span slot="end" style="font-size: var(--fs--sm); color: var(--text--secondary);">Built with Dezign8</span>
+  </Footer>
+</div>
+
+### Custom Padding & Background
+
+```astro
+<Footer py="xl" px="2xl" bg="var(--bg--4)" style="color: var(--text--inverse);">
+  <span slot="start">© 2026 Acme Co.</span>
+  <span slot="end">↑ Back to top</span>
+</Footer>
+```
+<div style="border: 1px solid var(--border--default); border-radius: var(--radius--md, 8px); margin-bottom: 1rem; overflow: hidden;">
+  <Footer py="xl" px="2xl" bg="var(--bg--4)" style="color: var(--text--inverse);">
+    <span slot="start">© 2026 Acme Co.</span>
+    <span slot="end">↑ Back to top</span>
+  </Footer>
+</div>
+
+### Compact Footer
+
+For utility-focused pages where a minimal footer is preferred:
+
+```astro
+<Footer py="sm" px="md">
+  <small slot="start" style="color: var(--text--muted);">v0.1.0</small>
+  <small slot="end" style="color: var(--text--muted);">Last updated Jan 2026</small>
+</Footer>
+```
+<div style="border: 1px solid var(--border--default); border-radius: var(--radius--md, 8px); margin-bottom: 1rem; overflow: hidden;">
+  <Footer py="sm" px="md">
+    <small slot="start" style="color: var(--text--muted);">v0.1.0</small>
+    <small slot="end" style="color: var(--text--muted);">Last updated Jan 2026</small>
+  </Footer>
+</div>
+
+## Slots
+
+The Footer provides three named slots, mirroring the Header's layout:
+
+| Slot | Position | Typical Content |
+|---|---|---|
+| `start` | Left side | Copyright notice, brand mark |
+| *(default)* | Centre | Nav links, social icons, stretch content |
+| `end` | Right side | Legal links, locale picker, back-to-top |
+
+## Props API
+
+### Footer Props
+
+The Footer introduces no props beyond those it inherits. Its semantic role is fixed (`<footer>`) and it carries no behavioural variants (unlike Header's `sticky`).
+
+### Layout Props (Inherited)
+
+| Prop | Type | Description |
+|---|---|---|
+| `gap` | `LayoutGap` | Space between flex children. |
+| `align` | `LayoutAlign` | Cross-axis alignment. Defaults to `center`. |
+| `justify` | `LayoutJustify` | Main-axis alignment. Defaults to `space-between`. |
+
+### Spacing Props (Inherited)
+
+- Padding: `p`, `px` (default: `lg`), `py`, `pt`, `pr`, `pb`, `pl`
+- Margin: `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`
+
+*Inherits all `LayoutProps`, `SpacingProps`, and `BaseComponentProps`.*
+
+## Visual Contract
+
+| Property | Value | Override via |
+|---|---|---|
+| Background | `--bg--1` | `bg` prop |
+| Min height | `3.5rem` (56px) | CSS override |
+| Width | `100%` | — |
+| Top border | `1px solid --border--subtle` | CSS override |
+| Flex direction | `row` | — (fixed) |
+| Align items | `center` | `align` prop |
+| Justify content | `space-between` | `justify` prop |
+| Horizontal padding | `--space-in--lg` | `px` prop |
+
+## Design Decisions
+
+- **Fixed tag**: Always renders as `<footer>` — no `as` prop because the semantic role is the purpose.
+- **No sticky modifier**: Unlike Header, the Footer intentionally omits a `sticky` prop. Sticky footers are an anti-pattern on most sites. A footer that always appears at the bottom of the page (even when content is short) is better achieved with CSS grid / `min-height` on the page body — not by locking the footer to the viewport.
+- **Mirrors Header**: Same slot architecture (`start` / default / `end`), same default layout (`row`, `space-between`, `center`), same background (`--bg--1`), and same border strategy (hairline top border mirrors Header's bottom border, framing the page).

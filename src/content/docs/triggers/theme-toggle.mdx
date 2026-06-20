@@ -1,0 +1,164 @@
+---
+title: ThemeToggle Component
+description: An icon button that toggles between light and dark colour themes with smooth icon transitions.
+category: Triggers
+status: experimental
+version: 0.2.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/triggers/components/theme-toggle"
+---
+import ThemeToggle from "../../../design/triggers/components/theme-toggle/ThemeToggle.astro";
+import Button from "../../../design/triggers/components/button/Button.astro";
+
+## Overview
+
+The `ThemeToggle` component is an icon button that switches the application between **light** and **dark** colour themes. It wraps the existing `Button` component, so all trigger-level props (`variant`, `color`, `size`, `radius`) work out of the box.
+
+**How it works:**
+1. On click, reads the current `data-theme` attribute on `<html>`.
+2. Flips between `"dark"` (attribute set) and light (attribute removed).
+3. Persists the user's preference to `localStorage("theme")`.
+4. The initial theme is resolved synchronously by the inline script in `Head.astro` to prevent a flash of unstyled content (FOUC).
+
+The default icons are SVG sun (☀) and moon (☽) shapes that crossfade with a subtle rotation animation.
+
+## Usage & Examples
+
+### Basic Toggle
+
+The simplest usage — renders a ghost icon-only button with neutral colour by default:
+
+```astro
+<ThemeToggle />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 1rem;">
+  <ThemeToggle />
+</div>
+
+### Sizes
+
+Like all trigger components, the toggle supports the full size scale:
+
+```astro
+<ThemeToggle size="xs" />
+<ThemeToggle size="sm" />
+<ThemeToggle size="md" />
+<ThemeToggle size="lg" />
+<ThemeToggle size="xl" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+  <ThemeToggle size="xs" />
+  <ThemeToggle size="sm" />
+  <ThemeToggle size="md" />
+  <ThemeToggle size="lg" />
+  <ThemeToggle size="xl" />
+</div>
+
+### Variants
+
+Because it wraps `Button`, you can apply any visual variant:
+
+```astro
+<ThemeToggle variant="ghost" />
+<ThemeToggle variant="outlined" />
+<ThemeToggle variant="soft" />
+<ThemeToggle variant="solid" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+  <ThemeToggle variant="ghost" />
+  <ThemeToggle variant="outlined" />
+  <ThemeToggle variant="soft" />
+  <ThemeToggle variant="solid" />
+</div>
+
+### Colour Roles
+
+Combine with colour roles for themed appearances:
+
+```astro
+<ThemeToggle variant="soft" color="primary" />
+<ThemeToggle variant="soft" color="secondary" />
+<ThemeToggle variant="soft" color="accent" />
+<ThemeToggle variant="outlined" color="warning" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+  <ThemeToggle variant="soft" color="primary" />
+  <ThemeToggle variant="soft" color="secondary" />
+  <ThemeToggle variant="soft" color="accent" />
+  <ThemeToggle variant="outlined" color="warning" />
+</div>
+
+### Inside a Header
+
+The most common placement — drop it into the `end` slot of a `Header`:
+
+```astro
+<Header>
+  <Logo slot="start" />
+  <Nav />
+  <ThemeToggle slot="end" />
+</Header>
+```
+
+### Alongside Other Buttons
+
+The toggle blends naturally into any button group:
+
+```astro
+<div style="display: flex; gap: 0.5rem; align-items: center;">
+  <Button size="sm" variant="ghost">Docs</Button>
+  <Button size="sm" variant="ghost">API</Button>
+  <ThemeToggle size="sm" />
+</div>
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <div style="display: flex; gap: 0.5rem; align-items: center;">
+    <Button size="sm" variant="ghost">Docs</Button>
+    <Button size="sm" variant="ghost">API</Button>
+    <ThemeToggle size="sm" />
+  </div>
+</div>
+
+## Props API
+
+### ThemeToggle Props
+
+The ThemeToggle has no unique props — it inherits the full `ButtonProps` API with opinionated defaults:
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `TriggerVariant` | `"ghost"` | Visual treatment. Ghost blends into toolbars naturally. |
+| `color` | `TriggerColor` | `"neutral"` | Colour role. Neutral works on any background. |
+| `size` | `TriggerSize` | `"md"` | Controls padding and icon size (`2xs` to `2xl`). |
+| `iconOnly` | `boolean` | `true` | Forces square 1:1 aspect ratio. |
+| `radius` | `TriggerRadius` | `"md"` | Border radius token. |
+| `disabled` | `boolean` | `false` | Disables the toggle and prevents theme switching. |
+
+*Inherits all `ButtonProps`, `TriggerProps`, and `BaseComponentProps`.*
+
+## Accessibility
+
+- Renders as a native `<button>` element with `type="button"`.
+- Sets `aria-label="Toggle color theme"` automatically.
+- Both SVG icons are marked `aria-hidden="true"` since the label conveys the action.
+- Focus ring uses the standard trigger focus-visible ring (`box-shadow`-based).
+- Respects `prefers-reduced-motion` — the icon rotation is disabled, leaving only the opacity crossfade.
+
+## Theme Contract
+
+The component works in lockstep with the theme detection script in `Head.astro`:
+
+| Concern | Value |
+|---|---|
+| Storage key | `localStorage("theme")` |
+| Stored values | `"light"` or `"dark"` |
+| DOM attribute | `data-theme="dark"` on `<html>` (removed for light) |
+| Initial detection | `Head.astro` inline script checks `localStorage` → `prefers-color-scheme` → defaults to `"light"` |
+| View Transitions | Re-initialises automatically via `astro:after-swap` event |
+
+## Design Decisions
+
+- **Wraps Button, not raw `<button>`**: Reuses the full trigger visual pipeline (variants, colours, focus states, disabled state) without re-implementing any of it.
+- **No new props**: The component's only job is toggling a theme. Visual customisation is handled entirely by inherited button/trigger props — no dedicated ThemeToggle API surface to maintain.
+- **Default SVG icons**: Sun and moon SVGs are embedded directly so the component works with zero dependencies. Replace them by editing `ThemeToggle.astro` directly or once a Dezign8 icon system is introduced.
+- **Client script scope**: The `<script>` tag queries all `.theme-toggle` elements, so multiple toggles on the same page stay in sync automatically.

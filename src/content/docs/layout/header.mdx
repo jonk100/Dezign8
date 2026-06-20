@@ -1,0 +1,137 @@
+---
+title: Header Component
+description: Semantic page header with opinionated layout defaults and sticky positioning support.
+category: Layout
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/layout/components/header"
+---
+import Header from "../../../design/layout/components/header/Header.astro";
+import Box from "../../../design/layout/components/box/Box.astro";
+
+## Overview
+
+The `Header` component renders a semantic `<header>` element with an opinionated default layout: a horizontal flex row with `space-between` justification and vertically centred children. It looks presentable with zero props — just drop content into its slots.
+
+It inherits the full `LayoutProps` + `SpacingProps` chain, meaning every spacing shorthand (`px`, `py`, `p`, `m`, …) and flex control (`gap`, `align`, `justify`) is available as a prop.
+
+## Usage & Examples
+
+### Minimal Header
+
+With no props, the header provides a full-width bar with `--bg--1` background, a bottom border, and comfortable padding:
+
+```astro
+<Header>
+  <span slot="start">Logo</span>
+  <nav>Home · About · Contact</nav>
+  <span slot="end">👤</span>
+</Header>
+```
+<div style="border: 1px solid var(--border--default); border-radius: var(--radius--md, 8px); margin-bottom: 1rem; overflow: hidden;">
+  <Header>
+    <span slot="start" style="font-weight: var(--weight--bold);">Logo</span>
+    <nav>Home · About · Contact</nav>
+    <span slot="end">👤</span>
+  </Header>
+</div>
+
+### Sticky Header
+
+Add the `sticky` prop to pin the header to the top of the viewport on scroll:
+
+```astro
+<Header sticky>
+  <span slot="start">Logo</span>
+  <span slot="end">Menu ☰</span>
+</Header>
+```
+
+### Custom Spacing
+
+Override the default padding using spacing shorthands:
+
+```astro
+<Header px="xl" py="lg">
+  <span slot="start">Logo</span>
+  <nav slot="end">Links</nav>
+</Header>
+```
+<div style="border: 1px solid var(--border--default); border-radius: var(--radius--md, 8px); margin-bottom: 1rem; overflow: hidden;">
+  <Header px="xl" py="lg">
+    <span slot="start" style="font-weight: var(--weight--bold);">Logo</span>
+    <nav slot="end">Links</nav>
+  </Header>
+</div>
+
+### Custom Background
+
+Pass a `bg` prop to override the default `--bg--1` background:
+
+```astro
+<Header bg="var(--primary--base)" style="color: var(--text--on-color);">
+  <span slot="start">Brand</span>
+  <span slot="end">Action</span>
+</Header>
+```
+<div style="border: 1px solid var(--border--default); border-radius: var(--radius--md, 8px); margin-bottom: 1rem; overflow: hidden;">
+  <Header bg="var(--primary--base)" style="color: var(--text--on-color);">
+    <span slot="start" style="font-weight: var(--weight--bold);">Brand</span>
+    <span slot="end">Action</span>
+  </Header>
+</div>
+
+## Slots
+
+The Header provides three named slots for common header layouts:
+
+| Slot | Position | Typical Content |
+|---|---|---|
+| `start` | Left side | Logo, wordmark, hamburger menu |
+| *(default)* | Centre | Primary nav, search bar, stretch content |
+| `end` | Right side | CTA buttons, user avatar, theme toggle, icon cluster |
+
+## Props API
+
+### Header Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `sticky` | `boolean` | `false` | Pins the header to the top of the viewport with `position: sticky`. Z-index is provided via `--z--sticky`. |
+
+### Layout Props (Inherited)
+
+| Prop | Type | Description |
+|---|---|---|
+| `gap` | `LayoutGap` | Space between flex children. |
+| `align` | `LayoutAlign` | Cross-axis alignment. Defaults to `center`. |
+| `justify` | `LayoutJustify` | Main-axis alignment. Defaults to `space-between`. |
+
+### Spacing Props (Inherited)
+
+- Padding: `p`, `px` (default: `lg`), `py`, `pt`, `pr`, `pb`, `pl`
+- Margin: `m`, `mx`, `my`, `mt`, `mr`, `mb`, `ml`
+
+*Inherits all `LayoutProps`, `SpacingProps`, and `BaseComponentProps`.*
+
+## Visual Contract
+
+The header provides these defaults with no props:
+
+| Property | Value | Override via |
+|---|---|---|
+| Background | `--bg--1` | `bg` prop |
+| Min height | `4rem` (64px) | CSS override |
+| Width | `100%` | — |
+| Bottom border | `1px solid --border--subtle` | CSS override |
+| Flex direction | `row` | — (fixed) |
+| Align items | `center` | `align` prop |
+| Justify content | `space-between` | `justify` prop |
+| Horizontal padding | `--space-in--lg` | `px` prop |
+
+## Design Decisions
+
+- **Fixed tag**: The Header always renders as `<header>` — there is no `as` prop because the semantic role is the entire point of using this component over `Box`.
+- **Slot-based composition**: Rather than accepting arrays of nav items or complex config objects, the Header uses named slots. This keeps the API surface minimal and lets consumers compose with full flexibility.
+- **Sticky is opt-in**: Sticky headers can harm usability on smaller screens, so it requires an explicit prop rather than being a default.

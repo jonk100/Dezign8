@@ -1,0 +1,48 @@
+---
+/**
+ * Header Component
+ *
+ * The site-wide page header. Renders as a semantic `<header>` element with an
+ * opinionated default layout (row, space-between, centered children) and
+ * `--bg--1` background — no props required for a presentable result.
+ *
+ * Inherits the full `LayoutProps` + `SpacingProps` chain, so all spacing
+ * shorthands (`px`, `py`, `p`, `m`, …) and flex controls (`gap`, `align`,
+ * `justify`) are available as props.
+ *
+ * Named slots:
+ *   `start`   — left side: logo, wordmark, hamburger menu.
+ *   (default) — center: primary nav, search, or other stretch content.
+ *   `end`     — right side: CTA buttons, user avatar, icon cluster.
+ *
+ * @example Minimal (all defaults apply)
+ * ```astro
+ * <Header>
+ *   <Logo slot="start" />
+ *   <Nav />
+ *   <UserMenu slot="end" />
+ * </Header>
+ * ```
+ *
+ * @example Sticky header with custom horizontal padding
+ * ```astro
+ * <Header sticky px="xl">
+ *   <Logo slot="start" />
+ *   <UserMenu slot="end" />
+ * </Header>
+ * ```
+ */
+import type { HeaderProps } from "./header.props";
+import { useHeader } from "./header.hook";
+import "./header.css";
+
+type Props = HeaderProps;
+
+const { Tag, props: headerProps } = useHeader(Astro.props);
+---
+
+<Tag {...headerProps}>
+  <slot name="start" />
+  <slot />
+  <slot name="end" />
+</Tag>

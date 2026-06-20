@@ -6,7 +6,7 @@ const allDocs = await getCollection('docs');
 
 const categoriesMap = new Map<string, { categoryDoc: any, components: any[] }>();
 
-allDocs.forEach(doc => {
+allDocs.forEach((doc: any) => {
 	const parts = doc.id.split('/');
 	const name = parts[parts.length - 1].replace(/\.mdx?$/, '');
 	const isCategoryDoc = parts.length >= 2 && parts[parts.length - 2] === name;
