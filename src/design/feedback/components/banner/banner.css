@@ -1,0 +1,91 @@
+/* design/feedback/components/banner/banner.css */
+
+/**
+ * Banner component — full-width page/section announcement strip.
+ *
+ * Imports feedback.css for variant + color channel rules.
+ * Overrides inline-flex pill layout with a full-width row.
+ *
+ * Layout regions:
+ *   .banner__content  — main message text (default slot)
+ *   .banner__actions  — optional CTA links/buttons (named slot)
+ *   .banner__dismiss  — dismiss button (only when banner--dismissible)
+ */
+
+/* ─── Layout override ─────────────────────────────────────────────────────── */
+
+.banner {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             var(--space-in--sm);
+  padding-block:   var(--space-in--sm);
+  padding-inline:  var(--space-in--md);
+  white-space:     normal;
+  width:           100%;
+  font-size:       var(--fsf--sm);
+  line-height:     var(--leading--normal);
+  text-align:      center;
+}
+
+/* ─── Content ─────────────────────────────────────────────────────────────── */
+
+.banner__content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─── Actions slot ────────────────────────────────────────────────────────── */
+
+.banner__actions {
+  display:    flex;
+  gap:        var(--space-in--xs);
+  flex-shrink: 0;
+}
+
+/* ─── Sticky ──────────────────────────────────────────────────────────────── */
+
+.banner--sticky {
+  position: sticky;
+  top:      0;
+  z-index:  var(--z--sticky, 100);
+}
+
+/* ─── Dismiss button ──────────────────────────────────────────────────────── */
+
+.banner__dismiss {
+  flex-shrink:     0;
+  margin-left:     var(--space-in--xs);
+  padding:         var(--space-in--2xs);
+  border:          none;
+  background:      transparent;
+  cursor:          pointer;
+  color:           var(--feedback--color-text);
+  border-radius:   var(--radius--sm);
+  display:         none;
+  align-items:     center;
+  justify-content: center;
+  opacity:         0.7;
+  transition:      opacity 150ms ease, background-color 150ms ease;
+}
+
+.banner--dismissible .banner__dismiss {
+  display: flex;
+}
+
+.banner__dismiss:hover {
+  opacity:          1;
+  background-color: var(--feedback--color-muted);
+}
+
+.banner__dismiss:focus-visible {
+  outline:        2px solid var(--feedback--color-border);
+  outline-offset: 1px;
+  opacity:        1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner__dismiss {
+    transition: none;
+  }
+}

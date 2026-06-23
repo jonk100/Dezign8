@@ -1,0 +1,112 @@
+---
+/**
+ * Alert
+ *
+ * Inline block-level status message. Supports optional icon, title, body
+ * content, and action links/buttons via named slots. Can be dismissed
+ * client-side when `dismissible` is set.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div class="feedback alert [modifiers]" role="alert|status" style="…">
+ *   <div class="alert__icon">…</div>       ← icon slot, when present
+ *   <div class="alert__body">
+ *     <div class="alert__title">…</div>    ← title slot, when present
+ *     <slot />                             ← default: message content
+ *     <div class="alert__actions">…</div>  ← actions slot, when present
+ *   </div>
+ *   <button class="alert__dismiss">…</button>  ← when dismissible=true
+ * </div>
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Main message body text
+ *   icon      Leading status icon (16–20px SVG recommended)
+ *   title     Bold heading above the message body
+ *   actions   Trailing links or action buttons
+ *
+ * ARIA
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   role="alert"  — for color="danger" | "warning" (assertive live region)
+ *   role="status" — for color="info" | "success" | "neutral" (polite)
+ *
+ * @example Basic
+ * ```astro
+ * <Alert color="danger">Your session has expired. Please sign in again.</Alert>
+ * ```
+ *
+ * @example With icon and title
+ * ```astro
+ * <Alert color="success" variant="soft">
+ *   <svg slot="icon" aria-hidden="true">…</svg>
+ *   <Fragment slot="title">Saved successfully</Fragment>
+ *   Your changes have been applied.
+ * </Alert>
+ * ```
+ *
+ * @example Dismissible with action
+ * ```astro
+ * <Alert color="info" dismissible>
+ *   New features are available.
+ *   <a slot="actions" href="/changelog">See what's new</a>
+ * </Alert>
+ * ```
+ *
+ * @see alert.hook.ts   — useAlert: resolves props to { props, dismissible, dismissLabel }
+ * @see alert.props.ts  — AlertProps: full prop reference
+ * @see alert.tokens.ts — ALERT_TOKENS, ALERT_DEFAULTS
+ * @see alert.css       — layout regions and dismiss button styles
+ * @see ../feedback.css — variant + color channel rules
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * ADJUSTING PROPS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * COLOR + VARIANT
+ *   color      [../feedback.css]  --feedback--color-* channels
+ *              @example color="danger"  → red tones, role="alert"
+ *   variant    [../feedback.css]  .feedback--{variant}
+ *              @example variant="solid" → filled background
+ *
+ * SHAPE
+ *   radius     [../feedback.css]  --feedback--radius → border-radius
+ *              @default "md" — slightly rounded corner box
+ *
+ * DISMISSIBLE
+ *   dismissible   [./alert.css]   .alert--dismissible → shows dismiss button
+ *   dismissLabel  Passed as aria-label to the dismiss <button>
+ *
+ * SLOTS
+ *   icon       [./alert.css]  .alert__icon — leading 1.25em icon region
+ *   title      [./alert.css]  .alert__title — semibold heading above body
+ *   actions    [./alert.css]  .alert__actions — row of links/buttons
+ */
+
+import type { AlertProps } from "./alert.props";
+import { useAlert }        from "./alert.hook";
+import "../../feedback.css";
+import "./alert.css";
+
+const { props, dismissible, dismissLabel } = useAlert(Astro.props as AlertProps);
+---
+<div {...props}>
+  {Astro.slots.has("icon") && (
+    <div class="alert__icon" aria-hidden="true"><slot name="icon" /></div>
+  )}
+  <div class="alert__body">
+    {Astro.slots.has("title") && (
+      <div class="alert__title"><slot name="title" /></div>
+    )}
+    <slot />
+    {Astro.slots.has("actions") && (
+      <div class="alert__actions"><slot name="actions" /></div>
+    )}
+  </div>
+  {dismissible && (
+    <button class="alert__dismiss" type="button" aria-label={dismissLabel}>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  )}
+</div>

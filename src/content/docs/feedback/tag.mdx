@@ -1,0 +1,112 @@
+---
+title: Tag Component
+description: A non-interactive inline label for metadata, categories, and status annotations. Renders as a span.
+category: Feedback
+status: stable
+---
+import Tag from "../../../design/feedback/components/tag/Tag.astro";
+
+## Overview
+
+`Tag` is a purely presentational feedback element for displaying labels, categories, and metadata. Unlike `Chip`, it has no interactive affordance — it always renders as a `<span>` and carries no click semantics. Use it for read-only classification (e.g., "New", "Deprecated", category names on a post).
+
+All token dimensions (`size`, `variant`, `color`, `radius`) are inherited from `FeedbackProps`. Tag-specific defaults are `variant="soft"`, `color="neutral"`, `size="md"`, and `radius="sm"`.
+
+---
+
+## Usage
+
+### Default
+
+```astro
+<Tag>Design</Tag>
+<Tag color="primary">Featured</Tag>
+```
+
+<Tag>Design</Tag>
+<Tag color="primary">Featured</Tag>
+
+### Variants
+
+```astro
+<Tag variant="soft">Soft</Tag>
+<Tag variant="solid" color="primary">Solid</Tag>
+<Tag variant="outlined">Outlined</Tag>
+<Tag variant="dashed">Dashed</Tag>
+<Tag variant="ghost">Ghost</Tag>
+```
+
+<Tag variant="soft">Soft</Tag>
+<Tag variant="solid" color="primary">Solid</Tag>
+<Tag variant="outlined">Outlined</Tag>
+<Tag variant="dashed">Dashed</Tag>
+<Tag variant="ghost">Ghost</Tag>
+
+### Sizes
+
+```astro
+<Tag size="xs">xs</Tag>
+<Tag size="sm">sm</Tag>
+<Tag size="md">md</Tag>
+<Tag size="lg">lg</Tag>
+<Tag size="xl">xl</Tag>
+```
+
+<Tag size="xs">xs</Tag>
+<Tag size="sm">sm</Tag>
+<Tag size="md">md</Tag>
+<Tag size="lg">lg</Tag>
+<Tag size="xl">xl</Tag>
+
+### Colors
+
+```astro
+<Tag color="neutral">Neutral</Tag>
+<Tag color="primary">Primary</Tag>
+<Tag color="success">Success</Tag>
+<Tag color="danger">Danger</Tag>
+<Tag color="warning">Warning</Tag>
+<Tag color="info">Info</Tag>
+```
+
+<Tag color="neutral">Neutral</Tag>
+<Tag color="primary">Primary</Tag>
+<Tag color="success">Success</Tag>
+<Tag color="danger">Danger</Tag>
+<Tag color="warning">Warning</Tag>
+<Tag color="info">Info</Tag>
+
+### Status labels
+
+A common pattern — pair `color` and `variant` for semantic meaning:
+
+```astro
+<Tag color="success" variant="soft">Stable</Tag>
+<Tag color="warning" variant="soft">Experimental</Tag>
+<Tag color="danger" variant="soft">Deprecated</Tag>
+<Tag color="neutral" variant="outlined">Draft</Tag>
+```
+
+<Tag color="success" variant="soft">Stable</Tag>
+<Tag color="warning" variant="soft">Experimental</Tag>
+<Tag color="danger" variant="soft">Deprecated</Tag>
+<Tag color="neutral" variant="outlined">Draft</Tag>
+
+---
+
+## Props API
+
+### Inherited Feedback Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `FeedbackVariant` | `"soft"` | Visual treatment. |
+| `color` | `FeedbackColor` | `"neutral"` | Color role. |
+| `size` | `FeedbackSize` | `"md"` | Size scale. |
+| `radius` | `FeedbackRadius` | `"sm"` | Border radius. Slightly rounded rather than pill. |
+
+---
+
+## Accessibility
+
+`Tag` is a `<span>` with no role. Screen readers will read the text content inline. If a tag conveys critical status information (e.g., "Deprecated"), ensure the surrounding context makes that meaning clear, or supplement with an `aria-label` on the parent element.

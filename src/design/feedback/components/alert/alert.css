@@ -1,0 +1,97 @@
+/* design/feedback/components/alert/alert.css */
+
+/**
+ * Alert component — block-level status message box.
+ *
+ * Imports feedback.css for variant + color channel rules.
+ * Overrides the inline-flex pill layout with a block stack.
+ *
+ * Layout regions:
+ *   .alert__icon    — optional leading icon slot
+ *   .alert__body    — stacked title + description content
+ *   .alert__title   — optional heading above the description
+ *   .alert__actions — optional trailing actions (links, buttons)
+ *   .alert__dismiss — dismiss button (only when alert--dismissible)
+ */
+
+/* ─── Layout override ─────────────────────────────────────────────────────── */
+
+.alert {
+  display:        flex;
+  align-items:    flex-start;
+  gap:            var(--space-in--sm);
+  padding:        var(--space-in--md);
+  white-space:    normal;
+  width:          100%;
+  line-height:    var(--leading--normal);
+  font-size:      var(--fsf--sm);
+}
+
+/* ─── Icon slot ───────────────────────────────────────────────────────────── */
+
+.alert__icon {
+  flex-shrink: 0;
+  width:       1.25em;
+  height:      1.25em;
+  margin-top:  0.125em; /* optical alignment with first line of text */
+  color:       var(--feedback--color-text);
+}
+
+/* ─── Body ────────────────────────────────────────────────────────────────── */
+
+.alert__body {
+  flex:    1;
+  display: flex;
+  flex-direction: column;
+  gap:     var(--space-in--2xs);
+}
+
+.alert__title {
+  font-weight: var(--weight--semibold);
+  font-size:   var(--fsf--sm);
+  color:       var(--feedback--color-text);
+}
+
+/* ─── Actions slot ────────────────────────────────────────────────────────── */
+
+.alert__actions {
+  display:   flex;
+  gap:       var(--space-in--sm);
+  flex-wrap: wrap;
+  margin-top: var(--space-in--xs);
+}
+
+/* ─── Dismiss button ──────────────────────────────────────────────────────── */
+
+.alert__dismiss {
+  flex-shrink:  0;
+  margin-top:   0;
+  margin-left:  auto;
+  padding:      var(--space-in--2xs);
+  border:       none;
+  background:   transparent;
+  cursor:       pointer;
+  color:        var(--feedback--color-text);
+  border-radius: var(--radius--sm);
+  display:      none;
+  align-items:  center;
+  justify-content: center;
+  opacity:      0.7;
+  transition:   opacity 150ms ease, background-color 150ms ease;
+}
+
+.alert--dismissible .alert__dismiss {
+  display: flex;
+}
+
+.alert__dismiss:hover {
+  opacity: 1;
+  background-color: var(--feedback--color-muted);
+}
+
+.alert__dismiss:focus-visible {
+  outline:        2px solid var(--feedback--color-border);
+  outline-offset: 1px;
+  opacity:        1;
+}
+

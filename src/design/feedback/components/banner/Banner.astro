@@ -1,0 +1,98 @@
+---
+/**
+ * Banner
+ *
+ * Full-width page-level announcement strip. Typically placed at the top of
+ * a page or layout region. Supports a message, optional action links, and
+ * optional dismiss. Can be made sticky to the viewport top.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div class="feedback banner [modifiers]" role="region" aria-label="…" style="…">
+ *   <div class="banner__content">…</div>      ← default slot
+ *   <div class="banner__actions">…</div>      ← actions slot, when present
+ *   <button class="banner__dismiss">…</button> ← when dismissible=true
+ * </div>
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Announcement message text (short, single-line preferred)
+ *   actions   CTA links or buttons placed after the message
+ *
+ * ARIA
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   role="region" + aria-label — landmark-level; consumers should override
+ *   aria-label via the prop if the default "Page notification" isn't specific.
+ *
+ * @example Simple announcement
+ * ```astro
+ * <Banner color="info">We'll be performing maintenance on Saturday at 2 AM UTC.</Banner>
+ * ```
+ *
+ * @example With action and dismiss
+ * ```astro
+ * <Banner color="warning" dismissible>
+ *   Your plan is expiring in 3 days.
+ *   <a slot="actions" href="/billing">Upgrade now</a>
+ * </Banner>
+ * ```
+ *
+ * @example Sticky banner
+ * ```astro
+ * <Banner color="primary" variant="solid" sticky aria-label="Promotional offer">
+ *   🎉 Get 20% off — use code LAUNCH20 at checkout.
+ * </Banner>
+ * ```
+ *
+ * @see banner.hook.ts   — useBanner: resolves props to { props, dismissible, dismissLabel }
+ * @see banner.props.ts  — BannerProps: full prop reference
+ * @see banner.tokens.ts — BANNER_TOKENS, BANNER_DEFAULTS
+ * @see banner.css       — layout, sticky, dismiss button styles
+ * @see ../feedback.css  — variant + color channel rules
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * ADJUSTING PROPS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * COLOR + VARIANT
+ *   color      [../feedback.css]  --feedback--color-* channels
+ *   variant    [../feedback.css]  .feedback--{variant}
+ *              @default "soft" — light tinted strip
+ *
+ * SHAPE
+ *   radius     [../feedback.css]  --feedback--radius
+ *              @default "none" — edge-to-edge, no rounding
+ *
+ * BEHAVIOR
+ *   sticky        [./banner.css]  .banner--sticky → position:sticky; top:0
+ *   dismissible   [./banner.css]  .banner--dismissible → shows dismiss button
+ *   dismissLabel  Passed as aria-label to the dismiss <button>
+ *
+ * LANDMARK
+ *   aria-label    Forwarded to the root element. Override the default
+ *                 "Page notification" when banner purpose is specific.
+ *
+ * SLOTS
+ *   actions    [./banner.css]  .banner__actions — CTA area after content
+ */
+
+import type { BannerProps } from "./banner.props";
+import { useBanner }        from "./banner.hook";
+import "../../feedback.css";
+import "./banner.css";
+
+const { props, dismissible, dismissLabel } = useBanner(Astro.props as BannerProps);
+---
+<div {...props}>
+  <div class="banner__content"><slot /></div>
+  {Astro.slots.has("actions") && (
+    <div class="banner__actions"><slot name="actions" /></div>
+  )}
+  {dismissible && (
+    <button class="banner__dismiss" type="button" aria-label={dismissLabel}>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  )}
+</div>

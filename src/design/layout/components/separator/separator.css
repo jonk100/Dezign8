@@ -29,13 +29,13 @@
 /* ─── STRENGTH (COLOR) ─────────────────────────────────────────────────────── */
 
 .separator--strength-subtle {
-  background-color: var(--border--subtle);
+  background-color: var(--separator--color);
 }
 .separator--strength-default {
-  background-color: var(--border--default);
+  background-color: var(--separator--color);
 }
 .separator--strength-strong {
-  background-color: var(--border--strong);
+  background-color: var(--separator--color);
 }
 
 /* ─── VARIANT (STYLE) ──────────────────────────────────────────────────────── */
@@ -44,12 +44,10 @@
   background: none;
 }
 .separator--horizontal.separator--variant-dashed {
-  border-top: var(--border--thin) dashed;
-  border-color: inherit; /* from strength modifier */
+  border-top: var(--border--thin) dashed var(--separator--color);
 }
 .separator--vertical.separator--variant-dashed {
-  border-left: var(--border--thin) dashed;
-  border-color: inherit; /* from strength modifier */
+  border-left: var(--border--thin) dashed var(--separator--color);
 }
 
 /* ─── WITH LABEL ───────────────────────────────────────────────────────────── */
@@ -66,7 +64,7 @@
   content: "";
   flex-grow: 1;
   border-bottom: var(--border--thin) var(--separator--variant, solid)
-    var(--separator--strength, var(--border--default));
+    var(--separator--color);
 }
 
 .separator__label {

@@ -1,6 +1,5 @@
 import type { BaseComponentProps } from "~sh/base.props";
 import type {
-  SeparatorLabelPosition,
   SeparatorOrientation,
   SeparatorStrength,
   SeparatorVariant,
@@ -18,7 +17,4 @@ export interface SeparatorProps extends BaseComponentProps {
 
   /** The color intensity of the line, mapping to border tokens. Defaults to `default`. */
   strength?: SeparatorStrength;
-
-  /** The position of the label within the separator. Defaults to `center`. */
-  labelPosition?: SeparatorLabelPosition;
 }

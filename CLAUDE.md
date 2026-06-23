@@ -46,37 +46,8 @@ src/design/<category>/components/<component>/
   <component>.hook.ts     — translates props → { Tag, props }
   <component>.css         — reads CSS channels written by hook
   <Component>.astro       — 3 lines: import, call hook, render
-  index.ts                — barrel export
 ```
 
-The `.astro` file is always:
-```astro
----
-import type { FooProps } from "./foo.props";
-import { useFoo } from "./foo.hook";
-import "./foo.css";
-const { Tag, props } = useFoo(Astro.props as FooProps);
----
-<Tag {...props}><slot /></Tag>
-```
-
-No logic in `.astro` files beyond named slot presence guards.
-
-### Token pipeline
-
-```
-shared/tokens.ts            engine (scale, dimension, defineTokens, resolveTokens)
-shared/primitives.tokens.ts shared value scales (SPACE, TEXT_SIZE, etc.)
-<category>.tokens.ts        assembles spec from primitives; no defaults
-<component>.tokens.ts       holds defaults + narrows/extends/re-exports category tokens
-<component>.props.ts        derives scale types from token spec (never hand-write unions)
-<component>.hook.ts         calls resolveTokens → writes CSS channels inline
-<component>.css             reads --{category}--{key} channels only
-```
-
-### CSS channels
-
-Hook writes `--{prefix}--{key}` as inline styles; CSS reads them. Never reference raw scale values (`--size-03`) or token names (`--radius--md`) in component CSS — only channels (`--control--radius`). Theme switching lives entirely in `tokens.css` via `[data-theme]`; components reference `--token-*` only.
 
 ### Import direction (hard constraint — violating creates circular deps)
 

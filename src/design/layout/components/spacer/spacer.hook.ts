@@ -9,12 +9,15 @@ import { SPACER_DEFAULTS } from "./spacer.tokens";
  * @returns An object with the `Tag` to render and the `props` for the tag.
  */
 export function useSpacer(props: SpacerProps) {
-  const { as: Tag = SPACER_DEFAULTS.as, ...rest } = props;
+  const { as: Tag = SPACER_DEFAULTS.as, class: className, ...rest } = props;
 
-  const { props: baseProps } = useBaseCompose({
-    ...rest,
-    class: ["spacer", props.class],
-  });
+  const { className: cls, style, attrs } = useBaseCompose(
+    { className: ["spacer", className] },
+    props,
+  );
 
-  return { Tag, props: baseProps };
+  return {
+    Tag,
+    props: { class: cls, style: style || undefined, ...attrs, ...rest },
+  };
 }

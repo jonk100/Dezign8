@@ -1,0 +1,108 @@
+---
+title: Chip Component
+description: An interactive inline element for selections, filters, and toggleable options. Renders as a button by default.
+category: Feedback
+status: stable
+---
+import Chip from "../../../design/feedback/components/chip/Chip.astro";
+
+## Overview
+
+`Chip` is an interactive feedback element, typically used for filter toggles, tags a user can dismiss, or multi-select options. It defaults to a `<button>` so it is keyboard-accessible out of the box. Use the `as` prop to render it as an anchor when navigation is the intent.
+
+All token dimensions (`size`, `variant`, `color`, `radius`) are inherited from `FeedbackProps` and resolved by `useFeedback`. Chip-specific defaults are `variant="outlined"`, `color="neutral"`, `size="md"`, and `radius="full"`.
+
+---
+
+## Usage
+
+### Default
+
+```astro
+<Chip>JavaScript</Chip>
+<Chip color="primary">React</Chip>
+```
+
+<Chip>JavaScript</Chip>
+<Chip color="primary">React</Chip>
+
+### Variants
+
+```astro
+<Chip variant="outlined">Outlined</Chip>
+<Chip variant="soft">Soft</Chip>
+<Chip variant="solid" color="primary">Solid</Chip>
+<Chip variant="ghost">Ghost</Chip>
+```
+
+<Chip variant="outlined">Outlined</Chip>
+<Chip variant="soft">Soft</Chip>
+<Chip variant="solid" color="primary">Solid</Chip>
+<Chip variant="ghost">Ghost</Chip>
+
+### Sizes
+
+```astro
+<Chip size="xs">xs</Chip>
+<Chip size="sm">sm</Chip>
+<Chip size="md">md</Chip>
+<Chip size="lg">lg</Chip>
+<Chip size="xl">xl</Chip>
+```
+
+<Chip size="xs">xs</Chip>
+<Chip size="sm">sm</Chip>
+<Chip size="md">md</Chip>
+<Chip size="lg">lg</Chip>
+<Chip size="xl">xl</Chip>
+
+### Colors
+
+```astro
+<Chip color="neutral">Neutral</Chip>
+<Chip color="primary">Primary</Chip>
+<Chip color="success">Success</Chip>
+<Chip color="danger">Danger</Chip>
+<Chip color="warning">Warning</Chip>
+<Chip color="info">Info</Chip>
+```
+
+<Chip color="neutral">Neutral</Chip>
+<Chip color="primary">Primary</Chip>
+<Chip color="success">Success</Chip>
+<Chip color="danger">Danger</Chip>
+<Chip color="warning">Warning</Chip>
+<Chip color="info">Info</Chip>
+
+### As Anchor
+
+```astro
+<Chip as="a" href="/tags/css">CSS</Chip>
+```
+
+<Chip as="a" href="/tags/css">CSS</Chip>
+
+---
+
+## Props API
+
+### Chip-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `as` | `string` | `"button"` | The HTML element to render. Use `"a"` for navigation chips. |
+
+### Inherited Feedback Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `FeedbackVariant` | `"outlined"` | Visual treatment. |
+| `color` | `FeedbackColor` | `"neutral"` | Color role. |
+| `size` | `FeedbackSize` | `"md"` | Size scale. |
+| `radius` | `FeedbackRadius` | `"full"` | Border radius. |
+
+---
+
+## Accessibility
+
+`Chip` renders as a `<button>` by default, which is keyboard-focusable and activatable with `Enter`/`Space`. If used for toggle selections, manage `aria-pressed` state from your own script. If used as a link (`as="a"`), ensure `href` is always set.

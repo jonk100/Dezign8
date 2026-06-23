@@ -20,6 +20,36 @@ _________________________________________________
 
 -----------------------------------------------
 
+## 2026/06/23 - Alert and Banner components
+
+Built Alert and Banner as block-level feedback components from empty stubs.
+
+### Decisions
+- **No cross-category imports**: dismiss buttons use bare `<button class="alert__dismiss">` + inline SVG instead of importing `<Button>` from triggers. Consistent with DS idiom; avoids circular dep risk.
+- **Alert ARIA role is dynamic**: `role="alert"` for `color="danger"|"warning"` (assertive), `role="status"` for all others (polite). This is baked into the hook, not left to consumers.
+- **Banner ARIA**: `role="region"` + `aria-label` (defaults to "Page notification"). Consumers should override `aria-label` when purpose is specific.
+- **Layout override**: `feedback.css` is designed for inline-flex pill indicators. Both components override `display`, `width`, `white-space`, `padding` in their own CSS to become block message boxes while still inheriting variant + color channel rules.
+- **No size token for alert/banner**: Omitted `size` from FeedbackProps (Omit'd from base). Alerts and banners don't scale like badges/chips. No size CSS rules.
+- **`radius: "md"` for alert, `"none"` for banner**: Alert is contained, so slight rounding fits. Banner is edge-to-edge, so no radius.
+- **Dismiss is pure HTML**: No client.ts file added. The dismiss button is rendered; wiring up click-to-hide is the consumer's responsibility (one line of JS). This was intentional to avoid View Transitions re-init complexity.
+- **Banner `aria-label` extraction**: Destructured `aria-label` from props before passing to `useFeedback` to avoid TypeScript `{}` type inference issue from `rest["aria-label"]` lookup.
+
+### New files
+```
+src/design/feedback/components/alert/alert.tokens.ts
+src/design/feedback/components/alert/alert.props.ts
+src/design/feedback/components/alert/alert.hook.ts
+src/design/feedback/components/alert/alert.css
+src/design/feedback/components/alert/Alert.astro
+src/design/feedback/components/banner/banner.tokens.ts
+src/design/feedback/components/banner/banner.props.ts
+src/design/feedback/components/banner/banner.hook.ts
+src/design/feedback/components/banner/banner.css
+src/design/feedback/components/banner/Banner.astro
+```
+
+-----------------------------------------------
+
 ## 2026/06/22 to 2026/06/22 - Antigravity session
 
 See:
