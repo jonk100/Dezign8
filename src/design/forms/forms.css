@@ -1,0 +1,183 @@
+/* ============================================================
+   forms.css
+   ─────────────────────────────────────────────────────────────
+   Base styles shared by all form controls in the forms category:
+   Input, Select, Checkbox, Radio.
+
+   CHANNEL MAP
+   ──────────────────────────────────────────────────────────────
+   Written by useForm via resolveTokens:
+     --form--size      Overall height tier (from FORM_SIZE scale)
+     --form--radius    Border radius (from RADIUS scale)
+
+   Written by resolveColorChannels (when implemented):
+     --form--color-subtle   Soft/tinted background (rest state)
+     --form--color-muted    Hover background on soft variants
+     --form--color-base     Solid fill; active border
+     --form--color-vivid    Hover on solid variant
+     --form--color-deep     Pressed state
+     --form--color-border   Outlined/dashed border color
+     --form--color-text     Role-colored foreground text
+
+   SIZING STRATEGY
+   ──────────────────────────────────────────────────────────────
+   Rather than emitting size modifier classes (.form--sm etc.),
+   all spatial properties are derived proportionally from the
+   single --form--size channel via calc(). This keeps the token
+   spec simpler and ensures the spatial scale is truly proportional
+   — changing one CSS variable rescales the entire control.
+
+   Approximate values (define --form--sm / md / lg / xl in vars.css):
+     --form--sm: 2rem    → ~32px control, ~11px font, ~6px/10px padding
+     --form--md: 2.5rem  → ~40px control, ~14px font, ~8px/13px padding
+     --form--lg: 3rem    → ~48px control, ~17px font, ~9px/16px padding
+     --form--xl: 3.5rem  → ~56px control, ~20px font, ~11px/19px padding
+
+   VARIANT FOCUS
+   ──────────────────────────────────────────────────────────────
+   Focus is indicated on the wrapper div (not the inner control)
+   using :focus-within, which fires when any descendant is focused.
+   The inner control (input__control, select__control) removes its
+   own native outline in its component CSS file.
+
+   CSS FALLBACKS
+   ──────────────────────────────────────────────────────────────
+   Color channel fallbacks (e.g. var(--form--color-border, var(--primary--border)))
+   ensure variant focus states work correctly even before
+   resolveColorChannels is implemented. Once it is, the channels
+   are set per-color-role and override the primary fallbacks.
+   ============================================================ */
+
+/* ─── BASE ─────────────────────────────────────────────────── */
+
+.form,
+[data-visual="form"] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  /* Spatial properties — all derived proportionally from --form--size */
+  min-block-size:  var(--form--size, 2.5rem);
+  padding-block:   calc(var(--form--size, 2.5rem) * 0.1);
+  padding-inline:  calc(var(--form--size, 2.5rem) * 0.1);
+  gap:             calc(var(--form--size, 2.5rem) * 0.2);
+  font-size:       calc(var(--form--size, 2.5rem) * 0.35);
+  border-radius:   var(--form--radius, var(--radius--md));
+
+  /* Inherit font from document — the control is part of the page's type */
+  font-family: inherit;
+  line-height: 1;
+  color: var(--text--primary);
+
+  transition:
+    border-color     var(--transition--fast, 150ms ease),
+    background-color var(--transition--fast, 150ms ease),
+    box-shadow       var(--transition--fast, 150ms ease);
+}
+
+/* ─── VARIANTS ─────────────────────────────────────────────── */
+/* Each variant is a flat block. All properties it owns live here.
+   Focus states immediately follow the variant they modify. */
+
+/* OUTLINED — transparent bg, colored border on focus */
+
+.form--outlined {
+  background-color: transparent;
+  border: 1px solid var(--border--default);
+  color: var(--text--primary);
+}
+
+.form--outlined:focus-within {
+  border-color: var(--form--color-border, var(--primary--border));
+  box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--form--color-base, var(--primary--base)) 20%, transparent);
+}
+
+/* SOFT — muted fill at rest, border appears on focus */
+
+.form--soft {
+  background-color: var(--bg--2);
+  border: 1px solid transparent;
+  color: var(--text--primary);
+}
+
+.form--soft:focus-within {
+  background-color: var(--bg--1);
+  border-color: var(--form--color-border, var(--primary--border));
+}
+
+/* SOLID — color-role fill; use for high-emphasis or branded inputs */
+
+.form--solid {
+  background-color: var(--form--color-base, var(--primary--base));
+  border: 1px solid transparent;
+  color: var(--text--on-color);
+}
+
+.form--solid:focus-within {
+  background-color: var(--form--color-vivid, var(--primary--vivid));
+}
+
+/* GHOST — no border, no background; minimal chrome */
+
+.form--ghost {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--text--primary);
+}
+
+.form--ghost:focus-within {
+  background-color: var(--form--color-subtle, var(--primary--subtle));
+}
+
+/* DASHED — dashed border, transparent bg */
+
+.form--dashed {
+  background-color: transparent;
+  border: 1px dashed var(--border--default);
+  color: var(--text--primary);
+}
+
+.form--dashed:focus-within {
+  border-color: var(--form--color-border, var(--primary--border));
+  border-style: dashed;
+}
+
+/* ─── INVALID STATE ────────────────────────────────────────── */
+/* Higher specificity than variant rules — invalid always wins. */
+
+.form--invalid,
+.form[data-invalid] {
+  border-color: var(--danger--border) !important; /* overrides all variant border states */
+}
+
+.form[data-invalid]:focus-within {
+  border-color: var(--danger--border);
+  box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--danger--base) 20%, transparent);
+}
+
+/* ─── DISABLED STATE ──────────────────────────────────────── */
+
+.form--disabled,
+.form[data-disabled] {
+  opacity:        var(--opacity--disabled, 0.45);
+  pointer-events: none;
+  cursor:         not-allowed;
+}
+
+/* ─── FULL WIDTH ──────────────────────────────────────────── */
+
+.form--full-width {
+  width: 100%;
+}
+
+/* ─── REDUCED MOTION ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .form,
+  [data-visual="form"] {
+    transition: none;
+  }
+}

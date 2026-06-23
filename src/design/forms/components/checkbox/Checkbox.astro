@@ -1,0 +1,103 @@
+---
+/**
+ * Checkbox
+ *
+ * A boolean toggle rendered as a custom styled indicator square with an
+ * optional label slot. The root element is a `<label>` that wraps both
+ * the hidden native `<input type="checkbox">` and the custom indicator,
+ * so the entire component area is clickable with no `for`/`id` wiring needed.
+ *
+ * STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────
+ *   <label class="form checkbox …">
+ *     <input class="checkbox__control" type="checkbox" />   ← hidden
+ *     <span  class="checkbox__indicator" aria-hidden />     ← custom visual
+ *     <span  class="checkbox__label"><slot /></span>        ← label content
+ *   </label>
+ *
+ * DOM order is always: hidden input → indicator → label slot.
+ * The `labelPosition` prop changes VISUAL order via CSS flex-direction.
+ * This keeps the CSS ~ sibling combinator functional for state rules.
+ *
+ * VARIANTS
+ * ─────────────────────────────────────────────────────────────────────────
+ * Default variant is `"ghost"` (no wrapper border — traditional checkbox).
+ * Pass `variant="outlined"` or `variant="soft"` for a bordered/filled
+ * "selectable chip" where the entire label+indicator has visual chrome.
+ *
+ * INDETERMINATE
+ * ─────────────────────────────────────────────────────────────────────────
+ * Indeterminate is a DOM property, not an HTML attribute — it cannot be set
+ * via server-rendered HTML. The hook adds `data-indeterminate` to the input
+ * when `indeterminate={true}`. The <script> below reads `[data-indeterminate]`
+ * and sets `.indeterminate = true` on those nodes after paint.
+ *
+ * The script is always bundled with this component (Astro deduplicates it to
+ * one execution per page). It is a no-op when no `[data-indeterminate]`
+ * elements exist. The `data-indeterminate` attribute IS the on/off switch.
+ *
+ * @slots
+ *   default — Label content displayed next to the indicator.
+ *             Can contain rich content (icons, emphasis, etc.).
+ *             Avoid placing interactive elements (links, buttons) inside
+ *             the label — they will also trigger the checkbox on click,
+ *             which is a known browser behaviour for <label>-wrapped inputs.
+ *
+ * @example
+ * <!-- Basic -->
+ * <Checkbox name="agree">I accept the terms and conditions</Checkbox>
+ *
+ * @example
+ * <!-- Controlled (checked on SSR render) -->
+ * <Checkbox name="newsletter" checked value="subscribed">
+ *   Receive updates
+ * </Checkbox>
+ *
+ * @example
+ * <!-- Indeterminate parent in a select-all pattern -->
+ * <Checkbox name="select-all" indeterminate>Select all</Checkbox>
+ *
+ * @example
+ * <!-- Chip/pill style (bordered wrapper) -->
+ * <Checkbox name="tag" value="ts" variant="outlined" color="primary">
+ *   TypeScript
+ * </Checkbox>
+ *
+ * @example
+ * <!-- Label to the left of the indicator -->
+ * <Checkbox name="visible" labelPosition="start">Show in menu</Checkbox>
+ *
+ * @see checkbox.hook.ts  — resolves props to { Tag, props, inputAttrs }
+ * @see checkbox.props.ts — full prop type reference
+ * @see checkbox.css      — indicator styles, layout modifiers
+ * @see forms.css         — shared variant and state styles
+ */
+
+import type { CheckboxProps } from "./checkbox.props";
+import { useCheckbox }        from "./checkbox.hook";
+import "~f/forms.css";
+import "./checkbox.css";
+
+const { Tag, props, inputAttrs } = useCheckbox(Astro.props as CheckboxProps);
+---
+
+<Tag {...props}>
+  <input class="checkbox__control" {...inputAttrs} />
+  <span class="checkbox__indicator" aria-hidden="true"></span>
+  {Astro.slots.has("default") && (
+    <span class="checkbox__label">
+      <slot />
+    </span>
+  )}
+</Tag>
+
+<!--
+  Indeterminate script — sets the .indeterminate DOM property on any
+  <input> with [data-indeterminate]. Runs once per page (Astro deduplicates
+  this script across all Checkbox instances). No-op when attribute is absent.
+-->
+<script>
+  document.querySelectorAll<HTMLInputElement>("[data-indeterminate]").forEach(el => {
+    el.indeterminate = true;
+  });
+</script>

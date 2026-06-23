@@ -1,0 +1,77 @@
+/**
+ * Styles for the Separator component.
+ *
+ * When it has no content, it's a simple `hr` element.
+ * When it has content (a label), it becomes a flex container with
+ * pseudo-elements creating the lines on either side of the label.
+ */
+
+.separator {
+  border: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* ─── ORIENTATION ──────────────────────────────────────────────────────────── */
+
+.separator--horizontal {
+  width: 100%;
+  height: var(--border--thin);
+  margin-block: var(--space-out--md);
+}
+
+.separator--vertical {
+  height: 100%;
+  width: var(--border--thin);
+  margin-inline: var(--space-out--md);
+}
+
+/* ─── STRENGTH (COLOR) ─────────────────────────────────────────────────────── */
+
+.separator--strength-subtle {
+  background-color: var(--border--subtle);
+}
+.separator--strength-default {
+  background-color: var(--border--default);
+}
+.separator--strength-strong {
+  background-color: var(--border--strong);
+}
+
+/* ─── VARIANT (STYLE) ──────────────────────────────────────────────────────── */
+
+.separator--variant-dashed {
+  background: none;
+}
+.separator--horizontal.separator--variant-dashed {
+  border-top: var(--border--thin) dashed;
+  border-color: inherit; /* from strength modifier */
+}
+.separator--vertical.separator--variant-dashed {
+  border-left: var(--border--thin) dashed;
+  border-color: inherit; /* from strength modifier */
+}
+
+/* ─── WITH LABEL ───────────────────────────────────────────────────────────── */
+
+.separator[role="separator"] {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: none; /* The pseudo-elements handle the line */
+}
+
+.separator[role="separator"]::before,
+.separator[role="separator"]::after {
+  content: "";
+  flex-grow: 1;
+  border-bottom: var(--border--thin) var(--separator--variant, solid)
+    var(--separator--strength, var(--border--default));
+}
+
+.separator__label {
+  flex-shrink: 0;
+  padding-inline: var(--space-in--sm);
+  font-size: var(--label--sm);
+  color: var(--text--muted);
+}

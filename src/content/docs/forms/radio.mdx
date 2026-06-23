@@ -1,0 +1,87 @@
+---
+title: Radio Component
+description: A single radio button with an optional label slot, handling mutual exclusivity natively.
+category: Forms
+status: experimental
+version: 0.2.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/forms/components/radio"
+---
+import Radio from "../../../design/forms/components/radio/Radio.astro";
+
+## Overview
+
+The `Radio` component renders a single radio button with an optional label slot. Radio buttons in the same group share the same `name` attribute, allowing the browser to automatically enforce mutual exclusivity.
+
+Like the Checkbox, it renders as a `<label>` wrapping a hidden native `<input type="radio">`, a circular custom indicator, and the label content.
+
+**DOM Structure:**
+```html
+<label class="form radio …">
+  <input class="radio__control" type="radio" />  <!-- hidden native input -->
+  <span  class="radio__indicator" aria-hidden></span> <!-- custom circle -->
+  <span  class="radio__label"><slot /></span>         <!-- label content -->
+</label>
+```
+
+## Usage & Examples
+
+### Radio Group
+
+Pass the same `name` to all Radio instances in a group. Each should have a distinct `value`. Pass `checked` to the initially-selected option.
+
+```astro
+<Radio name="plan" value="free" checked>Free</Radio>
+<Radio name="plan" value="pro">Pro</Radio>
+<Radio name="plan" value="enterprise">Enterprise</Radio>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+  <Radio name="plan" value="free" checked>Free</Radio>
+  <Radio name="plan" value="pro">Pro</Radio>
+  <Radio name="plan" value="enterprise">Enterprise</Radio>
+</div>
+
+### Option Card Style
+
+The default variant is `"ghost"`. Pass `variant="outlined"` or `variant="soft"` for a bordered "option card" style.
+
+```astro
+<Radio name="plan" value="pro" variant="outlined" color="primary">
+  Pro — $12/month
+</Radio>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Radio name="plan" value="pro" variant="outlined" color="primary">
+    Pro — $12/month
+  </Radio>
+</div>
+
+### Label Position
+
+Place the label on the left using `labelPosition="start"`.
+
+```astro
+<Radio name="side" value="left" labelPosition="start">Left</Radio>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Radio name="side" value="left" labelPosition="start">Left</Radio>
+</div>
+
+## Props API
+
+`Radio` extends `FormProps` with specific radio attributes.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | | The `id` attribute placed on the inner `<input type="radio">`. |
+| `value` | `string` | | The form submission value for this radio option. |
+| `checked` | `boolean` | `false` | Whether this radio button is selected on initial render. |
+| `labelPosition` | `"start" \| "end"` | `"end"` | Position of the label slot relative to the indicator circle. |
+
+*Inherits all `FormProps` (size, variant, color, radius, disabled, required, invalid, name, fullWidth) and `BaseComponentProps`.*
+
+## Design Decisions
+
+- **No `indeterminate`:** Radio buttons do not have an indeterminate state. They are always either selected or not.
+- **Native Grouping:** Relies completely on native browser grouping via the `name` prop to handle selections and exclusivity.
+- **Slot Limitations:** As with checkboxes, avoid interactive elements (links, buttons) inside the default label slot. Native browser behaviour dictates that interacting with elements inside a `<label>` triggers the wrapping input.

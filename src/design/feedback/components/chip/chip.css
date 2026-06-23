@@ -1,0 +1,87 @@
+/* ============================================================
+   chip.css
+   ─────────────────────────────────────────────────────────────
+   Visual styles for the Chip component.
+   
+   Inherits `--feedback--color-*` and `--feedback--radius` from
+   the `useFeedback` hook base classes (`.feedback--[variant]`).
+   ============================================================ */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: var(--feedback--radius);
+  font-family: var(--family--sans);
+  font-weight: var(--weight--medium);
+  line-height: var(--leading--none);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition--fast) background-color, var(--transition--fast) border-color;
+  background-color: transparent;
+  color: inherit; /* Rely on feedback variants to set correct color */
+  outline: none;
+}
+
+/* Reset default button appearance */
+button.chip {
+  appearance: none;
+  border-width: 1px; /* Let variants override */
+}
+
+.chip:hover {
+  /* Slightly darken or lighten based on variant by adjusting opacity or using a different token.
+     Here we just add a small brightness filter or rely on the variant's border-color if outlined. */
+  filter: brightness(0.95);
+}
+
+.chip:active {
+  filter: brightness(0.9);
+}
+
+.chip:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg--1), 0 0 0 4px var(--feedback--color-border);
+}
+
+/* ─── SIZE MAPPING ────────────────────────────────────────── */
+
+/* XS: micro chip */
+.feedback--xs.chip {
+  font-size: var(--label--xs);
+  padding: var(--space-in--3xs) var(--space-in--2xs);
+  min-block-size: var(--ui-height--2xs);
+  gap: var(--space-in--3xs);
+}
+
+/* SM: small chip */
+.feedback--sm.chip {
+  font-size: var(--label--sm);
+  padding: var(--space-in--2xs) var(--space-in--xs);
+  min-block-size: var(--ui-height--xs);
+  gap: var(--space-in--3xs);
+}
+
+/* MD (default): standard chip */
+.feedback--md.chip {
+  font-size: var(--label--md);
+  padding: var(--space-in--xs) var(--space-in--sm);
+  min-block-size: var(--ui-height--sm);
+  gap: var(--space-in--2xs);
+}
+
+/* LG: large chip */
+.feedback--lg.chip {
+  font-size: var(--label--lg);
+  padding: var(--space-in--sm) var(--space-in--md);
+  min-block-size: var(--ui-height--md);
+  gap: var(--space-in--xs);
+}
+
+/* XL: hero chip */
+.feedback--xl.chip {
+  font-size: var(--label--xl);
+  padding: var(--space-in--md) var(--space-in--lg);
+  min-block-size: var(--ui-height--lg);
+  gap: var(--space-in--sm);
+}

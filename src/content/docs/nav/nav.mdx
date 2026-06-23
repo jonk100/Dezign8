@@ -1,0 +1,102 @@
+---
+title: Nav Category
+description: Token-driven navigation controls with shared size, variant, color, and accessibility architecture built on a delegating hook model.
+category: Nav
+status: stable
+---
+
+## Overview
+
+The Nav category provides essential navigation controls (`Breadcrumbs`, `Menu`, `Navbar`, `Pagination`, `Stepper`, `Tabs`) wrapped in a consistent, token-driven visual shell. Every navigation control inherits the same core token dimensions — `size`, `variant`, `color`, `radius`, and `orientation` — through a shared category hook.
+
+The category is built for **progressive enhancement** and robust server-side rendering: all controls render valid, semantic HTML (`<nav>`, `<ul>`, `<li>`, `<a>`). Client-side interactivity (like tab switching or expanding mobile menus) is layered on via Web Components or framework islands, ensuring they work beautifully in Astro without requiring heavy JavaScript frameworks.
+
+---
+
+## Architecture
+
+### The delegating hook model
+
+Every navigation control in this category follows the same hook chain:
+
+```
+useNav(NavProps)
+       ↓
+useMenu / useTabs / usePagination / useBreadcrumbs
+       ↓
+{ navProps, [component-specific props, like activeId or generateUrl] }
+```
+
+`useNav` owns everything shared: token resolution (`size`, `variant`, `color`, `radius` → CSS channels and class modifiers) and layout orientation (`nav--horizontal`, `nav--vertical`). Component hooks destructure their own props first, then delegate the rest to `useNav`, then compose the final return shape.
+
+No component hook calls `resolveTokens` on `NAV_TOKENS` directly — they all go through `useNav`.
+
+### Shared Token Dimensions
+
+All navigation controls accept these props, resolved by `useNav` into CSS channels and class modifiers:
+
+| Prop | Channel / Class | Default |
+|---|---|---|
+| `size` | class: `nav--md` | `"md"` |
+| `variant` | class: `nav--underlined` | `"underlined"` |
+| `color` | CSS color channels | `"primary"` |
+| `radius` | `--nav--radius: var(--radius--md)` | `"md"` |
+| `orientation` | class: `nav--horizontal` / `nav--vertical` | `"horizontal"` |
+
+### Variant
+
+Controls the visual treatment of the active and hovered items. All variant rules live in `nav.css`; the value emits a class modifier only.
+
+| Value | Active appearance | Use case |
+|---|---|---|
+| `underlined` | Bottom border on active item | Standard Tabs, Navbar links |
+| `pill` | Rounded background pill on active item | Filter tabs, pagination |
+| `soft` | Muted fill on active item | Sidebar menus |
+| `ghost` | Background only on hover/active | Minimalist breadcrumbs or navbar |
+
+---
+
+## Shared Behavioral Props
+
+`useNav` also helps manage the `activeId` state, which components use to determine `aria-current="page"` or `aria-selected="true"`.
+
+| Prop | Purpose | Used For |
+|---|---|---|
+| `activeId` | The identifier of the currently active navigation item. | Compared against individual item IDs or hrefs to determine active states. |
+
+---
+
+## CSS Architecture
+
+`nav.css` contains the base `.nav` flexbox resets, `.nav__item` resets, focus rings, and all variant + state rules. Each component imports it alongside its own component CSS:
+
+```astro
+import "../../nav.css";
+import "./tabs.css";
+```
+
+The component CSS (`tabs.css`, `menu.css`, etc.) handles only the component-specific structural elements (like how a TabPanel hides/shows). It does not redefine variant or state rules.
+
+### Focus ring
+
+Focus is indicated on the `.nav__item` using `:focus-visible`. The standard reset ensures that focus rings are cleanly applied to `<a>` or `<button>` elements within the navigation structure.
+
+---
+
+## Adding a New Navigation Control
+
+The pattern for any new control is the same five files:
+
+```
+nav/components/<name>/
+  <name>.tokens.ts   — re-export NAV_TOKENS or composeTokens for extensions
+  <name>.props.ts    — extends NavProps; add component-specific props
+  <name>.hook.ts     — destructures own props, delegates to useNav
+  <name>.css         — component structural extras only
+  <name>.astro       — template; imports nav.css + own css
+```
+
+If the control needs no new token dimensions, `tokens.ts` is a simple re-export:
+```ts
+export { NAV_TOKENS as BREADCRUMBS_TOKENS } from "../../nav.tokens";
+```

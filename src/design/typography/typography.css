@@ -7,11 +7,11 @@
    ============================================================ */
 
 .typography {
-  font-size:       var(--typography--size);
-  font-weight:     var(--typography--weight);
-  color:           var(--typography--color);
+  font-size:       var(--typography--size, var(--fs--md));
+  font-weight:     var(--typography--weight, var(--weight--light));
+  color:           var(--typography--color, var(--text--layer-1));
   text-align:      var(--typography--align);
-  line-height:     var(--typography--leading);
+  line-height:     var(--typography--leading, var(--leading--relaxed));
   letter-spacing:  var(--typography--tracking);
   font-family:     var(--typography--fam);
   text-transform:  var(--typography--transform);

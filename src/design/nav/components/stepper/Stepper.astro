@@ -1,0 +1,48 @@
+---
+/**
+ * Stepper
+ *
+ * A visual progress indicator for sequential steps.
+ *
+ * @example
+ * <Stepper items={[{ id: "1", label: "Cart" }, { id: "2", label: "Shipping" }]} currentStepIndex={1} />
+ */
+import { useStepper } from "./stepper.hook";
+import type { StepperProps } from "./stepper.props";
+import Step from "./step/Step.astro";
+import "../../nav.css";
+import "./stepper.css";
+
+export type Props = StepperProps;
+
+const { stepperProps, items, currentStepIndex } = useStepper(Astro.props as StepperProps);
+---
+
+<nav {...stepperProps}>
+  <ol class="stepper__list">
+    {items ? (
+      items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        
+        let state = item.state;
+        if (!state) {
+          if (index < currentStepIndex) state = "complete";
+          else if (index === currentStepIndex) state = "current";
+          else state = "incomplete";
+        }
+
+        return (
+          <Step 
+            state={state}
+            label={item.label}
+            description={item.description}
+            isLast={isLast}
+            stepNumber={index + 1}
+          />
+        );
+      })
+    ) : (
+      <slot />
+    )}
+  </ol>
+</nav>

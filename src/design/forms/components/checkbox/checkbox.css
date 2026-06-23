@@ -1,0 +1,215 @@
+/* ============================================================
+   checkbox.css
+   ─────────────────────────────────────────────────────────────
+   Checkbox-specific styles. Imported alongside forms.css.
+
+   STRUCTURE
+   ──────────────────────────────────────────────────────────────
+     <label class="form checkbox checkbox--end …">  ← wrapper (<label>)
+       <input class="checkbox__control" />            ← hidden native input
+       <span class="checkbox__indicator" />           ← custom visual square
+       <span class="checkbox__label">…</span>         ← label slot content
+     </label>
+
+   INDICATOR STATE MACHINE
+   ──────────────────────────────────────────────────────────────
+   State is driven by native CSS pseudo-classes on .checkbox__control
+   via the general sibling combinator (~). This requires the control
+   to precede the indicator in the DOM — that order never changes
+   regardless of the labelPosition modifier class.
+
+   States:
+     default      →  bordered square, transparent fill
+     :hover       →  border shifts to role color
+     :checked     →  filled with role color, white checkmark
+     :indeterminate → filled with role color, white dash
+     :focus-visible → role-colored glow ring on indicator
+     :disabled    →  handled by forms.css on wrapper [data-disabled]
+
+   LABEL POSITION
+   ──────────────────────────────────────────────────────────────
+   DOM order is always: hidden input → indicator → label.
+   CSS reorders visually via flex-direction / order.
+   This keeps the ~ sibling combinator functional for all states.
+
+   SIZING
+   ──────────────────────────────────────────────────────────────
+   The indicator square is proportional to --form--size (≈ 0.45×).
+   The checkmark is drawn with a CSS border-based pseudo-element.
+   ============================================================ */
+
+/* ─── WRAPPER ─────────────────────────────────────────────── */
+
+.checkbox {
+  /* Natural height — not a min-block-size field like Input/Select */
+  min-block-size: unset;
+
+  /* Tighter padding than form inputs — just enough for click-area */
+  padding: calc(var(--form--size, 2.5rem) * 0.15);
+  gap:     calc(var(--form--size, 2.5rem) * 0.3);
+
+  /* Inline by default (indicator + label side by side) */
+  flex-direction: row;
+  align-items: center;
+
+  /* Full label area is clickable */
+  cursor:      pointer;
+  user-select: none;
+}
+
+/* ─── HIDDEN NATIVE INPUT ─────────────────────────────────── */
+/* Visually hidden but accessible — still part of the tab order
+   and triggers native :checked / :focus-visible / :indeterminate */
+
+.checkbox__control {
+  position:       absolute;
+  opacity:        0;
+  width:          0;
+  height:         0;
+  pointer-events: none;
+  margin:         0;
+}
+
+/* ─── CUSTOM INDICATOR ────────────────────────────────────── */
+
+.checkbox__indicator {
+  flex-shrink: 0;
+
+  /* Proportional to the form size tier */
+  width:  calc(var(--form--size, 2.5rem) * 0.45);
+  height: calc(var(--form--size, 2.5rem) * 0.45);
+
+  display:         grid;
+  place-items:     center;
+
+  border:        2px solid var(--border--strong, var(--border--default));
+  border-radius: var(--form--radius, var(--radius-sm));
+  background:    transparent;
+
+  transition:
+    background-color var(--transition--fast, 150ms ease),
+    border-color     var(--transition--fast, 150ms ease);
+}
+
+/* Checkmark drawn as a rotated L-shape border */
+.checkbox__indicator::after {
+  content: "";
+  display: block;
+
+  /* Proportions give a clean tick at all sizes */
+  width:  30%;
+  height: 55%;
+
+  border:       2px solid transparent;
+  border-top:   none;
+  border-left:  none;
+  transform:    rotate(45deg) translateY(-10%);
+
+  opacity:    0;
+  transition: opacity var(--transition--fast, 150ms ease);
+}
+
+/* ─── HOVER (unchecked) ───────────────────────────────────── */
+
+.checkbox:hover:not([data-disabled]) .checkbox__indicator {
+  border-color: var(--form--color-border, var(--primary--border));
+}
+
+/* ─── CHECKED ─────────────────────────────────────────────── */
+
+.checkbox__control:checked ~ .checkbox__indicator {
+  background-color: var(--form--color-base, var(--primary--base));
+  border-color:     var(--form--color-base, var(--primary--base));
+}
+
+.checkbox__control:checked ~ .checkbox__indicator::after {
+  border-color: var(--text--on-color, #fff);
+  opacity:      1;
+}
+
+/* ─── INDETERMINATE ───────────────────────────────────────── */
+/* Same fill as checked; the dash replaces the checkmark shape */
+
+.checkbox__control:indeterminate ~ .checkbox__indicator {
+  background-color: var(--form--color-base, var(--primary--base));
+  border-color:     var(--form--color-base, var(--primary--base));
+}
+
+/* Override checkmark with a horizontal dash */
+.checkbox__control:indeterminate ~ .checkbox__indicator::after {
+  width:        55%;
+  height:       2px;
+  border:       none;
+  background:   var(--text--on-color, #fff);
+  transform:    none;
+  opacity:      1;
+}
+
+/* ─── FOCUS ───────────────────────────────────────────────── */
+/* Focus ring on the indicator (not the wrapper) — matches the
+   convention of focused form controls showing the glow on the
+   actual interactive element */
+
+.checkbox__control:focus-visible ~ .checkbox__indicator {
+  outline: none;
+  box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--form--color-base, var(--primary--base)) 30%, transparent);
+}
+
+/* ─── LABEL TEXT ─────────────────────────────────────────── */
+
+.checkbox__label {
+  font-size:   calc(var(--form--size, 2.5rem) * 0.35);
+  line-height: 1.4;
+  color:       inherit;
+}
+
+/* ─── LABEL POSITION MODIFIERS ───────────────────────────── */
+/* DOM order never changes. CSS reorders visually only. */
+
+/* end (default) — [■] Label */
+.checkbox--end {
+  flex-direction: row;
+}
+
+/* start — Label [■] */
+.checkbox--start {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+/* top — Label above indicator */
+.checkbox--top {
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+/* bottom — indicator above label */
+.checkbox--bottom {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ─── INVALID STATE ───────────────────────────────────────── */
+/* Danger border on the indicator (supplements wrapper border from forms.css) */
+
+.checkbox[data-invalid] .checkbox__indicator {
+  border-color: var(--danger--border);
+}
+
+/* ─── DISABLED STATE ──────────────────────────────────────── */
+/* forms.css handles opacity + pointer-events on [data-disabled].
+   Cursor is specific to checkbox (pointer → default). */
+
+.checkbox[data-disabled] {
+  cursor: default;
+}
+
+/* ─── REDUCED MOTION ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .checkbox__indicator,
+  .checkbox__indicator::after {
+    transition: none;
+  }
+}

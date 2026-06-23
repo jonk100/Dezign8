@@ -1,0 +1,65 @@
+---
+title: Section Component
+description: Page-level content division container.
+category: Surfaces
+status: stable
+---
+
+import Section from "~/surfaces/components/section/Section.astro";
+
+## Overview
+
+`Section` provides a foundational container for page-level content divisions. By default, it renders as a `<section>` tag with no layer lift and spans edge-to-edge (`padding="none"`). It inherits all surface properties, making it easy to create tinted or elevated page regions.
+
+## Examples
+
+### Basic Section
+
+<div style="border: 1px dashed var(--border--subtle); margin-bottom: 2rem;">
+  <Section padding="lg">
+    <h3 style="margin-top: 0;">Main Content Region</h3>
+    <p style="margin-bottom: 0;">This section spans the width of its parent. We added padding="lg" for spacing.</p>
+  </Section>
+</div>
+
+```astro
+<Section padding="lg">
+  <h3>Main Content Region</h3>
+  <p>This section spans the width of its parent. We added padding="lg" for spacing.</p>
+</Section>
+```
+
+### Tinted Section
+
+Use the `color` and `variant` props to create full-width tinted bands, useful for hero areas or distinct feature callouts.
+
+<div style="margin-bottom: 2rem;">
+  <Section variant="soft" color="primary" padding="xl" radius="md">
+    <h3 style="margin-top: 0;">Get Started Today</h3>
+    <p>Sign up now to access all our premium features.</p>
+    <button style="background: var(--primary--base); color: white; padding: 0.5rem 1rem; border: none; border-radius: var(--radius--sm);">Sign Up</button>
+  </Section>
+</div>
+
+```astro
+<Section variant="soft" color="primary" padding="xl" radius="md">
+  <h3>Get Started Today</h3>
+  <p>Sign up now to access all our premium features.</p>
+  <button>Sign Up</button>
+</Section>
+```
+
+### Changing the HTML Tag
+
+You can easily swap out the underlying HTML element using the `as` prop. Supported tags include `section`, `article`, `main`, `header`, `footer`, and `div`.
+
+```astro
+<Section as="article" padding="md">
+  <h2>Blog Post Title</h2>
+  <p>...</p>
+</Section>
+
+<Section as="footer" variant="soft" color="neutral">
+  <p>Copyright 2026</p>
+</Section>
+```

@@ -1,0 +1,142 @@
+---
+title: Combobox Component
+description: An accessible autocomplete combobox with a text filter input and a custom dropdown listbox.
+category: Forms
+status: stable
+---
+import Combobox from "../../../design/forms/components/combobox/Combobox.astro";
+
+## Overview
+
+`Combobox` provides an accessible autocomplete experience. It features a visible text filter input and a custom `<ul role="listbox">` dropdown. 
+
+All options are rendered server-side; a vanilla JS controller filters them client-side in real-time as the user types, without requiring a network round-trip.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+<Combobox
+  name="country"
+  placeholder="Select a country…"
+  options={[
+    { value: "us", label: "United States" },
+    { value: "uk", label: "United Kingdom" },
+    { value: "ca", label: "Canada" },
+  ]}
+/>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Combobox
+    name="country"
+    placeholder="Select a country…"
+    options={[
+      { value: "us", label: "United States" },
+      { value: "uk", label: "United Kingdom" },
+      { value: "ca", label: "Canada" },
+    ]}
+  />
+</div>
+
+### With Pre-selected Value
+
+```astro
+<Combobox
+  name="theme"
+  value="dark"
+  options={[
+    { value: "light", label: "Light" },
+    { value: "dark", label: "Dark" },
+    { value: "system", label: "System Default" },
+  ]}
+/>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Combobox
+    name="theme"
+    value="dark"
+    options={[
+      { value: "light", label: "Light" },
+      { value: "dark", label: "Dark" },
+      { value: "system", label: "System Default" },
+    ]}
+  />
+</div>
+
+### Disabled Options
+
+```astro
+<Combobox
+  name="plan"
+  options={[
+    { value: "basic", label: "Basic" },
+    { value: "pro", label: "Pro" },
+    { value: "enterprise", label: "Enterprise (Contact Sales)", disabled: true },
+  ]}
+/>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Combobox
+    name="plan"
+    options={[
+      { value: "basic", label: "Basic" },
+      { value: "pro", label: "Pro" },
+      { value: "enterprise", label: "Enterprise (Contact Sales)", disabled: true },
+    ]}
+  />
+</div>
+
+### Case Sensitive Filtering
+
+```astro
+<Combobox name="token" caseSensitive options={[{ value: "a", label: "Apple" }, { value: "b", label: "Banana" }]} />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Combobox name="token" caseSensitive options={[{ value: "a", label: "Apple" }, { value: "b", label: "Banana" }]} />
+</div>
+
+---
+
+## Props API
+
+### Combobox-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `options` | `Array<{ value, label, disabled?, selected? }>` | `[]` | The list of options to render in the dropdown. |
+| `value` | `string` | — | The currently selected option's `value`. Matches the `value` of the underlying hidden input. |
+| `placeholder` | `string` | — | Placeholder for the visible text filter. |
+| `caseSensitive` | `boolean` | `false` | Whether text filtering should be case-sensitive. |
+
+### Inherited Form Props
+
+Inherits standard form props from `FormProps` (`size`, `variant`, `color`, `radius`, `invalid`, `disabled`, `fullWidth`). 
+
+---
+
+## Architecture details
+
+### Two Input Structure
+
+Combobox renders two `<input>` elements to handle both display and submission correctly:
+
+1. **Text input** (`type="text"`): The visible control the user interacts with. It handles filtering and displays the `label` of the selected option. It has *no name attribute* and its value is not submitted with the form.
+2. **Hidden input** (`type="hidden"`): Carries the `name` attribute and the `value` of the selected option for form submission.
+
+When an option is selected, the JS controller updates the text input with the label, and the hidden input with the value. It also dispatches a `change` event on the hidden input so reactive frameworks can detect the change.
+
+### Client-side Interactivity
+
+The JS controller fully supports ARIA 1.2 Combobox practices:
+- **Typing** filters options and opens the listbox.
+- **ArrowDown / ArrowUp** opens the listbox and moves the active highlight.
+- **Enter** selects the highlighted option.
+- **Escape** closes the listbox and resets the text to the currently selected option's label.
+- **Tab** closes the listbox.
+- **Clicking** an option selects it.
+- **Clicking outside** closes the listbox.
+
+The filtering is handled via CSS `hidden` attributes on the options, avoiding DOM recreation.

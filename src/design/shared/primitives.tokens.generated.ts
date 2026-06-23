@@ -1,0 +1,150 @@
+// ================================================================
+//  primitives.tokens.generated.ts
+//  AUTO-GENERATED — do not edit.
+//  Source: src/design/shared/primitives.definitions.ts → SCALE_DEFS
+//  Regenerated automatically when primitives.definitions.ts is saved.
+// ================================================================
+
+import { scale } from "~/shared/tokens";
+
+export const SPACE = scale({
+  none:  "0",
+  "2xs": "var(--space-in--2xs)",
+  xs:    "var(--space-in--xs)",
+  sm:    "var(--space-in--sm)",
+  md:    "var(--space-in--md)",
+  lg:    "var(--space-in--lg)",
+  xl:    "var(--space-in--xl)",
+  "2xl": "var(--space-in--2xl)",
+  "3xl": "var(--space-in--3xl)",
+});
+
+export type Space = keyof typeof SPACE;
+
+export const RADIUS = scale({
+  none:  "var(--radius--none)",
+  "2xs": "var(--radius--2xs)",
+  xs:    "var(--radius--xs)",
+  sm:    "var(--radius--sm)",
+  md:    "var(--radius--md)",
+  lg:    "var(--radius--lg)",
+  xl:    "var(--radius--xl)",
+  "2xl": "var(--radius--2xl)",
+  full:  "var(--radius--full)",
+});
+
+export type Radius = keyof typeof RADIUS;
+
+export const TEXT_SIZE = scale({
+  "2xs": "var(--fs--2xs)",
+  xs:    "var(--fs--xs)",
+  sm:    "var(--fs--sm)",
+  md:    "var(--fs--md)",
+  lg:    "var(--fs--lg)",
+  xl:    "var(--fs--xl)",
+  "2xl": "var(--fs--2xl)",
+  "3xl": "var(--fs--3xl)",
+  "4xl": "var(--fs--4xl)",
+});
+
+export type TextSize = keyof typeof TEXT_SIZE;
+
+export const LABEL_SIZE = scale({
+  "2xs": "var(--label--2xs)",
+  xs:    "var(--label--xs)",
+  sm:    "var(--label--sm)",
+  md:    "var(--label--md)",
+  lg:    "var(--label--lg)",
+  xl:    "var(--label--xl)",
+});
+
+export type LabelSize = keyof typeof LABEL_SIZE;
+
+export const WEIGHT = scale({
+  thin:     "var(--weight--thin)",
+  light:    "var(--weight--light)",
+  normal:   "var(--weight--normal)",
+  medium:   "var(--weight--medium)",
+  semibold: "var(--weight--semibold)",
+  bold:     "var(--weight--bold)",
+  black:    "var(--weight--black)",
+});
+
+export type Weight = keyof typeof WEIGHT;
+
+export const FAMILY = scale({
+  sans:  "var(--family--sans)",
+  serif: "var(--family--serif)",
+  mono:  "var(--family--mono)",
+});
+
+export type Family = keyof typeof FAMILY;
+
+export const LEADING = scale({
+  none:    "var(--leading--none)",
+  tight:   "var(--leading--tight)",
+  snug:    "var(--leading--snug)",
+  normal:  "var(--leading--normal)",
+  relaxed: "var(--leading--relaxed)",
+  loose:   "var(--leading--loose)",
+});
+
+export type Leading = keyof typeof LEADING;
+
+export const TRACKING = scale({
+  tight:  "var(--tracking--tight)",
+  normal: "var(--tracking--normal)",
+  wide:   "var(--tracking--wide)",
+  wider:  "var(--tracking--wider)",
+  caps:   "var(--tracking--caps)",
+});
+
+export type Tracking = keyof typeof TRACKING;
+
+export const COLOR_ROLE = scale({
+  primary:   null,
+  secondary: null,
+  tertiary:  null,
+  accent:    null,
+  danger:    null,
+  warning:   null,
+  success:   null,
+  info:      null,
+  neutral:   null,
+});
+
+export type ColorRole = keyof typeof COLOR_ROLE;
+
+export const TEXT_COLOR = scale({
+  primary:    "var(--text--primary)",
+  secondary:  "var(--text--secondary)",
+  muted:      "var(--text--muted)",
+  tertiary:   "var(--text--tertiary)",
+  disabled:   "var(--text--disabled)",
+  inverse:    "var(--text--inverse)",
+  "on-color": "var(--text--on-color)",
+  inherit:    "inherit",
+});
+
+export type TextColor = keyof typeof TEXT_COLOR;
+
+export const ALIGN = scale({
+  start:    "flex-start",
+  center:   "center",
+  end:      "flex-end",
+  stretch:  "stretch",
+  baseline: "baseline",
+});
+
+export type Align = keyof typeof ALIGN;
+
+export const JUSTIFY = scale({
+  start:   "flex-start",
+  center:  "center",
+  end:     "flex-end",
+  between: "space-between",
+  around:  "space-around",
+  evenly:  "space-evenly",
+});
+
+export type Justify = keyof typeof JUSTIFY;

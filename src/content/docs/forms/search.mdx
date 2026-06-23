@@ -1,0 +1,91 @@
+---
+title: Search Component
+description: A search input with built-in clear button, loading state, and Escape-to-clear keyboard behaviour.
+category: Forms
+status: stable
+---
+import Search from "../../../design/forms/components/search/Search.astro";
+
+## Overview
+
+`Search` is a specialized text input designed specifically for search interactions. It includes a built-in clear button that automatically appears when the input has a value, an integrated loading spinner state, and keyboard shortcuts (Escape to clear).
+
+All token dimensions (`size`, `variant`, `color`, `radius`) and behavioral props are inherited from `FormProps`.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+<Search name="q" placeholder="Search…" />
+```
+
+### With Leading Icon
+
+Use the `start` slot to add a leading search icon. Clicks on the icon pass through to the input.
+
+```astro
+<Search name="q" placeholder="Search products…">
+  <Icon slot="start" name="search" size="sm" />
+</Search>
+```
+
+### Loading State
+
+Set `loading={true}` to swap the clear button for a spinning indicator. The input becomes `readonly` while loading to prevent further typing during async operations.
+
+```astro
+<Search name="q" value="query" loading={true} placeholder="Search…" />
+```
+
+### With Trailing Content
+
+Use the `end` slot to add content *after* the clear button. This is ideal for keyboard shortcut badges (e.g. `⌘K`), scope selectors, or advanced filter buttons.
+
+```astro
+<Search name="q" placeholder="Search…">
+  <kbd slot="end" class="text-xs">⌘K</kbd>
+</Search>
+```
+
+---
+
+## Interactive Behaviours
+
+The component includes a vanilla JavaScript controller that handles the following automatically:
+
+- **Visibility toggle**: Shows the clear button only when the input contains text.
+- **Clear click**: Clicking the clear (`×`) button empties the field, refocuses the input, and dispatches a synthetic `input` event so reactive frameworks can pick up the change.
+- **Escape to clear**: Pressing the `Escape` key while the input has focus and contains a value will clear the input and dispatch the `input` event.
+
+---
+
+## Props API
+
+### Search-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Initial or controlled value. |
+| `placeholder` | `string` | — | Placeholder text. |
+| `loading` | `boolean` | `false` | Shows a loading spinner in place of the clear button and makes the input readonly. |
+
+### Inherited Form Props
+
+Inherits standard form props from `FormProps` (`size`, `variant`, `color`, `radius`, `invalid`, `disabled`, `fullWidth`). By default, `fullWidth` is `true` for Search components as they typically fill their container (like a navbar or sidebar).
+
+### Slots
+
+| Slot | Description |
+|---|---|
+| `start` | Leading content inside the field boundary (usually an icon). Non-interactive. |
+| `end` | Trailing content inside the field boundary, positioned *after* the clear button. |
+
+---
+
+## Architecture details
+
+- **Clear Button DOM**: The `<button class="search__clear">` is always in the DOM but toggles the `hidden` attribute based on the input value.
+- **Loading State CSS**: The `data-loading` attribute on the wrapper uses CSS to hide the clear button and display the `.search__spinner` element, avoiding unnecessary DOM re-renders.

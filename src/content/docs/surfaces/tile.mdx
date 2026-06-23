@@ -1,0 +1,78 @@
+---
+title: Tile Component
+description: Small interactive grid item. Inherits surface properties and supports interactive and selectable states.
+category: Surfaces
+status: stable
+---
+
+import Tile from "~/surfaces/components/tile/Tile.astro";
+
+## Overview
+
+`Tile` is designed for interactive grid items, navigation buttons, or selectable options. It provides built-in behaviors for hovering, linking, selecting, and disabling content, while rendering seamlessly on a `"1"` (slight raise) base layer.
+
+## Examples
+
+### Interactive Tile
+
+The `interactive` prop enables a slight hover lift and pointer cursor. If you provide an `href` prop, the component automatically renders as an `<a>` tag and becomes interactive.
+
+<div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+  <Tile interactive padding="md" style="width: 150px; text-align: center;">
+    Hover Me
+  </Tile>
+
+  <Tile href="/dashboard" padding="md" style="width: 150px; text-align: center;">
+    Linked Tile
+  </Tile>
+</div>
+
+```astro
+<Tile interactive padding="md">
+  Hover Me
+</Tile>
+
+<Tile href="/dashboard" padding="md">
+  Linked Tile
+</Tile>
+```
+
+### Selectable Tile
+
+Passing `selectable` converts the `Tile` into a toggle button (`role="button"`). Pass `selected` to toggle its active state, which applies the primary color tint.
+
+<div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+  <Tile selectable padding="md" style="width: 150px; text-align: center;">
+    Unselected
+  </Tile>
+
+  <Tile selectable selected color="primary" padding="md" style="width: 150px; text-align: center;">
+    Selected
+  </Tile>
+</div>
+
+```astro
+<Tile selectable padding="md">
+  Unselected
+</Tile>
+
+<Tile selectable selected color="primary" padding="md">
+  Selected
+</Tile>
+```
+
+### Disabled Tile
+
+Disabling a Tile removes interactivity, dims the opacity, and sets `aria-disabled="true"`.
+
+<div style="margin-bottom: 2rem;">
+  <Tile interactive disabled padding="md" style="width: 150px; text-align: center;">
+    Disabled Tile
+  </Tile>
+</div>
+
+```astro
+<Tile interactive disabled padding="md">
+  Disabled Tile
+</Tile>
+```

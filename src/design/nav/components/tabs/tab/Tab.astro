@@ -1,0 +1,29 @@
+---
+/**
+ * Tab
+ *
+ * An individual interactive tab button. Must be placed inside a `<Tabs>` container
+ * or a valid `role="tablist"` element.
+ *
+ * ACCESSIBILITY
+ * ─────────────────────────────────────────────────────────────────────────
+ * Automatically manages `role="tab"`, `aria-selected`, `aria-controls`, and `tabindex`.
+ * The `id` prop must match the `id` of the `<TabPanel>` it controls.
+ *
+ * @example
+ * <Tab id="specs" active>Specifications</Tab>
+ *
+ * @see Tabs.astro     — the parent container
+ * @see TabGroup.astro — the Web Component wrapper for interactivity
+ */
+import { useTab } from "./tab.hook";
+import type { TabProps } from "./tab.props";
+
+export type Props = TabProps;
+
+const { Tag, tabProps } = useTab(Astro.props as TabProps);
+---
+
+<Tag {...tabProps}>
+  <slot />
+</Tag>

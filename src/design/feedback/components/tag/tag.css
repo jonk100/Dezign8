@@ -1,0 +1,61 @@
+/* ============================================================
+   tag.css
+   ─────────────────────────────────────────────────────────────
+   Visual styles for the Tag component.
+   
+   Inherits `--feedback--color-*` and `--feedback--radius` from
+   the `useFeedback` hook base classes (`.feedback--[variant]`).
+   ============================================================ */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: var(--feedback--radius);
+  font-family: var(--family--sans);
+  font-weight: var(--weight--medium);
+  line-height: var(--leading--none);
+}
+
+/* ─── SIZE MAPPING ────────────────────────────────────────── */
+
+/* XS: micro label */
+.feedback--xs.tag {
+  font-size: var(--label--xs);
+  padding: var(--space-in--3xs) var(--space-in--2xs);
+  min-block-size: var(--ui-height--2xs);
+  gap: var(--space-in--3xs);
+}
+
+/* SM: small tag */
+.feedback--sm.tag {
+  font-size: var(--label--sm);
+  padding: var(--space-in--2xs) var(--space-in--xs);
+  min-block-size: var(--ui-height--xs);
+  gap: var(--space-in--3xs);
+}
+
+/* MD (default): standard tag */
+.feedback--md.tag {
+  font-size: var(--label--md);
+  padding: var(--space-in--xs) var(--space-in--sm);
+  min-block-size: var(--ui-height--sm);
+  gap: var(--space-in--2xs);
+}
+
+/* LG: large tag */
+.feedback--lg.tag {
+  font-size: var(--label--lg);
+  padding: var(--space-in--sm) var(--space-in--md);
+  min-block-size: var(--ui-height--md);
+  gap: var(--space-in--xs);
+}
+
+/* XL: hero tag */
+.feedback--xl.tag {
+  font-size: var(--label--xl);
+  padding: var(--space-in--md) var(--space-in--lg);
+  min-block-size: var(--ui-height--lg);
+  gap: var(--space-in--sm);
+}

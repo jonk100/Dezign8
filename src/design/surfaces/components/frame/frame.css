@@ -1,0 +1,19 @@
+/* design/surfaces/components/frame/frame.css */
+.frame {
+  display: block;
+  position: relative;
+  aspect-ratio: var(--frame--ratio, auto);
+}
+
+.frame--clipped {
+  overflow: hidden;
+}
+
+/* Ensure images inside a frame fill it properly by default */
+.frame > img,
+.frame > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

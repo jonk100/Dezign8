@@ -1,0 +1,31 @@
+---
+/**
+ * TabPanel
+ *
+ * The content container associated with a specific `<Tab>`. This component
+ * visually hides itself unless its `data-active` attribute is set to `"true"`.
+ *
+ * ACCESSIBILITY
+ * ─────────────────────────────────────────────────────────────────────────
+ * Automatically manages `role="tabpanel"` and `aria-labelledby`.
+ * The `id` prop must exactly match the `id` of the `<Tab>` that controls it.
+ *
+ * @example
+ * <TabPanel id="specs" active>
+ *   Here are the product specifications...
+ * </TabPanel>
+ *
+ * @see TabGroup.astro — the Web Component wrapper that toggles panel visibility
+ */
+import { useTabPanel }        from "./t-panel.hook";
+import type { TabPanelProps } from "./t-panel.props";
+import "./t-panel.css";
+
+export type Props = TabPanelProps;
+
+const { tabPanelProps } = useTabPanel(Astro.props as TabPanelProps);
+---
+
+<div {...tabPanelProps}>
+  <slot />
+</div>

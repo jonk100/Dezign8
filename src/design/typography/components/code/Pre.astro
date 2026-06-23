@@ -1,0 +1,9 @@
+---
+import type { PreProps } from "./code.props";
+import { usePre }        from "./code.hook";
+import "../../typography.css";
+import "./code.css";
+
+const { Tag, props } = usePre(Astro.props as PreProps);
+---
+<Tag {...props}><slot /></Tag>

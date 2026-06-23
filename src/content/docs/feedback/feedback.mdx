@@ -1,0 +1,87 @@
+---
+title: Feedback Category
+description: Token-driven feedback controls with shared size, variant, color, and positioning architecture built on a delegating hook model.
+category: Feedback
+status: stable
+---
+
+## Overview
+
+The Feedback category provides non-interactive visual indicators (`<Badge>`, `<Progress>`, `<Spinner>`) wrapped in a consistent, token-driven architecture. Every component inherits the same token dimensions — `size`, `variant`, `color`, `radius` — and behavioral props — `pulse`, `placement` — through a shared category hook.
+
+This category focuses strictly on display semantics. Unlike forms or triggers, feedback components are typically non-interactive, though they may animate or update dynamically based on application state.
+
+---
+
+## Architecture
+
+### The delegating hook model
+
+Every component in this category follows the same hook chain:
+
+```
+useFeedback(FeedbackProps)
+        ↓
+useBadge / useProgress / useSpinner
+        ↓
+{ Tag, props, [component-specific properties] }
+```
+
+`useFeedback` owns everything shared: token resolution (`size`, `variant`, `color`, `radius` → CSS channels and class modifiers), pulse animations (`data-pulse`), and absolute overlay positioning (`data-placement`). Component hooks destructure their own props first, delegate the rest to `useFeedback`, then compose the final return shape.
+
+---
+
+## Shared Token Dimensions
+
+All feedback components accept these four props, resolved by `useFeedback` into CSS channels and class modifiers:
+
+| Prop | Output | Description |
+|---|---|---|
+| `size` | class: `feedback--md` | Component-specific spatial scale (font-size, padding, diameter) |
+| `variant` | class: `feedback--soft` | Visual chrome: `solid`, `soft`, `outlined`, `ghost`, `dashed` |
+| `color` | class: `feedback--primary` + channels | Semantic role (`danger`, `success`, `neutral`, etc.) |
+| `radius` | `--feedback--radius: var(--radius--full)` | Border radius. Defaults to pill/circle (`"full"`) |
+
+### Size
+
+Unlike form controls where `size` dictates a shared physical height, feedback elements map `size` to **different physical meanings per component**. 
+- Badge maps `size` to font-size and padding.
+- Progress maps `size` to track height or ring diameter.
+- Spinner maps `size` to arc diameter and stroke width.
+
+Because of this, `size` is emitted as a **modifier class only** (e.g. `feedback--md`), and each component provides a lookup table in its own CSS to translate that class into specific CSS custom properties.
+
+### Variant
+
+Controls the visual treatment. All variant rules live in `feedback.css`.
+
+| Value | Appearance | Best for |
+|---|---|---|
+| `solid` | Opaque filled background, high contrast text | Strong notification badges |
+| `soft` | Light tinted background, subtle border | Chips, tags, standard status indicators |
+| `outlined`| Transparent background, solid border | Low-weight labels |
+| `ghost` | No border, no background | Spinners, minimal dot indicators |
+| `dashed` | Transparent background, dashed border | Skeleton loaders |
+
+---
+
+## Shared Behavioral Props
+
+### Pulse Animation
+
+The `pulse={true}` prop adds a looping CSS animation to draw attention to the component. It emits the class `feedback--pulse`. Useful for live indicators like recording dots or system outage badges. Respects `prefers-reduced-motion` settings.
+
+### Placement (Overlays)
+
+Feedback components often need to overlay other elements (e.g. a notification count on a button). The `placement` prop on `FeedbackProps` enables zero-CSS absolute positioning:
+
+```astro
+<div style="position: relative; display: inline-flex;">
+  <Button>Messages</Button>
+  <Badge count={3} placement="top-end" />
+</div>
+```
+
+Valid values: `"top-start"`, `"top-end"`, `"bottom-start"`, `"bottom-end"`.
+
+This applies `position: absolute` and translates the component to sit naturally overlapping the corner of the nearest `position: relative` ancestor. Not all components use this in practice (e.g., Progress ignores it contextually), but it is available on the base interface for consistent overlay behaviour.

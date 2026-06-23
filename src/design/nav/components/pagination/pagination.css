@@ -1,0 +1,35 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pagination .nav__list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pagination .nav__item {
+  min-width: 2.25em; /* Create more square hit targets for numbers */
+  text-align: center;
+  justify-content: center;
+}
+
+/* Controls (arrows) need slightly less min-width usually */
+.pagination__control.nav__item {
+  min-width: unset;
+}
+
+.pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5em;
+  color: var(--text--muted);
+  pointer-events: none;
+  user-select: none;
+}

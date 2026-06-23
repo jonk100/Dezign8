@@ -1,0 +1,66 @@
+---
+/**
+ * TableCell
+ *
+ * Renders a `<td>` or `<th>` element. The `as` prop switches the element;
+ * everything else is identical.
+ *
+ * ```astro
+ * <!-- Data cell (default) -->
+ * <TableCell>Value</TableCell>
+ *
+ * <!-- Header cell -->
+ * <TableCell as="th" scope="col">Column Name</TableCell>
+ *
+ * <!-- Numeric column — right-aligned -->
+ * <TableCell align="end">$1,234.56</TableCell>
+ *
+ * <!-- Fixed-width column (requires layout="fixed" on parent Table) -->
+ * <TableCell as="th" scope="col" width="200px">Name</TableCell>
+ *
+ * <!-- Spanning cells -->
+ * <TableCell colspan={2}>Merged</TableCell>
+ * <TableCell rowspan={3}>Tall cell</TableCell>
+ * ```
+ *
+ * ALIGNMENT
+ * ─────────────────────────────────────────────────────────────────────────────
+ * `align` is applied as `data-align` — table.css maps it to `text-align`.
+ * Default alignment is `start` (no attribute needed).
+ * Use `align="end"` for numeric/currency columns.
+ *
+ * ACCESSIBILITY
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Always provide `scope` on `<th>` elements:
+ * - `scope="col"` for column headers in `<thead>`
+ * - `scope="row"` for row headers in the first cell of a `<tbody>` row
+ *
+ * @see TableRow  — the parent row element
+ * @see TableHead — for thead context
+ */
+
+import type { TableCellProps } from "../table-parts.props";
+
+type Props = TableCellProps;
+
+const {
+  as: Tag = "td",
+  align,
+  width,
+  colspan,
+  rowspan,
+  scope,
+  ...rest
+} = Astro.props as TableCellProps;
+---
+
+<Tag
+  data-align={align}
+  style={width ? `width: ${width}` : undefined}
+  colspan={colspan}
+  rowspan={rowspan}
+  scope={scope}
+  {...rest}
+>
+  <slot />
+</Tag>

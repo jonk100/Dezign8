@@ -1,0 +1,17 @@
+.stepper__list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stepper[data-orientation="horizontal"] .stepper__list {
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.stepper[data-orientation="vertical"] .stepper__list {
+  flex-direction: column;
+  align-items: flex-start;
+}

@@ -1,0 +1,106 @@
+---
+/**
+ * Pagination
+ *
+ * A smart, data-driven pagination control that automatically calculates page
+ * ranges, inserts ellipses, and manages the disabled states of previous/next
+ * controls based on the current page and total pages.
+ *
+ * ROUTING / URL GENERATION
+ * ─────────────────────────────────────────────────────────────────────────
+ * The component generates standard `<a>` tags for SEO and accessibility.
+ * You can control how URLs are generated in two ways:
+ * 1. `baseUrl`: Appends the page number (e.g. `baseUrl="/blog"` -> `/blog/2`)
+ * 2. `getPageUrl`: A custom function `(page) => string` for full control.
+ *
+ * @example
+ * <Pagination 
+ *   currentPage={3} 
+ *   totalPages={10} 
+ *   baseUrl="/posts/page" 
+ * />
+ *
+ * @see pagination.props.ts — full prop type reference
+ * @see pagination.hook.ts  — logic for page range and ellipsis calculation
+ */
+import { usePagination } from "./pagination.hook";
+import type { PaginationProps } from "./pagination.props";
+import { icons } from "~/shared/icons";
+import "../../nav.css";
+import "./pagination.css";
+
+type Props = PaginationProps;
+
+const { 
+  paginationProps, 
+  pages, 
+  currentPage, 
+  totalPages, 
+  showControls, 
+  generateUrl 
+} = usePagination(Astro.props);
+
+const ChevronLeft = icons['chevron-left'];
+const ChevronRight = icons['chevron-right'];
+
+const prevDisabled = currentPage <= 1;
+const nextDisabled = currentPage >= totalPages;
+---
+
+<nav {...paginationProps} aria-label="Pagination">
+  <ul class="nav__list">
+    {showControls && (
+      <li>
+        <a 
+          href={prevDisabled ? undefined : generateUrl(currentPage - 1)} 
+          class="nav__item pagination__control" 
+          aria-label="Previous page" 
+          aria-disabled={prevDisabled ? "true" : undefined}
+          tabindex={prevDisabled ? -1 : undefined}
+        >
+          <ChevronLeft width={undefined} height={undefined} style="width: 1.25em; height: 1.25em;" aria-hidden="true" />
+        </a>
+      </li>
+    )}
+
+    {pages.map((page) => {
+      if (page === '...') {
+        return (
+          <li>
+            <span class="pagination__ellipsis" aria-hidden="true">&hellip;</span>
+          </li>
+        );
+      }
+      
+      const pageNum = page as number;
+      const isCurrent = pageNum === currentPage;
+      
+      return (
+        <li>
+          <a 
+            href={isCurrent ? undefined : generateUrl(pageNum)} 
+            class="nav__item" 
+            aria-current={isCurrent ? "page" : undefined}
+            aria-label={`Page ${pageNum}`}
+          >
+            {pageNum}
+          </a>
+        </li>
+      );
+    })}
+
+    {showControls && (
+      <li>
+        <a 
+          href={nextDisabled ? undefined : generateUrl(currentPage + 1)} 
+          class="nav__item pagination__control" 
+          aria-label="Next page" 
+          aria-disabled={nextDisabled ? "true" : undefined}
+          tabindex={nextDisabled ? -1 : undefined}
+        >
+          <ChevronRight width={undefined} height={undefined} style="width: 1.25em; height: 1.25em;" aria-hidden="true" />
+        </a>
+      </li>
+    )}
+  </ul>
+</nav>

@@ -33,8 +33,7 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 
 <Layout title="Dezign8 Component Library">
 	<section class="container">
-		<img src="/dezign83.png" alt="Dezign8 Logo" style="height: 48px; margin-bottom: 1rem; display: block;" />
-		<h1>Dezign8 Library</h1>
+		<img src="/horizontal-blue.png" alt="Dezign8 Logo" style="height: 48px; margin-bottom: 1rem; display: block;" />
 		<p class="subtitle">Available components, organized by design category.</p>
 		
 		<div class="categories-list">
@@ -96,7 +95,7 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 	}
 	
 	.category-link {
-		color: var(--text--primary, #111827);
+		color: var(--text--layer-3);
 		text-decoration: none;
 		border-bottom: 2px solid transparent;
 		transition: border-color 0.2s;
@@ -107,16 +106,17 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 	}
 	
 	.category-desc {
+		font-size: var(--fs--sm);
 		margin: 0 0 1.5rem 0;
-		color: var(--text--secondary, #6b7280);
-		line-height: var(--leading--relaxed, 1.6);
+		color: var(--text--layer-1);
+		line-height: var(--leading--normal);
 	}
 	
 	.component-list {
 		list-style: none;
 		padding: 0;
 		margin: 0 0 0 1rem;
-		border-left: 2px solid var(--border--subtle, #f3f4f6);
+		border-left: 2px solid var(--border--subtle);
 	}
 	
 	.component-list li {
@@ -129,9 +129,9 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 	}
 	
 	.component-link {
-		font-size: var(--fs--lg, 1.125rem);
-		font-weight: var(--weight--semibold, 600);
-		color: var(--primary--text, #3b82f6);
+		font-size: var(--fs--md);
+		font-weight: var(--weight--semibold);
+		color: var(--primary--text);
 		text-decoration: none;
 		display: inline-block;
 		margin-bottom: 0.25rem;
@@ -143,8 +143,8 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 	
 	.desc {
 		margin: 0;
-		color: var(--text--muted, #6b7280);
-		font-size: var(--fs--sm, 0.875rem);
+		color: var(--text--muted);
+		font-size: var(--fs--sm);
 	}
 	
 	.desc.empty {

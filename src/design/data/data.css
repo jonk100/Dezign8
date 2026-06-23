@@ -1,0 +1,138 @@
+/* ============================================================
+   data.css
+   ─────────────────────────────────────────────────────────────
+   Base styles shared by all data category components:
+   Table, List, Feed, Stat, Metric.
+
+   CHANNEL MAP
+   ──────────────────────────────────────────────────────────────
+   Written by useData via resolveTokens:
+     --data--size          Density scale value
+
+   Written by useData via resolveColorRole:
+     --data--color--subtle    Primary accent, lightest
+     --data--color--muted     Primary accent, soft
+     --data--color--base      Primary accent, full strength
+     --data--color--vivid     Primary accent, hover/elevated
+     --data--color--deep      Primary accent, pressed/active
+     --data--color--border    Primary accent for borders
+     --data--color--text      Primary accent for text
+
+     --data--bg--*            Same family, for background tinting
+     --data--highlight--*     Same family, for highlighted items
+
+   Component CSS reads whichever shade is semantically correct:
+     border-color:     var(--data--color--border)
+     background-color: var(--data--bg--subtle)
+     color:            var(--data--color--text)
+
+   DATA ATTRIBUTES
+   ──────────────────────────────────────────────────────────────
+     data-loading        Component is fetching — disables interaction
+     data-empty          No data to display — string value is the message
+     data-interactive    Rows/items respond to pointer (component CSS hooks this)
+     data-selectable     Rows/items can be selected (component CSS hooks this)
+     data-scrollable     Component scrolls on overflow
+
+   MODIFIER CLASSES
+   ──────────────────────────────────────────────────────────────
+   Container variants (applied here):
+     .data--outlined     Border around container
+     .data--soft         Subtle background fill
+     .data--elevated     Box shadow
+
+   Visual modifiers (class set here, styles applied per component):
+     .data--striped      Alternating row/item backgrounds
+     .data--bordered     Explicit grid lines between rows/items
+
+   Density modifiers (class set here for component CSS, channel also set):
+     .data--compact      tight
+     .data--comfortable  default
+     .data--spacious     generous
+   ============================================================ */
+
+/* ─── BASE ─────────────────────────────────────────────────── */
+
+.data {
+  --data--size: var(--space-sm); /* comfortable default; overridden by size prop */
+
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ─── CONTAINER VARIANTS ───────────────────────────────────── */
+
+.data--outlined {
+  border: 1px solid var(--data--color--border, var(--border--default));
+  border-radius: var(--radius-md);
+}
+
+.data--soft {
+  background-color: var(--data--bg--subtle, var(--surface--2));
+  border-radius: var(--radius-md);
+}
+
+.data--elevated {
+  box-shadow: var(--shadow--md);
+  border-radius: var(--radius-md);
+}
+
+/* ─── LOADING STATE ─────────────────────────────────────────── */
+/*
+   Disables interaction at the container level.
+   Skeleton shimmer for rows/cells is component-specific:
+   see table.css, list.css etc.
+*/
+
+.data[data-loading] {
+  pointer-events: none;
+  cursor: wait;
+}
+
+/* ─── EMPTY STATE ───────────────────────────────────────────── */
+/*
+   The component renders a .data__empty element when data-empty is set.
+   data-empty=""       → component shows its default empty message
+   data-empty="msg"    → component shows that string
+*/
+
+.data__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: calc(var(--data--size) * 4);
+  color: var(--text--muted);
+  font-size: var(--text--sm);
+  font-style: italic;
+}
+
+/* ─── SCROLLABLE ────────────────────────────────────────────── */
+/*
+   Scroll axis is intentionally unset here — components override:
+     table.css  overflow-x: auto  (wide columns scroll horizontally)
+     list.css   overflow-y: auto  (long lists scroll vertically)
+     feed.css   overflow-y: auto
+*/
+
+.data[data-scrollable] {
+  overflow: auto;
+}
+
+/* ─── INTERACTIVE / SELECTABLE ──────────────────────────────── */
+/*
+   These attributes are signals only at this level.
+   Component CSS applies hover, cursor, and selection styles
+   to its own row/item elements.
+
+   table.css:  .table[data-interactive] tbody tr  { cursor: pointer; ... }
+   list.css:   .list[data-interactive]  .list__item { cursor: pointer; ... }
+   table.css:  .table[data-selectable]  tbody tr::before { ... checkbox ... }
+*/
+
+/* ─── REDUCED MOTION ────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .data {
+    transition: none;
+  }
+}

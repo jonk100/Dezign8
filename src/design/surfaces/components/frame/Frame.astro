@@ -1,0 +1,37 @@
+---
+/**
+ * Frame
+ *
+ * Aspect-ratio bounded media container. Inherits surface properties.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div class="surface frame [modifiers]" style="…CSS vars…">
+ *   <slot />
+ * </div>
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Content (usually an image or video)
+ *
+ * @example
+ * ```astro
+ * <Frame ratio="16/9" radius="md">
+ *   <img src="/cover.jpg" alt="" />
+ * </Frame>
+ * ```
+ *
+ * @see frame.hook.ts   — useFrame: resolves props to { Tag, props }
+ * @see frame.props.ts  — FrameProps: full prop reference
+ * @see surface.css     — visual chrome
+ * @see frame.css       — aspect ratio and clipping
+ */
+
+import type { FrameProps } from "./frame.props";
+import { useFrame }        from "./frame.hook";
+import "../../surface.css";
+import "./frame.css";
+
+const { Tag, props } = useFrame(Astro.props as FrameProps);
+---
+<Tag {...props}><slot /></Tag>

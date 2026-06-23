@@ -1,0 +1,107 @@
+---
+title: Card Component
+description: Bounded content container. Supports a media region, body, and footer via named slots, plus link, interactive, and selectable behaviors.
+category: Surfaces
+status: stable
+---
+
+import Card from "~/surfaces/components/card/Card.astro";
+
+## Overview
+
+`Card` is a bounded content container that organizes content into `media`, `default` (body), and `footer` slots. It inherits surface properties and supports interactive and selectable states natively.
+
+## Examples
+
+### Basic Content Card
+
+<div style="margin-bottom: 2rem; max-width: 400px;">
+  <Card variant="outlined" padding="md">
+    <h3 style="margin-top: 0; margin-bottom: 0.5rem;">Card Title</h3>
+    <p style="margin: 0; color: var(--text--secondary);">A simple content card with just a body slot.</p>
+  </Card>
+</div>
+
+```astro
+<Card variant="outlined" padding="md">
+  <h3>Card Title</h3>
+  <p>A simple content card with just a body slot.</p>
+</Card>
+```
+
+### Media Card
+
+Use the `media` slot for edge-to-edge images at the top of the card. The `padding` prop is automatically applied to the body and footer, while the media slot stays flush to the edges.
+
+<div style="margin-bottom: 2rem; max-width: 400px;">
+  <Card variant="elevated" padding="md">
+    <div slot="media" style="background: var(--surface--color--subtle, #e5e7eb); height: 160px; display: flex; align-items: center; justify-content: center;">
+      <span style="color: var(--text--muted);">Media Placeholder</span>
+    </div>
+    <h3 style="margin-top: 0;">Media Card</h3>
+    <p style="margin: 0; color: var(--text--secondary);">Content below the media is padded automatically.</p>
+  </Card>
+</div>
+
+```astro
+<Card variant="elevated" padding="md">
+  <img slot="media" src="/image.jpg" alt="" />
+  <h3>Media Card</h3>
+  <p>Content below the media is padded automatically.</p>
+</Card>
+```
+
+### Footer Slot
+
+The `footer` slot is rendered at the bottom of the card and receives a top border.
+
+<div style="margin-bottom: 2rem; max-width: 400px;">
+  <Card variant="outlined" padding="md">
+    <h3 style="margin-top: 0;">Task Complete</h3>
+    <p style="margin: 0;">You have finished all items.</p>
+    <div slot="footer" style="display: flex; justify-content: flex-end; gap: 0.5rem; align-items: center;">
+      <span style="margin-right: auto; color: var(--text--muted); font-size: 0.875rem;">Just now</span>
+      <button style="background: transparent; border: 1px solid var(--border--default); padding: 0.25rem 0.5rem; border-radius: var(--radius--sm);">Undo</button>
+      <button style="background: var(--primary--base); color: white; border: none; padding: 0.25rem 0.5rem; border-radius: var(--radius--sm);">Dismiss</button>
+    </div>
+  </Card>
+</div>
+
+```astro
+<Card variant="outlined" padding="md">
+  <h3>Task Complete</h3>
+  <p>You have finished all items.</p>
+  <div slot="footer">
+    <button>Undo</button>
+    <button>Dismiss</button>
+  </div>
+</Card>
+```
+
+### Interactive & Selectable
+
+Cards can act as buttons or links. The `interactive` prop adds hover lift and a pointer cursor. The `selectable` prop adds selection styling.
+
+<div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+  <Card href="#" variant="soft" interactive padding="md" style="width: 200px;">
+    <h4 style="margin-top: 0;">Linked Card</h4>
+    <p style="margin: 0; color: var(--text--secondary); font-size: 0.875rem;">Click anywhere &rarr;</p>
+  </Card>
+
+  <Card selectable selected color="primary" variant="outlined" padding="md" style="width: 200px;">
+    <h4 style="margin-top: 0;">Selected Card</h4>
+    <p style="margin: 0; color: var(--text--secondary); font-size: 0.875rem;">Shows primary border tint</p>
+  </Card>
+</div>
+
+```astro
+<Card href="/destination" variant="soft" interactive padding="md">
+  <h4>Linked Card</h4>
+  <p>Click anywhere &rarr;</p>
+</Card>
+
+<Card selectable selected color="primary" variant="outlined" padding="md">
+  <h4>Selected Card</h4>
+  <p>Shows primary border tint</p>
+</Card>
+```

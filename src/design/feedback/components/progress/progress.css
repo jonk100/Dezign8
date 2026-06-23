@@ -1,0 +1,186 @@
+/* design/feedback/progress/progress.css */
+
+/**
+ * Progress component styles.
+ *
+ * This file owns:
+ *   1. Base .progress layout (flex column, gap between label/track/value)
+ *   2. Type-specific structures (bar, ring, number, percent)
+ *   3. Size maps for each type
+ *   4. Fill animation (bar and ring)
+ *   5. Indeterminate shimmer (bar) and rotating arc (ring)
+ *   6. Reduced-motion overrides
+ *
+ * CSS custom properties written by useProgress + feedback.css:
+ *   --progress--fill           fill percentage (0–100%)
+ *   --progress--offset         ring stroke-dashoffset value
+ *   --progress--circumference  ring full stroke-dasharray value
+ *   --feedback--color-subtle   track background
+ *   --feedback--color-base     fill color
+ *   --feedback--color-text     number/percent text color
+ */
+
+/* ─── Base Progress ──────────────────────────────────────────────────────── */
+
+.progress {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.5em;
+  width:          100%;
+  /* Override feedback base — progress is block, not inline-flex */
+  border:         none;
+  border-radius:  0;
+  background:     transparent;
+}
+
+.progress__label {
+  font-size:   var(--fsf--sm, 12px);
+  font-weight: var(--weight--medium, 500);
+  color:       var(--text--secondary);
+}
+
+.progress__value {
+  font-size:  var(--fsf--sm, 12px);
+  font-weight: var(--weight--semibold, 600);
+  color:      var(--feedback--color-text);
+  text-align: right;
+}
+
+/* ─── Bar type ───────────────────────────────────────────────────────────── */
+
+.progress--bar .progress__track {
+  width:            100%;
+  height:           var(--progress--track-height, 6px);
+  border-radius:    var(--feedback--radius, var(--radius--full));
+  background-color: var(--feedback--color-subtle);
+  overflow:         hidden;
+  position:         relative;
+}
+
+.progress--bar .progress__fill {
+  height:           100%;
+  width:            var(--progress--fill, 0%);
+  border-radius:    inherit;
+  background-color: var(--feedback--color-base);
+  transition:       width 400ms ease;
+}
+
+/* Bar size map — track height */
+.feedback--xs.progress--bar .progress__track  { --progress--track-height: 2px;  }
+.feedback--sm.progress--bar .progress__track  { --progress--track-height: 4px;  }
+.feedback--md.progress--bar .progress__track  { --progress--track-height: 6px;  }
+.feedback--lg.progress--bar .progress__track  { --progress--track-height: 10px; }
+.feedback--xl.progress--bar .progress__track  { --progress--track-height: 16px; }
+
+/* Bar indeterminate — shimmer sweep */
+.progress--bar.progress--indeterminate .progress__fill {
+  width:      40%;
+  animation:  progress-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes progress-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* ─── Ring type ──────────────────────────────────────────────────────────── */
+
+.progress--ring {
+  width:  fit-content;
+  align-items: center;
+}
+
+.progress__ring {
+  display:     block;
+  width:       var(--progress--ring-size, 40px);
+  height:      var(--progress--ring-size, 40px);
+  flex-shrink: 0;
+}
+
+.progress__track {
+  stroke:       var(--feedback--color-subtle);
+  fill:         none;
+}
+
+.progress__ring .progress__fill {
+  stroke:           var(--feedback--color-base);
+  fill:             none;
+  transition:       stroke-dashoffset 400ms ease;
+}
+
+/* Ring size map */
+.feedback--xs.progress--ring .progress__ring { --progress--ring-size: 24px; }
+.feedback--sm.progress--ring .progress__ring { --progress--ring-size: 32px; }
+.feedback--md.progress--ring .progress__ring { --progress--ring-size: 40px; }
+.feedback--lg.progress--ring .progress__ring { --progress--ring-size: 56px; }
+.feedback--xl.progress--ring .progress__ring { --progress--ring-size: 80px; }
+
+/* Ring indeterminate — rotating arc */
+.progress--ring.progress--indeterminate .progress__ring {
+  animation: progress-ring-spin 1.4s linear infinite;
+}
+
+@keyframes progress-ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Number + Percent types ─────────────────────────────────────────────── */
+
+.progress--number,
+.progress--percent {
+  width:        fit-content;
+  align-items:  center;
+  border:       none;
+  background:   transparent;
+}
+
+.progress__number {
+  font-size:   var(--progress--number-size, var(--fsf--3xl, 24px));
+  font-weight: var(--weight--bold, 700);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color:       var(--feedback--color-base);
+}
+
+.progress__denom {
+  font-size:   0.6em;
+  font-weight: var(--weight--medium, 500);
+  color:       var(--text--secondary);
+  margin-left: 0.1em;
+}
+
+/* Number/Percent size map */
+.feedback--xs.progress--number .progress__number,
+.feedback--xs.progress--percent .progress__number { --progress--number-size: var(--fsf--xl,  18px); }
+
+.feedback--sm.progress--number .progress__number,
+.feedback--sm.progress--percent .progress__number { --progress--number-size: var(--fsf--2xl, 20px); }
+
+.feedback--md.progress--number .progress__number,
+.feedback--md.progress--percent .progress__number { --progress--number-size: var(--fsf--3xl, 24px); }
+
+.feedback--lg.progress--number .progress__number,
+.feedback--lg.progress--percent .progress__number { --progress--number-size: var(--fsf--4xl, 28px); }
+
+.feedback--xl.progress--number .progress__number,
+.feedback--xl.progress--percent .progress__number { --progress--number-size: clamp(2.5rem, 8vw, 4.5rem); }
+
+/* ─── Reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .progress--bar .progress__fill,
+  .progress__ring .progress__fill {
+    transition: none;
+  }
+
+  .progress--bar.progress--indeterminate .progress__fill {
+    animation: none;
+    width:     50%;
+    opacity:   0.6;
+  }
+
+  .progress--ring.progress--indeterminate .progress__ring {
+    animation: none;
+    opacity:   0.6;
+  }
+}

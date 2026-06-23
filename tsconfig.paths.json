@@ -9,7 +9,77 @@
       "~ty/*": ["src/design/typography/*"],
       "~tr/*": ["src/design/triggers/*"],
       "~a/*": ["src/design/assets/*"],
+      "~f/*": ["src/design/forms/*"],
+      "~fb/*": ["src/design/feedback/*"],
+      "~su/*": ["src/design/surfaces/*"],
+      "~icons/*": ["src/design/shared/icons/*"],
+      "~da/*": ["src/design/data/*"],
+      "~o/*": ["src/design/overlays/*"],
+      "~n/*": ["src/design/nav/*"],
+      "@layout/*": ["src/design/layout/*"],
+      "@typography/*": ["src/design/typography/*"],
+      "@triggers/*": ["src/design/triggers/*"],
+      "@assets/*": ["src/design/assets/*"],
+      "@forms/*": ["src/design/forms/*"],
+      "@feedback/*": ["src/design/feedback/*"],
+      "@surfaces/*": ["src/design/surfaces/*"],
+      "@data/*": ["src/design/data/*"],
+      "@overlays/*": ["src/design/overlays/*"],
+      "@nav/*": ["src/design/nav/*"],
 
+
+      // Typography:
+      "#text/*": ["src/design/typography/components/text/*"],
+      "#heading/*": ["src/design/typography/components/heading/*"],
+      "#label/*": ["src/design/typography/components/label/*"],
+      "#prose/*": ["src/design/typography/components/prose/*"],
+      "#code/*": ["src/design/typography/components/code/*"],
+      "#quote/*": ["src/design/typography/components/quote/*"],
+      "#caption/*": ["src/design/typography/components/caption/*"],
+
+      // Forms:
+      "#input/*": ["src/design/forms/components/input/*"],
+      "#select/*": ["src/design/forms/components/select/*"],
+      "#checkbox/*": ["src/design/forms/components/checkbox/*"],
+      "#radio/*": ["src/design/forms/components/radio/*"],
+      "#field/*": ["src/design/forms/components/field/*"],
+      "#search/*": ["src/design/forms/components/search/*"],
+      "#combobox/*": ["src/design/forms/components/combobox/*"],
+      "#textarea/*": ["src/design/forms/components/textarea/*"],
+
+      // Feedback:
+      "#badge/*": ["src/design/feedback/components/badge/*"],
+      "#banner/*": ["src/design/feedback/components/banner/*"],
+      "#dot/*": ["src/design/feedback/components/dot/*"],
+      "#chip/*": ["src/design/feedback/components/chip/*"],
+      "#tag/*": ["src/design/feedback/components/tag/*"],
+      "#empty-state/*": ["src/design/feedback/components/empty-state/*"],
+      "#indicator/*": ["src/design/feedback/components/indicator/*"],
+      "#progress/*": ["src/design/feedback/components/progress/*"],
+      "#spinner/*": ["src/design/feedback/components/spinner/*"],
+      "#skeleton/*": ["src/design/feedback/components/skeleton/*"],
+      "#toast/*": ["src/design/feedback/components/toast/*"],
+
+      // layout:
+      "#box/*": ["src/design/layout/components/box/*"],
+      "#container/*": ["src/design/layout/components/container/*"],
+      "#flex/*": ["src/design/layout/components/flex/*"],
+      "#grid/*": ["src/design/layout/components/grid/*"],
+      "#header/*": ["src/design/layout/components/header/*"],
+      "#footer/*": ["src/design/layout/components/footer/*"],
+      "#stack/*": ["src/design/layout/components/stack/*"],
+      "#inline/*": ["src/design/layout/components/inline/*"],
+      "#separator/*": ["src/design/layout/components/separator/*"],
+      "#spacer/*": ["src/design/layout/components/spacer/*"],
+      
+      // surfaces:
+      "#card/*": ["src/design/surfaces/components/card/*"],
+      "#frame/*": ["src/design/surfaces/components/frame/*"],
+      "#panel/*": ["src/design/surfaces/components/panel/*"],
+      "#paper/*": ["src/design/surfaces/components/paper/*"],
+      "#section/*": ["src/design/surfaces/components/section/*"],
+      "#tile/*": ["src/design/surfaces/components/tile/*"],
+      "#well/*": ["src/design/surfaces/components/well/*"],
     }
   }
 }

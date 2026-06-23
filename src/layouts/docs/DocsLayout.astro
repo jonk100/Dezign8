@@ -1,0 +1,107 @@
+---
+import Layout from "../Layout.astro";
+import ThemeToggle from "../../design/triggers/components/theme-toggle/ThemeToggle.astro";
+import Breadcrumbs from "../../design/nav/components/breadcrumbs/Breadcrumbs.astro";
+import "./docs-layout.css";
+import H from "~/typography/components/heading/H.astro";
+import Text from "~/typography/components/text/Text.astro";
+import Link from "~/triggers/components/link/Link.astro";
+import Header from "~/layout/components/header/Header.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  category?: string;
+  status?: string;
+  version?: string;
+  links?: {
+    source?: string;
+    figma?: string;
+  };
+}
+
+const { title, description, category, status, version, links } = Astro.props;
+
+const breadcrumbItems = [{ id: "home", label: "Home", href: "/" }];
+
+if (category) {
+  const categorySlug = category.toLowerCase().replace(/\s+/g, "-");
+  breadcrumbItems.push({
+    id: categorySlug,
+    label: category,
+    href: `/docs/${categorySlug}`,
+  });
+}
+
+breadcrumbItems.push({ id: "current", label: title, active: true });
+---
+
+<Layout title={`${title} | Dezign8 Docs`} description={description}>
+  <div class="docs-container">
+    <header class="docs-page-header">
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;"
+      >
+        <Breadcrumbs
+          items={breadcrumbItems}
+          size="sm"
+        />
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <ThemeToggle variant="ghost" color="neutral" />
+          <Link class="logo__link" href="/"
+            ><img
+              src="/icon-blue-transparent.png"
+              alt="Dezign8 Logo"
+              style="height: 32px; width: auto; display: block;"
+            /></Link
+          >
+        </div>
+      </div>
+
+      {
+        (category || status || version) && (
+          <div class="badges">
+            {category && <span class="badge">📁 {category}</span>}
+            {status && <span class={`badge status-${status}`}>{status}</span>}
+            {version && <span class="badge">v{version}</span>}
+          </div>
+        )
+      }
+
+      <!-- <h1
+        style="font-size: var(--fs--3xl); font-weight: var(--weight--bold); margin-bottom: 0.5rem;"
+      > -->
+      <H level={1} size="h1" weight="bold" color="primary">
+        {title}
+      </H>
+      {
+        description && (
+          <Text size="md" fontStyle="oblique" color="muted">
+            {description}
+          </Text>
+        )
+      }
+
+      {
+        links && (
+          <div class="links">
+            {links.source && (
+              <a href={links.source} target="_blank" rel="noopener noreferrer">
+                ↗ View Source
+              </a>
+            )}
+            {links.figma && (
+              <a href={links.figma} target="_blank" rel="noopener noreferrer">
+                🎨 Figma Reference
+              </a>
+            )}
+          </div>
+        )
+      }
+    </header>
+
+    <main class="docs-content">
+      <slot />
+    </main>
+  </div>
+</Layout>

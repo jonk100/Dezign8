@@ -1,0 +1,85 @@
+---
+title: Label Component
+description: A typographically styled label element using the fixed font-size scale.
+category: Typography
+status: stable
+---
+import Label from "../../../design/typography/components/label/Label.astro";
+
+## Overview
+
+`Label` is a `<label>` element styled using the system's typography tokens. It sits in the `typography` category alongside `Text` and `Heading`, but is primarily used within `forms/field/` contexts.
+
+### Scale Difference
+
+Unlike `Text` and `Heading` which use responsive text sizing that reflows with viewport boundaries, `Label` uses `TEXT_SIZE_FIXED` (fixed px/rem values). Form elements and their labels require precise, stable dimensions that do not unexpectedly wrap or shift across breakpoints.
+
+---
+
+## Usage
+
+### Basic
+
+Clicking the label focuses the associated control.
+
+```astro
+<Label for="email">Email address</Label>
+```
+
+### Required Indicator
+
+When `required={true}`, a visual asterisk is rendered after the label text. The asterisk is `aria-hidden="true"` so screen readers skip it (since screen readers read the `aria-required` attribute directly off the input control). 
+
+Sighted users see the red `*` as a visual convention.
+
+```astro
+<Label for="password" required>Password</Label>
+<!-- Renders: Password <span aria-hidden="true">*</span> -->
+```
+
+> **Note**: `required` on Label is visual-only. Always also set `required={true}` on the control (`Input`, `Select`, etc.) for native validation and ARIA semantics.
+
+### Custom Typography
+
+```astro
+<Label for="bio" size="xs" weight="normal" color="secondary">
+  Short bio (optional)
+</Label>
+```
+
+### With Field Wrapper
+
+Labels are typically placed in the `label` slot of a `<Field>` component.
+
+```astro
+<Field id="email">
+  <Label slot="label" for="email" required>Email</Label>
+  <Input id="email" name="email" required />
+</Field>
+```
+
+---
+
+## Props API
+
+### Label-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `for` | `string` | — | Maps to the `id` of the form control it labels. |
+| `required` | `boolean` | `false` | Appends a visual, aria-hidden red asterisk (`*`). |
+
+### Inherited Typography Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `LabelSize` | `"md"` | Uses fixed font-size steps (`--fsf--*`). |
+| `weight` | `LabelWeight` | `"medium"` | Font weight. Defaults to slightly bolder than normal text. |
+| `color` | `LabelColor` | `"primary"` | Text color token. |
+
+---
+
+## Architecture details
+
+- **Interaction constraints**: The default slot can include inline markup (`<em>`, `<strong>`) but should avoid interactive elements (buttons, links), as they create confusing focus and click behaviour inside a `<label>`.
+- **Inherited styling**: `Label` imports both `typography.css` and `label.css` to combine general text rules with specific label layout styles.

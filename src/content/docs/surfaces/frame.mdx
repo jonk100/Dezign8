@@ -1,0 +1,67 @@
+---
+title: Frame Component
+description: Aspect-ratio bounded media container.
+category: Surfaces
+status: stable
+---
+
+import Frame from "~/surfaces/components/frame/Frame.astro";
+
+## Overview
+
+`Frame` is a container that rigidly enforces an aspect ratio and clips overflowing content. It's especially useful for rendering uniform grids of varying image sizes or maintaining placeholder space before media loads.
+
+## Examples
+
+### Aspect Ratios
+
+Pass any valid CSS `aspect-ratio` string to the `ratio` prop.
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem;">
+  <div>
+    <Frame ratio="16/9" radius="md">
+      <div style="background: var(--surface--bg--subtle, #e5e7eb); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">16/9</div>
+    </Frame>
+  </div>
+  <div>
+    <Frame ratio="4/3" radius="md">
+      <div style="background: var(--surface--bg--subtle, #e5e7eb); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">4/3</div>
+    </Frame>
+  </div>
+  <div>
+    <Frame ratio="1" radius="md">
+      <div style="background: var(--surface--bg--subtle, #e5e7eb); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">1:1 (Square)</div>
+    </Frame>
+  </div>
+</div>
+
+```astro
+<Frame ratio="16/9" radius="md">
+  <img src="/landscape.jpg" alt="" />
+</Frame>
+
+<Frame ratio="4/3" radius="md">
+  <img src="/photo.jpg" alt="" />
+</Frame>
+
+<Frame ratio="1" radius="md">
+  <img src="/avatar.jpg" alt="" />
+</Frame>
+```
+
+### Clipping & Media
+
+By default, `Frame` applies `overflow: hidden` to clip content to its border radius. It also automatically sets direct child `<img>` and `<video>` tags to `object-fit: cover` and dimensions of `100%`, ensuring they fill the frame gracefully without stretching.
+
+<div style="margin-bottom: 2rem; max-width: 300px;">
+  <Frame ratio="16/9" radius="lg" variant="outlined">
+    <!-- Demonstrating automatic fitting -->
+    <div style="background: linear-gradient(45deg, var(--primary--base), var(--accent--base)); width: 100%; height: 100%;"></div>
+  </Frame>
+</div>
+
+```astro
+<Frame ratio="16/9" radius="lg" variant="outlined">
+  <img src="/photo.jpg" alt="" />
+</Frame>
+```

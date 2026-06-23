@@ -15,6 +15,20 @@
    Each level sets size, weight, leading, and tracking fallbacks
    so that unset props produce appropriate heading defaults.
    Passing any of these props explicitly overrides the fallback.
+
+   Leading: 
+    --leading--tight = ~1.25
+    --leading--snug = ~1.375
+    --leading--normal = ~1.5
+    --leading--relaxed = ~1.625
+    --leading--loose = ~2
+  Tracking:
+    --tracking--tight = ~0.025em
+    --tracking--normal = ~0.05em
+    --tracking--wide = ~0.1em
+    --tracking--wider = ~0.25em
+    --tracking--caps = ~0.1em
+  
    ============================================================ */
 
 /* ─── LEVEL DEFAULTS ──────────────────────────────────────── */
@@ -22,14 +36,14 @@
 .h--1 {
   --typography--size:    var(--fs--4xl);
   --typography--weight:  var(--weight--bold);
-  --typography--leading: var(--leading--none);
+  --typography--leading: var(--leading--loose);
   --typography--tracking:var(--tracking--tight);
 }
 
 .h--2 {
   --typography--size:    var(--fs--3xl);
   --typography--weight:  var(--weight--bold);
-  --typography--leading: var(--leading--tight);
+  --typography--leading: var(--leading--relaxed);
   --typography--tracking:var(--tracking--tight);
 }
 

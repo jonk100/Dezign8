@@ -1,0 +1,41 @@
+---
+/**
+ * Tile
+ *
+ * Small interactive grid item. Inherits surface properties and supports
+ * interactive and selectable states natively.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div class="surface tile [modifiers]" style="…CSS vars…" [aria-*]>
+ *   <slot />
+ * </div>
+ *
+ * When href is set, the root renders as <a>.
+ * When selectable is set, role="button" + aria-pressed are added.
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Content
+ *
+ * @example
+ * ```astro
+ * <Tile interactive href="/dashboard">
+ *   <Text>Dashboard</Text>
+ * </Tile>
+ * ```
+ *
+ * @see tile.hook.ts   — useTile: resolves props to { Tag, props }
+ * @see tile.props.ts  — TileProps: full prop reference
+ * @see surface.css    — visual chrome (variants, color channels)
+ * @see tile.css       — interaction states
+ */
+
+import type { TileProps } from "./tile.props";
+import { useTile }        from "./tile.hook";
+import "../../surface.css";
+import "./tile.css";
+
+const { Tag, props } = useTile(Astro.props as TileProps);
+---
+<Tag {...props}><slot /></Tag>

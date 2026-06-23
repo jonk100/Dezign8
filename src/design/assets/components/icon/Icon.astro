@@ -1,0 +1,20 @@
+---
+import type { IconProps } from "./icon.props";
+import { useIcon } from "./icon.hook";
+import { icons } from "~/shared/icons";
+import "./icon.css";
+
+type Props = IconProps;
+
+const { name, props: iconProps } = useIcon(Astro.props);
+
+// Retrieve the corresponding SVG component from the registry
+const SvgIcon = icons[name];
+
+if (!SvgIcon) {
+  throw new Error(`Icon "${name}" not found in the registry. Did you forget to add it to src/design/shared/icons?`);
+}
+---
+<span {...iconProps}>
+  <SvgIcon />
+</span>

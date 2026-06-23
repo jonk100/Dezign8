@@ -1,0 +1,73 @@
+---
+/**
+ * Label
+ *
+ * A typographically styled `<label>` element using the fixed font-size
+ * scale. Sits in the `typography` category alongside Text and Heading,
+ * but lives in `forms/field/` and `forms/` contexts.
+ *
+ * SCALE DIFFERENCE FROM TEXT / HEADING
+ * ─────────────────────────────────────────────────────────────────────────
+ * Text and Heading use TEXT_SIZE (responsive — may use clamp()).
+ * Label uses TEXT_SIZE_FIXED (fixed px/rem — never reflows with viewport).
+ * This is enforced at the token level: LABEL_TOKENS overrides the `size`
+ * dimension to use --fsf--* variables. The CSS channel (--typography--size)
+ * is the same; only the value source differs.
+ *
+ * REQUIRED INDICATOR
+ * ─────────────────────────────────────────────────────────────────────────
+ * When `required={true}`, an aria-hidden asterisk is rendered after the
+ * label text. Screen readers skip it (they read `aria-required` on the
+ * control). Sighted users see the red * as a visual convention.
+ *
+ * `required` on Label is visual-only. Always also set `required` on the
+ * control (Input, Select, etc.) for native validation and ARIA semantics.
+ *
+ * @slots
+ *   default — The label text. Can include inline markup (em, strong, etc.)
+ *             but avoid interactive elements — they create confusing focus
+ *             behaviour inside a <label>.
+ *
+ * @example
+ * <!-- Basic — clicking focuses the associated control -->
+ * <Label for="email">Email address</Label>
+ *
+ * @example
+ * <!-- Required field indicator -->
+ * <Label for="password" required>Password</Label>
+ * <!-- Renders: Password <span aria-hidden="true">*</span> -->
+ *
+ * @example
+ * <!-- Custom size / weight -->
+ * <Label for="bio" size="xs" weight="normal" color="secondary">
+ *   Short bio (optional)
+ * </Label>
+ *
+ * @example
+ * <!-- Inside a Field — use the label slot -->
+ * <Field id="email">
+ *   <Label slot="label" for="email" required>Email</Label>
+ *   <Input id="email" name="email" required />
+ * </Field>
+ *
+ * @see label.hook.ts  — resolves props to { Tag, props, required }
+ * @see label.props.ts — full prop type reference
+ * @see label.tokens.ts — LABEL_TOKENS with fixed size scale
+ * @see label.css      — cursor and required indicator styles
+ * @see typography.css — base typography styles (both files are imported)
+ */
+
+import type { LabelProps } from "./label.props";
+import { useLabel }        from "./label.hook";
+import "../../typography.css";
+import "./label.css";
+
+const { Tag, props, required } = useLabel(Astro.props as LabelProps);
+---
+
+<Tag {...props}>
+  <slot />
+  {required && (
+    <span class="label__required" aria-hidden="true">*</span>
+  )}
+</Tag>

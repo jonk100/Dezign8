@@ -1,0 +1,106 @@
+---
+/**
+ * Card
+ *
+ * Bounded content container. Supports a media region, body, and footer
+ * via named slots, plus link, interactive, and selectable behaviors.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div class="surface card [modifiers]" style="…CSS vars…" [aria-*]>
+ *   <div class="card__media">…</div>     ← media slot, when present
+ *   <div class="card__body">…</div>      ← default slot
+ *   <div class="card__footer">…</div>    ← footer slot, when present
+ * </div>
+ *
+ * When href is set, the root renders as <a>.
+ * When selectable is set, role="button" + aria-pressed are added.
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Main body content — rendered inside .card__body
+ *   media     Leading image/video — rendered inside .card__media (no padding)
+ *   footer    Trailing actions or metadata — rendered inside .card__footer
+ *
+ * @example Simple content card
+ * ```astro
+ * <Card variant="outlined">
+ *   <Heading level={3}>Title</Heading>
+ *   <Text>Description here.</Text>
+ * </Card>
+ * ```
+ *
+ * @example Media card
+ * ```astro
+ * <Card variant="elevated" color="primary">
+ *   <Image slot="media" src={cover} alt="" ratio="16/9" />
+ *   <Heading level={3}>Title</Heading>
+ * </Card>
+ * ```
+ *
+ * @example Linked card
+ * ```astro
+ * <Card href="/posts/123" variant="outlined" interactive>
+ *   <Text>Read this post →</Text>
+ * </Card>
+ * ```
+ *
+ * @example Selectable card (toggle)
+ * ```astro
+ * <Card selectable selected={isActive} color="primary">
+ *   <Text>Option A</Text>
+ * </Card>
+ * ```
+ *
+ * @see card.hook.ts   — useCard: resolves props to { Tag, props }
+ * @see card.props.ts  — CardProps: full prop reference
+ * @see card.tokens.ts — CARD_TOKENS, CARD_DEFAULTS
+ * @see card.css       — interaction, slot, and modifier styles
+ * @see surface.css    — visual chrome (variants, color channels)
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * ADJUSTING PROPS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * VARIANT
+ *   variant     [../surface.css]  .surface--{variant} — background, border, shadow
+ *               @example variant="elevated" → lifts card on hover
+ *
+ * SPACING & SHAPE
+ *   padding     [../surface.css]  --surface--padding → .card__body and .card__footer
+ *   radius      [../surface.css]  --surface--radius → all corners; .card__media
+ *               clips to top corners only
+ *
+ * COLOR
+ *   color       [../surface.css]  --surface--color--* channels
+ *               [./card.css]      .card--selected uses --surface--color--border/subtle
+ *               @example color="danger" → red border on selected state
+ *
+ * BEHAVIOR
+ *   interactive [./card.css]      .card--interactive — hover lift + pointer cursor
+ *   selectable  [./card.css]      .card--selectable + aria-pressed
+ *   selected    [./card.css]      .card--selected — tinted bg + strong border
+ *   disabled    [./card.css]      .card--disabled — dimmed + no pointer events
+ *
+ * SLOTS
+ *   media       [./card.css]      .card__media — overflow hidden, top radius clip
+ *               Adjust aspect-ratio of media content here if needed
+ *   footer      [./card.css]      .card__footer — top border + no top padding
+ */
+
+import type { CardProps } from "./card.props";
+import { useCard }        from "./card.hook";
+import "../../surface.css";
+import "./card.css";
+
+const { Tag, props } = useCard(Astro.props as CardProps);
+---
+<Tag {...props}>
+  {Astro.slots.has("media") && (
+    <div class="card__media"><slot name="media" /></div>
+  )}
+  <div class="card__body"><slot /></div>
+  {Astro.slots.has("footer") && (
+    <div class="card__footer"><slot name="footer" /></div>
+  )}
+</Tag>

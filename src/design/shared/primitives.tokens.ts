@@ -231,6 +231,7 @@ export const JUSTIFY = scale({
 export const COLOR_ROLE = scale({
   primary:   null,
   secondary: null,
+  tertiary:  null,
   accent:    null,
   danger:    null,
   warning:   null,
@@ -248,6 +249,10 @@ export const TEXT_COLOR = scale({
   inverse:   "var(--text--inverse)",
   "on-color": "var(--text--on-color)",
   inherit:   "inherit",
+  success:   "var(--success--text)",
+  danger:    "var(--danger--text)",
+  warning:   "var(--warning--text)",
+  info:      "var(--info--text)",
 });
 
 /* ─── SHARED DIMENSIONS ──────────────────────────────────── */
@@ -297,6 +302,8 @@ export type ColorSteps = {
   text:   string;
 };
 
+export type ColorStepsMap = Record<ColorRole, ColorSteps>;
+
 export const COLOR_STEPS = {
   primary: {
     subtle: "var(--primary--subtle)",
@@ -324,6 +331,15 @@ export const COLOR_STEPS = {
     deep:   "var(--accent--deep)",
     border: "var(--accent--border)",
     text:   "var(--accent--text)",
+  },
+  tertiary: {
+    subtle: "var(--tertiary--subtle)",
+    muted:  "var(--tertiary--muted)",
+    base:   "var(--tertiary--base)",
+    vivid:  "var(--tertiary--vivid)",
+    deep:   "var(--tertiary--deep)",
+    border: "var(--tertiary--border)",
+    text:   "var(--tertiary--text)",
   },
   danger: {
     subtle: "var(--danger--subtle)",
@@ -370,7 +386,7 @@ export const COLOR_STEPS = {
     border: "var(--border--default)",
     text:   "var(--text--secondary)",
   },
-} as const satisfies Record<ColorRole, ColorSteps>;
+} as const satisfies ColorStepsMap;
 
 export function resolveColorChannels(
   role: ColorRole,

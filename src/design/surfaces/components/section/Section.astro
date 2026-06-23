@@ -1,0 +1,36 @@
+---
+/**
+ * Section
+ *
+ * Page-level content division. Inherits surface properties.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <section class="surface section [modifiers]" style="…CSS vars…">
+ *   <slot />
+ * </section>
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Content
+ *
+ * @example
+ * ```astro
+ * <Section padding="lg">
+ *   <Heading level={2}>Introduction</Heading>
+ * </Section>
+ * ```
+ *
+ * @see section.hook.ts   — useSection: resolves props to { Tag, props }
+ * @see section.props.ts  — SectionProps: full prop reference
+ * @see surface.css       — visual chrome
+ */
+
+import type { SectionProps } from "./section.props";
+import { useSection }        from "./section.hook";
+import "../../surface.css";
+import "./section.css";
+
+const { Tag, props } = useSection(Astro.props as SectionProps);
+---
+<Tag {...props}><slot /></Tag>

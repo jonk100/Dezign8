@@ -1,0 +1,106 @@
+---
+title: Badge Component
+description: A small indicator rendered as a pill, count, or dot. Supports absolute placement.
+category: Feedback
+status: stable
+---
+import Badge from "../../../design/feedback/components/badge/Badge.astro";
+
+## Overview
+
+`Badge` is a small visual indicator. It operates in one of three rendering modes depending on the props provided:
+1. **Count mode**: Displays a numeric value capped by a maximum.
+2. **Label mode**: Displays arbitrary text content via the default slot.
+3. **Dot mode**: Renders an empty circular indicator (presence or status dot).
+
+All token dimensions (`size`, `variant`, `color`, `radius`) and behavioral props (`pulse`, `placement`) are inherited from `FeedbackProps` and resolved by the shared `useFeedback` hook.
+
+---
+
+## Usage
+
+### Basic Count
+
+```astro
+<Badge count={5} />
+<Badge count={12} color="danger" />
+```
+
+  <Badge size="xs" count={5} color="secondary" />
+  <Badge size="sm" count={12} color="danger" />
+  <Badge size="md" count={56} color="success" variant="outlined" />
+  <Badge size="lg" count={123} color="warning" variant="soft" />
+  <Badge size="xl" color="info" variant="ghost" >Info</Badge>
+
+### Capped Count
+
+By default, the `max` prop is 99. Values exceeding the max render with a `+`.
+
+```astro
+<Badge count={150} />           <!-- "99+" -->
+<Badge count={200} max={150} /> <!-- "150+" -->
+```
+  <Badge count={150} />
+  <Badge count={200} max={150} />
+
+### Label (Slot)
+
+Omit `count` and `dot` to render slotted content.
+
+```astro
+<Badge variant="soft" color="info">Beta</Badge>
+<Badge variant="outlined" color="success">Verified</Badge>
+```
+  <Badge variant="soft" color="info">Beta</Badge>
+  <Badge variant="outlined" color="success">Verified</Badge>
+
+### Dot Indicator
+
+Use `dot={true}` to render a presence or status indicator. The slot and `count` props are ignored.
+
+```astro
+<Badge dot color="success" />
+<Badge dot color="danger" pulse />
+```
+  <Badge dot color="success" />
+  <Badge dot color="danger" pulse />
+
+### Placement (Overlay)
+
+Use the `placement` prop to position the badge as an absolute overlay on the nearest `position: relative` ancestor.
+
+```astro
+  <button>Messages</button>
+  <Badge count={3} placement="top-end" />
+```
+    <button style="padding: 0.5rem 1rem; background: var(--bg--2); border: 1px solid var(--border--default); border-radius: var(--radius--md);">Messages</button>
+    <Badge count={3} placement="top-end" />
+
+---
+
+## Props API
+
+### Badge-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `count` | `number` | — | Numeric value to display. Triggers Count mode. |
+| `max` | `number` | `99` | Maximum value before capping (e.g. `99+`). |
+| `dot` | `boolean` | `false` | Renders an empty circle indicator. Triggers Dot mode. |
+
+### Inherited Feedback Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FeedbackSize` | `"sm"` | Overrides the category default `"md"` for a smaller default fit. |
+| `variant` | `FeedbackVariant` | `"solid"` | Overrides the category default `"soft"` for stronger contrast. |
+| `color` | `FeedbackColor` | `"danger"` | Overrides the category default `"neutral"` for notification styles. |
+| `radius` | `FeedbackRadius` | `"full"` | Pill/circular shape. |
+| `pulse` | `boolean` | `false` | Loops an opacity animation. |
+| `placement` | `FeedbackPlacement`| — | Absolute positioning offset (`"top-start"`, `"top-end"`, `"bottom-start"`, `"bottom-end"`). |
+
+---
+
+## Accessibility
+
+When using **Dot mode**, provide an `aria-label` or visually hidden text elsewhere if the color alone conveys meaning (e.g., online status), as the empty `<span aria-hidden="true">` is ignored by screen readers unless explicitly labeled.

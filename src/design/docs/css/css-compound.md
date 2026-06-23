@@ -49,25 +49,52 @@ color → --{cat}--color-subtle
 
 ### Size
 
-On interactive controls, `size` typically affects multiple spatial
-properties at once — font size, padding, and minimum height being the
-common ones. Exactly which properties change and how many channels are
-written depends on the component.
-
-A Button might fan size out into three component-scoped channels:
+On interactive controls (Button, Input, Chip, Select, etc.), size
+sets the full spatial scale of the component in one shot.
 
 ```
-size="sm" → --button--fs:      var(--label--sm)
-            --button--padding: var(--space-in--xs)
-            --button--height:  var(--size-06)
+size → font-size + padding-block + padding-inline + min-height + gap
 ```
 
-A simpler component might handle it through a single channel or a
-modifier class. The point is that size rarely maps one-to-one with
-a single CSS property — know which properties it's driving before
-writing the CSS.
+**Two approaches:**
 
-→ See **patterns.md** for an example implementation using a lookup table.
+**Approach 1: Modifier classes per size tier** (Button, most controls)
+```css
+.control--sm {
+  font-size:       var(--control--size);
+  padding-block:   calc(var(--control--size) * 0.15);
+  padding-inline:  calc(var(--control--size) * 0.4);
+  min-height:      calc(var(--control--size) * 0.8);
+  gap:             calc(var(--control--size) * 0.3);
+}
+
+.control--md {
+  font-size:       var(--control--size);
+  padding-block:   calc(var(--control--size) * 0.2);
+  padding-inline:  calc(var(--control--size) * 0.5);
+  min-height:      calc(var(--control--size) * 1);
+  gap:             calc(var(--control--size) * 0.4);
+}
+```
+
+Advantage: full per-tier control, stable across size tiers.
+Use when each size tier needs custom proportions.
+
+**Approach 2: Proportional `calc()` from a single channel** (Input, Select, forms)
+```css
+.form {
+  /* --form--size is the base unit (2rem, 2.5rem, etc.) */
+  min-block-size: var(--form--size);
+  font-size:      calc(var(--form--size) * 0.35);
+  padding-block:  calc(var(--form--size) * 0.15);
+  padding-inline: calc(var(--form--size) * 0.4);
+  gap:            calc(var(--form--size) * 0.3);
+}
+```
+
+Advantage: proportional consistency across size tiers, simpler token spec
+(one value instead of per-size-tier). Use when proportions should scale
+with the size uniformly.
 
 ### Disabled
 

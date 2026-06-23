@@ -1,0 +1,92 @@
+---
+title: Surfaces Category
+description: Foundational containers for grouping content, providing visual hierarchy, and creating depth.
+category: Surfaces
+status: stable
+---
+
+import Table from "~/data/components/table/Table.astro";
+import TableHead from "~/data/components/table/parts/TableHead.astro";
+import TableBody from "~/data/components/table/parts/TableBody.astro";
+import TableRow from "~/data/components/table/parts/TableRow.astro";
+import TableCell from "~/data/components/table/parts/TableCell.astro";
+
+## Overview
+
+The Surfaces category provides containers for grouping content. They share a unified CSS architecture, `surface.css`, which provides consistent variants, padding, border radii, and color channels.
+
+**Components in this category:**
+
+<div style="margin-top: 2rem; margin-bottom: 2rem;">
+  <Table caption="Surface Components" color="primary" variant="outlined" striped>
+    <TableHead slot="head">
+      <TableRow>
+        <TableCell as="th" scope="col">Component</TableCell>
+        <TableCell as="th" scope="col">Element</TableCell>
+        <TableCell as="th" scope="col">Primary use</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody slot="body">
+      <TableRow>
+        <TableCell><code>Paper</code></TableCell>
+        <TableCell><code>&lt;div&gt;</code></TableCell>
+        <TableCell>Generic content surface with optional stacking</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><code>Card</code></TableCell>
+        <TableCell><code>&lt;div&gt;</code> / <code>&lt;a&gt;</code></TableCell>
+        <TableCell>Bounded content container with media, body, and footer slots</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><code>Frame</code></TableCell>
+        <TableCell><code>&lt;div&gt;</code></TableCell>
+        <TableCell>Aspect-ratio bounded media container</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><code>Panel</code></TableCell>
+        <TableCell><code>&lt;div&gt;</code></TableCell>
+        <TableCell>Expandable or collapsible content areas</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><code>Section</code></TableCell>
+        <TableCell><code>&lt;section&gt;</code></TableCell>
+        <TableCell>Page-level content divisions</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><code>Tile</code></TableCell>
+        <TableCell><code>&lt;div&gt;</code></TableCell>
+        <TableCell>Small, interactive grid items</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><code>Well</code></TableCell>
+        <TableCell><code>&lt;div&gt;</code></TableCell>
+        <TableCell>Inset content container with subtle background</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</div>
+
+## Architecture
+
+All surfaces inherit from a shared set of token dimensions. Components delegate to a shared `useSurface` or similar base configuration to ensure consistency.
+
+### Variants
+
+Controls the outer container decoration. Rules live in `surface.css`.
+
+| Value | Appearance |
+|---|---|
+| `plain` | No border, no background |
+| `outlined` | 1px border |
+| `soft` | Subtle tinted fill |
+| `elevated` | Box shadow, no border |
+| `glass` | Backdrop filter blur |
+
+### Shared Dimensions
+
+| Prop | Mechanism | Effect |
+|---|---|---|
+| `padding` | `--surface--padding` | Inner whitespace of the surface |
+| `radius` | `--surface--radius` | Corner roundness of the surface |
+| `color` | `--surface--color--*` channels | Color tint for borders and soft backgrounds |
+

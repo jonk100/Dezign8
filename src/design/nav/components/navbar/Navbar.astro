@@ -1,0 +1,50 @@
+---
+/**
+ * Navbar
+ *
+ * Top-level navigation bar. Handles responsive hamburger menu logic via Web Component.
+ */
+import { useNavbar } from "./navbar.hook";
+import type { NavbarProps } from "./navbar.props";
+import { icons } from "~/shared/icons";
+import "../../nav.css";
+import "./navbar.css";
+
+export type Props = NavbarProps;
+
+const { navbarProps, containerStyle } = useNavbar(Astro.props as NavbarProps);
+const MenuIcon = icons.menu;
+---
+
+<dezign8-navbar {...navbarProps}>
+  <div class="navbar__container" style={containerStyle}>
+    <slot name="brand" />
+    
+    <slot />
+    
+    <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <MenuIcon width={undefined} height={undefined} />
+    </button>
+  </div>
+</dezign8-navbar>
+
+<script>
+  class Dezign8Navbar extends HTMLElement {
+    connectedCallback() {
+      const toggleBtn = this.querySelector('.navbar__toggle');
+      if (!toggleBtn) return;
+      
+      let isOpen = false;
+      
+      toggleBtn.addEventListener('click', () => {
+        isOpen = !isOpen;
+        this.setAttribute('data-menu-open', isOpen.toString());
+        toggleBtn.setAttribute('aria-expanded', isOpen.toString());
+      });
+    }
+  }
+
+  if (!customElements.get('dezign8-navbar')) {
+    customElements.define('dezign8-navbar', Dezign8Navbar);
+  }
+</script>

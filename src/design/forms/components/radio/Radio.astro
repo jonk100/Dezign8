@@ -1,0 +1,78 @@
+---
+/**
+ * Radio
+ *
+ * A single radio button with an optional label slot. Radio buttons in the
+ * same group share the same `name` attribute — the browser enforces mutual
+ * exclusivity automatically.
+ *
+ * STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────
+ *   <label class="form radio …">
+ *     <input class="radio__control" type="radio" />  ← hidden native input
+ *     <span  class="radio__indicator" aria-hidden />  ← custom circle
+ *     <span  class="radio__label"><slot /></span>     ← label content
+ *   </label>
+ *
+ * DOM order is always: hidden input → indicator → label slot.
+ * `labelPosition` changes VISUAL order via CSS flex-direction only.
+ * This keeps the CSS ~ sibling combinator functional for state rules.
+ *
+ * GROUPING
+ * ─────────────────────────────────────────────────────────────────────────
+ * Pass the same `name` to all Radio instances in a group. Each should have
+ * a distinct `value`. Pass `checked` to the initially-selected option.
+ *
+ * VARIANTS
+ * ─────────────────────────────────────────────────────────────────────────
+ * Default variant is `"ghost"` — traditional radio appearance with no
+ * wrapper border. Pass `variant="outlined"` or `variant="soft"` for a
+ * bordered "option card" style.
+ *
+ * @slots
+ *   default — Label content displayed next to the indicator circle.
+ *             Avoid interactive elements (links, buttons) inside the label —
+ *             they will also trigger the radio on click, which is native
+ *             <label>-wrapping behaviour.
+ *
+ * @example
+ * <!-- Radio group — same name, different values -->
+ * <Radio name="plan" value="free" checked>Free</Radio>
+ * <Radio name="plan" value="pro">Pro</Radio>
+ * <Radio name="plan" value="enterprise">Enterprise</Radio>
+ *
+ * @example
+ * <!-- Option card style -->
+ * <Radio name="plan" value="pro" variant="outlined" color="primary">
+ *   Pro — $12/month
+ * </Radio>
+ *
+ * @example
+ * <!-- Label to the left -->
+ * <Radio name="side" value="left" labelPosition="start">Left</Radio>
+ *
+ * @see radio.hook.ts  — resolves props to { Tag, props, inputAttrs }
+ * @see radio.props.ts — full prop type reference
+ * @see radio.css      — circular indicator styles, layout modifiers
+ * @see forms.css      — shared variant and state styles
+ */
+
+import type { RadioProps } from "./radio.props";
+import { useRadio } from "./radio.hook";
+import "~/forms/forms.css";
+import "./radio.css";
+
+const { Tag, props, inputAttrs } = useRadio(Astro.props as RadioProps);
+---
+
+<Tag {...props}>
+  <input class="radio__control" {...inputAttrs} />
+  <span class="radio__indicator" aria-hidden="true"></span>
+  {
+    Astro.slots.has("default") && (
+      <span class="radio__label">
+        <slot />
+      </span>
+    )
+  }
+</Tag>

@@ -1,0 +1,125 @@
+---
+/**
+ * TabGroup (Web Component Wrapper)
+ *
+ * An interactive container for Tabs and TabPanels. It renders a `<dezign8-tabs>` 
+ * custom element that orchestrates state between the tab buttons and the content panels
+ * without requiring a full page reload or framework-specific state (like React/Vue).
+ *
+ * ARCHITECTURE
+ * ─────────────────────────────────────────────────────────────────────────
+ * This component runs a lightweight vanilla JavaScript class that:
+ * 1. Automatically links `role="tab"` elements to `role="tabpanel"` elements.
+ * 2. Handles mouse clicks to swap active states.
+ * 3. Provides full keyboard accessibility (Arrow keys to cycle tabs).
+ *
+ * @example
+ * <TabGroup defaultActiveId="specs">
+ *   <Tabs items={[{ id: "overview", label: "Overview" }, { id: "specs", label: "Specs" }]} />
+ *   <TabPanel id="overview">Overview content</TabPanel>
+ *   <TabPanel id="specs">Specs content</TabPanel>
+ * </TabGroup>
+ *
+ * @see Tabs.astro     — renders the `role="tablist"` and tabs.
+ * @see TabPanel.astro — renders the `role="tabpanel"` content blocks.
+ */
+import type { TabGroupProps } from "./t-group.props";
+
+export type Props = TabGroupProps;
+
+const { defaultActiveId, class: className, ...rest } = Astro.props;
+---
+
+<dezign8-tabs data-default={defaultActiveId} class={className} {...rest}>
+  <slot />
+</dezign8-tabs>
+
+<script>
+  class Dezign8Tabs extends HTMLElement {
+    connectedCallback() {
+      const tablist = this.querySelector('[role="tablist"]');
+      if (!tablist) return;
+      
+      const tabs = Array.from(this.querySelectorAll('[role="tab"]')) as HTMLElement[];
+      const panels = Array.from(this.querySelectorAll('[role="tabpanel"]')) as HTMLElement[];
+      
+      let activeId = this.dataset.default as string | null | undefined;
+      
+      // If no default, use the first tab
+      if (!activeId && tabs.length > 0) {
+        activeId = tabs[0].getAttribute('data-tab-id') || tabs[0].id.replace(/^tab-/, '');
+      }
+      
+      const activateTab = (id: string | null | undefined) => {
+        if (!id) return;
+        
+        // Update Tabs
+        tabs.forEach(tab => {
+          const tabId = tab.getAttribute('data-tab-id') || tab.id.replace(/^tab-/, '');
+          const isSelected = tabId === id;
+          tab.setAttribute('aria-selected', isSelected.toString());
+          tab.tabIndex = isSelected ? 0 : -1;
+        });
+        
+        // Update Panels
+        panels.forEach(panel => {
+          const panelFor = panel.getAttribute('data-panel-for') || panel.id.replace(/^panel-/, '');
+          const isActive = panelFor === id;
+          if (isActive) {
+            panel.setAttribute('data-active', 'true');
+          } else {
+            panel.removeAttribute('data-active');
+          }
+        });
+      };
+      
+      // Initial activation
+      activateTab(activeId);
+      
+      // Click handlers
+      tablist.addEventListener('click', (e) => {
+        const target = e.target as Element;
+        const tab = target.closest('[role="tab"]') as HTMLElement;
+        if (!tab || tab.hasAttribute('disabled')) return;
+        activateTab(tab.getAttribute('data-tab-id') || tab.id.replace(/^tab-/, ''));
+      });
+      
+      // Keyboard handlers (Arrow keys)
+      tablist.addEventListener('keydown', (e) => {
+        const event = e as KeyboardEvent;
+        const currentTab = event.target as HTMLElement;
+        if (currentTab.getAttribute('role') !== 'tab') return;
+        
+        const orientation = tablist.getAttribute('aria-orientation') || 'horizontal';
+        
+        let dir = 0;
+        if (orientation === 'horizontal') {
+          if (event.key === 'ArrowLeft') dir = -1;
+          if (event.key === 'ArrowRight') dir = 1;
+        } else {
+          if (event.key === 'ArrowUp') dir = -1;
+          if (event.key === 'ArrowDown') dir = 1;
+        }
+        
+        if (dir !== 0) {
+          event.preventDefault();
+          const enabledTabs = tabs.filter(t => !t.hasAttribute('disabled'));
+          const index = enabledTabs.indexOf(currentTab);
+          if (index !== -1) {
+            let nextIndex = index + dir;
+            if (nextIndex < 0) nextIndex = enabledTabs.length - 1;
+            if (nextIndex >= enabledTabs.length) nextIndex = 0;
+            const nextTab = enabledTabs[nextIndex];
+            nextTab.focus();
+            // Automatically activate on focus (standard tab behavior)
+            activateTab(nextTab.getAttribute('data-tab-id') || nextTab.id.replace(/^tab-/, ''));
+          }
+        }
+      });
+    }
+  }
+
+  if (!customElements.get('dezign8-tabs')) {
+    customElements.define('dezign8-tabs', Dezign8Tabs);
+  }
+</script>

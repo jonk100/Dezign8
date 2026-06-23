@@ -1,0 +1,38 @@
+---
+/**
+ * Step
+ *
+ * An individual step within a `<Stepper>`. Handles its own complete/current/incomplete
+ * states and renders the connecting lines via CSS pseudo-elements.
+ *
+ * @see Stepper.astro
+ */
+import { useStep } from "./step.hook";
+import type { StepProps } from "./step.props";
+import { icons } from "~/shared/icons";
+import "./step.css";
+
+export type Props = StepProps;
+
+const { Tag, isLast, label, description, stepNumber, stepProps } = useStep(Astro.props as StepProps);
+const CheckIcon = icons.check;
+---
+
+<li {...stepProps}>
+  <Tag class="stepper__step-content">
+    <span class="stepper__indicator" aria-hidden="true">
+      {stepProps["data-state"] === "complete" ? (
+        <CheckIcon width={16} height={16} />
+      ) : (
+        <slot name="indicator">{stepNumber}</slot>
+      )}
+    </span>
+    
+    {(label || description) && (
+      <span class="stepper__text">
+        {label && <span class="stepper__label">{label}</span>}
+        {description && <span class="stepper__description">{description}</span>}
+      </span>
+    )}
+  </Tag>
+</li>

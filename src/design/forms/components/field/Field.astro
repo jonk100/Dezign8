@@ -1,0 +1,111 @@
+---
+/**
+ * Field
+ *
+ * Accessibility wrapper that binds a Label, a form control, and
+ * optional hint/error/success messages into one accessible unit.
+ *
+ * Field is structural — it renders no form elements of its own. All
+ * interactive semantics live in the slotted control (Input, Select, etc.).
+ *
+ * ACCESSIBILITY WIRING
+ * ─────────────────────────────────────────────────────────────────────────
+ * Field cannot automatically wire `aria-describedby` because Astro named
+ * slots do not support passing runtime values into slotted content. The
+ * consumer connects the pieces manually using the `id` prop as a base:
+ *
+ *   Field renders:
+ *     <p id="{id}-hint">   ← hint slot wrapper
+ *     <p id="{id}-error">  ← error slot wrapper
+ *
+ *   Consumer provides:
+ *     <Input aria-describedby="{id}-hint {id}-error" />
+ *     <Label for="{id}" />   (or for the control's own id)
+ *
+ * @slots
+ *   label   — The field label. Use <Label for="controlId" required?> here.
+ *             Rendered above the control with no additional spacing.
+ *
+ *   default — The form control (Input, Select, Checkbox, Radio, etc.).
+ *             Rendered between the label and the hint/error sections.
+ *
+ *   hint    — Helper text. Shown below the control in secondary color.
+ *             Always rendered when the slot has content, regardless of
+ *             invalid state (though invalid dims the hint; see field.css).
+ *
+ *   error   — Validation error message. Rendered with danger color and
+ *             role="alert" so screen readers announce it on appearance.
+ *             Should be conditionally rendered by the consumer — only
+ *             put content here when invalid is true.
+ *
+ *   success — Confirmation message. Rendered with success color.
+ *             Mutually exclusive with error in practice (only one state
+ *             is active at a time), but both can technically be slotted.
+ *
+ * @example
+ * <!-- Minimal — no id wiring -->
+ * <Field>
+ *   <Label slot="label">First name</Label>
+ *   <Input name="first" />
+ * </Field>
+ *
+ * @example
+ * <!-- Full accessibility wiring -->
+ * <Field id="email" invalid={!emailValid} required>
+ *   <Label slot="label" for="email" required>Email address</Label>
+ *   <Input
+ *     id="email"
+ *     name="email"
+ *     type="email"
+ *     invalid={!emailValid}
+ *     required
+ *     aria-describedby="email-hint email-error"
+ *     fullWidth
+ *   />
+ *   <span slot="hint" id="email-hint">We'll never share your email.</span>
+ *   {!emailValid && (
+ *     <span slot="error" id="email-error">Enter a valid email address.</span>
+ *   )}
+ * </Field>
+ *
+ * @see field.hook.ts  — resolves props to { Tag, id, props }
+ * @see field.props.ts — full prop reference
+ * @see field.css      — section spacing and message text styles
+ */
+
+import type { FieldProps } from "./field.props";
+import { useField }        from "./field.hook";
+import "./field.css";
+
+const { Tag, id, props } = useField(Astro.props as FieldProps);
+---
+
+<Tag {...props}>
+  {Astro.slots.has("label") && (
+    <div class="field__label">
+      <slot name="label" />
+    </div>
+  )}
+
+  <div class="field__control">
+    <slot />
+  </div>
+
+  {Astro.slots.has("hint") && (
+    <p class="field__hint" id={id ? `${id}-hint` : undefined}>
+      <slot name="hint" />
+    </p>
+  )}
+
+  {Astro.slots.has("error") && (
+    <p class="field__error" id={id ? `${id}-error` : undefined} role="alert">
+      <slot name="error" />
+    </p>
+  )}
+
+  {Astro.slots.has("success") && (
+    <p class="field__success" id={id ? `${id}-success` : undefined}>
+      <slot name="success" />
+    </p>
+  )}
+</Tag>

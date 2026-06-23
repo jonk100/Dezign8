@@ -1,0 +1,11 @@
+/**
+ * Styles for the Spacer component.
+ *
+ * The spacer is designed to work in both Flex and Grid contexts to fill
+ * available space.
+ */
+.spacer {
+  flex: 1 1 0%;
+  justify-self: stretch;
+  align-self: stretch;
+}

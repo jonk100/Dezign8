@@ -1,0 +1,32 @@
+---
+/**
+ * TableBody
+ *
+ * Renders a `<tbody>` element inside a compound-mode `<Table>`.
+ * Pass via the `body` slot on `<Table>`:
+ *
+ * ```astro
+ * <Table caption="Sales">
+ *   <TableBody slot="body">
+ *     {rows.map(row => (
+ *       <TableRow>
+ *         <TableCell>{row.name}</TableCell>
+ *         <TableCell align="end">{row.amount}</TableCell>
+ *       </TableRow>
+ *     ))}
+ *   </TableBody>
+ * </Table>
+ * ```
+ *
+ * @see TableRow  — for individual rows
+ * @see TableCell — for individual cells
+ */
+
+import type { TableBodyProps } from "../table-parts.props";
+
+type Props = TableBodyProps;
+---
+
+<tbody {...Astro.props}>
+  <slot />
+</tbody>

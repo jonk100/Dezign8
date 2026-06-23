@@ -1,0 +1,107 @@
+.stepper__step-wrapper {
+  display: flex;
+  position: relative;
+  flex: 1;
+}
+
+/* Horizontal lines */
+.stepper[data-orientation="horizontal"] .stepper__step-wrapper:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 1rem; /* Center of the 2rem indicator */
+  left: 2.5rem;
+  right: 0.5rem;
+  height: 2px;
+  background-color: var(--border--default, #e5e7eb);
+  z-index: 0;
+}
+
+/* Vertical lines */
+.stepper[data-orientation="vertical"] .stepper__step-wrapper:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 2.5rem;
+  bottom: 0.5rem;
+  left: 1rem; /* Center of the 2rem indicator */
+  width: 2px;
+  background-color: var(--border--default, #e5e7eb);
+  z-index: 0;
+}
+
+/* Colored line for completed steps */
+.stepper__step-wrapper[data-state="complete"]::after {
+  background-color: var(--nav--color-base, currentColor) !important;
+}
+
+/* The actual clickable/content area */
+.stepper__step-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.stepper[data-orientation="horizontal"] .stepper__step-content {
+  flex-direction: row;
+  padding-right: 1rem;
+}
+
+.stepper[data-orientation="vertical"] .stepper__step-content {
+  padding-bottom: 2rem;
+}
+
+.stepper__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  border: 2px solid var(--border--default, #e5e7eb);
+  background-color: var(--bg--default, #fff);
+  color: var(--text--muted, #6b7280);
+  transition: all 0.2s ease;
+}
+
+.stepper__step-wrapper[data-state="current"] .stepper__indicator {
+  border-color: var(--nav--color-base, currentColor);
+  color: var(--nav--color-base, currentColor);
+}
+
+.stepper__step-wrapper[data-state="complete"] .stepper__indicator {
+  background-color: var(--nav--color-base, currentColor);
+  border-color: var(--nav--color-base, currentColor);
+  color: var(--bg--default, #fff);
+}
+
+.stepper__text {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.25rem;
+}
+
+.stepper__label {
+  font-weight: 600;
+  color: var(--text--default, #111827);
+}
+
+.stepper__step-wrapper[data-state="incomplete"] .stepper__label {
+  color: var(--text--muted, #6b7280);
+}
+
+.stepper__description {
+  font-size: 0.875rem;
+  color: var(--text--muted, #6b7280);
+  margin-top: 0.125rem;
+}

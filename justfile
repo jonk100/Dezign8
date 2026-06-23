@@ -1,12 +1,19 @@
+set shell := ["zsh", "-ic"]
+
+# Output dtree of the current directory
+[group('ai')]
+ai-dtree:
+    dtree
+
+# create a directory_index.md file for the current directory
+[group('ai')]
+ai-admd:
+    admd .
+
 # Open Claude Code in the current repo
 [group('open')]
 open-claude:
     claude
-
-# Launch Windsurf on the repo root (backgrounded)
-[group('open')]
-open-windsurf:
-    windsurf "{{justfile_directory()}}" &
 
 # Open the repo's GitHub page in the browser
 [group('open')]
@@ -84,13 +91,13 @@ dev:
 watch:
     watchexec -e ts,tsx,astro -- just check
     
-# Fuzzy-find any file in the repo and open it in neovim, with a syntax-highlighted preview
+# Fuzzy-find any file in the repo and open it in default editor, with a syntax-highlighted preview
 [group('edit')]
 edit-file:
     #!/usr/bin/env bash
     set -euo pipefail
     file=$(find . -type f -not -path './node_modules/*' -not -path './.git/*' | fzf --prompt="Edit > " --preview 'bat --color=always --style=numbers {}')
-    [ -n "$file" ] && nvim "$file"
+    [ -n "$file" ] && xdg-open "$file"
     
 # Fuzzy-search recent zsh history and re-run whatever you pick
 [group('shell')]
@@ -102,16 +109,23 @@ history:
     
 # Kill whatever's listening on the given port
 [group('project')]
-port-kill port:
-	#!/usr/bin/env bash
-	set -euo pipefail
-	pid=$(lsof -ti tcp:{{port}} || true)
-	if [ -n "$pid" ]; then
-	    kill -9 $pid
-	    echo "Killed process on port {{port}} (pid $pid)"
-	else
-	    echo "Nothing listening on port {{port}}"
-	fi
+port-kill:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    
+    # This line pauses the terminal and waits for you to type
+    read -p "🔌 Enter Port Number: " PORT
+    
+    # Exit safely if you press Enter without typing anything
+    [ -z "$PORT" ] && exit 0
+    
+    pid=$(lsof -ti tcp:$PORT || true)
+    if [ -n "$pid" ]; then
+        kill -9 $pid
+        echo "Killed process on port $PORT (pid $pid)"
+    else
+        echo "Nothing listening on port $PORT"
+    fi
     
 # Find TODO/FIXME comments across the codebase
 [group('project')]
@@ -140,33 +154,56 @@ lint-fix-ai:
 	    echo "Lint is clean."
 	fi
 
-go:
+[group('project')]
+import-recipe:
     #!/usr/bin/env bash
     set -euo pipefail
+    
+    # 1. Ensure your library directory exists
+    if [ ! -d "$HOME/.just" ]; then
+        echo "Error: Library directory ~/.just not found."
+        exit 1
+    fi
 
-    root=$(git rev-parse --show-toplevel)
-    cd "$root"
+    # 2. Pick the bundle file from your library
+    BUNDLE=$(ls -1 ~/.just | fzf --prompt="📦 Select Bundle > ")
+    [ -z "$BUNDLE" ] && exit 0
 
-    target=$(printf "%s\n" \
-      "design" \
-      "src/components" \
-      "src/pages" \
-      "src/lib" \
-      "src/styles" \
-      | fzf --prompt="Go zone > ")
+    # 3. Read the file and find all the available recipe names inside it
+    # We use the same grep logic from our universal launcher to find the names!
+    AVAILABLE_RECIPES=$(grep -E '^[a-zA-Z0-9_-]+:' "$HOME/.just/$BUNDLE" | sed 's/://g' | awk '{print $1}')
+    
+    # 4. Pick the specific recipe(s) using fzf multi-select (-m)
+    SELECTED=$(echo -e "$AVAILABLE_RECIPES" | fzf -m --prompt="🎯 Select recipe(s) to extract (Tab) > ")
+    [ -z "$SELECTED" ] && exit 0
 
-    [ -n "$target" ] || exit 0
+    # 5. Extract ONLY the selected recipes using awk and append them to your justfile
+    echo "" >> justfile
+    echo "$SELECTED" | while read -r recipe; do
+        awk -v target="$recipe:" '
+            # Temporarily save [group] tags in case the target recipe is next
+            /^\[group/ { prev_group=$0; next }
+            
+            # When we hit a recipe name...
+            /^[a-zA-Z0-9_-]+:/ {
+                # If it is the one we want, turn on printing and print the group tag first
+                if ($1 == target) {
+                    in_block=1
+                    if (prev_group) print prev_group
+                    print $0
+                } else {
+                    # If it is a different recipe, turn printing off
+                    in_block=0
+                }
+                prev_group=""
+                next
+            }
+            
+            # Print all standard lines if we are inside the target block
+            in_block { print }
+        ' "$HOME/.just/$BUNDLE" >> justfile
+        
+        echo "" >> justfile
+        echo "✅ Extracted $recipe from $BUNDLE!"
+    done
 
-    case "$target" in
-      design)
-        dir=$(find src/design -maxdepth 1 -mindepth 1 -type d \
-          | xargs -n 1 basename \
-          | fzf --prompt="Design > ")
-        [ -n "$dir" ] && cd "src/design/$dir"
-        ;;
-      *)
-        cd "$target"
-        ;;
-    esac
-
-    exec "$SHELL"

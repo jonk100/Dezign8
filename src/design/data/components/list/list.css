@@ -1,0 +1,257 @@
+/* ============================================================
+   list.css
+   ─────────────────────────────────────────────────────────────
+   Styles for the List component.
+
+   HTML STRUCTURE (data-driven)
+   ──────────────────────────────────────────────────────────────
+   <ul class="data list [list--vertical] [data-modifiers]">
+     <li class="list__item [list__item--disabled]">
+       <!-- optional: checkbox -->
+       <span class="list__icon" aria-hidden="true">…</span>
+       <span class="list__content">
+         <span class="list__label">…</span>
+         <span class="list__description">…</span>   <!-- optional -->
+       </span>
+       <span class="list__badge">…</span>            <!-- optional -->
+     </li>
+     <!-- nested -->
+     <li class="list__item">
+       …
+       <ul class="list list__nested">…</ul>
+     </li>
+   </ul>
+
+   When item has href: item content is wrapped in <a class="list__link">.
+   When item has checkState: <Checkbox> replaces the icon position.
+
+   CHANNEL MAP
+   ──────────────────────────────────────────────────────────────
+   Set on root by useData:
+     --data--size              Density (item padding / gap)
+     --data--color--*          Accent: separators, hover, text highlights
+     --data--bg--*             Background tint: container, striped items
+     --data--highlight--*      Highlighted / active item accent
+
+   MODIFIER CLASSES — root (.list)
+   ──────────────────────────────────────────────────────────────
+   Variants (data.css):  .data--outlined  .data--soft  .data--elevated
+   Layout:               .list--vertical  .list--horizontal
+   Visual:               .data--striped   .data--bordered
+
+   DATA ATTRIBUTES
+   ──────────────────────────────────────────────────────────────
+   [data-loading]       Skeleton shimmer on items
+   [data-interactive]   Hover + pointer on items
+   [data-selectable]    Checkbox column on items
+   [data-scrollable]    overflow-y: auto (list scrolls vertically)
+
+   ADJUSTING PROPS
+   ──────────────────────────────────────────────────────────────
+   color       [./list.css]  var(--data--color--*) in separators, hover, links
+   bg          [./list.css]  var(--data--bg--*) in striped items, container tint
+   highlight   [./list.css]  var(--data--highlight--*) on .list__item--highlighted
+   variant     [./data.css]  plain | outlined | soft | elevated — on .list root
+   size        [./list.css]  calc(var(--data--size) * N) on item padding/gap
+   caption     [./List.astro] renders as <p class="list__caption"> above list
+   loading     [./list.css]  .list[data-loading] .list__item skeleton shimmer
+   empty       [./list.css]  .data__empty — adjust in list.css or data.css
+   striped     [./list.css]  .data--striped .list__item:nth-child(even)
+   bordered    [./list.css]  .data--bordered .list__item + .list__item
+   interactive [./list.css]  .list[data-interactive] .list__item
+   selectable  [./list.css]  .list[data-selectable] — checkbox column
+   scrollable  [./data.css]  overflow-y: auto (list scrolls vertically)
+   ordered     [./List.astro] switches tag to <ol> — no CSS to adjust
+   orientation [./list.css]  .list--horizontal flex-direction/wrap
+   ============================================================ */
+
+/* ─── RESET ─────────────────────────────────────────────────── */
+
+.list {
+  list-style: none;
+  margin:     0;
+  padding:    0;
+}
+
+/* ─── ORIENTATION ───────────────────────────────────────────── */
+
+.list--vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.list--horizontal {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       calc(var(--data--size, var(--space-in--sm)) * 0.75);
+}
+
+/* ─── ITEMS ─────────────────────────────────────────────────── */
+
+.list__item {
+  display:     flex;
+  align-items: center;
+  gap:         calc(var(--data--size, var(--space-in--sm)) * 0.75);
+  padding:     calc(var(--data--size, var(--space-in--sm)) * 0.75)
+               calc(var(--data--size, var(--space-in--sm)) * 1);
+  box-sizing:  border-box;
+}
+
+.list__item--disabled {
+  opacity:        var(--opacity--disabled, 0.42);
+  pointer-events: none;
+}
+
+/* ─── ITEM CONTENT ──────────────────────────────────────────── */
+
+.list__content {
+  display:    flex;
+  flex:       1;
+  flex-direction: column;
+  gap:        calc(var(--data--size, var(--space-in--sm)) * 0.2);
+  min-width:  0; /* allow text to truncate */
+}
+
+.list__label {
+  font-size:   calc(var(--data--size, var(--space-in--sm)) * 0.875);
+  line-height: var(--leading--snug);
+  color:       var(--text--primary);
+}
+
+.list__description {
+  font-size:  calc(var(--data--size, var(--space-in--sm)) * 0.75);
+  color:      var(--text--secondary);
+  line-height: var(--leading--snug);
+}
+
+/* ─── ICON ───────────────────────────────────────────────────── */
+
+.list__icon {
+  flex-shrink:  0;
+  color:        var(--data--color--base, var(--text--secondary));
+  width:        calc(var(--data--size, var(--space-in--sm)) * 1);
+  height:       calc(var(--data--size, var(--space-in--sm)) * 1);
+  display:      flex;
+  align-items:  center;
+  justify-content: center;
+}
+
+/* ─── BADGE ──────────────────────────────────────────────────── */
+
+.list__badge {
+  flex-shrink:     0;
+  margin-inline-start: auto;
+  font-size:       calc(var(--data--size, var(--space-in--sm)) * 0.7);
+  font-weight:     var(--weight--medium);
+  color:           var(--text--secondary);
+  background:      var(--data--color--subtle, var(--bg--2));
+  padding-block:   calc(var(--data--size, var(--space-in--sm)) * 0.15);
+  padding-inline:  calc(var(--data--size, var(--space-in--sm)) * 0.45);
+  border-radius:   var(--radius--full);
+  line-height:     1;
+}
+
+/* ─── LINK ITEMS ─────────────────────────────────────────────── */
+
+.list__link {
+  display:     flex;
+  align-items: center;
+  gap:         inherit;
+  flex:        1;
+  text-decoration: none;
+  color:       inherit;
+}
+
+.list__link:hover {
+  color: var(--data--color--text, var(--primary--text));
+}
+
+/* ─── NESTED LIST ────────────────────────────────────────────── */
+
+.list__nested {
+  padding-inline-start: calc(var(--data--size, var(--space-in--sm)) * 1.5);
+  width: 100%;
+}
+
+/* ─── STRIPED ────────────────────────────────────────────────── */
+
+.data--striped .list__item:nth-child(even) {
+  background-color: var(--data--bg--subtle, var(--bg--2));
+}
+
+/* ─── BORDERED ───────────────────────────────────────────────── */
+
+.data--bordered .list__item + .list__item {
+  border-top: 1px solid var(--data--color--border, var(--border--default));
+}
+
+/* ─── HIGHLIGHTED ITEMS ──────────────────────────────────────── */
+
+.list__item--highlighted {
+  background-color:       var(--data--highlight--subtle);
+  border-inline-start:    3px solid var(--data--highlight--base);
+  padding-inline-start:   calc(var(--data--size, var(--space-in--sm)) * 1 - 3px);
+}
+
+/* ─── INTERACTIVE ────────────────────────────────────────────── */
+
+.list[data-interactive] .list__item {
+  cursor:     pointer;
+  transition: background-color var(--transition--fast, 150ms ease);
+}
+
+.list[data-interactive] .list__item:hover:not(.list__item--disabled) {
+  background-color: var(--data--color--subtle, var(--bg--2));
+}
+
+/* ─── SELECTABLE ─────────────────────────────────────────────── */
+
+.list[data-selectable] .list__item {
+  cursor: pointer;
+}
+
+/* ─── SCROLLABLE ─────────────────────────────────────────────── */
+/* List scrolls vertically — override data.css overflow: auto axis */
+
+.list[data-scrollable] {
+  overflow-x: visible;
+  overflow-y: auto;
+}
+
+/* ─── LOADING SKELETON ───────────────────────────────────────── */
+
+.list[data-loading] .list__item {
+  pointer-events: none;
+}
+
+.list[data-loading] .list__label,
+.list[data-loading] .list__description,
+.list[data-loading] .list__badge,
+.list[data-loading] .list__icon {
+  position:   relative;
+  overflow:   hidden;
+  color:      transparent;
+  background: var(--bg--2);
+  border-radius: var(--radius--sm);
+  animation:  list--skeleton 1.5s ease-in-out infinite;
+}
+
+@keyframes list--skeleton {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1;   }
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .list[data-loading] .list__label,
+  .list[data-loading] .list__description,
+  .list[data-loading] .list__badge,
+  .list[data-loading] .list__icon {
+    animation: none;
+  }
+
+  .list[data-interactive] .list__item {
+    transition: none;
+  }
+}

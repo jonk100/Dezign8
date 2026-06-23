@@ -1,0 +1,48 @@
+---
+/**
+ * Breadcrumbs
+ *
+ * A trail of links representing the user's location within the site hierarchy.
+ *
+ * @example
+ * <Breadcrumbs items={[{ id: "home", label: "Home", href: "/" }, { id: "products", label: "Products", active: true }]} />
+ */
+import { useBreadcrumbs }       from "./breadcrumbs.hook";
+import type { BreadcrumbsProps } from "./breadcrumbs.props";
+import BreadcrumbItem           from "./item/BreadcrumbItem.astro";
+import "../../nav.css";
+import "./breadcrumbs.css";
+
+export type Props = BreadcrumbsProps;
+
+const { breadcrumbsProps, items, separatorIcon, separatorText, IconComponent } = useBreadcrumbs(Astro.props as BreadcrumbsProps);
+---
+
+<nav {...breadcrumbsProps}>
+  <ol class="breadcrumbs__list">
+    {items ? (
+      items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return (
+          <BreadcrumbItem 
+            href={item.href}
+            active={item.active || isLast}
+            isLast={isLast}
+          >
+            {item.label}
+            
+            <span slot="separator" class="breadcrumbs__separator" aria-hidden="true">
+              {IconComponent ? (
+                <IconComponent width={undefined} height={undefined} />
+              ) : (
+                separatorText
+              )}
+            </span>
+          </BreadcrumbItem>
+        );
+      })
+    ) : (
+      <slot />
+    )}
+  </ol>
+</nav>

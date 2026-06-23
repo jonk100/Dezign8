@@ -1,0 +1,76 @@
+---
+title: Container Component
+description: A responsive wrapper that constrains its content's maximum width.
+category: Layout
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/layout/components/container"
+---
+import Container from "../../../design/layout/components/container/Container.astro";
+
+## Overview
+
+The `Container` component is used to constrain a page's content to a maximum width. It centers itself horizontally by applying `margin-inline: auto` automatically.
+
+## Usage & Examples
+
+### Basic Container
+
+A basic container wraps content and prevents it from spanning the full width of large displays. 
+
+```astro
+<Container p="md" bg="var(--bg--2)">
+  This content is constrained to the default max-width.
+</Container>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Container p="md" bg="var(--bg--2)">
+    This content is constrained to the default max-width.
+  </Container>
+</div>
+
+### Maximum Widths
+
+The `maxWidth` prop maps directly to the container tokens (e.g., `sm`, `md`, `lg`, `xl`, `2xl`, `full`).
+
+```astro
+<Container maxWidth="sm" p="md" bg="var(--bg--2)">
+  Small container (e.g., reading width)
+</Container>
+
+<Container maxWidth="lg" p="md" bg="var(--bg--2)" mt="md">
+  Large container (e.g., standard layout width)
+</Container>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden; padding: 1rem;">
+  <Container maxWidth="sm" p="md" bg="var(--bg--2)">
+    Small container (e.g., reading width)
+  </Container>
+  <Container maxWidth="lg" p="md" bg="var(--bg--2)" mt="md">
+    Large container (e.g., standard layout width)
+  </Container>
+</div>
+
+### Semantic Polymorphism
+
+Like the `Box`, you can change the underlying HTML element using the `as` prop.
+
+```astro
+<Container as="main" maxWidth="md" py="xl">
+  <article>Main page content here</article>
+</Container>
+```
+
+## Props API
+
+### Container Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `maxWidth` | `"sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "full"` | `"lg"` | The maximum width of the container. |
+| `as` | `ContainerTag` | `"div"` | The HTML element to render (e.g., `div`, `section`, `main`, `article`). |
+
+### Layout & Spacing Props (Inherited)
+
+`Container` inherits all standard `LayoutProps` and `SpacingProps`, allowing you to add `px`, `py`, `bg`, etc. directly.

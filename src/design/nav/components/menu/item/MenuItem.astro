@@ -1,0 +1,39 @@
+---
+/**
+ * MenuItem
+ *
+ * An individual interactive item within a `<Menu>`. Automatically renders as
+ * an `<a>` tag if an `href` is provided, otherwise falls back to a `<button>`.
+ *
+ * FEATURES
+ * ─────────────────────────────────────────────────────────────────────────
+ * - Icon Support: Pass an `icon` name from the registry (e.g. `icon="home"`).
+ * - Polymorphic: Seamlessly switches between anchor link and button.
+ * - Accessible: Manages `aria-current` for links and `aria-selected` for buttons.
+ *
+ * @example
+ * <MenuItem href="/dashboard" icon="home" active>
+ *   Dashboard
+ * </MenuItem>
+ *
+ * @see Menu.astro — the parent container
+ */
+import { useMenuItem }        from "./m-item.hook";
+import type { MenuItemProps } from "./m-item.props";
+import "./m-item.css";
+
+export type Props = MenuItemProps;
+
+const { Tag, IconComponent, menuItemProps } = useMenuItem(Astro.props as MenuItemProps);
+---
+
+<li class="menu__item-wrapper">
+  <Tag {...menuItemProps}>
+    {IconComponent && (
+      <span class="menu__icon" aria-hidden="true">
+        <IconComponent width={undefined} height={undefined} />
+      </span>
+    )}
+    <span class="menu__item-label"><slot /></span>
+  </Tag>
+</li>

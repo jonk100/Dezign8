@@ -1,0 +1,29 @@
+/* ============================================================
+   paper.css
+   ─────────────────────────────────────────────────────────────
+   Paper-specific layout. Visual chrome comes from surface.css.
+
+   CHANNEL MAP
+   ──────────────────────────────────────────────────────────────
+   --paper--gap     Written when stack=true. Controls flex gap.
+                    Undefined when stack=false — no channel written.
+
+   MODIFIER CLASSES
+   ──────────────────────────────────────────────────────────────
+   .paper--stack        Vertical flex container with gap
+   .paper--full-width   Fills container inline axis
+   ============================================================ */
+
+.paper {
+  display: block;
+}
+
+.paper--stack {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--paper--gap);
+}
+
+.paper--full-width {
+  width: 100%;
+}

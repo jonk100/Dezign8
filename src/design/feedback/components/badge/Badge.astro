@@ -1,0 +1,70 @@
+---
+/**
+ * Badge
+ *
+ * A small indicator rendered as a pill, count, or dot. Renders inline or
+ * as an absolute overlay on a `position: relative` parent via `placement`.
+ *
+ * THREE RENDERING MODES
+ * ─────────────────────────────────────────────────────────────────────────
+ * 1. Count badge  — `count` prop provided. Renders a number (capped by `max`).
+ * 2. Label badge  — No `count`, no `dot`. Renders the default slot.
+ * 3. Dot badge    — `dot={true}`. Renders an empty circle, no content.
+ *
+ * STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────
+ *   <span class="feedback badge [badge--dot]" [data-placement]>
+ *     {count mode}  → displayCount string  (e.g. "12" or "99+")
+ *     {label mode}  → <slot />
+ *     {dot mode}    → (nothing)
+ *   </span>
+ *
+ * PLACEMENT / OVERLAY
+ * ─────────────────────────────────────────────────────────────────────────
+ * When `placement` is set the badge is `position: absolute`. The parent
+ * must have `position: relative` (or any non-static position).
+ *
+ * @example
+ * <!-- Count badge -->
+ * <Badge count={5} />
+ *
+ * @example
+ * <!-- Capped count -->
+ * <Badge count={200} max={99} />  <!-- → "99+" -->
+ *
+ * @example
+ * <!-- Dot / presence indicator -->
+ * <Badge dot color="success" />
+ *
+ * @example
+ * <!-- Label badge (slot) -->
+ * <Badge variant="soft" color="info">Beta</Badge>
+ *
+ * @example
+ * <!-- Overlaid on a parent element -->
+ * <div style="position: relative; display: inline-flex;">
+ *   <Button>Messages</Button>
+ *   <Badge count={3} placement="top-end" />
+ * </div>
+ *
+ * @see badge.hook.ts   — resolves props to { Tag, props, mode, displayCount }
+ * @see badge.props.ts  — full prop type reference
+ * @see badge.css       — size map, dot mode styles
+ * @see feedback.css    — shared variant and placement rules
+ */
+
+import type { BadgeProps } from "./badge.props";
+import { useBadge }        from "./badge.hook";
+import "../../feedback.css";
+import "./badge.css";
+
+type Props = BadgeProps;
+
+const { Tag, props, mode, displayCount } = useBadge(Astro.props as BadgeProps);
+---
+
+<Tag {...props}>
+  {mode === "count" && displayCount}
+  {mode === "label" && <slot />}
+  {/* dot mode — no content */}
+</Tag>

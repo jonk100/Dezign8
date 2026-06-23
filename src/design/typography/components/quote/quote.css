@@ -12,19 +12,36 @@
 /* ─── MODIFIERS ───────────────────────────────────────────── */
 
 .quote--block {
-  /* Standard quotes are slightly subdued */
-  --typography--color: var(--text--muted, inherit);
+  /* Standard quotes are slightly subdued and have visual boundaries */
+  --typography--color: var(--text--layer-2);
+  padding:             var(--space-out--sm) var(--space-out--md);
+  border-inline-start: 4px solid var(--border--primary);
+  background:          var(--bg--2-glass);
+  border-radius:       0 var(--radius--xs) var(--radius--xs) 0;
+  width:               100%;
+}
+
+.quote--block > :last-child {
+  margin-block-end: 0;
 }
 
 .quote--pull {
   /* Pull quotes are prominent and stand out */
   --typography--size: var(--fs--xl);
   --typography--weight: var(--weight--medium);
-  --typography--color: var(--text--primary, inherit);
+  --typography--color: var(--text--secondary);
   --typography--align: center;
   --typography--wrap: balance;
+  --typography--style: oblique;
+  padding:             var(--space-out--sm) var(--space-out--md);
+  background: var(--bg--1-glass);
+}
+
+.quote--pull > :last-child {
+  margin-block-end: 0;
 }
 
 .quote--inline {
-  /* Inline quotes inherit size and color from surroundings */
+  --typography--style: oblique;
+  --typography--color: var(--neutral--text);
 }

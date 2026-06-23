@@ -1,0 +1,131 @@
+/* ============================================================
+   input.css
+   ─────────────────────────────────────────────────────────────
+   Input-specific styles. Imported alongside forms.css.
+
+   STRUCTURE
+   ──────────────────────────────────────────────────────────────
+   The Input component renders a two-element structure:
+
+     <div class="form input form--outlined …">  ← visual container
+       <div class="input__start">…</div>         ← start slot (optional)
+       <input class="input__control" />           ← semantic control
+       <div class="input__end">…</div>            ← end slot (optional)
+     </div>
+
+   The wrapper (.input) owns all visual chrome — border, background,
+   border-radius — via the shared .form variant rules in forms.css.
+   The inner .input__control is transparent and has no border; it
+   inherits font-size, color, and padding from the wrapper.
+
+   WHY THE INNER INPUT IS TRANSPARENT
+   ──────────────────────────────────────────────────────────────
+   The start and end slots must appear INSIDE the visual border.
+   If the <input> had its own border, icons would sit outside it.
+   Instead, the wrapper div is the "visible field" and the <input>
+   fills the remaining space as a transparent, borderless element.
+   ============================================================ */
+
+/* ─── WRAPPER ──────────────────────────────────────────────── */
+
+.input {
+  /* Cursor hint — clicking anywhere in the wrapper focuses the input */
+  cursor: text;
+}
+
+/* ─── INNER CONTROL ────────────────────────────────────────── */
+
+.input__control {
+  /* Fill remaining horizontal space after slots */
+  flex: 1;
+  min-inline-size: 0; /* prevents flex children from overflowing */
+
+  /* Inherit all visual properties from wrapper — the control is invisible */
+  background:  transparent;
+  border:      none;
+  outline:     none;
+  color:       inherit;
+  font-size:   inherit;
+  font-family: inherit;
+  line-height: inherit;
+
+  /* Remove all browser-default padding and margin */
+  padding: 0;
+  margin:  0;
+
+  /* Suppress native appearance on iOS/Safari */
+  appearance:         none;
+  -webkit-appearance: none;
+}
+
+/* Placeholder text — muted, not a substitute for a label */
+.input__control::placeholder {
+  color:   var(--text--tertiary, var(--text--secondary));
+  opacity: 1; /* Firefox sets opacity < 1 on placeholders by default */
+}
+
+/* Suppress the native focus ring — focus is shown on the wrapper via :focus-within */
+.input__control:focus {
+  outline: none;
+}
+
+/* Number input — hide browser spinner arrows */
+.input__control[type="number"]::-webkit-inner-spin-button,
+.input__control[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input__control[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Search input — hide native clear button (we provide our own via end slot) */
+.input__control[type="search"]::-webkit-search-cancel-button,
+.input__control[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* Password input — hide native reveal button on Edge/IE */
+.input__control[type="password"]::-ms-reveal {
+  display: none;
+}
+
+/* ─── START / END SLOTS ────────────────────────────────────── */
+
+.input__start,
+.input__end {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  /* Muted color by default; components inside can override */
+  color: var(--text--secondary);
+
+  /* Prevent the slot from intercepting clicks meant for the input */
+  pointer-events: none;
+}
+
+/* Re-enable pointer events on interactive elements inside slots
+   (e.g. a password-reveal button, a clear button) */
+.input__end button,
+.input__end a,
+.input__start button,
+.input__start a {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* ─── READONLY STATE ───────────────────────────────────────── */
+/* Distinct from disabled: the field is focusable, its value is
+   submitted, but the user cannot edit it. */
+
+.input:has(.input__control[readonly]) {
+  cursor: default;
+}
+
+.input__control[readonly]::placeholder {
+  /* Readonly fields typically don't have placeholder text, but if set,
+     show it at the same muted level */
+  color: var(--text--tertiary, var(--text--secondary));
+}

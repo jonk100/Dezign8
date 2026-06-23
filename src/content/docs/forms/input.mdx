@@ -1,0 +1,197 @@
+---
+title: Input Component
+description: Single-line text input with optional leading and trailing slot content. Supports text, email, password, tel, url, number, and search types.
+category: Forms
+status: stable
+---
+import Input from "../../../design/forms/components/input/Input.astro";
+
+## Overview
+
+`Input` is a single-line text input control. It wraps a native `<input>` in a styled `<div>` that carries the visual chrome (border, background, radius, focus ring) while the inner control itself is transparent. This two-element structure allows icons, prefixes, and action buttons to appear **inside** the visual field boundary via the `start` and `end` named slots.
+
+All token dimensions (`size`, `variant`, `color`, `radius`) and behavioral props (`disabled`, `required`, `invalid`, `fullWidth`) are inherited from `FormProps` and resolved by the shared `useForm` hook. See the [Forms category doc](/forms/forms) for the full shared architecture.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+<Input name="username" placeholder="Username" />
+```
+<Input name="username" placeholder="Username" />
+
+### Types
+
+```astro
+<Input name="email" type="email" placeholder="you@example.com" />
+<Input name="password" type="password" placeholder="Password" />
+<Input name="phone" type="tel" placeholder="+1 (555) 000-0000" />
+<Input name="q" type="search" placeholder="Search…" />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Input name="email" type="email" placeholder="you@example.com" />
+  <Input name="password" type="password" placeholder="Password" />
+  <Input name="phone" type="tel" placeholder="+1 (555) 000-0000" />
+  <Input name="q" type="search" placeholder="Search…" />
+</div>
+
+### Sizes
+
+```astro
+<Input name="sm" size="sm" placeholder="Small" />
+<Input name="md" size="md" placeholder="Medium (default)" />
+<Input name="lg" size="lg" placeholder="Large" />
+<Input name="xl" size="xl" placeholder="Extra large" />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Input name="sm" size="sm" placeholder="Small" />
+  <Input name="md" size="md" placeholder="Medium (default)" />
+  <Input name="lg" size="lg" placeholder="Large" />
+  <Input name="xl" size="xl" placeholder="Extra large" />
+</div>
+
+### Variants
+
+```astro
+<Input name="outlined" variant="outlined" placeholder="Outlined (default)" />
+<Input name="soft"     variant="soft"     placeholder="Soft" />
+<Input name="ghost"    variant="ghost"    placeholder="Ghost" />
+<Input name="dashed"   variant="dashed"   placeholder="Dashed" />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Input name="outlined" variant="outlined" placeholder="Outlined (default)" />
+  <Input name="soft"     variant="soft"     placeholder="Soft" />
+  <Input name="ghost"    variant="ghost"    placeholder="Ghost" />
+  <Input name="dashed"   variant="dashed"   placeholder="Dashed" />
+</div>
+
+### States
+
+```astro
+<Input name="disabled" placeholder="Disabled" disabled />
+<Input name="readonly" value="Read-only value" readonly />
+<Input name="invalid"  placeholder="Invalid field" invalid />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Input name="disabled" placeholder="Disabled" disabled />
+  <Input name="readonly" value="Read-only value" readonly />
+  <Input name="invalid"  placeholder="Invalid field" invalid />
+</div>
+
+### With Start / End Slots
+
+The `start` and `end` named slots render inside the visual field boundary. Non-interactive content (icons, labels) has `pointer-events: none` by default. Buttons and links inside slots have `pointer-events: auto` restored automatically.
+
+```astro
+<!-- Leading icon -->
+<Input name="search" type="search" placeholder="Search…">
+  <span slot="start">🔍</span>
+</Input>
+
+<!-- Trailing action button -->
+<Input name="password" type="password" placeholder="Password">
+  <button slot="end" type="button" aria-label="Toggle password visibility">
+    👁
+  </button>
+</Input>
+
+<!-- Both slots -->
+<Input name="price" type="number" placeholder="0.00">
+  <span slot="start">$</span>
+  <span slot="end">USD</span>
+</Input>
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Input name="search-demo" type="search" placeholder="Search…">
+    <span slot="start">🔍</span>
+  </Input>
+  <Input name="price-demo" type="number" placeholder="0.00">
+    <span slot="start">$</span>
+    <span slot="end">USD</span>
+  </Input>
+</div>
+
+---
+
+## Props API
+
+### Input-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `type` | `InputType` | `"text"` | Native input type. One of `text`, `email`, `password`, `tel`, `url`, `number`, `search`. |
+| `id` | `string` | — | ID for the inner `<input>`. Required when using `<label for>` or `aria-describedby`. |
+| `value` | `string` | — | Initial or controlled value. |
+| `placeholder` | `string` | — | Placeholder text. Not a substitute for a label. |
+| `readonly` | `boolean` | `false` | Focusable, submittable, but not editable. Distinct from `disabled`. |
+| `minLength` | `number` | — | Minimum character count for native browser validation. |
+| `maxLength` | `number` | — | Maximum character count. Browser prevents additional input. |
+| `pattern` | `string` | — | Regex pattern for native validation. Implicitly anchored (`^…$`). |
+| `autocomplete` | `string` | — | Browser autofill hint. E.g. `"email"`, `"current-password"`, `"off"`. |
+
+### Inherited Form Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FormSize` | `"md"` | Control height tier. Scales font, padding, and height proportionally. |
+| `variant` | `FormVariant` | `"outlined"` | Visual treatment: `outlined`, `soft`, `solid`, `ghost`, `dashed`. |
+| `color` | `FormColor` | `"primary"` | Color role for focus and interactive states. |
+| `radius` | `FormRadius` | `"md"` | Border radius from the shared `RADIUS` token scale. |
+| `name` | `string` | — | Form field name for submission. |
+| `disabled` | `boolean` | `false` | Inert control. Emits `aria-disabled` + `data-disabled`. |
+| `required` | `boolean` | `false` | Mandatory field. Emits `aria-required`. |
+| `invalid` | `boolean` | `false` | Validation error state. Emits `aria-invalid` + `data-invalid`. Error border overrides all variants. |
+| `fullWidth` | `boolean` | `false` | Stretches the control to fill its container inline axis. |
+
+### Slots
+
+| Slot | Description |
+|---|---|
+| `start` | Leading content inside the field boundary. Icons, dial codes, currency prefixes. Non-interactive by default. |
+| `end` | Trailing content inside the field boundary. Password-reveal buttons, clear buttons, character counts. Buttons/links are automatically interactive. |
+
+---
+
+## Structure
+
+The hook returns a two-object shape rather than the standard `{ Tag, props }`:
+
+```ts
+const { Tag, props, inputAttrs } = useInput(Astro.props);
+//      ^^^  ^^^^^^  ^^^^^^^^^^
+//      "div" wrapper  inner <input>
+```
+
+`Tag` and `props` target the wrapper `<div>` which carries visual chrome and CSS state hooks. `inputAttrs` targets the inner `<input>` with `id`, `name`, `type`, native `disabled`/`required`, and ARIA attributes.
+
+**Why `id` lives on the inner element:** `<label for="…">` must match the `id` of the actual form control, not a wrapper `<div>`. The hook intercepts `id` before delegating to `useForm` so it never reaches `rest` and never lands on the wrapper.
+
+---
+
+## Accessibility
+
+- Always provide a visible `<label>` via a `<Field>` wrapper. `placeholder` alone fails WCAG 1.4.3 (low contrast, disappears on input).
+- For error states, set `invalid={true}` on both `<Input>` and `<Field>`. Set `aria-describedby` on the input pointing to the error element's `id`.
+- `readonly` fields are **not** disabled — they remain focusable, their values submit with the form, and they do not receive `aria-disabled` treatment. Use `readonly` for display-only values that matter to form submission; use `disabled` for truly inert controls.
+- Password inputs should always have a reveal toggle in the `end` slot for users who cannot verify what they typed.
+
+---
+
+## Excluded Input Types
+
+Specialised `<input>` types are excluded from `Input` and handled by dedicated components:
+
+| Type | Use instead |
+|---|---|
+| `date`, `datetime-local` | `DatePicker` |
+| `time` | `TimePicker` |
+| `color` | `ColorPicker` |
+| `file` | `FileUpload` |
+| `range` | `Slider` |
+| `checkbox` | `Checkbox` |
+| `radio` | `Radio` |
+| `hidden` | Plain `<input type="hidden">` |
+| `button`, `submit`, `reset` | `Button` |

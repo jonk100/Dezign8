@@ -1,0 +1,32 @@
+/* design/surfaces/components/tile/tile.css */
+.tile {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.tile--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow--md);
+  cursor: pointer;
+}
+
+.tile--interactive:active {
+  transform: translateY(0);
+}
+
+.tile--selectable:hover {
+  border-color: var(--surface--color--border, var(--border--strong));
+}
+
+.tile--selected {
+  border-color: var(--surface--color--base, var(--primary--base));
+  background-color: var(--surface--color--subtle, var(--primary--subtle));
+}
+
+.tile--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}

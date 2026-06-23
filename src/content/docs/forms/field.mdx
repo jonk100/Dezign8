@@ -1,0 +1,107 @@
+---
+title: Field Component
+description: Accessibility wrapper that binds a Label, a form control, and optional hint/error/success messages into one accessible unit.
+category: Forms
+status: stable
+---
+import Field from "../../../design/forms/components/field/Field.astro";
+import Label from "../../../design/forms/components/label/Label.astro";
+import Input from "../../../design/forms/components/input/Input.astro";
+
+## Overview
+
+`Field` is a structural accessibility wrapper. It renders no form elements of its own, but instead organizes a Label, a form control, and helper messages into a single stacked layout with correct ARIA wiring.
+
+The component guarantees proper spacing between form elements and provides named slots for labels, hints, and error messages.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+<Field>
+  <Label slot="label" for="firstName">First name</Label>
+  <Input id="firstName" name="firstName" />
+</Field>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Field>
+    <Label slot="label" for="firstName">First name</Label>
+    <Input id="firstName" name="firstName" />
+  </Field>
+</div>
+
+### Full Accessibility Wiring
+
+`Field` cannot automatically wire `aria-describedby` because Astro named slots do not support passing runtime values into slotted content. The consumer connects the pieces manually using the `id` prop as a base:
+
+```astro
+<Field id="email" invalid={!emailValid} required>
+  <Label slot="label" for="email" required>Email address</Label>
+  
+  <Input
+    id="email"
+    name="email"
+    type="email"
+    invalid={!emailValid}
+    required
+    aria-describedby="email-hint email-error"
+  />
+  
+  <span slot="hint" id="email-hint">We'll never share your email.</span>
+  
+  {!emailValid && (
+    <span slot="error" id="email-error">Enter a valid email address.</span>
+  )}
+</Field>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Field id="email" invalid={true} required>
+    <Label slot="label" for="email" required>Email address</Label>
+    <Input
+      id="email"
+      name="email"
+      type="email"
+      invalid={true}
+      required
+      aria-describedby="email-hint email-error"
+    />
+    <span slot="hint" id="email-hint">We'll never share your email.</span>
+    <span slot="error" id="email-error">Enter a valid email address.</span>
+  </Field>
+</div>
+
+---
+
+## Props API
+
+### Field-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | — | Base ID used to generate standard IDs for the hint and error slots (`{id}-hint`, `{id}-error`). |
+| `invalid` | `boolean` | `false` | Sets invalid styling context for the hint and error slots (dims the hint). Note: You still must pass `invalid` to the control itself. |
+| `required` | `boolean` | `false` | Semantics only. Pass `required` to both the `<Label>` and the form control. |
+
+### Inherited Base Props
+
+Inherits `BaseComponentProps` (`class`, `style`, `bg`, etc.).
+
+### Slots
+
+| Slot | Description |
+|---|---|
+| `label` | The field label. Rendered above the control. Use `<Label for="…">` here. |
+| `default` | The form control (`Input`, `Select`, `Combobox`, etc.). Rendered between the label and hint/error messages. |
+| `hint` | Helper text. Shown below the control in secondary color. Always rendered when the slot has content. |
+| `error` | Validation error message. Rendered with danger color and `role="alert"`. Consumers should conditionally render this slot's content. |
+| `success` | Confirmation message. Rendered with success color. |
+
+---
+
+## Architecture details
+
+- **Structural layout**: `Field` uses `display: flex; flex-direction: column;` with a gap to separate the label, control, and message slots.
+- **`role="alert"`**: The `error` slot wrapper includes `role="alert"` so screen readers immediately announce validation errors when they appear.

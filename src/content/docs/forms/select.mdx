@@ -1,0 +1,279 @@
+---
+title: Select Component
+description: Native select control for single or multi-value selection, with a custom arrow and optional leading slot. Single and multi modes are discriminated by the `multiple` prop.
+category: Forms
+status: stable
+---
+import Select from "../../../design/forms/components/select/Select.astro";
+
+## Overview
+
+`Select` wraps a native `<select>` element in a styled `<div>` wrapper — the same two-element structure as `Input`. The wrapper provides the visual chrome (border, background, radius, focus ring), and the `<select>` is reset to transparent with `appearance: none`. A custom arrow indicator replaces the browser default and takes the role's color on focus.
+
+`Select` handles **both single and multi-value selection** through a discriminated union on the `multiple` prop. There is no separate `Multiselect` component. When `multiple` is `true`, the value type narrows from `string` to `string[]` automatically.
+
+Options must be passed as a structured `options` prop — they cannot use Astro slots because native `<select>` only accepts `<option>` and `<optgroup>` as children.
+
+All shared token and behavioral props are inherited from `FormProps`. See the [Forms category doc](/forms/forms) for the full shared architecture.
+
+---
+
+## Usage
+
+### Basic single select
+
+```astro
+<Select
+  name="country"
+  placeholder="Select a country…"
+  options={[
+    { value: "us", label: "United States" },
+    { value: "uk", label: "United Kingdom" },
+    { value: "ca", label: "Canada" },
+  ]}
+/>
+```
+<Select
+  name="country-demo"
+  placeholder="Select a country…"
+  options={[
+    { value: "us", label: "United States" },
+    { value: "uk", label: "United Kingdom" },
+    { value: "ca", label: "Canada" },
+  ]}
+/>
+
+### Controlled value
+
+```astro
+<Select
+  name="role"
+  value="editor"
+  options={[
+    { value: "viewer",  label: "Viewer" },
+    { value: "editor",  label: "Editor" },
+    { value: "admin",   label: "Admin" },
+  ]}
+/>
+```
+<Select
+  name="role-demo"
+  value="editor"
+  options={[
+    { value: "viewer",  label: "Viewer" },
+    { value: "editor",  label: "Editor" },
+    { value: "admin",   label: "Admin" },
+  ]}
+/>
+
+### Sizes
+
+```astro
+<Select name="sm" size="sm" options={[{ value: "a", label: "Small" }]} />
+<Select name="md" size="md" options={[{ value: "a", label: "Medium (default)" }]} />
+<Select name="lg" size="lg" options={[{ value: "a", label: "Large" }]} />
+<Select name="xl" size="xl" options={[{ value: "a", label: "Extra large" }]} />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Select name="sm-demo" size="sm" options={[{ value: "a", label: "Small" }]} />
+  <Select name="md-demo" size="md" options={[{ value: "a", label: "Medium (default)" }]} />
+  <Select name="lg-demo" size="lg" options={[{ value: "a", label: "Large" }]} />
+  <Select name="xl-demo" size="xl" options={[{ value: "a", label: "Extra large" }]} />
+</div>
+
+### Variants
+
+```astro
+<Select name="outlined" variant="outlined" placeholder="Outlined (default)" options={opts} />
+<Select name="soft"     variant="soft"     placeholder="Soft"               options={opts} />
+<Select name="ghost"    variant="ghost"    placeholder="Ghost"              options={opts} />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Select name="outlined-demo" variant="outlined" placeholder="Outlined (default)" options={[{value:"a",label:"Option A"},{value:"b",label:"Option B"}]} />
+  <Select name="soft-demo"     variant="soft"     placeholder="Soft"               options={[{value:"a",label:"Option A"},{value:"b",label:"Option B"}]} />
+  <Select name="ghost-demo"    variant="ghost"    placeholder="Ghost"              options={[{value:"a",label:"Option A"},{value:"b",label:"Option B"}]} />
+</div>
+
+### States
+
+```astro
+<Select name="disabled" placeholder="Disabled" disabled options={opts} />
+<Select name="invalid"  placeholder="Invalid"  invalid  options={opts} />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Select name="disabled-demo" placeholder="Disabled" disabled options={[{value:"a",label:"Option A"}]} />
+  <Select name="invalid-demo"  placeholder="Invalid"  invalid  options={[{value:"a",label:"Option A"}]} />
+</div>
+
+### Disabled options
+
+Individual options can be disabled inside the list:
+
+```astro
+<Select
+  name="plan"
+  placeholder="Choose a plan…"
+  options={[
+    { value: "free",       label: "Free" },
+    { value: "pro",        label: "Pro" },
+    { value: "enterprise", label: "Enterprise", disabled: true },
+  ]}
+/>
+```
+<Select
+  name="plan-demo"
+  placeholder="Choose a plan…"
+  options={[
+    { value: "free",       label: "Free" },
+    { value: "pro",        label: "Pro" },
+    { value: "enterprise", label: "Enterprise", disabled: true },
+  ]}
+/>
+
+### Multi-select
+
+When `multiple` is `true`, `value` narrows to `string[]` and the component renders a native list box:
+
+```astro
+<Select
+  name="tags"
+  multiple
+  value={["ts", "astro"]}
+  options={[
+    { value: "ts",     label: "TypeScript" },
+    { value: "astro",  label: "Astro" },
+    { value: "css",    label: "CSS" },
+    { value: "html",   label: "HTML" },
+  ]}
+  fullWidth
+/>
+```
+<Select
+  name="tags-demo"
+  multiple
+  value={["ts", "astro"]}
+  options={[
+    { value: "ts",    label: "TypeScript" },
+    { value: "astro", label: "Astro" },
+    { value: "css",   label: "CSS" },
+    { value: "html",  label: "HTML" },
+  ]}
+  fullWidth
+/>
+
+### Custom arrow slot
+
+Replace the default `▾` with an Icon component or any custom SVG:
+
+```astro
+<Select name="sort" options={sortOptions}>
+  <span slot="arrow">⌄</span>
+</Select>
+```
+
+### Leading start slot
+
+For an icon or flag inside the field boundary before the value text:
+
+```astro
+<Select name="country" options={countries}>
+  <span slot="start">🌍</span>
+</Select>
+```
+
+---
+
+## Props API
+
+### Select-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `options` | `SelectOption[]` | required | The list of options to render as `<option>` elements. |
+| `value` | `string` \| `string[]` | — | Currently selected value(s). Narrows based on `multiple`. |
+| `placeholder` | `string` | — | Prepends a `<option value="" disabled>` shown when nothing is selected. |
+| `id` | `string` | — | ID for the inner `<select>`. Required for `<label for>` association. |
+| `multiple` | `boolean` | `false` | Enables multi-selection mode. Changes `value` type from `string` to `string[]`. |
+
+### `SelectOption` Shape
+
+| Field | Type | Description |
+|---|---|---|
+| `value` | `string` | Submitted with the form. Must be unique within the list. |
+| `label` | `string` | Human-readable text shown in the dropdown. |
+| `disabled` | `boolean` | When `true`, the option is visible but not selectable. |
+
+### Inherited Form Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FormSize` | `"md"` | Control height tier. |
+| `variant` | `FormVariant` | `"outlined"` | Visual treatment. |
+| `color` | `FormColor` | `"primary"` | Color role for focus and interactive states. |
+| `radius` | `FormRadius` | `"md"` | Border radius. |
+| `name` | `string` | — | Form field name for submission. |
+| `disabled` | `boolean` | `false` | Inert control. |
+| `required` | `boolean` | `false` | Mandatory field. |
+| `invalid` | `boolean` | `false` | Validation error state. |
+| `fullWidth` | `boolean` | `false` | Stretches control to fill container. |
+
+### Slots
+
+| Slot | Description |
+|---|---|
+| `start` | Leading content inside the field boundary (icon, flag). Clicks pass through to the `<select>` below. |
+| `arrow` | Replaces the default `▾` dropdown indicator. Hidden in multi-select mode. |
+
+---
+
+## Structure
+
+The hook returns four members:
+
+```ts
+const { Tag, props, selectAttrs, resolvedOptions, placeholder }
+  = useSelect(Astro.props);
+```
+
+| Member | Target | Contains |
+|---|---|---|
+| `Tag` | — | Always `"div"` |
+| `props` | Wrapper `<div>` | Form classes, CSS channel vars, `data-*` + `aria-*` attrs, `rest` passthrough |
+| `selectAttrs` | Inner `<select>` | `id`, `name`, `multiple`, native `disabled`/`required`, ARIA attrs |
+| `resolvedOptions` | `Select.astro` template | `SelectOption[]` with `selected: boolean` pre-computed |
+| `placeholder` | `Select.astro` template | Forwarded string or `undefined`; template decides when to render |
+
+### Why `value` is not in `selectAttrs`
+
+Native `<select>` has no `value` attribute. Selected state is expressed via the `selected` attribute on individual `<option>` elements. The hook consumes `value` internally to compute `selected: boolean` per option, then discards it — it never appears in `selectAttrs`.
+
+### The discriminated union
+
+`SelectProps` is `SelectSingleProps | SelectMultiProps` discriminated by `multiple`:
+
+```ts
+// TypeScript narrows automatically:
+<Select name="x" options={opts} value="a" />           // value: string
+<Select name="x" options={opts} multiple value={["a"]} // value: string[]
+<Select name="x" options={opts} value={["a"]} />        // TS error — array on single select
+```
+
+The hook uses an internal cast for destructuring (TypeScript cannot cleanly destructure a union), but the public parameter and return type remain correctly typed.
+
+---
+
+## Accessibility
+
+- Always provide a `<label>` via a `<Field>` wrapper with `for` matching the select's `id`.
+- For error states, set `invalid` on both `<Select>` and the `<Field>` wrapper so the error slot is shown and `aria-describedby` is wired.
+- `placeholder` renders as `<option value="" disabled>` — it is visible but not selectable, preventing accidental blank form submissions.
+- Multi-select (`<select multiple>`) renders as a **list box**, not a dropdown. Inform users they can Shift+click or Ctrl/Cmd+click to select multiple items. For a more controlled multi-select dropdown experience, prefer a future `Combobox` component.
+- The native `<option>` list is styled by the OS/browser and cannot be fully CSS-styled. For fully customised option rendering, a `Combobox` using `[role="listbox"]` is needed.
+
+---
+
+## Known Limitations
+
+- **Option styling**: The browser's native option list cannot be styled with CSS across all platforms. Background color and font on `<option>` elements are partially supported in some browsers but not others.
+- **Multi-select UX**: Native `<select multiple>` has poor discoverability. Consider using it only for forms where users are expected to understand the multi-select pattern (e.g. admin interfaces), or replace it with a future `Combobox` for public-facing forms.
+- **`optgroup` support**: Option groups are not yet implemented. The `@todo` in `select.tokens.ts` tracks this. Adding it requires a `SelectOptionGroup` type and a template update to `Select.astro` — no hook changes needed.

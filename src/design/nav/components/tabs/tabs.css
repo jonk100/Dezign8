@@ -1,0 +1,25 @@
+.tabs {
+  display: flex;
+  position: relative;
+}
+
+/* Ensure the underlined variant has a full-width bottom border */
+.tabs.nav--underlined {
+  border-bottom: 1px solid var(--border--default, #e5e7eb);
+}
+
+.tabs.nav--underlined .nav__item {
+  margin-bottom: -1px; /* Overlap the border to merge with active tab indicator */
+}
+
+/* Fitted tabs stretch to fill space */
+.tabs--fitted .nav__item {
+  flex: 1;
+}
+
+/* Web Component wrapper */
+dezign8-tabs {
+  display: block;
+}
+
+

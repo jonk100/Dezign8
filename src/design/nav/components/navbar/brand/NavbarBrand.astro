@@ -1,0 +1,17 @@
+---
+/**
+ * NavbarBrand
+ *
+ * Container for the site logo, title, or primary branding element.
+ */
+import { useNavbarBrand } from "./brand.hook";
+import type { NavbarBrandProps } from "./brand.props";
+
+export type Props = NavbarBrandProps;
+
+const { brandProps } = useNavbarBrand(Astro.props as NavbarBrandProps);
+---
+
+<div {...brandProps}>
+  <slot />
+</div>

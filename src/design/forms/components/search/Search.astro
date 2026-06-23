@@ -1,0 +1,139 @@
+---
+/**
+ * Search
+ *
+ * A search input with built-in clear button, loading state, and
+ * Escape-to-clear keyboard behaviour. Defaults to full-width.
+ *
+ * BUILT-IN BEHAVIOURS (client-side script)
+ * ─────────────────────────────────────────────────────────────────────────
+ * The component includes a deduped script that:
+ * - Shows the clear button when the input has a value
+ * - Hides the clear button when the input is empty
+ * - Clears the input and dispatches an `input` event when clear is clicked
+ * - Clears the input on Escape (if the input has a value)
+ *
+ * Dispatching a synthetic `input` event on clear means any `input` event
+ * listener on the search field receives the cleared state correctly.
+ *
+ * LOADING STATE
+ * ─────────────────────────────────────────────────────────────────────────
+ * `loading={true}` renders `data-loading` on the wrapper. CSS swaps the
+ * clear button for a spinning indicator. The input becomes non-interactive
+ * while loading.
+ *
+ * @slots
+ *   start — Leading content (icon, flag, etc.). Typically a search icon.
+ *           pointer-events suppressed; clicks pass through to the input.
+ *
+ *   end   — Trailing content after the clear button. Use for keyboard
+ *           shortcut badges (e.g. ⌘K), scope selectors, or search filters.
+ *
+ * @example
+ * <!-- Basic -->
+ * <Search name="q" placeholder="Search…" />
+ *
+ * @example
+ * <!-- With icon -->
+ * <Search name="q" placeholder="Search products…">
+ *   <Icon slot="start" name="search" size="sm" />
+ * </Search>
+ *
+ * @example
+ * <!-- Async loading -->
+ * <Search name="q" value={query} loading={isLoading} placeholder="Search…" />
+ *
+ * @example
+ * <!-- Inline, narrow -->
+ * <Search name="filter" fullWidth={false} size="sm" placeholder="Filter…" />
+ *
+ * @see search.hook.ts  — resolves props to { Tag, props, inputAttrs }
+ * @see search.props.ts — full prop type reference
+ * @see search.css      — clear button, spinner, slot styles
+ * @see forms.css       — shared variant and state styles
+ */
+
+import type { SearchProps } from "./search.props";
+import { useSearch }        from "./search.hook";
+import "~f/forms.css";
+import "./search.css";
+
+const { Tag, props, inputAttrs } = useSearch(Astro.props as SearchProps);
+---
+
+<Tag {...props}>
+  {Astro.slots.has("start") && (
+    <div class="search__start">
+      <slot name="start" />
+    </div>
+  )}
+
+  <input class="search__control" {...inputAttrs} />
+
+  <!--
+    Clear button — always in DOM, hidden until input has value.
+    The script below manages the hidden attribute.
+    Hidden while loading (CSS swaps it for the spinner).
+  -->
+  <button
+    class="search__clear"
+    type="button"
+    aria-label="Clear search"
+    hidden
+  >
+    ×
+  </button>
+
+  <!-- Loading spinner — shown via CSS when data-loading is on wrapper -->
+  <div class="search__spinner" aria-hidden="true"></div>
+
+  {Astro.slots.has("end") && (
+    <div class="search__end">
+      <slot name="end" />
+    </div>
+  )}
+</Tag>
+
+<!--
+  Search controller script.
+  Runs once per page (Astro deduplicates). Queries all [data-search]
+  wrappers and wires up clear button + Escape behaviour for each.
+-->
+<script>
+  function initSearch(wrapper: HTMLElement) {
+    const input = wrapper.querySelector<HTMLInputElement>(".search__control");
+    const clear = wrapper.querySelector<HTMLButtonElement>(".search__clear");
+    if (!input || !clear) return;
+
+    const sync = () => {
+      // Show clear only when the input has a value and is not loading
+      clear.hidden = !input.value || wrapper.hasAttribute("data-loading");
+    };
+
+    // Show/hide clear button as the user types
+    input.addEventListener("input", sync);
+
+    // Clear button: empty the field and re-focus
+    clear.addEventListener("click", () => {
+      input.value = "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
+    });
+
+    // Escape: clear the field if it has a value
+    input.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Escape" && input.value) {
+        e.preventDefault();
+        input.value = "";
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+    });
+
+    // Sync initial state (e.g. when value prop was set on SSR)
+    sync();
+  }
+
+  document
+    .querySelectorAll<HTMLElement>("[data-search]")
+    .forEach(initSearch);
+</script>

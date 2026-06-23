@@ -17,10 +17,11 @@
    buttons, code — is handled by components. Nothing here
    should clash with component stylesheets.
    ============================================================ */
-@import "./color.vars.css";
+/* @import "./color.vars.css";
 @import "./vars.css";
 @import "./tokens.css";
-@import "./color.tokens.css";
+@import "./color.tokens.css"; */
+@import "../../styles/tokens.generated.css";
 
 /* ─── BOX MODEL ───────────────────────────────────────────── */
 
@@ -72,6 +73,7 @@ body {
   line-height: var(--leading--normal);
   color: var(--text--primary);
   background-color: var(--bg--0);
+  background-image: var(--bg--image);
   min-height: 100dvh;
 
   /* Subpixel antialiasing where supported */

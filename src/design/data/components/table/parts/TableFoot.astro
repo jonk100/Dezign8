@@ -1,0 +1,33 @@
+---
+/**
+ * TableFoot
+ *
+ * Renders a `<tfoot>` element inside a `<Table>`.
+ * Pass via the `foot` slot — works in both data-driven and compound mode:
+ *
+ * ```astro
+ * <Table data={rows} columns={cols} caption="Sales">
+ *   <TableFoot slot="foot">
+ *     <TableRow>
+ *       <TableCell>Total</TableCell>
+ *       <TableCell align="end">{total}</TableCell>
+ *     </TableRow>
+ *   </TableFoot>
+ * </Table>
+ * ```
+ *
+ * table.css applies `font-weight: medium` and a top border to tfoot cells.
+ * Override in table.css under `.table tfoot td` if needed.
+ *
+ * @see TableRow  — for rows inside tfoot
+ * @see TableCell — for cells inside tfoot
+ */
+
+import type { TableFootProps } from "../table-parts.props";
+
+type Props = TableFootProps;
+---
+
+<tfoot {...Astro.props}>
+  <slot />
+</tfoot>

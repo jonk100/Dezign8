@@ -1,0 +1,101 @@
+/* design/feedback/badge/badge.css */
+
+/**
+ * Badge component styles.
+ *
+ * This file handles the badge-specific size map and dot mode.
+ * Variant, color, and placement styles all live in feedback.css.
+ *
+ * Size map (modifier classes written by useBadge via useFeedback):
+ *   .feedback--xs  → compact (dot-friendly)
+ *   .feedback--sm  → standard count badge (default)
+ *   .feedback--md  → larger count / label badge
+ *   .feedback--lg  → prominent label badge
+ *   .feedback--xl  → large display badge
+ *
+ * Token channels written by badge-specific size rules:
+ *   --badge--font-size   → font-size of the badge text
+ *   --badge--padding-x   → inline padding
+ *   --badge--padding-y   → block padding
+ *   --badge--min-width   → minimum width (keeps count badges circular at low nums)
+ *   --badge--height      → min-height / line-height anchor
+ */
+
+/* ─── Base Badge layout ──────────────────────────────────────────────────── */
+
+.badge {
+  font-size:      var(--badge--font-size);
+  font-weight:    var(--weight--semibold);
+  padding-block:  var(--badge--padding-y);
+  padding-inline: var(--badge--padding-x);
+  min-width:      var(--badge--min-width);
+  min-height:     var(--badge--height);
+  text-align:     center;
+  border:         2px solid var(--feedback--color-muted);
+}
+
+.feedback.badge {
+  --feedback--radius: var(--radius--md);
+
+}
+
+/* ─── Size map ───────────────────────────────────────────────────────────── */
+
+.feedback--xs.badge {
+  --badge--font-size:  var(--fsf--xs);
+  --badge--padding-y:  calc(var(--space-in--xs) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--xs) / 1.5);
+  --badge--min-width:  calc(var(--icon--size-xs) * 1.5);
+  --badge--height:     var(--icon--size-2xs);
+}
+
+.feedback--sm.badge {
+  --badge--font-size:  var(--fsf--sm);
+  --badge--padding-y:  calc(var(--space-in--sm) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--sm) / 1.5);
+  --badge--min-width:   calc(var(--icon--size-sm) * 1.5);
+  --badge--height:     var(--icon--size-xs);
+}
+
+.feedback--md.badge {
+  --badge--font-size:  var(--fsf--md);
+  --badge--padding-y:  calc(var(--space-in--md) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--md) / 1.5);
+  --badge--min-width:  calc(var(--icon--size-md) * 1.75);
+  --badge--height:     var(--icon--size-sm);
+}
+
+.feedback--lg.badge {
+  --badge--font-size:  var(--fsf--lg);
+  --badge--padding-y:  calc(var(--space-in--lg) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--lg) / 1.25);
+  --badge--min-width:  calc(var(--icon--size-lg) * 1.5);
+  --badge--height:     var(--icon--size-md);
+}
+
+.feedback--xl.badge {
+  --badge--font-size:  var(--fsf--lg);
+  --badge--padding-y:  calc(var(--space-in--xl) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--xl) / 1.25);
+  --badge--min-width:  calc(var(--icon--size-xl) * 1.5);
+  --badge--height:     calc(var(--icon--size-lg) / 1.25);
+}
+
+/* ─── Dot mode ───────────────────────────────────────────────────────────── */
+
+
+
+.badge--dot {
+  padding:    0;
+  min-width:  var(--badge--dot-size);
+  min-height: var(--badge--dot-size);
+  width:      var(--badge--dot-size);
+  height:     var(--badge--dot-size);
+}
+
+/* Size map for dot mode */
+.feedback--xs.badge--dot { --badge--dot-size: calc(var(--icon--size-xs) / 2); }
+.feedback--sm.badge--dot { --badge--dot-size: calc(var(--icon--size-sm) / 1.5); }
+.feedback--md.badge--dot { --badge--dot-size: var(--icon--size-md);  }
+.feedback--lg.badge--dot { --badge--dot-size: var(--icon--size-lg); }
+.feedback--xl.badge--dot { --badge--dot-size: var(--icon--size-xl); }

@@ -1,11 +1,80 @@
 ---
-import { useInput } from "./input.hook";
-import { InputProps } from "./input.props";
+/**
+ * Input
+ *
+ * Single-line text input with optional leading/trailing slot content.
+ * The visual border and background belong to the wrapper element;
+ * the inner <input> is transparent and inherits all visual properties.
+ *
+ * @slots
+ *   start — Leading content inside the field boundary.
+ *           Common uses: search icon, flag + dial code, currency symbol.
+ *           Non-interactive content; pointer-events are suppressed.
+ *           For interactive content (e.g. a country-code selector), set
+ *           pointer-events: auto on the slotted element directly.
+ *
+ *   end   — Trailing content inside the field boundary.
+ *           Common uses: password-reveal button, clear button, character count.
+ *           Interactive elements (buttons, links) inside this slot receive
+ *           pointer-events automatically via input.css.
+ *
+ * @example
+ * <!-- Basic text input -->
+ * <Input name="username" placeholder="Username" />
+ *
+ * @example
+ * <!-- Password with reveal toggle (end slot) -->
+ * <Input id="password" name="password" type="password" required>
+ *   <button slot="end" type="button" aria-label="Show password">👁</button>
+ * </Input>
+ *
+ * @example
+ * <!-- Search input with leading icon (start slot) -->
+ * <Input name="q" type="search" placeholder="Search…" size="lg" fullWidth>
+ *   <Icon slot="start" name="search" />
+ * </Input>
+ *
+ * @example
+ * <!-- Inside a Field for full accessibility wiring -->
+ * <Field id="email" invalid={!isValid}>
+ *   <Label slot="label" for="email" required>Email</Label>
+ *   <Input
+ *     id="email"
+ *     name="email"
+ *     type="email"
+ *     invalid={!isValid}
+ *     aria-describedby="email-error"
+ *     fullWidth
+ *   />
+ *   <span slot="error" id="email-error">Enter a valid email address.</span>
+ * </Field>
+ *
+ * @see input.hook.ts  — resolves props to { Tag, props, inputAttrs }
+ * @see input.props.ts — full prop type reference
+ * @see input.css      — inner control and slot styles
+ * @see forms.css      — shared variant and state styles
+ */
+
+import type { InputProps } from "./input.props";
+import { useInput }        from "./input.hook";
+import "../../forms.css";
+import "./input.css";
 
 const { Tag, props, inputAttrs } = useInput(Astro.props as InputProps);
 ---
+
 <Tag {...props}>
-  {Astro.slots.has("start") && <div class="input__start"><slot name="start" /></div>}
+  {Astro.slots.has("start") && (
+    <div class="input__start">
+      <slot name="start" />
+    </div>
+  )}
+
   <input class="input__control" {...inputAttrs} />
-  {Astro.slots.has("end") && <div class="input__end"><slot name="end" /></div>}
+
+  {Astro.slots.has("end") && (
+    <div class="input__end">
+      <slot name="end" />
+    </div>
+  )}
 </Tag>

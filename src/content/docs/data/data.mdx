@@ -1,0 +1,227 @@
+---
+title: Data Category
+description: Token-driven data display components with shared color channel architecture, density scaling, and a delegating hook model built for tabular and metric data.
+category: Data
+status: stable
+---
+
+## Overview
+
+The Data category provides components for displaying structured information: tables, lists, feeds, and standalone metrics. Every component inherits the same color channel system, density scale, and state props through a shared category hook — `useData` — which handles the common ground while each component hook layers its own structure on top.
+
+**Components in this category:**
+
+| Component | Element | Primary use |
+|---|---|---|
+| `Table` | `<div> + <table>` | Tabular data with rows and columns |
+| `List` | `<ul>` / `<ol>` | Ordered or unordered item collections |
+| `Feed` | `<section>` | Chronological stream of items |
+| `Stat` | `<figure>` | Single standalone metric with label |
+| `Metric` | `<figure>` | Metric with trend and comparison value |
+
+**Deferred to a future data extension:** bar-chart, line-chart, pie-chart, sparkline, description-list, key-value-list, timeline. See `data/_roadmap.md`.
+
+---
+
+## Architecture
+
+### The delegating hook model
+
+Every data component follows the same hook chain:
+
+```
+useData(DataProps)
+       ↓
+useTable / useList / useFeed / useStat / useMetric
+       ↓
+{ wrapperProps, [element props], caption, [structural data] }
+```
+
+`useData` owns everything shared: color channel resolution, density token, variant class, all boolean modifier classes (striped, bordered), all data attributes (data-loading, data-empty, data-interactive, data-selectable, data-scrollable), and base component concerns. Component hooks destructure their own props first, then delegate the rest to `useData`.
+
+No component hook calls `resolveTokens` on `DATA_TOKENS` directly for the shared dimensions — they all go through `useData`.
+
+### Color channel system
+
+The data category introduces a three-channel color architecture — `color`, `bg`, `highlight` — that maps the same color role differently per component. Setting `color="primary"` on a Table tints cell borders; on a Stat it tints the value text. The underlying mechanism is the same: `resolveColorRole` fans each role out into a full shade family of CSS custom properties.
+
+```
+color="primary"  →  resolveColorRole("primary", "data--color")
+                 →  --data--color--subtle:  var(--primary--subtle)
+                    --data--color--muted:   var(--primary--muted)
+                    --data--color--base:    var(--primary--base)
+                    --data--color--vivid:   var(--primary--vivid)
+                    --data--color--deep:    var(--primary--deep)
+                    --data--color--border:  var(--primary--border)
+                    --data--color--text:    var(--primary--text)
+```
+
+Component CSS then reads **whichever shade makes semantic sense** for that element:
+
+```css
+/* table.css — border uses --border shade */
+.table thead th { border-bottom: 2px solid var(--data--color--border); }
+
+/* table.css — hover uses --subtle shade */
+.data[data-interactive] .table tbody tr:hover { background-color: var(--data--color--subtle); }
+
+/* stat.css (future) — value text uses --text shade */
+.stat__value { color: var(--data--color--text); }
+```
+
+The same `color` prop, three components, three different visual effects — all driven by the shade chosen in CSS, not the prop value.
+
+`bg` and `highlight` follow the same pattern with `--data--bg--*` and `--data--highlight--*` channel families.
+
+---
+
+## Shared Token Dimensions
+
+All data components accept these props, resolved by `useData`:
+
+| Prop | Mechanism | Effect |
+|---|---|---|
+| `color` | `resolveColorRole` → `--data--color--*` | Primary accent: borders, separators, hover states, text accents |
+| `bg` | `resolveColorRole` → `--data--bg--*` | Background tinting: container fill, row tints, card backgrounds |
+| `highlight` | `resolveColorRole` → `--data--highlight--*` | Featured items: pinned rows, current events, emphasis values |
+| `variant` | class modifier | Container decoration: `plain` `outlined` `soft` `elevated` |
+| `size` | `--data--size` channel | Row/item density: `compact` `comfortable` `spacious` |
+
+### Color roles
+
+All eight color roles are valid for `color`, `bg`, and `highlight`:
+
+| Role | Typical use |
+|---|---|
+| `primary` | Default accent, interactive highlights |
+| `secondary` | Supporting accent, alternative highlights |
+| `tertiary` | Neutral-adjacent accent |
+| `accent` | High-visibility callouts |
+| `success` | Positive states, growth indicators |
+| `danger` | Error states, negative indicators |
+| `warning` | Caution states, at-risk indicators |
+| `neutral` | No-emphasis styling, muted tables |
+
+### Variant
+
+Controls the outer container decoration. Rules live in `data.css` and apply to the wrapper element.
+
+| Value | Appearance |
+|---|---|
+| `plain` | No border, no background (default) |
+| `outlined` | 1px border using `--data--color--border` |
+| `soft` | Subtle tinted fill using `--data--bg--subtle` |
+| `elevated` | Box shadow, no border |
+
+### Size / density
+
+One value drives the entire component's spatial scale via `calc()`:
+
+| Value | `--data--size` | Approx. row height | Use case |
+|---|---|---|---|
+| `compact` | `var(--space-xs)` | ~32px | Dense dashboards, data grids |
+| `comfortable` | `var(--space-sm)` | ~44px | Default for most interfaces |
+| `spacious` | `var(--space-md)` | ~56px | Readability-focused layouts |
+
+---
+
+## Shared Behavioral Props
+
+Resolved by `useData` into class modifiers and data attributes. None of these write CSS channels — they're all structural signals.
+
+| Prop | Output | CSS hook |
+|---|---|---|
+| `loading` | `data-loading="true"` | `.data[data-loading]` — disables interaction; component CSS adds skeleton |
+| `empty` | `data-empty=""` or `data-empty="message"` | `.data[data-empty]` — component renders `.data__empty` element |
+| `striped` | class `.data--striped` | Component CSS stripes own rows/items |
+| `bordered` | class `.data--bordered` | Component CSS adds grid lines to own cells |
+| `interactive` | `data-interactive="true"` | Component CSS adds hover + cursor to own rows/items |
+| `selectable` | `data-selectable="true"` | Component CSS reserves checkbox column; component renders inputs |
+| `scrollable` | `data-scrollable="true"` | `data.css` sets `overflow: auto`; Table overrides to `overflow-x` |
+
+---
+
+## CSS Architecture
+
+### Two-element structure (Table)
+
+Table uses a wrapper `<div>` containing the `<table>`. This is required because `overflow: auto` on `<table>` is ignored by all browsers — horizontal scroll must be on a block container.
+
+```html
+<div class="data data--outlined data--striped"
+     style="--data--color--border: var(--primary--border); --data--size: var(--space-sm);"
+     data-scrollable>
+  <table class="table table--fixed table--sortable">
+    <thead>…</thead>
+    <tbody>…</tbody>
+  </table>
+</div>
+```
+
+The wrapper carries `.data` and all category-level classes, style channels, and data attributes. CSS custom properties cascade from the wrapper into the table and all descendants — `var(--data--color--border)` in `thead th` reads the value set on the `<div>`.
+
+### Single-element structure (List, Feed, Stat, Metric)
+
+Other data components render a single semantic element with `.data` as a root class:
+
+```html
+<ul class="data data--striped" style="--data--color--base: var(--primary--base);">
+  <li class="list__item">…</li>
+</ul>
+```
+
+### CSS file ownership
+
+| File | Owns |
+|---|---|
+| `data.css` | `.data` base, variant rules, scrollable, loading base (pointer-events), `.data__empty` |
+| `table.css` | `.table` structure, thead/tbody/tfoot, sticky header, sortable, striped/bordered (descendant selectors), skeleton shimmer, interactive/selectable rows |
+| `list.css` | `.list` structure, item borders, striped items, interactive items |
+
+Striped, bordered, interactive and selectable CSS uses **descendant selectors** because the modifier class is on the wrapper while the targets are inside the component element:
+
+```css
+/* .data--striped is on the wrapper; .table tbody tr is inside */
+.data--striped .table tbody tr:nth-child(even) {
+  background-color: var(--data--bg--subtle);
+}
+```
+
+---
+
+## Adding a New Data Component
+
+The pattern for any new data component is the same files:
+
+```
+data/components/<name>/
+  <name>.tokens.ts   — table-specific token dimensions only; useData handles shared ones
+  <name>.props.ts    — extends DataProps; add component-specific props
+  <name>.hook.ts     — destructures own props, delegates to useData
+  <name>.css         — component structure; uses descendant selectors for shared modifiers
+  <Name>.astro       — template; imports data.css + own css
+  <Name>.client.ts   — client-side JS if the component needs interactivity
+```
+
+If the component needs no new token dimensions, `tokens.ts` is minimal:
+```ts
+// No new dimensions — useData handles all shared token resolution.
+// This file exists for type exports and defaults only.
+export const FEED_DEFAULTS = { ... } as const;
+```
+
+If it needs new dimensions, use `defineTokens`:
+```ts
+export const LIST_TOKENS = defineTokens({
+  orientation: dimension("orientation", LIST_ORIENTATION, { modifier: true }),
+});
+```
+
+The hook always calls `useData` first:
+```ts
+export function useList(props: ListProps) {
+  const { ordered, orientation, ...dataProps } = props;
+  const { dataClass, dataStyle, dataAttrs, caption, rest } = useData(dataProps);
+  // … compose list-specific classes on top
+}
+```

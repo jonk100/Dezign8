@@ -1,0 +1,128 @@
+---
+/**
+ * Select
+ *
+ * Native select control supporting both single and multi-value selection,
+ * discriminated by the `multiple` prop.
+ *
+ * The visual wrapper is a div that owns the border, background, and radius.
+ * The inner <select> is reset to transparent with appearance: none, and a
+ * custom arrow takes the place of the browser-default dropdown indicator.
+ *
+ * NOTE: The <option> list is styled by the OS/browser regardless of CSS.
+ *       For a fully customised dropdown with styled options, a future
+ *       Combobox component using [role="listbox"] would be required.
+ *
+ * @slots
+ *   start — Leading content inside the field boundary (e.g. an icon or flag).
+ *           pointer-events are suppressed so clicks pass through to the
+ *           <select> element beneath.
+ *
+ *   arrow — Replace the default ▾ arrow indicator with custom content.
+ *           Useful for an Icon component or a custom SVG chevron.
+ *           Receives pointer-events: none from select.css.
+ *
+ * @example
+ * <!-- Single select with placeholder -->
+ * <Select
+ *   name="country"
+ *   placeholder="Select a country…"
+ *   options={[
+ *     { value: "us", label: "United States" },
+ *     { value: "uk", label: "United Kingdom" },
+ *     { value: "ca", label: "Canada" },
+ *   ]}
+ * />
+ *
+ * @example
+ * <!-- Controlled single select -->
+ * <Select
+ *   name="role"
+ *   value="editor"
+ *   options={roles}
+ *   size="lg"
+ *   variant="soft"
+ *   color="primary"
+ * />
+ *
+ * @example
+ * <!-- Multi-select — note multiple={true} and value as array -->
+ * <Select
+ *   name="tags"
+ *   multiple
+ *   value={["ts", "astro"]}
+ *   options={tags}
+ *   fullWidth
+ * />
+ *
+ * @example
+ * <!-- With custom arrow icon -->
+ * <Select name="sort" options={sortOptions}>
+ *   <Icon slot="arrow" name="chevron-down" size="sm" />
+ * </Select>
+ *
+ * @example
+ * <!-- Inside a Field for accessibility wiring -->
+ * <Field id="role" invalid={!isValid}>
+ *   <Label slot="label" for="role" required>Role</Label>
+ *   <Select
+ *     id="role"
+ *     name="role"
+ *     options={roles}
+ *     invalid={!isValid}
+ *     aria-describedby="role-error"
+ *     fullWidth
+ *   />
+ *   <span slot="error" id="role-error">Please select a role.</span>
+ * </Field>
+ *
+ * @see select.hook.ts  — resolves props to { Tag, props, selectAttrs, resolvedOptions, placeholder }
+ * @see select.props.ts — full prop type reference including SelectOption
+ * @see select.css      — native control reset and custom arrow styles
+ * @see forms.css       — shared variant and state styles
+ */
+
+import type { SelectProps } from "./select.props";
+import { useSelect } from "./select.hook";
+import "~/forms/forms.css";
+import "./select.css";
+
+const { Tag, props, selectAttrs, resolvedOptions, placeholder } = useSelect(
+  Astro.props as SelectProps,
+);
+---
+
+<Tag {...props}>
+  {
+    Astro.slots.has("start") && (
+      <div class="select__start">
+        <slot name="start" />
+      </div>
+    )
+  }
+
+  <select class="select__control" {...selectAttrs}>
+    {
+      placeholder && (
+        <option value="" disabled>
+          {placeholder}
+        </option>
+      )
+    }
+    {
+      resolvedOptions.map((opt) => (
+        <option
+          value={opt.value}
+          selected={opt.selected || undefined}
+          disabled={opt.disabled || undefined}
+        >
+          {opt.label}
+        </option>
+      ))
+    }
+  </select>
+
+  <div class="select__arrow" aria-hidden="true">
+    <slot name="arrow">▾</slot>
+  </div>
+</Tag>

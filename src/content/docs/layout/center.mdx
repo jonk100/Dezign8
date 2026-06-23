@@ -1,0 +1,68 @@
+---
+title: Center
+description: A utility component that centers its children horizontally and vertically.
+---
+import { Center } from '~/layout/components/center/Center.astro';
+import { PropsApi } from '~/components/PropsApi';
+import { CenterProps } from '~/layout/components/center/center.props';
+
+# Center
+
+The `Center` component is a specialized layout utility that centers its children. By default, it centers content on both axes using CSS flexbox. 
+
+## Basic Centering
+
+Wrap any content in `<Center>` to align it perfectly in the middle of its container. The container must have a defined height for vertical centering to be visible.
+
+  <Center p="md" bg="var(--bg--2)" style="min-height: 150px; border-radius: var(--radius--md);">
+    <span>Centered Content</span>
+  </Center>
+
+```astro
+<Center p="md" bg="var(--bg--2)" style="min-height: 150px; border-radius: var(--radius--md);">
+  <span>Centered Content</span>
+</Center>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Center p="md" bg="var(--bg--2)" style="min-height: 150px;">
+    <span>Centered Content</span>
+  </Center>
+</div>
+
+### Directional Centering
+
+You can limit the centering behavior to a single axis using the `direction` prop.
+
+```astro
+<Center direction="horizontal" p="md" bg="var(--bg--2)" style="min-height: 150px;">
+  <span>Horizontally Centered</span>
+</Center>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Center direction="horizontal" p="md" bg="var(--bg--2)" style="min-height: 150px;">
+    <span>Horizontally Centered</span>
+  </Center>
+</div>
+
+```astro
+<Center direction="vertical" p="md" bg="var(--bg--2)" style="min-height: 150px;">
+  <span>Vertically Centered</span>
+</Center>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Center direction="vertical" p="md" bg="var(--bg--2)" style="min-height: 150px;">
+    <span>Vertically Centered</span>
+  </Center>
+</div>
+
+## Props API
+
+### Center Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `direction` | `"both" \| "horizontal" \| "vertical"` | `"both"` | The axis along which to center the content. |
+
+### Layout & Spacing Props (Inherited)
+
+`Center` inherits all standard `LayoutProps` and `SpacingProps`, meaning you can apply `p`, `m`, `bg`, etc., just like you would on a `Box`.

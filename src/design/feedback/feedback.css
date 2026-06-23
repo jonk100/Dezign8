@@ -1,0 +1,137 @@
+/* design/feedback/feedback.css */
+
+/**
+ * Shared styles for all feedback components.
+ *
+ * This file owns:
+ *   1. Base `.feedback` reset and layout
+ *   2. Variant rules (--soft, --outlined, --solid, --ghost, --dashed)
+ *      reading from the seven --feedback--color-* channels written by useFeedback
+ *   3. Pulse animation keyframe + reduced-motion guard
+ *
+ * Each component imports this file alongside its own component CSS.
+ *
+ * CSS custom properties written by useFeedback:
+ *   --feedback--radius         border-radius value
+ *   --feedback--color-subtle   bg for soft rest state
+ *   --feedback--color-muted    bg for soft hover
+ *   --feedback--color-base     fill for solid; active border
+ *   --feedback--color-vivid    hover on solid
+ *   --feedback--color-deep     pressed / active state
+ *   --feedback--color-border   border for outlined/dashed
+ *   --feedback--color-text     foreground text on non-solid backgrounds
+ */
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+
+.feedback {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  border-radius:   var(--feedback--radius, var(--radius--full));
+  border:          1px solid transparent;
+  font-family:     var(--family--sans);
+  line-height:     1;
+  white-space:     nowrap;
+  transition:
+    background-color 150ms ease,
+    border-color     150ms ease,
+    color            150ms ease;
+}
+
+/* ─── Variants ───────────────────────────────────────────────────────────── */
+
+/* solid — filled background, opaque */
+.feedback--solid {
+  background-color: var(--feedback--color-base);
+  border-color:     var(--feedback--color-base);
+  color:            var(--text--on-color);
+}
+
+/* soft — light tinted bg, subtle border */
+.feedback--soft {
+  background-color: var(--feedback--color-subtle);
+  border-color:     var(--feedback--color-border);
+  color:            var(--feedback--color-text);
+}
+
+/* outlined — transparent bg, visible border */
+.feedback--outlined {
+  background-color: transparent;
+  border-color:     var(--feedback--color-border);
+  color:            var(--feedback--color-text);
+}
+
+/* ghost — no border, no background */
+.feedback--ghost {
+  background-color: transparent;
+  border-color:     transparent;
+  color:            var(--feedback--color-text);
+}
+
+/* dashed — transparent bg, dashed border */
+.feedback--dashed {
+  background-color: transparent;
+  border-color:     var(--feedback--color-border);
+  border-style:     dashed;
+  color:            var(--feedback--color-text);
+}
+
+/* ─── Pulse animation ─────────────────────────────────────────────────────── */
+
+.feedback--pulse {
+  animation: feedback-pulse 2s ease-in-out infinite;
+}
+
+@keyframes feedback-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* ─── Reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .feedback,
+  .feedback--pulse {
+    animation:  none;
+    transition: none;
+  }
+}
+
+/* ─── Placement (overlay positioning) ────────────────────────────────────── */
+
+/*
+ * When data-placement is set, the component positions itself absolutely
+ * relative to the nearest position: relative ancestor.
+ *
+ * Translate offsets nudge the badge to overlap the corner naturally.
+ * Adjust --feedback-placement-offset in component CSS for tighter/looser fit.
+ */
+
+[data-placement] {
+  position: absolute;
+}
+
+[data-placement="top-end"] {
+  top:       0;
+  right:     0;
+  transform: translate(40%, -40%);
+}
+
+[data-placement="top-start"] {
+  top:       0;
+  left:      0;
+  transform: translate(-40%, -40%);
+}
+
+[data-placement="bottom-end"] {
+  bottom:    0;
+  right:     0;
+  transform: translate(40%, 40%);
+}
+
+[data-placement="bottom-start"] {
+  bottom:    0;
+  left:      0;
+  transform: translate(-40%, 40%);
+}

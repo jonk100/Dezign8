@@ -1,0 +1,48 @@
+---
+/**
+ * TableRow
+ *
+ * Renders a `<tr>` element. Works inside `<TableHead>`, `<TableBody>`,
+ * and `<TableFoot>`.
+ *
+ * ```astro
+ * <TableRow>
+ *   <TableCell>Value</TableCell>
+ * </TableRow>
+ *
+ * <!-- Highlighted row -->
+ * <TableRow highlighted>
+ *   <TableCell>Pinned item</TableCell>
+ * </TableRow>
+ * ```
+ *
+ * HIGHLIGHTED ROWS
+ * ─────────────────────────────────────────────────────────────────────────────
+ * `highlighted` renders `data-highlighted=""` on the `<tr>`. table.css
+ * applies `--data--highlight--*` channels to these rows — a left border
+ * accent and subtle background tint using the parent Table's `highlight` prop.
+ *
+ * In data-driven mode, add `_highlighted: true` to the RowData record
+ * instead — Table.astro handles the attribute automatically.
+ *
+ * INTERACTIVE / SELECTABLE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Hover and cursor styles for interactive rows are applied by table.css via
+ * `[data-interactive]` on the wrapper — no prop needed on TableRow itself.
+ *
+ * @see TableCell — for cells inside this row
+ */
+
+import type { TableRowProps } from "../table-parts.props";
+
+type Props = TableRowProps;
+
+const { highlighted, ...rest } = Astro.props as TableRowProps;
+---
+
+<tr
+  data-highlighted={highlighted ? "" : undefined}
+  {...rest}
+>
+  <slot />
+</tr>

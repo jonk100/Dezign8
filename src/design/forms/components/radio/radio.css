@@ -1,0 +1,149 @@
+/* ============================================================
+   radio.css
+   ─────────────────────────────────────────────────────────────
+   Radio-specific styles. Imported alongside forms.css.
+
+   STRUCTURE
+   ──────────────────────────────────────────────────────────────
+     <label class="form radio radio--end …">    ← wrapper (<label>)
+       <input class="radio__control" />           ← hidden native input
+       <span  class="radio__indicator" />         ← custom visual circle
+       <span  class="radio__label">…</span>       ← label slot content
+     </label>
+
+   DIFFERENCES FROM CHECKBOX
+   ──────────────────────────────────────────────────────────────
+   - Indicator is a circle (border-radius: 50%)
+   - Selected state shows a filled inner dot, not a checkmark
+   - No indeterminate state — radio buttons are always on or off
+   - Indicator radius is always 50% regardless of --form--radius
+     (the wrapper's radius still reads --form--radius for chip style)
+
+   All other patterns (sizing, label position, focus, disabled) are
+   identical to checkbox.css.
+   ============================================================ */
+
+/* ─── WRAPPER ─────────────────────────────────────────────── */
+
+.radio {
+  min-block-size: unset;
+  padding:        calc(var(--form--size, 2.5rem) * 0.15);
+  gap:            calc(var(--form--size, 2.5rem) * 0.3);
+  flex-direction: row;
+  align-items:    center;
+  cursor:         pointer;
+  user-select:    none;
+}
+
+/* ─── HIDDEN NATIVE INPUT ─────────────────────────────────── */
+
+.radio__control {
+  position:       absolute;
+  opacity:        0;
+  width:          0;
+  height:         0;
+  pointer-events: none;
+  margin:         0;
+}
+
+/* ─── CUSTOM INDICATOR ────────────────────────────────────── */
+
+.radio__indicator {
+  flex-shrink: 0;
+
+  width:  calc(var(--form--size, 2.5rem) * 0.45);
+  height: calc(var(--form--size, 2.5rem) * 0.45);
+
+  display:         grid;
+  place-items:     center;
+
+  /* Always a circle — radio is always circular regardless of --form--radius */
+  border-radius: 50%;
+  border:        2px solid var(--border--strong, var(--border--default));
+  background:    transparent;
+
+  transition:
+    background-color var(--transition--fast, 150ms ease),
+    border-color     var(--transition--fast, 150ms ease);
+}
+
+/* Inner dot — initially invisible */
+.radio__indicator::after {
+  content: "";
+  display: block;
+
+  /* Proportional inner dot */
+  width:         45%;
+  height:        45%;
+  border-radius: 50%;
+  background:    transparent;
+
+  transition:
+    background-color var(--transition--fast, 150ms ease),
+    transform        var(--transition--fast, 150ms ease);
+
+  transform: scale(0);
+}
+
+/* ─── HOVER (unselected) ──────────────────────────────────── */
+
+.radio:hover:not([data-disabled]) .radio__indicator {
+  border-color: var(--form--color-border, var(--primary--border));
+}
+
+/* ─── SELECTED ────────────────────────────────────────────── */
+
+.radio__control:checked ~ .radio__indicator {
+  background-color: var(--form--color-base, var(--primary--base));
+  border-color:     var(--form--color-base, var(--primary--base));
+}
+
+.radio__control:checked ~ .radio__indicator::after {
+  background-color: var(--text--on-color, #fff);
+  transform:        scale(1);
+}
+
+/* ─── FOCUS ───────────────────────────────────────────────── */
+
+.radio__control:focus-visible ~ .radio__indicator {
+  outline: none;
+  box-shadow: 0 0 0 3px
+    color-mix(in oklch, var(--form--color-base, var(--primary--base)) 30%, transparent);
+}
+
+/* ─── LABEL TEXT ─────────────────────────────────────────── */
+
+.radio__label {
+  font-size:   calc(var(--form--size, 2.5rem) * 0.35);
+  line-height: 1.4;
+  color:       inherit;
+}
+
+/* ─── LABEL POSITION MODIFIERS ───────────────────────────── */
+/* Identical logic to checkbox — DOM order never changes */
+
+.radio--end    { flex-direction: row; }
+.radio--start  { flex-direction: row-reverse; justify-content: flex-end; }
+.radio--top    { flex-direction: column-reverse; align-items: center; }
+.radio--bottom { flex-direction: column; align-items: center; }
+
+/* ─── INVALID STATE ───────────────────────────────────────── */
+
+.radio[data-invalid] .radio__indicator {
+  border-color: var(--danger--border);
+}
+
+/* ─── DISABLED STATE ──────────────────────────────────────── */
+
+.radio[data-disabled] {
+  cursor: default;
+}
+
+/* ─── REDUCED MOTION ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .radio__indicator,
+  .radio__indicator::after {
+    transition: none;
+  }
+}

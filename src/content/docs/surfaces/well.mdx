@@ -1,0 +1,74 @@
+---
+title: Well Component
+description: Inset content container with a sunken appearance relative to its context.
+category: Surfaces
+status: stable
+---
+
+import Well from "~/surfaces/components/well/Well.astro";
+
+## Overview
+
+`Well` creates a recessed content area. By default, it uses the `inset` layer, which automatically applies an inner shadow and darkens its background relative to whatever surface it is placed inside. This makes it perfect for secondary content, code blocks, or logs.
+
+## Examples
+
+### Basic Well
+
+<div style="margin-bottom: 2rem;">
+  <Well padding="md" radius="md">
+    <p style="margin: 0; color: var(--text--secondary); font-family: monospace;">$ npm install dezign8</p>
+  </Well>
+</div>
+
+```astro
+<Well padding="md" radius="md">
+  <p>$ npm install dezign8</p>
+</Well>
+```
+
+### Adaptive Background
+
+The `Well` component intelligently darkens relative to its parent container using `color-mix`. Notice how the Well inside the soft-tinted Card is slightly darker than the Card itself, without needing explicit color props.
+
+<div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+  <!-- Placed directly on the page (layer 0) -->
+  <div style="flex: 1; padding: 1rem; border: 1px solid var(--border--subtle); border-radius: var(--radius--md);">
+    <p>On the page:</p>
+    <Well padding="md" radius="sm">
+      <span style="font-size: 0.875rem;">Inset background</span>
+    </Well>
+  </div>
+
+  <!-- Placed inside a soft primary container -->
+  <div class="surface surface--soft" style="--surface--color--subtle: var(--primary--subtle); flex: 1; padding: 1rem; border-radius: var(--radius--md);">
+    <p>Inside tinted container:</p>
+    <Well padding="md" radius="sm">
+      <span style="font-size: 0.875rem;">Inset background (adaptive)</span>
+    </Well>
+  </div>
+</div>
+
+```astro
+<!-- On the page context -->
+<Well padding="md">
+  <span>Inset background</span>
+</Well>
+
+<!-- Inside a tinted container context -->
+<Card variant="soft" color="primary">
+  <Well padding="md">
+    <span>Inset background (adaptive)</span>
+  </Well>
+</Card>
+```
+
+### Changing the HTML Tag
+
+Like `Section`, the `Well` supports the `as` prop to change the rendered DOM node (e.g., `div`, `aside`, `section`, `span`).
+
+```astro
+<Well as="aside" padding="md">
+  <p>Side note...</p>
+</Well>
+```

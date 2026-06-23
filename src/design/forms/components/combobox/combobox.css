@@ -1,0 +1,177 @@
+/* ============================================================
+   combobox.css
+   ─────────────────────────────────────────────────────────────
+   Combobox-specific styles. Imported alongside forms.css.
+
+   STRUCTURE
+   ──────────────────────────────────────────────────────────────
+     <div class="form combobox …" data-combobox>
+       <input class="combobox__control" role="combobox" />  ← text input
+       <input type="hidden" … />                             ← submission value
+       <div class="combobox__arrow">▾</div>                  ← dropdown indicator
+       <ul class="combobox__listbox" role="listbox" hidden>  ← custom dropdown
+         <li class="combobox__option" role="option">…</li>
+       </ul>
+     </div>
+
+   POSITIONING
+   ──────────────────────────────────────────────────────────────
+   The listbox is absolutely positioned below the wrapper.
+   The wrapper needs position: relative (added via .combobox below).
+   z-index: --z--dropdown ensures the listbox floats above other content.
+
+   OPTION STATES
+   ──────────────────────────────────────────────────────────────
+   .combobox__option--active → keyboard-highlighted option (JS-managed)
+   [aria-selected="true"]    → currently selected option
+   [aria-disabled="true"]    → disabled option (not selectable)
+   [hidden]                  → filtered out (JS toggles per option)
+   ============================================================ */
+
+/* ─── WRAPPER ─────────────────────────────────────────────── */
+
+.combobox {
+  position: relative; /* Anchors the absolutely-positioned listbox */
+  cursor:   text;
+}
+
+/* ─── VISIBLE TEXT CONTROL ─────────────────────────────────── */
+
+.combobox__control {
+  flex: 1;
+  min-inline-size: 0;
+
+  background:  transparent;
+  border:      none;
+  outline:     none;
+  color:       inherit;
+  font-size:   inherit;
+  font-family: inherit;
+  line-height: inherit;
+  padding:     0;
+  margin:      0;
+
+  appearance:         none;
+  -webkit-appearance: none;
+}
+
+.combobox__control::placeholder {
+  color:   var(--text--tertiary, var(--text--secondary));
+  opacity: 1;
+}
+
+.combobox__control:focus { outline: none; }
+
+/* ─── DROPDOWN ARROW ───────────────────────────────────────── */
+
+.combobox__arrow {
+  display:        flex;
+  align-items:    center;
+  flex-shrink:    0;
+  color:          var(--text--secondary);
+  pointer-events: none;
+
+  transition: transform var(--transition--fast, 150ms ease),
+              color     var(--transition--fast, 150ms ease);
+}
+
+/* Arrow rotates when listbox is open */
+.combobox[aria-expanded="true"] .combobox__arrow,
+.combobox:has(.combobox__listbox:not([hidden])) .combobox__arrow {
+  transform: rotate(180deg);
+  color:     var(--form--color-text, var(--primary--text));
+}
+
+/* ─── LISTBOX DROPDOWN ─────────────────────────────────────── */
+
+.combobox__listbox {
+  position:   absolute;
+  inset-inline: 0;
+  top:        calc(100% + 4px);
+  z-index:    var(--z--dropdown, 200);
+
+  max-block-size: 18rem;
+  overflow-y:     auto;
+  overscroll-behavior: contain;
+
+  /* Visual: same layer as popover/dropdown (Layer 4) */
+  background-color: var(--bg--4, #fff);
+  border:           1px solid var(--border--default);
+  border-radius:    var(--form--radius, var(--radius--md));
+  box-shadow:       var(--shadow--md);
+
+  list-style: none;
+  margin:     0;
+  padding:    var(--space-in--xs, 0.25rem) 0;
+}
+
+/* Hidden listbox — `hidden` attribute; JS removes it on open */
+.combobox__listbox[hidden] {
+  display: none;
+}
+
+/* ─── OPTIONS ──────────────────────────────────────────────── */
+
+.combobox__option {
+  display:     flex;
+  align-items: center;
+  padding-block:  calc(var(--form--size, 2.5rem) * 0.2);
+  padding-inline: calc(var(--form--size, 2.5rem) * 0.4);
+
+  font-size:   calc(var(--form--size, 2.5rem) * 0.35);
+  line-height: 1.4;
+  color:       var(--text--primary);
+  cursor:      pointer;
+
+  transition: background-color var(--transition--fast, 100ms ease);
+}
+
+/* Keyboard-active option (JS adds/removes this class) */
+.combobox__option--active {
+  background-color: var(--form--color-subtle, var(--primary--subtle));
+  color:            var(--form--color-text,   var(--primary--text));
+}
+
+/* Selected option — already chosen */
+.combobox__option[aria-selected="true"] {
+  background-color: var(--form--color-subtle, var(--primary--subtle));
+  color:            var(--form--color-text,   var(--primary--text));
+  font-weight:      500;
+}
+
+/* Selected + active — keyboard is on the already-selected item */
+.combobox__option--active[aria-selected="true"] {
+  background-color: var(--form--color-muted, var(--primary--muted));
+}
+
+/* Disabled option */
+.combobox__option[aria-disabled="true"] {
+  color:          var(--text--tertiary, var(--text--secondary));
+  cursor:         not-allowed;
+  pointer-events: none;
+}
+
+/* Filtered out (JS sets hidden attribute per option) */
+.combobox__option[hidden] {
+  display: none;
+}
+
+/* Empty state — shown when no options match the filter */
+.combobox__empty {
+  padding-block:  calc(var(--form--size, 2.5rem) * 0.3);
+  padding-inline: calc(var(--form--size, 2.5rem) * 0.4);
+  font-size:      calc(var(--form--size, 2.5rem) * 0.35);
+  color:          var(--text--secondary);
+  font-style:     italic;
+  display:        none; /* JS shows this when all options are filtered out */
+}
+
+.combobox__empty--visible {
+  display: block;
+}
+
+/* ─── REDUCED MOTION ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .combobox__arrow { transition: none; }
+}

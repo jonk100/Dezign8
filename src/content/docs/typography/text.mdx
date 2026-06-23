@@ -8,6 +8,8 @@ links:
   source: "https://github.com/jonk100/Dezign8/tree/main/src/design/typography/components/text"
 ---
 import Text from "../../../design/typography/components/text/Text.astro";
+import Box from "~/layout/components/box/Box.astro";
+import Paper from "~/surfaces/components/paper/Paper.astro";
 
 ## Overview
 
@@ -21,9 +23,11 @@ By default, Text renders as a `<p>` tag inheriting global body typography.
 ```astro
 <Text>This is a standard paragraph of text.</Text>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
-  <Text>This is a standard paragraph of text.</Text>
-</div>
+<Box>
+  <Paper>
+    <Text>This is a standard paragraph of text.</Text>
+  </Paper>
+</Box>
 
 ### Sizes & Weights
 Leverage the typography tokens directly via props.

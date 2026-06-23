@@ -1,0 +1,330 @@
+/* ============================================================
+   table.css
+   ─────────────────────────────────────────────────────────────
+   Styles for the Table component.
+
+   HTML STRUCTURE
+   ──────────────────────────────────────────────────────────────
+   <div  class="data [data-modifiers]">   ← wrapperProps (table.css + data.css)
+     <table class="table [table-modifiers]">   ← tableProps
+       <caption>…</caption>
+       <thead><tr><th>…</th></tr></thead>
+       <tbody><tr><td>…</td></tr></tbody>
+     </table>
+   </div>
+
+   CSS custom properties are set on the wrapper div and cascade
+   down into the table and all its descendants automatically.
+
+   CHANNEL MAP
+   ──────────────────────────────────────────────────────────────
+   Set on wrapper by useData → useTable:
+     --data--size              Density (cell padding / row height)
+     --data--color--*          Primary accent: borders, separators, hover
+     --data--bg--*             Background tint: header, striped rows
+     --data--highlight--*      Highlighted row accent
+
+   Set on wrapper by resolveTokens(TABLE_TOKENS):
+     --table--layout           CSS table-layout value (consumed by .table)
+
+   MODIFIER CLASSES — wrapper (.data)
+   ──────────────────────────────────────────────────────────────
+   Variants (data.css):  .data--outlined  .data--soft  .data--elevated
+   Visual:               .data--striped   .data--bordered
+
+   MODIFIER CLASSES — table (.table)
+   ──────────────────────────────────────────────────────────────
+   Layout:    .table--auto       .table--fixed
+   Behaviour: .table--sticky-header  .table--sortable
+
+   DATA ATTRIBUTES — wrapper
+   ──────────────────────────────────────────────────────────────
+   [data-loading]       Skeleton shimmer on tbody cells
+   [data-scrollable]    overflow-x: auto on wrapper (data.css)
+   [data-interactive]   Hover + pointer on tbody rows
+   [data-selectable]    Checkbox column reserved in first cell
+
+   ADJUSTING PROPS
+   ──────────────────────────────────────────────────────────────
+   color       [./table.css]  var(--data--color--*) in thead border,
+                              hover bg, sort indicators, bordered cells
+               @example color="danger" → red header border + hover
+
+   bg          [./table.css]  var(--data--bg--*) in header bg, striped rows
+               @example bg="primary"  → tinted even rows + header
+
+   highlight   [./table.css]  var(--data--highlight--*) on tr[data-highlighted]
+               @example highlight="warning" → amber pinned-row accent
+
+   variant     [./data.css]   plain | outlined | soft | elevated — wrapper
+               Override specific variant rules here if table needs
+               different treatment (e.g. no border-radius on wrapper).
+
+   size        [./table.css]  calc(var(--data--size) * N) on th/td padding
+               @example size="compact" → --data--size: var(--space-xs)
+
+   caption     [./Table.astro] renders as <caption> — no CSS to adjust.
+               Screen readers announce it; always provide one.
+
+   loading     [./table.css]  .data[data-loading] .table tbody td::after
+               Change skeleton shimmer colours or animation here.
+
+   empty       [./table.css]  .table__empty-cell   .data__empty
+               [./Table.astro] change default message string
+
+   striped     [./table.css]  .data--striped .table tbody tr:nth-child(even)
+               Shade: var(--data--bg--subtle). Adjust shade or selector.
+
+   bordered    [./table.css]  .data--bordered .table th, .data--bordered .table td
+               Colour: var(--data--color--border).
+
+   interactive [./table.css]  .data[data-interactive] .table tbody tr
+               Add hover background, transition, cursor here.
+
+   selectable  [./table.css]  .data[data-selectable] first th/td — checkbox col
+               [./Table.astro] selection state is consumer-managed.
+
+   scrollable  [./data.css]   overflow-x: auto on .data[data-scrollable]
+               Pair with an explicit max-inline-size on the wrapper or parent.
+
+   data        [./Table.astro] RowData[] — no CSS to adjust.
+   columns     [./Table.astro] ColumnDef[] — widths applied as inline style on th.
+   layout      [./table.css]  var(--table--layout, auto) on .table
+               @example layout="fixed" → table-layout: fixed + overflow-wrap
+
+   stickyHeader[./table.css]  .table--sticky-header thead th
+               Background: var(--data--bg--subtle). Adjust z-index if
+               table is inside a stacking context with other sticky elements.
+
+   sortable    [./table.css]  .table--sortable th[data-key] — cursor, hover
+               Sort icons: th[aria-sort="ascending" | "descending"]::after
+               @example change ::after content to SVG data-URI for custom icons
+
+   sort        [./Table.astro] sets aria-sort attribute — CSS above handles rest.
+   ============================================================ */
+
+/* ─── BASE TABLE ───────────────────────────────────────────── */
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  table-layout: var(--table--layout, auto);
+}
+
+/* ─── CELLS ────────────────────────────────────────────────── */
+
+.table th,
+.table td {
+  padding-block: calc(var(--data--size, var(--space-in--2xs)) * 1);
+  padding-inline: calc(var(--data--size, var(--space-in--sm)) * 1.5);
+  text-align: start;
+  vertical-align: middle;
+}
+
+/* ─── COLUMN ALIGNMENT ─────────────────────────────────────── */
+/* Applied via data-align attribute on th/td in Table.astro.   */
+
+.table [data-align="center"] {
+  text-align: center;
+}
+.table [data-align="end"] {
+  text-align: end;
+}
+
+/* ─── THEAD ────────────────────────────────────────────────── */
+
+.table thead th {
+  font-weight: var(--weight--semibold, 600);
+  color: var(--text--secondary);
+  white-space: nowrap;
+  background-color: var(--data--bg--subtle, transparent);
+  border-bottom: 2px solid var(--data--color--border, var(--border--default));
+}
+
+/* ─── TBODY ROWS ───────────────────────────────────────────── */
+
+.table tbody tr + tr {
+  border-top: 1px solid var(--border--subtle, var(--border--default));
+}
+
+/* ─── TFOOT ────────────────────────────────────────────────── */
+
+.table tfoot td {
+  font-weight: var(--weight--medium, 500);
+  border-top: 2px solid var(--data--color--border, var(--border--default));
+  color: var(--text--secondary);
+}
+
+/* ─── LAYOUT MODIFIER ──────────────────────────────────────── */
+
+.table--fixed {
+  /* table-layout is driven by var(--table--layout) set in wrapperProps.
+     This class adds complementary styles for fixed-layout tables. */
+  overflow-wrap: break-word; /* prevent long words from overflowing fixed-width cells */
+}
+
+/* ─── STICKY HEADER ─────────────────────────────────────────── */
+/*
+   Requires: scrollable={true} + explicit height on wrapper or parent.
+   The box-shadow replaces the border-bottom since position:sticky
+   lifts the element out of normal flow and the border collapses.
+*/
+
+.table--sticky-header thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--data--bg--subtle, var(--surface--1, #fff));
+  border-bottom: none;
+  box-shadow: 0 2px 0 var(--data--color--border, var(--border--default));
+}
+
+/* ─── SORTABLE ──────────────────────────────────────────────── */
+
+.table--sortable th[data-key] {
+  cursor: pointer;
+  user-select: none;
+}
+
+.table--sortable th[data-key]:hover {
+  background-color: var(--data--color--subtle, var(--surface--2));
+  color: var(--data--color--text, var(--text--primary));
+}
+
+/* Sort direction indicator — pure CSS via aria-sort.           */
+/* To use custom icons: replace content with an SVG data-URI.  */
+
+.table--sortable th[data-key]::after {
+  content: " ↕";
+  opacity: 0.35;
+  font-size: 0.8em;
+  margin-inline-start: 0.25em;
+}
+
+.table--sortable th[aria-sort="ascending"]::after {
+  content: " ↑";
+  opacity: 1;
+  color: var(--data--color--base, currentColor);
+}
+
+.table--sortable th[aria-sort="descending"]::after {
+  content: " ↓";
+  opacity: 1;
+  color: var(--data--color--base, currentColor);
+}
+
+/* ─── STRIPED ───────────────────────────────────────────────── */
+/* .data--striped is on the wrapper; .table is the descendant.  */
+
+.data--striped .table tbody tr:nth-child(even) {
+  background-color: var(--data--bg--subtle, var(--surface--2));
+}
+
+/* ─── BORDERED ──────────────────────────────────────────────── */
+
+.data--bordered .table th,
+.data--bordered .table td {
+  border: 1px solid var(--data--color--border, var(--border--default));
+}
+
+/* ─── HIGHLIGHTED ROWS ──────────────────────────────────────── */
+/*
+   Apply data-highlighted on <tr> in compound mode, or add a
+   _highlighted: true key to a RowData record in data-driven mode.
+*/
+
+.table tbody tr[data-highlighted] {
+  background-color: var(--data--highlight--subtle);
+  border-inline-start: 3px solid var(--data--highlight--base);
+}
+
+/* ─── INTERACTIVE ROWS ──────────────────────────────────────── */
+
+.data[data-interactive] .table tbody tr {
+  cursor: pointer;
+  transition: background-color var(--transition--fast, 150ms ease);
+}
+
+.data[data-interactive] .table tbody tr:hover {
+  background-color: var(--data--color--subtle, var(--surface--2));
+}
+
+/* ─── SELECTABLE ROWS ───────────────────────────────────────── */
+/*
+   Reserves the first column for a checkbox control.
+   Checkbox rendering and selection state are consumer-managed —
+   this only provides the layout and cursor affordance.
+*/
+
+.data[data-selectable] .table tbody tr {
+  cursor: pointer;
+}
+
+.data[data-selectable] .table th:first-child,
+.data[data-selectable] .table td:first-child {
+  width: 3rem;
+  padding-inline: calc(var(--data--size, var(--space-sm)) * 0.75);
+  text-align: center;
+}
+
+/* ─── LOADING SKELETON ──────────────────────────────────────── */
+/*
+   Skeleton shimmer on tbody cells. The cell text is hidden via
+   color: transparent; the ::after pseudo-element creates the bar.
+   Header (thead) stays visible during loading — shows column labels.
+*/
+
+.data[data-loading] .table tbody td {
+  position: relative;
+  overflow: hidden;
+  color: transparent !important;
+  border-color: transparent !important;
+  user-select: none;
+}
+
+.data[data-loading] .table tbody td::after {
+  content: "";
+  position: absolute;
+  inset-block: calc(var(--data--size, var(--space-sm)) * 0.5);
+  inset-inline: calc(var(--data--size, var(--space-sm)) * 0.75);
+  border-radius: var(--radius--sm, 4px);
+  background: linear-gradient(
+    90deg,
+    var(--surface--2) 25%,
+    var(--surface--3) 50%,
+    var(--surface--2) 75%
+  );
+  background-size: 200% 100%;
+  animation: table--skeleton 1.5s ease-in-out infinite;
+}
+
+@keyframes table--skeleton {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ─── EMPTY STATE ───────────────────────────────────────────── */
+
+.table__empty-cell {
+  text-align: center;
+  border-top: none !important;
+  padding-block: calc(var(--data--size, var(--space-sm)) * 3) !important;
+}
+
+/* ─── REDUCED MOTION ────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .data[data-loading] .table tbody td::after {
+    animation: none;
+    background: var(--surface--2);
+  }
+
+  .data[data-interactive] .table tbody tr {
+    transition: none;
+  }
+}

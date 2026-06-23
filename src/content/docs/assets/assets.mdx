@@ -1,0 +1,42 @@
+---
+title: Assets Category
+description: Components for displaying media, icons, and visual assets.
+category: Assets
+status: stable
+---
+
+## Overview
+
+The **Assets** category provides a comprehensive suite of components for handling visual media, audio, and iconography within your application. These components are designed to be fluid, accessible, and highly customizable.
+
+**Components in this category:**
+
+| Component | Element | Primary use |
+|---|---|---|
+| `Image` | `<img>` | Responsive, optimized image rendering with skeleton loaders |
+| `Icon` | `<svg>` / `<span>` | Scalable vector graphics and icon sets |
+| `Avatar` | `<img>` / `<div>` | User profile images or initials |
+| `AvatarGroup` | `<div>` | Stacking and clustering multiple avatars |
+| `Video` | `<video>` | Native video player with custom controls |
+| `Audio` | `<audio>` | Audio playback interfaces |
+| `Waveform` | `<canvas>` | Visual representation of audio tracks |
+| `Carousel` | `<div>` | Swipeable media sliders |
+| `Gallery` | `<div>` | Grid-based media collections |
+| `Cropper` | `<div>` | Interactive image cropping and editing |
+| `FilePreview` | `<div>` | Visual previews for uploaded files and documents |
+
+## Architecture
+
+Asset components generally focus on responsive sizing, aspect ratios, and media-specific behaviors (like loading states for images or playback controls for video). 
+
+### Shared Patterns
+
+Many visual assets share the following token behaviors:
+
+| Prop | Mechanism | Effect |
+|---|---|---|
+| `radius` | `--asset--radius` | Corner roundness (often mapping to standard radii or `full` for avatars) |
+| `aspectRatio` | `--asset--aspect` | Maintains proportions for images, videos, and frames |
+| `loading` | `.asset--loading` | Triggers skeleton states or spinners while media buffers |
+
+All components are fully accessible, requiring `alt` text for images and providing aria-labels for media controls.

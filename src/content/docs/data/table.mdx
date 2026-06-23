@@ -1,0 +1,350 @@
+---
+title: Table Component
+description: A flexible data table with data-driven and compound rendering modes, full color channel support, sorting, sticky headers, selection, and loading states.
+category: Data
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/data/table"
+---
+import Table     from "/home/jk/Code/dezign8/src/design/data/components/table/Table.astro";
+import TableHead from "/home/jk/Code/dezign8/src/design/data/components/table/parts/TableHead.astro";
+import TableBody from "/home/jk/Code/dezign8/src/design/data/components/table/parts/TableBody.astro";
+import TableFoot from "/home/jk/Code/dezign8/src/design/data/components/table/parts/TableFoot.astro";
+import TableRow  from "/home/jk/Code/dezign8/src/design/data/components/table/parts/TableRow.astro";
+import TableCell from "/home/jk/Code/dezign8/src/design/data/components/table/Table.astro";
+
+export const regions = [
+  { region: "North", q1: 84200, q2: 91400, status: "On track" },
+  { region: "South", q1: 61800, q2: 58200, status: "Behind"   },
+  { region: "East",  q1: 92400, q2: 97100, status: "Ahead"    },
+  { region: "West",  q1: 78900, q2: 83600, status: "On track" },
+];
+
+export const cols = [
+  { key: "region", heading: "Region",    width: "160px" },
+  { key: "q1",     heading: "Q1 Revenue", align: "end", format: v => `$${Number(v).toLocaleString()}` },
+  { key: "q2",     heading: "Q2 Revenue", align: "end", format: v => `$${Number(v).toLocaleString()}` },
+  { key: "status", heading: "Status",    align: "center" },
+];
+
+## Overview
+
+`Table` is the primary data display component for tabular information. It supports two rendering modes — data-driven for the common case and compound for full structural control — and inherits all data category props: color channels, density, variants, and behavioral states.
+
+## Usage & Examples
+
+### Basic data-driven
+
+Pass `data` and `columns` to let Table handle all rendering. Always include `caption` for screen reader support.
+
+```astro
+<Table
+  data={regions}
+  columns={cols}
+  caption="Regional sales by quarter"
+/>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Table data={regions} columns={cols} caption="Regional sales by quarter" />
+</div>
+
+### Color & variant
+
+```astro
+<Table data={regions} columns={cols} caption="Sales" color="primary" variant="outlined" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Table data={regions} columns={cols} caption="Sales" color="primary" variant="outlined" />
+</div>
+
+### Striped & bordered
+
+```astro
+<Table data={regions} columns={cols} caption="Sales" color="primary" striped />
+<Table data={regions} columns={cols} caption="Sales" bordered />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <Table data={regions} columns={cols} caption="Striped" color="primary" striped />
+  <Table data={regions} columns={cols} caption="Bordered" bordered />
+</div>
+
+### Density
+
+```astro
+<Table data={regions} columns={cols} caption="Compact" size="compact" />
+<Table data={regions} columns={cols} caption="Comfortable" size="comfortable" />
+<Table data={regions} columns={cols} caption="Spacious" size="spacious" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <Table data={regions} columns={cols} caption="Compact"     size="compact"     variant="outlined" />
+  <Table data={regions} columns={cols} caption="Comfortable" size="comfortable" variant="outlined" />
+  <Table data={regions} columns={cols} caption="Spacious"    size="spacious"    variant="outlined" />
+</div>
+
+### Sortable
+
+Pass `sortable` to enable sort indicators on all columns. Pass `sort` to show the current active sort. Sort state is consumer-managed — listen for the column header click in a client script and update the URL or re-fetch.
+
+```astro
+<Table
+  data={regions}
+  columns={cols}
+  caption="Sales — sorted by Q2"
+  color="primary"
+  sortable
+  sort={{ key: "q2", direction: "desc" }}
+/>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Table
+    data={regions}
+    columns={cols}
+    caption="Sales — sorted by Q2"
+    color="primary"
+    sortable
+    sort={{ key: "q2", direction: "desc" }}
+  />
+</div>
+
+### Sticky header
+
+Requires `scrollable={true}` and a constrained height on the wrapper or parent. Best combined with `layout="fixed"`.
+
+```astro
+<div style="max-height: 160px;">
+  <Table
+    data={regions}
+    columns={cols}
+    caption="Sales"
+    color="primary"
+    stickyHeader
+    scrollable
+    layout="fixed"
+  />
+</div>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <div style="max-height: 160px; overflow: auto;">
+    <Table data={regions} columns={cols} caption="Sales" color="primary" stickyHeader scrollable layout="fixed" />
+  </div>
+</div>
+
+### Interactive rows
+
+```astro
+<Table data={regions} columns={cols} caption="Sales" color="primary" interactive />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Table data={regions} columns={cols} caption="Sales" color="primary" interactive />
+</div>
+
+### Selectable rows
+
+Checkboxes are rendered automatically. Wire selection state via `table:selectionchange` event on the wrapper.
+
+```astro
+<Table data={regions} columns={cols} caption="Sales" color="primary" selectable />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Table data={regions} columns={cols} caption="Sales" color="primary" selectable />
+</div>
+
+```js
+// Listen for selection changes on the wrapper element
+document.querySelector('[data-selectable]')
+  .addEventListener('table:selectionchange', e => {
+    const { selected, all, none } = e.detail;
+    // selected → number[] of selected row indices
+    const selectedRows = selected.map(i => regions[i]);
+  });
+```
+
+### Loading state
+
+When `loading` is true, the header stays visible (column context remains) and tbody rows are replaced with a skeleton shimmer. The skeleton column count matches `columns` if provided.
+
+```astro
+<Table columns={cols} caption="Sales" color="primary" loading />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Table columns={cols} caption="Sales" color="primary" loading />
+</div>
+
+### Empty state
+
+```astro
+<Table data={[]} columns={cols} caption="Sales" empty="No results match your filters" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Table data={[]} columns={cols} caption="Sales" empty="No results match your filters" />
+</div>
+
+Use the `empty` slot for a custom empty state with richer content:
+
+```astro
+<Table data={[]} columns={cols} caption="Sales">
+  <div slot="empty" style="padding: 2rem; text-align: center;">
+    <p>No results</p>
+    <a href="/reset">Clear filters</a>
+  </div>
+</Table>
+```
+
+### Compound mode
+
+Use `<TableHead>`, `<TableBody>`, `<TableFoot>`, `<TableRow>`, `<TableCell>` for full structural control. All data category props (`color`, `variant`, `striped`, etc.) still apply to the outer `<Table>`.
+
+```astro
+<Table caption="Team members" color="primary" striped variant="outlined">
+  <TableHead slot="head">
+    <TableRow>
+      <TableCell as="th" scope="col">Name</TableCell>
+      <TableCell as="th" scope="col">Role</TableCell>
+      <TableCell as="th" scope="col" align="end">Joined</TableCell>
+    </TableRow>
+  </TableHead>
+  <TableBody slot="body">
+    <TableRow highlighted>
+      <TableCell>Alice Chen</TableCell>
+      <TableCell>Design Lead</TableCell>
+      <TableCell align="end">Jan 2022</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Marcus Webb</TableCell>
+      <TableCell>Engineer</TableCell>
+      <TableCell align="end">Apr 2022</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Priya Nair</TableCell>
+      <TableCell>Product</TableCell>
+      <TableCell align="end">Sep 2023</TableCell>
+    </TableRow>
+  </TableBody>
+  <TableFoot slot="foot">
+    <TableRow>
+      <TableCell colspan={2}>Total</TableCell>
+      <TableCell align="end">3 members</TableCell>
+    </TableRow>
+  </TableFoot>
+</Table>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Table caption="Team members" color="primary" striped variant="outlined">
+    <TableHead slot="head">
+      <TableRow>
+        <TableCell as="th" scope="col">Name</TableCell>
+        <TableCell as="th" scope="col">Role</TableCell>
+        <TableCell as="th" scope="col" align="end">Joined</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody slot="body">
+      <TableRow highlighted>
+        <TableCell>Alice Chen</TableCell>
+        <TableCell>Design Lead</TableCell>
+        <TableCell align="end">Jan 2022</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Marcus Webb</TableCell>
+        <TableCell>Engineer</TableCell>
+        <TableCell align="end">Apr 2022</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Priya Nair</TableCell>
+        <TableCell>Product</TableCell>
+        <TableCell align="end">Sep 2023</TableCell>
+      </TableRow>
+    </TableBody>
+    <TableFoot slot="foot">
+      <TableRow>
+        <TableCell colspan={2}>Total</TableCell>
+        <TableCell align="end">3 members</TableCell>
+      </TableRow>
+    </TableFoot>
+  </Table>
+</div>
+
+---
+
+## Props API
+
+### Table Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `data` | `RowData[]` | — | Row records. Omit for compound mode. |
+| `columns` | `ColumnDef[]` | — | Column definitions. Required when `data` is provided for meaningful output. |
+| `layout` | `"auto" \| "fixed"` | `"auto"` | CSS `table-layout` algorithm. Use `"fixed"` for sticky headers and reliable column widths. |
+| `stickyHeader` | `boolean` | `false` | Pins `<thead>` to top of scroll container. Requires `scrollable` + a constrained height. |
+| `sortable` | `boolean` | `false` | Enables sort indicators on all columns. Per-column override via `ColumnDef.sortable`. |
+| `sort` | `TableSort` | — | Current sort state. Table renders indicators only — sort is always consumer-managed. |
+
+### Inherited Data Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `color` | `ColorRole` | — | Primary accent: thead border, hover bg, sort indicators. |
+| `bg` | `ColorRole` | — | Background tint: header fill, striped rows. |
+| `highlight` | `ColorRole` | — | Highlighted row accent (left border + subtle bg). |
+| `variant` | `"plain" \| "outlined" \| "soft" \| "elevated"` | `"plain"` | Container decoration. |
+| `size` | `"compact" \| "comfortable" \| "spacious"` | — | Row density. Scales cell padding proportionally. |
+| `caption` | `string` | — | Semantic `<caption>` element. Always provide when no heading precedes the table. |
+| `loading` | `boolean` | — | Shows skeleton shimmer. Header stays visible; tbody shows animated placeholder rows. |
+| `empty` | `boolean \| string` | — | Empty state. String overrides default message. Use `empty` slot for rich content. |
+| `striped` | `boolean` | — | Alternating even-row background tint. |
+| `bordered` | `boolean` | — | Borders between all cells. |
+| `interactive` | `boolean` | — | Hover bg + pointer cursor on tbody rows. |
+| `selectable` | `boolean` | — | Renders checkbox column. Fires `table:selectionchange` on the wrapper. |
+| `scrollable` | `boolean` | — | Enables horizontal scroll (`overflow-x: auto`) on the wrapper. |
+
+### ColumnDef
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `key` | `string` | ✓ | Property key in the row record. |
+| `heading` | `string` | ✓ | Column header label. |
+| `align` | `"start" \| "center" \| "end"` | — | Text alignment. Use `"end"` for numeric columns. |
+| `width` | `string` | — | CSS width on `<th>`. Effective with `layout="fixed"`. |
+| `sortable` | `boolean` | — | Per-column override of the table-level `sortable` prop. |
+| `format` | `(value, row) => string` | — | String transformation for display. For rich content, use compound mode. |
+
+### TableSort
+
+```ts
+{ key: string; direction: "asc" | "desc" }
+```
+
+### Slots
+
+| Slot | Replaces | Notes |
+|---|---|---|
+| `head` | Data-driven `<thead>` | Use `<TableHead>` + `<TableRow>` + `<TableCell as="th">` |
+| `body` | Data-driven `<tbody>` | Use `<TableBody>` + `<TableRow>` + `<TableCell>` |
+| `foot` | — (appended) | Use `<TableFoot>` + `<TableRow>` + `<TableCell>` |
+| `empty` | Default empty message | Any content; shown when `data.length === 0` |
+
+### `table:selectionchange` event
+
+Fired on the wrapper `<div>` when any checkbox changes state.
+
+```ts
+event.detail: {
+  selected: number[];  // 0-based indices of selected rows
+  all:  boolean;       // true when every row is selected
+  none: boolean;       // true when no rows are selected
+}
+```
+
+---
+
+## Design Decisions
+
+**Wrapper div for scrollability.** `overflow: auto` on `<table>` is ignored by all browsers. The wrapper `<div>` carries the `.data` class and all category-level styles; CSS vars cascade down into the table naturally.
+
+**Sort state is always consumer-managed.** The component renders sort indicators from the `sort` prop but never reads or stores state itself. For SSR, derive sort from URL params and re-render. For client-side, manage in a script or island.
+
+**No fallback when `columns` is omitted with `data`.** An empty `<tbody>` is rendered rather than guessing column structure from `Object.keys()`. The failure is immediate and visible.
+
+**Checkboxes render automatically with `selectable`.** The selection UI is part of the component contract. Selection state management is handled via the `table:selectionchange` event — the component emits, the consumer stores.
+
+**`_highlighted` key in data-driven mode.** Adding `_highlighted: true` to a row record marks that row with `data-highlighted`, which table.css styles using the `--data--highlight--*` channels. In compound mode, pass the `highlighted` prop to `<TableRow>` directly.

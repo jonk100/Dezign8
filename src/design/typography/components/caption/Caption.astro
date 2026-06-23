@@ -1,0 +1,52 @@
+---
+/**
+ * Caption
+ *
+ * A typography component for supplementary text, typically used with images,
+ * tables, or figures. Defaults to a semantic `<figcaption>` element.
+ *
+ * @example Basic caption
+ * ```astro
+ * <figure>
+ *   <img src="..." alt="..." />
+ *   <Caption>A description of the image content.</Caption>
+ * </figure>
+ * ```
+ *
+ * @example With label and credit
+ * ```astro
+ * <Caption label="Figure 1." credit="Photo: Jane Doe">
+ *   The component supports a lead-in label and an attribution credit line.
+ * </Caption>
+ * ```
+ *
+ * @example Overlay on an image
+ * ```astro
+ * <figure style="position: relative;">
+ *   <img src="..." alt="..." />
+ *   <Caption overlay>This caption will overlay the bottom of the image.</Caption>
+ * </figure>
+ * ```
+ *
+ * @see caption.hook.ts
+ * @see caption.props.ts
+ * @see caption.tokens.ts
+ * @see caption.css
+ */
+import type { CaptionProps } from "./caption.props";
+import { useCaption } from "./caption.hook";
+import "./caption.css";
+
+interface Props extends CaptionProps {};
+
+const { Tag, props, label, credit } = useCaption(Astro.props);
+---
+
+<Tag {...props}>
+  {label && <span class="caption__label">{label}</span>}
+  <slot />
+  {Astro.slots.has("credit")
+    ? <small class="caption__credit"><slot name="credit" /></small>
+    : credit && <small class="caption__credit">{credit}</small>
+  }
+</Tag>

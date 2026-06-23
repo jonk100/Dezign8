@@ -1,0 +1,22 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: fit-content;
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu--indent .menu__list .menu__list {
+  padding-inline-start: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+

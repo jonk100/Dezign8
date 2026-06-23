@@ -1,0 +1,206 @@
+---
+title: Forms Category
+description: Token-driven form controls with shared size, variant, color, and accessibility architecture built on a delegating hook model.
+category: Forms
+status: stable
+---
+
+## Overview
+
+The Forms category provides native HTML form controls (`<input>`, `<select>`, `<textarea>`, `<checkbox>`, `<radio>`) as well as advanced composite controls (`<Search>`, `<Combobox>`) wrapped in a consistent, token-driven visual shell. Every control inherits the same four token dimensions — `size`, `variant`, `color`, `radius` — and the same behavioral props — `disabled`, `required`, `invalid`, `fullWidth` — through a shared category hook.
+
+The category is built for **progressive enhancement**: all controls render valid, semantic HTML with zero JavaScript required. Client-side interactivity (controlled inputs, validation, character counters) is layered on via Astro `<script>` tags or framework islands.
+
+---
+
+## Architecture
+
+### The delegating hook model
+
+Every form control in this category follows the same hook chain:
+
+```
+useForm(FormProps)
+       ↓
+useInput / useSelect / useCheckbox / useRadio
+       ↓
+{ Tag, props, [element-specific attrs] }
+```
+
+`useForm` owns everything shared: token resolution (`size`, `variant`, `color`, `radius` → CSS channels and class modifiers), ARIA attribute emission (`aria-disabled`, `aria-invalid`, `aria-required`), and the `data-*` hooks that CSS uses for state styling. Component hooks destructure their own props first, then delegate the rest to `useForm`, then compose the final return shape.
+
+No component hook calls `resolveTokens` on `FORM_TOKENS` directly — they all go through `useForm`.
+
+### Two-element structure
+
+Most form controls render as a wrapper `<div>` containing the native element:
+
+```html
+<div class="form input form--outlined form--primary"
+     style="--form--size: …; --form--radius: …;"
+     data-invalid>
+  <!-- start slot (optional) -->
+  <input class="input__control" type="text" aria-invalid="true" />
+  <!-- end slot (optional) -->
+</div>
+```
+
+The wrapper `<div>` carries all visual chrome — border, background, radius, focus ring — via the shared `.form` variant rules in `forms.css`. The native element inside is reset to transparent with no border or outline. This architecture enables start/end slot content (icons, prefixes, suffixes, action buttons) to appear **inside** the visual boundary of the field.
+
+---
+
+## Shared Token Dimensions
+
+All form controls accept these four props, resolved by `useForm` into CSS channels and class modifiers:
+
+| Prop | Channel / Class | Default |
+|---|---|---|
+| `size` | `--form--size: var(--form--md)` | `"md"` |
+| `variant` | class: `form--outlined` | `"outlined"` |
+| `color` | class: `form--primary` + color channels | `"primary"` |
+| `radius` | `--form--radius: var(--radius--md)` | `"md"` |
+
+### Size
+
+A compound prop — one value drives the entire control's spatial scale proportionally via `calc()` in `forms.css`. Changing `size` scales font-size, padding, gap, and min-height together.
+
+| Value | Approx. height | Use case |
+|---|---|---|
+| `sm` | 32px | Compact/dense interfaces, inline filters |
+| `md` | 40px | Default for most forms |
+| `lg` | 48px | Comfortable, touch-friendly |
+| `xl` | 56px | Hero inputs, large-print contexts |
+
+### Variant
+
+Controls the visual treatment at rest and on focus. All variant rules live in `forms.css`; the value emits a class modifier only (no CSS variable).
+
+| Value | Rest appearance | Focus appearance |
+|---|---|---|
+| `outlined` | Transparent bg, `border--default` border | Role-colored border + subtle glow ring |
+| `soft` | Muted fill (`--bg--2`), transparent border | Lighter bg + role-colored border |
+| `solid` | Role-color fill, no border | Slightly more vivid fill |
+| `ghost` | No border, no bg | Subtle role-tinted bg |
+| `dashed` | Transparent bg, dashed border | Role-colored dashed border |
+
+### Color
+
+One of the system's color roles (`primary`, `secondary`, `accent`, `danger`, `warning`, `success`, `neutral`). Emits a class modifier for variant-state CSS rules and, once `resolveColorChannels` is implemented, will write the seven `--form--color-*` channels that variant rules consume.
+
+> **Note:** The `resolveColorChannels` call in `useForm` is currently stubbed. Color variant rules fall back to `var(--primary--*)` until it is wired up. See the `@todo` in `forms.hook.ts`.
+
+### Radius
+
+Maps to the shared `RADIUS_DIM` token scale. Writes `--form--radius` which `forms.css` reads as `border-radius`. The same scale used by Box, Button, and every other component with a rounded corner.
+
+---
+
+## Shared Behavioral Props
+
+These are resolved by `useForm` into ARIA attributes and data attributes, not CSS tokens:
+
+| Prop | ARIA output | Data attribute | CSS hook |
+|---|---|---|---|
+| `disabled` | `aria-disabled="true"` | `data-disabled` | `.form[data-disabled]` |
+| `required` | `aria-required="true"` | — | — |
+| `invalid` | `aria-invalid="true"` | `data-invalid` | `.form[data-invalid]` |
+| `fullWidth` | — | — | `.form--full-width` |
+
+**Why `disabled` does not emit the native `disabled` attribute here:** Native `disabled` is only valid on `<input>`, `<select>`, `<textarea>`, and `<button>` — not on structural wrapper `<div>` elements. Each component hook adds the native attribute to the inner control element. `useForm` handles only the safe-everywhere ARIA variant.
+
+---
+
+## CSS Architecture
+
+`forms.css` contains the base `.form` rule and all variant + state rules. Each component imports it alongside its own component CSS:
+
+```astro
+import "../forms.css";
+import "./input.css";
+```
+
+The component CSS (`input.css`, `select.css`, etc.) handles only the inner control reset and component-specific structural elements (start/end slots, custom arrow). It does not redefine variant or state rules.
+
+### Focus ring
+
+Focus is indicated on the **wrapper `<div>`** using `:focus-within`, which fires when any descendant receives focus. The inner native element suppresses its own `outline`. This means the focus ring always appears on the visual boundary of the field, regardless of whether the user clicks the wrapper, a slot icon, or tabs to the native input.
+
+### Invalid state
+
+`.form--invalid` and `.form[data-invalid]` use `!important` on `border-color` to override all variant rules. This guarantees the error ring is always visible, regardless of which variant is active. The box-shadow on focused-invalid uses `--danger--base`.
+
+---
+
+## Composition with `Field`
+
+For full accessibility compliance, form controls should be wrapped in the `<Field>` component. This structural wrapper handles layout spacing and named slots for labels, hints, and errors. The `<Label>` component from the `typography` category provides the styled label element.
+
+- `<Label>` via the `label` slot with `for` matching the control's `id`
+- Hint text via the `hint` slot with `id="{id}-hint"`
+- Error text via the `error` slot with `id="{id}-error"`
+- `aria-describedby` propagation to the control
+
+```astro
+import Field from "~/forms/components/field/Field.astro";
+import Label from "~/typography/components/label/Label.astro";
+import Input from "~/forms/components/input/Input.astro";
+
+<Field id="email" invalid={!isEmailValid}>
+  <Label slot="label" for="email" required>Email address</Label>
+  <Input
+    id="email"
+    name="email"
+    type="email"
+    invalid={!isEmailValid}
+    aria-describedby="email-error"
+    fullWidth
+  />
+  <span slot="error" id="email-error">Enter a valid email address.</span>
+</Field>
+```
+
+---
+
+## Adding a New Form Control
+
+The pattern for any new control is the same five files:
+
+```
+forms/components/<name>/
+  <name>.tokens.ts   — re-export FORM_TOKENS or composeTokens for extensions
+  <name>.props.ts    — extends FormProps; add component-specific props
+  <name>.hook.ts     — destructures own props, delegates to useForm
+  <name>.css         — inner element reset and structural extras only
+  <name>.astro       — two-element template; imports forms.css + own css
+```
+
+If the control needs no new token dimensions, `tokens.ts` is a re-export:
+```ts
+export { FORM_TOKENS as TEXTAREA_TOKENS } from "~/forms/forms.tokens";
+```
+
+If it needs new dimensions (e.g. `resize` for Textarea), use `composeTokens`:
+```ts
+export const TEXTAREA_TOKENS = composeTokens(FORM_TOKENS, {
+  resize: dimension("resize", RESIZE_SCALE, { scope: "textarea" }),
+});
+```
+
+---
+
+## Excluded Input Types
+
+Specialised `<input>` types are excluded from `Input` and handled by dedicated components:
+
+| Type | Use instead |
+|---|---|
+| `search` | `Search` |
+| `date`, `datetime-local` | `DatePicker` |
+| `time` | `TimePicker` |
+| `color` | `ColorPicker` |
+| `file` | `FileUpload` |
+| `range` | `Slider` |
+| `checkbox` | `Checkbox` |
+| `radio` | `Radio` |
+| `hidden` | Plain `<input type="hidden">` |
+| `button`, `submit`, `reset` | `Button` |

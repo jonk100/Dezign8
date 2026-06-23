@@ -1,0 +1,174 @@
+/* ============================================================
+   surface.css
+   ─────────────────────────────────────────────────────────────
+   Base styles and layer system for all surface category
+   components: Card, Paper, Frame, Panel, Section, Tile, Well.
+
+   ELEVATION LAYERS
+   ──────────────────────────────────────────────────────────────
+   Each layer defines three channels as a unit:
+     --surface--bg      Background fill
+     --surface--shadow  Box shadow
+     --surface--border  Border color (1px solid, always present)
+
+   layer-0 has a transparent border so no visible line appears —
+   this keeps box-sizing stable when switching layers at runtime.
+
+   Layers 4–6 set z-index automatically; no component needs to
+   manage its own stacking context.
+
+   OVERRIDE ORDER (later in file = higher priority, same specificity)
+   ──────────────────────────────────────────────────────────────
+   1. Layer classes set defaults  (.surface--layer-*)
+   2. outlined overrides border   (.surface--outlined)
+   3. glass overrides background  (.surface--glass)
+   4. Inline style beats all      (shadow=, blur= props)
+
+   CHANNELS READ BY COMPONENT CSS
+   ──────────────────────────────────────────────────────────────
+   --surface--padding    Inner padding (from padding prop)
+   --surface--radius     Border radius (from radius prop)
+   --surface--color--*   Seven color role channels (from color prop)
+
+   Component CSS reads these for layout and accent styling.
+   ============================================================ */
+
+/* ─── BASE ───────────────────────────────────────────────────── */
+
+.surface {
+  box-sizing:    border-box;
+  border-radius: var(--surface--radius, var(--radius--md));
+  padding:       var(--surface--padding, var(--space-in--md));
+  background:    var(--surface--bg, transparent);
+  box-shadow:    var(--surface--shadow, none);
+  border:        1px solid var(--surface--border, transparent);
+  position:      relative;
+}
+
+/* ─── LAYER 0 — page / section ───────────────────────────────── */
+
+.surface--layer-0 {
+  --surface--bg:     var(--bg--0);
+  --surface--shadow: none;
+  --surface--border: transparent;
+  color:             var(--text--layer-0);
+}
+
+/* ─── LAYER 1 — frame / paper ────────────────────────────────── */
+
+.surface--layer-1 {
+  --surface--bg:     var(--bg--1);
+  --surface--shadow: var(--shadow--xs);
+  --surface--border: var(--border--layer-1);
+  color:             var(--text--layer-1);
+}
+
+/* ─── LAYER 2 — card ─────────────────────────────────────────── */
+
+.surface--layer-2 {
+  --surface--bg:     var(--bg--2);
+  --surface--shadow: var(--shadow--sm);
+  --surface--border: var(--border--layer-2);
+  color:             var(--text--layer-2);
+}
+
+/* ─── LAYER 3 — tile / panel ─────────────────────────────────── */
+
+.surface--layer-3 {
+  --surface--bg:     var(--bg--3);
+  --surface--shadow: var(--shadow--md);
+  --surface--border: var(--border--layer-3);
+  color:             var(--text--layer-3);
+}
+
+/* ─── LAYER 4 — tooltip / context-menu / popover ─────────────── */
+
+.surface--layer-4 {
+  --surface--bg:     var(--bg--4);
+  --surface--shadow: var(--shadow--lg);
+  --surface--border: var(--border--layer-4);
+  color:             var(--text--layer-4);
+  z-index:           var(--z--overlay);
+}
+
+/* ─── LAYER 5 — sheet / dropdown / drawer ────────────────────── */
+
+.surface--layer-5 {
+  --surface--bg:     var(--bg--5);
+  --surface--shadow: var(--shadow--xl);
+  --surface--border: var(--border--layer-5);
+  color:             var(--text--layer-5);
+  z-index:           var(--z--modal);
+}
+
+/* ─── LAYER 6 — modal / alert-dialog / lightbox ─────────────── */
+
+.surface--layer-6 {
+  --surface--bg:     var(--bg--5);
+  --surface--shadow: var(--shadow--2xl, var(--shadow--xl));
+  --surface--border: var(--border--layer-5);
+  color:             var(--text--layer-5);
+  z-index:           var(--z--top);
+}
+
+/* ─── LAYER inset — sunken below context ─────────────────────── */
+/*
+   Background uses color-mix to darken relative to the inherited
+   --surface--bg. Since inset always means "darker than context",
+   blending toward black is correct in both light and dark mode:
+
+   Light mode: --bg--2 = #f0f0f0 → color-mix → ~#dbdbdb ✓ (darker)
+   Dark mode:  --bg--2 = #2a2a2a → color-mix → ~#252525 ✓ (darker)
+
+   The inset shadow reinforces depth. No border — the shadow
+   communicates the depth more clearly than a line would.
+
+   ponytail: fixed 8% blend may be imperceptible on very dark surfaces.
+   If dark mode inset is too subtle, define --bg--inset explicitly in
+   primitives.definitions.ts and swap to: var(--bg--inset).
+*/
+
+.surface--layer-inset {
+  --surface--shadow: none;
+  --surface--border: transparent;
+  background:        color-mix(in oklch, var(--surface--bg, var(--bg--0)) 92%, black 8%);
+  box-shadow:        inset 0 1px 3px var(--shadow--inset, rgb(0 0 0 / 0.08));
+}
+
+/* ─── OUTLINED — explicit border override ────────────────────── */
+/*
+   Declared after layer rules so same-specificity cascade wins.
+   Inline shadow= prop still beats this via inline style.
+*/
+
+.surface--outlined {
+  --surface--border: var(--border--strong);
+}
+
+/* ─── GLASS — frosted overlay treatment ──────────────────────── */
+/*
+   Layer-specific glass tokens are already theme-aware in primitives.
+   backdrop-filter stays on the base glass class; bg override per layer.
+   Layer shadow and border are inherited from the layer class unchanged.
+*/
+
+.surface--glass {
+  backdrop-filter:         blur(var(--surface--blur, 12px));
+  -webkit-backdrop-filter: blur(var(--surface--blur, 12px));
+}
+
+.surface--layer-0.surface--glass { --surface--bg: var(--bg--0-glass); }
+.surface--layer-1.surface--glass { --surface--bg: var(--bg--1-glass); }
+.surface--layer-2.surface--glass { --surface--bg: var(--bg--2-glass); }
+.surface--layer-3.surface--glass { --surface--bg: var(--bg--3-glass); }
+.surface--layer-4.surface--glass { --surface--bg: var(--bg--4-glass); }
+.surface--layer-5.surface--glass { --surface--bg: var(--bg--5-glass); }
+.surface--layer-6.surface--glass { --surface--bg: var(--bg--5-glass); }
+
+/* ─── REDUCED MOTION ─────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .surface {
+    transition: none;
+  }
+}

@@ -1,0 +1,111 @@
+---
+title: Spinner Component
+description: A rotating loading indicator with configurable speed, direction, and icon substitutions.
+category: Feedback
+status: stable
+---
+import Spinner from "../../../design/feedback/components/spinner/Spinner.astro";
+
+## Overview
+
+`Spinner` is a rotating loading indicator. It provides a highly configurable CSS-animated rotation around a central SVG. By default it uses a built-in SVG arc, but it directly integrates with the design system's icon registry to allow swapping the internal visual with any icon (`spinner-two`, `spinner-three`, or custom SVGs).
+
+It renders as an accessible `role="status"` element with a visually-hidden label for screen readers.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+<Spinner color="secondary" size="2xl" />
+<Spinner color="success" size="xl" />
+<Spinner size="lg" />
+<Spinner size="md" />
+<Spinner size="sm" />
+<Spinner size="xs" />
+<Spinner size="2xs" />
+```
+<div class="not-content" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '2rem' }}>
+  <Spinner color="secondary" size="2xl" />
+  <Spinner color="success" size="xl" />
+  <Spinner size="lg" />
+  <Spinner size="md" />
+  <Spinner size="sm" />
+  <Spinner size="xs" />
+  <Spinner size="2xs" />
+</div>
+
+### Speed and Direction
+
+Use the `speed` and `direction` props to modify the CSS animation.
+
+```astro
+<Spinner speed="fast" direction="counterclockwise" />
+<Spinner direction="counterclockwise" />
+<Spinner speed="slow" direction="counterclockwise" />
+<Spinner speed="slow" />
+<Spinner />
+<Spinner speed="fast" />
+```
+<Spinner speed="fast" direction="counterclockwise" />
+<Spinner direction="counterclockwise" />
+<Spinner speed="slow" direction="counterclockwise" />
+<Spinner speed="slow" />
+<Spinner />
+<Spinner speed="fast" />
+
+
+
+### Icon Registry Integration
+
+Spinner accepts an `icon` prop that looks up any SVG from `shared/icons` and rotates it. The system provides three spinner-specific icons out of the box:
+
+```astro
+<Spinner icon="spinner" />       <!-- Default single arc -->
+<Spinner icon="spinner-two" />   <!-- Dual arc with opacity contrast -->
+<Spinner icon="spinner-three" /> <!-- Triple arc -->
+```
+<Spinner icon="spinner-three" /> 
+
+You can pass any icon name here (e.g., `"zap"`, `"refresh"`) for creative loading states.
+
+### Inline Alignment
+
+Spinners are `inline-flex` and easily align with surrounding text:
+
+```astro
+<span style="display: inline-flex; gap: 0.5rem; align-items: center;">
+  <Spinner size="sm" />
+  Saving changes…
+</span>
+```
+
+---
+
+## Props API
+
+### Spinner-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `speed` | `SpinnerSpeed` | `"normal"` | Rotation duration: `slow` (1.4s), `normal` (0.8s), `fast` (0.4s). |
+| `direction` | `SpinnerDirection` | `"clockwise"` | Spin direction. `counterclockwise` uses `animation-direction: reverse`. |
+| `icon` | `SvgName` | `"spinner"` | Loads the specified SVG from the icon registry to rotate. |
+| `label` | `string` | `"Loading"` | Visually hidden text announced by screen readers. |
+
+### Inherited Feedback Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FeedbackSize` | `"md"` | Sets the `--spinner--size` (diameter) from `xs` (14px) to `xl` (48px). |
+| `color` | `FeedbackColor` | `"primary"` | Color role applied via `currentColor` to the SVG. |
+| `variant` | `FeedbackVariant` | `"ghost"` | Overrides the default to remove background/borders. |
+
+---
+
+## Accessibility and Performance
+
+- **Reduced Motion**: Respects `prefers-reduced-motion: reduce`. The spinning animation is disabled and replaced with a gentle, non-disruptive opacity pulse.
+- **Screen Readers**: The wrapping element uses `role="status"` which is an implicit live region. The SVG itself is `aria-hidden="true"`, and a `.sr-only` span contains the `label` text.

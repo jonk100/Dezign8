@@ -1,0 +1,40 @@
+/* design/typography/components/code/code.css */
+.code,
+.pre {
+  font-size: var(--fs--2xs);
+  font-family: var(--mono);
+  --typography--tracking: var(--tracking--wider);
+}
+.pre {
+  background: var(--bg--4); /* Dark theme by default for code blocks */
+  color: var(--text--inverse);
+  padding: var(--space-in--lg);
+  border-radius: var(--radius--md);
+  overflow-x: auto;
+  margin-top: var(--space-in--2xl);
+  margin-bottom: var(--space-in--2xl);
+  line-height: var(--leading--loose);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.code--inline {
+  background: var(--bg--2);
+  color: var(--warning--text); /* Distinct inline code color */
+  padding: var(--space-in--3xs) var(--space-in--md);
+  font-size: var(--fs--xs);
+  border-radius: var(--radius--xs);
+  border: 1px solid var(--border--subtle);
+  font-weight: var(--weight--medium);
+}
+
+/* If code is inside a pre block, reset the inline styles */
+.pre > .code--inline,
+.code--block {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  font-weight: inherit;
+}
+

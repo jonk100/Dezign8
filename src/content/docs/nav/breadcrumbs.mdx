@@ -1,0 +1,103 @@
+---
+title: Breadcrumbs Component
+description: A trail of links representing the user's location within the site hierarchy.
+category: Nav
+status: stable
+version: 1.0.0
+---
+import Breadcrumbs from "../../../design/nav/components/breadcrumbs/Breadcrumbs.astro";
+import BreadcrumbItem from "../../../design/nav/components/breadcrumbs/item/BreadcrumbItem.astro";
+
+## Overview
+
+The `Breadcrumbs` component provides a hierarchical trail of links, helping users understand their current location and allowing them to quickly navigate back to higher-level pages.
+
+## Usage & Examples
+
+### Data-Driven Composition
+
+The simplest way to render breadcrumbs is by passing an `items` array. The component will automatically handle separators and mark the last item as the active page.
+
+```astro
+<Breadcrumbs 
+  items={[
+    { id: "home", label: "Home", href: "/" },
+    { id: "products", label: "Products", href: "/products" },
+    { id: "shoes", label: "Shoes", active: true }
+  ]} 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Breadcrumbs 
+    items={[
+      { id: "home", label: "Home", href: "/" },
+      { id: "products", label: "Products", href: "/products" },
+      { id: "shoes", label: "Shoes", active: true }
+    ]} 
+  />
+</div>
+
+### Custom Separators
+
+You can customize the separator by passing `separatorText` (like `>` or `-`), or by passing a `separatorIcon` from the icon registry.
+
+```astro
+<Breadcrumbs 
+  separatorText=">"
+  items={[
+    { id: "1", label: "Dashboard", href: "#" },
+    { id: "2", label: "Settings" }
+  ]} 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Breadcrumbs 
+    separatorText=">"
+    items={[
+      { id: "1", label: "Dashboard", href: "#" },
+      { id: "2", label: "Settings" }
+    ]} 
+  />
+</div>
+
+### Slot-Driven Composition
+
+For full control over individual items (e.g., adding custom icons or badges), you can omit the `items` array and manually compose `<BreadcrumbItem>` components.
+
+```astro
+<Breadcrumbs>
+  <BreadcrumbItem href="#">Home</BreadcrumbItem>
+  <BreadcrumbItem href="#">Library</BreadcrumbItem>
+  <BreadcrumbItem active isLast>Data</BreadcrumbItem>
+</Breadcrumbs>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Breadcrumbs>
+    <BreadcrumbItem href="#">Home</BreadcrumbItem>
+    <BreadcrumbItem href="#">Library</BreadcrumbItem>
+    <BreadcrumbItem active isLast>Data</BreadcrumbItem>
+  </Breadcrumbs>
+</div>
+
+## Props API
+
+### Breadcrumbs
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `BreadcrumbItemData[]` | `undefined` | Array of item data for auto-generation. |
+| `separatorText` | `string` | `"/"` | Text string to use between items. |
+| `separatorIcon` | `SvgName` | `undefined` | Icon to use between items (overrides `separatorText`). |
+
+### BreadcrumbItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `active` | `boolean` | `false` | If true, applies `aria-current="page"` and renders as a `span`. |
+| `href` | `string` | `undefined` | URL to navigate to. If present, renders as an `a` tag. |
+| `isLast` | `boolean` | `false` | If true, hides the separator slot after this item. |
+
+*`<Breadcrumbs>` inherits all shared `NavProps` (size, variant, color, radius).*

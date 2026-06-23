@@ -1,0 +1,109 @@
+---
+title: Menu Component
+description: A flexible, accessible navigation list supporting both data-driven rendering and manual slot composition.
+category: Nav
+status: stable
+version: 1.0.0
+---
+import Menu from "../../../design/nav/components/menu/Menu.astro";
+import MenuItem from "../../../design/nav/components/menu/item/MenuItem.astro";
+import Grid from "../../../design/layout/components/grid/Grid.astro";
+import Center from "../../../design/layout/components/center/Center.astro";
+
+## Overview
+
+The `Menu` component provides a foundational vertical or horizontal list of interactive navigation items. It is highly flexible and can be composed in two entirely different ways: **Data-Driven** (passing an array of items) or **Slot-Driven** (manually nesting components).
+
+## Usage & Examples
+
+### Data-Driven Composition
+
+The fastest way to build a menu is to pass an array of `items`. The component will automatically loop over them and render `<MenuItem>` wrappers.
+
+```astro
+<Menu 
+  variant="soft"
+  items={[
+    { id: 'dashboard', label: 'Dashboard', href: '#dashboard', icon: 'home', active: true },
+    { id: 'analytics', label: 'Analytics', href: '#analytics', icon: 'settings' },
+    { id: 'users', label: 'Users', href: '#users', disabled: true }
+  ]} 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem', maxWidth: '280px' }}>
+  <Menu 
+    variant="soft"
+    items={[
+      { id: 'dashboard', label: 'Dashboard', href: '#dashboard', icon: 'home', active: true },
+      { id: 'analytics', label: 'Analytics', href: '#analytics', icon: 'settings' },
+      { id: 'users', label: 'Users', href: '#users', disabled: true }
+    ]} 
+  />
+</div>
+
+### Slot-Driven Composition
+
+If you need highly custom internal contents (like placing a badge next to a label), you can omit the `items` array and pass `<MenuItem>` components directly as children.
+
+```astro
+<Menu variant="ghost">
+  <MenuItem href="#profile" icon="user">Your Profile</MenuItem>
+  <MenuItem href="#billing">Billing & Plans</MenuItem>
+  <MenuItem disabled>Beta Features</MenuItem>
+</Menu>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem', maxWidth: '280px' }}>
+  <Menu variant="ghost">
+    <MenuItem href="#profile" icon="user">Your Profile</MenuItem>
+    <MenuItem href="#billing">Billing & Plans</MenuItem>
+    <MenuItem disabled>Beta Features</MenuItem>
+  </Menu>
+</div>
+
+### Variants & Colors
+
+Menus inherit all the standard `NavProps`. This means you can easily switch visual styles and colors.
+
+```astro
+<Menu 
+  variant="pill" 
+  color="primary"
+  items={[
+    { id: '1', label: 'Recent', active: true },
+    { id: '2', label: 'Favorites' }
+  ]}
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem', maxWidth: '280px' }}>
+  <Menu 
+    variant="pill" 
+    color="primary"
+    items={[
+      { id: '1', label: 'Recent', active: true },
+      { id: '2', label: 'Favorites' }
+    ]}
+  />
+</div>
+
+## Props API
+
+### Menu
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `MenuItemData[]` | `undefined` | Array of item data for auto-generation. |
+| `activeId` | `string` | `undefined` | The `id` of the item to mark as active (overrides item-level `active` flags). |
+
+### MenuItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `href` | `string` | `undefined` | URL to navigate to. If omitted, renders as a `div`. |
+| `icon` | `SvgName` | `undefined` | Optional icon to display next to the label. |
+| `active` | `boolean` | `false` | If true, applies active styling to the item. |
+| `disabled` | `boolean` | `false` | If true, visually disables the item and prevents interaction. |
+
+*`<Menu>` inherits all shared `NavProps` (size, variant, color, radius).*

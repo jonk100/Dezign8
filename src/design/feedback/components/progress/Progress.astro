@@ -1,0 +1,155 @@
+---
+/**
+ * Progress
+ *
+ * Displays the completion state of a task across four visual types:
+ * bar, ring, number, and percent.
+ *
+ * STRUCTURE varies by type:
+ * ─────────────────────────────────────────────────────────────────────────
+ *   bar     <div class="feedback progress progress--bar" role="progressbar">
+ *             [slot (label)]
+ *             <div class="progress__track">
+ *               <div class="progress__fill" />
+ *             </div>
+ *             [span.progress__value when showValue]
+ *           </div>
+ *
+ *   ring    <div class="feedback progress progress--ring" role="progressbar">
+ *             [slot (label)]
+ *             <svg class="progress__ring" viewBox="0 0 36 36">
+ *               <circle class="progress__track" />
+ *               <circle class="progress__fill" />
+ *             </svg>
+ *             [span.progress__value when showValue]
+ *           </div>
+ *
+ *   number  <div class="feedback progress progress--number" role="progressbar">
+ *             [slot (label)]
+ *             <span class="progress__number">
+ *               {value}<span class="progress__denom">/{max}</span>
+ *             </span>
+ *           </div>
+ *
+ *   percent <div class="feedback progress progress--percent" role="progressbar">
+ *             [slot (label)]
+ *             <span class="progress__number">{fillPercent}%</span>
+ *           </div>
+ *
+ * @example
+ * <!-- Default bar -->
+ * <Progress value={60} />
+ *
+ * @example
+ * <!-- Ring with shown value -->
+ * <Progress value={3} max={10} type="ring" showValue />
+ *
+ * @example
+ * <!-- Large number display -->
+ * <Progress value={6} max={10} type="number" size="lg" />
+ *
+ * @example
+ * <!-- Percent display -->
+ * <Progress value={84} type="percent" color="success" />
+ *
+ * @example
+ * <!-- Indeterminate (loading) -->
+ * <Progress indeterminate />
+ *
+ * @example
+ * <!-- With label slot -->
+ * <Progress value={45} color="success">
+ *   Upload progress
+ * </Progress>
+ *
+ * @see progress.hook.ts   — resolves props + computes fill, ring geometry
+ * @see progress.props.ts  — full prop type reference
+ * @see progress.css       — size maps, type-specific styles, indeterminate animation
+ * @see feedback.css       — shared variant and color rules
+ */
+
+import type { ProgressProps } from "./progress.props";
+import { useProgress }        from "./progress.hook";
+import "../../feedback.css";
+import "./progress.css";
+
+type Props = ProgressProps;
+
+const {
+  Tag,
+  props,
+  type,
+  fillPercent,
+  displayValue,
+  displayPercent,
+  displayNumber,
+  showValue,
+  indeterminate,
+  ringAttrs,
+} = useProgress(Astro.props as ProgressProps);
+---
+
+<Tag {...props}>
+  {/* ── Optional label slot ────────────────────────────────────── */}
+  {Astro.slots.has("default") && (
+    <div class="progress__label">
+      <slot />
+    </div>
+  )}
+
+  {/* ── Bar type ──────────────────────────────────────────────── */}
+  {type === "bar" && (
+    <div class="progress__track">
+      <div class="progress__fill" />
+    </div>
+  )}
+
+  {/* ── Ring type ─────────────────────────────────────────────── */}
+  {type === "ring" && (
+    <svg
+      class="progress__ring"
+      viewBox="0 0 36 36"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle
+        class="progress__track"
+        cx="18" cy="18" r="15.9155"
+        stroke-width="2.5"
+      />
+      <circle
+        class="progress__fill"
+        cx="18" cy="18" r="15.9155"
+        stroke-width="2.5"
+        stroke-dasharray={ringAttrs.circumference}
+        stroke-dashoffset={ringAttrs.offset}
+        stroke-linecap="round"
+        transform="rotate(-90 18 18)"
+      />
+    </svg>
+  )}
+
+  {/* ── Number type  (e.g. "6/10") ────────────────────────────── */}
+  {type === "number" && (
+    <span class="progress__number" aria-hidden="true">
+      {indeterminate
+        ? "—"
+        : <>{Astro.props.value ?? 0}<span class="progress__denom">/{Astro.props.max ?? 100}</span></>
+      }
+    </span>
+  )}
+
+  {/* ── Percent type  (e.g. "84%") ────────────────────────────── */}
+  {type === "percent" && (
+    <span class="progress__number" aria-hidden="true">
+      {indeterminate ? "—" : `${fillPercent}%`}
+    </span>
+  )}
+
+  {/* ── Optional computed value label (bar + ring only) ─────────── */}
+  {showValue && (type === "bar" || type === "ring") && (
+    <span class="progress__value">
+      {displayPercent}
+    </span>
+  )}
+</Tag>

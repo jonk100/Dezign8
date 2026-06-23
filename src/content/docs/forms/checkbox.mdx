@@ -1,0 +1,109 @@
+---
+title: Checkbox Component
+description: A boolean toggle rendered as a custom styled indicator square with an optional label slot.
+category: Forms
+status: experimental
+version: 0.2.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/forms/components/checkbox"
+---
+import Checkbox from "../../../design/forms/components/checkbox/Checkbox.astro";
+
+## Overview
+
+The `Checkbox` component is a boolean toggle rendered as a custom styled indicator square with an optional label slot. 
+
+The root element is a `<label>` that wraps both the hidden native `<input type="checkbox">` and the custom indicator, ensuring the entire component area is clickable without requiring `for` or `id` wiring.
+
+**DOM Structure:**
+```html
+<label class="form checkbox …">
+  <input class="checkbox__control" type="checkbox" />   <!-- hidden -->
+  <span  class="checkbox__indicator" aria-hidden></span> <!-- custom visual -->
+  <span  class="checkbox__label"><slot /></span>         <!-- label content -->
+</label>
+```
+
+## Usage & Examples
+
+### Basic Usage
+
+The default variant is `"ghost"` (no wrapper border — traditional checkbox).
+
+```astro
+<Checkbox name="agree">I accept the terms and conditions</Checkbox>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Checkbox name="agree">I accept the terms and conditions</Checkbox>
+</div>
+
+### Controlled / Checked State
+
+Use the `checkState` prop to control the state.
+
+```astro
+<Checkbox name="newsletter" value="subscribed" checkState="checked">
+  Receive updates
+</Checkbox>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Checkbox name="newsletter" value="subscribed" checkState="checked">
+    Receive updates
+  </Checkbox>
+</div>
+
+### Indeterminate State
+
+Indeterminate is a DOM property, not an HTML attribute. Passing `checkState="indeterminate"` handles adding the appropriate `data-indeterminate` attribute, which a bundled script then picks up to set the actual DOM property.
+
+```astro
+<Checkbox name="select-all" checkState="indeterminate">Select all</Checkbox>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Checkbox name="select-all" checkState="indeterminate">Select all</Checkbox>
+</div>
+
+### Chip / Pill Style
+
+Pass `variant="outlined"` or `variant="soft"` for a bordered/filled "selectable chip" where the entire label and indicator have visual chrome.
+
+```astro
+<Checkbox name="tag" value="ts" variant="outlined" color="primary">
+  TypeScript
+</Checkbox>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Checkbox name="tag" value="ts" variant="outlined" color="primary">
+    TypeScript
+  </Checkbox>
+</div>
+
+### Label Position
+
+Use `labelPosition="start"` to place the label to the left of the indicator. The DOM order is preserved for CSS sibling combinator rules, while the visual layout is handled via flex-direction.
+
+```astro
+<Checkbox name="visible" labelPosition="start">Show in menu</Checkbox>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Checkbox name="visible" labelPosition="start">Show in menu</Checkbox>
+</div>
+
+## Props API
+
+`Checkbox` extends `FormProps` with specific checkbox attributes.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | | The `id` placed on the inner `<input type="checkbox">`. |
+| `checkState` | `"checked" \| "unchecked" \| "indeterminate"` | `"unchecked"` | The visual and submitted state of the checkbox. |
+| `value` | `string` | | The string submitted under `name` when checked. Defaults to `"on"` in HTML. |
+| `labelPosition` | `"start" \| "end"` | `"end"` | Position of the label slot relative to the indicator. |
+
+*Inherits all `FormProps` (size, variant, color, radius, disabled, required, invalid, name, fullWidth) and `BaseComponentProps`.*
+
+## Design Decisions
+
+- **Single checkState Prop:** A single `checkState?: CheckState` prop replaces the traditional two-boolean pattern (`checked` + `indeterminate`). This eliminates the footgun of `checked={true} indeterminate={true}` being simultaneously valid.
+- **Indeterminate Script:** An inline script is bundled with the component to set `.indeterminate = true` on the DOM elements, bypassing SSR limitations with the indeterminate state. Astro automatically deduplicates it to one execution per page.
+- **Slot Limitations:** Avoid placing interactive elements (links, buttons) inside the default label slot. Native browser behaviour dictates that interacting with elements inside a `<label>` triggers the wrapping input.

@@ -1,0 +1,81 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--bg--1);
+  border-bottom: 1px solid var(--border--default);
+  z-index: 40;
+}
+
+.navbar[data-sticky="true"] {
+  position: sticky;
+  top: 0;
+}
+
+.navbar[data-glass="true"] {
+  background-color: var(--bg--1-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1rem;
+  min-height: 4rem;
+}
+
+/* Base structural flex classes for content */
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar__content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Responsive Hamburger Toggle */
+.navbar__toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--text--primary);
+}
+
+.navbar__toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .navbar__toggle {
+    display: flex;
+  }
+  
+  /* Hide non-mobile content on small screens by default */
+  .navbar__content[data-hide-on-mobile="true"] {
+    display: none;
+  }
+  
+  /* When the wrapper indicates menu is open, show it as a vertical stack */
+  dezign8-navbar[data-menu-open="true"] .navbar__content[data-hide-on-mobile="true"] {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg--2);
+    border-bottom: 1px solid var(--border--default);
+    padding: 1rem;
+    align-items: flex-start;
+  }
+}

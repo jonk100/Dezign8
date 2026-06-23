@@ -1,0 +1,63 @@
+/**
+ * Styles for the Caption component.
+ *
+ * The base `.caption` rule sets defaults for a standard, readable caption
+ * placed below media. It uses `--label--*` tokens for a fixed, UI-like
+ * text size, which is appropriate for captions.
+ *
+ * The credit and label sub-elements are styled directly, as their
+ * appearance is not prop-driven.
+ */
+
+.caption {
+  --typography--size: var(--label--lg); /* default: 14.4px fixed */
+  --typography--color: var(--text--muted);
+  --typography--leading: var(--leading-snug);
+  max-inline-size: 60ch;
+}
+
+.caption__label {
+  font-weight: var(--weight-semibold);
+  color: var(--text--primary);
+  margin-inline-end: 0.5em;
+}
+
+.caption__credit {
+  display: block;
+  font-size: var(--label--sm); /* 11.2px fixed */
+  margin-block-start: var(--space-out--2xs);
+}
+
+/* ─── VARIANTS ─────────────────────────────────────────────────────────────── */
+
+/**
+ * Overlay variant.
+ * Positions the caption at the bottom of its positioned parent, with a
+ * gradient scrim for legibility over media.
+ */
+.caption--overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: var(--space-in--lg) var(--space-in--md) var(--space-in--sm);
+  background: linear-gradient(to top, var(--overlay--scrim), transparent);
+  color: white;
+  max-inline-size: none; /* Overlays should span the full width */
+}
+
+.caption--overlay .caption__label {
+  color: white;
+}
+
+.caption--overlay .caption__credit {
+  color: white;
+  opacity: 0.8;
+}
+
+/**
+ * Rule variant.
+ * Adds a decorative left border for an editorial feel.
+ */
+.caption--rule {
+  border-inline-start: var(--border--medium) solid var(--border--strong);
+  padding-inline-start: var(--space-in--sm);
+}

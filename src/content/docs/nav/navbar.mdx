@@ -1,0 +1,85 @@
+---
+title: Navbar Component
+description: A responsive, top-level site header with built-in mobile menu toggling.
+category: Nav
+status: stable
+version: 1.0.0
+---
+import Navbar from "../../../design/nav/components/navbar/Navbar.astro";
+import NavbarBrand from "../../../design/nav/components/navbar/brand/NavbarBrand.astro";
+import NavbarContent from "../../../design/nav/components/navbar/content/NavbarContent.astro";
+import Menu from "../../../design/nav/components/menu/Menu.astro";
+
+## Overview
+
+The `Navbar` component is the structural foundation for your application's header. It provides out-of-the-box support for sticky positioning, glassmorphism backgrounds, and automatic mobile hamburger menu toggling via a lightweight Web Component.
+
+## Usage & Examples
+
+### Basic Setup
+
+The Navbar is typically composed using `<NavbarBrand>` for your logo/title and `<NavbarContent>` for your links.
+
+```astro
+<Navbar>
+  <NavbarBrand slot="brand">
+    <strong>Dezign8</strong>
+  </NavbarBrand>
+  
+  <NavbarContent>
+    <Menu variant="ghost" items={[{ id: "1", label: "Home" }, { id: "2", label: "About" }]} />
+  </NavbarContent>
+</Navbar>
+```
+
+<div class="not-content" style={{ position: 'relative', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem', minHeight: '200px', overflow: 'hidden' }}>
+  <Navbar>
+    <NavbarBrand slot="brand">
+      <strong>Dezign8</strong>
+    </NavbarBrand>
+    
+    <NavbarContent>
+      <Menu variant="ghost" items={[{ id: "1", label: "Home" }, { id: "2", label: "About" }]} />
+    </NavbarContent>
+  </Navbar>
+</div>
+
+### Sticky & Glassmorphism
+
+Pass `sticky={true}` to make the navbar stick to the top of the screen when scrolling. By default, `glass={true}` is enabled to give it a modern, blurred backdrop.
+
+```astro
+<Navbar sticky glass>
+  <NavbarBrand slot="brand">My App</NavbarBrand>
+  <NavbarContent>...</NavbarContent>
+</Navbar>
+```
+
+### Mobile Responsiveness
+
+The `<dezign8-navbar>` Web Component automatically handles mobile logic.
+Any `<NavbarContent>` block has `hideOnMobile={true}` by default. When the screen shrinks below `768px`, a hamburger icon appears. Clicking it toggles an `aria-expanded` state that reveals the hidden content in a dropdown format!
+
+*(Resize your browser window to see the example above turn into a hamburger menu!)*
+
+## Props API
+
+### Navbar
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `sticky` | `boolean` | `false` | If true, applies `position: sticky; top: 0;`. |
+| `glass` | `boolean` | `true` | If true, applies a translucent background and backdrop blur. |
+| `maxWidth` | `string` | `"1280px"` | Custom max-width for the internal container to align with your page grid. |
+
+### NavbarContent
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `hideOnMobile` | `boolean` | `true` | If true, this block is hidden on small screens and moved into the hamburger dropdown. |
+
+### NavbarBrand
+
+*Does not accept any custom props beyond standard HTML `div` attributes.*
+
+*`<Navbar>` inherits all shared `NavProps` (size, variant, color, radius).*

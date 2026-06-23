@@ -1,0 +1,42 @@
+---
+title: Panel Component
+description: Visual container foundation for expandable or collapsible content areas.
+category: Surfaces
+status: stable
+---
+
+import Panel from "~/surfaces/components/panel/Panel.astro";
+
+## Overview
+
+`Panel` provides a structural surface layer for collapsible regions, sidebars, or drawers. It inherits all surface properties and uses `layer="1"` by default for a slight elevation off the page background.
+
+## Examples
+
+### Basic Panel
+
+<div style="margin-bottom: 2rem;">
+  <Panel padding="md" radius="md" variant="outlined">
+    <h4 style="margin-top: 0; margin-bottom: 0.5rem;">Configuration Options</h4>
+    <p style="margin: 0; color: var(--text--secondary);">A panel provides a grouped surface for related content.</p>
+  </Panel>
+</div>
+
+```astro
+<Panel padding="md" radius="md" variant="outlined">
+  <h4>Configuration Options</h4>
+  <p>A panel provides a grouped surface for related content.</p>
+</Panel>
+```
+
+### The `as` Prop
+
+For semantic HTML, panels can easily be rendered as an `<aside>`, `<section>`, or `<details>` element using the `as` prop.
+
+```astro
+<Panel as="aside" padding="lg" variant="soft">
+  <nav>
+    <!-- Sidebar navigation content -->
+  </nav>
+</Panel>
+```

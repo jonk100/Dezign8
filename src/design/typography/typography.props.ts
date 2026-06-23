@@ -14,7 +14,7 @@ import type {
  * 
  * @prop size - The font scale mapping to design tokens.
  * @prop weight - Font weight (e.g., bold, semibold, regular).
- * @prop color - Semantic text color.
+ * @prop color - Semantic text color (primary, secondary, tertiary, muted, disabled, inverse, on-color, inherit)
  * @prop align - Text alignment (left, center, right, justify).
  * @prop leading - Line height.
  * @prop tracking - Letter spacing.
@@ -22,7 +22,7 @@ import type {
  * @prop transform - Text transformation (uppercase, lowercase, capitalize).
  * @prop wrap - Text wrapping behavior.
  * @prop decoration - Text decoration (underline, line-through).
- * @prop fontStyle - font-style. Named fontStyle to avoid shadowing the HTML style attribute.
+ * @prop fontStyle - font-style. Named fontStyle to avoid shadowing the HTML style attribute (italic, oblique)
  * @prop clamp - Multi-line clamp — limits text to N lines with ellipsis.
  * @prop truncate - Single-line truncation with ellipsis.
  */

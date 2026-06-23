@@ -1,0 +1,113 @@
+---
+title: Stepper Component
+description: A visual progress indicator for sequential steps.
+category: Nav
+status: stable
+version: 1.0.0
+---
+import Stepper from "../../../design/nav/components/stepper/Stepper.astro";
+import Step from "../../../design/nav/components/stepper/step/Step.astro";
+
+## Overview
+
+The `Stepper` component displays progress through a sequence of logical steps. It automatically manages the visual connecting lines and swaps out numbers for checkmarks when a step is completed.
+
+## Usage & Examples
+
+### Basic Horizontal Stepper
+
+By providing an `items` array and a `currentStepIndex` (0-indexed), the component automatically calculates which steps are `complete`, `current`, or `incomplete`.
+
+```astro
+<Stepper 
+  currentStepIndex={1}
+  items={[
+    { id: "cart", label: "Cart" },
+    { id: "shipping", label: "Shipping" },
+    { id: "payment", label: "Payment" }
+  ]} 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Stepper 
+    currentStepIndex={1}
+    items={[
+      { id: "cart", label: "Cart" },
+      { id: "shipping", label: "Shipping" },
+      { id: "payment", label: "Payment" }
+    ]} 
+  />
+</div>
+
+### Vertical Orientation
+
+You can switch the stepper to a vertical layout by passing `orientation="vertical"`. This is great for sidebars or mobile views.
+
+```astro
+<Stepper 
+  orientation="vertical"
+  currentStepIndex={2}
+  items={[
+    { id: "1", label: "Account Setup", description: "Create your login details" },
+    { id: "2", label: "Profile", description: "Add your avatar and bio" },
+    { id: "3", label: "Verification", description: "Verify your email" }
+  ]} 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Stepper 
+    orientation="vertical"
+    currentStepIndex={2}
+    items={[
+      { id: "1", label: "Account Setup", description: "Create your login details" },
+      { id: "2", label: "Profile", description: "Add your avatar and bio" },
+      { id: "3", label: "Verification", description: "Verify your email" }
+    ]} 
+  />
+</div>
+
+### Slot-Driven Composition
+
+If you need interactive steps (e.g., allowing a user to click a previous step to go back), you can manually compose `<Step>` components and pass `href` or `interactive`.
+
+```astro
+<Stepper>
+  <Step state="complete" label="Step 1" stepNumber={1} href="#step1" />
+  <Step state="current" label="Step 2" stepNumber={2} />
+  <Step state="incomplete" label="Step 3" stepNumber={3} isLast />
+</Stepper>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Stepper>
+    <Step state="complete" label="Step 1" stepNumber={1} href="#step1" />
+    <Step state="current" label="Step 2" stepNumber={2} />
+    <Step state="incomplete" label="Step 3" stepNumber={3} isLast />
+  </Stepper>
+</div>
+
+## Props API
+
+### Stepper
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `StepperItemData[]` | `undefined` | Array of step data for auto-generation. |
+| `currentStepIndex` | `number` | `0` | The currently active step (0-indexed). Auto-calculates states. |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Direction of the steps. |
+
+### Step
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `state` | `"complete" \| "current" \| "incomplete"` | **Required** | The visual state of the step. |
+| `label` | `string` | `undefined` | The primary text label for the step. |
+| `description` | `string` | `undefined` | Secondary subtext beneath the label. |
+| `stepNumber` | `string \| number` | `undefined` | The number or content to display inside the step indicator circle. |
+| `href` | `string` | `undefined` | URL to navigate to. Renders the step as an `a` tag. |
+| `interactive` | `boolean` | `false` | If true, renders the step as a clickable `button` even without an `href`. |
+| `isLast` | `boolean` | `false` | If true, hides the connecting line after this step. |
+
+*`<Stepper>` inherits all shared `NavProps` (size, variant, color, radius).*

@@ -1,17 +1,256 @@
 ---
+/**
+ * List
+ *
+ * Renders a collection of items as a `<ul>` or `<ol>`. Supports two modes:
+ *
+ *   Data-driven  Pass `data` and List handles all rendering — icons,
+ *                descriptions, badges, checkboxes, links, nested lists.
+ *
+ *   Compound     Use the `items` slot for full structural control.
+ *                All data category props still apply to the root element.
+ *
+ * HTML STRUCTURE (data-driven)
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <ul class="data list [modifiers]" [data-attrs]>
+ *   <li class="list__item">
+ *     <span class="list__icon">…</span>       optional
+ *     <span class="list__content">
+ *       <span class="list__label">…</span>
+ *       <span class="list__description">…</span>   optional
+ *     </span>
+ *     <span class="list__badge">…</span>      optional
+ *   </li>
+ *   <li class="list__item">
+ *     …
+ *     <ul class="list list__nested">…</ul>    when item.children is set
+ *   </li>
+ * </ul>
+ *
+ * When item.href is set: item content is wrapped in <a class="list__link">.
+ * When item.checkState is set: a <Checkbox> renders before the content.
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   items   Replaces data-driven <li> rendering. Use for fully custom items.
+ *   empty   Replaces the default empty state message.
+ *
+ * @example Data-driven to-do list
+ * ```astro
+ * <List
+ *   data={tasks}
+ *   caption="Sprint tasks"
+ *   color="primary"
+ *   bordered
+ *   interactive
+ * />
+ * ```
+ *
+ * @example Link list
+ * ```astro
+ * <List
+ *   data={[
+ *     { label: "Docs",   href: "/docs",   icon: "book"   },
+ *     { label: "GitHub", href: "/github", icon: "github" },
+ *   ]}
+ *   color="primary"
+ * />
+ * ```
+ *
+ * @example Nested list
+ * ```astro
+ * <List data={[
+ *   { label: "Frontend", children: [
+ *     { label: "React" },
+ *     { label: "Astro" },
+ *   ]},
+ * ]} />
+ * ```
+ *
+ * @example Compound mode
+ * ```astro
+ * <List color="primary" bordered>
+ *   <li slot="items" class="list__item">
+ *     <span class="list__label">Custom item</span>
+ *   </li>
+ * </List>
+ * ```
+ *
+ * @see list.hook.ts    — useList: resolves props to Tag + props
+ * @see list.props.ts   — ListProps: full prop reference
+ * @see list.tokens.ts  — LIST_TOKENS, ListItem, LIST_DEFAULTS
+ * @see list.css        — list-specific styles
+ * @see data.css        — shared data category styles
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * ADJUSTING PROPS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * COLOR CHANNELS
+ *   color       [./list.css]  var(--data--color--*) in item separators,
+ *                             hover bg, icon color, link hover
+ *               @example color="primary" → cyan separators + hover
+ *
+ *   bg          [./list.css]  var(--data--bg--*) in striped item backgrounds
+ *               @example bg="neutral"  → subtle grey stripe
+ *
+ *   highlight   [./list.css]  var(--data--highlight--*) on .list__item--highlighted
+ *               @example highlight="warning" → amber left-border accent
+ *
+ * CONTAINER
+ *   variant     [./data.css]  plain | outlined | soft | elevated — on root
+ *   size        [./list.css]  calc(var(--data--size) * N) on item padding/gap
+ *               @example size="compact" → --data--size: var(--space-in--xs)
+ *
+ * METADATA
+ *   caption     [./List.astro] renders as <p class="list__caption"> above list.
+ *               Style the caption in list.css under .list__caption.
+ *
+ * STATE
+ *   loading     [./list.css]  .list[data-loading] .list__label etc — skeleton pulse
+ *               Change animation timing or colours here.
+ *
+ *   empty       [./list.css]  .data__empty — adjust padding/colour there
+ *               [./List.astro] change default message string
+ *               Use the empty slot for rich custom empty states.
+ *
+ * VISUAL MODIFIERS
+ *   striped     [./list.css]  .data--striped .list__item:nth-child(even)
+ *               Shade: var(--data--bg--subtle). Adjust shade or selector.
+ *
+ *   bordered    [./list.css]  .data--bordered .list__item + .list__item
+ *               Colour: var(--data--color--border). Adjust here.
+ *
+ * BEHAVIOR
+ *   interactive [./list.css]  .list[data-interactive] .list__item
+ *               Add hover bg, cursor, transition here.
+ *
+ *   selectable  [./list.css]  .list[data-selectable] — checkbox column
+ *               [./List.astro] selection state is consumer-managed.
+ *               Wire via list:selectionchange event (list.client.ts).
+ *
+ *   scrollable  [./list.css]  overrides data.css with overflow-y: auto
+ *               Set max-block-size on the list or a parent to constrain height.
+ *
+ * LAYOUT
+ *   ordered     [./List.astro] switches tag to <ol> — no CSS to adjust.
+ *               Override list-style-type on .list in consumer CSS for custom markers.
+ *
+ *   orientation [./list.css]  .list--horizontal → flex-wrap: wrap
+ *               Adjust gap in .list--horizontal for spacing between chips/tags.
+ */
+
 import type { ListProps } from "./list.props";
-import { useList } from "./list.hook";
+import { useList }        from "./list.hook";
+import Checkbox           from "~/forms/components/checkbox/Checkbox.astro";
+import "../data.css";
 import "./list.css";
 
-const { Tag, itemClass, itemGap, items, renderItem, rest } = useList(Astro.props as ListProps<unknown>);
----
-<Tag class="list" style={`--list--gap: var(--space-${itemGap})`} {...rest}>
+type Props = ListProps;
 
-  <!-- @todo: TOODO not ideal typing here: -->
-  {items.map((item: unknown, i: number) => (
-    
-    <li class={itemClass}>
-      {renderItem(item, i)}
-    </li>
-  ))}
+const { Tag, props, data, ordered, caption } = useList(Astro.props as ListProps);
+
+const isLoading = Boolean(Astro.props.loading);
+const isEmpty   = Array.isArray(data) && data.length === 0;
+const emptyMsg  = typeof Astro.props.empty === "string"
+  ? Astro.props.empty
+  : "No items";
+
+const skeletonCount = 4;
+---
+
+<Tag {...props}>
+
+  {/* ── Caption ───────────────────────────────────────────── */}
+  {caption && <p class="list__caption">{caption}</p>}
+
+  {/* ── Items: slot wins over data-driven ─────────────────── */}
+  {Astro.slots.has("items")
+    ? <slot name="items" />
+    : isLoading
+      ? Array.from({ length: skeletonCount }).map(() => (
+          <li class="list__item" aria-hidden="true">
+            <span class="list__content">
+              <span class="list__label">&nbsp;</span>
+            </span>
+          </li>
+        ))
+      : isEmpty
+        ? (
+          <li class="list__item">
+            {Astro.slots.has("empty")
+              ? <slot name="empty" />
+              : <span class="data__empty">{emptyMsg}</span>
+            }
+          </li>
+        )
+        : data?.map(item => (
+          <li class:list={[
+            "list__item",
+            item.disabled    && "list__item--disabled",
+          ]}>
+            {/* Checkbox for checklist items */}
+            {item.checkState !== undefined && (
+              <Checkbox
+                data-selection-cb
+                checkState={item.checkState}
+                disabled={item.disabled}
+                aria-label={item.label}
+                variant="ghost"
+              />
+            )}
+
+            {/* Leading icon (only when no checkbox) */}
+            {item.icon && item.checkState === undefined && (
+              <span class="list__icon" aria-hidden="true">
+                {item.icon}
+              </span>
+            )}
+
+            {/* Content — wrapped in <a> when href is set */}
+            {item.href
+              ? (
+                <a class="list__link" href={item.href}>
+                  <span class="list__content">
+                    <span class="list__label">{item.label}</span>
+                    {item.description && (
+                      <span class="list__description">{item.description}</span>
+                    )}
+                  </span>
+                  {item.badge !== undefined && (
+                    <span class="list__badge">{item.badge}</span>
+                  )}
+                </a>
+              )
+              : (
+                <>
+                  <span class="list__content">
+                    <span class="list__label">{item.label}</span>
+                    {item.description && (
+                      <span class="list__description">{item.description}</span>
+                    )}
+                  </span>
+                  {item.badge !== undefined && (
+                    <span class="list__badge">{item.badge}</span>
+                  )}
+                </>
+              )
+            }
+
+            {/* Nested sub-list */}
+            {item.children && item.children.length > 0 && (
+              <Astro.self
+                data={item.children}
+                ordered={ordered}
+                class="list__nested"
+              />
+            )}
+          </li>
+        ))
+  }
+
 </Tag>
+
+<script>
+  import "./list.client.ts";
+</script>

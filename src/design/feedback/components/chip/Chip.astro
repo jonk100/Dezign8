@@ -1,0 +1,13 @@
+---
+import type { ChipProps } from "./chip.props";
+import { useChip } from "./chip.hook";
+import "../../feedback.css";
+import "./chip.css";
+
+type Props = ChipProps;
+
+const { Tag: ChipElement, props: chipProps } = useChip(Astro.props);
+---
+<ChipElement {...chipProps}>
+  <slot />
+</ChipElement>

@@ -12,7 +12,7 @@ import Text from "../../../design/typography/components/text/Text.astro";
 
 ## Overview
 
-The `Quote` component handles semantic quotes in your application. It automatically maps to `<blockquote>` or `<q>` based on the visual `type` you provide, ensuring screen-readers and visual presentation are always aligned.
+The `<Quote />` component handles semantic quotes in your application. It automatically maps to `<blockquote>` or `<q>` based on the visual `type` you provide, ensuring screen-readers and visual presentation are always aligned.
 
 ## Usage & Examples
 
@@ -24,11 +24,9 @@ Standard blockquotes render as `<blockquote>` with slightly muted, italic text.
   "Simplicity is the ultimate sophistication."
 </Quote>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
   <Quote type="block" cite="https://example.com">
     "Simplicity is the ultimate sophistication."
   </Quote>
-</div>
 
 ### Pull Quote
 Pull quotes are prominent, larger text blocks used to highlight key excerpts in editorial content. Renders as a `<blockquote>` with centered, balanced, and larger text.
@@ -38,11 +36,9 @@ Pull quotes are prominent, larger text blocks used to highlight key excerpts in 
   "The best code is the code never written."
 </Quote>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
   <Quote type="pull">
     "The best code is the code never written."
   </Quote>
-</div>
 
 ### Inline Quote
 For quoting within the flow of a paragraph. Renders as a `<q>` tag, inheriting the surrounding text properties but retaining italic styling.
@@ -52,11 +48,9 @@ For quoting within the flow of a paragraph. Renders as a `<q>` tag, inheriting t
   As the architect said, <Quote type="inline">we should probably delete that</Quote>, and I agreed.
 </Text>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
   <Text>
     As the architect said, <Quote type="inline">we should probably delete that</Quote>, and I agreed.
   </Text>
-</div>
 
 ## Props API
 

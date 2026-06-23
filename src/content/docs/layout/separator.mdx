@@ -1,0 +1,90 @@
+---
+title: Separator
+description: A component to visually and semantically separate content.
+---
+import { Separator, Flex, Stack } from '~/layout';
+import { Preview } from '~/components/Preview';
+import { PropsApi } from '~/components/PropsApi';
+import { SeparatorProps } from '~/layout/components/separator/separator.props';
+
+# Separator
+
+A component to visually and semantically separate content. It can be horizontal or vertical, and can optionally contain a label.
+
+## Basic Separator
+
+By default, `Separator` renders a horizontal line, perfect for dividing sections of content.
+
+<Preview>
+  <Stack class="w-full">
+    <p>Content above the separator.</p>
+    <Separator />
+    <p>Content below the separator.</p>
+  </Stack>
+</Preview>
+
+```astro
+<p>Content above the separator.</p>
+<Separator />
+<p>Content below the separator.</p>
+```
+
+## Orientation
+
+Use the `orientation` prop to create a vertical separator. This is most effective inside a `Flex` container to divide items in a row.
+
+<Preview>
+  <Flex class="w-full h-12" align="center" justify="center" gap="md">
+    <span>Left</span>
+    <Separator orientation="vertical" />
+    <span>Center</span>
+    <Separator orientation="vertical" />
+    <span>Right</span>
+  </Flex>
+</Preview>
+
+```astro
+<Flex align="center">
+  <span>Left</span>
+  <Separator orientation="vertical" />
+  <span>Right</span>
+</Flex>
+```
+
+## With a Label
+
+You can place text inside the `Separator`'s default slot to create a labeled divider, often used in forms or user flows.
+
+<Preview>
+  <Stack class="w-full">
+    <button class="button">Continue with Email</button>
+    <Separator>or</Separator>
+    <button class="button">Continue with Google</button>
+  </Stack>
+</Preview>
+
+```astro
+<Separator>or</Separator>
+```
+
+## Strength & Variant
+
+Combine `strength` (color) and `variant` (style) to match the visual hierarchy of your layout.
+
+<Preview>
+  <Stack class="w-full" gap="md">
+    <Separator strength="subtle" />
+    <Separator strength="default" />
+    <Separator strength="strong" variant="dashed" />
+  </Stack>
+</Preview>
+
+```astro
+<Separator strength="subtle" />
+<Separator strength="default" />
+<Separator strength="strong" variant="dashed" />
+```
+
+## Props API
+
+<PropsApi props={SeparatorProps} />

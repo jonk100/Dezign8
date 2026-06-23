@@ -1,0 +1,94 @@
+---
+title: Progress Component
+description: Displays completion state across four visual types (bar, ring, number, percent) with indeterminate loading support.
+category: Feedback
+status: stable
+---
+import Progress from "../../../design/feedback/components/progress/Progress.astro";
+
+## Overview
+
+`Progress` communicates the completion state of a task or process. It uses a single component with a `type` discriminator to render one of four distinct visual styles: `bar`, `ring`, `number`, or `percent`. 
+
+All types share the same value logic, computing a fill percentage from `value / max`. The component automatically sets appropriate ARIA attributes for accessibility (`role="progressbar"`, `aria-valuenow`, `aria-valuemax`).
+
+---
+
+## Usage
+
+### Display Types
+
+Use the `type` prop to switch rendering strategies.
+
+```astro
+<!-- Horizontal track with fill (default) -->
+<Progress value={60} type="bar" />
+
+<!-- Circular SVG stroke -->
+<Progress value={60} type="ring" />
+
+<!-- Large typographic display: "6/10" -->
+<Progress value={6} max={10} type="number" />
+
+<!-- Large typographic display: "60%" -->
+<Progress value={60} type="percent" />
+```
+
+### Indeterminate State
+
+When progress is active but the amount is unknown, use `indeterminate={true}`. The component hides the explicit fill and renders an animated shimmer (for `bar`) or an infinite spin (for `ring`).
+
+```astro
+<Progress indeterminate type="bar" />
+<Progress indeterminate type="ring" />
+```
+
+### Showing Values alongside Indicators
+
+For `bar` and `ring` types, set `showValue={true}` to render the computed percentage alongside the track.
+
+```astro
+<Progress value={45} type="bar" showValue />
+<Progress value={3} max={10} type="ring" showValue />
+```
+
+### Adding Labels
+
+Progress has no dedicated `label` prop. Instead, provide markup in the default slot to render text above the progress indicator.
+
+```astro
+<Progress value={84}>
+  <span>Uploading files…</span>
+</Progress>
+```
+
+---
+
+## Props API
+
+### Progress-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | — | Current progress value (0 to `max`). Empty track if undefined. |
+| `max` | `number` | `100` | Maximum value. Determines the denominator for fill calculations. |
+| `type` | `ProgressType` | `"bar"` | Visual style: `bar`, `ring`, `number`, or `percent`. |
+| `showValue` | `boolean` | `false` | Displays the computed percentage next to `bar` and `ring` types. |
+| `indeterminate` | `boolean` | `false` | Unknown progress state. Overrides `value` with loading animations. |
+
+### Inherited Feedback Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FeedbackSize` | `"md"` | Scales track height (`bar`), diameter (`ring`), or font-size (`number`/`percent`). |
+| `variant` | `FeedbackVariant` | `"soft"` | Used for the track background (varies by type). |
+| `color` | `FeedbackColor` | `"primary"` | Color role applied to the progress fill or text. |
+| `radius` | `FeedbackRadius` | `"full"` | Border radius (applies mainly to `bar`). |
+
+---
+
+## Architecture details
+
+- **`value` / `max` computation**: The hook computes `Math.min(value / max, 1) * 100` and writes it as a CSS custom property `--progress--fill: X%`. CSS applies this to `width` for `bar` and `stroke-dashoffset` for `ring`.
+- **Ring Geometry**: The ring uses an SVG viewBox of `0 0 36 36` with a radius of `15.9155`. This creates a circumference of exactly `100`, making dash offset percentage calculations direct and precise.
+- **Accessibility**: When `indeterminate` is true, the `aria-valuenow` is removed and `aria-busy="true"` is added.

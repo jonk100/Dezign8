@@ -1,24 +1,47 @@
 /**
- * NavProps
- * 
- * Manages arrays of routes, active states, and history replacement logic.
- * 
- * @prop items - Array of navigation item data (labels, icons, routes).
- * @prop orientation - Determines if the nav renders horizontally or vertically.
- * @prop activeId - The ID or href of the currently active navigation item.
- * @prop onChange - Callback fired when a navigation item is selected.
- * @prop exactMatch - Determines if the active state requires an exact URL match or just a partial/sub-route match.
- * @prop replace - THOUGHT: If true, uses `history.replaceState` instead of `history.pushState`. Critical for things like Tabs where navigating shouldn't clog up the browser's "Back" button history.
- * @prop prefetch - THOUGHT: Optimizes Single Page App (SPA) performance by fetching the route's assets/data silently when the user hovers over the link.
- * @prop collapsible - Allows vertical navs (like sidebars) to collapse down to just their icons.
+ * @file Base property definitions for the nav component family.
+ * @module design/nav
+ *
+ * This file defines the `NavProps` interface, which establishes the shared
+ * visual and behavioral API contract for all navigation controls (Menu,
+ * Tabs, Pagination, etc.).
+ *
+ * **Architecture Note:**
+ * This interface intentionally DOES NOT include data props like `items`.
+ * Data shape is strictly component-specific. `NavProps` only handles the
+ * visual tokens (`size`, `variant`, `color`, `radius`) and shared state (`activeId`).
+ */
+import type { BaseComponentProps } from "~/shared/base.props";
+import type { NavSize, NavVariant, NavColor, NavRadius } from "./nav.tokens";
+
+/**
+ * Shared props for all navigation controls in the `nav` category.
+ *
+ * Component-specific data structures (like `items`) belong in the
+ * specific component props (e.g., MenuProps, TabsProps).
  */
 export interface NavProps extends BaseComponentProps {
-  items:        NavItemData[];
+  /** Overall size tier of the control. */
+  size?: NavSize;
+
+  /** Visual treatment of the control. */
+  variant?: NavVariant;
+
+  /** Color role for the control's interactive and active states. */
+  color?: NavColor;
+
+  /** Border-radius of the control or its active indicator. */
+  radius?: NavRadius;
+
+  /**
+   * Layout orientation of the navigation control.
+   * @default "horizontal"
+   */
   orientation?: "horizontal" | "vertical";
-  activeId?:    string;
-  onChange?:    (id: string) => void;
-  exactMatch?:  boolean;
-  replace?:     boolean;
-  prefetch?:    boolean;
-  collapsible?: boolean;
+
+  /**
+   * The identifier of the currently active navigation item.
+   * Compared against individual item IDs or hrefs to determine `aria-current` or `aria-selected`.
+   */
+  activeId?: string;
 }

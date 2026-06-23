@@ -1,0 +1,40 @@
+---
+/**
+ * Prose
+ *
+ * A typography container that applies standard, beautiful styling to raw
+ * HTML and Markdown content (e.g. from MDX files). It uses descendant selectors
+ * to format headings, paragraphs, lists, blockquotes, and code blocks
+ * according to the design system tokens.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <article class="typography prose [modifiers]" style="…CSS vars…">
+ *   <slot /> <!-- Raw HTML/Markdown -->
+ * </article>
+ *
+ * @example
+ * ```astro
+ * <Prose size="base">
+ *   <h1>Welcome</h1>
+ *   <p>This is standard markdown.</p>
+ * </Prose>
+ * ```
+ *
+ * @see prose.hook.ts   — useProse: resolves props to { Tag, props }
+ * @see prose.props.ts  — ProseProps: full prop reference
+ * @see prose.css       — descendant selectors for raw html tags
+ */
+
+import type { ProseProps } from "./prose.props";
+import { useProse }        from "./prose.hook";
+import "../../typography.css";
+import "../heading/heading.css";
+import "../code/code.css";
+import "../quote/quote.css";
+import "~/triggers/components/link/link.css";
+import "./prose.css";
+
+const { Tag, props } = useProse(Astro.props as ProseProps);
+---
+<Tag {...props}><slot /></Tag>

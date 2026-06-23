@@ -1,0 +1,37 @@
+---
+/**
+ * Well
+ *
+ * Inset content container with a sunken appearance relative to its context.
+ * Inherits surface properties.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div class="surface well [modifiers]" style="…CSS vars…">
+ *   <slot />
+ * </div>
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Content
+ *
+ * @example
+ * ```astro
+ * <Well padding="md">
+ *   <Text>This content sits inside a recessed well area.</Text>
+ * </Well>
+ * ```
+ *
+ * @see well.hook.ts   — useWell: resolves props to { Tag, props }
+ * @see well.props.ts  — WellProps: full prop reference
+ * @see surface.css    — visual chrome (handles layer="inset" automatically)
+ */
+
+import type { WellProps } from "./well.props";
+import { useWell }        from "./well.hook";
+import "../../surface.css";
+import "./well.css";
+
+const { Tag, props } = useWell(Astro.props as WellProps);
+---
+<Tag {...props}><slot /></Tag>

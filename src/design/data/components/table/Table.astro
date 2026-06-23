@@ -1,0 +1,310 @@
+---
+/**
+ * Table
+ *
+ * Renders tabular data with full support for two modes:
+ *
+ *   Data-driven  Pass `data` + `columns` and Table handles all rendering.
+ *                Add `sortable`, `stickyHeader`, `striped` etc. as needed.
+ *
+ *   Compound     Use <TableHead>, <TableBody>, <TableFoot>, <TableRow>,
+ *                <TableCell> via named slots for full structural control.
+ *                Data category props (color, variant, size, etc.) still apply.
+ *
+ *   Mixed        Pass `data` + `columns` for the body while slotting a
+ *                custom <TableFoot> — the slot wins for its section.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div  class="data [modifiers]" style="…CSS vars…" [data-attrs]>
+ *   <table class="table [modifiers]" [id] [aria-*]>
+ *     <caption>…</caption>            ← when caption prop is set
+ *     <thead>…</thead>                ← data-driven or head slot
+ *     <tbody>…</tbody>                ← data-driven, skeleton, empty, or body slot
+ *     <tfoot>…</tfoot>                ← foot slot only
+ *   </table>
+ * </div>
+ *
+ * Why the wrapper div — overflow:auto on <table> is ignored by all browsers.
+ * The wrapper receives .data and state attributes; <table> receives .table.
+ * CSS vars set on the wrapper cascade into the table and all descendants.
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   head    Replaces data-driven <thead>. Use <TableHead> + <TableRow> + <TableCell as="th">.
+ *   body    Replaces data-driven <tbody>. Use <TableBody> + <TableRow> + <TableCell>.
+ *   foot    Appends a <tfoot>. Use <TableFoot> + <TableRow> + <TableCell>.
+ *   empty   Replaces the default empty state message.
+ *
+ * @example Data-driven
+ * ```astro
+ * <Table
+ *   data={rows}
+ *   columns={[
+ *     { key: "name",   heading: "Name",   width: "200px" },
+ *     { key: "status", heading: "Status", align: "center" },
+ *     { key: "amount", heading: "Amount", align: "end",
+ *       format: (v) => `$${Number(v).toFixed(2)}` },
+ *   ]}
+ *   caption="Q3 Sales by Region"
+ *   color="primary"
+ *   variant="outlined"
+ *   striped
+ *   sortable
+ *   sort={{ key: "amount", direction: "desc" }}
+ *   stickyHeader
+ *   scrollable
+ *   layout="fixed"
+ * />
+ * ```
+ *
+ * @example Compound mode
+ * ```astro
+ * <Table caption="Team members" color="primary" striped interactive>
+ *   <TableHead slot="head">
+ *     <TableRow><TableCell as="th">Name</TableCell><TableCell as="th">Role</TableCell></TableRow>
+ *   </TableHead>
+ *   <TableBody slot="body">
+ *     {members.map(m => (
+ *       <TableRow>
+ *         <TableCell>{m.name}</TableCell>
+ *         <TableCell>{m.role}</TableCell>
+ *       </TableRow>
+ *     ))}
+ *   </TableBody>
+ * </Table>
+ * ```
+ *
+ * @example Loading state
+ * ```astro
+ * <Table columns={cols} loading caption="Sales data" />
+ * ```
+ *
+ * @example Empty state
+ * ```astro
+ * <Table data={[]} columns={cols} empty="No results match your filters" caption="Search results" />
+ * ```
+ *
+ * @see table.hook.ts   — useTable: resolves props to wrapperProps + tableProps
+ * @see table.props.ts  — TableProps: full prop reference
+ * @see table.tokens.ts — TABLE_TOKENS, ColumnDef, TableSort, TABLE_DEFAULTS
+ * @see table.css       — table-specific styles
+ * @see data.css        — shared data category styles (variants, states)
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * ADJUSTING PROPS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * COLOR CHANNELS
+ *   color       [./table.css]  var(--data--color--*) in thead border,
+ *                              hover bg, sort indicators, bordered cells
+ *               @example color="danger" → red header border + hover tint
+ *
+ *   bg          [./table.css]  var(--data--bg--*) in thead bg, striped rows
+ *               @example bg="primary"  → tinted header + even rows
+ *
+ *   highlight   [./table.css]  var(--data--highlight--*) on tr[data-highlighted]
+ *               @example highlight="warning" → amber left-border + subtle bg
+ *
+ * CONTAINER
+ *   variant     [./data.css]   plain | outlined | soft | elevated — on wrapper div
+ *               Override here if table needs different container treatment.
+ *
+ *   size        [./table.css]  calc(var(--data--size) * N) on th/td padding
+ *               @example size="compact" → --data--size: var(--space-xs)
+ *
+ * METADATA
+ *   caption     [./Table.astro] renders as <caption> inside <table> — no CSS to adjust.
+ *               Always provide one when no visible heading precedes the table.
+ *
+ * STATE
+ *   loading     [./table.css]  .data[data-loading] .table tbody td::after
+ *               Change skeleton gradient colours or animation timing here.
+ *
+ *   empty       [./table.css]  .table__empty-cell  .data__empty
+ *               [./Table.astro] change default message ("No data available")
+ *               Use the empty slot for rich custom empty states.
+ *
+ * VISUAL MODIFIERS
+ *   striped     [./table.css]  .data--striped .table tbody tr:nth-child(even)
+ *               Shade: var(--data--bg--subtle). Adjust shade or selector here.
+ *
+ *   bordered    [./table.css]  .data--bordered .table th, .data--bordered .table td
+ *               Colour: var(--data--color--border). Adjust here.
+ *
+ * BEHAVIOR
+ *   interactive [./table.css]  .data[data-interactive] .table tbody tr
+ *               Add hover background, cursor, focus ring here.
+ *
+ *   selectable  [./table.css]  .data[data-selectable] first th/td — checkbox col
+ *               [./Table.astro] selection state is consumer-managed —
+ *               wire selectedRows with JS; this component only provides structure.
+ *
+ *   scrollable  [./data.css]   overflow-x: auto on .data[data-scrollable]
+ *               Pair with max-inline-size on the wrapper or a parent element.
+ *               Combine with layout="fixed" + stickyHeader for best results.
+ *
+ * DATA-DRIVEN
+ *   data        [./Table.astro] RowData[] — no CSS to adjust.
+ *   columns     [./Table.astro] ColumnDef[] — column.width applied as inline style on <th>.
+ *               column.align applied as data-align attribute on <th> and <td>.
+ *
+ *   layout      [./table.css]  var(--table--layout, auto) on .table
+ *               .table--fixed adds overflow-wrap: break-word for long cell values.
+ *
+ *   stickyHeader[./table.css]  .table--sticky-header thead th
+ *               Background: var(--data--bg--subtle). Adjust z-index if
+ *               inside a stacking context with other sticky elements.
+ *
+ *   sortable    [./table.css]  .table--sortable th[data-key] — cursor + hover
+ *               Sort icons: th[aria-sort]::after content. Replace with
+ *               SVG data-URI for custom icons.
+ *
+ *   sort        [./Table.astro] sets aria-sort attribute on <th> — CSS handles rest.
+ */
+
+import Checkbox from "~/forms/components/checkbox/Checkbox.astro";
+import type { TableProps } from "./table.props";
+import { useTable }        from "./table.hook";
+import "@data/data.css";
+import "./table.css";
+
+type Props = TableProps;
+
+const {
+  wrapperProps,
+  tableProps,
+  caption,
+  columns,
+  data,
+  sort,
+  sortable,
+} = useTable(Astro.props as TableProps);
+
+const isLoading   = Boolean(Astro.props.loading);
+const isSelectable = Boolean(Astro.props.selectable);
+const isEmpty     = Array.isArray(data) && data.length === 0;
+const emptyMsg    = typeof Astro.props.empty === "string"
+  ? Astro.props.empty
+  : "No data available";
+
+// Skeleton dimensions — add 1 col for checkbox when selectable
+const skeletonRows = 5;
+const skeletonCols = (columns?.length ?? 4) + (isSelectable ? 1 : 0);
+---
+
+<div {...wrapperProps}>
+  <table {...tableProps}>
+    {Astro.slots.has("default") ? <slot /> : (
+      <>
+        {/* ── Caption ─────────────────────────────────────────── */}
+        {caption && <caption>{caption}</caption>}
+
+        {/* ── Head: slot wins over data-driven ────────────────── */}
+        {Astro.slots.has("head")
+          ? <slot name="head" />
+          : columns && columns.length > 0 && (
+            <thead>
+              <tr>
+                {isSelectable && (
+                  <th class="table__checkbox-col" scope="col">
+                    <!-- in Table.astro, replacing the bare inputs -->
+                    <Checkbox
+                      data-selection-cb
+                      checkState="unchecked"
+                      aria-label="Select all rows"
+                      variant="ghost"
+                    />
+                  </th>
+                )}
+                {columns.map(col => {
+                  const colSortable = col.sortable ?? sortable;
+                  const isActive    = sort?.key === col.key;
+                  const ariaSort    = isActive
+                    ? sort!.direction === "asc" ? "ascending" : "descending"
+                    : colSortable ? "none" : undefined;
+
+                  return (
+                    <th
+                      data-key={colSortable ? col.key : undefined}
+                      aria-sort={ariaSort}
+                      data-align={col.align}
+                      style={col.width ? `width: ${col.width}` : undefined}
+                      scope="col"
+                    >
+                      {colSortable
+                        ? <button class="table__sort-btn" type="button">{col.heading}</button>
+                        : col.heading
+                      }
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+          )
+        }
+
+        {/* ── Body: slot → loading → empty → data-driven ──────── */}
+        {Astro.slots.has("body")
+          ? <slot name="body" />
+          : isLoading
+            ? (
+              <tbody aria-busy="true" aria-label="Loading">
+                {Array.from({ length: skeletonRows }).map(() => (
+                  <tr>
+                    {Array.from({ length: skeletonCols }).map(() => (
+                      <td aria-hidden="true">&nbsp;</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            )
+            : isEmpty
+              ? (
+                <tbody>
+                  <tr>
+                    <td class="table__empty-cell" colspan={(columns?.length ?? 1) + (isSelectable ? 1 : 0)}>
+                      {Astro.slots.has("empty")
+                        ? <slot name="empty" />
+                        : <span class="data__empty">{emptyMsg}</span>
+                      }
+                    </td>
+                  </tr>
+                </tbody>
+              )
+              : data && columns && data.length > 0 && (
+                <tbody>
+                  {data.map((row, i) => (
+                    <tr
+                      data-row-index={i}
+                      data-highlighted={row._highlighted ? "" : undefined}
+                    >
+                      {isSelectable && (
+                        <td class="table__checkbox-col">
+                          <input type="checkbox" class="table__checkbox" aria-label="Select row" />
+                        </td>
+                      )}
+                      {columns.map(col => (
+                        <td data-align={col.align}>
+                          {col.format
+                            ? col.format(row[col.key], row)
+                            : String(row[col.key] ?? "")
+                          }
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              )
+        }
+
+        {/* ── Foot ────────────────────────────────────────────── */}
+        {Astro.slots.has("foot") && <slot name="foot" />}
+      </>
+    )}
+  </table>
+</div>
+
+<script>
+  import "./table.client.ts";
+</script>

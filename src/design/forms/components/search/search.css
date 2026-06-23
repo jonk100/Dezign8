@@ -1,0 +1,172 @@
+/* ============================================================
+   search.css
+   ─────────────────────────────────────────────────────────────
+   Search-specific styles. Imported alongside forms.css.
+
+   STRUCTURE
+   ──────────────────────────────────────────────────────────────
+     <div class="form search …" data-search>
+       <div class="search__start">…</div>   ← start slot (optional)
+       <input class="search__control" />     ← text input
+       <button class="search__clear" />      ← clear button (JS-controlled)
+       <div class="search__spinner" />       ← loading spinner (CSS)
+       <div class="search__end">…</div>      ← end slot (optional)
+     </div>
+
+   CLEAR BUTTON
+   ──────────────────────────────────────────────────────────────
+   The clear button is always rendered in the DOM but starts hidden
+   via the HTML `hidden` attribute. The Search.astro script removes
+   `hidden` when the input has a value, and restores it when empty.
+
+   The loading state hides the clear button and shows the spinner
+   instead — both occupy the same trailing position.
+
+   SPINNER
+   ──────────────────────────────────────────────────────────────
+   A CSS-only spinner driven by data-loading on the wrapper.
+   Uses a rotating border trick with the role's color.
+   ============================================================ */
+
+/* ─── WRAPPER ─────────────────────────────────────────────── */
+
+.search {
+  cursor: text;
+}
+
+/* ─── INNER CONTROL ────────────────────────────────────────── */
+
+.search__control {
+  flex: 1;
+  min-inline-size: 0;
+
+  background:  transparent;
+  border:      none;
+  outline:     none;
+  color:       inherit;
+  font-size:   inherit;
+  font-family: inherit;
+  line-height: inherit;
+  padding:     0;
+  margin:      0;
+
+  appearance:         none;
+  -webkit-appearance: none;
+}
+
+.search__control::placeholder {
+  color:   var(--text--tertiary, var(--text--secondary));
+  opacity: 1;
+}
+
+.search__control:focus { outline: none; }
+
+/* Remove native search chrome (cancel button, decoration) */
+.search__control::-webkit-search-cancel-button,
+.search__control::-webkit-search-decoration,
+.search__control::-webkit-search-results-button,
+.search__control::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  display: none;
+}
+
+/* ─── SLOTS ────────────────────────────────────────────────── */
+
+.search__start,
+.search__end {
+  display:        flex;
+  align-items:    center;
+  flex-shrink:    0;
+  color:          var(--text--secondary);
+  pointer-events: none;
+}
+
+.search__end button,
+.search__end a,
+.search__start button,
+.search__start a {
+  pointer-events: auto;
+  cursor:         pointer;
+}
+
+/* ─── CLEAR BUTTON ─────────────────────────────────────────── */
+
+.search__clear {
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  flex-shrink:      0;
+
+  /* Size: proportional to form size tier */
+  width:  calc(var(--form--size, 2.5rem) * 0.5);
+  height: calc(var(--form--size, 2.5rem) * 0.5);
+
+  background:    transparent;
+  border:        none;
+  border-radius: 50%;
+  color:         var(--text--secondary);
+  cursor:        pointer;
+  padding:       0;
+  line-height:   1;
+
+  transition:
+    color            var(--transition--fast, 150ms),
+    background-color var(--transition--fast, 150ms);
+}
+
+.search__clear:hover {
+  color:            var(--text--primary);
+  background-color: var(--bg--2, #f4f4f5);
+}
+
+.search__clear:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--form--color-border, var(--primary--border));
+}
+
+/* Hidden by default (HTML hidden attr); JS removes it when input has value */
+.search__clear[hidden] {
+  display: none;
+}
+
+/* Hide clear button while loading — spinner takes its place */
+.search[data-loading] .search__clear {
+  display: none;
+}
+
+/* ─── LOADING SPINNER ──────────────────────────────────────── */
+
+.search__spinner {
+  display:        none; /* Shown only when data-loading is present */
+  flex-shrink:    0;
+  width:          calc(var(--form--size, 2.5rem) * 0.4);
+  height:         calc(var(--form--size, 2.5rem) * 0.4);
+  border:         2px solid var(--border--default);
+  border-top-color: var(--form--color-base, var(--primary--base));
+  border-radius:  50%;
+  animation:      search-spin 600ms linear infinite;
+}
+
+.search[data-loading] .search__spinner {
+  display: block;
+}
+
+@keyframes search-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── LOADING STATE ────────────────────────────────────────── */
+
+.search[data-loading] .search__control {
+  pointer-events: none;
+}
+
+/* ─── REDUCED MOTION ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .search__spinner {
+    animation: none;
+    border-top-color: var(--form--color-base, var(--primary--base));
+    opacity: 0.6;
+  }
+}

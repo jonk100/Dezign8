@@ -1,0 +1,104 @@
+---
+title: Flex Component
+description: A powerful layout primitive that exposes CSS Flexbox controls.
+category: Layout
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/layout/components/flex"
+---
+import Flex from "../../../design/layout/components/flex/Flex.astro";
+
+## Overview
+
+The `Flex` component is a layout primitive that renders as a flexbox container. It simplifies building one-dimensional layouts by providing first-class props for direction, wrapping, and alignment.
+
+## Usage & Examples
+
+### Basic Flex Row
+
+By default, `Flex` renders as a flex container with a `row` direction and `nowrap` behavior.
+
+```astro
+<Flex gap="md" bg="var(--bg--2)" p="md" radius="md">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Flex>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Flex gap="md" bg="var(--bg--2)" p="md" radius="md">
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Item 1</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Item 2</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Item 3</div>
+  </Flex>
+</div>
+
+### Flex Direction
+
+Change the axis of the layout using the `direction` prop.
+
+```astro
+<Flex direction="column" gap="sm" bg="var(--bg--2)" p="md" radius="md">
+  <div>Column Item 1</div>
+  <div>Column Item 2</div>
+</Flex>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Flex direction="column" gap="sm" bg="var(--bg--2)" p="md" radius="md">
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Column Item 1</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Column Item 2</div>
+  </Flex>
+</div>
+
+### Alignment & Justification
+
+Control the positioning of items using the `align` and `justify` props.
+
+```astro
+<Flex align="center" justify="between" bg="var(--bg--2)" p="md" radius="md">
+  <div>Start</div>
+  <div>Center</div>
+  <div>End</div>
+</Flex>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Flex align="center" justify="between" bg="var(--bg--2)" p="md" radius="md">
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Start</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">Center</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px;">End</div>
+  </Flex>
+</div>
+
+### Wrapping
+
+Use the `wrap` prop to allow flex items to wrap onto multiple lines when space is constrained.
+
+```astro
+<Flex wrap="wrap" gap="sm" bg="var(--bg--2)" p="md" radius="md">
+  {Array.from({length: 12}).map((_, i) => (
+    <div style="width: 80px;">Item {i + 1}</div>
+  ))}
+</Flex>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Flex wrap="wrap" gap="sm" bg="var(--bg--2)" p="md" radius="md">
+    {Array.from({length: 12}).map((_, i) => (
+      <div style="width: 80px; padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">{i + 1}</div>
+    ))}
+  </Flex>
+</div>
+
+## Props API
+
+### Flex Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `direction` | `"row" \| "column" \| "row-reverse" \| "column-reverse"` | `"row"` | The flex-direction CSS property. |
+| `wrap` | `"nowrap" \| "wrap" \| "wrap-reverse"` | `"nowrap"` | The flex-wrap CSS property. |
+| `as` | `FlexTag` | `"div"` | The HTML element to render (e.g., `div`, `ul`, `ol`, `dl`, `nav`). |
+
+### Layout & Spacing Props (Inherited)
+
+`Flex` inherits all standard `LayoutProps` and `SpacingProps`, allowing you to control padding (`p`, `px`, etc.), margins, background, and alignment/gap tokens.

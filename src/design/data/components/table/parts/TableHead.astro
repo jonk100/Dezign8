@@ -1,0 +1,33 @@
+---
+/**
+ * TableHead
+ *
+ * Renders a `<thead>` element inside a compound-mode `<Table>`.
+ * Pass via the `head` slot on `<Table>`:
+ *
+ * ```astro
+ * <Table caption="Sales">
+ *   <TableHead slot="head">
+ *     <TableRow>
+ *       <TableCell as="th" scope="col">Name</TableCell>
+ *       <TableCell as="th" scope="col" align="end">Amount</TableCell>
+ *     </TableRow>
+ *   </TableHead>
+ * </Table>
+ * ```
+ *
+ * All visual styling (background, border-bottom, font-weight) is applied
+ * by table.css via the inherited `.table` context — no props required.
+ *
+ * @see TableRow   — for the row inside thead
+ * @see TableCell  — use `as="th"` + `scope="col"` for header cells
+ */
+
+import type { TableHeadProps } from "../table-parts.props";
+
+type Props = TableHeadProps;
+---
+
+<thead {...Astro.props}>
+  <slot />
+</thead>

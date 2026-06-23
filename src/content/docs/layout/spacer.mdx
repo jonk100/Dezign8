@@ -1,0 +1,52 @@
+---
+title: Spacer
+description: A layout component that fills available space within a Flex container.
+---
+import { Spacer, Flex } from '~/layout';
+import { Preview } from '~/components/Preview';
+import { PropsApi } from '~/components/PropsApi';
+import { SpacerProps } from '~/layout/components/spacer/spacer.props';
+
+# Spacer
+
+A layout component that fills all available space within a Flex container. It's a simple, prop-less component for creating space between elements.
+
+## Example
+
+The `Spacer` component is useful for pushing elements to opposite ends of a flex container. It will expand to take up any available space.
+
+<Preview>
+  <Flex class="w-full" gap="md">
+    <span>Start Item</span>
+    <Spacer />
+    <span>End Item</span>
+  </Flex>
+</Preview>
+
+```astro
+<Flex>
+  <span>Start Item</span>
+  <Spacer />
+  <span>End Item</span>
+</Flex>
+```
+
+## In a Header
+
+A common use case is in a site header to separate the logo from the navigation links, ensuring they are aligned to the edges of the container.
+
+<Preview>
+  <Flex class="w-full p-4 border border-dashed rounded-md" align="center" gap="md">
+    <div class="font-bold">MyLogo</div>
+    <Spacer />
+    <Flex gap="lg">
+      <a>Home</a>
+      <a>About</a>
+      <a>Contact</a>
+    </Flex>
+  </Flex>
+</Preview>
+
+## Props API
+
+<PropsApi props={SpacerProps} />

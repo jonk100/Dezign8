@@ -36,11 +36,11 @@
      All values clamp between a min and max across viewports.
   ────────────────────────────────────────────────────────── */
   /* Step -2 to -1 (Shrinking below base) */
-  --size-0:  clamp(0.79rem,   0.78rem + 0.017vi,  0.8rem);
-  --size-1:  clamp(0.889rem,  0.85rem + 0.185vi,  1rem);
+  --size-0:  clamp(0.79rem,   0.78rem + 0.017vi,  0.8rem); /** 10px */
+  --size-1:  clamp(0.889rem,  0.85rem + 0.185vi,  1rem);   /** 14.4px */
 
   /* Step 0 (Base Size) */
-  --size-2:  clamp(1rem,      0.91rem + 0.417vi,  1.25rem);
+  --size-2:  clamp(1rem,      0.91rem + 0.417vi,  1.25rem);     /** 16px */
   --size-3:  clamp(1.125rem,  0.97rem + 0.730vi,  1.53rem);
   --size-4:  clamp(1.266rem,  1.03rem + 1.145vi,  1.953rem);
   --size-5:  clamp(1.424rem,  1.085rem + 1.695vi,  2.441rem);

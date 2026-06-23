@@ -1,0 +1,26 @@
+---
+/**
+ * Spacer
+ *
+ * A layout component that fills all available space within a Flex container.
+ * It's a simple, prop-less component for creating space between elements.
+ *
+ * @example Pushing elements apart in a header
+ * ```astro
+ * <Flex>
+ *   <Logo />
+ *   <Spacer />
+ *   <Navigation />
+ * </Flex>
+ * ```
+ *
+ * @see spacer.hook.ts
+ */
+import { useSpacer } from "./spacer.hook";
+import type { SpacerProps } from "./spacer.props";
+import "./spacer.css";
+
+const { Tag, props } = useSpacer(Astro.props as SpacerProps);
+---
+
+<Tag {...props} />

@@ -1,0 +1,82 @@
+---
+/**
+ * Menu
+ *
+ * A flexible, accessible navigation list that supports both data-driven
+ * rendering and manual slot composition. Useful for sidebars, dropdowns,
+ * or simple vertical/horizontal lists of links.
+ *
+ * COMPOSITION OPTIONS
+ * ─────────────────────────────────────────────────────────────────────────
+ * 1. Data-Driven: Pass an array of `items` to automatically generate the list.
+ * 2. Slot-Driven: Omit `items` and manually compose `<MenuItem>` components inside.
+ *
+ * @example
+ * <!-- Data-Driven -->
+ * <Menu 
+ *   variant="soft"
+ *   items={[
+ *     { id: 'home', label: 'Home', href: '/' },
+ *     { id: 'about', label: 'About', href: '/about' }
+ *   ]} 
+ * />
+ *
+ * @example
+ * <!-- Slot-Driven -->
+ * <Menu variant="ghost">
+ *   <MenuItem href="/">Home</MenuItem>
+ *   <MenuItem href="/about" active>About</MenuItem>
+ * </Menu>
+ *
+ * @see menu.props.ts — full prop type reference
+ * @see menu.hook.ts  — logic for token resolution and class composition
+ */
+import { useMenu } from "./menu.hook";
+import type { MenuProps } from "./menu.props";
+import MenuItem from "./item/MenuItem.astro";
+import "../../nav.css";
+import "./menu.css";
+
+type Props = MenuProps;
+
+const { menuProps, items, activeId } = useMenu(Astro.props);
+---
+
+<nav {...menuProps} aria-label="Menu">
+  <ul class="menu__list">
+    {items ? (
+      items.map((item) => (
+        <>
+          <MenuItem 
+            id={item.id}
+            href={item.href}
+            icon={item.icon}
+            disabled={item.disabled}
+            active={activeId === item.id || activeId === item.href}
+          >
+            {item.label}
+          </MenuItem>
+          {item.children && item.children.length > 0 && (
+            <li>
+              <ul class="menu__list">
+                {item.children.map((child) => (
+                  <MenuItem 
+                    id={child.id}
+                    href={child.href}
+                    icon={child.icon}
+                    disabled={child.disabled}
+                    active={activeId === child.id || activeId === child.href}
+                  >
+                    {child.label}
+                  </MenuItem>
+                ))}
+              </ul>
+            </li>
+          )}
+        </>
+      ))
+    ) : (
+      <slot />
+    )}
+  </ul>
+</nav>

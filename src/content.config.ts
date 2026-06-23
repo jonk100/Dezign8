@@ -28,6 +28,7 @@ const docs = defineCollection({
     status: z.enum(['draft', 'experimental', 'stable', 'deprecated']).default('draft'),
     version: z.string().optional().describe("The version of the library where this was introduced."),
     
+    
     // References for cross-functional alignment
     links: z.object({
       figma: z.url().optional(),

@@ -1,0 +1,132 @@
+/**
+ * @file Base CSS rules for the nav component family.
+ * @module design/nav
+ *
+ * This file provides the foundational styling that all navigation components
+ * (Menu, Tabs, Pagination, etc.) inherit. It does not contain component-specific
+ * structural layout (e.g., how a TabPanel hides/shows), but rather the shared
+ * visual language driven by `useNav`.
+ *
+ * **What this file implements:**
+ * 1. Base `.nav` flexbox resets.
+ * 2. The standard `.nav__item` interactive reset (removes button/anchor defaults).
+ * 3. Focus-visible accessibility rings using `--nav--color-base`.
+ * 4. Compound size rules (how `--nav--size` scales `font-size` and `padding`).
+ * 5. Variant visual rules (`.nav--underlined`, `.nav--pill`, `.nav--soft`, `.nav--ghost`).
+ *
+ * @see nav.hook.ts   — hook that generates the classes targeting these rules
+ * @see nav.tokens.ts — the token specifications defining the scale names
+ */
+
+/* ─── BASE NAV ──────────────────────────────────────────────────────────── */
+.nav {
+  display: flex;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav--horizontal {
+  flex-direction: row;
+}
+
+.nav--vertical {
+  flex-direction: column;
+}
+
+/* Base Nav Item reset */
+.nav__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text--secondary);
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.nav__item:hover {
+  color: var(--text--primary);
+}
+
+.nav__item[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Focus styles */
+.nav__item:focus-visible {
+  outline: 2px solid var(--nav--color-base, var(--primary--base));
+  outline-offset: 2px;
+}
+
+/* Compound Sizes */
+.nav.nav--sm .nav__item {
+  font-size: var(--fs--sm, 0.875rem);
+  padding: 0.25rem 0.75rem;
+}
+
+.nav.nav--md .nav__item {
+  font-size: var(--fs--base, 1rem);
+  padding: 0.5rem 1rem;
+}
+
+.nav.nav--lg .nav__item {
+  font-size: var(--fs--lg, 1.125rem);
+  padding: 0.75rem 1.25rem;
+}
+
+/* 
+ * Variants
+ */
+
+/* Underlined */
+.nav.nav--underlined .nav__item {
+  border-bottom: 2px solid transparent;
+  padding-bottom: calc(0.5rem - 2px); /* adjust padding to avoid jumping */
+}
+.nav.nav--underlined .nav__item[aria-current="page"],
+.nav.nav--underlined .nav__item[aria-selected="true"] {
+  color: var(--nav--color-base, var(--primary--base));
+  border-bottom-color: var(--nav--color-base, var(--primary--base));
+}
+
+/* Pill */
+.nav.nav--pill .nav__item {
+  border-radius: var(--nav--radius);
+}
+.nav.nav--pill .nav__item[aria-current="page"],
+.nav.nav--pill .nav__item[aria-selected="true"] {
+  background: var(--nav--color-base, var(--primary--base));
+  color: var(--text--inverse);
+}
+
+/* Soft */
+.nav.nav--soft .nav__item {
+  border-radius: var(--nav--radius);
+}
+.nav.nav--soft .nav__item[aria-current="page"],
+.nav.nav--soft .nav__item[aria-selected="true"] {
+  background: var(--nav--color-subtle, var(--primary--subtle));
+  color: var(--nav--color-deep, var(--primary--deep));
+}
+
+/* Ghost */
+.nav.nav--ghost .nav__item {
+  border-radius: var(--nav--radius);
+}
+.nav.nav--ghost .nav__item:hover {
+  background: var(--bg--2);
+}
+.nav.nav--ghost .nav__item[aria-current="page"],
+.nav.nav--ghost .nav__item[aria-selected="true"] {
+  color: var(--nav--color-base, var(--primary--base));
+  font-weight: 500;
+}

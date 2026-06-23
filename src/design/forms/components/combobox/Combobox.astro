@@ -1,0 +1,326 @@
+---
+/**
+ * Combobox
+ *
+ * An accessible autocomplete combobox with a text filter input and a custom
+ * `<ul role="listbox">` dropdown. All options are rendered server-side;
+ * the JS controller filters them client-side without a network round-trip.
+ *
+ * STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────
+ *   <div class="form combobox …" data-combobox>
+ *     <input type="text"   class="combobox__control" role="combobox" … />
+ *     <input type="hidden" name="{name}" value="{selectedValue}" />
+ *     <div class="combobox__arrow">▾</div>
+ *     <ul class="combobox__listbox" role="listbox" hidden>
+ *       <li class="combobox__option" role="option" … />…</li>
+ *       <li class="combobox__empty" …>No results</li>
+ *     </ul>
+ *   </div>
+ *
+ * WHY TWO INPUTS
+ * ─────────────────────────────────────────────────────────────────────────
+ * The visible `<input type="text">` is for display and filtering. It has no
+ * `name` attribute and its value (the option label) is not submitted.
+ * The hidden `<input type="hidden">` carries `name` and the selected option's
+ * `value` (which may differ from the label) for form submission.
+ *
+ * ACCESSIBILITY
+ * ─────────────────────────────────────────────────────────────────────────
+ * The combobox pattern uses ARIA 1.2 practices:
+ *   - Input: role="combobox", aria-expanded, aria-autocomplete="list",
+ *            aria-controls="{listboxId}", aria-activedescendant
+ *   - Listbox: role="listbox", id="{listboxId}"
+ *   - Options: role="option", id="{listboxId}-{value}", aria-selected
+ *
+ * KEYBOARD INTERACTIONS (JS controller)
+ * ─────────────────────────────────────────────────────────────────────────
+ *   Type          → filters options; opens listbox if matches exist
+ *   ↓ ArrowDown   → opens listbox; moves highlight to next visible option
+ *   ↑ ArrowUp     → moves highlight to previous visible option
+ *   Enter         → selects highlighted option
+ *   Escape        → closes listbox; resets text to selected option's label
+ *   Tab           → closes listbox
+ *   Click option  → selects option
+ *   Click outside → closes listbox
+ *
+ * @example
+ * ```astro
+ * <Combobox
+ *   name="country"
+ *   placeholder="Select a country…"
+ *   options={[
+ *     { value: "us", label: "United States" },
+ *     { value: "uk", label: "United Kingdom" },
+ *   ]}
+ * />
+ * ```
+ *
+ * @see combobox.hook.ts  — resolves props to the full return shape
+ * @see combobox.props.ts — full prop type reference
+ * @see combobox.css      — listbox, option, and arrow styles
+ * @see forms.css         — shared variant and state styles
+ */
+
+import type { ComboboxProps } from "./combobox.props";
+import { useCombobox }        from "./combobox.hook";
+import "~f/forms.css";
+import "./combobox.css";
+
+const { Tag, props, inputAttrs, hiddenAttrs, listboxAttrs, options, listboxId }
+  = useCombobox(Astro.props as ComboboxProps);
+---
+
+<Tag {...props}>
+  <input class="combobox__control" {...inputAttrs} />
+  <input {...hiddenAttrs} />
+
+  <div class="combobox__arrow" aria-hidden="true">▾</div>
+
+  <ul class="combobox__listbox" {...listboxAttrs}>
+    {options.map((opt, i) => (
+      <li
+        class="combobox__option"
+        role="option"
+        id={`${listboxId}-${opt.value}`}
+        data-value={opt.value}
+        aria-selected={opt.selected ? "true" : "false"}
+        aria-disabled={opt.disabled ? "true" : undefined}
+      >
+        {opt.label}
+      </li>
+    ))}
+    <li class="combobox__empty" aria-live="polite">No results</li>
+  </ul>
+</Tag>
+
+<!--
+  Combobox controller script.
+  Runs once per page (Astro deduplicates). Initialises a ComboboxController
+  instance for each [data-combobox] element found in the DOM.
+
+  STATE MANAGED BY JS (not SSR):
+  - aria-expanded on the text input
+  - aria-activedescendant on the text input (tracks keyboard-highlighted option)
+  - hidden attribute on the listbox (open/close)
+  - hidden attribute on individual options (filter results)
+  - combobox__option--active class (keyboard highlight)
+  - combobox__empty visibility
+  - hidden input value (selected option value)
+  - text input value (selected option label)
+-->
+<script>
+  class ComboboxController {
+    private wrapper:   HTMLElement;
+    private input:     HTMLInputElement;
+    private hidden:    HTMLInputElement;
+    private listbox:   HTMLElement;
+    private opts:      HTMLElement[];
+    private empty:     HTMLElement | null;
+    private active:    HTMLElement | null = null;
+    private selected:  HTMLElement | null = null;
+    private caseSensitive: boolean;
+
+    constructor(wrapper: HTMLElement) {
+      this.wrapper  = wrapper;
+      this.input    = wrapper.querySelector<HTMLInputElement>(".combobox__control")!;
+      this.hidden   = wrapper.querySelector<HTMLInputElement>('input[type="hidden"]')!;
+      this.listbox  = wrapper.querySelector<HTMLElement>(".combobox__listbox")!;
+      this.opts     = Array.from(wrapper.querySelectorAll<HTMLElement>(".combobox__option"));
+      this.empty    = wrapper.querySelector<HTMLElement>(".combobox__empty");
+      this.caseSensitive = wrapper.hasAttribute("data-case-sensitive");
+
+      this.#bind();
+      this.#initSelected();
+    }
+
+    // ── Initialisation ─────────────────────────────────────────────────────
+
+    #initSelected() {
+      // Find the option that matches the hidden input's initial value (from SSR)
+      const initialValue = this.hidden.value;
+      if (initialValue) {
+        const match = this.opts.find(o => o.dataset.value === initialValue);
+        if (match) {
+          this.selected = match;
+          match.setAttribute("aria-selected", "true");
+          // Text input is already populated by the hook (displayValue from SSR)
+        }
+      }
+    }
+
+    // ── Event binding ──────────────────────────────────────────────────────
+
+    #bind() {
+      this.input.addEventListener("input",   () => this.#onInput());
+      this.input.addEventListener("keydown", (e) => this.#onKeydown(e));
+      this.input.addEventListener("focus",   () => this.#open());
+
+      // mousedown (not click) prevents input from losing focus before selection
+      this.listbox.addEventListener("mousedown", (e) => {
+        const opt = (e.target as HTMLElement).closest<HTMLElement>(".combobox__option");
+        if (opt && opt.getAttribute("aria-disabled") !== "true") {
+          e.preventDefault(); // keep input focused
+          this.#select(opt);
+        }
+      });
+
+      // Close on click outside
+      document.addEventListener("click", (e) => {
+        if (!this.wrapper.contains(e.target as Node)) this.#close();
+      });
+    }
+
+    // ── Input handler ──────────────────────────────────────────────────────
+
+    #onInput() {
+      const raw   = this.input.value;
+      const query = this.caseSensitive ? raw : raw.toLowerCase();
+      let   count = 0;
+
+      this.opts.forEach(opt => {
+        const label = this.caseSensitive
+          ? (opt.textContent ?? "")
+          : (opt.textContent ?? "").toLowerCase();
+        const match = label.includes(query);
+        opt.hidden  = !match;
+        if (match) count++;
+      });
+
+      // Empty state visibility
+      if (this.empty) {
+        this.empty.classList.toggle("combobox__empty--visible", count === 0);
+      }
+
+      this.#clearActive();
+      count > 0 ? this.#open() : this.#close();
+    }
+
+    // ── Keyboard handler ───────────────────────────────────────────────────
+
+    #onKeydown(e: KeyboardEvent) {
+      const isOpen = !this.listbox.hidden;
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          if (!isOpen) this.#open();
+          this.#moveActive(1);
+          break;
+
+        case "ArrowUp":
+          e.preventDefault();
+          this.#moveActive(-1);
+          break;
+
+        case "Enter":
+          if (isOpen && this.active) {
+            e.preventDefault();
+            this.#select(this.active);
+          }
+          break;
+
+        case "Escape":
+          if (isOpen) {
+            e.preventDefault();
+            this.#close();
+            // Reset text to the currently selected option's label
+            this.input.value = this.selected
+              ? (this.selected.textContent ?? "").trim()
+              : "";
+            // Restore all options (un-filter)
+            this.opts.forEach(o => { o.hidden = false; });
+          }
+          break;
+
+        case "Tab":
+          this.#close();
+          break;
+      }
+    }
+
+    // ── Listbox open/close ─────────────────────────────────────────────────
+
+    #open() {
+      this.listbox.hidden = false;
+      this.input.setAttribute("aria-expanded", "true");
+    }
+
+    #close() {
+      this.listbox.hidden = true;
+      this.input.setAttribute("aria-expanded", "false");
+      this.#clearActive();
+    }
+
+    // ── Keyboard navigation ────────────────────────────────────────────────
+
+    #moveActive(dir: 1 | -1) {
+      const visible = this.opts.filter(o => !o.hidden && o.getAttribute("aria-disabled") !== "true");
+      if (!visible.length) return;
+
+      const idx  = this.active ? visible.indexOf(this.active) : -1;
+      const next = visible.at((idx + dir + visible.length) % visible.length)!;
+      this.#setActive(next);
+    }
+
+    #setActive(opt: HTMLElement | null) {
+      if (this.active) {
+        this.active.classList.remove("combobox__option--active");
+        this.active.removeAttribute("aria-selected");
+        // Restore aria-selected for the actually-selected item
+        if (this.active === this.selected) {
+          this.active.setAttribute("aria-selected", "true");
+        } else {
+          this.active.setAttribute("aria-selected", "false");
+        }
+      }
+
+      this.active = opt;
+
+      if (opt) {
+        opt.classList.add("combobox__option--active");
+        opt.setAttribute("aria-selected", "true");
+        opt.scrollIntoView({ block: "nearest" });
+        this.input.setAttribute("aria-activedescendant", opt.id);
+      } else {
+        this.input.removeAttribute("aria-activedescendant");
+      }
+    }
+
+    #clearActive() {
+      this.#setActive(null);
+    }
+
+    // ── Selection ──────────────────────────────────────────────────────────
+
+    #select(opt: HTMLElement) {
+      // Deselect previous
+      if (this.selected) {
+        this.selected.setAttribute("aria-selected", "false");
+      }
+
+      this.selected = opt;
+      opt.setAttribute("aria-selected", "true");
+
+      // Update both inputs
+      this.input.value  = (opt.textContent ?? "").trim();
+      this.hidden.value = opt.dataset.value ?? "";
+
+      // Dispatch change so external listeners (e.g. reactive frameworks) hear it
+      this.hidden.dispatchEvent(new Event("change", { bubbles: true }));
+
+      // Restore all options visibility for next open
+      this.opts.forEach(o => { o.hidden = false; });
+      if (this.empty) {
+        this.empty.classList.remove("combobox__empty--visible");
+      }
+
+      this.#close();
+    }
+  }
+
+  // Initialise all combobox instances on the page
+  document
+    .querySelectorAll<HTMLElement>("[data-combobox]")
+    .forEach(el => new ComboboxController(el));
+</script>

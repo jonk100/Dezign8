@@ -1,0 +1,55 @@
+---
+/**
+ * Tabs
+ *
+ * A row of interactive tab controls. It renders the `role="tablist"` container
+ * and the individual `role="tab"` buttons.
+ *
+ * COMPOSITION OPTIONS
+ * ─────────────────────────────────────────────────────────────────────────
+ * 1. Data-Driven: Pass an array of `items` to automatically generate the tabs.
+ * 2. Slot-Driven: Omit `items` and manually compose `<Tab>` components inside.
+ *
+ * USE CASES
+ * ─────────────────────────────────────────────────────────────────────────
+ * - Visual Navigation: Use by itself (without a `<TabGroup>`) if clicking a
+ *   tab should behave like a normal link and trigger a full page reload.
+ * - Interactive: Wrap inside a `<TabGroup>` Web Component alongside 
+ *   `<TabPanel>` components to swap content instantly via JavaScript.
+ *
+ * @example
+ * <TabGroup>
+ *   <Tabs items={[{ id: "1", label: "One" }]} />
+ *   <TabPanel id="1">Content</TabPanel>
+ * </TabGroup>
+ *
+ * @see tabs.props.ts — full prop type reference
+ * @see TabGroup.astro — the Web Component wrapper for interactivity
+ */
+import { useTabs } from "./tabs.hook";
+import type { TabsProps } from "./tabs.props";
+import Tab from "./tab/Tab.astro";
+import "../../nav.css";
+import "./tabs.css";
+
+type Props = TabsProps;
+
+const { tabsProps, items, activeId } = useTabs(Astro.props);
+---
+
+<div {...tabsProps}>
+  {items ? (
+    items.map(item => (
+      <Tab 
+        id={item.id} 
+        disabled={item.disabled}
+        active={activeId ? activeId === item.id : item.active}
+        href={item.href}
+      >
+        {item.label}
+      </Tab>
+    ))
+  ) : (
+    <slot />
+  )}
+</div>

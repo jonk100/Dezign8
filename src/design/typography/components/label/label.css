@@ -1,0 +1,49 @@
+/* ============================================================
+   label.css
+   ─────────────────────────────────────────────────────────────
+   Label-specific styles. Imported alongside typography.css.
+
+   Label inherits all typography.css rules via the .typography
+   class. This file adds only what is unique to Label:
+   - Cursor affordance (clicking a label focuses its control)
+   - Required indicator asterisk styling
+
+   The fixed-size scale is handled at the token level
+   (LABEL_TOKENS overrides size to use --fsf--* variables),
+   not in CSS. typography.css reads var(--typography--size)
+   and gets a fixed value when Label sets the channel.
+   ============================================================ */
+
+/* ─── WRAPPER ─────────────────────────────────────────────── */
+
+.label {
+  /* Signals to the user that clicking focuses the associated control */
+  cursor: pointer;
+
+  /* Display inline-flex so the asterisk sits flush next to the text */
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+}
+
+/* Standalone label (no associated control) should not show pointer */
+.label:not([for]) {
+  cursor: default;
+}
+
+/* ─── REQUIRED INDICATOR ──────────────────────────────────── */
+
+.label__required {
+  /* Danger-colored asterisk beside the label text */
+  color:       var(--danger--text);
+  font-weight: inherit;
+
+  /* Slightly smaller than the label text to sit as a superscript-like marker */
+  font-size: 0.85em;
+  line-height: 1;
+
+  /* aria-hidden="true" is set in Label.astro — screen readers skip this.
+     Sighted users see the asterisk; screen readers hear aria-required on
+     the control. */
+  user-select: none;
+}

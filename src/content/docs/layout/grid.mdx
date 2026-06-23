@@ -1,0 +1,75 @@
+---
+title: Grid Component
+description: A two-dimensional layout component based on CSS Grid.
+category: Layout
+status: stable
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/layout/components/grid"
+---
+import Grid from "../../../design/layout/components/grid/Grid.astro";
+
+## Overview
+
+The `Grid` component provides a straightforward way to build responsive two-dimensional layouts. It simplifies CSS Grid by letting you define the number of columns with a simple prop, while leveraging layout tokens for spacing and gaps.
+
+## Usage & Examples
+
+### Basic Grid Layout
+
+Define a multi-column grid by setting the `columns` prop. The layout automatically balances grid items across the specified number of columns.
+
+```astro
+<Grid columns="3" gap="md" p="md" bg="var(--bg--2)" radius="md">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+  <div>Item 4</div>
+  <div>Item 5</div>
+  <div>Item 6</div>
+</Grid>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Grid columns="3" gap="md" p="md" bg="var(--bg--2)" radius="md">
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Item 1</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Item 2</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Item 3</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Item 4</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Item 5</div>
+    <div style="padding: 0.5rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Item 6</div>
+  </Grid>
+</div>
+
+### Semantic Polymorphism
+
+You can change the underlying HTML element using the `as` prop. A common use case for `Grid` is an unordered list (`<ul>`) serving as an image gallery or a feature list.
+
+```astro
+<Grid as="ul" columns="2" gap="lg" p="md" bg="var(--bg--2)">
+  <li>Feature 1</li>
+  <li>Feature 2</li>
+  <li>Feature 3</li>
+  <li>Feature 4</li>
+</Grid>
+```
+<div style="border: 1px solid var(--border--default); margin-bottom: 1rem; border-radius: var(--radius--md); overflow: hidden;">
+  <Grid as="ul" columns="2" gap="lg" p="md" bg="var(--bg--2)" style="list-style-type: none; margin: 0;">
+    <li style="padding: 1rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Feature 1</li>
+    <li style="padding: 1rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Feature 2</li>
+    <li style="padding: 1rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Feature 3</li>
+    <li style="padding: 1rem; background: var(--bg--1); border: 1px solid var(--border--default); border-radius: 4px; text-align: center;">Feature 4</li>
+  </Grid>
+</div>
+
+## Props API
+
+### Grid Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `columns` | `"1" \| "2" \| "3" \| "4" \| "5" \| "6" \| "12"` | | The number of equal-width columns in the grid. If omitted, behaves as a 1-column layout or auto-fit layout depending on CSS implementation. |
+| `as` | `GridTag` | `"div"` | The HTML element to render (e.g., `div`, `ul`, `ol`, `dl`). |
+
+### Layout & Spacing Props (Inherited)
+
+`Grid` inherits all standard `LayoutProps` and `SpacingProps`, making it easy to manage `gap`, margins, and padding globally using standard tokens.

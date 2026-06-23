@@ -1,0 +1,9 @@
+---
+import type { CodeProps } from "./code.props";
+import { useCode }        from "./code.hook";
+import "../../typography.css";
+import "./code.css";
+
+const { Tag, props } = useCode(Astro.props as CodeProps);
+---
+<Tag {...props}><slot /></Tag>

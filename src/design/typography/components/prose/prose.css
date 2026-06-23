@@ -1,0 +1,261 @@
+/* ============================================================
+   prose.css
+   ─────────────────────────────────────────────────────────────
+   Prose wraps raw HTML/MDX — inner elements have no component
+   classes, so descendant selectors apply design-system defaults.
+
+   Split into two concerns:
+   1. Prose-context spacing/layout (--prose--* channels, margins)
+   2. Raw-element channel defaults — sets --typography--* on bare
+      tags the same way heading.css/link.css/quote.css do for
+      their classed counterparts. Only prose-appropriate overrides
+      go here; standalone component defaults are not duplicated.
+
+   Component CSS files (heading.css, link.css, code.css, quote.css)
+   are imported by Prose.astro so their class rules are available
+   if MDX ever emits classed elements.
+   ============================================================ */
+
+.prose {
+  /* ─── PROSE CHANNELS ──────────────────────────────────────── */
+  --prose--max-width:         65ch;
+  --prose--gap:               var(--space-out--md);
+  --prose--gap-heading:       var(--space-out--md);
+  --prose--gap-heading-after: var(--space-out--md);
+  --prose--indent:            var(--space-in--xl);
+  --prose--font:               var(--fs--md);
+}
+
+/* ─── READING WIDTH ───────────────────────────────────────── */
+
+.prose > p,
+.prose > ul,
+.prose > ol {
+  max-width: var(--prose--max-width);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * HEADINGS  (mirrors heading.css defaults; scoped to prose context)
+ * Raw h1–h6 from MDX get no .h--N class, so we apply the same channel values.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.prose :is(h1, h2, h3, h4, h5, h6) {
+  --typography--color:   var(--text--subtle);
+  --typography--leading: var(--leading--tight);
+  --typography--tracking: var(--tracking--tight);
+  margin-block-start: var(--prose--gap-heading);
+  margin-block-end:   var(--prose--gap-heading-after);
+}
+
+.prose > :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-block-start: 0;
+}
+
+.prose h1 {
+  --typography--size:    var(--fs--4xl);
+  --typography--weight:  var(--weight--bold);
+  --typography--leading: var(--leading--loose);
+}
+
+.prose h2 {
+  --typography--size:    var(--fs--3xl);
+  --typography--weight:  var(--weight--bold);
+  --typography--leading: var(--leading--relaxed);
+  border-block-end:  1px solid var(--border--subtle);
+  padding-block-end: 0.3em;
+}
+
+.prose h3 {
+  --typography--size:    var(--fs--2xl);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--tight);
+}
+
+.prose h4 {
+  --typography--size:    var(--fs--xl);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--snug);
+  --typography--tracking: var(--tracking--normal);
+}
+
+.prose h5 {
+  --typography--size:    var(--fs--lg);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--snug);
+  --typography--tracking: var(--tracking--normal);
+}
+
+.prose h6 {
+  --typography--size:    var(--fs--md);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--normal);
+  --typography--tracking: var(--tracking--normal);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * PARAGRAPHS
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.prose p {
+  margin-block-start: 0;
+  margin-block-end:   var(--prose--gap);
+  line-height:        var(--leading--normal);
+  font-size:          var(--prose--font);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * LINKS  (mirrors link.css defaults for unstyled <a> tags in MDX)
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.prose a:not(.link) {
+  --typography--color:  var(--primary--base);
+  --typography--weight: var(--weight--medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color var(--transition--fast, 0.2s ease),
+    text-decoration-color var(--transition--fast, 0.2s ease);
+}
+
+.prose a:not(.link):hover,
+.prose a:not(.link):focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.prose a:not(.link):focus-visible {
+  outline: 2px solid var(--color--focus, currentColor);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * LISTS
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.prose :is(ul, ol) {
+  margin-block-start:   0;
+  margin-block-end:     var(--prose--gap);
+  padding-inline-start: var(--prose--indent);
+  font-size:            var(--prose-font, var(--fs--sm));
+}
+
+.prose li {
+  margin-block-end: var(--space-in--sm);
+}
+
+.prose li > p {
+  margin-block-end: var(--space-in--sm);
+}
+
+.prose ul > li { list-style-type: disc; }
+.prose ol > li { list-style-type: decimal; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * BLOCKQUOTES  (mirrors quote.css .quote--block for unstyled <blockquote>)
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.prose blockquote:not(.quote) {
+  --typography--color: var(--text--secondary, inherit);
+  --typography--style: italic;
+  padding:             var(--space-in--xl) var(--space-in--xl) var(--space-in--xl) var(--space-in--xl);
+  border-inline-start: 4px solid var(--border--default);
+  background:          var(--bg--2);
+  border-radius:       0 var(--radius--md) var(--radius--md) 0;
+  margin-block:        var(--prose--gap);
+}
+
+.prose blockquote:not(.quote) > p:last-child {
+  margin-block-end: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * CODE  (mirrors code.css for unstyled <code> and <pre> from MDX)
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.prose pre:not(.pre) {
+  background:    var(--bg--4);
+  color:         var(--text--inverse);
+  padding:       var(--space-in--lg);
+  border-radius: var(--radius--md);
+  overflow-x:    auto;
+  margin-block:  var(--prose--gap);
+  line-height:   var(--leading--relaxed);
+  box-shadow:    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --typography--size: var(--fs--sm);
+  --typography--fam:  var(--font--mono);
+}
+
+.prose code:not(.code) {
+  background:    var(--bg--4);
+  color:         var(--warning--text);
+  padding:       var(--space-in--2xs) var(--space-in--md);
+  font-size:     var(--fs--sm);
+  border-radius: var(--radius--xs);
+  border:        1px solid var(--border--subtle);
+  font-weight:   var(--weight--medium);
+  --typography--fam: var(--font--mono);
+}
+
+.prose pre:not(.pre) > code:not(.code) {
+  background:    transparent;
+  color:         inherit;
+  padding:       0;
+  border-radius: 0;
+  border:        none;
+  font-weight:   inherit;
+  font-size:     inherit;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * TABLES
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.prose table {
+  width:           100%;
+  border-collapse: collapse;
+  margin-block:    var(--prose--gap);
+  --typography--size: var(--fs--sm);
+}
+
+.prose :is(th, td) {
+  text-align:       start;
+  padding:          var(--space-in--lg) var(--space-in--md);
+  border-block-end: 1px solid var(--border--subtle);
+  vertical-align:   top;
+}
+
+.prose th {
+  background:              var(--bg--2);
+  --typography--weight:    var(--weight--semibold);
+  --typography--color:     var(--text--secondary);
+  --typography--transform: uppercase;
+  --typography--tracking:  var(--tracking--wide);
+  --typography--size:      var(--fs--xs);
+}
+
+.prose tr:last-child td {
+  border-block-end: none;
+}
+
+.prose tbody tr:hover {
+  background: var(--bg--2);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * MEDIA
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+.prose :is(img, video) {
+  max-width:     100%;
+  height:        auto;
+  border-radius: var(--radius--md);
+  margin-block:  var(--prose--gap);
+  box-shadow:    var(--shadow--sm);
+}
+
+.prose hr {
+  border:             none;
+  border-block-start: 1px solid var(--border--subtle);
+  margin-block:       var(--prose--gap-heading);
+}

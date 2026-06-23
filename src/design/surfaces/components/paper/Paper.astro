@@ -1,0 +1,80 @@
+---
+/**
+ * Paper
+ *
+ * Generic content surface. A box that can be styled as plain, outlined,
+ * soft, elevated, or glass — and optionally stacks its children with gap.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div class="surface paper [modifiers]" style="…CSS vars…">
+ *   <slot />
+ * </div>
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Content
+ *
+ * @example Plain paper
+ * ```astro
+ * <Paper>Content here</Paper>
+ * ```
+ *
+ * @example Outlined stacking container
+ * ```astro
+ * <Paper variant="outlined" stack gap="lg">
+ *   <Heading level={3}>Title</Heading>
+ *   <Text>Body copy here.</Text>
+ * </Paper>
+ * ```
+ *
+ * @example Elevated glass panel
+ * ```astro
+ * <Paper variant="glass" radius="xl" blur="20px" />
+ * ```
+ *
+ * @see paper.hook.ts   — usePaper: resolves props to { Tag, props }
+ * @see paper.props.ts  — PaperProps: full prop reference
+ * @see paper.tokens.ts — PAPER_TOKENS, PAPER_DEFAULTS
+ * @see paper.css       — layout modifiers (stack, full-width)
+ * @see surface.css     — visual chrome (variants, color channels)
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * ADJUSTING PROPS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * VARIANT
+ *   variant     [../surface.css]  .surface--{variant} — background, border, shadow
+ *               @example variant="elevated" → box-shadow: var(--surface--shadow)
+ *
+ * SPACING
+ *   padding     [../surface.css]  --surface--padding → padding on .surface
+ *               @example padding="lg" → spacious inner whitespace
+ *
+ *   gap         [./paper.css]     --paper--gap → flex gap when stack=true
+ *               @example gap="sm" → tight stacked children
+ *
+ * SHAPE
+ *   radius      [../surface.css]  --surface--radius → border-radius on .surface
+ *
+ * COLOR
+ *   color       [../surface.css]  --surface--color--* channels
+ *               @example color="primary" → tinted border + subtle bg
+ *
+ * GLASS
+ *   blur        [../surface.css]  --surface--blur → backdrop-filter blur
+ *               Only meaningful with variant="glass"
+ *
+ * LAYOUT
+ *   stack       [./paper.css]     .paper--stack → display flex + column
+ *   fullWidth   [./paper.css]     .paper--full-width → width 100%
+ */
+
+import type { PaperProps } from "./paper.props";
+import { usePaper }        from "./paper.hook";
+import "../../surface.css";
+import "./paper.css";
+
+const { Tag, props } = usePaper(Astro.props as PaperProps);
+---
+<Tag {...props}><slot /></Tag>

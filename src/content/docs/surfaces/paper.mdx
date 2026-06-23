@@ -1,0 +1,84 @@
+---
+title: Paper Component
+description: Generic content surface. A box that can be styled as plain, outlined, soft, elevated, or glass — and optionally stacks its children.
+category: Surfaces
+status: stable
+---
+
+import Paper from "~/surfaces/components/paper/Paper.astro";
+
+## Overview
+
+`Paper` is the most generic surface container. It can be styled with any surface variant, configured with padding and radius, and has an optional `stack` prop to flex-gap its children.
+
+## Examples
+
+### Variants
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+  <Paper variant="plain" padding="md">Plain Paper</Paper>
+  <Paper variant="outlined" padding="md">Outlined Paper</Paper>
+  <Paper variant="soft" padding="md">Soft Paper</Paper>
+  <Paper variant="elevated" padding="md">Elevated Paper</Paper>
+</div>
+
+```astro
+<Paper variant="plain" padding="md">Plain Paper</Paper>
+<Paper variant="outlined" padding="md">Outlined Paper</Paper>
+<Paper variant="soft" padding="md">Soft Paper</Paper>
+<Paper variant="elevated" padding="md">Elevated Paper</Paper>
+```
+
+### Stacking
+
+The `stack` prop automatically turns the Paper into a column flex container. Use `gap` to control spacing between children.
+
+<div style="margin-bottom: 2rem; max-width: 400px;">
+  <Paper variant="outlined" padding="lg" stack gap="md">
+    <div style="padding: 1rem; background: var(--bg--2); border-radius: var(--radius--sm);">Item 1</div>
+    <div style="padding: 1rem; background: var(--bg--2); border-radius: var(--radius--sm);">Item 2</div>
+    <div style="padding: 1rem; background: var(--bg--2); border-radius: var(--radius--sm);">Item 3</div>
+  </Paper>
+</div>
+
+```astro
+<Paper variant="outlined" padding="lg" stack gap="md">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</Paper>
+```
+
+### Colors
+
+Using the `color` prop tints the background (in `soft` variant) or border (in `outlined` variant).
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+  <Paper variant="soft" color="primary" padding="md">Primary</Paper>
+  <Paper variant="soft" color="success" padding="md">Success</Paper>
+  <Paper variant="soft" color="danger" padding="md">Danger</Paper>
+</div>
+
+```astro
+<Paper variant="soft" color="primary" padding="md">Primary</Paper>
+<Paper variant="soft" color="success" padding="md">Success</Paper>
+<Paper variant="soft" color="danger" padding="md">Danger</Paper>
+```
+
+### Glass & Blur
+
+The `glass` variant pairs with the `blur` prop to create a frosted backdrop.
+
+<div style="background: linear-gradient(45deg, var(--primary--base), var(--accent--base)); padding: 2rem; border-radius: var(--radius--md); margin-bottom: 2rem;">
+  <Paper variant="glass" padding="xl" blur="20px" radius="md">
+    <h3 style="margin-top: 0; color: white;">Glass Paper</h3>
+    <p style="margin-bottom: 0; color: rgba(255,255,255,0.9);">This container uses a backdrop filter to blur the colorful background beneath it.</p>
+  </Paper>
+</div>
+
+```astro
+<Paper variant="glass" padding="xl" blur="20px" radius="md">
+  <h3>Glass Paper</h3>
+  <p>This container uses a backdrop filter.</p>
+</Paper>
+```

@@ -1,0 +1,78 @@
+---
+/**
+ * Spinner
+ *
+ * A rotating loading indicator with configurable speed, direction, size,
+ * and color. Renders as an accessible `role="status"` element with a
+ * visually-hidden label for screen readers.
+ *
+ * STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────
+ *   <span class="feedback spinner spinner--{speed} spinner--{direction}"
+ *         role="status">
+ *     <svg class="spinner__arc" aria-hidden="true">…</svg>  ← or icon
+ *     <span class="sr-only">{label}</span>                  ← screen reader text
+ *   </span>
+ *
+ * POSITIONING
+ * ─────────────────────────────────────────────────────────────────────────
+ * Spinner renders inline. To overlay it on another component:
+ *   <div style="position: relative; display: inline-flex;">
+ *     <Button disabled>Save</Button>
+ *     <span style="position: absolute; inset: 0; display: grid; place-items: center;">
+ *       <Spinner size="sm" />
+ *     </span>
+ *   </div>
+ * A dedicated <LoadingOverlay> component will provide this pattern.
+ *
+ * @example
+ * <!-- Default -->
+ * <Spinner />
+ *
+ * @example
+ * <!-- Large, slow -->
+ * <Spinner size="lg" speed="slow" />
+ *
+ * @example
+ * <!-- Danger color, fast -->
+ * <Spinner color="danger" speed="fast" label="Cancelling…" />
+ *
+ * @example
+ * <!-- Counter-clockwise -->
+ * <Spinner direction="counterclockwise" />
+ *
+ * @example
+ * <!-- Inline with text -->
+ * <span style="display: inline-flex; gap: 0.5rem; align-items: center;">
+ *   <Spinner size="sm" />
+ *   Saving…
+ * </span>
+ *
+ * @see spinner.hook.ts   — resolves props to { Tag, props, label, icon }
+ * @see spinner.props.ts  — full prop type reference
+ * @see spinner.css       — size map, spin keyframe, speed/direction modifiers
+ * @see feedback.css      — shared variant and color rules
+ */
+
+import type { SpinnerProps } from "./spinner.props";
+import { useSpinner }        from "./spinner.hook";
+import "../../feedback.css";
+import "./spinner.css";
+
+type Props = SpinnerProps;
+
+const { Tag, props, label, IconComponent } = useSpinner(Astro.props as SpinnerProps);
+---
+
+<Tag {...props}>
+  {/* ── Icon from registry (default: "spinner" arc) ──────────── */}
+  <IconComponent
+    class="spinner__arc"
+    aria-hidden="true"
+    width={undefined}
+    height={undefined}
+  />
+
+  {/* ── Screen reader label ────────────────────────────────────── */}
+  <span class="sr-only">{label}</span>
+</Tag>

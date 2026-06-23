@@ -1,0 +1,123 @@
+---
+title: Tabs Component
+description: A robust, accessible Web Component that orchestrates tab-to-panel content swapping.
+category: Nav
+status: stable
+version: 1.0.0
+---
+import Tabs from "../../../design/nav/components/tabs/Tabs.astro";
+import TabGroup from "../../../design/nav/components/tabs/group/TabGroup.astro";
+import TabPanel from "../../../design/nav/components/tabs/panel/TabPanel.astro";
+
+## Overview
+
+The Tabs pattern is composed of three moving parts:
+1. `<TabGroup>`: The interactive Web Component wrapper that runs the JavaScript to swap active states.
+2. `<Tabs>`: The `role="tablist"` container that renders the actual clickable tab buttons.
+3. `<TabPanel>`: The hidden/visible content blocks.
+
+## Usage & Examples
+
+### Basic Interactive Tabs
+
+For interactive content swapping on the same page, wrap everything in a `<TabGroup>` and ensure the `id` of your tabs matches the `id` of your panels.
+
+```astro
+<TabGroup defaultActiveId="specs">
+  <Tabs 
+    items={[
+      { id: "overview", label: "Overview" },
+      { id: "specs", label: "Specifications" },
+      { id: "reviews", label: "Reviews" }
+    ]} 
+  />
+  
+  <TabPanel id="overview">
+    <p>This is the overview content.</p>
+  </TabPanel>
+  
+  <TabPanel id="specs">
+    <p>Technical specifications go here.</p>
+  </TabPanel>
+  
+  <TabPanel id="reviews">
+    <p>User reviews are displayed here.</p>
+  </TabPanel>
+</TabGroup>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <TabGroup defaultActiveId="specs">
+    <Tabs 
+      items={[
+        { id: "overview", label: "Overview" },
+        { id: "specs", label: "Specifications" },
+        { id: "reviews", label: "Reviews" }
+      ]} 
+    />
+    
+    <TabPanel id="overview">
+      <p style={{ margin: 0 }}>This is the overview content.</p>
+    </TabPanel>
+    
+    <TabPanel id="specs">
+      <p style={{ margin: 0 }}>Technical specifications go here.</p>
+    </TabPanel>
+    
+    <TabPanel id="reviews">
+      <p style={{ margin: 0 }}>User reviews are displayed here.</p>
+    </TabPanel>
+  </TabGroup>
+</div>
+
+### Non-Interactive (Link) Tabs
+
+If you want the visual aesthetic of Tabs but clicking them should just act like normal `<a>` links that trigger a full page reload, **do not use `<TabGroup>` or `<TabPanel>`**. Just use the `<Tabs>` block!
+
+```astro
+<Tabs 
+  variant="pill"
+  color="primary"
+  items={[
+    { id: "account", label: "Account Settings", active: true },
+    { id: "billing", label: "Billing", href: "/billing" },
+    { id: "security", label: "Security", href: "/security" }
+  ]} 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Tabs 
+    variant="pill"
+    color="primary"
+    items={[
+      { id: "account", label: "Account Settings", active: true },
+      { id: "billing", label: "Billing", href: "#billing" },
+      { id: "security", label: "Security", href: "#security" }
+    ]} 
+  />
+</div>
+
+## Props API
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `TabItemData[]` | `undefined` | Array of tab data for auto-generation. |
+| `fitted` | `boolean` | `false` | If true, tabs stretch to equally fill the available width. |
+
+### TabGroup
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `defaultActiveId` | `string` | First Tab | The ID of the tab to activate on initial render. |
+
+### TabPanel
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | **Required** | The ID of the panel. Must match a corresponding Tab ID. |
+| `active` | `boolean` | `false` | If true, the panel is visible by default. |
+
+*`<Tabs>` inherits all shared `NavProps` (size, variant, color, radius).*

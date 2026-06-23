@@ -63,6 +63,13 @@
   --label--lg:  var(--size-06);   /* 14.4px — primary UI labels                */
   --label--xl:  var(--size-07);   /* 16px — large labels, nav items            */
 
+  --fsf--2xs: var(--size-02);     /* 8px — small icon sizes, chip padding     */
+  --fsf--sm:  var(--size-03);     /* 10px — badge text, overlines              */
+  --fsf--md:  var(--size-05);     /* 12.8px — helper text, chip labels         */
+  --fsf--lg:  var(--size-07);     /* 16px — form labels, secondary metadata  */
+  --fsf--xl:  var(--size-08);     /* 18.4px — primary UI labels                */
+  --fsf--2xl: var(--size-09);     /* 20.8px — large labels, nav items          */
+
   /* ─── INTERIOR SPACING ────────────────────────────────────
      Padding and gap within components.
      Fixed values — component geometry doesn't flex with viewport.
@@ -219,4 +226,12 @@
   --ui-height--xl: var(--size-09);
   --ui-height--2xl: var(--size-10);
   
+
+  --icon--size-2xs: var(--size-1);
+  --icon--size-xs: var(--size-2);
+  --icon--size-sm: var(--size-3);
+  --icon--size-md: var(--size-4);
+  --icon--size-lg: var(--size-6);
+  --icon--size-xl: var(--size-8);
+  --icon--size-2xl: var(--size-10);
 }

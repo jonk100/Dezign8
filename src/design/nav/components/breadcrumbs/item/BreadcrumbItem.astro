@@ -1,0 +1,24 @@
+---
+/**
+ * BreadcrumbItem
+ *
+ * An individual item in a `<Breadcrumbs>` list.
+ *
+ * @see Breadcrumbs.astro
+ */
+import { useBreadcrumbItem } from "./b-item.hook";
+import type { BreadcrumbItemProps } from "./b-item.props";
+
+export type Props = BreadcrumbItemProps;
+
+const { Tag, isLast, itemProps } = useBreadcrumbItem(Astro.props as BreadcrumbItemProps);
+---
+
+<li class="breadcrumbs__item-wrapper">
+  <Tag {...itemProps}>
+    <slot />
+  </Tag>
+  {!isLast && (
+    <slot name="separator" />
+  )}
+</li>

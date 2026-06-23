@@ -6,6 +6,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
+    "noEmit": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
@@ -14,5 +15,5 @@
     "ignoreDeprecations": "6.0",
     "types": ["astro/client"]
   },
-  "include": ["design/**/*", "src/**/*"]
+  "include": ["design/**/*", "src/**/*", "src/design/data/.roadmap/event", "src/design/data/.roadmap/timeline", "src/design/data/.roadmap/bar-chart", "src/design/data/.roadmap/bento", "src/design/data/.roadmap/description-list", "src/design/data/.roadmap/key-value", "src/design/data/.roadmap/key-value-list", "src/design/data/.roadmap/pie-chart", "src/design/data/.roadmap/result-item", "src/design/data/.roadmap/sparkline"]
 }

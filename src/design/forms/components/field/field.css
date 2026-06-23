@@ -1,0 +1,97 @@
+/* ============================================================
+   field.css
+   ─────────────────────────────────────────────────────────────
+   Layout styles for the Field wrapper. Field stacks its slots
+   vertically with consistent spacing and provides text styles
+   for hint, error, and success messages.
+
+   Field has no --form--* channels — it reads no CSS custom
+   properties from useField. All spacing uses the shared
+   space scale directly.
+
+   STRUCTURE
+   ──────────────────────────────────────────────────────────────
+     <div class="field">
+       <div class="field__label">  ← label slot wrapper
+       <div class="field__control">← default slot (control)
+       <p   class="field__hint">   ← hint slot wrapper
+       <p   class="field__error">  ← error slot wrapper
+       <p   class="field__success">← success slot wrapper
+     </div>
+
+   Slot wrappers are only rendered when the slot has content
+   (Astro.slots.has() guard in Field.astro), so spacing between
+   sections is natural — no empty gaps when a slot is unused.
+   ============================================================ */
+
+/* ─── WRAPPER ─────────────────────────────────────────────── */
+
+.field {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-in--sm);
+
+  /* Natural inline size — fills container; control inside
+     manages its own width via fullWidth or fixed sizing */
+  width: 100%;
+}
+
+/* ─── LABEL SECTION ───────────────────────────────────────── */
+
+.field__label {
+  /* Label component handles its own typography.
+     This wrapper just provides a consistent slot anchor. */
+  display: block;
+}
+
+/* ─── CONTROL SECTION ─────────────────────────────────────── */
+
+.field__control {
+  /* Passes through the control's own width/display.
+     position: relative allows absolute-positioned slot
+     add-ons (like character counters) to anchor here. */
+  position: relative;
+  display:  block;
+}
+
+/* ─── HINT TEXT ───────────────────────────────────────────── */
+
+.field__hint {
+  font-size:   var(--fsf--xs, 0.75rem);
+  color:       var(--text--secondary);
+  line-height: 1.4;
+  margin:      0;
+}
+
+/* ─── ERROR TEXT ──────────────────────────────────────────── */
+
+.field__error {
+  font-size:   var(--fsf--xs, 0.75rem);
+  color:       var(--danger--text);
+  line-height: 1.4;
+  margin:      0;
+}
+
+/* ─── SUCCESS TEXT ────────────────────────────────────────── */
+
+.field__success {
+  font-size:   var(--fsf--xs, 0.75rem);
+  color:       var(--success--text);
+  line-height: 1.4;
+  margin:      0;
+}
+
+/* ─── INVALID STATE ───────────────────────────────────────── */
+/* data-invalid on the wrapper enables descendant-based styling
+   for cases where the error text needs emphasis beyond color */
+
+.field[data-invalid] .field__hint {
+  /* Suppress hint when an error is shown — both slots can be
+     present simultaneously; this visually deprioritises the hint */
+  color: var(--text--tertiary, var(--text--secondary));
+}
+
+/* ─── REQUIRED STATE ──────────────────────────────────────── */
+/* data-required is available for future styling needs.
+   No visual rule is applied here — the Label component handles
+   the required asterisk indicator independently. */

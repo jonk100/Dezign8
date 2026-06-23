@@ -1,0 +1,134 @@
+/* ============================================================
+   select.css
+   ─────────────────────────────────────────────────────────────
+   Select-specific styles. Imported alongside forms.css.
+
+   STRUCTURE
+   ──────────────────────────────────────────────────────────────
+   The Select component renders:
+
+     <div class="form select form--outlined …">  ← visual container
+       <div class="select__start">…</div>          ← start slot (optional)
+       <select class="select__control">…</select>  ← semantic control
+       <div class="select__arrow" aria-hidden>▾</div> ← custom arrow
+     </div>
+
+   Same wrapper-is-the-field pattern as Input. The <select> is reset
+   to transparent with appearance: none so the wrapper's variant
+   styling shows through. The custom arrow replaces the browser default.
+
+   MULTIPLE SELECT
+   ──────────────────────────────────────────────────────────────
+   <select multiple> renders as a scrollable list box, not a
+   dropdown. Height is determined by the number of options and the
+   control's --form--size. The arrow is hidden in multiple mode.
+
+   BROWSER NOTES
+   ──────────────────────────────────────────────────────────────
+   appearance: none removes the native dropdown arrow across all
+   browsers. The select's internal option list is still styled
+   by the OS/browser — this is a known limitation of native selects.
+   For a fully styled dropdown, a future Combobox component using
+   <div> + [role="listbox"] would be needed.
+   ============================================================ */
+
+/* ─── WRAPPER ──────────────────────────────────────────────── */
+
+.select {
+  cursor: pointer;
+}
+
+/* ─── NATIVE SELECT CONTROL ────────────────────────────────── */
+
+.select__control {
+  /* Fill remaining space after start slot and before arrow */
+  flex: 1;
+  min-inline-size: 0;
+
+  /* Reset to transparent — wrapper provides the visual chrome */
+  appearance:         none;
+  -webkit-appearance: none;
+  background:         transparent;
+  border:             none;
+  outline:            none;
+
+  /* Inherit from wrapper (set by forms.css compound size rules) */
+  color:       inherit;
+  font-size:   inherit;
+  font-family: inherit;
+  line-height: inherit;
+
+  padding: 0;
+  margin:  0;
+  cursor:  inherit;
+}
+
+/* Suppress the native focus ring — shown on wrapper via :focus-within */
+.select__control:focus {
+  outline: none;
+}
+
+/* Placeholder option (value="", disabled) */
+.select__control option[value=""][disabled] {
+  color: var(--text--tertiary, var(--text--secondary));
+}
+
+/* ─── CUSTOM ARROW ─────────────────────────────────────────── */
+
+.select__arrow {
+  display:        flex;
+  align-items:    center;
+  flex-shrink:    0;
+  color:          var(--text--secondary);
+  pointer-events: none; /* clicks pass through to the <select> below */
+
+  transition: color var(--transition--fast, 150ms ease),
+              transform var(--transition--fast, 150ms ease);
+}
+
+/* Arrow takes the role's color when the field has focus */
+.select:focus-within .select__arrow {
+  color: var(--form--color-text, var(--primary--text));
+}
+
+/* Disabled state — arrow fades with the control */
+.select[data-disabled] .select__arrow {
+  color: var(--text--tertiary, var(--text--secondary));
+}
+
+/* ─── START SLOT ───────────────────────────────────────────── */
+
+.select__start {
+  display:        flex;
+  align-items:    center;
+  flex-shrink:    0;
+  color:          var(--text--secondary);
+  pointer-events: none;
+}
+
+/* ─── MULTIPLE SELECT ──────────────────────────────────────── */
+/* <select multiple> is a list box, not a dropdown.
+   Override the single-select height constraint. */
+
+.select:has(.select__control[multiple]) {
+  block-size: auto;
+  min-block-size: calc(var(--form--size, 2.5rem) * 3);
+  align-items: flex-start;
+  padding-block: calc(var(--form--size, 2.5rem) * 0.25);
+}
+
+/* Hide the dropdown arrow — it has no meaning in list-box mode */
+.select:has(.select__control[multiple]) .select__arrow {
+  display: none;
+}
+
+.select__control[multiple] {
+  /* Let the list box breathe */
+  padding-block: calc(var(--form--size, 2.5rem) * 0.1);
+}
+
+/* ─── READONLY STATE ───────────────────────────────────────── */
+
+.select:has(.select__control[disabled]) {
+  cursor: not-allowed;
+}

@@ -1,0 +1,37 @@
+---
+/**
+ * Panel
+ *
+ * Visual container foundation for expandable or collapsible content areas.
+ * Inherits surface properties.
+ *
+ * HTML STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <div class="surface panel [modifiers]" style="…CSS vars…">
+ *   <slot />
+ * </div>
+ *
+ * SLOTS
+ * ─────────────────────────────────────────────────────────────────────────────
+ *   default   Content
+ *
+ * @example
+ * ```astro
+ * <Panel padding="md">
+ *   <Text>Panel content.</Text>
+ * </Panel>
+ * ```
+ *
+ * @see panel.hook.ts   — usePanel: resolves props to { Tag, props }
+ * @see panel.props.ts  — PanelProps: full prop reference
+ * @see surface.css     — visual chrome
+ */
+
+import type { PanelProps } from "./panel.props";
+import { usePanel }        from "./panel.hook";
+import "../../surface.css";
+import "./panel.css";
+
+const { Tag, props } = usePanel(Astro.props as PanelProps);
+---
+<Tag {...props}><slot /></Tag>

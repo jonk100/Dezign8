@@ -1,0 +1,42 @@
+---
+/**
+ * Separator
+ *
+ * A component to visually and semantically separate content. It can be
+ * horizontal or vertical, and can optionally contain a label.
+ *
+ * @example A simple horizontal line
+ * ```astro
+ * <Separator />
+ * ```
+ *
+ * @example A vertical line between elements
+ * ```astro
+ * <Flex>
+ *   <p>Left</p>
+ *   <Separator orientation="vertical" />
+ *   <p>Right</p>
+ * </Flex>
+ * ```
+ *
+ * @example With a centered label
+ * ```astro
+ * <Separator>or</Separator>
+ * ```
+ *
+ * @see separator.hook.ts
+ * @see separator.props.ts
+ */
+import { useSeparator } from "./separator.hook";
+import type { SeparatorProps } from "./separator.props";
+import "./separator.css";
+
+interface Props extends SeparatorProps {}
+
+const hasContent = Astro.slots.has("default");
+const { Tag, props: tagProps } = useSeparator({ ...Astro.props, hasContent });
+---
+
+<Tag {...tagProps}>
+  {hasContent && <span class="separator__label"><slot /></span>}
+</Tag>

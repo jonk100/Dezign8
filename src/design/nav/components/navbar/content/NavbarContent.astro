@@ -1,0 +1,18 @@
+---
+/**
+ * NavbarContent
+ *
+ * Container for links, search bars, and actions inside a `<Navbar>`.
+ * By default, it hides its content on mobile so it can be revealed by the hamburger menu.
+ */
+import { useNavbarContent } from "./content.hook";
+import type { NavbarContentProps } from "./content.props";
+
+export type Props = NavbarContentProps;
+
+const { contentProps } = useNavbarContent(Astro.props as NavbarContentProps);
+---
+
+<div {...contentProps}>
+  <slot />
+</div>

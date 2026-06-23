@@ -1,0 +1,90 @@
+---
+title: Pagination Component
+description: A smart, data-driven pagination control that calculates page ranges and inserts ellipses automatically.
+category: Nav
+status: stable
+version: 1.0.0
+---
+import Pagination from "../../../design/nav/components/pagination/Pagination.astro";
+
+## Overview
+
+The `Pagination` component provides a horizontal control for navigating through multiple pages. It is "smart"—meaning you only need to tell it the current page and total pages, and it will mathematically figure out when to show page numbers versus ellipses (`...`).
+
+## Usage & Examples
+
+### Basic Usage
+
+You must provide `currentPage` and `totalPages`. By providing a `baseUrl`, the component automatically generates links like `/posts/page/1`.
+
+```astro
+<Pagination 
+  currentPage={5} 
+  totalPages={10} 
+  baseUrl="#page" 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Pagination 
+    currentPage={5} 
+    totalPages={10} 
+    baseUrl="#page" 
+  />
+</div>
+
+### Sibling Count
+
+The `siblingCount` prop controls how many page numbers appear immediately to the left and right of the current page before inserting an ellipsis. The default is `1`.
+
+```astro
+<Pagination 
+  currentPage={50} 
+  totalPages={100} 
+  siblingCount={2}
+  variant="pill"
+  baseUrl="#page" 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Pagination 
+    currentPage={50} 
+    totalPages={100} 
+    siblingCount={2}
+    variant="pill"
+    baseUrl="#page" 
+  />
+</div>
+
+### Custom URL Generation
+
+If simple string concatenation via `baseUrl` isn't enough, you can provide a custom `getPageUrl` function.
+
+```astro
+<Pagination 
+  currentPage={1} 
+  totalPages={5} 
+  getPageUrl={(page) => `?sort=desc&p=${page}`} 
+/>
+```
+
+<div class="not-content" style={{ padding: '2rem', border: '1px solid var(--border--default)', borderRadius: '8px', marginBottom: '2rem' }}>
+  <Pagination 
+    currentPage={1} 
+    totalPages={5} 
+    getPageUrl={(page) => `#custom-url-page-${page}`} 
+  />
+</div>
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `currentPage` | `number` | **Required** | The currently active page (1-indexed). |
+| `totalPages` | `number` | **Required** | The total number of pages available. |
+| `siblingCount` | `number` | `1` | How many pages to show around the current page. |
+| `baseUrl` | `string` | `undefined` | String to prepend to page numbers to generate URLs. |
+| `getPageUrl` | `(page: number) => string` | `undefined` | Custom function for complete control over URL generation. |
+
+*Inherits all shared `NavProps` (size, variant, color, radius).*
