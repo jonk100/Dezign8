@@ -34,7 +34,7 @@ export function useCaption(props: CaptionProps) {
 
   return {
     Tag: as,
-    props: typographyAttrs,
+    props: typographyAttributes,
     label,
     credit,
   };

@@ -54,7 +54,7 @@
 /* ─── BASE ─────────────────────────────────────────────────── */
 
 .data {
-  --data--size: var(--space-sm); /* comfortable default; overridden by size prop */
+  --data--size: var(--space-in--sm); /* comfortable default; overridden by size prop */
 
   box-sizing: border-box;
   width: 100%;
@@ -64,17 +64,17 @@
 
 .data--outlined {
   border: 1px solid var(--data--color--border, var(--border--default));
-  border-radius: var(--radius-md);
+  border-radius: var(--radius--md);
 }
 
 .data--soft {
   background-color: var(--data--bg--subtle, var(--surface--2));
-  border-radius: var(--radius-md);
+  border-radius: var(--radius--md);
 }
 
 .data--elevated {
   box-shadow: var(--shadow--md);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius--md);
 }
 
 /* ─── LOADING STATE ─────────────────────────────────────────── */
@@ -100,9 +100,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-block: calc(var(--data--size) * 4);
+  padding-block: calc(var(--data--size, var(--space-in--sm)) * 4);
   color: var(--text--muted);
-  font-size: var(--text--sm);
+  font-size: var(--fs--sm);
   font-style: italic;
 }
 

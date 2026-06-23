@@ -137,7 +137,7 @@
   margin-block-start:   0;
   margin-block-end:     var(--prose--gap);
   padding-inline-start: var(--prose--indent);
-  font-size:            var(--prose-font, var(--fs--sm));
+  font-size:            var(--prose--font, var(--fs--sm));
 }
 
 .prose li {

@@ -1,0 +1,75 @@
+import { Banner } from "~/feedback/banner";
+import { Button } from "~/actions/button";
+
+# Banner
+
+Banners are similar to Alerts but are used for persistent, page-level messages that are not directly tied to a user's immediate action. Examples include cookie consents, maintenance notices, or new feature announcements.
+
+## Imports
+
+```astro
+import { Banner } from "~/feedback/banner";
+```
+
+## Usage
+
+A banner's content can include actions, like a button to dismiss or learn more.
+
+```astro
+<Banner color="info">
+  <div class="flex items-center justify-between w-full">
+    <span>Our website uses cookies to improve your experience.</span>
+    <Button size="sm" color="info" variant="soft">Accept</Button>
+  </div>
+</Banner>
+```
+
+### With Icon
+
+Use the `icon` slot to add a leading icon for visual emphasis.
+
+```astro
+<Banner color="warning">
+  <Icon name="alert-triangle" slot="icon" />
+  We will be undergoing scheduled maintenance on Sunday at 10:00 PM UTC.
+</Banner>
+```
+
+---
+
+### BannerProps
+
+Banners are simple wrappers and derive most of their behavior from `FeedbackProps`.
+
+| Prop           | Type             | Default  | Description                                                              |
+|----------------|------------------|----------|--------------------------------------------------------------------------|
+| `...feedbackProps`| `FeedbackProps`|          | Inherits all props from `FeedbackProps` (variant, color, size, etc.).    |
+
+Slots:
+- `default`: The main content of the banner.
+- `icon`: An optional leading icon.
+
+# Feedback & Status
+
+Feedback components communicate system status, user action results, or loading states. They are crucial for keeping the user informed. They share `FeedbackProps` for consistent color roles (`success`, `danger`, etc.) and variants.
+
+## Components
+
+### Transient Messages
+- **Alert**: A contextual message that appears in-flow, often after a user action.
+- **Banner**: A persistent, page-level message (e.g., cookie consent, maintenance notice).
+- **Toast**: A small, temporary message that appears in a corner of the screen.
+- **ToastRegion**: The container that manages the positioning and queueing of Toasts.
+
+### Metadata & Indicators
+- **Badge**: A small counter or label, often overlaid on another element.
+- **Chip**: A dismissible, selectable, or interactive label.
+- **Dot**: A small, circular indicator for status or presence.
+- **Indicator**: A wrapper that places a `Badge` or `Dot` on a child element.
+- **Tag**: A simple, non-interactive label for categorization.
+
+### Async & Loading
+- **EmptyState**: A placeholder shown when a data set is empty.
+- **Progress**: A linear progress bar or circular progress indicator.
+- **Skeleton**: A placeholder that mimics the shape of content that is loading.
+- **Spinner**: An animated spinner to indicate a background process.

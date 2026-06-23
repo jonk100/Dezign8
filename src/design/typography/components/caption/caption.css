@@ -12,12 +12,12 @@
 .caption {
   --typography--size: var(--label--lg); /* default: 14.4px fixed */
   --typography--color: var(--text--muted);
-  --typography--leading: var(--leading-snug);
+  --typography--leading: var(--leading--snug);
   max-inline-size: 60ch;
 }
 
 .caption__label {
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight--semibold);
   color: var(--text--primary);
   margin-inline-end: 0.5em;
 }

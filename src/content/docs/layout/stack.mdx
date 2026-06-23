@@ -1,0 +1,199 @@
+---
+title: Stack
+description: Vertically arrange elements with consistent spacing.
+---
+
+# Stack
+
+Stack is the primary layout primitive for vertical composition.
+
+It renders a flex container with `flex-direction: column` and applies a consistent gap between children.
+
+Use Stack whenever content should flow from top to bottom.
+
+## Import
+
+```astro
+---
+import Stack from "~/components/layout/Stack/Stack.astro";
+---
+```
+
+## Basic Usage
+
+```astro
+<Stack>
+  <h2>Title</h2>
+  <p>Description</p>
+  <button>Save</button>
+</Stack>
+```
+
+## Gap
+
+Control spacing between children using the `gap` prop.
+
+```astro
+<Stack gap="xs">
+  <Item />
+  <Item />
+  <Item />
+</Stack>
+
+<Stack gap="md">
+  <Item />
+  <Item />
+  <Item />
+</Stack>
+
+<Stack gap="xl">
+  <Item />
+  <Item />
+  <Item />
+</Stack>
+```
+
+## Alignment
+
+Control horizontal alignment with `align`.
+
+```astro
+<Stack align="start">
+  <Button />
+  <Button />
+</Stack>
+
+<Stack align="center">
+  <Button />
+  <Button />
+</Stack>
+
+<Stack align="end">
+  <Button />
+  <Button />
+</Stack>
+```
+
+### Stretch
+
+Stretch children to fill available width.
+
+```astro
+<Stack align="stretch">
+  <Input />
+  <Input />
+  <Button />
+</Stack>
+```
+
+## Justification
+
+Control vertical distribution with `justify`.
+
+Useful when the Stack has an explicit height.
+
+```astro
+<Stack justify="between" style="height: 20rem;">
+  <Header />
+  <Footer />
+</Stack>
+```
+
+## Common Patterns
+
+### Form Layout
+
+```astro
+<Stack gap="lg">
+  <Field />
+  <Field />
+  <Field />
+  <Button>Submit</Button>
+</Stack>
+```
+
+### Card Content
+
+```astro
+<Card>
+  <Stack gap="md">
+    <Heading>Project</Heading>
+
+    <Text>
+      Project description goes here.
+    </Text>
+
+    <Button>
+      View Project
+    </Button>
+  </Stack>
+</Card>
+```
+
+### Article Layout
+
+```astro
+<Stack gap="xl">
+  <PageHeader />
+
+  <Prose>
+    <slot />
+  </Prose>
+
+  <Pagination />
+</Stack>
+```
+
+## API
+
+| Prop | Type | Default |
+|--------|--------|--------|
+| `as` | `StackTag` | `"div"` |
+| `gap` | `StackGap` | `"md"` |
+| `align` | `"start" \| "center" \| "end" \| "stretch"` | `undefined` |
+| `justify` | `"start" \| "center" \| "end" \| "between"` | `undefined` |
+
+## Accessibility
+
+Stack does not add semantics.
+
+Use the `as` prop when a semantic element is required.
+
+```astro
+<Stack as="section">
+  <Heading>Settings</Heading>
+  <SettingsForm />
+</Stack>
+```
+
+## When to Use
+
+Use Stack for:
+
+- Forms
+- Cards
+- Sidebars
+- Settings pages
+- Article layouts
+- Vertical groups of related content
+
+## When Not to Use
+
+Prefer Inline or Flex when:
+
+- Content should flow horizontally
+- Wrapping behavior is required
+- Complex two-dimensional layouts are needed
+- Layout direction changes dynamically
+
+## Mental Model
+
+Think of Stack as:
+
+```css
+display: flex;
+flex-direction: column;
+gap: ...;
+```
+
+Nothing more.

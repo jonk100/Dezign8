@@ -83,7 +83,7 @@
   place-items:     center;
 
   border:        2px solid var(--border--strong, var(--border--default));
-  border-radius: var(--form--radius, var(--radius-sm));
+  border-radius: var(--form--radius, var(--radius--sm));
   background:    transparent;
 
   transition:

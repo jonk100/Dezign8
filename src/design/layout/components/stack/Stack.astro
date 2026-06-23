@@ -1,0 +1,12 @@
+---
+import type { StackProps } from "./stack.props";
+import { useStack } from "./stack.hook";
+
+import "./stack.css";
+
+const { Tag, props } = useStack(Astro.props as StackProps);
+---
+
+<Tag {...props}>
+  <slot />
+</Tag>

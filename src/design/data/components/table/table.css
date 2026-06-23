@@ -264,7 +264,7 @@
 .data[data-selectable] .table th:first-child,
 .data[data-selectable] .table td:first-child {
   width: 3rem;
-  padding-inline: calc(var(--data--size, var(--space-sm)) * 0.75);
+  padding-inline: calc(var(--data--size, var(--space-in--sm)) * 0.75);
   text-align: center;
 }
 
@@ -286,8 +286,8 @@
 .data[data-loading] .table tbody td::after {
   content: "";
   position: absolute;
-  inset-block: calc(var(--data--size, var(--space-sm)) * 0.5);
-  inset-inline: calc(var(--data--size, var(--space-sm)) * 0.75);
+  inset-block: calc(var(--data--size, var(--space-in--sm)) * 0.5);
+  inset-inline: calc(var(--data--size, var(--space-in--sm)) * 0.75);
   border-radius: var(--radius--sm, 4px);
   background: linear-gradient(
     90deg,
@@ -313,7 +313,7 @@
 .table__empty-cell {
   text-align: center;
   border-top: none !important;
-  padding-block: calc(var(--data--size, var(--space-sm)) * 3) !important;
+  padding-block: calc(var(--data--size, var(--space-in--sm)) * 3) !important;
 }
 
 /* ─── REDUCED MOTION ────────────────────────────────────────── */

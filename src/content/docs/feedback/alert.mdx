@@ -1,0 +1,68 @@
+import { Alert } from "~/feedback/alert";
+import { Icon } from "~/assets/icon";
+
+# Alert
+
+Alerts are used to communicate important, contextual information to the user. They are often triggered by a user action and can be dismissible.
+
+## Imports
+
+```astro
+import { Alert } from "~/feedback/alert";
+```
+
+## Usage
+
+The `color` prop is the most important, as it conveys the semantic meaning of the message.
+
+```astro
+<div class="flex flex-col gap-4">
+  <Alert color="info">
+    This is an informational message.
+  </Alert>
+  <Alert color="success">
+    Your profile was updated successfully.
+  </Alert>
+  <Alert color="warning">
+    Your subscription is about to expire.
+  </Alert>
+  <Alert color="danger">
+    There was an error processing your request.
+  </Alert>
+</div>
+```
+
+### With Icon and Title
+
+Use the `icon` and `title` slots for more structured alerts.
+
+```astro
+<Alert color="success" dismissible>
+  <Icon name="check-circle" slot="icon" />
+  <span slot="title">Success</span>
+  Your changes have been saved.
+</Alert>
+```
+
+### Variants
+
+Alerts support `solid`, `soft` (default), and `outlined` variants.
+
+```astro
+<Alert color="primary" variant="solid">
+  This is a solid alert.
+</Alert>
+<Alert color="primary" variant="outlined">
+  This is an outlined alert.
+</Alert>
+```
+
+---
+
+### AlertProps
+
+| Prop           | Type             | Default  | Description                                                              |
+|----------------|------------------|----------|--------------------------------------------------------------------------|
+| `title`        | `string`         |          | An optional title for the alert. For rich content, use the `title` slot. |
+| `dismissible`  | `boolean`        | `false`  | If `true`, shows a close button.                                         |
+| `...feedbackProps`| `FeedbackProps`|          | Inherits all props from `FeedbackProps` (variant, color, size, etc.).    |
