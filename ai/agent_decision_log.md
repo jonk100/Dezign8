@@ -8,15 +8,48 @@ _________________________________________________
 
 -----------------------------------------------
 
-*
+## 2026/06/23 - Separator fix, Alert, Banner, chip/tag docs, Icon fix
+
+### Decisions
+- **Separator modifier mismatch**: `modifier: true` emits flat classes (`separator--solid`) but CSS expected namespaced classes (`separator--variant-solid`). Fixed by switching to `modifier: "variant"` and `modifier: "strength"`. Removed dead `labelPosition` prop entirely.
+- **Separator color channel**: dashed + solid both now read `--separator--color: var(--border--{strength})` written by hook, instead of `border-color: inherit` (which pulled from parent text color).
+- **Spacer hook broken API**: `useBaseCompose` was called with `class` key and destructured `{ props }` which the fn never returns. Fixed to use `{ className }` and destructure `{ className, style, attrs }`.
+- **Alert/Banner as block feedback**: Both extend `FeedbackProps` but Omit `size`/`pulse`/`placement` — alerts and banners don't scale like pill indicators. `feedback.css` layout overridden (`display`, `width`, `white-space`) in each component's CSS.
+- **Alert ARIA role baked in**: `role="alert"` for `color="danger"|"warning"`, `role="status"` for all others. Not left to consumers.
+- **Banner `aria-label` extraction**: Destructured `aria-label` before `useFeedback` to avoid TypeScript `{}` inference from `rest["aria-label"]` lookup.
+- **Dismiss is pure HTML**: No `client.ts`. Dismiss button renders; consumer wires the one-line click handler. Avoids View Transitions re-init complexity.
+- **Icon hook wrong API**: `resolveTokens` was destructured as `{ class, style, attributes }` (old API). Correct return is `{ style, classes }`. `useBaseCompose` was called with raw `rest` instead of `{ className, style }` options. Size modifier classes (`icon--md` etc.) were never emitting.
+
+### New/updated files
+```
+src/design/layout/components/separator/separator.tokens.ts   modifier fix
+src/design/layout/components/separator/separator.props.ts    removed labelPosition
+src/design/layout/components/separator/separator.hook.ts     rewrite; --separator--color channel
+src/design/layout/components/separator/separator.css         reads channel; dashed fix
+src/design/layout/components/spacer/spacer.hook.ts           useBaseCompose API fix
+src/design/feedback/components/alert/*                       new (5 files)
+src/design/feedback/components/banner/*                      new (5 files)
+src/content/docs/feedback/chip.mdx                           new
+src/content/docs/feedback/tag.mdx                            new
+src/content/docs/feedback/alert.mdx                          new
+src/content/docs/feedback/banner.mdx                         new
+src/design/assets/components/icon/icon.hook.ts               resolveTokens + useBaseCompose API fix
+```
 
 -----------------------------------------------
 
-*
+## 2026/06/23 - Typecheck pass: 29 errors fixed
 
------------------------------------------------
+Ran `pnpm astro check` and resolved all 29 type errors across the codebase.
 
-*
+### Decisions
+- **`Record<string, unknown>` cast on spreads**: Badge, Tile, TabPanel, Step, Tabs all spread hook-returned props onto Astro elements. With `exactOptionalPropertyTypes: true`, the union/widened types from `HTMLAttributes<union>` can't satisfy the strict element types. Cast to `Record<string, unknown>` at the spread site rather than rewriting the return types — the runtime values are correct, only the TS inference is too wide.
+- **`imgLoading` instead of `loading` on ImageProps**: `BaseComponentProps.loading` is `boolean` (skeleton state). `ImageProps` needed `"lazy" | "eager"` for the HTML `loading` attribute. Renamed to `imgLoading` in props/hook to avoid the interface conflict; hook maps it back to `loading` on the `<img>` element.
+- **`OverlayAnimation` type defined locally**: The type was referenced but never imported or declared. Defined as a local string union (`"fade" | "slide-up" | "slide-down" | "scale"`) in `overlay.props.ts` alongside the missing `BaseComponentProps` import. Kept narrow — can be extracted to `overlay.tokens.ts` if an Overlays category is built out.
+- **Conditional spreads for exactOptional**: Breadcrumbs, Tabs, Stepper pass optional props (href, disabled, description) from data arrays. Instead of always passing `prop={value | undefined}`, switched to `{...(value !== undefined ? { prop: value } : {})}` to satisfy strict optional semantics.
+- **Missing surface index files**: `surfaces/components/{card,paper,tile}/index.ts` didn't exist but were re-exported from the category barrel. Created minimal index files exporting props + tokens only (no `.astro` components — those aren't type-importable via barrel).
+- **`SyntheticEvent` in asset.props.ts**: React type referenced without React. Replaced with native `Event`.
+- **`as const` on role strings**: `role: "tablist"` / `role: "tabpanel"` typed as `string` in hook return objects. Added `as const` so Astro sees the literal `AriaRole` type.
 
 -----------------------------------------------
 
