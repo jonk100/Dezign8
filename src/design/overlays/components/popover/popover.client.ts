@@ -58,11 +58,6 @@ export function initPopovers(): void {
   document.querySelectorAll<HTMLElement>("[data-popover-host]").forEach(initPopover);
 }
 
-if (typeof document !== "undefined") {
-  initPopovers();
-  document.addEventListener("astro:after-swap", initPopovers);
-}
-
 export const popover = {
   close: (id: string) => {
     const panel = document.getElementById(id) as HTMLElement & { hidePopover?: () => void } | null;
