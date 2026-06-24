@@ -7,6 +7,26 @@ _________________________________________________
 =================================================
 -----------------------------------------------
 
+## 2026/06/24 — Icon fill bug + DocsLayout header refinements
+
+### Decisions
+
+- **Remove `fill: currentColor` from icon.css** — CSS `fill` overrides SVG presentation attributes (`fill="none"`), so stroke-based icons were rendering as solid filled shapes. Fix: remove both `fill: currentColor` on `.icon` and `fill: inherit` on `.icon svg`. SVG `fill="none"` attribute now controls fill directly; icons that need fill specify it on individual path elements.
+
+- **DocsLayout badge row moved below the heading** — badges (`category`, `status`, `version`) now appear between the title/icon row and the description, not above the title. Better visual hierarchy: title first, metadata context second, description third.
+
+- **Breadcrumbs moved below the page header** — previously above the `docs-container` with large padding. Now positioned immediately after `</header>` inside `docs-container`, vastly reducing wasted whitespace.
+
+- **No raw values in inline styles** — user instruction: always use design token CSS vars (e.g. `var(--space-in--md)`) rather than hardcoded values like `1.5rem` or `1rem 0` in `style=""` attributes.
+
+### Modified files
+```
+src/design/assets/components/icon/icon.css   — removed fill: currentColor and fill: inherit
+src/layouts/docs/DocsLayout.astro            — icon size sm→xl, badges below title, breadcrumbs inside container
+```
+
+---
+
 ## 2026/06/24 — Drawer + Popover components
 
 ### Decisions
