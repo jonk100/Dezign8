@@ -5,8 +5,247 @@ ________________________________________
 - `git add` and `git commit` after each entry
 _________________________________________________
 =================================================
+-----------------------------------------------
+
+## 2026/06/24 — Drawer + Popover components
+
+### Decisions
+
+- **Drawer uses native `<dialog showModal()`>** — same as Modal. Gets focus trapping, backdrop, and Escape handling for free. Placement modifier classes (`drawer--placement-end/start/top/bottom`) handle edge positioning via CSS margins; size modifier classes set `--drawer--cross-size` which placement classes consume for width (side drawers) or height (sheet drawers).
+
+- **`--drawer--cross-size` indirection** — Size classes set this CSS var; placement classes consume it. This avoids needing 4×4 combined selectors. Full-size override comes after placement classes in the CSS so its `border-radius: 0; border: none` wins at equal specificity.
+
+- **Popover uses HTML Popover API (`popover="auto"`)** — non-modal, top-layer, light-dismiss, no backdrop. JS (`toggle` event handler) positions the panel via `getBoundingClientRect()` before first paint. `inset: auto; margin: 0` on the panel overrides UA defaults so `top`/`left` actually drive placement. The trigger slot's first interactive child receives `popovertarget` automatically on init.
+
+- **Popover placement as `modifier: true`** — emits `popover--bottom-start` etc. (no infix). Hyphenated scale keys work fine with `resolveTokens`; `String("bottom-start")` is just `"bottom-start"`.
+
+- **`@starting-style` + `opacity: 0` for both components** — matches the existing modal pattern. Drawer uses placement-specific `@starting-style` transforms (translateX/Y) for directional slide-in. Popover uses `scale(0.97) translateY(-4px)`.
+
+### New files
+```
+src/design/overlays/components/drawer/drawer.tokens.ts
+src/design/overlays/components/drawer/drawer.props.ts
+src/design/overlays/components/drawer/drawer.hook.ts
+src/design/overlays/components/drawer/drawer.css
+src/design/overlays/components/drawer/Drawer.astro
+src/design/overlays/components/drawer/drawer.client.ts
+src/design/overlays/components/popover/popover.tokens.ts
+src/design/overlays/components/popover/popover.props.ts
+src/design/overlays/components/popover/popover.hook.ts
+src/design/overlays/components/popover/popover.css
+src/design/overlays/components/popover/Popover.astro
+src/design/overlays/components/popover/popover.client.ts
+src/content/docs/overlays/drawer.mdx
+src/content/docs/overlays/popover.mdx
+```
+
+---
+
+## 2026/06/24 — Alert padding + centralized aria state
+
+### Decisions
+
+- **Alert padding via `resolveSpacingStyles`** — First feedback component to adopt the standard spacing pattern. `alert.hook.ts` now sets `--alert--padding` (size default from `ALERT_SIZE_MAP`) and calls `resolveSpacingStyles(spacing, "alert")` for user overrides. Removed the manual `sp()` helper and the four individual `--alert--pt/pr/pb/pl` vars. CSS updated to use the full cascade chain: `var(--alert--pt, var(--alert--py, var(--alert--p, var(--alert--padding))))`.
+
+- **`aria-disabled` + `aria-busy` centralized in `useBaseCompose`** — Added `disabled?: boolean` to `BaseComponentProps` and `BaseComposeOptions`. `useBaseCompose` now emits `aria-disabled="true"` + `data-disabled=""` when disabled, and `aria-busy="true"` alongside `data-loading="true"` when loading. Hooks pass computed disabled/loading via `BaseComposeOptions` rather than setting aria attrs manually. Resolved duplication across trigger, forms, card, tile, and 5 form component hooks.
+
+- **`BaseComposeOptions.disabled` overrides `base.disabled`** — Resolution order is `options.disabled ?? base.disabled`. Hooks with computed disabled states (card: `!isLink && disabled`, tile: same) pass the computed value via options. Simple components can let the raw prop flow through `base` without explicit options.
+
+### Modified files
+```
+src/design/shared/base.props.ts                        — added `disabled?: boolean`
+src/design/shared/base.hook.ts                         — emits aria-disabled, data-disabled, aria-busy; added disabled+loading to BaseComposeOptions
+src/design/triggers/trigger.hook.ts                    — pass disabled+loading in options; move isLink/isDisabled before useBaseCompose; drop manual aria attrs
+src/design/forms/forms.hook.ts                         — pass disabled in options; remove manual aria-disabled + data-disabled from ariaAttrs
+src/design/surfaces/components/card/card.hook.ts       — pass disabled: isDisabled to useSurface; remove manual aria-disabled
+src/design/surfaces/components/tile/tile.hook.ts       — same
+src/design/forms/components/checkbox/checkbox.hook.ts  — removed redundant aria-disabled from inputAttrs
+src/design/forms/components/input/input.hook.ts        — same
+src/design/forms/components/select/select.hook.ts      — same
+src/design/forms/components/radio/radio.hook.ts        — same
+src/design/forms/components/search/search.hook.ts      — same
+src/design/forms/components/combobox/combobox.hook.ts  — same
+src/design/feedback/components/alert/alert.hook.ts     — resolveSpacingStyles + --alert--padding/font-size
+src/design/feedback/components/alert/alert.css         — cascade chain padding vars
+```
 
 -----------------------------------------------
+-----------------------------------------------
+
+*
+
+-----------------------------------------------
+-----------------------------------------------
+
+*
+
+-----------------------------------------------
+-----------------------------------------------
+
+*
+
+-----------------------------------------------
+-----------------------------------------------
+
+*
+
+-----------------------------------------------
+-----------------------------------------------
+
+*
+
+-----------------------------------------------
+-----------------------------------------------
+
+*
+
+-----------------------------------------------
+
+## 2026/06/23 to 2026/06/24 - Antigravity session
+
+See:
+- [Session Summary](./antigravity_session_summary.md/623-624_composition_and_prose_refinements.md)
+
+### New files
+- `README.md`
+- `ai/analysis/ComponentCompositionOpps.md`
+- `ai/antigravity_session_summary.md/623-624_composition_and_prose_refinements.md`
+
+### Updated files
+- `CLAUDE.md`
+- `src/design/feedback/components/alert/Alert.astro`
+- `src/design/feedback/components/banner/Banner.astro`
+- `src/design/overlays/components/modal/Modal.astro`
+- `src/design/overlays/components/alert-dialog/AlertDialog.astro`
+- `src/design/data/components/list/List.astro`
+- `src/design/nav/components/pagination/Pagination.astro`
+- `src/design/typography/components/prose/prose.css`
+- `src/design/typography/typography.css`
+- `src/design/typography/components/prose/prose.hook.ts`
+- `src/pages/docs/[...slug].astro`
+- `src/pages/docs/[category].astro`
+
+-----------------------------------------------
+
+## 2026/06/24 — Motion system
+
+**Decision:** Added `~/shared/motion/` with four files. Replaced `animation?: string` in `base.props.ts` with `m?: MotionProp`. Integrated into `useBaseCompose` so all components get motion for free.
+
+**Architecture:**
+- `getMotionAttrs(m)` parses the prop and returns:
+  - `enterStyle` — inline `animation:` value applied on mount by `useBaseCompose`
+  - `exitAttrs` — `data-m-exit` + `data-m-exit-dur` for JS-triggered exits
+- `useBaseCompose` now merges `enterStyle` into the style string and spreads `exitAttrs` + `data-motion=""` into attrs
+- `mountMotionDismiss()` installs a single document-level delegated click handler; any `[data-dismiss]` inside `[data-m-exit]` plays the exit animation before hiding
+
+**Syntax:**
+```
+m="enter:slideUp/200/0"                                  single enter
+m="enter:slideUp/200/0 exit:fadeOut/200/0"              enter + exit
+m="enter:slideUp/200/0 exit:shakeOut/150/0,slideLeft/200/50"  compound exit
+m="idle:shakeInfinite/800"                               infinite loop
+```
+- Space separates phases; `/` separates `name/duration/delay`; `,` chains compound animations in one phase
+
+**Keyframes (motion.css):** 46 keyframes across 8 families: slide, fade, stretch, spin, shake, blink, bounce, appear/disappear. Phases: `enter`, `exit`, `idle`. `@media (prefers-reduced-motion: reduce)` suppresses all via `[data-motion]` selector.
+
+**Breaking change:** `animation?: string` removed from `BaseComponentProps`. Any component using `animation="something"` needs migration to `m`.
+
+**Pending:**
+- Import `motion.css` in `src/design/styles/global.css`
+- Add `data-dismiss` attribute to Alert's close button, then import `mountMotionDismiss` in `Alert.astro`'s `<script>` block
+- Audit remaining category hooks that destructured `animation` and swap to `m` (feedback.hook, forms.hook, etc.)
+- `m` currently leaks into `rest` in hooks that don't explicitly destructure it → DOM gets `m="..."` attribute, harmless but worth a cleanup pass
+
+## Files created or significantly updated this conversation
+
+### New files
+- `src/design/shared/motion/motion.types.ts` — MotionPhase, EnterName, ExitName, IdleName, ParsedAnim, ParsedPhase, MotionAttrs, MotionProp
+- `src/design/shared/motion/motion.utils.ts` — parseMotion (internal), getMotionAttrs (public)
+- `src/design/shared/motion/motion.css` — 46 @keyframes across 8 animation families
+- `src/design/shared/motion/motion.dismiss.ts` — mountMotionDismiss(), event-delegated dismiss handler
+
+### Updated files
+- `src/design/shared/base.props.ts` — replaced `animation?: string` (ponytail) with `m?: MotionProp`; added JSDoc with syntax examples
+- `src/design/shared/base.hook.ts` — `useBaseCompose` now calls `getMotionAttrs(base.m)` and merges `enterStyle` into style, `exitAttrs` + `data-motion` into attrs
+- `src/design/triggers/trigger.hook.ts` — swap `animation` → `m` in destructuring; remove `animate-${animation}` from className
+
+-----------------------------------------------
+
+## 2026/06/24 - SpacingProps centralized on BaseComponentProps; Alert size+padding channels
+
+### Decisions
+- **SpacingProps moved to BaseComponentProps** — all 14 p/m shorthand props now live on `BaseComponentProps` (via extends). `FeedbackProps` previously double-extended them; redundant extends removed.
+- **`useBaseCompose` owns spacing-strip** — destructures all 14 spacing keys from `base` so they never appear as DOM attributes in `rest`. Returns them in a `spacing` object so component hooks can consume them without re-destructuring from their own `props`.
+- **`useFeedback` now passes `...base` (not `props`) to `useBaseCompose`** — uses the returned `rest` and threads `spacing` back to callers. Removed the manual `v: _v, testId: _testId` discard — `useBaseCompose` handles them.
+- **Latent leak in other category hooks** — triggers, typography, forms, overlay hooks still do their own `...rest` destructure and would leak spacing props to the DOM if a user passes them. Deferred; fix each hook when it's touched.
+- **Alert size+padding via SIZE_MAP + channels** — `ALERT_SIZE_MAP` in `alert.tokens.ts` maps `xs–xl → { fontSize, p }`. Hook resolves explicit spacing props (pt/pr/pb/pl/px/py/p) against the size default and writes four individual `--alert--pt/pr/pb/pl` channels. CSS reads `padding: var(--alert--pt) var(--alert--pr) var(--alert--pb) var(--alert--pl)`. One computed value per channel at runtime; size already resolved.
+- **`as AlertSize` cast in alert.hook.ts** — TypeScript widens `size` to `unknown` when destructuring from a type with `[key: string]: unknown` index signature, even when the specific prop type is declared. Two explicit casts applied to satisfy the type checker.
+- **`z--tooltip` added to primitives.definitions.ts** — tooltip.css was referencing `var(--z--tooltip)` which didn't exist. Added at `var(--z-400)` (same level as modal).
+
+### Modified files
+```
+src/design/shared/base.props.ts         — extends SpacingProps
+src/design/shared/base.hook.ts          — strip spacing, return { rest, spacing }
+src/design/feedback/feedback.props.ts   — removed redundant SpacingProps extends
+src/design/feedback/feedback.hook.ts    — pass ...base, use returned rest/spacing
+src/design/feedback/components/alert/alert.props.ts   — removed "size" from Omit
+src/design/feedback/components/alert/alert.tokens.ts  — added ALERT_SIZE_MAP
+src/design/feedback/components/alert/alert.hook.ts    — size+padding channel emit
+src/design/feedback/components/alert/alert.css        — individual --alert--pt/pr/pb/pl
+src/design/shared/primitives.definitions.ts           — z--tooltip: var(--z-400)
+```
+
+-----------------------------------------------
+
+## 2026/06/23 - Modal + AlertDialog components
+
+### Decisions
+- **Modal was already complete** (from crashed session) — tokens, props, hook, Astro, css, modal.client.ts all built; 0 typecheck errors confirmed.
+- **AlertDialog: Esc suppressed by default** — `closeOnEsc` defaults to `false`. A true alertdialog requires explicit button choice; native dialog fires `cancel` on Esc, suppressed via `e.preventDefault()`. Opt-in via `closeOnEsc={true}`.
+- **AlertDialog: no close button** — unlike Modal, the header has no X button. Shared `overlays.css` already had no `.alert-dialog__close-btn` rule, confirming this intent.
+- **AlertDialog: no backdrop dismiss** — omitted `closeOnBackdrop` prop entirely. Users must choose an action button.
+- **`description` prop vs default slot** — `description` renders a `<p id="${id}-desc">` wired to `aria-describedby`. If no `description`, the default `<slot />` renders in `__body` for custom content. Actions always go in the named `actions` slot.
+- **`data-alert-dialog-close` + `data-alert-dialog-confirm`** — both attributes close the dialog on click; confirm is a semantic alias for UI that needs to distinguish cancel from confirm in action buttons.
+- **`alert-dialog.client.ts` added as 6th file** — mirrors `modal.client.ts`; no cross-sibling import per hard constraint.
+
+### New files
+```
+src/design/overlays/components/alert-dialog/alert-dialog.tokens.ts
+src/design/overlays/components/alert-dialog/alert-dialog.props.ts
+src/design/overlays/components/alert-dialog/alert-dialog.hook.ts
+src/design/overlays/components/alert-dialog/AlertDialog.astro
+src/design/overlays/components/alert-dialog/alert-dialog.css
+src/design/overlays/components/alert-dialog/alert-dialog.client.ts
+```
+
+-----------------------------------------------
+
+## 2026/06/23 - Avatar + FilePreview components
+
+### Decisions
+- **Avatar: self-contained, no Image sibling import** — renders `<img>` directly in the Astro template. Three modes (image → initials → icon silhouette) resolved in the hook; the template branches on what `useAvatar` returns. No sibling imports per hard constraint.
+- **Status dot via CSS `::after` on `.avatar--has-status`** — avoids an extra DOM element; positioned absolute bottom-right, scales relative to `--avatar--size`. Color set by BEM modifier classes (`.avatar--online`, etc.) emitted by `resolveTokens` with `modifier: true`.
+- **Initials capped to 2 chars in hook, not CSS** — `initials.slice(0, 2).toUpperCase()` in `useAvatar`. CSS truncation would still allow the text to wrap; JS is simpler and deterministic.
+- **FilePreview: `layout` prop drives card vs strip** — `card` = vertical tile, `strip` = horizontal row. Single component, two CSS shapes via modifier class. No separate `FilePreviewStrip` component needed.
+- **File type color via extension map in tokens** — `FILE_TYPE_MAP` in `file-preview.tokens.ts` maps extension → `{ label, color }`. Color is a static BEM modifier class applied in the hook; CSS reads it. Unknown extensions fall back to neutral `"FILE"` label.
+- **`removable` + `onRemove` as inline JS string** — Astro is SSG-first; no framework event system. `onRemove` is a plain `onclick` attribute string. Callers can swap in a real handler via client-side event delegation if needed. Dismiss button opacity-animates on hover for low visual noise.
+
+-----------------------------------------------
+
+## 2026/06/23 - Audio component
+
+### Decisions
+- **Build on `<audio>` element, not AudioBufferSourceNode**: `HTMLMediaElement.preservesPitch` defaults `true` — pitch correction on rate change is already native. `AudioBufferSourceNode` would throw that away and require a hand-rolled phase vocoder. Element-based approach: standard props (`src`, `preload`, `loop`, `muted`, `volume`, `playbackRate`, events) map directly to native attributes; play/pause/seek/duration are free.
+- **`preservePitch` prop flips native `preservesPitch`**: Exposed as `preservePitch` (default `true`). Setting `false` gives the chipmunk effect. Re-applied on every rate change since some browsers reset it.
+- **Lazy AudioContext — only in user-gesture handler**: Web Audio autoplay policy blocks `AudioContext` creation outside a gesture. `ensureCtx()` is called inside the play-button click handler and deferred until first interaction.
+- **Web Audio graph built once per player**: Graph is built lazily on first play. `redactSegments` censor beep uses a `GainNode` (mute main) + `OscillatorNode` (1000 Hz sine) + dedicated `beepGain`. `intercomMode` inserts a 3.4 kHz low-pass `BiquadFilterNode` + `WaveShaperNode` (soft-clip distortion, amount=30).
+- **`astro:after-swap` re-init**: `initAllPlayers()` called on page load and on `astro:after-swap` to survive View Transitions client-side navigation.
+- **`data-*` attributes carry config to script**: `redactSegments`, `intercomMode`, `preservePitch`, `volume`, `playbackRate` are serialised to `data-*` attrs by the hook so the Astro script can read them per-container without prop threading.
+- **No waveform variant built**: Deferred — it's a separate visual component, not a behavior flag.
+- **`makeDistortionCurve` uses `ArrayBuffer` constructor**: `new Float32Array(n)` returns `Float32Array<ArrayBufferLike>` which TypeScript rejects for `WaveShaperNode.curve`. Fixed by `new Float32Array(new ArrayBuffer(n * 4))`.
+
+---
 
 ## 2026/06/23 - Separator fix, Alert, Banner, chip/tag docs, Icon fix
 

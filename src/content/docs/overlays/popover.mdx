@@ -1,0 +1,187 @@
+---
+title: Popover
+description: A non-modal floating panel that appears near a trigger element, using the HTML Popover API for light-dismiss and top-layer rendering.
+category: Overlays
+status: stable
+icon: popover
+---
+import Popover from "../../../design/overlays/components/popover/Popover.astro";
+import Button from "../../../design/triggers/components/button/Button.astro";
+
+## Overview
+
+`Popover` is a lightweight floating panel that opens adjacent to a trigger element. It uses the native HTML Popover API (`popover="auto"`) — no modal backdrop, light-dismiss on click-outside, and automatic Escape-key handling. JavaScript positions the panel relative to the trigger after it enters the top layer.
+
+Default: `placement="bottom"`.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+---
+import Popover from "@/design/overlays/components/popover/Popover.astro";
+---
+<Popover id="my-popover">
+  <Button slot="trigger">Open</Button>
+  <p>Popover content goes here.</p>
+</Popover>
+```
+
+<Popover id="demo-basic">
+  <Button slot="trigger">Open popover</Button>
+  <p style="margin: 0;">This is a popover. Click outside to dismiss.</p>
+</Popover>
+
+---
+
+## Placement
+
+`placement` controls where the panel appears relative to the trigger. Six options are supported across the top/bottom axis.
+
+```astro
+<Popover id="pop-bottom"       placement="bottom">…</Popover>
+<Popover id="pop-bottom-start" placement="bottom-start">…</Popover>
+<Popover id="pop-bottom-end"   placement="bottom-end">…</Popover>
+<Popover id="pop-top"          placement="top">…</Popover>
+<Popover id="pop-top-start"    placement="top-start">…</Popover>
+<Popover id="pop-top-end"      placement="top-end">…</Popover>
+```
+
+| Value | Aligns to |
+|---|---|
+| `bottom` | Below trigger, centered |
+| `bottom-start` | Below trigger, left-aligned |
+| `bottom-end` | Below trigger, right-aligned |
+| `top` | Above trigger, centered |
+| `top-start` | Above trigger, left-aligned |
+| `top-end` | Above trigger, right-aligned |
+
+The panel is always clamped to the viewport so it never clips the edge.
+
+<div style="display: flex; flex-wrap: wrap; gap: var(--space-in--sm); margin-top: var(--space-in--md);">
+  <Popover id="pl-bottom" placement="bottom">
+    <Button slot="trigger">bottom</Button>
+    <p style="margin: 0;">bottom</p>
+  </Popover>
+  <Popover id="pl-bottom-start" placement="bottom-start">
+    <Button slot="trigger">bottom-start</Button>
+    <p style="margin: 0;">bottom-start</p>
+  </Popover>
+  <Popover id="pl-bottom-end" placement="bottom-end">
+    <Button slot="trigger">bottom-end</Button>
+    <p style="margin: 0;">bottom-end</p>
+  </Popover>
+  <Popover id="pl-top" placement="top">
+    <Button slot="trigger">top</Button>
+    <p style="margin: 0;">top</p>
+  </Popover>
+  <Popover id="pl-top-start" placement="top-start">
+    <Button slot="trigger">top-start</Button>
+    <p style="margin: 0;">top-start</p>
+  </Popover>
+  <Popover id="pl-top-end" placement="top-end">
+    <Button slot="trigger">top-end</Button>
+    <p style="margin: 0;">top-end</p>
+  </Popover>
+</div>
+
+---
+
+## With rich content
+
+The default slot accepts any content — lists, forms, grouped actions.
+
+```astro
+<Popover id="pop-menu">
+  <Button slot="trigger" variant="ghost">Options</Button>
+  <ul style="list-style: none; padding: 0; margin: 0;">
+    <li><a href="#">Edit</a></li>
+    <li><a href="#">Duplicate</a></li>
+    <li><a href="#" style="color: var(--danger--text);">Delete</a></li>
+  </ul>
+</Popover>
+```
+
+<Popover id="demo-menu">
+  <Button slot="trigger" variant="ghost">Options ▾</Button>
+  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-in--2xs);">
+    <li><a href="#">Edit</a></li>
+    <li><a href="#">Duplicate</a></li>
+    <li><a href="#" style="color: var(--danger--text);">Delete</a></li>
+  </ul>
+</Popover>
+
+---
+
+## Radius
+
+```astro
+<Popover id="pop-sm-radius" radius="sm">…</Popover>
+<Popover id="pop-xl-radius" radius="xl">…</Popover>
+```
+
+---
+
+## Programmatic API
+
+```ts
+import { popover } from "@/design/overlays/components/popover/popover.client";
+
+// Close a specific popover by id
+popover.close("my-popover");
+```
+
+The Popover API handles open via the `popovertarget` attribute wired automatically to the trigger button. To open imperatively:
+
+```ts
+const panel = document.getElementById("my-popover") as HTMLElement;
+panel.showPopover?.();
+```
+
+---
+
+## How it works
+
+1. The component renders a `<span data-popover-host data-placement="...">` wrapper containing a trigger `<slot>` and a `<div popover="auto">` panel.
+2. On init, `popover.client.ts` finds the first interactive element in the trigger slot and sets `popovertarget="panelId"` on it.
+3. When the panel opens (enters the top layer), a `toggle` event fires. The JS reads the trigger's `getBoundingClientRect()` and sets `top`/`left` on the panel before the browser paints.
+4. The panel fades in via a `@starting-style` CSS transition — no flash.
+
+---
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | — | **Required.** Applied to the panel element; used as the `popovertarget`. |
+| `placement` | `PopoverPlacement` | `"bottom"` | Preferred placement relative to the trigger. |
+| `radius` | `RadiusToken` | `"lg"` | Border-radius of the panel. |
+
+All `BaseComponentProps` are accepted.
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| `trigger` | The element that opens the popover. The first interactive child receives `popovertarget` automatically. |
+| default | Panel content — any HTML. |
+
+---
+
+## Accessibility
+
+- The native Popover API provides light-dismiss (click outside) and Escape handling automatically.
+- The panel is in the top layer — it is never obscured by stacking contexts.
+- The trigger receives `popovertarget` automatically; no manual `aria-expanded` management needed.
+- Browser support: Chrome 114+, Firefox 125+, Safari 17+. Falls back to no popover behavior (panel stays hidden) in older browsers.
+
+---
+
+## Related
+
+- **Tooltip** — read-only hint on hover; no interaction inside the panel.
+- **Drawer** — slides in from a viewport edge; use for complex panels and forms.
+- **Modal** — blocking centered dialog; use for confirmations.

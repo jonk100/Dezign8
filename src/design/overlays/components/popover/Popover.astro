@@ -1,0 +1,22 @@
+---
+import type { PopoverProps } from "./popover.props";
+import { usePopover } from "./popover.hook";
+import "./popover.css";
+
+const { id, hostProps, panelProps } = usePopover(Astro.props as PopoverProps);
+---
+
+<span {...hostProps}>
+  <span data-popover-trigger>
+    <slot name="trigger" />
+  </span>
+  <div id={id} popover="auto" {...panelProps}>
+    <slot />
+  </div>
+</span>
+
+<script>
+  import { initPopovers } from "./popover.client";
+  initPopovers();
+  document.addEventListener("astro:after-swap", initPopovers);
+</script>
