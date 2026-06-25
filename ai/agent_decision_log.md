@@ -296,6 +296,41 @@ src/design/feedback/components/alert/alert.css         — cascade chain padding
 -----------------------------------------------
 -----------------------------------------------
 
+## 2026/06/25 - Antigravity hooks: full suite (all 8 hooks)
+
+Added `css-guard`, `component-shape`, and `rules-reminder` to complete the hook set.
+
+### Decisions
+- **css-guard (PreToolUse)**: denies `!important` and nesting > 2 levels. Depth is tracked
+  character-by-character via awk (not line-by-line) so single-line CSS like `.a{.b{.c{.d{}}}}` is caught correctly. Comments stripped before counting.
+- **component-shape (PreToolUse, write_to_file only)**: asks (not denies) when a component dir
+  is missing required siblings. `ask` rather than `deny` because the agent is often mid-scaffold;
+  a hard block on the first file would prevent scaffolding at all.
+- **rules-reminder (PreInvocation)**: injects the full rule-set at invocationNum=0 and every 10
+  turns thereafter. Per-turn injection would be too noisy; per-session-only would lose context in
+  long runs.
+
+## 2026/06/25 - Antigravity hooks: enforce DS rules mechanically
+
+Added `.agents/hooks.json` + `scripts/hooks/` to turn the non-negotiable
+CLAUDE.md / AGENTS.MD rules into automated gates.
+
+### Decisions
+- **PreToolUse gates (hard-fail before damage)**: `block-deps.sh` denies React/Preact
+  and force-asks on any dependency install; `import-firewall.sh` denies `.css` imports
+  and sibling-component imports (the circular-dep rule).
+- **Firewall kept conservative**: only the two unambiguous violations hard-deny, to avoid
+  false positives on legit `~sh/`/`~st/` shared imports. Cross-category is left un-gated
+  for now (upgrade path: add an `ask` branch keyed on the `~<alias>` prefix).
+- **Lint feedback on PostInvocation, not PostToolUse**: PostToolUse can only return `{}`
+  (no feedback channel) and would run `astro check` on every edit. PostInvocation fires
+  once per turn — right cadence, and can inject the failures back.
+- **Stop gates with loop caps**: `check-on-stop.sh` blocks finishing while `just check` is
+  red (gives up after 4 attempts); `decision-log-gate.sh` blocks if `src/design/` changed
+  without a log entry (gives up after 3). Caps prevent an unfixable failure from spinning.
+
+-----------------------------------------------
+
 *
 
 -----------------------------------------------
