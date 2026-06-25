@@ -573,3 +573,719 @@ Dead code findings (partial): 4
 │                                                                              │
 ╰──────────────────────────────────────────────────────────────────────────────╯
 
+
+--- post-commit hook fired at Thu Jun 25 02:21:49 AM EDT 2026 for HEAD 9e65b03d1a357b46152146ec85d907f8d74035fb ---
+repowise update · dezign8
+f0aca306..9e65b03d
+54 changed · 16 modified, 38 added
+    modified  .claude/CLAUDE.md
+    modified  .repowise/.augment-session.json
+    modified  .repowise/.update.log
+    modified  .repowise/centrality_cache.pkl
+    modified  .repowise/duplication_cache.pkl
+    modified  .repowise/duplication_pairs.pkl
+    modified  .repowise/knowledge-graph.json
+       added  
+.repowise/lancedb/wiki_pages.lance/_deletions/0-47-10331629542650053746.arrow
+       added  
+.repowise/lancedb/wiki_pages.lance/_deletions/2-48-7159163455479086094.arrow
+       added  
+.repowise/lancedb/wiki_pages.lance/_deletions/3-48-14644729733730390303.arrow
+  +44 more (use -v to list all)
+2026-06-25 02:21:50 [info     ] FileTraverser initialised      extra_exclude_patterns=0 include_nested_repos=False max_file_size_kb=500 repo_root=/home/jk/Code/dezign8 submodules_skipped=0
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=.repowise/duplication_cache.pkl size_kb=968
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=.repowise/knowledge-graph.json size_kb=515
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=.repowise/parse_cache.pkl size_kb=950
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=.repowise/wiki.db size_kb=6240
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=public/dezign83.png size_kb=5259
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=public/king_kong_bar.png size_kb=1070
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=public/texture-2.png size_kb=704
+2026-06-25 02:21:50 [debug    ] Skipping generated file        path=src/design/shared/primitives.tokens.generated.ts
+2026-06-25 02:21:50 [debug    ] Skipping generated file        path=src/design/shared/icons/index.ts
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=.repowise/duplication_cache.pkl size_kb=968
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=.repowise/knowledge-graph.json size_kb=515
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=.repowise/parse_cache.pkl size_kb=950
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=.repowise/wiki.db size_kb=6240
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=public/dezign83.png size_kb=5259
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=public/king_kong_bar.png size_kb=1070
+2026-06-25 02:21:50 [debug    ] Skipping oversized file        path=public/texture-2.png size_kb=704
+2026-06-25 02:21:50 [debug    ] Skipping generated file        path=src/design/shared/primitives.tokens.generated.ts
+2026-06-25 02:21:50 [debug    ] Skipping generated file        path=src/design/shared/icons/index.ts
+2026-06-25 02:21:50 [info     ] import_resolution_per_language seconds={'json': 0.0, 'markdown': 0.0, 'javascript': 0.0, 'yaml': 0.0, 'typescript': 0.01}
+2026-06-25 02:21:50 [info     ] type_use edges emitted         per_language={'typescript': 260}
+2026-06-25 02:21:50 [info     ] Heritage edges resolved        total=70
+2026-06-25 02:21:50 [info     ] Call edges resolved            total=358
+2026-06-25 02:21:50 [info     ] Graph built                    edge_types={'defines': 1220, 'imports': 691, 'calls': 358, 'extends': 70} edges=2339 file_nodes=708 symbol_nodes=1220
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=cpp
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=python_dynamic_import
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=ruby
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=dotnet
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=pytest_conftest
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=node_package
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=go
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=django_settings
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=scala
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=luau
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=jvm
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=spring
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=xaml
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=swift
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=php
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=rust
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=c
+2026-06-25 02:21:51 [debug    ] dynamic_hints                  count=0 extractor=alpine
+2026-06-25 02:21:51 [debug    ] repo_commit_index_built        commits_parsed=20 files_with_history=54 indexable_files=54
+2026-06-25 02:21:51 [debug    ] co_change_skip_oversized_commit files_in_commit=256 threshold=200
+2026-06-25 02:21:51 [debug    ] co_change_skip_oversized_commit files_in_commit=328 threshold=200
+2026-06-25 02:21:51 [debug    ] co_change_computed             commit_limit=2000 commits=20 files_with_entropy=50 files_with_partners=13 min_count=2 pairs_above_threshold=20 pairs_considered=22235 tracked_files=605
+2026-06-25 02:21:51 [info     ] Co-change edges added          count=6
+2026-06-25 02:21:52 [info     ] symbol_communities_detected    communities=967 connected=277 total_symbols=1220
+2026-06-25 02:21:52 [info     ] file_communities_detected      algorithm=louvain communities=378 prod_files=705 test_files=3 total_files=708
+2026-06-25 02:21:52 [info     ] execution_flows_traced         candidates_scored=80 deduplicated=0 traced=50
+Pages to regenerate: 50
+Pages to decay: 13
+2026-06-25 02:21:52 [debug    ] duplication_incremental_splice changed=10 deleted=0 pairs=3639 touched_buckets=2234
+2026-06-25 02:21:52 [debug    ] health_duplication_limits      degenerate_buckets=0 files_considered=10 files_tokenized=4 incremental=True skipped_minified=1 skipped_token_cap=0 skipped_unreadable=0 timed_out=False total_windows=2247 window_budget_hit=False
+Health analysis (partial): 54 files, 4 findings
+Dead code findings (partial): 1
+2026-06-25 02:21:52 [info     ] decision_extractor.scanning_inline_markers total_files=54
+2026-06-25 02:21:53 [info     ] kg_context_loaded              layers=6 nodes=570
+2026-06-25 02:21:53 [info     ] page_selection.complete        budget=19 counts={'api_contract': 0, 'symbol_spotlight': 3, 'file_page': 13, 'scc_page': 1, 'module_page': 2, 'repo_overview': 1, 'architecture_diagram': 1, 'infra_page': 0} coverage_pct=0.2
+2026-06-25 02:21:53 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=0e47a7e8-be15-4367-8c1e-d2b3df1563ac
+2026-06-25 02:21:53 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=3976c8e0-69ad-43d5-b8b8-090b51e13d97
+2026-06-25 02:21:53 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=e55b7301-6a05-4a05-94cd-585e59296c14
+2026-06-25 02:21:56 [debug    ] gemini.generate.done           input_tokens=342 output_tokens=386 request_id=0e47a7e8-be15-4367-8c1e-d2b3df1563ac
+2026-06-25 02:21:56 [debug    ] cost_tracker.record            cost_usd=0.00014145 file_path=None input_tokens=342 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=386
+2026-06-25 02:21:56 [debug    ] gemini.generate.done           input_tokens=214 output_tokens=289 request_id=3976c8e0-69ad-43d5-b8b8-090b51e13d97
+2026-06-25 02:21:56 [debug    ] cost_tracker.record            cost_usd=0.00010275 file_path=None input_tokens=214 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=289
+2026-06-25 02:21:56 [debug    ] gemini.generate.done           input_tokens=310 output_tokens=472 request_id=e55b7301-6a05-4a05-94cd-585e59296c14
+2026-06-25 02:21:56 [debug    ] cost_tracker.record            cost_usd=0.00016485 file_path=None input_tokens=310 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=472
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=a8027abc-c65b-48d7-a086-5497473483d1
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=361873a2-79e5-4928-954a-83c2f08f29d0
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=2356a612-35e3-4da0-9ea2-daf525c09b34
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=09ec5c28-667f-4d48-8dd1-9d0f266f2a5d
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=7f950df2-a49e-4430-930d-213d62bca92e
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=28d856e7-d0d5-4c29-bc3f-fa522db5968d
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=65ee3de2-ff17-4eda-8009-59785e4597da
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=191f34a7-842b-418a-920b-94e328767e6d
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=2a999930-8453-475d-be14-76d0a61ea8a8
+2026-06-25 02:21:59 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=ec74b035-2462-4c34-9e68-234fc014af9d
+2026-06-25 02:22:01 [debug    ] gemini.generate.done           input_tokens=1635 output_tokens=395 request_id=191f34a7-842b-418a-920b-94e328767e6d
+2026-06-25 02:22:01 [debug    ] cost_tracker.record            cost_usd=0.000241125 file_path=None input_tokens=1635 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=395
+2026-06-25 02:22:01 [warning  ] hallucination_check            count=1 path=src/design/typography/components/prose/prose.hook.ts refs=['Tag']
+2026-06-25 02:22:01 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=afa3ffe4-e6b3-40c1-92f8-676682ca34a5
+2026-06-25 02:22:01 [debug    ] gemini.generate.done           input_tokens=1519 output_tokens=448 request_id=28d856e7-d0d5-4c29-bc3f-fa522db5968d
+2026-06-25 02:22:01 [debug    ] cost_tracker.record            cost_usd=0.000248325 file_path=None input_tokens=1519 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=448
+2026-06-25 02:22:01 [warning  ] hallucination_check            count=2 path=src/design/typography/components/text/text.hook.ts refs=['Tag', 'TEXT_DEFAULTS.as']
+2026-06-25 02:22:01 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=7c019836-50e3-4684-aa62-a25a96ef8b50
+2026-06-25 02:22:01 [debug    ] gemini.generate.done           input_tokens=1733 output_tokens=468 request_id=ec74b035-2462-4c34-9e68-234fc014af9d
+2026-06-25 02:22:01 [debug    ] cost_tracker.record            cost_usd=0.000270375 file_path=None input_tokens=1733 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=468
+2026-06-25 02:22:01 [warning  ] hallucination_check            count=1 path=src/design/typography/components/caption/caption.hook.ts refs=['Tag']
+2026-06-25 02:22:01 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=5ac5995c-8214-4ea6-b581-34c01f9baa75
+2026-06-25 02:22:02 [debug    ] gemini.generate.done           input_tokens=1710 output_tokens=659 request_id=09ec5c28-667f-4d48-8dd1-9d0f266f2a5d
+2026-06-25 02:22:02 [debug    ] cost_tracker.record            cost_usd=0.00032595 file_path=None input_tokens=1710 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=659
+2026-06-25 02:22:02 [debug    ] gemini.generate.done           input_tokens=2626 output_tokens=667 request_id=a8027abc-c65b-48d7-a086-5497473483d1
+2026-06-25 02:22:02 [debug    ] cost_tracker.record            cost_usd=0.00039705 file_path=None input_tokens=2626 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=667
+2026-06-25 02:22:03 [debug    ] gemini.generate.done           input_tokens=5806 output_tokens=999 request_id=361873a2-79e5-4928-954a-83c2f08f29d0
+2026-06-25 02:22:03 [debug    ] cost_tracker.record            cost_usd=0.00073515 file_path=None input_tokens=5806 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=999
+2026-06-25 02:22:04 [debug    ] gemini.generate.done           input_tokens=1828 output_tokens=458 request_id=5ac5995c-8214-4ea6-b581-34c01f9baa75
+2026-06-25 02:22:04 [debug    ] cost_tracker.record            cost_usd=0.0002745 file_path=None input_tokens=1828 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=458
+2026-06-25 02:22:04 [warning  ] hallucination_check            count=1 path=src/design/typography/components/code/code.hook.ts refs=['Tag']
+2026-06-25 02:22:04 [debug    ] gemini.generate.done           input_tokens=1872 output_tokens=428 request_id=afa3ffe4-e6b3-40c1-92f8-676682ca34a5
+2026-06-25 02:22:04 [debug    ] cost_tracker.record            cost_usd=0.00026880000000000003 file_path=None input_tokens=1872 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=428
+2026-06-25 02:22:04 [warning  ] hallucination_check            count=1 path=src/design/triggers/components/button/button.hook.ts refs=['Tag']
+2026-06-25 02:22:06 [debug    ] gemini.generate.done           input_tokens=3550 output_tokens=983 request_id=7c019836-50e3-4684-aa62-a25a96ef8b50
+2026-06-25 02:22:06 [debug    ] cost_tracker.record            cost_usd=0.00056115 file_path=None input_tokens=3550 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=983
+2026-06-25 02:22:06 [debug    ] gemini.generate.done           input_tokens=2819 output_tokens=794 request_id=2356a612-35e3-4da0-9ea2-daf525c09b34
+2026-06-25 02:22:06 [debug    ] cost_tracker.record            cost_usd=0.000449625 file_path=None input_tokens=2819 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=794
+2026-06-25 02:22:06 [warning  ] hallucination_check            count=1 path=src/design/typography/typography.hook.ts refs=['Heading']
+2026-06-25 02:22:06 [debug    ] gemini.generate.done           input_tokens=1554 output_tokens=344 request_id=65ee3de2-ff17-4eda-8009-59785e4597da
+2026-06-25 02:22:06 [debug    ] cost_tracker.record            cost_usd=0.00021975 file_path=None input_tokens=1554 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=344
+2026-06-25 02:22:07 [debug    ] gemini.generate.done           input_tokens=3483 output_tokens=555 request_id=7f950df2-a49e-4430-930d-213d62bca92e
+2026-06-25 02:22:07 [debug    ] cost_tracker.record            cost_usd=0.00042772499999999995 file_path=None input_tokens=3483 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=555
+2026-06-25 02:22:08 [debug    ] gemini.generate.done           input_tokens=1844 output_tokens=614 request_id=2a999930-8453-475d-be14-76d0a61ea8a8
+2026-06-25 02:22:08 [debug    ] cost_tracker.record            cost_usd=0.0003225 file_path=None input_tokens=1844 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=614
+2026-06-25 02:22:08 [warning  ] hallucination_check            count=2 path=src/design/typography/components/heading/heading.hook.ts refs=['Tag', 'HEADING_DEFAULTS.level']
+2026-06-25 02:22:09 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=9b65e69e-9e75-4e44-bba3-2d3ba73fbd30
+2026-06-25 02:22:12 [debug    ] gemini.generate.done           input_tokens=191 output_tokens=616 request_id=9b65e69e-9e75-4e44-bba3-2d3ba73fbd30
+2026-06-25 02:22:12 [debug    ] cost_tracker.record            cost_usd=0.00019912499999999997 file_path=None input_tokens=191 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=616
+2026-06-25 02:22:13 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=fdb3f5aa-1e0d-474b-92c6-24da0f4702f1
+2026-06-25 02:22:13 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=874c7e94-ab5d-4f5d-af92-13c827bd6854
+2026-06-25 02:22:15 [debug    ] gemini.generate.done           input_tokens=1221 output_tokens=388 request_id=fdb3f5aa-1e0d-474b-92c6-24da0f4702f1
+2026-06-25 02:22:15 [debug    ] cost_tracker.record            cost_usd=0.000207975 file_path=None input_tokens=1221 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=388
+2026-06-25 02:22:15 [debug    ] gemini.generate.done           input_tokens=946 output_tokens=438 request_id=874c7e94-ab5d-4f5d-af92-13c827bd6854
+2026-06-25 02:22:15 [debug    ] cost_tracker.record            cost_usd=0.00020235 file_path=None input_tokens=946 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=438
+2026-06-25 02:22:15 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:ui
+2026-06-25 02:22:15 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=3b4f5e1f-d9b0-4b99-b3a9-4357b70ef71d
+2026-06-25 02:22:15 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:config
+2026-06-25 02:22:15 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=e0f75d80-f18b-4fb3-9a62-7515fe655b07
+2026-06-25 02:22:15 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=8092ecca-721c-43f4-981e-86573b935cc0
+2026-06-25 02:22:15 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:docs-tooling
+2026-06-25 02:22:19 [debug    ] gemini.generate.done           input_tokens=710 output_tokens=643 request_id=3b4f5e1f-d9b0-4b99-b3a9-4357b70ef71d
+2026-06-25 02:22:19 [debug    ] cost_tracker.record            cost_usd=0.00024615 file_path=None input_tokens=710 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=643
+2026-06-25 02:22:19 [debug    ] gemini.generate.done           input_tokens=832 output_tokens=534 request_id=8092ecca-721c-43f4-981e-86573b935cc0
+2026-06-25 02:22:19 [debug    ] cost_tracker.record            cost_usd=0.0002226 file_path=None input_tokens=832 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=534
+2026-06-25 02:22:33 [debug    ] gemini.generate.done           input_tokens=789 output_tokens=653 request_id=e0f75d80-f18b-4fb3-9a62-7515fe655b07
+2026-06-25 02:22:33 [debug    ] cost_tracker.record            cost_usd=0.000255075 file_path=None input_tokens=789 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=653
+2026-06-25 02:22:34 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=63b1014f-a962-4ee8-af9b-8e75438fac88
+2026-06-25 02:22:34 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=8e8aafa7-8c4c-47ce-9353-bbcaa65413f1
+2026-06-25 02:22:34 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=4c50d9a9-2797-4d3e-b058-13d9ac95e7f5
+2026-06-25 02:22:34 [debug    ] onboarding.gate_skipped        slot=getting_started
+2026-06-25 02:22:34 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=34c1eab5-2c93-40ba-8044-dcf6002aea89
+2026-06-25 02:22:34 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=1653b57f-8f65-4b4d-9a52-ae7142b2ff51
+2026-06-25 02:22:34 [debug    ] page_cache.persistent_hit      page_type=onboarding target_path=onboarding/how_it_works
+2026-06-25 02:22:34 [debug    ] onboarding.gate_skipped        slot=development_guide
+2026-06-25 02:22:34 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=24871403-a96c-40fa-bf4d-493b4f83676d
+2026-06-25 02:22:36 [debug    ] gemini.generate.done           input_tokens=869 output_tokens=520 request_id=24871403-a96c-40fa-bf4d-493b4f83676d
+2026-06-25 02:22:36 [debug    ] cost_tracker.record            cost_usd=0.00022117500000000002 file_path=None input_tokens=869 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=520
+2026-06-25 02:22:36 [debug    ] gemini.generate.done           input_tokens=1168 output_tokens=523 request_id=34c1eab5-2c93-40ba-8044-dcf6002aea89
+2026-06-25 02:22:36 [debug    ] cost_tracker.record            cost_usd=0.0002445 file_path=None input_tokens=1168 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=523
+2026-06-25 02:22:37 [debug    ] gemini.generate.done           input_tokens=1131 output_tokens=561 request_id=63b1014f-a962-4ee8-af9b-8e75438fac88
+2026-06-25 02:22:37 [debug    ] cost_tracker.record            cost_usd=0.000253125 file_path=None input_tokens=1131 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=561
+2026-06-25 02:22:38 [debug    ] gemini.generate.done           input_tokens=1608 output_tokens=1060 request_id=4c50d9a9-2797-4d3e-b058-13d9ac95e7f5
+2026-06-25 02:22:38 [debug    ] cost_tracker.record            cost_usd=0.00043860000000000004 file_path=None input_tokens=1608 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=1060
+2026-06-25 02:22:39 [debug    ] gemini.generate.done           input_tokens=2403 output_tokens=839 request_id=8e8aafa7-8c4c-47ce-9353-bbcaa65413f1
+2026-06-25 02:22:39 [debug    ] cost_tracker.record            cost_usd=0.00043192499999999994 file_path=None input_tokens=2403 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=839
+2026-06-25 02:22:40 [debug    ] gemini.generate.done           input_tokens=928 output_tokens=523 request_id=1653b57f-8f65-4b4d-9a52-ae7142b2ff51
+2026-06-25 02:22:40 [debug    ] cost_tracker.record            cost_usd=0.0002265 file_path=None input_tokens=928 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=523
+2026-06-25 02:22:40 [info     ] mermaid_safety.applied         pages_changed=1
+2026-06-25 02:22:40 [info     ] wiki_links.resolved            pages=32 pages_with_backlinks=14 total_forward_links=55
+2026-06-25 02:22:40 [info     ] kg_enrichment.tour_wiki_links  steps_with_links=0 total_steps=12
+2026-06-25 02:22:40 [info     ] Generation complete            model=gemini-3.1-flash-lite-preview provider=gemini total_pages=32
+  Generating pages... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 32/27 0:00:43 $0.008
+2026-06-25 02:22:41 [debug    ] repo_commit_index_built        commits_parsed=1 files_with_history=0 indexable_files=0
+2026-06-25 02:22:43 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:22:43 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:22:43 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:22:43 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:01 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:24:01 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:01 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:01 [debug    ] gemini.generate.done           input_tokens=83 output_tokens=3 request_id=None
+2026-06-25 02:24:01 [debug    ] cost_tracker.record            cost_usd=7.125e-06 file_path=None input_tokens=83 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:01 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:02 [debug    ] gemini.generate.done           input_tokens=81 output_tokens=3 request_id=None
+2026-06-25 02:24:02 [debug    ] cost_tracker.record            cost_usd=6.974999999999999e-06 file_path=None input_tokens=81 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:02 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:03 [debug    ] gemini.generate.done           input_tokens=97 output_tokens=3 request_id=None
+2026-06-25 02:24:03 [debug    ] cost_tracker.record            cost_usd=8.174999999999999e-06 file_path=None input_tokens=97 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:03 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:03 [debug    ] gemini.generate.done           input_tokens=99 output_tokens=3 request_id=None
+2026-06-25 02:24:03 [debug    ] cost_tracker.record            cost_usd=8.324999999999999e-06 file_path=None input_tokens=99 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:03 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:04 [debug    ] gemini.generate.done           input_tokens=114 output_tokens=3 request_id=None
+2026-06-25 02:24:04 [debug    ] cost_tracker.record            cost_usd=9.45e-06 file_path=None input_tokens=114 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:04 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:06 [debug    ] gemini.generate.done           input_tokens=108 output_tokens=3 request_id=None
+2026-06-25 02:24:06 [debug    ] cost_tracker.record            cost_usd=9e-06 file_path=None input_tokens=108 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:06 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:08 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:24:08 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:08 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:10 [debug    ] gemini.generate.done           input_tokens=97 output_tokens=3 request_id=None
+2026-06-25 02:24:10 [debug    ] cost_tracker.record            cost_usd=8.174999999999999e-06 file_path=None input_tokens=97 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:10 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:10 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:24:10 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:10 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:11 [debug    ] gemini.generate.done           input_tokens=99 output_tokens=3 request_id=None
+2026-06-25 02:24:11 [debug    ] cost_tracker.record            cost_usd=8.324999999999999e-06 file_path=None input_tokens=99 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:11 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:12 [debug    ] gemini.generate.done           input_tokens=113 output_tokens=3 request_id=None
+2026-06-25 02:24:12 [debug    ] cost_tracker.record            cost_usd=9.375e-06 file_path=None input_tokens=113 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:12 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:13 [debug    ] gemini.generate.done           input_tokens=100 output_tokens=3 request_id=None
+2026-06-25 02:24:13 [debug    ] cost_tracker.record            cost_usd=8.400000000000001e-06 file_path=None input_tokens=100 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:13 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:14 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:24:14 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:14 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:15 [debug    ] gemini.generate.done           input_tokens=97 output_tokens=3 request_id=None
+2026-06-25 02:24:15 [debug    ] cost_tracker.record            cost_usd=8.174999999999999e-06 file_path=None input_tokens=97 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:15 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:16 [debug    ] gemini.generate.done           input_tokens=95 output_tokens=4 request_id=None
+2026-06-25 02:24:16 [debug    ] cost_tracker.record            cost_usd=8.324999999999999e-06 file_path=None input_tokens=95 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=4
+2026-06-25 02:24:16 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:17 [debug    ] gemini.generate.done           input_tokens=97 output_tokens=3 request_id=None
+2026-06-25 02:24:17 [debug    ] cost_tracker.record            cost_usd=8.174999999999999e-06 file_path=None input_tokens=97 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:17 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:17 [debug    ] gemini.generate.done           input_tokens=114 output_tokens=3 request_id=None
+2026-06-25 02:24:17 [debug    ] cost_tracker.record            cost_usd=9.45e-06 file_path=None input_tokens=114 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:17 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:18 [debug    ] gemini.generate.done           input_tokens=98 output_tokens=3 request_id=None
+2026-06-25 02:24:18 [debug    ] cost_tracker.record            cost_usd=8.25e-06 file_path=None input_tokens=98 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:18 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:19 [debug    ] gemini.generate.done           input_tokens=98 output_tokens=3 request_id=None
+2026-06-25 02:24:19 [debug    ] cost_tracker.record            cost_usd=8.25e-06 file_path=None input_tokens=98 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:19 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:19 [debug    ] gemini.generate.done           input_tokens=98 output_tokens=3 request_id=None
+2026-06-25 02:24:19 [debug    ] cost_tracker.record            cost_usd=8.25e-06 file_path=None input_tokens=98 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:20 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:20 [debug    ] gemini.generate.done           input_tokens=128 output_tokens=3 request_id=None
+2026-06-25 02:24:20 [debug    ] cost_tracker.record            cost_usd=1.05e-05 file_path=None input_tokens=128 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:20 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:31 [debug    ] gemini.generate.done           input_tokens=125 output_tokens=3 request_id=None
+2026-06-25 02:24:31 [debug    ] cost_tracker.record            cost_usd=1.0275e-05 file_path=None input_tokens=125 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:31 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:24:32 [debug    ] gemini.generate.done           input_tokens=125 output_tokens=3 request_id=None
+2026-06-25 02:24:32 [debug    ] cost_tracker.record            cost_usd=1.0275e-05 file_path=None input_tokens=125 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:24:32 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:25:01 [debug    ] gemini.generate.done           input_tokens=110 output_tokens=3 request_id=None
+2026-06-25 02:25:01 [debug    ] cost_tracker.record            cost_usd=9.15e-06 file_path=None input_tokens=110 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:25:01 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:04 [debug    ] gemini.generate.done           input_tokens=81 output_tokens=3 request_id=None
+2026-06-25 02:26:04 [debug    ] cost_tracker.record            cost_usd=6.974999999999999e-06 file_path=None input_tokens=81 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:04 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:15 [debug    ] gemini.generate.done           input_tokens=81 output_tokens=3 request_id=None
+2026-06-25 02:26:15 [debug    ] cost_tracker.record            cost_usd=6.974999999999999e-06 file_path=None input_tokens=81 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:15 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:15 [debug    ] gemini.generate.done           input_tokens=83 output_tokens=3 request_id=None
+2026-06-25 02:26:15 [debug    ] cost_tracker.record            cost_usd=7.125e-06 file_path=None input_tokens=83 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:15 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:16 [debug    ] gemini.generate.done           input_tokens=80 output_tokens=3 request_id=None
+2026-06-25 02:26:16 [debug    ] cost_tracker.record            cost_usd=6.9e-06 file_path=None input_tokens=80 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:16 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:16 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:26:16 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:16 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:25 [debug    ] gemini.generate.done           input_tokens=81 output_tokens=3 request_id=None
+2026-06-25 02:26:25 [debug    ] cost_tracker.record            cost_usd=6.974999999999999e-06 file_path=None input_tokens=81 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:25 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:26 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:26:26 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:26 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:27 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:26:27 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:27 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:28 [debug    ] gemini.generate.done           input_tokens=95 output_tokens=3 request_id=None
+2026-06-25 02:26:28 [debug    ] cost_tracker.record            cost_usd=8.025e-06 file_path=None input_tokens=95 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:28 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:28 [debug    ] gemini.generate.done           input_tokens=80 output_tokens=3 request_id=None
+2026-06-25 02:26:28 [debug    ] cost_tracker.record            cost_usd=6.9e-06 file_path=None input_tokens=80 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:28 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:33 [debug    ] gemini.generate.done           input_tokens=111 output_tokens=3 request_id=None
+2026-06-25 02:26:33 [debug    ] cost_tracker.record            cost_usd=9.224999999999999e-06 file_path=None input_tokens=111 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:33 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:34 [debug    ] gemini.generate.done           input_tokens=106 output_tokens=3 request_id=None
+2026-06-25 02:26:34 [debug    ] cost_tracker.record            cost_usd=8.85e-06 file_path=None input_tokens=106 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:34 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:34 [debug    ] gemini.generate.done           input_tokens=78 output_tokens=3 request_id=None
+2026-06-25 02:26:34 [debug    ] cost_tracker.record            cost_usd=6.75e-06 file_path=None input_tokens=78 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:34 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:35 [debug    ] gemini.generate.done           input_tokens=97 output_tokens=3 request_id=None
+2026-06-25 02:26:35 [debug    ] cost_tracker.record            cost_usd=8.174999999999999e-06 file_path=None input_tokens=97 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:35 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:36 [debug    ] gemini.generate.done           input_tokens=80 output_tokens=3 request_id=None
+2026-06-25 02:26:36 [debug    ] cost_tracker.record            cost_usd=6.9e-06 file_path=None input_tokens=80 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:36 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:36 [debug    ] gemini.generate.done           input_tokens=109 output_tokens=3 request_id=None
+2026-06-25 02:26:36 [debug    ] cost_tracker.record            cost_usd=9.074999999999999e-06 file_path=None input_tokens=109 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:36 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:37 [debug    ] gemini.generate.done           input_tokens=88 output_tokens=3 request_id=None
+2026-06-25 02:26:37 [debug    ] cost_tracker.record            cost_usd=7.5e-06 file_path=None input_tokens=88 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:37 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:26:38 [debug    ] gemini.generate.done           input_tokens=97 output_tokens=3 request_id=None
+2026-06-25 02:26:38 [debug    ] cost_tracker.record            cost_usd=8.174999999999999e-06 file_path=None input_tokens=97 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:26:38 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:27:00 [debug    ] gemini.generate.done           input_tokens=112 output_tokens=3 request_id=None
+2026-06-25 02:27:00 [debug    ] cost_tracker.record            cost_usd=9.3e-06 file_path=None input_tokens=112 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:27:00 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:00 [debug    ] gemini.generate.done           input_tokens=98 output_tokens=3 request_id=None
+2026-06-25 02:28:00 [debug    ] cost_tracker.record            cost_usd=8.25e-06 file_path=None input_tokens=98 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:00 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:02 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:28:02 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:02 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:03 [debug    ] gemini.generate.done           input_tokens=98 output_tokens=3 request_id=None
+2026-06-25 02:28:03 [debug    ] cost_tracker.record            cost_usd=8.25e-06 file_path=None input_tokens=98 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:03 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:03 [debug    ] gemini.generate.done           input_tokens=98 output_tokens=3 request_id=None
+2026-06-25 02:28:03 [debug    ] cost_tracker.record            cost_usd=8.25e-06 file_path=None input_tokens=98 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:03 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:04 [debug    ] gemini.generate.done           input_tokens=88 output_tokens=3 request_id=None
+2026-06-25 02:28:04 [debug    ] cost_tracker.record            cost_usd=7.5e-06 file_path=None input_tokens=88 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:04 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:06 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:28:06 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:06 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:11 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:28:11 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:11 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:12 [debug    ] gemini.generate.done           input_tokens=83 output_tokens=3 request_id=None
+2026-06-25 02:28:12 [debug    ] cost_tracker.record            cost_usd=7.125e-06 file_path=None input_tokens=83 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:12 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:13 [debug    ] gemini.generate.done           input_tokens=81 output_tokens=3 request_id=None
+2026-06-25 02:28:13 [debug    ] cost_tracker.record            cost_usd=6.974999999999999e-06 file_path=None input_tokens=81 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:13 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:14 [debug    ] gemini.generate.done           input_tokens=97 output_tokens=3 request_id=None
+2026-06-25 02:28:14 [debug    ] cost_tracker.record            cost_usd=8.174999999999999e-06 file_path=None input_tokens=97 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:14 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:14 [debug    ] gemini.generate.done           input_tokens=99 output_tokens=3 request_id=None
+2026-06-25 02:28:14 [debug    ] cost_tracker.record            cost_usd=8.324999999999999e-06 file_path=None input_tokens=99 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:14 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:15 [debug    ] gemini.generate.done           input_tokens=114 output_tokens=3 request_id=None
+2026-06-25 02:28:15 [debug    ] cost_tracker.record            cost_usd=9.45e-06 file_path=None input_tokens=114 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:15 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:16 [debug    ] gemini.generate.done           input_tokens=108 output_tokens=3 request_id=None
+2026-06-25 02:28:16 [debug    ] cost_tracker.record            cost_usd=9e-06 file_path=None input_tokens=108 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:16 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:17 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:28:17 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:17 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:20 [debug    ] gemini.generate.done           input_tokens=97 output_tokens=3 request_id=None
+2026-06-25 02:28:20 [debug    ] cost_tracker.record            cost_usd=8.174999999999999e-06 file_path=None input_tokens=97 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:20 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:22 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:28:22 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:22 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:23 [debug    ] gemini.generate.done           input_tokens=99 output_tokens=3 request_id=None
+2026-06-25 02:28:23 [debug    ] cost_tracker.record            cost_usd=8.324999999999999e-06 file_path=None input_tokens=99 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:23 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:27 [debug    ] gemini.generate.done           input_tokens=113 output_tokens=3 request_id=None
+2026-06-25 02:28:27 [debug    ] cost_tracker.record            cost_usd=9.375e-06 file_path=None input_tokens=113 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:27 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:28 [debug    ] gemini.generate.done           input_tokens=100 output_tokens=3 request_id=None
+2026-06-25 02:28:28 [debug    ] cost_tracker.record            cost_usd=8.400000000000001e-06 file_path=None input_tokens=100 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:28:28 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:28:28 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:28:28 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+
+╭────────────────────── {^ ^}  repowise update complete ───────────────────────╮
+│                                                                              │
+│   Pages updated           32                                                 │
+│   Pages decayed           13                                                 │
+│   Total tokens            68,262                                             │
+│   Provider                gemini / gemini-3.1-flash-lite-preview             │
+│   Cost                    $0.009                                             │
+│   Elapsed                 6m 39s                                             │
+│                                                                              │
+│   What's next:                                                               │
+│   repowise serve               browse the updated wiki at localhost:3000     │
+│   repowise search <query>      search the wiki                               │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+--- post-commit hook fired at Thu Jun 25 02:47:53 AM EDT 2026 for HEAD 840b7f8f2612b9e6e9b4c4a36e6ba032f4a3774b ---
+repowise update · dezign8
+9e65b03d..840b7f8f
+15 changed · 15 modified
+    modified  package.json
+    modified  pnpm-lock.yaml
+    modified  src/design/feedback/feedback.hook.ts
+    modified  src/design/forms/components/combobox/combobox.props.ts
+    modified  src/design/forms/components/select/select.props.ts
+    modified  src/design/nav/components/pagination/Pagination.astro
+    modified  src/design/overlays/components/dropdown-menu/DropdownItem.astro
+    modified  
+src/design/overlays/components/dropdown-menu/dropdown-menu.tokens.ts
+    modified  src/design/overlays/components/sheet/sheet.tokens.ts
+    modified  src/design/shared/motion/motion.types.ts
+  +5 more (use -v to list all)
+2026-06-25 02:47:54 [info     ] FileTraverser initialised      extra_exclude_patterns=0 include_nested_repos=False max_file_size_kb=500 repo_root=/home/jk/Code/dezign8 submodules_skipped=0
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=.repowise/duplication_cache.pkl size_kb=975
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=.repowise/knowledge-graph.json size_kb=515
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=.repowise/parse_cache.pkl size_kb=952
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=.repowise/wiki.db size_kb=6516
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=public/dezign83.png size_kb=5259
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=public/king_kong_bar.png size_kb=1070
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=public/texture-2.png size_kb=704
+2026-06-25 02:47:54 [debug    ] Skipping generated file        path=src/design/shared/primitives.tokens.generated.ts
+2026-06-25 02:47:54 [debug    ] Skipping generated file        path=src/design/shared/icons/index.ts
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=.repowise/duplication_cache.pkl size_kb=975
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=.repowise/knowledge-graph.json size_kb=515
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=.repowise/parse_cache.pkl size_kb=952
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=.repowise/wiki.db size_kb=6516
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=public/dezign83.png size_kb=5259
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=public/king_kong_bar.png size_kb=1070
+2026-06-25 02:47:54 [debug    ] Skipping oversized file        path=public/texture-2.png size_kb=704
+2026-06-25 02:47:55 [debug    ] Skipping generated file        path=src/design/shared/primitives.tokens.generated.ts
+2026-06-25 02:47:55 [debug    ] Skipping generated file        path=src/design/shared/icons/index.ts
+2026-06-25 02:47:55 [info     ] import_resolution_per_language seconds={'json': 0.0, 'markdown': 0.0, 'javascript': 0.0, 'yaml': 0.0, 'typescript': 0.01}
+2026-06-25 02:47:55 [info     ] type_use edges emitted         per_language={'typescript': 261}
+2026-06-25 02:47:55 [info     ] Heritage edges resolved        total=68
+2026-06-25 02:47:55 [info     ] Call edges resolved            total=358
+2026-06-25 02:47:55 [info     ] Graph built                    edge_types={'defines': 1221, 'imports': 690, 'calls': 358, 'extends': 68} edges=2337 file_nodes=708 symbol_nodes=1221
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=spring
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=xaml
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=php
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=pytest_conftest
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=node_package
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=c
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=scala
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=go
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=django_settings
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=jvm
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=cpp
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=ruby
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=python_dynamic_import
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=dotnet
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=swift
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=luau
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=rust
+2026-06-25 02:47:55 [debug    ] dynamic_hints                  count=0 extractor=alpine
+2026-06-25 02:47:55 [debug    ] repo_commit_index_built        commits_parsed=21 files_with_history=15 indexable_files=15
+2026-06-25 02:47:55 [debug    ] co_change_skip_oversized_commit files_in_commit=256 threshold=200
+2026-06-25 02:47:55 [debug    ] co_change_skip_oversized_commit files_in_commit=328 threshold=200
+2026-06-25 02:47:55 [debug    ] co_change_computed             commit_limit=2000 commits=21 files_with_entropy=60 files_with_partners=15 min_count=2 pairs_above_threshold=21 pairs_considered=22256 tracked_files=605
+2026-06-25 02:47:55 [info     ] Co-change edges added          count=6
+2026-06-25 02:47:56 [info     ] symbol_communities_detected    communities=970 connected=274 total_symbols=1221
+2026-06-25 02:47:56 [info     ] file_communities_detected      algorithm=louvain communities=378 prod_files=705 test_files=3 total_files=708
+2026-06-25 02:47:56 [info     ] execution_flows_traced         candidates_scored=80 deduplicated=0 traced=50
+Pages to regenerate: 30
+2026-06-25 02:47:56 [debug    ] duplication_incremental_splice changed=11 deleted=0 pairs=3644 touched_buckets=1444
+Health analysis (partial): 15 files, 17 findings
+Dead code findings (partial): 4
+2026-06-25 02:47:57 [info     ] decision_extractor.scanning_inline_markers total_files=15
+2026-06-25 02:47:57 [debug    ] gemini.generate.start          max_tokens=400 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:47:59 [debug    ] gemini.generate.done           input_tokens=551 output_tokens=67 request_id=None
+2026-06-25 02:47:59 [debug    ] cost_tracker.record            cost_usd=6.1425e-05 file_path=None input_tokens=551 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=67
+2026-06-25 02:47:59 [debug    ] gemini.generate.start          max_tokens=400 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:48:00 [debug    ] gemini.generate.done           input_tokens=536 output_tokens=59 request_id=None
+2026-06-25 02:48:00 [debug    ] cost_tracker.record            cost_usd=5.789999999999999e-05 file_path=None input_tokens=536 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=59
+2026-06-25 02:48:00 [info     ] kg_context_loaded              layers=6 nodes=570
+2026-06-25 02:48:00 [info     ] page_selection.complete        budget=5 counts={'api_contract': 0, 'symbol_spotlight': 1, 'file_page': 3, 'scc_page': 1, 'module_page': 0, 'repo_overview': 1, 'architecture_diagram': 1, 'infra_page': 0} coverage_pct=0.2
+2026-06-25 02:48:00 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=c7a81de4-ddc5-46d4-b252-842a711545c0
+2026-06-25 02:48:03 [debug    ] gemini.generate.done           input_tokens=1003 output_tokens=692 request_id=c7a81de4-ddc5-46d4-b252-842a711545c0
+2026-06-25 02:48:03 [debug    ] cost_tracker.record            cost_usd=0.000282825 file_path=None input_tokens=1003 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=692
+2026-06-25 02:48:05 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=6ef23416-e74c-4748-a16e-4659a1cee44e
+2026-06-25 02:48:05 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=c4c3b445-98a5-4f17-a0da-93950f180047
+2026-06-25 02:48:05 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=cba5590b-3245-4609-97fa-259b40479834
+2026-06-25 02:48:08 [debug    ] gemini.generate.done           input_tokens=2310 output_tokens=585 request_id=c4c3b445-98a5-4f17-a0da-93950f180047
+2026-06-25 02:48:08 [debug    ] cost_tracker.record            cost_usd=0.00034875 file_path=None input_tokens=2310 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=585
+2026-06-25 02:48:08 [debug    ] gemini.generate.done           input_tokens=2131 output_tokens=604 request_id=6ef23416-e74c-4748-a16e-4659a1cee44e
+2026-06-25 02:48:08 [debug    ] cost_tracker.record            cost_usd=0.00034102499999999995 file_path=None input_tokens=2131 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=604
+2026-06-25 02:48:09 [debug    ] gemini.generate.done           input_tokens=4038 output_tokens=688 request_id=cba5590b-3245-4609-97fa-259b40479834
+2026-06-25 02:48:09 [debug    ] cost_tracker.record            cost_usd=0.00050925 file_path=None input_tokens=4038 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=688
+2026-06-25 02:48:09 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=ff3faa30-5568-45d2-941a-51f4ea42aacb
+2026-06-25 02:48:12 [debug    ] gemini.generate.done           input_tokens=191 output_tokens=556 request_id=ff3faa30-5568-45d2-941a-51f4ea42aacb
+2026-06-25 02:48:12 [debug    ] cost_tracker.record            cost_usd=0.00018112499999999997 file_path=None input_tokens=191 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=556
+2026-06-25 02:48:13 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:ui
+2026-06-25 02:48:13 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:data
+2026-06-25 02:48:13 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:config
+2026-06-25 02:48:13 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=0c27687d-a50d-4e92-a056-013e416dfd6d
+2026-06-25 02:48:13 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=2084568a-dded-4ecb-a16c-d8c8d248b5ec
+2026-06-25 02:48:13 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:docs-tooling
+2026-06-25 02:48:16 [debug    ] gemini.generate.done           input_tokens=828 output_tokens=641 request_id=2084568a-dded-4ecb-a16c-d8c8d248b5ec
+2026-06-25 02:48:16 [debug    ] cost_tracker.record            cost_usd=0.0002544 file_path=None input_tokens=828 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=641
+2026-06-25 02:48:17 [debug    ] gemini.generate.done           input_tokens=828 output_tokens=717 request_id=0c27687d-a50d-4e92-a056-013e416dfd6d
+2026-06-25 02:48:17 [debug    ] cost_tracker.record            cost_usd=0.00027719999999999996 file_path=None input_tokens=828 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=717
+2026-06-25 02:48:17 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=b7e2e69f-bf6b-4e25-9114-a280750429b3
+2026-06-25 02:48:17 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=a51a8a75-37ab-4b30-b6b4-04a2ac26e2aa
+2026-06-25 02:48:17 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=b504e3e5-42c0-4f97-aa61-89012561007d
+2026-06-25 02:48:17 [debug    ] onboarding.gate_skipped        slot=getting_started
+2026-06-25 02:48:17 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=daee026b-3862-411f-8772-e30c92ad87d4
+2026-06-25 02:48:17 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=669713ad-4bb6-4f6e-9f26-1ae37d346666
+2026-06-25 02:48:17 [debug    ] page_cache.persistent_hit      page_type=onboarding target_path=onboarding/how_it_works
+2026-06-25 02:48:17 [debug    ] onboarding.gate_skipped        slot=development_guide
+2026-06-25 02:48:17 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=20af2286-2db7-4223-bcf3-6770774de714
+2026-06-25 02:48:19 [debug    ] gemini.generate.done           input_tokens=879 output_tokens=546 request_id=20af2286-2db7-4223-bcf3-6770774de714
+2026-06-25 02:48:19 [debug    ] cost_tracker.record            cost_usd=0.00022972499999999996 file_path=None input_tokens=879 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=546
+2026-06-25 02:48:20 [debug    ] gemini.generate.done           input_tokens=1109 output_tokens=475 request_id=daee026b-3862-411f-8772-e30c92ad87d4
+2026-06-25 02:48:20 [debug    ] cost_tracker.record            cost_usd=0.00022567500000000002 file_path=None input_tokens=1109 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=475
+2026-06-25 02:48:20 [debug    ] gemini.generate.done           input_tokens=1121 output_tokens=517 request_id=b7e2e69f-bf6b-4e25-9114-a280750429b3
+2026-06-25 02:48:20 [debug    ] cost_tracker.record            cost_usd=0.000239175 file_path=None input_tokens=1121 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=517
+2026-06-25 02:48:25 [debug    ] gemini.generate.done           input_tokens=1691 output_tokens=984 request_id=b504e3e5-42c0-4f97-aa61-89012561007d
+2026-06-25 02:48:25 [debug    ] cost_tracker.record            cost_usd=0.00042202499999999997 file_path=None input_tokens=1691 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=984
+2026-06-25 02:48:30 [debug    ] gemini.generate.done           input_tokens=2415 output_tokens=706 request_id=a51a8a75-37ab-4b30-b6b4-04a2ac26e2aa
+2026-06-25 02:48:30 [debug    ] cost_tracker.record            cost_usd=0.00039292499999999997 file_path=None input_tokens=2415 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=706
+2026-06-25 02:49:06 [debug    ] gemini.generate.done           input_tokens=910 output_tokens=454 request_id=669713ad-4bb6-4f6e-9f26-1ae37d346666
+2026-06-25 02:49:06 [debug    ] cost_tracker.record            cost_usd=0.00020444999999999998 file_path=None input_tokens=910 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=454
+2026-06-25 02:49:06 [info     ] mermaid_safety.applied         pages_changed=1
+2026-06-25 02:49:06 [info     ] wiki_links.resolved            pages=18 pages_with_backlinks=4 total_forward_links=17
+2026-06-25 02:49:06 [info     ] kg_enrichment.tour_wiki_links  steps_with_links=0 total_steps=12
+2026-06-25 02:49:06 [info     ] Generation complete            model=gemini-3.1-flash-lite-preview provider=gemini total_pages=18
+  Generating pages... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18/13 0:00:19 $0.004
+2026-06-25 02:49:07 [debug    ] repo_commit_index_built        commits_parsed=1 files_with_history=0 indexable_files=0
+2026-06-25 02:49:08 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:13 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:49:13 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:13 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:13 [debug    ] gemini.generate.done           input_tokens=98 output_tokens=3 request_id=None
+2026-06-25 02:49:13 [debug    ] cost_tracker.record            cost_usd=8.25e-06 file_path=None input_tokens=98 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:13 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:14 [debug    ] gemini.generate.done           input_tokens=109 output_tokens=3 request_id=None
+2026-06-25 02:49:14 [debug    ] cost_tracker.record            cost_usd=9.074999999999999e-06 file_path=None input_tokens=109 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:14 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:15 [debug    ] gemini.generate.done           input_tokens=85 output_tokens=3 request_id=None
+2026-06-25 02:49:15 [debug    ] cost_tracker.record            cost_usd=7.275000000000001e-06 file_path=None input_tokens=85 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:15 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:15 [debug    ] gemini.generate.done           input_tokens=82 output_tokens=3 request_id=None
+2026-06-25 02:49:15 [debug    ] cost_tracker.record            cost_usd=7.0499999999999986e-06 file_path=None input_tokens=82 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:15 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:16 [debug    ] gemini.generate.done           input_tokens=101 output_tokens=3 request_id=None
+2026-06-25 02:49:16 [debug    ] cost_tracker.record            cost_usd=8.475e-06 file_path=None input_tokens=101 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:16 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:17 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:49:17 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:17 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:17 [debug    ] gemini.generate.done           input_tokens=100 output_tokens=3 request_id=None
+2026-06-25 02:49:17 [debug    ] cost_tracker.record            cost_usd=8.400000000000001e-06 file_path=None input_tokens=100 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:17 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:18 [debug    ] gemini.generate.done           input_tokens=101 output_tokens=3 request_id=None
+2026-06-25 02:49:18 [debug    ] cost_tracker.record            cost_usd=8.475e-06 file_path=None input_tokens=101 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:18 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:19 [debug    ] gemini.generate.done           input_tokens=83 output_tokens=3 request_id=None
+2026-06-25 02:49:19 [debug    ] cost_tracker.record            cost_usd=7.125e-06 file_path=None input_tokens=83 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:19 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:19 [debug    ] gemini.generate.done           input_tokens=98 output_tokens=3 request_id=None
+2026-06-25 02:49:19 [debug    ] cost_tracker.record            cost_usd=8.25e-06 file_path=None input_tokens=98 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:19 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:20 [debug    ] gemini.generate.done           input_tokens=84 output_tokens=3 request_id=None
+2026-06-25 02:49:20 [debug    ] cost_tracker.record            cost_usd=7.2e-06 file_path=None input_tokens=84 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:20 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:21 [debug    ] gemini.generate.done           input_tokens=85 output_tokens=3 request_id=None
+2026-06-25 02:49:21 [debug    ] cost_tracker.record            cost_usd=7.275000000000001e-06 file_path=None input_tokens=85 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:21 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:21 [debug    ] gemini.generate.done           input_tokens=83 output_tokens=3 request_id=None
+2026-06-25 02:49:21 [debug    ] cost_tracker.record            cost_usd=7.125e-06 file_path=None input_tokens=83 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:21 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:49:22 [debug    ] gemini.generate.done           input_tokens=100 output_tokens=3 request_id=None
+2026-06-25 02:49:22 [debug    ] cost_tracker.record            cost_usd=8.400000000000001e-06 file_path=None input_tokens=100 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:49:22 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:50:03 [debug    ] gemini.generate.done           input_tokens=114 output_tokens=3 request_id=None
+2026-06-25 02:50:03 [debug    ] cost_tracker.record            cost_usd=9.45e-06 file_path=None input_tokens=114 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:50:03 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:50:04 [debug    ] gemini.generate.done           input_tokens=86 output_tokens=3 request_id=None
+2026-06-25 02:50:04 [debug    ] cost_tracker.record            cost_usd=7.35e-06 file_path=None input_tokens=86 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:50:04 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:50:30 [debug    ] gemini.generate.done           input_tokens=83 output_tokens=3 request_id=None
+2026-06-25 02:50:30 [debug    ] cost_tracker.record            cost_usd=7.125e-06 file_path=None input_tokens=83 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:50:30 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:50:30 [debug    ] gemini.generate.done           input_tokens=112 output_tokens=3 request_id=None
+2026-06-25 02:50:30 [debug    ] cost_tracker.record            cost_usd=9.3e-06 file_path=None input_tokens=112 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:50:30 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:50:31 [debug    ] gemini.generate.done           input_tokens=115 output_tokens=3 request_id=None
+2026-06-25 02:50:31 [debug    ] cost_tracker.record            cost_usd=9.525000000000001e-06 file_path=None input_tokens=115 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+2026-06-25 02:50:31 [debug    ] gemini.generate.start          max_tokens=8 model=gemini-3.1-flash-lite-preview request_id=None
+2026-06-25 02:50:31 [debug    ] gemini.generate.done           input_tokens=85 output_tokens=3 request_id=None
+2026-06-25 02:50:31 [debug    ] cost_tracker.record            cost_usd=7.275000000000001e-06 file_path=None input_tokens=85 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=3
+
+╭────────────────────── {^ ^}  repowise update complete ───────────────────────╮
+│                                                                              │
+│   Pages updated           18                                                 │
+│   Decisions               1 changed                                          │
+│   Total tokens            30,867                                             │
+│   Provider                gemini / gemini-3.1-flash-lite-preview             │
+│   Cost                    $0.004                                             │
+│   Elapsed                 2m 38s                                             │
+│                                                                              │
+│   What's next:                                                               │
+│   repowise serve               browse the updated wiki at localhost:3000     │
+│   repowise search <query>      search the wiki                               │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+--- post-commit hook fired at Thu Jun 25 02:51:42 AM EDT 2026 for HEAD 8e9619b77b15dc31c6f4e94d655251a96a878ba9 ---
+repowise update · dezign8
+840b7f8f..8e9619b7
+1 changed · 1 modified
+    modified  ai/agent_decision_log.md
+2026-06-25 02:51:43 [info     ] FileTraverser initialised      extra_exclude_patterns=0 include_nested_repos=False max_file_size_kb=500 repo_root=/home/jk/Code/dezign8 submodules_skipped=0
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=.repowise/duplication_cache.pkl size_kb=983
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=.repowise/knowledge-graph.json size_kb=515
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=.repowise/parse_cache.pkl size_kb=952
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=.repowise/wiki.db size_kb=6676
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=public/dezign83.png size_kb=5259
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=public/king_kong_bar.png size_kb=1070
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=public/texture-2.png size_kb=704
+2026-06-25 02:51:43 [debug    ] Skipping generated file        path=src/design/shared/primitives.tokens.generated.ts
+2026-06-25 02:51:43 [debug    ] Skipping generated file        path=src/design/shared/icons/index.ts
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=.repowise/duplication_cache.pkl size_kb=983
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=.repowise/knowledge-graph.json size_kb=515
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=.repowise/parse_cache.pkl size_kb=952
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=.repowise/wiki.db size_kb=6676
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=public/dezign83.png size_kb=5259
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=public/king_kong_bar.png size_kb=1070
+2026-06-25 02:51:43 [debug    ] Skipping oversized file        path=public/texture-2.png size_kb=704
+2026-06-25 02:51:44 [debug    ] Skipping generated file        path=src/design/shared/primitives.tokens.generated.ts
+2026-06-25 02:51:44 [debug    ] Skipping generated file        path=src/design/shared/icons/index.ts
+2026-06-25 02:51:44 [info     ] import_resolution_per_language seconds={'json': 0.0, 'markdown': 0.0, 'javascript': 0.0, 'yaml': 0.0, 'typescript': 0.01}
+2026-06-25 02:51:44 [info     ] type_use edges emitted         per_language={'typescript': 261}
+2026-06-25 02:51:44 [info     ] Heritage edges resolved        total=68
+2026-06-25 02:51:44 [info     ] Call edges resolved            total=358
+2026-06-25 02:51:44 [info     ] Graph built                    edge_types={'defines': 1222, 'imports': 690, 'calls': 358, 'extends': 68} edges=2338 file_nodes=709 symbol_nodes=1222
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=xaml
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=python_dynamic_import
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=ruby
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=jvm
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=swift
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=spring
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=pytest_conftest
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=luau
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=dotnet
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=django_settings
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=go
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=c
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=php
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=cpp
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=scala
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=node_package
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=rust
+2026-06-25 02:51:44 [debug    ] dynamic_hints                  count=0 extractor=alpine
+2026-06-25 02:51:44 [debug    ] repo_commit_index_built        commits_parsed=22 files_with_history=1 indexable_files=1
+2026-06-25 02:51:44 [debug    ] co_change_skip_oversized_commit files_in_commit=256 threshold=200
+2026-06-25 02:51:44 [debug    ] co_change_skip_oversized_commit files_in_commit=328 threshold=200
+2026-06-25 02:51:44 [debug    ] co_change_computed             commit_limit=2000 commits=22 files_with_entropy=60 files_with_partners=15 min_count=2 pairs_above_threshold=21 pairs_considered=22256 tracked_files=606
+2026-06-25 02:51:44 [info     ] Co-change edges added          count=6
+2026-06-25 02:51:45 [info     ] file_communities_detected      algorithm=louvain communities=378 prod_files=706 test_files=3 total_files=709
+2026-06-25 02:51:45 [info     ] symbol_communities_detected    communities=969 connected=274 total_symbols=1222
+2026-06-25 02:51:45 [info     ] execution_flows_traced         candidates_scored=80 deduplicated=0 traced=50
+Pages to regenerate: 1
+2026-06-25 02:51:45 [debug    ] duplication_incremental_splice changed=2 deleted=0 pairs=3644 touched_buckets=0
+Health analysis (partial): 1 files, 0 findings
+2026-06-25 02:51:46 [info     ] decision_extractor.scanning_inline_markers total_files=1
+2026-06-25 02:51:46 [info     ] kg_context_loaded              layers=6 nodes=570
+2026-06-25 02:51:46 [info     ] page_selection.complete        budget=1 counts={'api_contract': 0, 'symbol_spotlight': 0, 'file_page': 0, 'scc_page': 1, 'module_page': 0, 'repo_overview': 1, 'architecture_diagram': 1, 'infra_page': 0} coverage_pct=0.2
+2026-06-25 02:51:47 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=02a422d1-f78d-4806-be21-f17cfebb14de
+2026-06-25 02:51:51 [debug    ] gemini.generate.done           input_tokens=191 output_tokens=553 request_id=02a422d1-f78d-4806-be21-f17cfebb14de
+2026-06-25 02:51:51 [debug    ] cost_tracker.record            cost_usd=0.000180225 file_path=None input_tokens=191 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=553
+2026-06-25 02:51:51 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:ui
+2026-06-25 02:51:51 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:data
+2026-06-25 02:51:51 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:config
+2026-06-25 02:51:51 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=cea0677a-5cb1-498e-b8b1-db5dff77dd2c
+2026-06-25 02:51:51 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=a57c87f9-ea21-4323-9e7c-f3fa12661aa1
+2026-06-25 02:51:51 [debug    ] page_cache.persistent_hit      page_type=layer_page target_path=layer:docs-tooling
+2026-06-25 02:51:55 [debug    ] gemini.generate.done           input_tokens=664 output_tokens=609 request_id=cea0677a-5cb1-498e-b8b1-db5dff77dd2c
+2026-06-25 02:51:55 [debug    ] cost_tracker.record            cost_usd=0.0002325 file_path=None input_tokens=664 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=609
+2026-06-25 02:52:14 [debug    ] gemini.generate.done           input_tokens=753 output_tokens=636 request_id=a57c87f9-ea21-4323-9e7c-f3fa12661aa1
+2026-06-25 02:52:14 [debug    ] cost_tracker.record            cost_usd=0.000247275 file_path=None input_tokens=753 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=636
+2026-06-25 02:52:14 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=b7d73176-05cf-44f2-a84f-37f36f75ac24
+2026-06-25 02:52:14 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=32210e99-8fb8-4260-b5e4-aebc445d4395
+2026-06-25 02:52:14 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=a3162065-4ece-4048-9916-327ce1418936
+2026-06-25 02:52:14 [debug    ] onboarding.gate_skipped        slot=getting_started
+2026-06-25 02:52:14 [debug    ] gemini.generate.start          max_tokens=20000 model=gemini-3.1-flash-lite-preview request_id=3b0e61d8-4c19-4e19-bf05-2fd4ba867d0c
+2026-06-25 02:52:14 [debug    ] onboarding.gate_skipped        slot=key_concepts
+2026-06-25 02:52:14 [debug    ] page_cache.persistent_hit      page_type=onboarding target_path=onboarding/how_it_works
+2026-06-25 02:52:14 [debug    ] onboarding.gate_skipped        slot=development_guide
+2026-06-25 02:52:14 [debug    ] onboarding.gate_skipped        slot=active_landscape
+2026-06-25 02:52:22 [debug    ] gemini.generate.done           input_tokens=1108 output_tokens=531 request_id=b7d73176-05cf-44f2-a84f-37f36f75ac24
+2026-06-25 02:52:22 [debug    ] cost_tracker.record            cost_usd=0.00024239999999999998 file_path=None input_tokens=1108 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=531
+2026-06-25 02:52:22 [debug    ] gemini.generate.done           input_tokens=884 output_tokens=502 request_id=3b0e61d8-4c19-4e19-bf05-2fd4ba867d0c
+2026-06-25 02:52:22 [debug    ] cost_tracker.record            cost_usd=0.0002169 file_path=None input_tokens=884 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=502
+2026-06-25 02:52:26 [debug    ] gemini.generate.done           input_tokens=2387 output_tokens=795 request_id=32210e99-8fb8-4260-b5e4-aebc445d4395
+2026-06-25 02:52:26 [debug    ] cost_tracker.record            cost_usd=0.00041752499999999997 file_path=None input_tokens=2387 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=795
+2026-06-25 02:52:38 [debug    ] gemini.generate.done           input_tokens=1407 output_tokens=1045 request_id=a3162065-4ece-4048-9916-327ce1418936
+2026-06-25 02:52:38 [debug    ] cost_tracker.record            cost_usd=0.00041902499999999995 file_path=None input_tokens=1407 model=gemini-3.1-flash-lite-preview operation=doc_generation output_tokens=1045
+2026-06-25 02:52:39 [info     ] mermaid_safety.applied         pages_changed=1
+2026-06-25 02:52:39 [info     ] wiki_links.resolved            pages=12 pages_with_backlinks=1 total_forward_links=3
+2026-06-25 02:52:39 [info     ] kg_enrichment.tour_wiki_links  steps_with_links=0 total_steps=12
+2026-06-25 02:52:39 [info     ] Generation complete            model=gemini-3.1-flash-lite-preview provider=gemini total_pages=12
+  Generating pages... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12/9 0:00:36 $0.002
+2026-06-25 02:52:39 [debug    ] repo_commit_index_built        commits_parsed=1 files_with_history=0 indexable_files=0
+
+╭────────────────────── {^ ^}  repowise update complete ───────────────────────╮
+│                                                                              │
+│   Pages updated           12                                                 │
+│   Total tokens            12,065                                             │
+│   Provider                gemini / gemini-3.1-flash-lite-preview             │
+│   Cost                    $0.002                                             │
+│   Elapsed                 56.6s                                              │
+│                                                                              │
+│   What's next:                                                               │
+│   repowise serve               browse the updated wiki at localhost:3000     │
+│   repowise search <query>      search the wiki                               │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+

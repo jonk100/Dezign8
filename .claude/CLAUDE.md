@@ -11,11 +11,11 @@
 > (documentation, ownership, history, decisions). **Always verify against
 > actual source files before making changes** — the index may be stale.
 
-Last indexed: 2026-06-25 (commit fba369e). Confidence: 100%.
+Last indexed: 2026-06-25 (commit 8e9619b). Confidence: 100%.
 ### Architecture
-repo is a design system component library that consumes design tokens and primitive style definitions to transform them into a modular suite of React-based layout, surface, and typography components for consistent UI rendering. The repository acts as a single source of truth for visual identity, orchestrating the flow from raw design tokens to high-level functional UI primitives. The library exposes its functionality through specialized sub-directories, each serving as a domain-specific entry point:
-The repository is structured as a hierarchical design system, organized by functional domain:
-The codebase maintains a clean separation of concerns, where visual styling is decoupled from component logic, allowing for rapid updates to the design system without requiring structural changes to the consuming applications.
+repo is a comprehensive design system library that consumes raw design tokens and primitive style definitions to compile a modular, type-safe React component library, ultimately outputting a standardized UI toolkit for consistent application development. The repository serves as the single source of truth for visual identity, translating design specifications into functional layout, surface, and typography components. The library exposes its functionality through granular component exports, allowing for tree-shaking and optimized bundle sizes:
+The repository is structured around a "Token-to-Component" pipeline:
+The codebase maintains a high degree of stability with no high-churn/high-complexity hotspots, indicating a mature and well-factored component architecture.
 ### Key Modules
 | Module | Purpose |
 |--------|---------|
@@ -25,9 +25,9 @@ The codebase maintains a clean separation of concerns, where visual styling is d
 | `src/design/feedback/components` | The feedback module serves as the design system's state-representation layer… |
 | `src/design/nav/components` | The nav module serves as the UI navigation subsystem of the design system… |
 | `src/design/surfaces/components` | The surfaces module serves as the presentation layer of the design system… |
-| `src/design/triggers/components` | The triggers module serves as the interaction subsystem of the design system… |
+| `src/design/triggers/components` | The triggers module serves as the component-level abstraction layer within the… |
 | `src/design/layout/components` | The layout module serves as the structural presentation layer of the design… |
-| `src/design/typography/components` | The typography module serves as the design-system presentation layer of… |
+| `src/design/typography/components` | The typography module acts as the presentation logic layer of the design system… |
 | `src/design/forms/components` | The forms module serves as the design system's input orchestration layer — it… |
 ### Entry Points
 - `src/design/shared/definitions/index.ts`
@@ -65,16 +65,16 @@ The codebase maintains a clean separation of concerns, where visual styling is d
 ### Hotspots (High Churn)
 | File | Churn | 90d Commits | Owner |
 |------|-------|-------------|-------|
-| `src/design/shared/primitives.tokens.ts` | 100.0th %ile | 6 | Jon K |
-| `src/design/forms/forms.props.ts` | 99.7th %ile | 3 | Jon K |
-| `src/design/forms/components/input/input.props.ts` | 99.5th %ile | 3 | Jon K |
-| `src/content.config.ts` | 98.9th %ile | 5 | Jon K |
-| `src/design/forms/forms.tokens.ts` | 98.5th %ile | 3 | Jon K |
+| `pnpm-lock.yaml` | 100.0th %ile | 6 | Jon K |
+| `ai/agent_decision_log.md` | 99.9th %ile | 11 | Jon K |
+| `src/design/shared/primitives.tokens.ts` | 99.7th %ile | 6 | Jon K |
+| `.repowise/knowledge-graph.json` | 99.6th %ile | 3 | Jon K |
+| `src/design/forms/forms.props.ts` | 99.3th %ile | 3 | Jon K |
 
 ## Code health
 Three signals: **defect risk** (the overall score), **maintainability** (smells that hurt readability/change-cost without predicting bugs), and **performance** (static performance RISK: I/O-in-loop / N+1 shapes that waste work, high-precision/low-recall). Maintainability and performance are co-equal views, never blended into the defect headline. See `docs/CODE_HEALTH.md`.
 
-Defect risk, Hotspot health: 9.08/10 (stable) ·
+Defect risk, Hotspot health: 9.37/10 (stable) ·
 Average: 9.89/10 ·
 Worst: 6.72/10 (`src/design/surfaces/surface.hook.ts`)
 Maintainability, Average: 9.91/10

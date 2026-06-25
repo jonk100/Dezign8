@@ -7,6 +7,16 @@ _________________________________________________
 =================================================
 -----------------------------------------------
 
+## 2026/06/25 to 2026/06/25 - Antigravity session
+
+[Repowise static analysis verifications](./antigravity_session_summary.md/625-625_repowise_static_analysis_verifications.md)
+
+### New files
+- `ai/antigravity_session_summary.md/625-625_repowise_static_analysis_verifications.md`
+
+### Updated files
+- `ai/agent_decision_log.md`
+
 ## 2026/06/25 — TypeScript typecheck: 18 errors fixed
 
 Ran `pnpm astro check` → 18 errors, 0 after fixes. All were pre-existing (not introduced this session).
