@@ -1,0 +1,8 @@
+---
+import type { KbdProps } from "./kbd.props";
+import { useKbd } from "./kbd.hook";
+import "./kbd.css";
+
+const { props } = useKbd(Astro.props as KbdProps);
+---
+<kbd {...props}><slot /></kbd>

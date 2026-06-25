@@ -1,0 +1,152 @@
+---
+title: Skeleton Component
+description: A loading placeholder that signals content is on its way, featuring a shimmer animation and multiple shape presets.
+category: Feedback
+status: stable
+---
+import Skeleton from "../../../design/feedback/components/skeleton/Skeleton.astro";
+
+## Overview
+
+`Skeleton` is a purely visual loading placeholder. It indicates that data is loading while preserving the layout of the UI to minimize layout shift once the actual content arrives. 
+
+It is designed to be accessible by default: the component renders with `aria-hidden="true"` and `role="presentation"` so that screen readers skip it entirely. Skeletons should be wrapped in an `aria-busy` container (like `List` or `Table` loading states) or paired with visually hidden live regions announcing the loading state.
+
+---
+
+## Usage
+
+### Shape Variants
+
+Skeletons come with several preset shapes designed to match common UI elements.
+
+```astro
+<Skeleton variant="text" />
+<Skeleton variant="heading" />
+<Skeleton variant="avatar" />
+<Skeleton variant="button" />
+<Skeleton variant="image" ratio="16/9" />
+```
+<div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
+  <Skeleton variant="text" />
+  <Skeleton variant="heading" />
+  <Skeleton variant="avatar" />
+  <Skeleton variant="button" />
+  <Skeleton variant="image" ratio="16/9" />
+</div>
+
+### Multi-line Text
+
+When using `variant="text"`, you can generate a block of text placeholders using the `lines` prop. The final line automatically renders at 65% width to look like a realistic paragraph.
+
+```astro
+<Skeleton variant="text" lines={4} />
+```
+<div style="max-width: 400px;">
+  <Skeleton variant="text" lines={4} />
+</div>
+
+### Explicit Sizes
+
+While variants have sensible default dimensions, you can explicitly override them with `width` and `height` to match your specific layout.
+
+```astro
+<!-- Explicit dimensions for a custom block -->
+<Skeleton width="150px" height="2rem" />
+
+<!-- Larger avatar -->
+<Skeleton variant="avatar" height="4rem" />
+```
+<div style="display: flex; align-items: flex-end; gap: 1rem;">
+  <Skeleton width="150px" height="2rem" />
+  <Skeleton variant="avatar" height="4rem" />
+</div>
+
+### Custom Radius
+
+Sometimes a skeleton needs to match the exact border radius of the component it replaces. Pass the `radius` prop to override the variant's default radius. (Note: `avatar` ignores this as it is always perfectly circular).
+
+```astro
+<!-- Card image placeholder with rounded corners -->
+<Skeleton variant="image" ratio="4/3" radius="lg" />
+```
+<div style="max-width: 250px;">
+  <Skeleton variant="image" ratio="4/3" radius="lg" />
+</div>
+
+### Static (No Animation)
+
+The shimmer animation can be disabled by setting `animated={false}`. This is useful when `prefers-reduced-motion` is handled at a parent container level, or for screenshot testing.
+
+```astro
+<Skeleton variant="heading" animated={false} />
+```
+<div style="max-width: 400px;">
+  <Skeleton variant="heading" animated={false} />
+</div>
+
+---
+
+## Examples
+
+### Composing a Card Skeleton
+
+You can compose multiple skeletons together to mirror complex components.
+
+```astro
+<div class="skeleton-card" style="display: flex; gap: 1rem; align-items: center;">
+  <Skeleton variant="avatar" height="3rem" />
+  <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+    <Skeleton variant="heading" width="60%" />
+    <Skeleton variant="text" lines={2} />
+  </div>
+</div>
+```
+<div class="skeleton-card" style="display: flex; gap: 1rem; align-items: center; max-width: 400px; padding: 1rem; border: 1px solid var(--border-subtle, #e2e8f0); border-radius: 0.5rem;">
+  <Skeleton variant="avatar" height="3rem" />
+  <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+    <Skeleton variant="heading" width="60%" />
+    <Skeleton variant="text" lines={2} />
+  </div>
+</div>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `SkeletonVariant` | `"block"` | The shape preset: `text`, `heading`, `avatar`, `button`, `image`, `block`. |
+| `lines` | `number` | `1` | Number of text lines to render. Only applies to `variant="text"`. |
+| `width` | `string` | — | Explicit CSS width. Overrides the variant's default. |
+| `height` | `string` | — | Explicit CSS height. Overrides the variant's default. Sets diameter for `avatar`. |
+| `ratio` | `string` | `"16/9"` | CSS aspect-ratio for `variant="image"`. E.g., `"4/3"`, `"1/1"`. |
+| `radius` | `SkeletonRadius` | — | Border radius from the shared scale. Overrides variant defaults. |
+| `animated` | `boolean` | `true` | Whether the shimmer animation runs. |
+
+### Variant Default Dimensions
+
+| Variant | Width | Height | Border Radius |
+|---|---|---|---|
+| `text` | `100%` | `1em` | `xs` |
+| `heading` | `60%` | `1.5em` | `sm` |
+| `avatar` | `2.5rem` | `2.5rem` | `full` (circle) |
+| `button` | `6rem` | `2.5rem` | `md` |
+| `image` | `100%` | *(aspect-ratio)* | `none` |
+| `block` | `100%` | `100%` | `none` |
+
+---
+
+## Structure
+
+```html
+<!-- Single element skeleton -->
+<div class="skeleton skeleton--avatar" aria-hidden="true" role="presentation"></div>
+
+<!-- Multi-line text skeleton (lines={3}) -->
+<div class="skeleton skeleton--multi" aria-hidden="true" role="presentation">
+  <span class="skeleton__line"></span>
+  <span class="skeleton__line"></span>
+  <span class="skeleton__line skeleton__line--last"></span>
+</div>
+```

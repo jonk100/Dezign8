@@ -1,0 +1,45 @@
+---
+title: Kbd
+description: Displays a keyboard key or key combination.
+category: Typography
+status: stable
+icon: keyboard
+---
+import Kbd from "../../../design/typography/components/kbd/Kbd.astro";
+
+## Overview
+
+`Kbd` renders a `<kbd>` element styled as a key cap — monospace font, subtle border with a slightly thicker bottom edge, and a muted background. Use it to represent keyboard shortcuts, key names, or input sequences.
+
+---
+
+## Usage
+
+### Single key
+
+```astro
+<Kbd>Enter</Kbd>
+```
+
+### Key combination
+
+```astro
+<Kbd>⌘</Kbd> + <Kbd>K</Kbd>
+```
+
+### Inline with text
+
+```astro
+Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to save.
+```
+
+---
+
+## Props API
+
+`Kbd` accepts all standard [Typography props](/docs/typography/typography) — `size`, `color`, `weight`, etc. — with these defaults:
+
+| Prop | Default | Description |
+|---|---|---|
+| `size` | `"xs"` | Font scale step. |
+| `fam` | `"mono"` | Font family. |

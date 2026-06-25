@@ -1,0 +1,24 @@
+Yes, there is unused code in the `src/design/surfaces` directory.
+
+1. **Unused / Empty Files**:
+   - `src/design/surfaces/components/frame/frame.ts` is a completely empty file.
+   - The barrel export files (`index.ts`) in the directory and each component subdirectory are unused, as project imports are resolving directly to the components instead (e.g. `~/surfaces/components/card/Card.astro`). These unused files include:
+     - `src/design/surfaces/components/index.ts`
+     - `src/design/surfaces/components/card/index.ts`
+     - `src/design/surfaces/components/frame/index.ts`
+     - `src/design/surfaces/components/panel/index.ts`
+     - `src/design/surfaces/components/paper/index.ts`
+     - `src/design/surfaces/components/section/index.ts`
+     - `src/design/surfaces/components/tile/index.ts`
+     - `src/design/surfaces/components/well/index.ts`
+
+2. **Unused Exports**:
+   - `CARD_TOKENS` (in `card.tokens.ts`)
+   - Several type exports that are defined but not imported outside of their declaration files:
+     - `CardLayer`, `CardPadding`, `CardRadius`, `CardColor` (in `card.tokens.ts`)
+     - `FrameTag` (in `frame.props.ts`)
+     - `PanelTag` (in `panel.props.ts`)
+     - `SectionTag` (in `section.props.ts`)
+     - `TileTag` (in `tile.props.ts`)
+     - `WellTag` (in `well.props.ts`)
+     - `SurfaceVariant` (in `surface.props.ts`)

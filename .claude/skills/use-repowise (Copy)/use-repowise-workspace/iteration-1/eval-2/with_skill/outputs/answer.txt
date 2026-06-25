@@ -1,0 +1,24 @@
+The defect risk for `src/design/forms/forms.hook.ts` is assessed as **low** with a raw model score of 1.4/10.
+
+Output from repowise:
+No counted file changes in 'src/design/forms/forms.hook.ts' (check the revspec
+or --ext filter).
+Sampling up to 200 recent commits…
+Change risk for src/design/forms/forms.hook.ts: low (absolute band — no repo
+baseline to rank against)
+  +0 / -0 lines · 0 files · 0 dirs · 0 subsystems · entropy 0.00 · author exp 0
+  Raw model score: 1.4/10 — corpus-anchored (low); prefer the percentile for
+review order.
+ Why this score (each driver vs. the model's baseline
+                       commit)
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┓
+┃ Driver                             ┃ Value ┃  Push ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━┩
+│ fewer lines added than baseline    │     0 │ -1.94 │
+│ fewer files than baseline          │     0 │ +0.24 │
+│ fewer subsystems than baseline     │     0 │ +0.19 │
+│ fewer directories than baseline    │     0 │ +0.10 │
+│ more focused than baseline         │     0 │ -0.10 │
+│ less familiar author than baseline │     0 │ +0.09 │
+│ fewer lines deleted than baseline  │     0 │ -0.02 │
+└────────────────────────────────────┴───────┴───────┘

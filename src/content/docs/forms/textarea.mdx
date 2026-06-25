@@ -1,0 +1,138 @@
+---
+title: Textarea Component
+description: Multi-line text input control with configurable resize behavior.
+category: Forms
+status: stable
+---
+import Textarea from "../../../design/forms/components/textarea/Textarea.astro";
+import Field from "../../../design/forms/components/field/Field.astro";
+import Label from "../../../design/typography/components/label/Label.astro";
+
+## Overview
+
+`Textarea` is a multi-line text input control. Like `Input`, it wraps a native `<textarea>` in a styled `<div>` that carries the visual chrome (border, background, radius, focus ring) while the inner control itself is transparent.
+
+All token dimensions (`size`, `variant`, `color`, `radius`) and behavioral props (`disabled`, `required`, `invalid`, `fullWidth`) are inherited from `FormProps` and resolved by the shared `useForm` hook. See the [Forms category doc](/forms/forms) for the full shared architecture.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+<Textarea name="bio" placeholder="Tell us about yourself" />
+```
+<Textarea name="bio-demo" placeholder="Tell us about yourself" />
+
+### Resize Behavior
+
+Controlled via the `resize` prop: `"none"`, `"vertical"` (default), or `"both"`. Horizontal-only resize is intentionally omitted as it is uncommon and often undesirable in layouts.
+
+```astro
+<Textarea name="notes-1" placeholder="Vertical (default)" resize="vertical" />
+<Textarea name="notes-2" placeholder="Both" resize="both" />
+<Textarea name="notes-3" placeholder="None" resize="none" />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Textarea name="notes-demo-1" placeholder="Vertical (default)" resize="vertical" />
+  <Textarea name="notes-demo-2" placeholder="Both" resize="both" />
+  <Textarea name="notes-demo-3" placeholder="None" resize="none" />
+</div>
+
+### Rows
+
+Control the initial height by passing the native `rows` attribute.
+
+```astro
+<Textarea name="message" placeholder="A taller textarea" rows={6} />
+```
+<Textarea name="message-demo" placeholder="A taller textarea" rows={6} />
+
+### Variants
+
+Textareas share the same variants as other form controls.
+
+```astro
+<Textarea name="v-outlined" variant="outlined" placeholder="Outlined (default)" />
+<Textarea name="v-soft"     variant="soft"     placeholder="Soft" />
+<Textarea name="v-ghost"    variant="ghost"    placeholder="Ghost" />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Textarea name="v-outlined-demo" variant="outlined" placeholder="Outlined (default)" />
+  <Textarea name="v-soft-demo"     variant="soft"     placeholder="Soft" />
+  <Textarea name="v-ghost-demo"    variant="ghost"    placeholder="Ghost" />
+</div>
+
+### States
+
+```astro
+<Textarea name="disabled" placeholder="Disabled" disabled />
+<Textarea name="readonly" value="Read-only text" readonly />
+<Textarea name="invalid"  placeholder="Invalid field" invalid />
+```
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Textarea name="disabled-demo" placeholder="Disabled" disabled />
+  <Textarea name="readonly-demo" value="Read-only text" readonly />
+  <Textarea name="invalid-demo"  placeholder="Invalid field" invalid />
+</div>
+
+### Inside a Field
+
+Always associate a `Textarea` with a visible label using the `Field` wrapper.
+
+```astro
+<Field id="bio">
+  <Label slot="label" for="bio">Bio</Label>
+  <Textarea id="bio" name="bio" maxLength={500} fullWidth />
+</Field>
+```
+<Field id="bio-demo">
+  <Label slot="label" for="bio-demo">Bio</Label>
+  <Textarea id="bio-demo" name="bio-demo" maxLength={500} fullWidth />
+</Field>
+
+---
+
+## Props API
+
+### Textarea-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | — | ID for the inner `<textarea>`. Required when using external `<label for>`. |
+| `value` | `string` | — | Initial or controlled value. Rendered directly as children of the native element. |
+| `placeholder` | `string` | — | Placeholder text. |
+| `readonly` | `boolean` | `false` | Focusable, submittable, but not editable. Distinct from `disabled`. |
+| `rows` | `number` | `3` | Initial visible text lines. |
+| `resize` | `"none" \| "vertical" \| "both"` | `"vertical"` | Controls the CSS `resize` property of the inner textarea. |
+| `minLength` | `number` | — | Minimum character count for native browser validation. |
+| `maxLength` | `number` | — | Maximum character count. Browser prevents additional input. |
+| `autocomplete` | `string` | — | Browser autofill hint. |
+| `wrap` | `"soft" \| "hard" \| "off"` | — | Specifies how the text is wrapped when submitted in a form. |
+
+### Inherited Form Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FormSize` | `"md"` | Control height tier. Scales font and padding. |
+| `variant` | `FormVariant` | `"outlined"` | Visual treatment: `outlined`, `soft`, `solid`, `ghost`, `dashed`. |
+| `color` | `FormColor` | `"primary"` | Color role for focus and interactive states. |
+| `radius` | `FormRadius` | `"md"` | Border radius from the shared `RADIUS` token scale. |
+| `name` | `string` | — | Form field name for submission. |
+| `disabled` | `boolean` | `false` | Inert control. Emits `aria-disabled` + `data-disabled`. |
+| `required` | `boolean` | `false` | Mandatory field. Emits `aria-required`. |
+| `invalid` | `boolean` | `false` | Validation error state. Emits `aria-invalid` + `data-invalid`. |
+| `fullWidth` | `boolean` | `false` | Stretches the control to fill its container inline axis. |
+
+---
+
+## Structure
+
+```html
+<div class="form textarea …">
+  <textarea class="textarea__control" id="bio" name="bio"></textarea>
+</div>
+```
+
+The outer `<div>` handles the visual boundary, while the inner `<textarea>` expands to fill it. The `resize` CSS property is applied to the outer wrapper, and the inner control inherits this resize grip. 

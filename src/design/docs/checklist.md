@@ -106,7 +106,7 @@ These components are highly specialized. They are only used when a specific feat
 - [ ] 78. `SkipLink` (nav) - 
 - [ ] 79. `Portal` (overlay) - 
 - [ ] 80. `CommandPalette` (overlay) - 
-- [ ] 81. `Kbd` (typography) - 
+- [x] 81. `Kbd` (typography) - 
 - [x] 82. `Code` (typography) - 
 - [ ] 83. `BentoGrid` (layout) - 
 - [ ] 84. `BentoCell` (layout) - 

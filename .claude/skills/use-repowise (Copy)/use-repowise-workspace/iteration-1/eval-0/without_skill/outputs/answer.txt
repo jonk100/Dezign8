@@ -1,0 +1,18 @@
+Based on the architectural decisions in the dezign8 design system, you should **not** add a `variant` prop to typography components.
+
+Here are the specific architectural rules governing this:
+
+1. **Variants are for background/border/text combos:** According to `src/design/docs/css-authoring-rules.md`, the `variant` prop specifically "controls visual treatment — how an accent color is applied. A single `variant` prop changes background, border, and text color simultaneously" (e.g., solid, soft, outlined, ghost).
+
+2. **Typography is purely text:** Typography components (like Text and Heading) do not have backgrounds or borders. Therefore, they intentionally do not use the `variant` pattern.
+
+3. **Use semantic tokens instead:** As outlined in `src/design/docs/component-catalog-tentative.md` and `src/design/typography/typography.tokens.ts`, typography components control their visual appearance through explicit semantic props instead of a single variant string. You should use the existing tokens:
+   - `size`
+   - `weight`
+   - `color` (semantic text role)
+   - `leading`
+   - `tracking`
+   - `fam` (font-family)
+   - `align`, `transform`, `wrap`, `decoration`, `fontStyle`
+
+If you are trying to create a text component that requires a background or border (like a badge, chip, or tag), you should compose a component in the **Feedback**, **Control**, or **Surface** category, rather than adding a variant to Typography. If you need a new text style, you should add the missing values to the respective typography dimensions (e.g., adding a new `color` or `size` in `src/design/shared/primitives.tokens.ts` or `src/design/typography/typography.tokens.ts`).

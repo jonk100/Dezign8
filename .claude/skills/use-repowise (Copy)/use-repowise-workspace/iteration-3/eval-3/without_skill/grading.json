@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {
+      "text": "Output accurately explains the token resolution system using repowise search context, rather than guessing or performing a manual multi-file search.",
+      "passed": false,
+      "evidence": "Agent manually searched through multiple files to deduce the system, ignoring the repowise documentation index."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {
+      "text": "Output provides a specific risk score or findings for forms.hook.ts.",
+      "passed": true,
+      "evidence": "Agent used repowise risk and successfully reported the raw score of 1.4/10."
+    }
+  ]
+}

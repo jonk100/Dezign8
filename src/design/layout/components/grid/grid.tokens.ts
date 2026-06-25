@@ -16,10 +16,21 @@ export const GRID_COLUMNS = scale({
   12: "repeat(12, minmax(0, 1fr))",
 });
 
+// Add below GRID_COLUMNS
+export const GRID_FIT = scale({
+  xs: "repeat(auto-fit, minmax(10rem, 1fr))",
+  sm: "repeat(auto-fit, minmax(14rem, 1fr))",
+  md: "repeat(auto-fit, minmax(18rem, 1fr))",
+  lg: "repeat(auto-fit, minmax(22rem, 1fr))",
+  xl: "repeat(auto-fit, minmax(26rem, 1fr))",
+});
+
 export const GRID_TOKENS = composeTokens(LAYOUT_TOKENS, {
   columns: dimension("columns", GRID_COLUMNS),
+  fit:     dimension("columns", GRID_FIT)
 });
 export type GridColumns = keyof typeof GRID_TOKENS.columns.values;
+export type GridFit     = keyof typeof GRID_TOKENS.fit.values;
 
 export type GridTag = "div" | "section" | "article" | "aside" | "main" | "ul" | "ol" | "form";
 

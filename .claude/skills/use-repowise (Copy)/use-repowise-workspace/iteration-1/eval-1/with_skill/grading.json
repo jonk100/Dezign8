@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {
+      "text": "Output correctly lists dead code in src/design/surfaces or confirms there is none.",
+      "passed": true,
+      "evidence": "Agent successfully ran repowise dead-code and listed multiple unexported or unreachable files."
+    }
+  ]
+}

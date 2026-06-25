@@ -7,6 +7,7 @@ import { composeClass, composeStyle } from "~/shared/base.hook";
 export function useGrid(props: GridProps) {
   const {
     as: Tag = GRID_DEFAULTS.as,
+    fit,
     columns,
     ...layoutProps
   } = props;
@@ -15,7 +16,7 @@ export function useGrid(props: GridProps) {
   
   const { style: tokenStyle, classes: tokenClasses } = resolveTokens(
     GRID_TOKENS,
-    { columns },
+    { fit, columns: fit? undefined : columns },
     "grid",
   );
 

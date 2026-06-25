@@ -1,0 +1,112 @@
+---
+title: Switch Component
+description: A binary on/off toggle switch.
+category: Forms
+status: stable
+---
+import Switch from "../../../design/forms/components/switch/Switch.astro";
+
+## Overview
+
+`Switch` is a toggle control used for binary on/off states. It is functionally identical to a checkbox but visually represents an immediate action or a setting that takes effect right away. It renders as a styled `<input type="checkbox" role="switch">` inside a `<label>`.
+
+All token dimensions (`size`, `color`, `radius`) and behavioral props (`disabled`, `required`, `invalid`) are inherited from `FormProps` and resolved by the shared `useForm` hook. See the [Forms category doc](/forms/forms) for the full shared architecture.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+<Switch name="notifications">Enable notifications</Switch>
+```
+<Switch name="notifications">Enable notifications</Switch>
+
+### Controlled / Pre-checked
+
+Pass the `checked` attribute to set the initial state.
+
+```astro
+<Switch name="dark-mode" checked>Dark mode</Switch>
+```
+<Switch name="dark-mode-demo" checked>Dark mode</Switch>
+
+### Label Position
+
+The label can be placed at the `start`, `end`, `top`, or `bottom` of the switch. 
+
+```astro
+<Switch name="autosave" labelPosition="start">Autosave</Switch>
+```
+<Switch name="autosave" labelPosition="start">Autosave</Switch>
+
+### Colors
+
+Switches respect the `color` prop from `FormProps`.
+
+```astro
+<Switch name="c-1" color="primary" checked>Primary</Switch>
+<Switch name="c-2" color="danger" checked>Danger</Switch>
+<Switch name="c-3" color="success" checked>Success</Switch>
+```
+<div style="display: flex; gap: 1rem;">
+  <Switch name="c-1" color="primary" checked>Primary</Switch>
+  <Switch name="c-2" color="danger" checked>Danger</Switch>
+  <Switch name="c-3" color="success" checked>Success</Switch>
+</div>
+
+### States
+
+```astro
+<Switch name="disabled" disabled>Disabled</Switch>
+<Switch name="disabled-checked" disabled checked>Disabled (On)</Switch>
+```
+<div style="display: flex; gap: 1rem;">
+  <Switch name="disabled-demo" disabled>Disabled</Switch>
+  <Switch name="disabled-checked-demo" disabled checked>Disabled (On)</Switch>
+</div>
+
+---
+
+## Props API
+
+### Switch-specific Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | `boolean` | `false` | The controlled or initial check state. |
+| `id` | `string` | — | ID for the inner `<input>`. Required when using external `<label for>`. |
+| `name` | `string` | — | Form field name for submission. |
+| `value` | `string` | — | Value submitted with the form when the switch is on. |
+| `labelPosition` | `"start" \| "end" \| "top" \| "bottom"` | `"end"` | Position of the label slot relative to the switch track. |
+
+### Inherited Form Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FormSize` | `"md"` | Control scale. |
+| `color` | `FormColor` | `"primary"` | Color role for the active (checked) state. |
+| `disabled` | `boolean` | `false` | Inert control. Emits `aria-disabled` + `data-disabled`. |
+| `required` | `boolean` | `false` | Mandatory field. Emits `aria-required`. |
+| `invalid` | `boolean` | `false` | Validation error state. Emits `aria-invalid` + `data-invalid`. |
+
+*(Note: `variant` and `radius` are largely ignored by the switch design language but technically flow through the token resolver).*
+
+---
+
+## Structure
+
+```html
+<label class="form switch …">
+  <input class="switch__control" type="checkbox" role="switch" />
+  <span class="switch__track" aria-hidden="true">
+    <span class="switch__thumb"></span>
+  </span>
+  <span class="switch__label">
+    <slot />
+  </span>
+</label>
+```
+
+DOM order is fixed: hidden input → track → label slot. `labelPosition` changes visual order via CSS `flex-direction` only, which keeps the CSS `~` sibling combinator functional for state rules.
