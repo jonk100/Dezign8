@@ -19,6 +19,31 @@
       }
     ]
   },
+  "css-guard": {
+    "PreToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          { "type": "command", "command": "scripts/hooks/css-guard.sh", "timeout": 10 }
+        ]
+      }
+    ]
+  },
+  "component-shape": {
+    "PreToolUse": [
+      {
+        "matcher": "write_to_file",
+        "hooks": [
+          { "type": "command", "command": "scripts/hooks/component-shape.sh", "timeout": 10 }
+        ]
+      }
+    ]
+  },
+  "rules-reminder": {
+    "PreInvocation": [
+      { "type": "command", "command": "scripts/hooks/rules-reminder.sh", "timeout": 10 }
+    ]
+  },
   "lint-feedback": {
     "PostInvocation": [
       { "type": "command", "command": "scripts/hooks/lint-feedback.sh", "timeout": 120 }
