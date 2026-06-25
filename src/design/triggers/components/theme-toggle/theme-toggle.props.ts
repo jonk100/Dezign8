@@ -28,4 +28,4 @@
 
 import type { ButtonProps } from "~tr/components/button/button.props";
 
-export interface ThemeToggleProps extends ButtonProps {}
+export type ThemeToggleProps = ButtonProps;

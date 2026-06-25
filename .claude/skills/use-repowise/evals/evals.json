@@ -1,0 +1,29 @@
+{
+  "skill_name": "use-repowise",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I want to add a new variant to the typography components. Check the architectural decisions to see if there's any rules about typography variants before I start.",
+      "expected_output": "The agent should execute `repowise decisions`, identify the relevant decision (or lack thereof), and answer based on the tool output.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Is there any unused code in the src/design/surfaces directory?",
+      "expected_output": "The agent should execute `repowise dead-code`, filter or read the output for `src/design/surfaces`, and provide the answer.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm looking at src/design/forms/forms.hook.ts, can you assess the defect risk for this file?",
+      "expected_output": "The agent should execute `repowise risk src/design/forms/forms.hook.ts` and return the risk score/findings.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "How does the token resolution system work in this repository? I'm specifically curious about how props are mapped to CSS custom properties.",
+      "expected_output": "The agent should execute `repowise search \"token resolution\"` (or similar) to find documentation or wiki pages explaining the translation from props to CSS custom properties.",
+      "files": []
+    }
+  ]
+}

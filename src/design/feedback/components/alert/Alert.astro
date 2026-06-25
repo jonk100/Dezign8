@@ -84,6 +84,7 @@
 
 import type { AlertProps } from "./alert.props";
 import { useAlert }        from "./alert.hook";
+import Icon from "~/assets/components/icon/Icon.astro";
 import "../../feedback.css";
 import "./alert.css";
 
@@ -103,10 +104,13 @@ const { props, dismissible, dismissLabel } = useAlert(Astro.props as AlertProps)
     )}
   </div>
   {dismissible && (
-    <button class="alert__dismiss" type="button" aria-label={dismissLabel}>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
+    <button class="alert__dismiss" type="button" aria-label={dismissLabel} data-dismiss>
+      <Icon name="x" size="sm" />
     </button>
   )}
 </div>
+
+<script>
+  import { mountMotionDismiss } from "~/shared/motion/motion.dismiss";
+  mountMotionDismiss();
+</script>

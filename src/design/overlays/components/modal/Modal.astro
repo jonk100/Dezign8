@@ -1,0 +1,43 @@
+---
+import type { ModalProps } from "./modal.props";
+import { useModal } from "./modal.hook";
+import Icon from "~/assets/components/icon/Icon.astro";
+import Prose from "~/typography/components/prose/Prose.astro";
+import H from "~/typography/components/heading/H.astro";
+import "../../overlays.css";
+import "./modal.css";
+
+const { dialogProps, title, titleId } = useModal(Astro.props as ModalProps);
+---
+
+<dialog {...dialogProps}>
+  <div class="modal__header">
+    {title && <H level={3} id={titleId} class="modal__title">{title}</H>}
+    <button
+      class="modal__close-btn"
+      type="button"
+      aria-label="Close"
+      data-modal-close={dialogProps.id}
+    >
+      <Icon name="x" size="sm" />
+    </button>
+  </div>
+
+  <div class="modal__body">
+    <Prose>
+      <slot />
+    </Prose>
+  </div>
+
+  {Astro.slots.has("actions") && (
+    <div class="modal__footer">
+      <slot name="actions" />
+    </div>
+  )}
+</dialog>
+
+<script>
+  import { initModals } from "./modal.client";
+  initModals();
+  document.addEventListener("astro:after-swap", initModals);
+</script>

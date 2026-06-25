@@ -1,0 +1,100 @@
+---
+title: Sheet
+description: A side-anchored overlay panel typically used for complex navigation, detail views, or configuration settings.
+category: Overlays
+status: stable
+icon: sheet
+---
+
+import Sheet from "~/overlays/components/sheet/Sheet.astro";
+import Button from "~/triggers/components/button/Button.astro";
+
+## Overview
+
+`Sheet` is an overlay component that slides in from an edge of the viewport. It's built natively on the HTML `<dialog>` element, ensuring accessible focus trapping, escape-key dismissal, and top-layer rendering.
+
+## Examples
+
+### Default (Left)
+
+By default, the sheet opens from the left edge of the screen, making it perfect for navigation menus or sidebars.
+
+<div style="margin-bottom: 2rem;">
+  <Button data-sheet-open="demo-sheet-left">Open Left Sheet</Button>
+  
+  <Sheet id="demo-sheet-left" title="Left Sidebar">
+    <p>This is a standard left-aligned sheet.</p>
+    <div slot="actions">
+      <Button variant="ghost" data-sheet-close>Cancel</Button>
+      <Button color="primary" data-sheet-close>Save</Button>
+    </div>
+  </Sheet>
+</div>
+
+```astro
+<Button data-sheet-open="my-sheet">Open Left Sheet</Button>
+
+<Sheet id="my-sheet" title="Left Sidebar">
+  <p>This is a standard left-aligned sheet.</p>
+  <div slot="actions">
+    <Button variant="ghost" data-sheet-close>Cancel</Button>
+    <Button color="primary" data-sheet-close>Save</Button>
+  </div>
+</Sheet>
+```
+
+### Edge Placements
+
+You can anchor the sheet to the `left`, `right`, `top`, or `bottom` using the `side` prop.
+
+<div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+  <Button data-sheet-open="demo-sheet-right">Right</Button>
+  <Button data-sheet-open="demo-sheet-top">Top</Button>
+  <Button data-sheet-open="demo-sheet-bottom">Bottom</Button>
+  
+  <Sheet id="demo-sheet-right" side="right" title="Right Panel">
+    <p>Slides in from the right.</p>
+  </Sheet>
+  <Sheet id="demo-sheet-top" side="top" title="Top Panel">
+    <p>Slides down from the top.</p>
+  </Sheet>
+  <Sheet id="demo-sheet-bottom" side="bottom" title="Bottom Panel">
+    <p>Slides up from the bottom.</p>
+  </Sheet>
+</div>
+
+```astro
+<Sheet side="right" title="Right Panel">...</Sheet>
+<Sheet side="top" title="Top Panel">...</Sheet>
+<Sheet side="bottom" title="Bottom Panel">...</Sheet>
+```
+
+### Moveable Sheets
+
+Sheets can be dynamically thrown to another side of the screen using the `data-sheet-move` attribute! This triggers a smooth CSS transition to the target edge.
+
+<div style="margin-bottom: 2rem;">
+  <Button data-sheet-open="demo-sheet-move">Open Moveable Sheet</Button>
+  
+  <Sheet id="demo-sheet-move" side="left" title="Moveable Sheet">
+    <p>This sheet can fly across the screen!</p>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+      <Button variant="outlined" size="sm" data-sheet-move="left">Move Left</Button>
+      <Button variant="outlined" size="sm" data-sheet-move="right">Move Right</Button>
+      <Button variant="outlined" size="sm" data-sheet-move="top">Move Top</Button>
+      <Button variant="outlined" size="sm" data-sheet-move="bottom">Move Bottom</Button>
+    </div>
+  </Sheet>
+</div>
+
+```astro
+<Sheet id="moveable-sheet" side="left" title="Moveable Sheet">
+  <p>Click the buttons below to throw this sheet around.</p>
+  
+  <!-- Add data-sheet-move="[side]" to dynamically change the sheet's position -->
+  <Button data-sheet-move="left">Move Left</Button>
+  <Button data-sheet-move="right">Move Right</Button>
+  <Button data-sheet-move="top">Move Top</Button>
+  <Button data-sheet-move="bottom">Move Bottom</Button>
+</Sheet>
+```

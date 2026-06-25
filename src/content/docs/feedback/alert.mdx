@@ -1,68 +1,186 @@
-import { Alert } from "~/feedback/alert";
-import { Icon } from "~/assets/icon";
+---
+title: Alert Component
+description: An inline block-level status message with optional icon, title, actions, and dismiss button.
+category: Feedback
+status: stable
+icon: alert
+---
+import Alert from "../../../design/feedback/components/alert/Alert.astro";
 
-# Alert
+## Overview
 
-Alerts are used to communicate important, contextual information to the user. They are often triggered by a user action and can be dismissible.
+`Alert` is a contained status message box that sits in content flow. It uses `role="alert"` (assertive live region) for `color="danger"` and `color="warning"`, and `role="status"` (polite) for all other colors — so screen readers announce appropriately without configuration.
 
-## Imports
-
-```astro
-import { Alert } from "~/feedback/alert";
-```
-
-## Usage
-
-The `color` prop is the most important, as it conveys the semantic meaning of the message.
-
-```astro
-<div class="flex flex-col gap-4">
-  <Alert color="info">
-    This is an informational message.
-  </Alert>
-  <Alert color="success">
-    Your profile was updated successfully.
-  </Alert>
-  <Alert color="warning">
-    Your subscription is about to expire.
-  </Alert>
-  <Alert color="danger">
-    There was an error processing your request.
-  </Alert>
-</div>
-```
-
-### With Icon and Title
-
-Use the `icon` and `title` slots for more structured alerts.
-
-```astro
-<Alert color="success" dismissible>
-  <Icon name="check-circle" slot="icon" />
-  <span slot="title">Success</span>
-  Your changes have been saved.
-</Alert>
-```
-
-### Variants
-
-Alerts support `solid`, `soft` (default), and `outlined` variants.
-
-```astro
-<Alert color="primary" variant="solid">
-  This is a solid alert.
-</Alert>
-<Alert color="primary" variant="outlined">
-  This is an outlined alert.
-</Alert>
-```
+Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
 
 ---
 
-### AlertProps
+## Usage
 
-| Prop           | Type             | Default  | Description                                                              |
-|----------------|------------------|----------|--------------------------------------------------------------------------|
-| `title`        | `string`         |          | An optional title for the alert. For rich content, use the `title` slot. |
-| `dismissible`  | `boolean`        | `false`  | If `true`, shows a close button.                                         |
-| `...feedbackProps`| `FeedbackProps`|          | Inherits all props from `FeedbackProps` (variant, color, size, etc.).    |
+### Default
+
+```astro
+<Alert>Your changes have been saved.</Alert>
+```
+<Alert color="warning" size="xl"><Text>Your changes have been saved.</Text></Alert>
+
+### Colors
+
+```astro
+<Stack gap="lg">
+  <Alert color="neutral">Neutral info message.</Alert>
+  <Alert color="info">New features are available in this release.</Alert>
+  <Alert color="success">Your account has been verified.</Alert>
+  <Alert color="warning">Your trial expires in 3 days.</Alert>
+  <Alert color="danger">Payment failed. Please update your billing details.</Alert>
+</Stack>
+```
+<Stack gap="lg">
+  <Alert color="neutral">Neutral info message.</Alert>
+  <Alert color="info">New features are available in this release.</Alert>
+  <Alert color="success">Your account has been verified.</Alert>
+  <Alert color="warning">Your trial expires in 3 days.</Alert>
+  <Alert color="danger">Payment failed. Please update your billing details.</Alert>
+</Stack>
+
+### Variants
+
+```astro
+<Stack gap="md">
+  <Alert size="2xl" color="danger" variant="soft">Soft (default)</Alert>
+  <Alert size="xl" color="danger" variant="solid">Solid</Alert>
+  <Alert size="lg" color="danger" variant="outlined">Outlined</Alert>
+  <Alert size="md" color="danger" variant="ghost">Outlined</Alert>
+  <Alert size="sm" color="danger" variant="dashed">Dashed</Alert>
+  <Alert size="xs" color="secondary" variant="soft">Soft</Alert>
+  <Alert size="2xs" color="secondary" variant="solid">Solid</Alert>
+</Stack>
+```
+
+<Stack gap="md">
+<Alert size="2xl" color="danger" variant="soft">Soft (default)</Alert>
+<Alert size="xl" color="danger" variant="solid">Solid</Alert>
+<Alert size="lg" color="danger" variant="outlined">Outlined</Alert>
+<Alert size="md" color="danger" variant="ghost">Outlined</Alert>
+<Alert size="sm" color="danger" variant="dashed">Dashed</Alert>
+<Alert size="xs" color="secondary" variant="soft">Soft</Alert>
+<Alert size="2xs" color="secondary" variant="solid">Solid</Alert>
+</Stack>
+
+### With title
+
+```astro
+<Alert color="warning">
+  <Fragment slot="title">Storage almost full</Fragment>
+  You've used 90% of your storage quota. Delete files or upgrade your plan.
+</Alert>
+```
+
+<Alert color="warning">
+  <Fragment slot="title">Storage almost full</Fragment>
+  You've used 90% of your storage quota. Delete files or upgrade your plan.
+</Alert>
+
+### With icon
+
+```astro
+<Alert color="success">
+  <svg slot="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Profile updated successfully.
+</Alert>
+```
+
+<Alert color="success">
+  <svg slot="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Profile updated successfully.
+</Alert>
+
+### With actions
+
+```astro
+<Alert color="info">
+  <Fragment slot="title">Update available</Fragment>
+  A new version of the app is ready to install.
+  <a slot="actions" href="#">Install now</a>
+  <a slot="actions" href="#">Release notes</a>
+</Alert>
+```
+
+<Alert color="info">
+  <Fragment slot="title">Update available</Fragment>
+  A new version of the app is ready to install.
+  <a slot="actions" href="#">Install now</a>
+  <a slot="actions" href="#">Release notes</a>
+</Alert>
+
+### Dismissible
+
+```astro
+<Alert color="neutral" dismissible>
+  This alert can be dismissed.
+</Alert>
+```
+
+<Alert color="neutral" dismissible>
+  This alert can be dismissed.
+</Alert>
+
+### Full example
+
+```astro
+<Alert color="danger" dismissible>
+  <svg slot="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M8 5v3M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <Fragment slot="title">Action required</Fragment>
+  Your payment method is invalid. Update it to keep your subscription active.
+  <a slot="actions" href="#">Update billing</a>
+</Alert>
+```
+
+<Alert color="danger" dismissible>
+  <svg slot="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M8 5v3M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <Fragment slot="title">Action required</Fragment>
+  Your payment method is invalid. Update it to keep your subscription active.
+  <a slot="actions" href="#">Update billing</a>
+</Alert>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FeedbackSize` | `"md"` | Controls font-size and padding. |
+| `variant` | `FeedbackVariant` | `"soft"` | Visual treatment. |
+| `color` | `FeedbackColor` | `"neutral"` | Color role. Affects ARIA role. |
+| `radius` | `FeedbackRadius` | `"md"` | Border radius. |
+| `p` / `px` / `py` / `pt` / `pr` / `pb` / `pl` | `Space` | — | Override padding on all or individual sides. Takes precedence over `size`. |
+| `dismissible` | `boolean` | `false` | Renders a dismiss button. |
+| `dismissLabel` | `string` | `"Dismiss"` | `aria-label` for the dismiss button. |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| default | Main message body. |
+| `icon` | Leading status icon (16–20px SVG). Wrapped in `aria-hidden`. |
+| `title` | Bold heading rendered above the body. |
+| `actions` | Row of links or buttons below the body. |
+
+---
+
+## Accessibility
+
+- `role="alert"` is used for `color="danger"` and `color="warning"` — these trigger an assertive screen reader announcement when the alert is injected into the DOM.
+- `role="status"` is used for all other colors — polite announcement, non-interrupting.
+- If you render an alert server-side (present on page load), the live region announcement does not fire — that's browser behavior, not a bug.
+- The dismiss button always has an `aria-label` (default: `"Dismiss"`). Override with `dismissLabel` if the context is ambiguous.

@@ -18,6 +18,9 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "label--md":  "var(--size-05)", 
   "label--lg":  "var(--size-06)", 
   "label--xl":  "var(--size-07)",
+  "label--2xl": "var(--size-08)", 
+  "label--3xl": "var(--size-09)", 
+  "label--4xl": "var(--size-8)",
 
   "fsf--2xs": "var(--size-01)", 
   "fsf--xs":  "var(--size-02)", 
@@ -27,6 +30,7 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "fsf--xl":  "var(--size-07)",
   "fsf--2xl": "var(--size-08)",
   "fsf--3xl": "var(--size-09)",
+  "fsf--4xl": "var(--size-8)",
 
 
   // Interior spacing — padding, component gaps
@@ -39,6 +43,20 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "space-in--xl":       "var(--size-08)",
   "space-in--2xl":      "var(--size-09)",
   "space-in--3xl":      "var(--size-10)",
+  "space-in--4xl":      "var(--size-12)",
+  "space-in--5xl":      "var(--size-15)",
+
+  "padding--3xs": "var(--space-in--3xs)",
+  "padding--2xs": "var(--space-in--2xs)",
+  "padding--xs":  "var(--space-in--xs)",
+  "padding--sm":  "var(--space-in--sm)",
+  "padding--md":  "var(--space-in--md)",
+  "padding--lg":  "var(--space-in--lg)",
+  "padding--xl":  "var(--space-in--xl)",
+  "padding--2xl": "var(--space-in--2xl)",
+  "padding--3xl": "var(--space-in--3xl)",
+  "padding--4xl": "var(--space-in--4xl)",
+  "padding--5xl": "var(--space-in--5xl)",
 
   // Exterior spacing — section margins, layout gaps
   "space-out--3xs": "calc(var(--size-4) / 2)",
@@ -50,6 +68,16 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "space-out--xl":       "var(--size-11)",
   "space-out--2xl":      "var(--size-14)",
   "space-out--3xl":      "var(--size-16)",
+
+  "margin--3xs": "var(--space-out--3xs)",
+  "margin--2xs": "var(--space-out--2xs)",
+  "margin--xs":  "var(--space-out--xs)",
+  "margin--sm":  "var(--space-out--sm)",
+  "margin--md":  "var(--space-out--md)",
+  "margin--lg":  "var(--space-out--lg)",
+  "margin--xl":  "var(--space-out--xl)",
+  "margin--2xl": "var(--space-out--2xl)",
+  "margin--3xl": "var(--space-out--3xl)",
 
   // Border radius
   "radius--2xs":  "calc(var(--size-00) / 3)",
@@ -70,6 +98,9 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "container--full": "100%",
 
   // UI component heights
+  "ui-height--5xs":  "var(--size-01)",
+  "ui-height--4xs": "var(--size-02)",
+  "ui-height--3xs": "var(--size-03)", 
   "ui-height--2xs": "var(--size-04)", 
   "ui-height--xs":  "var(--size-05)",
   "ui-height--sm":  "var(--size-06)", 
@@ -79,6 +110,14 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "ui-height--2xl": "var(--size-10)",
 
   // Icon sizes
+  "icon-size--2xs": "var(--size-1)", 
+  "icon-size--xs":  "var(--size-2)",
+  "icon-size--sm":  "var(--size-3)", 
+  "icon-size--md":  "var(--size-4)",
+  "icon-size--lg":  "var(--size-6)", 
+  "icon-size--xl":  "var(--size-8)",
+  "icon-size--2xl": "var(--size-10)",
+
   "icon--size-2xs": "var(--size-1)", 
   "icon--size-xs":  "var(--size-2)",
   "icon--size-sm":  "var(--size-3)", 

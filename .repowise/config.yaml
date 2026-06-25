@@ -1,0 +1,11 @@
+distill:
+  commands:
+    enabled: true
+mcp:
+  tools:
+  - +get_dependency_path
+  - +get_execution_flows
+provider: gemini
+model: gemini-3.1-flash-lite-preview
+embedder: gemini
+reasoning: auto

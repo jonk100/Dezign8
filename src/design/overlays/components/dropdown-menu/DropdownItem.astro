@@ -1,0 +1,22 @@
+---
+import type { DropdownItemProps } from "./dropdown-menu.props";
+import Icon from "~/assets/components/icon/Icon.astro";
+import type { SvgName } from "~/shared/icons";
+
+const { href, icon, popovertarget, disabled } = Astro.props as DropdownItemProps;
+
+const Tag = href ? "a" : "button";
+const tagProps = {
+  class: "dropdown-menu__item",
+  ...(href         ? { href }         : {}),
+  ...(popovertarget ? { popovertarget } : {}),
+  ...(disabled     ? { disabled }     : {}),
+  ...(!href        ? { type: "button" as const } : {}),
+};
+---
+
+<Tag {...tagProps}>
+  {icon && <Icon name={icon as SvgName} size="sm" class="dropdown-menu__item-icon" />}
+  <span class="dropdown-menu__item-label"><slot /></span>
+  {popovertarget && <Icon name="chevron-right" size="sm" class="dropdown-menu__item-chevron" />}
+</Tag>

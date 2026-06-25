@@ -1,0 +1,71 @@
+---
+import type { AudioProps } from "./audio.props";
+import { useAudio } from "./audio.hook";
+import Icon from "~/assets/components/icon/Icon.astro";
+import "./audio.css";
+
+const { containerProps, audioProps } = useAudio(Astro.props as AudioProps);
+
+const isIntercom = containerProps["data-intercom"] === "true";
+---
+
+<div {...containerProps}>
+  {/* Hidden native element — source of truth for playback state */}
+  <audio class="audio__native" {...audioProps} style="display:none"></audio>
+
+  {/* Controls row */}
+  <div class="audio__controls">
+    <button class="audio__play-btn" type="button" aria-label="Play" data-audio-play>
+      <span class="audio__icon-play"  aria-hidden="true"><Icon name="play"  size="sm" /></span>
+      <span class="audio__icon-pause" aria-hidden="true" style="display:none"><Icon name="pause" size="sm" /></span>
+    </button>
+
+    <span class="audio__time" data-audio-time>0:00 / 0:00</span>
+
+    {isIntercom && <span class="audio__intercom-badge">INTERCOM</span>}
+  </div>
+
+  {/* Seek bar */}
+  <div class="audio__seek-row">
+    <input
+      type="range"
+      class="audio__seek"
+      min="0" max="100" step="0.1" value="0"
+      aria-label="Seek"
+      data-audio-seek
+    />
+  </div>
+
+  {/* Volume + rate */}
+  <div class="audio__secondary">
+    <label class="audio__volume">
+      <Icon name="zap" size="xs" />
+      <input
+        type="range"
+        class="audio__volume-slider"
+        min="0" max="1" step="0.05" value="1"
+        aria-label="Volume"
+        data-audio-volume
+      />
+    </label>
+
+    <label class="audio__rate">
+      <Icon name="jog-forward" size="xs" />
+      <select class="audio__rate-select" aria-label="Playback speed" data-audio-rate>
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+      </select>
+    </label>
+  </div>
+</div>
+
+<script>
+  import { initAllPlayers } from "./audio.client";
+
+  initAllPlayers();
+  document.addEventListener("astro:after-swap", initAllPlayers);
+</script>

@@ -1,0 +1,6 @@
+Yes, there is unused code in the `src/design/surfaces` directory. According to repowise dead-code analysis, the following files and symbols are unused/unreachable:
+
+- `src/design/surfaces/components/card/card.hook.ts` (File has no importers, unused export `useCard`)
+- `src/design/surfaces/components/frame/frame.ts` (File has no importers)
+- `src/design/surfaces/components/paper/paper.hook.ts` (File has no importers, unused export `usePaper`)
+- `src/design/surfaces/components/tile/tile.hook.ts` (File has no importers, unused export `useTile`)

@@ -1,6 +1,10 @@
 ---
 import Head from "./Head.astro";
 import "../design/styles/global.css";
+import Header from "#header/Header.astro";
+import Container from "#container/Container.astro";
+import Section from "#section/Section.astro";
+
 
 export interface Props {
   title?: string | undefined;
@@ -15,20 +19,21 @@ const { title, description, image } = Astro.props;
 <html lang="en">
   <head>
     <!-- Automatically injects advanced SEO and meta tags -->
-    <Head title={title} description={description} image={image} />
-    
+    <Head title={title} description={description} image={image}>
     <!-- Pass-through for any page-specific head injections -->
     <slot name="head" />
   </head>
   <body>
-    <!-- Top-level layout slots -->
-    <slot name="header" />
-    <slot name="hero" />
-    
+    <Header>
+      <slot name="header" />
+    </Header>
+    <Container>
+      <slot name="hero" />
+    </Container>
     <!-- Main content area -->
     <main>
       <slot name="main-top" />
-      <slot />
+        <slot />
       <slot name="main-bottom" />
     </main>
     

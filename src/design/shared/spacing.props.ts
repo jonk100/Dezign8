@@ -62,3 +62,15 @@ export function resolveSpacingStyles(
 
   return results;
 }
+
+// ponytail: simplified implementation; assumes SPACE keys are valid CSS values
+if (process.env.NODE_ENV === "development") {
+  const assert = (cond: boolean, msg: string) => { if (!cond) throw new Error(`resolveSpacingStyles: ${msg}`); };
+  const r1 = resolveSpacingStyles({ p: "md" }, "box");
+  assert(r1.some(s => s.startsWith("--box--p:")), "single token");
+  const r2 = resolveSpacingStyles({ p: "sm lg" }, "box");
+  assert((r2[0] ?? "").split(":")[1]?.trim().split(" ").length === 2, "multi-token split");
+  const r3 = resolveSpacingStyles({ p: "99px" }, "box");
+  assert((r3[0] ?? "").includes("99px"), "unknown token passthrough");
+  assert(resolveSpacingStyles({}, "box").length === 0, "empty props");
+}

@@ -31,9 +31,13 @@ import { RADIUS_DIM, COLOR_DIM }          from "~/shared/primitives.tokens";
  * Drives padding, font-size, and gap proportionally.
  */
 const NAV_SIZE = scale({
-  sm: "var(--nav--sm)",
-  md: "var(--nav--md)",
-  lg: "var(--nav--lg)",
+  "2xs": "var(--nav--2xs)",
+  xs:    "var(--nav--xs)",
+  sm:    "var(--nav--sm)",
+  md:    "var(--nav--md)",
+  lg:    "var(--nav--lg)",
+  xl:    "var(--nav--xl)",
+  "2xl": "var(--nav--2xl)",
 });
 
 /**

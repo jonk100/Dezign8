@@ -1,0 +1,44 @@
+---
+/**
+ * Textarea
+ *
+ * Multi-line text input. Follows the same wrapper+control pattern as Input:
+ * the outer `<div>` owns visual chrome; the inner `<textarea>` is transparent.
+ *
+ * RESIZE
+ * ─────────────────────────────────────────────────────────────────────────
+ * Controlled via the `resize` prop: `"none"` | `"vertical"` (default) | `"both"`.
+ * Horizontal-only resize is omitted — uncommon and often undesirable in layouts.
+ *
+ * @example
+ * <!-- Basic -->
+ * <Textarea name="bio" placeholder="Tell us about yourself" />
+ *
+ * @example
+ * <!-- Pre-filled, no resize -->
+ * <Textarea name="notes" value="Some existing notes" resize="none" rows={5} />
+ *
+ * @example
+ * <!-- Inside a Field -->
+ * <Field id="bio">
+ *   <Label slot="label" for="bio">Bio</Label>
+ *   <Textarea id="bio" name="bio" maxLength={500} fullWidth />
+ * </Field>
+ *
+ * @see textarea.hook.ts  — resolves props to { Tag, props, textareaAttrs, value }
+ * @see textarea.props.ts — full prop type reference
+ * @see textarea.css      — inner control and wrapper overrides
+ * @see forms.css         — shared variant and state styles
+ */
+
+import type { TextareaProps } from "./textarea.props";
+import { useTextarea }        from "./textarea.hook";
+import "~/forms/forms.css";
+import "./textarea.css";
+
+const { Tag, props, textareaAttrs, value } = useTextarea(Astro.props as TextareaProps);
+---
+
+<Tag {...props}>
+  <textarea class="textarea__control" {...textareaAttrs}>{value}</textarea>
+</Tag>

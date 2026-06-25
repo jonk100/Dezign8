@@ -3,11 +3,14 @@ title: Grid Component
 description: A two-dimensional layout component based on CSS Grid.
 category: Layout
 status: stable
+icon: grid
 version: 0.1.0
 links:
   source: "https://github.com/jonk100/Dezign8/tree/main/src/design/layout/components/grid"
 ---
 import Grid from "../../../design/layout/components/grid/Grid.astro";
+import { PropsApi } from "~/components/PropsApi";
+import { GridProps } from "../../../design/layout/components/grid/grid.props";
 
 ## Overview
 
@@ -63,12 +66,7 @@ You can change the underlying HTML element using the `as` prop. A common use cas
 
 ## Props API
 
-### Grid Props
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `columns` | `"1" \| "2" \| "3" \| "4" \| "5" \| "6" \| "12"` | | The number of equal-width columns in the grid. If omitted, behaves as a 1-column layout or auto-fit layout depending on CSS implementation. |
-| `as` | `GridTag` | `"div"` | The HTML element to render (e.g., `div`, `ul`, `ol`, `dl`). |
+<PropsApi props={GridProps} />
 
 ### Layout & Spacing Props (Inherited)
 

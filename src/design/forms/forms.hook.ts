@@ -156,8 +156,7 @@ export function useForm(props: FormProps) {
     v:        _v,
     testId:   _testId,
     bg,
-    animation,
-    ...rest
+    ...base
   } = props;
 
   // ── Token resolution ─────────────────────────────────────────────────────
@@ -205,12 +204,11 @@ export function useForm(props: FormProps) {
   //   disabled={true}   only valid on <input>, <select>, <button>, <textarea>
   //   required={true}   only valid on <input>, <select>, <textarea>
   const ariaAttrs: Record<string, string> = {};
-  if (disabled) { ariaAttrs["aria-disabled"] = "true"; ariaAttrs["data-disabled"] = ""; }
   if (required) { ariaAttrs["aria-required"] = "true"; }
   if (invalid)  { ariaAttrs["aria-invalid"]  = "true"; ariaAttrs["data-invalid"]  = ""; }
 
   // ── Class + style composition ─────────────────────────────────────────────
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
     {
       className: [
         "form",
@@ -218,7 +216,6 @@ export function useForm(props: FormProps) {
         disabled  && "form--disabled",            // CSS: pointer-events, opacity
         invalid   && "form--invalid",             // CSS: error-state ring/border
         fullWidth && "form--full-width",          // CSS: width: 100%
-        animation && `animate-${animation}`,
         className,
       ],
       style: [
@@ -226,8 +223,9 @@ export function useForm(props: FormProps) {
         ...colorStyle,                            // --form--color-base, etc. (TODO)
         bg && `--local--bg: ${bg}`,               // escape-hatch background
       ],
+      disabled,
     },
-    props,
+    base,
   );
 
   return {
@@ -243,6 +241,7 @@ export function useForm(props: FormProps) {
     disabled,
     required,
     invalid,
-    rest,
+    rest: restAttrs,
+    spacing,
   };
 }

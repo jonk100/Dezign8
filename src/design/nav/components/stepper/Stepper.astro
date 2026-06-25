@@ -32,10 +32,10 @@ const { stepperProps, items, currentStepIndex } = useStepper(Astro.props as Step
         }
 
         return (
-          <Step 
+          <Step
             state={state}
             label={item.label}
-            description={item.description}
+            {...(item.description !== undefined ? { description: item.description } : {})}
             isLast={isLast}
             stepNumber={index + 1}
           />

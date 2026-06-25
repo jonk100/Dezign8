@@ -1,0 +1,10 @@
+{
+  "eval_id": 0,
+  "eval_name": "architectural-decisions",
+  "prompt": "I want to add a new variant to the typography components. Check the architectural decisions to see if there's any rules about typography variants before I start.",
+  "assertions": [
+    {
+      "description": "Output explicitly mentions a typography decision from repowise or confirms there are none."
+    }
+  ]
+}

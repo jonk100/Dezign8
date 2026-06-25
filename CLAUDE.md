@@ -64,8 +64,7 @@ shared/primitives.tokens.ts
 ```
 
 - `shared/` imports nothing from any category or component.
-- Categories don't import from sibling categories.
-- Components don't import from sibling components.
+- Sibling and cross-category imports are generally frowned upon. The exception is a component that uses the entirety of another component to replace a generic HTML element (e.g., importing `<Icon>` to use instead of a raw `<path>`). Never import hooks, props, or tokens from other components.
 - `.css` files import nothing — they only read CSS custom properties.
 
 ### Path aliases (tsconfig.paths.json)
@@ -95,3 +94,5 @@ MDX files are the component documentation, loaded via Astro Content Collections.
 ### Component build priority
 
 See `src/design/docs/checklist.md` for the 5-tier priority order (Tier 1 = ubiquitous web elements first, Tier 5 = niche). Tier 1–2 components not yet checked off are the highest priority to build.
+
+

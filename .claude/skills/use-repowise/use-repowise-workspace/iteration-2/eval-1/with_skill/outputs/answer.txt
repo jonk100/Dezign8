@@ -1,0 +1,9 @@
+Yes, there is unused code in the `src/design/surfaces` directory. Running `repowise dead-code src/design/surfaces` reveals 7 findings of dead code (177 cleanup-candidate lines):
+
+1. **components/card**: File has no importers
+2. **components/frame**: File has no importers
+3. **components/paper**: File has no importers
+4. **components/tile**: File has no importers
+5. **useCard**: Public symbol 'useCard' has no importers
+6. **usePaper**: Public symbol 'usePaper' has no importers
+7. **useTile**: Public symbol 'useTile' has no importers

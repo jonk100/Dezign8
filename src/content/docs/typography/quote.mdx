@@ -3,12 +3,15 @@ title: Quote Component
 description: Semantic typography component for blockquotes, pull quotes, and inline quotes.
 category: Typography
 status: stable
+icon: quote
 version: 0.1.0
 links:
   source: "https://github.com/jonk100/Dezign8/tree/main/src/design/typography/components/quote"
 ---
 import Quote from "../../../design/typography/components/quote/Quote.astro";
 import Text from "../../../design/typography/components/text/Text.astro";
+import { PropsApi } from "~/components/PropsApi";
+import { QuoteProps } from "../../../design/typography/components/quote/quote.props";
 
 ## Overview
 
@@ -54,11 +57,6 @@ For quoting within the flow of a paragraph. Renders as a `<q>` tag, inheriting t
 
 ## Props API
 
-### Quote Props
-
-| Prop | Type | Description |
-|---|---|---|
-| `type` | `"block" \| "pull" \| "inline"` | The visual and semantic type of the quote. Defaults to `"block"`. |
-| `cite` | `string` | Standard HTML attribute for the source URL. Automatically passed to the underlying DOM element. |
+<PropsApi props={QuoteProps} />
 
 *Inherits all `TypographyProps` and `BaseComponentProps`.*

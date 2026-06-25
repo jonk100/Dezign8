@@ -63,46 +63,9 @@ import type { LabelPosition } from "./radio.tokens";
  * @see {@link FormProps}  — inherited token dimensions and behavior props
  * @see {@link useRadio}   — resolves these props at runtime
  */
-export interface RadioProps extends FormProps {
-  /**
-   * The `id` attribute placed on the inner `<input type="radio">`.
-   *
-   * Useful when external elements reference the control via `aria-describedby`.
-   * The wrapper `<label>` automatically associates with its child input without
-   * requiring a separate `for` attribute.
-   */
+export type RadioProps = FormProps & {
   id?: string;
-
-  /**
-   * The form submission value for this radio option.
-   *
-   * When this radio is selected and the form is submitted, this value is sent
-   * under the group's `name` key. All radio buttons in the same group should
-   * have distinct `value`s.
-   *
-   * @example `value="dark"` — submitted as `theme=dark` when `name="theme"`
-   */
   value?: string;
-
-  /**
-   * Whether this radio button is selected on initial render.
-   *
-   * Sets the `checked` boolean attribute on the native `<input>`. Only one
-   * radio in a group should be `checked`; if multiple are set, the browser
-   * selects the last one in DOM order.
-   *
-   * @default `false` (attribute absent = not selected)
-   */
   checked?: boolean;
-
-  /**
-   * Position of the label slot relative to the indicator circle.
-   *
-   * The DOM order is always `hidden input → indicator → slot` regardless
-   * of this value. CSS handles the visual reordering via flex-direction.
-   *
-   * @default `"end"` — `(●) Label text`
-   * @see {@link LabelPosition} for all values
-   */
   labelPosition?: LabelPosition;
-}
+};

@@ -17,31 +17,18 @@ export function useButton(props: ButtonProps) {
     ...triggerProps
   } = props;
  
-  const isLink = Boolean(href);
-  const Tag    = isLink ? "a" : "button";
- 
-  const resolvedRel = isLink
-    ? (rel ?? (target === "_blank" ? "noopener noreferrer" : undefined))
-    : undefined;
+  const { Tag, triggerClass, triggerStyle, triggerAttrs, rest, size }
+    = useTrigger({
+      ...triggerProps,
+      type,
+      ...(href   !== undefined ? { href }   : {}),
+      ...(target !== undefined ? { target } : {}),
+      ...(rel    !== undefined ? { rel }    : {}),
+    });
+    
+  const sizeStyle = resolveButtonSize(size);
 
-
-  /**
-   * useTrigger hook
-   * @param triggerClass - class
-   * @param triggerStyle - styles
-   * @param triggerAttrs - 
-   * @param disabled - disabled - is it disabled?
-   * @param loading - loading - is it loading?
-   * @param rest - for the rest of the props   
-   * @param  
-   * @returns Tag and props: { class, style, other attributes, type, href, target, rel, disabled, aria stuff }
-   */
-  const { triggerClass, triggerStyle, triggerAttrs, disabled, loading, rest, size,
- }
-    = useTrigger(triggerProps);
-    const sizeStyle = resolveButtonSize(size); // button decides what sm means
-
-    return {
+  return {
     Tag,
     props: {
       class: composeClass(
@@ -55,17 +42,8 @@ export function useButton(props: ButtonProps) {
         triggerStyle,
         ...sizeStyle,
       ),
-
       ...triggerAttrs,
       ...rest,
-      type:           !isLink ? type : undefined,
-      href:           isLink  ? href : undefined,
-      target:         isLink  ? target : undefined,
-      rel:            resolvedRel,
-      disabled:       !isLink && (disabled || loading) ? true : undefined,
-      "aria-disabled": disabled || loading ? "true" : undefined,
-      "aria-busy":     loading  ? "true" : undefined,
-      
     },
   };
 }

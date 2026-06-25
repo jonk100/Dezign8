@@ -15,6 +15,9 @@ export function useSkeleton(props: SkeletonProps) {
     ratio,
     radius,
     class: className,
+    // ponytail: spacing props (p/px…/m/mx…) will leak to DOM if passed. Fix: rename
+    // to ...base, pass to useBaseCompose, use returned rest+spacing. See feedback.hook.ts.
+    // Tracked: /todo.md
     ...rest
   } = props;
 

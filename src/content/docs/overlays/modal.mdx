@@ -1,0 +1,218 @@
+---
+title: Modal
+description: A centered dialog overlay that blocks background interaction and traps focus until dismissed.
+category: Overlays
+status: stable
+icon: modal
+---
+import Modal from "../../../design/overlays/components/modal/Modal.astro";
+
+## Overview
+
+`Modal` renders a native `<dialog>` centered over the page. It blocks all background interaction, traps keyboard focus, and closes on `Escape` by default. Open/close is driven by the `modal` controller or `data-modal-close` buttons — no framework required.
+
+Defaults: `size="md"`, `variant="default"` (top-aligned), `closeOnBackdrop={true}`, `closeOnEsc={true}`.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+---
+---
+<button id="open-btn">Open modal</button>
+
+<Modal id="basic-modal" title="Hello">
+  <p>Modal body content goes here.</p>
+  <button slot="actions" data-modal-close="basic-modal">Close</button>
+</Modal>
+
+<script>
+  import { modal } from "@/design/overlays/components/modal/modal.client";
+  document.getElementById("open-btn")?.addEventListener("click", () => modal.open("basic-modal"));
+</script>
+```
+<button data-modal-open="basic-modal">Open modal</button>
+
+<Modal id="basic-modal" title="Hello">
+  <p>Modal body content goes here.</p>
+  <button slot="actions" data-modal-close="basic-modal">Close</button>
+</Modal>
+
+### Sizes
+
+`size` controls the max panel width.
+
+```astro
+<Modal id="modal-xs" title="Extra small" size="xs">…</Modal>   <!-- 360px -->
+<Modal id="modal-sm" title="Small"       size="sm">…</Modal>   <!-- 480px -->
+<Modal id="modal-md" title="Medium"      size="md">…</Modal>   <!-- 600px (default) -->
+<Modal id="modal-lg" title="Large"       size="lg">…</Modal>   <!-- 760px -->
+<Modal id="modal-xl" title="Extra large" size="xl">…</Modal>   <!-- 960px -->
+<Modal id="modal-full" title="Full"      size="full">…</Modal> <!-- 100dvw × 100dvh -->
+```
+
+<div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "2rem" }}>
+  <button data-modal-open="modal-xs">xs</button>
+  <button data-modal-open="modal-sm">sm</button>
+  <button data-modal-open="modal-md">md</button>
+  <button data-modal-open="modal-lg">lg</button>
+  <button data-modal-open="modal-xl">xl</button>
+  <button data-modal-open="modal-full">full</button>
+</div>
+
+<Modal id="modal-xs" title="Extra small" size="xs"><p>360px max-width</p><button slot="actions" data-modal-close="modal-xs">Close</button></Modal>
+<Modal id="modal-sm" title="Small" size="sm"><p>480px max-width</p><button slot="actions" data-modal-close="modal-sm">Close</button></Modal>
+<Modal id="modal-md" title="Medium" size="md"><p>600px max-width</p><button slot="actions" data-modal-close="modal-md">Close</button></Modal>
+<Modal id="modal-lg" title="Large" size="lg"><p>760px max-width</p><button slot="actions" data-modal-close="modal-lg">Close</button></Modal>
+<Modal id="modal-xl" title="Extra large" size="xl"><p>960px max-width</p><button slot="actions" data-modal-close="modal-xl">Close</button></Modal>
+<Modal id="modal-full" title="Full" size="full"><p>100dvw × 100dvh</p><button slot="actions" data-modal-close="modal-full">Close</button></Modal>
+
+### Variants
+
+`variant` controls vertical placement.
+
+```astro
+<!-- Default: panel appears at 10dvh from top -->
+<Modal id="modal-default" title="Default" variant="default">…</Modal>
+
+<!-- Centered: panel is vertically centered -->
+<Modal id="modal-centered" title="Centered" variant="centered">…</Modal>
+```
+
+<div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
+  <button data-modal-open="modal-default">Default (top)</button>
+  <button data-modal-open="modal-centered">Centered</button>
+</div>
+
+<Modal id="modal-default" title="Default" variant="default"><p>10dvh from top.</p><button slot="actions" data-modal-close="modal-default">Close</button></Modal>
+<Modal id="modal-centered" title="Centered" variant="centered"><p>Vertically centered.</p><button slot="actions" data-modal-close="modal-centered">Close</button></Modal>
+
+### With actions footer
+
+Place buttons in the named `actions` slot to render a footer row. Use `data-modal-close` to wire close behavior without a script.
+
+```astro
+<Modal id="delete-modal" title="Delete workspace" size="sm">
+  <p>This will permanently delete the workspace and all its data. This cannot be undone.</p>
+
+  <Fragment slot="actions">
+    <button data-modal-close="delete-modal">Cancel</button>
+    <button>Delete workspace</button>
+  </Fragment>
+</Modal>
+```
+
+<button data-modal-open="delete-modal" style={{ marginBottom: "2rem" }}>Open footer example</button>
+
+<Modal id="delete-modal" title="Delete workspace" size="sm">
+  <p>This will permanently delete the workspace and all its data. This cannot be undone.</p>
+
+  <Fragment slot="actions">
+    <button data-modal-close="delete-modal">Cancel</button>
+    <button>Delete workspace</button>
+  </Fragment>
+</Modal>
+
+### Disable backdrop dismiss
+
+```astro
+<Modal id="required-modal" title="Required action" closeOnBackdrop={false}>
+  <p>You must complete this form before continuing.</p>
+  <button slot="actions" data-modal-close="required-modal">Got it</button>
+</Modal>
+```
+
+<button data-modal-open="required-modal" style={{ marginBottom: "2rem" }}>Open non-dismissible modal</button>
+
+<Modal id="required-modal" title="Required action" closeOnBackdrop={false}>
+  <p>You must complete this form before continuing.</p>
+  <button slot="actions" data-modal-close="required-modal">Got it</button>
+</Modal>
+
+### Disable Esc close
+
+```astro
+<Modal id="locked-modal" title="Locked" closeOnEsc={false}>
+  <p>This modal cannot be dismissed with the keyboard.</p>
+  <button slot="actions" data-modal-close="locked-modal">Dismiss</button>
+</Modal>
+```
+
+<button data-modal-open="locked-modal" style={{ marginBottom: "2rem" }}>Open Esc-locked modal</button>
+
+<Modal id="locked-modal" title="Locked" closeOnEsc={false}>
+  <p>This modal cannot be dismissed with the keyboard.</p>
+  <button slot="actions" data-modal-close="locked-modal">Dismiss</button>
+</Modal>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | — | **Required.** Unique ID used for open/close targeting. |
+| `title` | `string` | `undefined` | Header title text. Also sets `aria-labelledby`. |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "full"` | `"md"` | Max panel width. |
+| `variant` | `"default" \| "centered" \| "fullscreen"` | `"default"` | Vertical placement. |
+| `radius` | `RadiusToken` | — | Border radius override. |
+| `closeOnBackdrop` | `boolean` | `true` | Clicking the backdrop closes the modal. |
+| `closeOnEsc` | `boolean` | `true` | Pressing `Escape` closes the modal. |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| default | Main body content. |
+| `actions` | Footer row of buttons. Renders a bordered footer bar. |
+
+---
+
+## JavaScript API
+
+Import `modal` from the client module to open and close programmatically.
+
+```ts
+import { modal } from "@/design/overlays/components/modal/modal.client";
+
+modal.open("my-modal");   // opens dialog.showModal()
+modal.close("my-modal");  // closes and fires modal:close event
+```
+
+### Data attributes
+
+Any element inside or outside the modal can open or close it without a script:
+
+```html
+<button data-modal-open="my-modal">Open Modal</button>
+<button data-modal-close="my-modal">Cancel</button>
+```
+
+### Window events
+
+The controller dispatches events on `window` you can listen to:
+
+| Event | Payload | Fired when |
+|---|---|---|
+| `modal:open` | `{ id: string }` | Modal opens |
+| `modal:close` | `{ id: string }` | Modal closes (any cause) |
+
+---
+
+## Accessibility
+
+- Uses native `<dialog>` — `showModal()` provides built-in focus trapping and background inertness.
+- `aria-labelledby` is set to the title element ID when `title` is provided.
+- `role="dialog"` is the implicit ARIA role for `<dialog>`.
+- `Escape` closes the modal by default (native behavior). Suppress with `closeOnEsc={false}`.
+- The close button carries `aria-label="Close"`.
+
+---
+
+## Related
+
+- **AlertDialog** — for destructive confirmations that require an explicit button choice; no close button, no backdrop dismiss.
+- **Drawer** — slide-in panel from a viewport edge.

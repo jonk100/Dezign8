@@ -1,0 +1,146 @@
+---
+title: Avatar Component
+description: Circular user representation with image, initials, or icon fallback and an optional status dot.
+category: Assets
+status: stable
+icon: avatar
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/assets/components/avatar"
+---
+import Avatar from "../../../design/assets/components/avatar/Avatar.astro";
+
+## Overview
+
+`Avatar` represents a person or entity. It renders one of three modes, resolved in priority order:
+
+1. **Image** — when `src` is provided.
+2. **Initials** — when `initials` is provided (no `src`). Clipped to 2 characters.
+3. **Icon** — generic silhouette when neither `src` nor `initials` is present.
+
+An optional `status` prop overlays a colored dot (online / offline / away / busy) at the bottom-right.
+
+---
+
+## Usage
+
+### Image Avatar
+
+```astro
+<Avatar src="/dezign83.png" alt="Jon K" size="md" />
+```
+
+<div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Avatar src="/dezign83.png" alt="Jon K" size="2xs" />
+  <Avatar src="/dezign83.png" alt="Jon K" size="xs" />
+  <Avatar src="/dezign83.png" alt="Jon K" size="sm" />
+  <Avatar src="/dezign83.png" alt="Jon K" size="md" />
+  <Avatar src="/dezign83.png" alt="Jon K" size="lg" />
+  <Avatar src="/dezign83.png" alt="Jon K" size="xl" />
+  <Avatar src="/dezign83.png" alt="Jon K" size="2xl" />
+</div>
+
+### Initials Fallback
+
+When no image is available, pass `initials` to show a text placeholder. Only the first two characters are rendered.
+
+```astro
+<Avatar initials="JK" size="md" />
+<Avatar initials="AB" size="lg" />
+```
+
+<div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Avatar initials="JK" size="2xs" />
+  <Avatar initials="JK" size="xs" />
+  <Avatar initials="JK" size="sm" />
+  <Avatar initials="JK" size="md" />
+  <Avatar initials="AB" size="lg" />
+  <Avatar initials="AB" size="xl" />
+  <Avatar initials="AB" size="2xl" />
+</div>
+
+### Icon Fallback
+
+Omit both `src` and `initials` to get a generic silhouette.
+
+```astro
+<Avatar size="md" />
+```
+
+<div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Avatar size="sm" />
+  <Avatar size="md" />
+  <Avatar size="lg" />
+  <Avatar size="xl" />
+</div>
+
+### Status Dot
+
+Add a presence indicator with the `status` prop. The dot is positioned at the bottom-right and scales with `size`.
+
+```astro
+<Avatar src="/dezign83.png" alt="Jon" size="lg" status="online" />
+<Avatar initials="AB" size="lg" status="away" />
+<Avatar initials="XY" size="lg" status="busy" />
+<Avatar size="lg" status="offline" />
+```
+
+<div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <Avatar src="/dezign83.png" alt="Jon" size="lg" status="online" />
+    <span style="font-size:0.7rem;color:var(--text--muted)">online</span>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <Avatar initials="AB" size="lg" status="away" />
+    <span style="font-size:0.7rem;color:var(--text--muted)">away</span>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <Avatar initials="XY" size="lg" status="busy" />
+    <span style="font-size:0.7rem;color:var(--text--muted)">busy</span>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <Avatar size="lg" status="offline" />
+    <span style="font-size:0.7rem;color:var(--text--muted)">offline</span>
+  </div>
+</div>
+
+### Radius
+
+The default radius is `full` (circle). Use `radius="sm"` or `radius="md"` for a rounded-square shape — useful for brand/org avatars.
+
+```astro
+<Avatar src="/dezign83.png" alt="Dezign8" size="lg" radius="md" />
+<Avatar initials="D8" size="lg" radius="sm" />
+```
+
+<div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Avatar src="/dezign83.png" alt="Dezign8" size="lg" radius="full" />
+  <Avatar src="/dezign83.png" alt="Dezign8" size="lg" radius="xl" />
+  <Avatar src="/dezign83.png" alt="Dezign8" size="lg" radius="md" />
+  <Avatar src="/dezign83.png" alt="Dezign8" size="lg" radius="sm" />
+  <Avatar src="/dezign83.png" alt="Dezign8" size="lg" radius="xs" />
+  <Avatar src="/dezign83.png" alt="Dezign8" size="lg" radius="none" />
+</div>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | `string` | — | Image URL. Triggers image mode. |
+| `alt` | `string` | `""` | Alt text for the image; also used as `aria-label`. |
+| `initials` | `string` | — | 1–2 character fallback text (auto-uppercased). |
+| `size` | `AvatarSize` | `"md"` | `2xs` `xs` `sm` `md` `lg` `xl` `2xl` |
+| `radius` | `AvatarRadius` | `"full"` | Any design-system radius token. |
+| `status` | `AvatarStatus` | — | `online` `offline` `away` `busy` — shows a status dot. |
+
+*Inherits all `BaseComponentProps`.*
+
+---
+
+## Accessibility
+
+- The root `<span>` receives `aria-label` from `alt` or `initials` when provided.
+- In icon-only mode with no `alt`, the SVG carries `aria-hidden="true"` — wrap in a labeled container if context is needed.
+- Status dot color alone doesn't convey meaning to assistive tech — pair with an `aria-label` or visually-hidden text when status matters to the user.

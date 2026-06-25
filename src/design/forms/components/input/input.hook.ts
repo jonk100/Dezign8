@@ -146,7 +146,7 @@ export function useInput(props: InputProps) {
     formClass, formStyle, formAttrs,
     disabled, required, invalid,
     rest,
-  // FormProps cast is safe: InputProps extends FormProps; we only removed
+  // FormProps cast is safe: InputProps is a FormProps; we only removed
   // optional props that InputProps added or re-declared.
   } = useForm(formProps as Parameters<typeof useForm>[0]);
 
@@ -188,7 +188,6 @@ export function useInput(props: InputProps) {
     disabled:     disabled    || undefined,
     required:     required    || undefined,
     // ARIA attributes on the actual control (semantically correct location)
-    "aria-disabled": disabled ? "true" as const : undefined,
     "aria-required": required ? "true" as const : undefined,
     "aria-invalid":  invalid  ? "true" as const : undefined,
   };

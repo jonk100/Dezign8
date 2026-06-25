@@ -9,7 +9,7 @@ declare module "~/shared/visuals" {
   }
 }
 
-export interface ButtonProps extends TriggerProps {
+export type ButtonBaseProps = TriggerProps & {
   /** HTML button type. @default 'button' */
   type?:      ButtonType;
   /** Renders as <a> when set. */
@@ -22,4 +22,9 @@ export interface ButtonProps extends TriggerProps {
   iconOnly?:  boolean;
   /** Expands to fill container width. @default false */
   fullWidth?: boolean;
-}
+};
+
+export type ButtonProps = ButtonBaseProps & (
+  | { iconOnly?: false | undefined; "aria-label"?: string }
+  | { iconOnly: true; "aria-label": string }
+);

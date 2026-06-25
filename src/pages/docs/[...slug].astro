@@ -9,6 +9,7 @@ import H from '~/typography/components/heading/H.astro';
 import Table from '~/data/components/table/Table.astro';
 import Image from '~/assets/components/image/Image.astro';
 import Text from '~/typography/components/text/Text.astro';
+import Stack from '~/layout/components/stack/Stack.astro';
 
 export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
@@ -20,40 +21,54 @@ export async function getStaticPaths() {
       return !(parts.length >= 2 && parts[parts.length - 2] === name);
   });
 
-  return componentDocs.map((entry: any) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+  // Sort by category, then by title
+  componentDocs.sort((a: any, b: any) => {
+    const catA = (a.data.category || '').toLowerCase();
+    const catB = (b.data.category || '').toLowerCase();
+    if (catA < catB) return -1;
+    if (catA > catB) return 1;
+    const titleA = (a.data.title || a.id).toLowerCase();
+    const titleB = (b.data.title || b.id).toLowerCase();
+    return titleA.localeCompare(titleB);
+  });
+
+  return componentDocs.map((entry: any, index: number) => {
+    const prevEntry = index > 0 ? componentDocs[index - 1] : null;
+    const nextEntry = index < componentDocs.length - 1 ? componentDocs[index + 1] : null;
+    
+    return {
+      params: { slug: entry.id },
+      props: { entry, prevEntry, nextEntry },
+    };
+  });
 }
 
-const { entry } = Astro.props as { entry: any };
+const { entry, prevEntry, nextEntry } = Astro.props as { entry: any, prevEntry?: any, nextEntry?: any };
 const { Content } = await render(entry);
 
 const mdxComponents = {
-  code: Code,
-  pre: Pre,
-  blockquote: Quote,
   table: Table,
   img: Image,
-  p: Text,
-  h1: H,
-  h2: H,
-  h3: H,
-  h4: H,
-  h5: H,
-  h6: H,
+  Text,
+  Stack,
 };
 
-const { title, description, category, status, version, links } = entry.data;
+const { title, description, category, status, version, icon, links } = entry.data;
+
+const prev = prevEntry ? { title: prevEntry.data.title, href: `/docs/${prevEntry.id}` } : undefined;
+const next = nextEntry ? { title: nextEntry.data.title, href: `/docs/${nextEntry.id}` } : undefined;
 ---
 
-<DocsLayout 
-  title={title} 
+<DocsLayout
+  title={title}
   description={description}
   category={category}
   status={status}
   version={version}
+  icon={icon}
   links={links}
+  prev={prev}
+  next={next}
 >
   <Prose>
     <Content components={mdxComponents} />

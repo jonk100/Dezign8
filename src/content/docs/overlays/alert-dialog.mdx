@@ -1,0 +1,196 @@
+---
+title: AlertDialog
+description: A blocking confirmation dialog that requires an explicit button choice — no backdrop dismiss, no Escape key.
+category: Overlays
+status: stable
+icon: alert-dialog
+---
+import AlertDialog from "../../../design/overlays/components/alert-dialog/AlertDialog.astro";
+
+## Overview
+
+`AlertDialog` renders a native `<dialog>` that demands a deliberate user response. Unlike `Modal`, it has no close button, clicking the backdrop does nothing, and `Escape` is suppressed by default. Use it for destructive or irreversible actions where an accidental dismiss would be dangerous.
+
+Defaults: `size="sm"`, `variant="centered"`, `closeOnEsc={false}`.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+---
+import AlertDialog from "@/design/overlays/components/alert-dialog/AlertDialog.astro";
+---
+<button id="open-btn">Delete account</button>
+
+<AlertDialog
+  id="delete-confirm"
+  title="Delete account?"
+  description="This will permanently remove your account and all associated data. This action cannot be undone."
+>
+  <Fragment slot="actions">
+    <button data-alert-dialog-close="delete-confirm">Cancel</button>
+    <button data-alert-dialog-confirm="delete-confirm">Delete account</button>
+  </Fragment>
+</AlertDialog>
+
+<script>
+  import { alertDialog } from "@/design/overlays/components/alert-dialog/alert-dialog.client";
+  document.getElementById("open-btn")?.addEventListener("click", () => alertDialog.open("delete-confirm"));
+</script>
+```
+
+### With description prop
+
+The `description` prop renders a `<p>` wired to `aria-describedby`. Prefer this over the default slot for simple text.
+
+```astro
+<AlertDialog
+  id="leave-page"
+  title="Leave without saving?"
+  description="Your unsaved changes will be lost."
+>
+  <Fragment slot="actions">
+    <button data-alert-dialog-close="leave-page">Stay</button>
+    <button data-alert-dialog-confirm="leave-page">Leave</button>
+  </Fragment>
+</AlertDialog>
+```
+
+### With custom body content
+
+Skip the `description` prop and use the default slot for richer content.
+
+```astro
+<AlertDialog id="remove-members" title="Remove all members?">
+  <p>This will remove <strong>24 members</strong> from the workspace.</p>
+  <p>Members will lose access immediately.</p>
+
+  <Fragment slot="actions">
+    <button data-alert-dialog-close="remove-members">Cancel</button>
+    <button data-alert-dialog-confirm="remove-members">Remove members</button>
+  </Fragment>
+</AlertDialog>
+```
+
+### Sizes
+
+```astro
+<AlertDialog id="d-xs"   title="Are you sure?" size="xs"  description="This is permanent.">…</AlertDialog>
+<AlertDialog id="d-sm"   title="Are you sure?" size="sm"  description="This is permanent.">…</AlertDialog>
+<AlertDialog id="d-md"   title="Are you sure?" size="md"  description="This is permanent.">…</AlertDialog>
+```
+
+### Allow Esc to close
+
+In low-stakes scenarios you can opt back in to keyboard dismissal.
+
+```astro
+<AlertDialog
+  id="soft-confirm"
+  title="Save draft?"
+  description="Your progress will be saved as a draft."
+  closeOnEsc={true}
+>
+  <Fragment slot="actions">
+    <button data-alert-dialog-close="soft-confirm">Discard</button>
+    <button data-alert-dialog-confirm="soft-confirm">Save draft</button>
+  </Fragment>
+</AlertDialog>
+```
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | — | **Required.** Unique ID used for open/close targeting. |
+| `title` | `string` | — | **Required.** Header title. Also sets `aria-labelledby`. |
+| `description` | `string` | `undefined` | Body description text. Sets `aria-describedby` on the dialog. |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "full"` | `"sm"` | Max panel width. |
+| `variant` | `"default" \| "centered" \| "fullscreen"` | `"centered"` | Vertical placement. |
+| `radius` | `RadiusToken` | — | Border radius override. |
+| `closeOnEsc` | `boolean` | `false` | Allow `Escape` to dismiss. Off by default — requires explicit button choice. |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| default | Custom body content. Only renders if `description` prop is not set. |
+| `actions` | **Required in practice.** Footer row of cancel/confirm buttons. |
+
+---
+
+## JavaScript API
+
+```ts
+import { alertDialog } from "@/design/overlays/components/alert-dialog/alert-dialog.client";
+
+alertDialog.open("delete-confirm");   // opens dialog.showModal()
+alertDialog.close("delete-confirm");  // closes and fires alert-dialog:close event
+```
+
+### Data attributes
+
+Use these on buttons inside the `actions` slot:
+
+| Attribute | Effect |
+|---|---|
+| `data-alert-dialog-close="id"` | Closes the dialog (cancel / no action) |
+| `data-alert-dialog-confirm="id"` | Closes the dialog (confirmed action) |
+
+Both close the dialog. The distinction is semantic — wire your own confirm logic before calling close if you need to run an action first.
+
+```html
+<!-- Confirm with side effect -->
+<button id="confirm-btn" data-alert-dialog-confirm="delete-confirm">Delete</button>
+
+<script>
+  document.getElementById("confirm-btn")?.addEventListener("click", async () => {
+    await deleteWorkspace();
+    // data-alert-dialog-confirm closes the dialog automatically
+  });
+</script>
+```
+
+### Window events
+
+| Event | Payload | Fired when |
+|---|---|---|
+| `alert-dialog:open` | `{ id: string }` | Dialog opens |
+| `alert-dialog:close` | `{ id: string }` | Dialog closes (any cause) |
+
+---
+
+## Accessibility
+
+- Uses native `<dialog>` — `showModal()` traps focus and marks background content inert.
+- `role="alertdialog"` signals to screen readers that a response is required before continuing.
+- `aria-labelledby` points to the `<h2>` title element.
+- `aria-describedby` points to the description paragraph when `description` is provided.
+- `Escape` is suppressed by default via the `cancel` event — deliberate choice required.
+- No close button is rendered — matches the semantic contract of an alertdialog.
+
+---
+
+## Modal vs AlertDialog
+
+| | Modal | AlertDialog |
+|---|---|---|
+| Close button | Yes | No |
+| Backdrop dismiss | Yes (default) | No |
+| Escape to close | Yes (default) | No (default) |
+| ARIA role | `dialog` | `alertdialog` |
+| Default size | `md` | `sm` |
+| Default placement | top-aligned | centered |
+| Use when | Forms, detail views, any dismissible overlay | Destructive actions, irreversible operations |
+
+---
+
+## Related
+
+- **Modal** — general-purpose dialog overlay with close button and backdrop dismiss.
+- **Alert** — inline status message in content flow; no interaction required.

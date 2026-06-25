@@ -1,0 +1,262 @@
+---
+title: Toast
+description: A transient notification that appears in a corner of the viewport and auto-dismisses after a timeout.
+category: Feedback
+status: stable
+icon: toast
+---
+import Toast from "../../../design/feedback/components/toast/Toast.astro";
+import ToastDemo from "./ToastDemo.astro";
+
+## Overview
+
+`Toast` is a brief notification intended for confirmations, errors, and non-blocking status updates. It renders in a fixed corner stack and disappears on its own — no user interaction required. The programmatic API (`toast.client.ts`) is the primary way to show toasts; the static `<Toast>` component handles cases where you need SSR-rendered or pre-positioned toasts.
+
+Defaults: `size="md"`, `variant="soft"`, `color="neutral"`, `dismissible={true}`, `duration=4000`.
+
+---
+
+## Usage
+
+### Programmatic (primary)
+
+Import the controller anywhere in a client script. No SSR markup needed — the region is created on demand.
+
+```ts
+import { toast } from "@/design/feedback/components/toast/toast.client";
+
+toast.success("Workspace saved.");
+toast.error("Failed to save — please try again.", { title: "Save error" });
+toast.warning("You have unsaved changes.");
+toast.info("A new version is available.", { duration: 8000 });
+
+// Generic, full options
+toast.show({
+  message:     "Custom toast",
+  title:       "Heads up",
+  color:       "primary",
+  variant:     "solid",
+  duration:    6000,
+  dismissible: true,
+  position:    "top-end",
+});
+```
+
+<ToastDemo />
+
+Each call returns a function that dismisses the toast immediately if called:
+
+```ts
+const dismiss = toast.info("Processing…", { duration: 0 }); // duration=0 → no auto-dismiss
+// later:
+dismiss();
+```
+
+### Static component
+
+Use the `<Toast>` component when you need a toast rendered in the SSR layer — for example, placed inside a `[data-toast-region]` container in a layout.
+
+```astro
+---
+import Toast from "@/design/feedback/components/toast/Toast.astro";
+---
+<div data-toast-region data-position="bottom-end">
+  <Toast color="success" title="Saved">Your changes have been published.</Toast>
+</div>
+```
+
+<div data-toast-region-demo style="position: relative; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start;">
+  <Toast color="success" title="Workspace saved">Your changes have been published.</Toast>
+  <Toast color="danger" title="Save error">Failed to connect to the server.</Toast>
+  <Toast color="warning">You are offline. Changes will sync when reconnected.</Toast>
+  <Toast color="info">A new version is available — reload to update.</Toast>
+  <Toast color="neutral" dismissible={false}>Background sync complete.</Toast>
+</div>
+
+---
+
+## Color
+
+`color` maps to a semantic role that sets background, border, and text colors via the shared `--feedback--color-*` channels.
+
+```astro
+<Toast color="success">Saved successfully.</Toast>
+<Toast color="danger">Something went wrong.</Toast>
+<Toast color="warning">Low disk space.</Toast>
+<Toast color="info">Your session expires in 5 minutes.</Toast>
+<Toast color="neutral">Sync complete.</Toast>
+<Toast color="primary">Feature flag enabled.</Toast>
+```
+
+| `color` | ARIA `role` | Use for |
+|---|---|---|
+| `success` | `status` | Confirmations, completions |
+| `danger` | `alert` | Errors, failures |
+| `warning` | `alert` | Degraded states, cautions |
+| `info` | `status` | Neutral information |
+| `neutral` | `status` | Background system events |
+| `primary` | `status` | Feature announcements |
+
+Toasts with `role="alert"` (`danger`, `warning`) are announced immediately by screen readers. All others use `role="status"` for polite announcement.
+
+---
+
+## Variant
+
+Same five variants as all feedback components. `soft` (default) is appropriate for most notifications. `solid` works well for high-emphasis confirmations.
+
+```astro
+<Toast variant="soft"     color="success">Soft (default)</Toast>
+<Toast variant="solid"    color="success">Solid</Toast>
+<Toast variant="outlined" color="success">Outlined</Toast>
+<Toast variant="ghost"    color="success">Ghost</Toast>
+```
+
+---
+
+## Title
+
+The optional `title` prop renders a semibold heading above the message body.
+
+```astro
+<Toast color="danger" title="Payment failed">
+  Your card ending in 4242 was declined. Please update your payment method.
+</Toast>
+```
+
+<div style="padding: 1rem 0; max-width: 360px;">
+  <Toast color="danger" title="Payment failed">
+    Your card ending in 4242 was declined. Please update your payment method.
+  </Toast>
+</div>
+
+---
+
+## Icon slot
+
+Provide a leading icon for the `icon` slot. 16–20px SVG recommended.
+
+```astro
+---
+import Icon from "@/design/assets/components/icon/Icon.astro";
+---
+<Toast color="success">
+  <Icon slot="icon" name="check-circle" size="sm" />
+  Deployment complete.
+</Toast>
+```
+
+---
+
+## Dismissible
+
+`dismissible={true}` (default) renders an × button. Set to `false` to suppress it — useful for auto-dismiss-only toasts.
+
+```astro
+<Toast color="info" dismissible={false} duration={2000}>
+  Copying to clipboard…
+</Toast>
+```
+
+---
+
+## Position
+
+The `position` option on the programmatic API controls which corner the stack appears in. Default is `"bottom-end"`.
+
+```ts
+toast.success("Done", { position: "top-end" });
+toast.info("Syncing", { position: "bottom-center" });
+```
+
+| Value | Corner |
+|---|---|
+| `top-start` | Top-left |
+| `top-center` | Top-center |
+| `top-end` | Top-right |
+| `bottom-start` | Bottom-left |
+| `bottom-center` | Bottom-center |
+| `bottom-end` | Bottom-right (default) |
+
+Each position maintains its own independent stack. Multiple positions can be active simultaneously.
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `color` | `ToastColor` | `"neutral"` | Semantic color role. Sets `role="alert"` for `danger`/`warning`. |
+| `variant` | `ToastVariant` | `"soft"` | Visual treatment. |
+| `radius` | `RadiusToken` | `"md"` | Border radius. |
+| `size` | `FeedbackSize` | `"md"` | Spatial scale (font-size, padding). |
+| `title` | `string` | `undefined` | Optional semibold heading above the message. |
+| `dismissible` | `boolean` | `true` | Show dismiss button. |
+| `dismissLabel` | `string` | `"Dismiss"` | `aria-label` for the dismiss button. |
+
+All `BaseComponentProps` are also accepted (`class`, `style`, `id`, spacing props, etc.).
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| default | Message body text. |
+| `icon` | Optional leading icon (16–20px SVG). |
+
+---
+
+## JavaScript API
+
+```ts
+import { toast } from "@/design/feedback/components/toast/toast.client";
+
+// Convenience methods
+toast.success(message, opts?)
+toast.error(message, opts?)
+toast.warning(message, opts?)
+toast.info(message, opts?)
+toast.neutral(message, opts?)
+
+// Full control
+toast.show({ message, title?, color?, variant?, duration?, dismissible?, position? })
+```
+
+### Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `message` | `string` | — | **Required.** Toast body text. |
+| `title` | `string` | `undefined` | Optional heading above the message. |
+| `color` | `ToastColor` | `"neutral"` | Semantic color role. |
+| `variant` | `ToastVariant` | `"soft"` | Visual treatment. |
+| `duration` | `number` | `4000` | Auto-dismiss delay in milliseconds. `0` = never auto-dismiss. |
+| `dismissible` | `boolean` | `true` | Show dismiss button. |
+| `position` | `ToastPosition` | `"bottom-end"` | Viewport corner for the toast stack. |
+
+### Return value
+
+`toast.show()` and all convenience methods return a `() => void` that dismisses the toast immediately when called:
+
+```ts
+const dismiss = toast.info("Uploading…", { duration: 0 });
+// on cancel:
+dismiss();
+```
+
+---
+
+## Accessibility
+
+- `role="alert"` — set automatically for `color="danger"` and `color="warning"`. Announces immediately to screen readers.
+- `role="status"` — used for all other colors. Announces politely without interrupting.
+- The toast region has `aria-live="polite"` and `aria-relevant="additions"`.
+- Dismiss button has an explicit `aria-label` (default `"Dismiss"`).
+- The toast animation respects `prefers-reduced-motion` via the shared `feedback.css` rule.
+
+---
+
+## Related
+
+- **Alert** — inline status message in content flow; persistent, not transient.
+- **Banner** — page-level persistent notice above or below content.
+- **AlertDialog** — blocking confirmation that requires an explicit choice.

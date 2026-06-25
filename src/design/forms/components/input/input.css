@@ -65,8 +65,19 @@
 }
 
 /* Suppress the native focus ring — focus is shown on the wrapper via :focus-within */
-.input__control:focus {
+.input__control:focus,
+.input__control:focus-visible {
   outline: none;
+  box-shadow: none;
+}
+
+/* Suppress Chrome autofill background and text color changes */
+.input__control:-webkit-autofill,
+.input__control:-webkit-autofill:hover,
+.input__control:-webkit-autofill:focus,
+.input__control:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text--primary);
 }
 
 /* Number input — hide browser spinner arrows */

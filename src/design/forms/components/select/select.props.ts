@@ -108,54 +108,17 @@ export type ResolvedSelectOption = SelectOption & {
  * Shared props for both select modes.
  * Not exported — use {@link SelectProps}.
  */
-interface SelectBaseProps extends FormProps {
-  /**
-   * The list of options to display.
-   *
-   * Required — a Select without options is not useful. Rendered as `<option>`
-   * elements by `Select.astro` via the `resolvedOptions` array from
-   * {@link useSelect}.
-   *
-   * @see {@link SelectOption} — shape of each item
-   *
-   * @todo To support `<optgroup>` elements, change this to
-   *   `Array<SelectOption | SelectOptionGroup>`.
-   */
+type SelectBaseProps = FormProps & {
   options: SelectOption[];
-
-  /**
-   * Placeholder text shown as a disabled, unselectable first option.
-   *
-   * When provided, a `<option value="" disabled>` is prepended to the
-   * list. The browser shows it when no `value` is set (uncontrolled) or
-   * when `value` is `undefined`.
-   *
-   * @remarks
-   * Multi-select (`multiple={true}`) semantics make a placeholder
-   * less meaningful — there is no single "nothing selected" visual state.
-   * The prop is still accepted in multi mode but `Select.astro` is
-   * responsible for deciding whether to render it.
-   *
-   * @example `placeholder="Select a country…"`
-   */
   placeholder?: string;
-
-  /**
-   * The `id` attribute for the `<select>` element.
-   *
-   * Routes to the inner `<select>` element (not the wrapper `<div>`)
-   * so that `<label for="…">` associates correctly with the control.
-   *
-   * @see {@link InputProps.id} — same requirement and routing as Input
-   */
   id?: string;
-}
+};
 
 /**
  * Props for single-selection mode. `multiple` is absent or `false`.
  * Not exported — use {@link SelectProps}.
  */
-interface SelectSingleProps extends SelectBaseProps {
+type SelectSingleProps = SelectBaseProps & {
   /**
    * Absent or explicitly `false` selects single-value mode.
    * Renders a standard `<select>` element.
@@ -171,13 +134,13 @@ interface SelectSingleProps extends SelectBaseProps {
    * option or the `placeholder` if provided).
    */
   value?: string;
-}
+};
 
 /**
  * Props for multi-selection mode. `multiple` must be exactly `true`.
  * Not exported — use {@link SelectProps}.
  */
-interface SelectMultiProps extends SelectBaseProps {
+type SelectMultiProps = SelectBaseProps & {
   /**
    * `true` enables multi-selection mode.
    * Renders `<select multiple>` — the user can select multiple options
@@ -200,7 +163,7 @@ interface SelectMultiProps extends SelectBaseProps {
    * `undefined` means nothing is selected.
    */
   value?: string[];
-}
+};
 
 // ─── PUBLIC UNION TYPE ───────────────────────────────────────────────────────
 

@@ -50,6 +50,19 @@ export const SCALE_DEFS = {
     "3xl": "var(--fs--3xl)",
     "4xl": "var(--fs--4xl)",
   },
+  // Fixed (non-responsive) scale for UI elements inside constrained components
+  // (labels, badges, form helper text). Use --fsf--* vars, never --fs--*.
+  TEXT_SIZE_FIXED: {
+    "2xs": "var(--fsf--2xs)",
+    xs:    "var(--fsf--xs)",
+    sm:    "var(--fsf--sm)",
+    md:    "var(--fsf--md)",
+    lg:    "var(--fsf--lg)",
+    xl:    "var(--fsf--xl)",
+    "2xl": "var(--fsf--2xl)",
+    "3xl": "var(--fsf--3xl)",
+    "4xl": "var(--fsf--4xl)",
+  },
   LABEL_SIZE: {
     "2xs": "var(--label--2xs)",
     xs:    "var(--label--xs)",
@@ -98,6 +111,13 @@ export const SCALE_DEFS = {
     info:      null,
     neutral:   null,
   },
+  VARIANT: {
+    solid:    null,
+    soft:     null,
+    outlined: null,
+    ghost:    null,
+    dashed:   null,
+  },
   TEXT_COLOR: {
     primary:    "var(--text--primary)",
     secondary:  "var(--text--secondary)",
@@ -107,6 +127,10 @@ export const SCALE_DEFS = {
     inverse:    "var(--text--inverse)",
     "on-color": "var(--text--on-color)",
     inherit:    "inherit",
+    success:    "var(--success--text)",
+    danger:     "var(--danger--text)",
+    warning:    "var(--warning--text)",
+    info:       "var(--info--text)",
   },
   ALIGN: {
     start:    "flex-start",

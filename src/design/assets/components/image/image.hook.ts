@@ -10,17 +10,14 @@ export function useImage(props: ImageProps) {
     src,
     alt,
     ratio,
-    fit     = IMAGE_DEFAULTS.fit,
-    loading = IMAGE_DEFAULTS.loading,
+    fit          = IMAGE_DEFAULTS.fit,
+    imgLoading   = IMAGE_DEFAULTS.loading,
     radius,
     width,
     height,
     class: className,
     v:      _v,
-    testId: _testId,
-    animation,
-    ...rest
-  } = props;
+    ...base } = props;
 
   const { style: tokenStyle, classes: tokenClasses } = resolveTokens(
     IMAGE_TOKENS,
@@ -28,18 +25,17 @@ export function useImage(props: ImageProps) {
     "image",
   );
 
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest } = useBaseCompose(
     {
       className: [
         "image",
         ratio     && "image--ratio",
-        animation && `animate-${animation}`,
         ...tokenClasses,
         className,
       ],
       style: [...tokenStyle],
     },
-    props,
+    base,
   );
 
   return {
@@ -50,7 +46,7 @@ export function useImage(props: ImageProps) {
       ...rest,
       src,
       alt,
-      loading,
+      loading: imgLoading,
       width,
       height,
     },

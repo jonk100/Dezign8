@@ -47,7 +47,7 @@ const { defaultActiveId, class: className, ...rest } = Astro.props;
       
       // If no default, use the first tab
       if (!activeId && tabs.length > 0) {
-        activeId = tabs[0].getAttribute('data-tab-id') || tabs[0].id.replace(/^tab-/, '');
+        activeId = tabs[0]!.getAttribute('data-tab-id') || tabs[0]!.id.replace(/^tab-/, '');
       }
       
       const activateTab = (id: string | null | undefined) => {
@@ -109,7 +109,7 @@ const { defaultActiveId, class: className, ...rest } = Astro.props;
             let nextIndex = index + dir;
             if (nextIndex < 0) nextIndex = enabledTabs.length - 1;
             if (nextIndex >= enabledTabs.length) nextIndex = 0;
-            const nextTab = enabledTabs[nextIndex];
+            const nextTab = enabledTabs[nextIndex]!;
             nextTab.focus();
             // Automatically activate on focus (standard tab behavior)
             activateTab(nextTab.getAttribute('data-tab-id') || nextTab.id.replace(/^tab-/, ''));

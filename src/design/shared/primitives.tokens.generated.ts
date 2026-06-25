@@ -49,6 +49,20 @@ export const TEXT_SIZE = scale({
 
 export type TextSize = keyof typeof TEXT_SIZE;
 
+export const TEXT_SIZE_FIXED = scale({
+  "2xs": "var(--fsf--2xs)",
+  xs:    "var(--fsf--xs)",
+  sm:    "var(--fsf--sm)",
+  md:    "var(--fsf--md)",
+  lg:    "var(--fsf--lg)",
+  xl:    "var(--fsf--xl)",
+  "2xl": "var(--fsf--2xl)",
+  "3xl": "var(--fsf--3xl)",
+  "4xl": "var(--fsf--4xl)",
+});
+
+export type TextSizeFixed = keyof typeof TEXT_SIZE_FIXED;
+
 export const LABEL_SIZE = scale({
   "2xs": "var(--label--2xs)",
   xs:    "var(--label--xs)",
@@ -115,6 +129,16 @@ export const COLOR_ROLE = scale({
 
 export type ColorRole = keyof typeof COLOR_ROLE;
 
+export const VARIANT = scale({
+  solid:    null,
+  soft:     null,
+  outlined: null,
+  ghost:    null,
+  dashed:   null,
+});
+
+export type Variant = keyof typeof VARIANT;
+
 export const TEXT_COLOR = scale({
   primary:    "var(--text--primary)",
   secondary:  "var(--text--secondary)",
@@ -124,6 +148,10 @@ export const TEXT_COLOR = scale({
   inverse:    "var(--text--inverse)",
   "on-color": "var(--text--on-color)",
   inherit:    "inherit",
+  success:    "var(--success--text)",
+  danger:     "var(--danger--text)",
+  warning:    "var(--warning--text)",
+  info:       "var(--info--text)",
 });
 
 export type TextColor = keyof typeof TEXT_COLOR;

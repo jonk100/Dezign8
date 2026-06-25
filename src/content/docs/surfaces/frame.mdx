@@ -3,9 +3,12 @@ title: Frame Component
 description: Aspect-ratio bounded media container.
 category: Surfaces
 status: stable
+icon: frame
 ---
 
 import Frame from "~/surfaces/components/frame/Frame.astro";
+import { PropsApi } from "~/components/PropsApi";
+import { FrameProps } from "~/surfaces/components/frame/frame.props";
 
 ## Overview
 
@@ -55,7 +58,7 @@ By default, `Frame` applies `overflow: hidden` to clip content to its border rad
 
 <div style="margin-bottom: 2rem; max-width: 300px;">
   <Frame ratio="16/9" radius="lg" variant="outlined">
-    <!-- Demonstrating automatic fitting -->
+    {/* Demonstrating automatic fitting */}
     <div style="background: linear-gradient(45deg, var(--primary--base), var(--accent--base)); width: 100%; height: 100%;"></div>
   </Frame>
 </div>
@@ -65,3 +68,7 @@ By default, `Frame` applies `overflow: hidden` to clip content to its border rad
   <img src="/photo.jpg" alt="" />
 </Frame>
 ```
+
+## Props API
+
+<PropsApi props={FrameProps} />

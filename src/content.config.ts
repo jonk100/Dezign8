@@ -8,27 +8,30 @@ const docs = defineCollection({
     // Core details
     title: z.string().describe("The name of the component or documentation page."),
     description: z.string().describe("A brief, actionable description of what the component does or when to use it."),
-    
+
     // Categorization for automated sidebars and grouping
     category: z.enum([
-      'Layout', 
-      'Surfaces', 
-      'Triggers', 
-      'Forms', 
-      'Overlays', 
-      'Nav', 
-      'Feedback', 
-      'Assets', 
-      'Data', 
-      'Typography', 
+      'Layout',
+      'Surfaces',
+      'Triggers',
+      'Forms',
+      'Overlays',
+      'Nav',
+      'Feedback',
+      'Assets',
+      'Data',
+      'Typography',
       'Core'
     ]).optional().describe("The design system category this component belongs to."),
-    
+
     // Lifecycle management to set developer expectations
     status: z.enum(['draft', 'experimental', 'stable', 'deprecated']).default('draft'),
     version: z.string().optional().describe("The version of the library where this was introduced."),
-    
-    
+
+
+    // Icon from the design system icon registry (kebab-case SVG name)
+    icon: z.string().optional(),
+
     // References for cross-functional alignment
     links: z.object({
       figma: z.url().optional(),
@@ -38,3 +41,7 @@ const docs = defineCollection({
 });
 
 export const collections = { docs };
+
+
+// AQ.Ab8RN6I-y8WoNZDxwN3QrPCrCYcGM-ymn2lXN-czrY5rSOHzmg
+// AQ.Ab8RN6I-y8WoNZDxwN3QrPCrCYcGM-ymn2lXN-czrY5rSOHzmg

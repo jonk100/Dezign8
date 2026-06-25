@@ -1,0 +1,163 @@
+/* ============================================================
+   drawer.css
+   ─────────────────────────────────────────────────────────────
+   Slide-in panel using native <dialog showModal()>.
+   Placement modifier classes position and animate the panel;
+   size modifier classes set --drawer--cross-size which the
+   placement classes consume for width (side) or height (sheet).
+   ============================================================ */
+
+/* ── reset dialog defaults ─────────────────────────────────── */
+
+.drawer {
+  margin:     0;
+  padding:    0;
+  border:     none;
+  outline:    none;
+  max-width:  none;
+  max-height: none;
+  overflow:   visible;
+}
+
+/* ── card chrome ───────────────────────────────────────────── */
+
+.drawer {
+  display:          flex;
+  flex-direction:   column;
+  background-color: var(--bg--2);
+  color:            var(--text--primary);
+  box-shadow:       var(--shadow--xl);
+}
+
+/* ── backdrop ──────────────────────────────────────────────── */
+
+.drawer::backdrop {
+  background-color: var(--bg--5-glass);
+  backdrop-filter:  blur(var(--blur--sm));
+}
+
+/* ── open/close transitions ────────────────────────────────── */
+
+.drawer {
+  transition:
+    transform var(--transition--base) allow-discrete,
+    opacity   var(--transition--base) allow-discrete,
+    display   var(--transition--base) allow-discrete;
+}
+
+.drawer::backdrop {
+  transition:
+    opacity var(--transition--base) allow-discrete,
+    display var(--transition--base) allow-discrete;
+}
+
+@starting-style {
+  .drawer--placement-end[open]    { transform: translateX(100%);  opacity: 0; }
+  .drawer--placement-start[open]  { transform: translateX(-100%); opacity: 0; }
+  .drawer--placement-top[open]    { transform: translateY(-100%); opacity: 0; }
+  .drawer--placement-bottom[open] { transform: translateY(100%);  opacity: 0; }
+
+  .drawer[open]::backdrop { opacity: 0; }
+}
+
+/* ── size modifiers — set --drawer--cross-size ─────────────── */
+
+.drawer--size-sm { --drawer--cross-size: min(280px, 90dvw); }
+.drawer--size-md { --drawer--cross-size: min(360px, 90dvw); }
+.drawer--size-lg { --drawer--cross-size: min(480px, 90dvw); }
+
+/* ── placement modifiers ────────────────────────────────────── */
+
+.drawer--placement-end {
+  width:         var(--drawer--cross-size, min(360px, 90dvw));
+  height:        100dvh;
+  margin-left:   auto;
+  border-left:   1px solid var(--border--default);
+  border-radius: var(--radius--lg) 0 0 var(--radius--lg);
+}
+
+.drawer--placement-start {
+  width:         var(--drawer--cross-size, min(360px, 90dvw));
+  height:        100dvh;
+  margin-right:  auto;
+  border-right:  1px solid var(--border--default);
+  border-radius: 0 var(--radius--lg) var(--radius--lg) 0;
+}
+
+.drawer--placement-bottom {
+  width:         100dvw;
+  height:        var(--drawer--cross-size, min(360px, 90dvh));
+  margin-top:    auto;
+  border-top:    1px solid var(--border--default);
+  border-radius: var(--radius--lg) var(--radius--lg) 0 0;
+}
+
+.drawer--placement-top {
+  width:          100dvw;
+  height:         var(--drawer--cross-size, min(360px, 90dvh));
+  margin-bottom:  auto;
+  border-bottom:  1px solid var(--border--default);
+  border-radius:  0 0 var(--radius--lg) var(--radius--lg);
+}
+
+/* full size — override comes after placement to win on border-radius */
+.drawer--size-full {
+  --drawer--cross-size: 100%;
+  border-radius:        0;
+  border:               none;
+}
+
+/* ── inner layout ───────────────────────────────────────────── */
+
+.drawer__header {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             var(--space-in--sm);
+  padding:         var(--space-in--md) var(--space-in--lg);
+  border-bottom:   1px solid var(--border--subtle);
+  flex-shrink:     0;
+}
+
+.drawer__title {
+  font-size:   var(--fsf--md);
+  font-weight: var(--weight--semibold);
+  color:       var(--text--primary);
+  margin:      0;
+}
+
+.drawer__close-btn {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           2rem;
+  height:          2rem;
+  border-radius:   var(--radius--md);
+  border:          none;
+  background:      transparent;
+  color:           var(--text--muted);
+  cursor:          pointer;
+  flex-shrink:     0;
+  transition:      background-color 120ms ease, color 120ms ease;
+}
+
+.drawer__close-btn:hover {
+  background-color: var(--bg--3);
+  color:            var(--text--primary);
+}
+
+.drawer__body {
+  flex:       1;
+  padding:    var(--space-in--lg);
+  overflow-y: auto;
+}
+
+.drawer__footer {
+  display:         flex;
+  align-items:     center;
+  justify-content: flex-end;
+  gap:             var(--space-in--sm);
+  padding:         var(--space-in--md) var(--space-in--lg);
+  border-top:      1px solid var(--border--subtle);
+  flex-shrink:     0;
+}

@@ -59,7 +59,20 @@
   opacity: 1;
 }
 
-.search__control:focus { outline: none; }
+.search__control:focus,
+.search__control:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Suppress Chrome autofill background and text color changes */
+.search__control:-webkit-autofill,
+.search__control:-webkit-autofill:hover,
+.search__control:-webkit-autofill:focus,
+.search__control:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text--primary);
+}
 
 /* Remove native search chrome (cancel button, decoration) */
 .search__control::-webkit-search-cancel-button,

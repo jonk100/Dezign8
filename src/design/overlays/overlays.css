@@ -1,0 +1,167 @@
+/* overlays.css — shared dialog chrome, backdrop, animations */
+
+/*
+ * CSS channels written by modal/alert-dialog hooks:
+ *   --modal--radius        border-radius of the dialog panel
+ */
+
+/* ── shared entry/exit keyframe ──────────────────────────── */
+
+@keyframes overlays-in {
+  from {
+    opacity:   0;
+    transform: scale(0.95) translateY(-0.5rem);
+  }
+  to {
+    opacity:   1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── dialog reset + chrome ───────────────────────────────── */
+
+.modal,
+.alert-dialog {
+  /* reset browser dialog defaults */
+  margin:     0;
+  padding:    0;
+  border:     none;
+  outline:    none;
+  max-width:  none;
+  max-height: none;
+  overflow:   visible;
+
+  /* card chrome */
+  background-color: var(--bg--2);
+  border:           1px solid var(--border--default);
+  border-radius:    var(--modal--radius, var(--radius--lg));
+  box-shadow:       var(--shadow--xl);
+  color:            var(--text--primary);
+
+  /* entry animation */
+  animation: overlays-in var(--duration--base) var(--ease--spring) both;
+}
+
+/* size classes — dialog panel width */
+
+.overlay--size-xs   { width: min(360px,  95dvw); }
+.overlay--size-sm   { width: min(480px,  95dvw); }
+.overlay--size-md   { width: min(600px,  95dvw); }
+.overlay--size-lg   { width: min(760px,  95dvw); }
+.overlay--size-xl   { width: min(960px,  95dvw); }
+
+.overlay--size-full {
+  width:  100dvw;
+  height: 100dvh;
+  border-radius: 0;
+  border: none;
+}
+
+/* variant: placement */
+
+.overlay--variant-default {
+  /* top-center: standard dialog position */
+  margin: 10dvh auto auto auto;
+}
+
+.overlay--variant-centered {
+  /* centered: use <dialog> native centering */
+  margin: auto;
+}
+
+/* fullscreen handled by size-full above */
+
+/* ── backdrop ────────────────────────────────────────────── */
+
+.modal::backdrop,
+.alert-dialog::backdrop {
+  background-color: var(--bg--5-glass);
+  backdrop-filter:  blur(var(--blur--sm));
+}
+
+/* ── open/close transitions (modern browsers) ────────────── */
+
+.modal,
+.alert-dialog {
+  transition:
+    opacity    var(--transition--base) allow-discrete,
+    transform  var(--transition--base) allow-discrete,
+    display    var(--transition--base) allow-discrete;
+}
+
+.modal::backdrop,
+.alert-dialog::backdrop {
+  transition:
+    opacity     var(--transition--base) allow-discrete,
+    display     var(--transition--base) allow-discrete;
+}
+
+@starting-style {
+  .modal[open],
+  .alert-dialog[open] {
+    opacity:   0;
+    transform: scale(0.95) translateY(-0.5rem);
+  }
+
+  .modal[open]::backdrop,
+  .alert-dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+/* ── inner layout ────────────────────────────────────────── */
+
+.modal__header,
+.alert-dialog__header {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         var(--space-in--md) var(--space-in--lg);
+  border-bottom:   1px solid var(--border--subtle);
+  gap:             var(--space-in--sm);
+}
+
+.modal__title,
+.alert-dialog__title {
+  font-size:   var(--fsf--md);
+  font-weight: var(--weight--semibold);
+  color:       var(--text--primary);
+  margin:      0;
+}
+
+.modal__close-btn {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           2rem;
+  height:          2rem;
+  border-radius:   var(--radius--md);
+  border:          none;
+  background:      transparent;
+  color:           var(--text--muted);
+  cursor:          pointer;
+  flex-shrink:     0;
+  transition:      background-color 120ms ease, color 120ms ease;
+}
+
+.modal__close-btn:hover {
+  background-color: var(--bg--3);
+  color:            var(--text--primary);
+}
+
+.modal__body,
+.alert-dialog__body {
+  padding:    var(--space-in--lg);
+  overflow-y: auto;
+  max-height: 70dvh;
+}
+
+.modal__footer,
+.alert-dialog__footer {
+  display:         flex;
+  align-items:     center;
+  justify-content: flex-end;
+  padding:         var(--space-in--md) var(--space-in--lg);
+  border-top:      1px solid var(--border--subtle);
+  gap:             var(--space-in--sm);
+}

@@ -3,33 +3,27 @@
 import type { IconProps } from "./icon.props";
 import { ICON_DEFAULTS, ICON_TOKENS } from "./icon.tokens";
 import { resolveTokens } from "~/shared/tokens";
-import { composeClass, composeStyle, useBaseCompose } from "~/shared/base.hook";
+import { useBaseCompose } from "~/shared/base.hook";
 
 export function useIcon(props: IconProps) {
   const {
     name,
     size = ICON_DEFAULTS.size,
-    ...rest
-  } = props;
+    class: className,
+    ...base } = props;
 
-  const { class: resolvedClass, style: resolvedStyle, attributes } = resolveTokens(ICON_TOKENS, { size }, "icon");
+  const { style: tokenStyle, classes: tokenClasses } = resolveTokens(ICON_TOKENS, { size }, "icon");
 
-  const baseProps = useBaseCompose(rest);
+  const { className: cls, style, attrs, rest } = useBaseCompose(
+    {
+      className: ["icon", ...tokenClasses, className],
+      style: tokenStyle,
+    },
+    base,
+  );
 
   return {
     name,
-    props: {
-      ...baseProps,
-      class: composeClass(
-        resolvedClass,
-        "icon",
-        baseProps.class
-      ),
-      style: composeStyle(
-        resolvedStyle,
-        baseProps.style
-      ),
-      ...attributes,
-    },
+    props: { class: cls, style: style || undefined, ...attrs, ...rest },
   };
 }

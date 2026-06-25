@@ -1,0 +1,190 @@
+---
+title: Drawer
+description: A slide-in panel anchored to a viewport edge, built on native <dialog> for focus trapping and top-layer rendering.
+category: Overlays
+status: stable
+icon: sheet
+---
+import Drawer from "../../../design/overlays/components/drawer/Drawer.astro";
+import Button from "../../../design/triggers/components/button/Button.astro";
+
+## Overview
+
+`Drawer` is a panel that slides in from any edge of the viewport — end (right), start (left), top, or bottom. It uses the native `<dialog showModal()>` element for built-in focus trapping, backdrop, and Escape-key dismissal. Open it with `data-drawer-open` on any button, or imperatively via the `drawer` controller.
+
+Defaults: `placement="end"`, `size="md"`, `closeOnBackdrop={true}`, `closeOnEsc={true}`.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+---
+import Drawer from "@/design/overlays/components/drawer/Drawer.astro";
+---
+<button data-drawer-open="my-drawer">Open drawer</button>
+
+<Drawer id="my-drawer" title="Settings">
+  <p>Drawer content goes here.</p>
+</Drawer>
+```
+
+<button data-drawer-open="demo-drawer-basic">Open drawer</button>
+
+<Drawer id="demo-drawer-basic" title="Settings">
+  <p>Drawer content goes here. Use the × button or click outside to dismiss.</p>
+</Drawer>
+
+---
+
+## Placement
+
+`placement` controls which edge the drawer slides in from.
+
+```astro
+<Drawer id="drawer-end"    placement="end"    title="End (default)" />
+<Drawer id="drawer-start"  placement="start"  title="Start" />
+<Drawer id="drawer-bottom" placement="bottom" title="Bottom sheet" />
+<Drawer id="drawer-top"    placement="top"    title="Top bar" />
+```
+
+<div style="display: flex; flex-wrap: wrap; gap: var(--space-in--sm);">
+  <Button data-drawer-open="demo-end">End</Button>
+  <Button data-drawer-open="demo-start">Start</Button>
+  <Button data-drawer-open="demo-bottom">Bottom</Button>
+  <Button data-drawer-open="demo-top">Top</Button>
+</div>
+
+<Drawer id="demo-end"    placement="end"    title="End drawer">
+  <p>Slides in from the right.</p>
+</Drawer>
+<Drawer id="demo-start"  placement="start"  title="Start drawer">
+  <p>Slides in from the left.</p>
+</Drawer>
+<Drawer id="demo-bottom" placement="bottom" title="Bottom sheet">
+  <p>Slides in from the bottom — useful for mobile action sheets.</p>
+</Drawer>
+<Drawer id="demo-top"    placement="top"    title="Top drawer">
+  <p>Slides in from the top — useful for notifications or search.</p>
+</Drawer>
+
+---
+
+## Size
+
+`size` controls the cross-axis dimension — width for side drawers, height for top/bottom.
+
+```astro
+<Drawer id="drawer-sm"   size="sm"   title="Small" />
+<Drawer id="drawer-md"   size="md"   title="Medium (default)" />
+<Drawer id="drawer-lg"   size="lg"   title="Large" />
+<Drawer id="drawer-full" size="full" title="Full screen" />
+```
+
+| `size` | Side (width) | Top/Bottom (height) |
+|---|---|---|
+| `sm`   | 280px | 280px |
+| `md`   | 360px | 360px |
+| `lg`   | 480px | 480px |
+| `full` | 100%  | 100%  |
+
+<div style="display: flex; flex-wrap: wrap; gap: var(--space-in--sm);">
+  <Button data-drawer-open="demo-sz-sm">Small</Button>
+  <Button data-drawer-open="demo-sz-md">Medium</Button>
+  <Button data-drawer-open="demo-sz-lg">Large</Button>
+  <Button data-drawer-open="demo-sz-full">Full</Button>
+</div>
+
+<Drawer id="demo-sz-sm"   size="sm"   title="Small drawer"><p>sm — 280px wide</p></Drawer>
+<Drawer id="demo-sz-md"   size="md"   title="Medium drawer"><p>md — 360px wide (default)</p></Drawer>
+<Drawer id="demo-sz-lg"   size="lg"   title="Large drawer"><p>lg — 480px wide</p></Drawer>
+<Drawer id="demo-sz-full" size="full" title="Full screen"><p>full — 100% of viewport</p></Drawer>
+
+---
+
+## Footer slot
+
+Provide action buttons in the `footer` slot for confirm/cancel patterns.
+
+```astro
+<Drawer id="drawer-footer" title="Confirm action">
+  <p>Are you sure you want to proceed?</p>
+  <Button slot="footer" data-drawer-close="drawer-footer">Cancel</Button>
+  <Button slot="footer" variant="solid" color="primary">Confirm</Button>
+</Drawer>
+```
+
+<button data-drawer-open="demo-footer">Open with footer</button>
+
+<Drawer id="demo-footer" title="Confirm action">
+  <p>Are you sure you want to proceed?</p>
+  <Button slot="footer" data-drawer-close="demo-footer">Cancel</Button>
+  <Button slot="footer" variant="solid" color="primary">Confirm</Button>
+</Drawer>
+
+---
+
+## Programmatic API
+
+```ts
+import { drawer } from "@/design/overlays/components/drawer/drawer.client";
+
+drawer.open("my-drawer");
+drawer.close("my-drawer");
+```
+
+Custom events are dispatched on `window` when a drawer opens or closes:
+
+```ts
+window.addEventListener("drawer:open",  (e) => console.log(e.detail.id));
+window.addEventListener("drawer:close", (e) => console.log(e.detail.id));
+```
+
+---
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | — | **Required.** Used to wire triggers and the close button. |
+| `title` | `string` | `undefined` | Optional heading in the drawer header. |
+| `placement` | `DrawerPlacement` | `"end"` | Which edge to slide in from. |
+| `size` | `DrawerSize` | `"md"` | Cross-axis panel size (width for side, height for top/bottom). |
+| `closeOnBackdrop` | `boolean` | `true` | Close when clicking the backdrop. |
+| `closeOnEsc` | `boolean` | `true` | Close on Escape key press. |
+
+All `BaseComponentProps` are accepted (`class`, `style`, `id`, etc.).
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| default | Main body content. |
+| `footer` | Action row rendered at the bottom (confirm/cancel buttons). |
+
+## Declarative triggers
+
+| Attribute | Value | Behaviour |
+|---|---|---|
+| `data-drawer-open` | drawer `id` | Opens the named drawer on click. |
+| `data-drawer-close` | drawer `id` | Closes the named drawer on click (auto-wired inside the drawer). |
+
+---
+
+## Accessibility
+
+- Native `<dialog>` provides automatic focus trapping while open.
+- Focus returns to the trigger element on close.
+- Backdrop click and Escape dismissal are configurable via `closeOnBackdrop` / `closeOnEsc`.
+- The close button has `aria-label="Close"`.
+- When `title` is set, `aria-labelledby` links the dialog to the heading.
+
+---
+
+## Related
+
+- **Modal** — centered dialog; use for confirmations and short forms.
+- **AlertDialog** — destructive confirmations that require an explicit choice.
+- **Popover** — non-modal floating panel for menus, pickers, and hints.

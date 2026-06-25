@@ -5,22 +5,28 @@ import { TRIGGER_TOKENS } from "./trigger.tokens";
 import { resolveTokens } from "~/shared/tokens";
 import { resolveColorChannels } from "~/shared/primitives.tokens";
 import { useBaseCompose } from "~/shared/base.hook";
+import type { TriggerVariant } from "./trigger.tokens";
 
 export function useTrigger(props: TriggerProps) {
   const {
     size     = "md",
-    v,
-    variant  = v ?? "solid",
+    variant  = (props.v ?? "solid") as TriggerVariant,
     color    = "primary",
     radius   = "md",
     disabled = false,
     loading  = false,
+    type     = "button",
+    href,
+    target,
+    rel,
     class: className,
-    testId: _testId,
     bg,
-    animation,
-    ...rest
+    m,
+    ...base
   } = props;
+
+  const isLink     = Boolean(href);
+  const isDisabled = disabled || loading;
 
   const { style: tokenStyle, classes: tokenClasses } = resolveTokens(
     TRIGGER_TOKENS,
@@ -28,17 +34,15 @@ export function useTrigger(props: TriggerProps) {
     "trigger",
   );
 
-
   const colorStyle = resolveColorChannels(color, "trigger");
 
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest } = useBaseCompose(
     {
       className: [
         "trigger",
         ...tokenClasses,
         disabled  && "trigger--disabled",
         loading   && "trigger--loading",
-        animation && `animate-${animation}`,
         className,
       ],
       style: [
@@ -46,17 +50,38 @@ export function useTrigger(props: TriggerProps) {
         ...colorStyle,
         bg && `--trigger--bg: ${bg}`,
       ],
+      disabled: isDisabled,
+      loading,
     },
-    props,
+    base,
   );
 
+  const Tag = isLink ? "a" : "button";
+
+  const resolvedRel = isLink
+    ? (rel ?? (target === "_blank" ? "noopener noreferrer" : undefined))
+    : undefined;
+  const linkDisabledAttrs = isLink && isDisabled ? {
+    tabindex: "-1",
+    style: "pointer-events: none;"
+  } : {};
+
   return {
+    Tag,
     triggerClass:  cls,
     triggerStyle:  style,
-    triggerAttrs:  attrs,
+    triggerAttrs:  {
+      ...attrs,
+      ...linkDisabledAttrs,
+      type:           !isLink ? type : undefined,
+      href:           isLink  ? href : undefined,
+      target:         isLink  ? target : undefined,
+      rel:            resolvedRel,
+      disabled:       !isLink && isDisabled ? true : undefined,
+    },
     disabled,
     loading,
-    size, 
+    size,
     rest,
   };
 }

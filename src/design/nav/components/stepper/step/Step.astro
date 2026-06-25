@@ -18,7 +18,7 @@ const { Tag, isLast, label, description, stepNumber, stepProps } = useStep(Astro
 const CheckIcon = icons.check;
 ---
 
-<li {...stepProps}>
+<li {...stepProps as Record<string, unknown>}>
   <Tag class="stepper__step-content">
     <span class="stepper__indicator" aria-hidden="true">
       {stepProps["data-state"] === "complete" ? (

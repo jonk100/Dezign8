@@ -1,0 +1,27 @@
+Yes, there is unused code in the `src/design/surfaces` directory. Specifically:
+
+1. Unused Barrel Files (`index.ts` files):
+None of the following barrel files are imported anywhere in the codebase (importers directly reference `.astro`, `.hook`, or `.props` files instead):
+- `src/design/surfaces/components/index.ts`
+- `src/design/surfaces/components/card/index.ts`
+- `src/design/surfaces/components/frame/index.ts`
+- `src/design/surfaces/components/panel/index.ts`
+- `src/design/surfaces/components/paper/index.ts`
+- `src/design/surfaces/components/section/index.ts`
+- `src/design/surfaces/components/tile/index.ts`
+- `src/design/surfaces/components/well/index.ts`
+
+2. Empty File:
+- `src/design/surfaces/components/frame/frame.ts` (This file is completely empty and unused).
+
+3. Unused Exports:
+The following types and constants are exported but never imported by any other files:
+- `CARD_TOKENS`, `CardLayer`, `CardPadding`, `CardRadius`, `CardColor` in `src/design/surfaces/components/card/card.tokens.ts`
+- `FrameTag` in `src/design/surfaces/components/frame/frame.props.ts`
+- `PanelTag` in `src/design/surfaces/components/panel/panel.props.ts`
+- `SectionTag` in `src/design/surfaces/components/section/section.props.ts`
+- `TileTag` in `src/design/surfaces/components/tile/tile.props.ts`
+- `WellTag` in `src/design/surfaces/components/well/well.props.ts`
+- `SurfaceVariant` in `src/design/surfaces/surface.props.ts`
+
+*(Note: While some code analysis tools might flag `.hook.ts` files like `card.hook.ts` as unused due to lack of standard TS importers, they are genuinely imported and used by their corresponding `.astro` component files).*

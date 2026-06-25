@@ -3,6 +3,7 @@ title: Tile Component
 description: Small interactive grid item. Inherits surface properties and supports interactive and selectable states.
 category: Surfaces
 status: stable
+icon: tile
 ---
 
 import Tile from "~/surfaces/components/tile/Tile.astro";
@@ -18,11 +19,11 @@ import Tile from "~/surfaces/components/tile/Tile.astro";
 The `interactive` prop enables a slight hover lift and pointer cursor. If you provide an `href` prop, the component automatically renders as an `<a>` tag and becomes interactive.
 
 <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
-  <Tile interactive padding="md" style="width: 150px; text-align: center;">
+  <Tile interactive padding="md" >
     Hover Me
   </Tile>
 
-  <Tile href="/dashboard" padding="md" style="width: 150px; text-align: center;">
+  <Tile href="/dashboard" padding="md" >
     Linked Tile
   </Tile>
 </div>

@@ -279,18 +279,39 @@ missing one is a consumer reaching for inline styles instead.
 
 ---
 
-## `loading` prop
+## `loading` and `disabled` props
 
-`loading` lives in `BaseComponentProps`. Every component gets it. `useBaseCompose`
-emits `data-loading="true"` on the root element automatically.
+Both live in `BaseComponentProps`. Every component gets them. `useBaseCompose`
+emits the corresponding accessible attributes automatically:
 
-**Category hooks must still destructure `loading`** to prevent it leaking to the
-DOM as the HTML attribute `loading="true"`:
+| prop | attrs emitted by `useBaseCompose` |
+|---|---|
+| `loading={true}` | `data-loading="true"` + `aria-busy="true"` |
+| `disabled={true}` | `data-disabled=""` + `aria-disabled="true"` |
+
+**For `loading`:** category hooks that need to suppress loading on specific tags
+must destructure it before passing `base` to `useBaseCompose`:
 
 ```ts
 const { loading, …rest } = props;
-// destructured but not forwarded — useBaseCompose handles it
+// destructured but not forwarded — useBaseCompose handles aria-busy + data-loading
 ```
+
+**For `disabled`:** hooks with conditional disabled logic (card, tile: `!isLink && disabled`)
+must pass the **computed** state via `BaseComposeOptions`, not the raw prop:
+
+```ts
+const isDisabled = !isLink && disabled;
+
+const { … } = useSurface({
+  …surfaceProps,
+  disabled: isDisabled,   // passes through to useBaseCompose options
+});
+// aria-disabled + data-disabled are emitted for isDisabled, not for link cards
+```
+
+Simple components where `disabled` maps directly (no conditional) can let the raw prop
+flow through `base` without any extra options.
 
 Each component implements its own loading UI. For data components that means
 `<Skeleton />` rows/cells. For simpler components (Button, Badge), implement
@@ -522,7 +543,8 @@ These are separate concerns from the visual surface props:
 1. Destructure behavioral props in the component hook before calling `useSurface`
 2. Derive intent flags (`isLink`, `isToggle`, `isInteractive`, `isDisabled`)
 3. Override `Tag` based on derived flags
-4. Spread behavioral attrs alongside `surfaceAttrs` in the return
+4. Pass `disabled: isDisabled` into `useSurface` — it flows to `useBaseCompose` which emits `aria-disabled` + `data-disabled`
+5. Spread behavioral attrs alongside `surfaceAttrs` in the return
 
 ```ts
 // card.hook.ts
@@ -533,14 +555,20 @@ const isToggle      = !isLink && selectable;
 const isInteractive = !isLink && (interactive || selectable);
 const isDisabled    = !isLink && disabled;
 
+// pass computed disabled so link cards aren't spuriously marked disabled
+const { surfaceClass, surfaceStyle, surfaceAttrs, rest } = useSurface({
+  …surfaceProps,
+  disabled: isDisabled,   // useBaseCompose emits aria-disabled + data-disabled
+});
+
 return {
   Tag: isLink ? "a" : Tag,
   props: {
-    …surfaceAttrs,
-    role:           isToggle   ? "button"        : undefined,
+    …surfaceAttrs,          // aria-disabled + data-disabled already here
+    role:           isToggle      ? "button"         : undefined,
     tabindex:       isInteractive ? (isDisabled ? -1 : 0) : undefined,
-    "aria-pressed": isToggle   ? String(selected) : undefined,
-    "aria-disabled":isDisabled ? "true"           : undefined,
+    "aria-pressed": isToggle      ? String(selected)  : undefined,
+    "data-selected":isToggle      ? String(selected)  : undefined,
   },
 };
 ```

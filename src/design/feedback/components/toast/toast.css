@@ -1,0 +1,130 @@
+/* design/feedback/components/toast/toast.css */
+
+/*
+ * Toast component — transient notification box.
+ *
+ * Imports feedback.css for variant + color channel rules.
+ * Overrides the inline-flex pill layout from feedback base.
+ *
+ * Layout regions:
+ *   .toast__icon    — optional leading icon slot
+ *   .toast__body    — stacked title + message content
+ *   .toast__title   — optional semibold heading
+ *   .toast__dismiss — dismiss button (only when toast--dismissible)
+ *
+ * Container:
+ *   [data-toast-region] — fixed viewport stack, created by toast.client.ts
+ */
+
+/* ─── Toast layout ────────────────────────────────────────────────────────── */
+
+.toast {
+  display:        flex;
+  align-items:    flex-start;
+  gap:            var(--space-in--sm);
+  padding:              var(--toast--p, var(--toast--padding));
+  padding-inline:       var(--toast--px, var(--toast--p, var(--toast--padding)));
+  padding-block:        var(--toast--py, var(--toast--p, var(--toast--padding)));
+  padding-block-start:  var(--toast--pt, var(--toast--py, var(--toast--p, var(--toast--padding))));
+  padding-block-end:    var(--toast--pb, var(--toast--py, var(--toast--p, var(--toast--padding))));
+  padding-inline-start: var(--toast--pl, var(--toast--px, var(--toast--p, var(--toast--padding))));
+  padding-inline-end:   var(--toast--pr, var(--toast--px, var(--toast--p, var(--toast--padding))));
+  white-space:    normal;
+  line-height:    var(--leading--normal);
+  font-size:      var(--toast--font-size);
+  width:          min(360px, calc(100vw - 2rem));
+  box-shadow:     var(--shadow--md);
+  pointer-events: all;
+}
+
+/* ─── Entry animation ─────────────────────────────────────────────────────── */
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(0.375rem) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.toast {
+  animation: toast-in 180ms var(--ease--spring, cubic-bezier(0.34, 1.56, 0.64, 1)) both;
+}
+
+/* ─── Icon slot ───────────────────────────────────────────────────────────── */
+
+.toast__icon {
+  flex-shrink: 0;
+  width:       1.25em;
+  height:      1.25em;
+  margin-top:  0.125em;
+  color:       var(--feedback--color-text);
+}
+
+/* ─── Body ────────────────────────────────────────────────────────────────── */
+
+.toast__body {
+  flex:    1;
+  display: flex;
+  flex-direction: column;
+  gap:     var(--space-in--2xs);
+}
+
+.toast__title {
+  font-weight: var(--weight--semibold);
+  font-size:   var(--fsf--sm);
+  color:       var(--feedback--color-text);
+}
+
+/* ─── Dismiss button ──────────────────────────────────────────────────────── */
+
+.toast__dismiss {
+  flex-shrink:  0;
+  margin-left:  auto;
+  padding:      var(--space-in--2xs);
+  border:       none;
+  background:   transparent;
+  cursor:       pointer;
+  color:        var(--feedback--color-text);
+  border-radius: var(--radius--sm);
+  display:      none;
+  align-items:  center;
+  justify-content: center;
+  opacity:      0.7;
+  transition:   opacity 150ms ease, background-color 150ms ease;
+}
+
+.toast--dismissible .toast__dismiss {
+  display: flex;
+}
+
+.toast__dismiss:hover {
+  opacity: 1;
+  background-color: var(--feedback--color-muted);
+}
+
+.toast__dismiss:focus-visible {
+  outline:        2px solid var(--feedback--color-border);
+  outline-offset: 1px;
+  opacity:        1;
+}
+
+/* ─── Toast region (viewport stack) ──────────────────────────────────────── */
+
+[data-toast-region] {
+  position:       fixed;
+  z-index:        9000;
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-in--sm);
+  padding:        var(--space-in--md);
+  pointer-events: none;
+  /* bottom-end default — overridden per data-position below */
+  bottom: 0;
+  right:  0;
+  align-items: flex-end;
+}
+
+[data-toast-region][data-position="top-start"]     { top: 0; left: 0;   bottom: auto; right: auto; align-items: flex-start; }
+[data-toast-region][data-position="top-center"]    { top: 0; left: 50%; bottom: auto; right: auto; transform: translateX(-50%); align-items: center; }
+[data-toast-region][data-position="top-end"]       { top: 0; right: 0;  bottom: auto; left: auto;  align-items: flex-end; }
+[data-toast-region][data-position="bottom-start"]  { bottom: 0; left: 0;  top: auto; right: auto; align-items: flex-start; }
+[data-toast-region][data-position="bottom-center"] { bottom: 0; left: 50%; top: auto; right: auto; transform: translateX(-50%); align-items: center; }
+[data-toast-region][data-position="bottom-end"]    { bottom: 0; right: 0; top: auto; left: auto;  align-items: flex-end; }

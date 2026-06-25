@@ -1,0 +1,91 @@
+/* ============================================================
+   textarea.css
+   ─────────────────────────────────────────────────────────────
+   Textarea-specific styles. Imported alongside forms.css.
+
+   STRUCTURE
+   ──────────────────────────────────────────────────────────────
+   The Textarea component renders a two-element structure:
+
+     <div class="form textarea form--outlined …">  ← visual container
+       <textarea class="textarea__control" />        ← semantic control
+     </div>
+
+   The wrapper (.textarea) owns visual chrome — border, background,
+   border-radius — via the shared .form variant rules in forms.css.
+   The inner .textarea__control is transparent; it handles its own
+   internal padding, font, and resize behaviour.
+
+   CHANNEL MAP
+   ──────────────────────────────────────────────────────────────
+   Written by useTextarea (not resolveTokens):
+     --textarea--resize   CSS resize value (none | vertical | both)
+   ============================================================ */
+
+/* ─── WRAPPER ──────────────────────────────────────────────── */
+
+.textarea {
+  /* Height adapts to textarea content, not a fixed control height */
+  min-block-size: unset;
+
+  /* Align inner textarea to top for multi-line content */
+  align-items: flex-start;
+
+  /* Remove wrapper padding — inner textarea handles its own spacing */
+  padding: 0;
+
+  /* Clip the inner textarea to the wrapper's border-radius */
+  overflow: hidden;
+
+  cursor: text;
+}
+
+/* ─── INNER CONTROL ────────────────────────────────────────── */
+
+.textarea__control {
+  /* Fill remaining space */
+  flex: 1;
+  inline-size: 100%;
+
+  /* Inherit all visual properties from wrapper */
+  background:  transparent;
+  border:      none;
+  outline:     none;
+  color:       inherit;
+  font-size:   inherit;
+  font-family: inherit;
+  line-height: 1.5;
+
+  /* Internal text spacing */
+  padding-block:  calc(var(--form--size, 2.5rem) * 0.2);
+  padding-inline: calc(var(--form--size, 2.5rem) * 0.3);
+  margin: 0;
+
+  /* Resize direction from token */
+  resize: var(--textarea--resize, vertical);
+}
+
+.textarea__control::placeholder {
+  color:   var(--text--tertiary, var(--text--secondary));
+  opacity: 1;
+}
+
+/* Suppress native focus ring — focus is shown on wrapper via :focus-within */
+.textarea__control:focus,
+.textarea__control:focus-visible {
+  outline:    none;
+  box-shadow: none;
+}
+
+/* Suppress Chrome autofill background override */
+.textarea__control:-webkit-autofill,
+.textarea__control:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text--primary);
+}
+
+/* ─── READONLY STATE ───────────────────────────────────────── */
+
+.textarea:has(.textarea__control[readonly]) {
+  cursor: default;
+}

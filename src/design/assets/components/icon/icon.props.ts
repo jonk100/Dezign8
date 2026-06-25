@@ -2,7 +2,7 @@
 
 import type { BaseComponentProps } from "~/shared/base.props";
 import type { IconSize } from "./icon.tokens";
-import type { SvgName } from "~/design/shared/icons";
+import type { SvgName } from "~/shared/icons";
 
 export interface IconProps extends BaseComponentProps {
   /**
@@ -12,7 +12,7 @@ export interface IconProps extends BaseComponentProps {
   name: SvgName;
 
   /**
-   * The size of the icon. Maps to `--icon--size-*` CSS properties.
+   * The size of the icon. Maps to `--icon-size-*` CSS properties.
    * @default "md"
    */
   size?: IconSize;

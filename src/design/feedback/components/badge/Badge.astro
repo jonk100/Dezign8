@@ -63,7 +63,7 @@ type Props = BadgeProps;
 const { Tag, props, mode, displayCount } = useBadge(Astro.props as BadgeProps);
 ---
 
-<Tag {...props}>
+<Tag {...props as Record<string, unknown>}>
   {mode === "count" && displayCount}
   {mode === "label" && <slot />}
   {/* dot mode — no content */}

@@ -1,75 +1,128 @@
-import { Banner } from "~/feedback/banner";
-import { Button } from "~/actions/button";
+---
+title: Banner Component
+description: A full-width page-level announcement strip with optional actions and dismiss.
+category: Feedback
+status: stable
+---
+import Banner from "../../../design/feedback/components/banner/Banner.astro";
 
-# Banner
+## Overview
 
-Banners are similar to Alerts but are used for persistent, page-level messages that are not directly tied to a user's immediate action. Examples include cookie consents, maintenance notices, or new feature announcements.
+`Banner` is a full-bleed announcement strip, typically placed at the top of a page or layout region. It renders as a `role="region"` landmark with an `aria-label` so screen reader users can navigate to or skip it.
 
-## Imports
-
-```astro
-import { Banner } from "~/feedback/banner";
-```
-
-## Usage
-
-A banner's content can include actions, like a button to dismiss or learn more.
-
-```astro
-<Banner color="info">
-  <div class="flex items-center justify-between w-full">
-    <span>Our website uses cookies to improve your experience.</span>
-    <Button size="sm" color="info" variant="soft">Accept</Button>
-  </div>
-</Banner>
-```
-
-### With Icon
-
-Use the `icon` slot to add a leading icon for visual emphasis.
-
-```astro
-<Banner color="warning">
-  <Icon name="alert-triangle" slot="icon" />
-  We will be undergoing scheduled maintenance on Sunday at 10:00 PM UTC.
-</Banner>
-```
+Defaults: `variant="soft"`, `color="neutral"`, `radius="none"` (edge-to-edge, no rounding).
 
 ---
 
-### BannerProps
+## Usage
 
-Banners are simple wrappers and derive most of their behavior from `FeedbackProps`.
+### Default
 
-| Prop           | Type             | Default  | Description                                                              |
-|----------------|------------------|----------|--------------------------------------------------------------------------|
-| `...feedbackProps`| `FeedbackProps`|          | Inherits all props from `FeedbackProps` (variant, color, size, etc.).    |
+```astro
+<Banner>Scheduled maintenance on Saturday at 2 AM UTC.</Banner>
+```
 
-Slots:
-- `default`: The main content of the banner.
-- `icon`: An optional leading icon.
+<Banner>Scheduled maintenance on Saturday at 2 AM UTC.</Banner>
 
-# Feedback & Status
+### Colors
 
-Feedback components communicate system status, user action results, or loading states. They are crucial for keeping the user informed. They share `FeedbackProps` for consistent color roles (`success`, `danger`, etc.) and variants.
+```astro
+<Banner color="neutral">Neutral announcement.</Banner>
+<Banner color="info">New features are live — check the changelog.</Banner>
+<Banner color="success">All systems operational.</Banner>
+<Banner color="warning">Degraded performance in the EU region.</Banner>
+<Banner color="danger">Critical: service outage in progress.</Banner>
+```
 
-## Components
+<Banner color="neutral">Neutral announcement.</Banner>
+<Banner color="info">New features are live — check the changelog.</Banner>
+<Banner color="success">All systems operational.</Banner>
+<Banner color="warning">Degraded performance in the EU region.</Banner>
+<Banner color="danger">Critical: service outage in progress.</Banner>
 
-### Transient Messages
-- **Alert**: A contextual message that appears in-flow, often after a user action.
-- **Banner**: A persistent, page-level message (e.g., cookie consent, maintenance notice).
-- **Toast**: A small, temporary message that appears in a corner of the screen.
-- **ToastRegion**: The container that manages the positioning and queueing of Toasts.
+### Variants
 
-### Metadata & Indicators
-- **Badge**: A small counter or label, often overlaid on another element.
-- **Chip**: A dismissible, selectable, or interactive label.
-- **Dot**: A small, circular indicator for status or presence.
-- **Indicator**: A wrapper that places a `Badge` or `Dot` on a child element.
-- **Tag**: A simple, non-interactive label for categorization.
+```astro
+<Banner color="primary" variant="soft">Soft (default)</Banner>
+<Banner color="primary" variant="solid">Solid</Banner>
+<Banner color="primary" variant="outlined">Outlined</Banner>
+```
 
-### Async & Loading
-- **EmptyState**: A placeholder shown when a data set is empty.
-- **Progress**: A linear progress bar or circular progress indicator.
-- **Skeleton**: A placeholder that mimics the shape of content that is loading.
-- **Spinner**: An animated spinner to indicate a background process.
+<Banner color="primary" variant="soft">Soft (default)</Banner>
+<Banner color="primary" variant="solid">Solid</Banner>
+<Banner color="primary" variant="outlined">Outlined</Banner>
+
+### With action
+
+```astro
+<Banner color="warning">
+  Your plan is expiring in 3 days.
+  <a slot="actions" href="#">Upgrade now</a>
+</Banner>
+```
+
+<Banner color="warning">
+  Your plan is expiring in 3 days.
+  <a slot="actions" href="#">Upgrade now</a>
+</Banner>
+
+### Dismissible
+
+The dismiss button is rendered but you must wire up the hide behavior in your own script (e.g. `btn.closest('.banner').remove()`).
+
+```astro
+<Banner color="info" dismissible>
+  We use cookies to improve your experience.
+  <a slot="actions" href="#">Learn more</a>
+</Banner>
+```
+
+<Banner color="info" dismissible>
+  We use cookies to improve your experience.
+  <a slot="actions" href="#">Learn more</a>
+</Banner>
+
+### Sticky
+
+Sticks to the top of the viewport on scroll via `position: sticky; top: 0` and `z-index: var(--z--sticky)`.
+
+```astro
+<Banner color="primary" variant="solid" sticky aria-label="Promotional offer">
+  Get 20% off — use code LAUNCH20 at checkout.
+  <a slot="actions" href="#">Shop now</a>
+</Banner>
+```
+
+<Banner color="primary" variant="solid" sticky aria-label="Promotional offer">
+  Get 20% off — use code LAUNCH20 at checkout.
+  <a slot="actions" href="#">Shop now</a>
+</Banner>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `FeedbackVariant` | `"soft"` | Visual treatment. |
+| `color` | `FeedbackColor` | `"neutral"` | Color role. |
+| `radius` | `FeedbackRadius` | `"none"` | Border radius. `"none"` = edge-to-edge. |
+| `sticky` | `boolean` | `false` | Sticks to viewport top on scroll. |
+| `dismissible` | `boolean` | `false` | Renders a dismiss button. Wire up click in your script. |
+| `dismissLabel` | `string` | `"Dismiss"` | `aria-label` for the dismiss button. |
+| `aria-label` | `string` | `"Page notification"` | Landmark label for screen readers. Override when purpose is specific. |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| default | Main announcement text. |
+| `actions` | CTA links or buttons placed after the message. |
+
+---
+
+## Accessibility
+
+- `role="region"` makes the banner a named landmark. Override `aria-label` when the default `"Page notification"` isn't specific enough (e.g. `aria-label="Cookie consent"`).
+- The dismiss button always has an `aria-label` (default: `"Dismiss"`). Override with `dismissLabel` when context is ambiguous.
+- For cookie consent or legal notices, consider whether the banner should be announced immediately — if so, add `aria-live="polite"` directly via the `class` passthrough.

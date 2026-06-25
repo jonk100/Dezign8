@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {
+      "text": "Output explicitly mentions a typography decision from repowise or confirms there are none.",
+      "passed": true,
+      "evidence": "Agent manually located the architectural decision and correctly documented the rule against adding variant props to typography components."
+    }
+  ]
+}

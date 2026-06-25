@@ -101,3 +101,77 @@
 .logo__link:hover {
   transform: scale(1.1);
 }
+
+/* --- Docs Navigation --- */
+
+/* Footer Nav (Mobile Fallback + General Flow) */
+.docs-footer-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border--subtle);
+}
+.docs-footer-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+  border: 1px solid var(--border--default);
+  border-radius: var(--radius--md);
+  text-decoration: none;
+  color: var(--text--primary);
+  background: var(--bg--1);
+  transition: all 0.2s ease;
+}
+.docs-footer-link:hover {
+  background: var(--bg--2);
+  border-color: var(--border--strong);
+}
+.docs-footer-link.prev {
+  align-items: flex-start;
+}
+.docs-footer-link.next {
+  align-items: flex-end;
+}
+.docs-footer-link .label {
+  font-size: 0.75rem;
+  color: var(--text--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.docs-footer-link .title {
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: var(--text--primary);
+}
+.docs-footer-link svg {
+  display: none; /* Hide icon since we use column layout */
+}
+
+/* Floating Nav (Desktop) */
+.docs-floating-nav {
+  display: none; /* hidden by default on small screens */
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+}
+.docs-floating-nav.prev {
+  left: 1.5rem;
+}
+.docs-floating-nav.next {
+  right: 1.5rem;
+}
+
+@media (min-width: 1200px) {
+  .docs-floating-nav {
+    display: block;
+  }
+  .docs-footer-nav {
+    display: none; /* Hide footer nav when floating nav is visible */
+  }
+}

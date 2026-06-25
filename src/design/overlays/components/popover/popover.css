@@ -1,0 +1,54 @@
+/* ============================================================
+   popover.css
+   ─────────────────────────────────────────────────────────────
+   Non-modal floating panel using the HTML Popover API.
+   The panel element uses popover="auto" — the browser handles
+   top-layer promotion, light dismiss, and Escape-to-close.
+   JS positions it via getBoundingClientRect() on the toggle event.
+   ============================================================ */
+
+/* ── host wrapper ──────────────────────────────────────────── */
+
+.popover {
+  position:    relative;
+  display:     inline-flex;
+  align-items: stretch;
+}
+
+/* ── panel ─────────────────────────────────────────────────── */
+
+.popover__panel {
+  /* override UA [popover] defaults so JS top/left drive placement */
+  position: fixed;
+  inset:    auto;
+  margin:   0;
+
+  padding:          var(--space-in--sm) var(--space-in--md);
+  background-color: var(--bg--2);
+  border:           1px solid var(--border--default);
+  border-radius:    var(--popover--radius, var(--radius--lg));
+  box-shadow:       var(--shadow--lg);
+  color:            var(--text--primary);
+  min-width:        10rem;
+}
+
+/* ── entry animation ────────────────────────────────────────── */
+
+.popover__panel {
+  transition:
+    opacity   120ms ease allow-discrete,
+    transform 120ms ease allow-discrete,
+    display   120ms ease allow-discrete;
+}
+
+.popover__panel:popover-open {
+  opacity:   1;
+  transform: none;
+}
+
+@starting-style {
+  .popover__panel:popover-open {
+    opacity:   0;
+    transform: scale(0.97) translateY(-4px);
+  }
+}

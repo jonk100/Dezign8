@@ -38,4 +38,4 @@ import "./tile.css";
 
 const { Tag, props } = useTile(Astro.props as TileProps);
 ---
-<Tag {...props}><slot /></Tag>
+<Tag {...props as Record<string, unknown>}><slot /></Tag>

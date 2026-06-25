@@ -11,7 +11,7 @@ design/
   shared/
     tokens.ts              engine — scale, dimension, defineTokens, resolveTokens
     primitives.tokens.ts   vocabulary — shared scales + shared dimensions
-    base.props.ts          BaseComponentProps (HTML passthrough + testId, v, bg, animation)
+    base.props.ts          BaseComponentProps (HTML passthrough + testId, v, bg, motion, loading, disabled + SpacingProps)
     base.hook.ts           composeClass / composeStyle / useBaseCompose
     visuals.ts             VisualRegistry for the `v` prop
  
@@ -182,37 +182,34 @@ Translates props into `{ Tag, props }`. No rendering, no JSX.
 **Pattern A — re-export tokens → delegate to category hook:**
  
 ```ts
-// control/button/button.hook.ts
+// triggers/button/button.hook.ts
 export function useButton(props: ButtonProps) {
   const {
     type      = BUTTON_DEFAULTS.type,
     iconOnly  = BUTTON_DEFAULTS.iconOnly,
     fullWidth = BUTTON_DEFAULTS.fullWidth,
     href, target, rel,
-    ...controlProps
+    ...triggerProps
   } = props;
  
-  const isLink = Boolean(href);
-  const { controlClass, controlStyle, controlAttrs, disabled, loading, rest }
-    = useControl(controlProps);
+  const { triggerClass, triggerStyle, triggerAttrs, disabled, loading, rest }
+    = useTrigger(triggerProps);
+  // aria-disabled, data-disabled, aria-busy are emitted by useBaseCompose inside useTrigger
  
   return {
-    Tag: isLink ? "a" : "button",
+    Tag: Boolean(href) ? "a" : "button",
     props: {
       class: composeClass(
-        controlClass,
+        triggerClass,
         "button",
         iconOnly  && "button--icon-only",
         fullWidth && "button--full-width",
       ),
-      style: controlStyle,
-      ...controlAttrs,
+      style: triggerStyle,
+      ...triggerAttrs,
       ...rest,
-      type:            !isLink ? type   : undefined,
-      href:            isLink  ? href   : undefined,
-      disabled:        disabled || loading || undefined,
-      "aria-disabled": disabled || loading ? "true" : undefined,
-      "aria-busy":     loading ? "true" : undefined,
+      type: !Boolean(href) ? type : undefined,
+      href,
     },
   };
 }
@@ -232,7 +229,7 @@ export function useHeading(props: HeadingProps) {
     color    = HEADING_DEFAULTS.color,
     leading  = HEADING_DEFAULTS.leading,
     tracking = HEADING_DEFAULTS.tracking,
-    class: className, v: _v, testId: _testId, bg, animation,
+    class: className, v: _v, testId: _testId, bg,
     ...rest
   } = props;
  
@@ -249,7 +246,6 @@ export function useHeading(props: HeadingProps) {
       ...tokenClasses,
       `h--${level}`,
       balance   && "h--balance",
-      animation && `animate-${animation}`,
       className,
     ],
     style: [...tokenStyle, bg && `--local-bg: ${bg}`],

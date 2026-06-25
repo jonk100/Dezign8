@@ -64,8 +64,10 @@
 }
 
 /* Suppress the native focus ring — shown on wrapper via :focus-within */
-.select__control:focus {
+.select__control:focus,
+.select__control:focus-visible {
   outline: none;
+  box-shadow: none;
 }
 
 /* Placeholder option (value="", disabled) */

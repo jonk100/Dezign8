@@ -126,8 +126,8 @@
  *               Add hover bg, cursor, transition here.
  *
  *   selectable  [./list.css]  .list[data-selectable] — checkbox column
- *               [./List.astro] selection state is consumer-managed.
- *               Wire via list:selectionchange event (list.client.ts).
+ *               [./List.astro] component owns selection state via dataset.selected
+ *               (JSON array) and list:selectionchange event (list.client.ts).
  *
  *   scrollable  [./list.css]  overrides data.css with overflow-y: auto
  *               Set max-block-size on the list or a parent to constrain height.
@@ -143,7 +143,8 @@
 import type { ListProps } from "./list.props";
 import { useList }        from "./list.hook";
 import Checkbox           from "~/forms/components/checkbox/Checkbox.astro";
-import "../data.css";
+import Link               from "~/triggers/components/link/Link.astro";
+import "~/data/data.css";
 import "./list.css";
 
 type Props = ListProps;
@@ -210,7 +211,7 @@ const skeletonCount = 4;
             {/* Content — wrapped in <a> when href is set */}
             {item.href
               ? (
-                <a class="list__link" href={item.href}>
+                <Link class="list__link" href={item.href}>
                   <span class="list__content">
                     <span class="list__label">{item.label}</span>
                     {item.description && (
@@ -220,7 +221,7 @@ const skeletonCount = 4;
                   {item.badge !== undefined && (
                     <span class="list__badge">{item.badge}</span>
                   )}
-                </a>
+                </Link>
               )
               : (
                 <>

@@ -51,7 +51,7 @@ export function useThemeToggle(props: ThemeToggleProps) {
     iconOnly,
     type: "button",
     ...rest,
-  });
+  } as ThemeToggleProps);
 
   return {
     Tag,

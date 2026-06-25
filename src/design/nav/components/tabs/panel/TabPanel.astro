@@ -26,6 +26,6 @@ export type Props = TabPanelProps;
 const { tabPanelProps } = useTabPanel(Astro.props as TabPanelProps);
 ---
 
-<div {...tabPanelProps}>
+<div {...tabPanelProps as Record<string, unknown>}>
   <slot />
 </div>

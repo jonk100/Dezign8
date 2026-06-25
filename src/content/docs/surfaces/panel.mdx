@@ -3,9 +3,12 @@ title: Panel Component
 description: Visual container foundation for expandable or collapsible content areas.
 category: Surfaces
 status: stable
+icon: panel
 ---
 
 import Panel from "~/surfaces/components/panel/Panel.astro";
+import { PropsApi } from "~/components/PropsApi";
+import { PanelProps } from "~/surfaces/components/panel/panel.props";
 
 ## Overview
 
@@ -40,3 +43,35 @@ For semantic HTML, panels can easily be rendered as an `<aside>`, `<section>`, o
   </nav>
 </Panel>
 ```
+
+### Variants and Elevation
+
+Panels inherit surface variants (`plain`, `outlined`, `soft`, `elevated`, `glass`) and `layer` props.
+
+<div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+  <Panel variant="soft" padding="md" style="width: 200px;">
+    <h4 style="margin-top: 0;">Soft Panel</h4>
+    <p style="margin: 0; color: var(--text--secondary); font-size: 0.875rem;">Uses variant="soft"</p>
+  </Panel>
+  
+  <Panel layer="2" variant="elevated" padding="md" style="width: 200px;">
+    <h4 style="margin-top: 0;">Elevated Panel</h4>
+    <p style="margin: 0; color: var(--text--secondary); font-size: 0.875rem;">Uses layer="2"</p>
+  </Panel>
+</div>
+
+```astro
+<Panel variant="soft" padding="md">
+  <h4>Soft Panel</h4>
+  <p>Uses variant="soft"</p>
+</Panel>
+
+<Panel layer="2" variant="elevated" padding="md">
+  <h4>Elevated Panel</h4>
+  <p>Uses layer="2"</p>
+</Panel>
+```
+
+## Props API
+
+<PropsApi props={PanelProps} />

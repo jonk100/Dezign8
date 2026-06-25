@@ -79,7 +79,7 @@ export function useBadge(props: BadgeProps) {
         dot && "badge--dot",
       ),
       style:               feedbackStyle,
-      "aria-label":        mode === "dot" ? feedbackProps["aria-label"] : undefined,
+      "aria-label":        mode === "dot" ? (feedbackProps["aria-label"] as string | undefined) : undefined,
       "aria-hidden":       mode === "dot" && !feedbackProps["aria-label"] ? "true" as const : undefined,
       ...feedbackAttrs,
       ...rest,

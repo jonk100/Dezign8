@@ -1,0 +1,7 @@
+/* modal.css — reads from overlays.css shared rules */
+/* Component-specific overrides live here; shared chrome is in overlays.css */
+
+/* Modal-only: visible scroll on tall body content */
+.modal .modal__body {
+  overscroll-behavior: contain;
+}

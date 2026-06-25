@@ -35,6 +35,12 @@
   min-width: 0;
 }
 
+/* Fix for MDX wrapping text nodes in <p> tags, which adds unwanted vertical margins */
+.banner__content > p {
+  margin: 0;
+  display: inline;
+}
+
 /* ─── Actions slot ────────────────────────────────────────────────────────── */
 
 .banner__actions {

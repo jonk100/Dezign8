@@ -13,3 +13,11 @@
 .stack--justify-center  { justify-content: center; }
 .stack--justify-end     { justify-content: flex-end; }
 .stack--justify-between { justify-content: space-between; }
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--stack--gap);
+  margin-block: calc(var(--stack--gap) * -1);
+  margin-inline: auto;
+}

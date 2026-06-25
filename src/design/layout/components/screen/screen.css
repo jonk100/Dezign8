@@ -1,0 +1,18 @@
+/* design/layout/components/screen/screen.css */
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--screen--gap);
+  min-height: var(--screen--height);
+  overflow: var(--screen--overflow);
+  align-items: center;
+  justify-content: center;
+}
+
+.screen.screen--centered-x {
+  justify-content: center;
+}
+
+.screen.screen--centered-y {
+  align-items: center;
+}

@@ -1,0 +1,53 @@
+.avatar {
+  position: relative;
+  display:  inline-flex;
+  align-items: center;
+  justify-content: center;
+  width:  var(--avatar--size);
+  height: var(--avatar--size);
+  border-radius: var(--avatar--radius);
+  overflow: hidden;
+  background-color: var(--bg--3);
+  color: var(--text--secondary);
+  font-size: calc(var(--avatar--size) * 0.38);
+  font-weight: var(--weight--medium, 500);
+  letter-spacing: 0.02em;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* ── Image mode ──────────────────────────────────────────────────── */
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Icon fallback ───────────────────────────────────────────────── */
+
+.avatar--icon svg {
+  width: 55%;
+  height: 55%;
+  opacity: 0.5;
+}
+
+/* ── Status dot ──────────────────────────────────────────────────── */
+
+.avatar--has-status::after {
+  content: "";
+  position: absolute;
+  bottom: 6%;
+  right: 6%;
+  width:  calc(var(--avatar--size) * 0.265);
+  height: calc(var(--avatar--size) * 0.265);
+  border-radius: var(--radius--full);
+  border: 2px solid var(--bg--1);
+  background-color: var(--border--default);
+}
+
+.avatar--online::after  { background-color: var(--success--base); }
+.avatar--offline::after { background-color: var(--border--default); }
+.avatar--away::after    { background-color: var(--warning--base); }
+.avatar--busy::after    { background-color: var(--danger--base); }

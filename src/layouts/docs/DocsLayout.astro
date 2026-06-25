@@ -2,11 +2,20 @@
 import Layout from "../Layout.astro";
 import ThemeToggle from "../../design/triggers/components/theme-toggle/ThemeToggle.astro";
 import Breadcrumbs from "../../design/nav/components/breadcrumbs/Breadcrumbs.astro";
+import type { BreadcrumbItemData } from "../../design/nav/components/breadcrumbs/breadcrumbs.props";
 import "./docs-layout.css";
 import H from "~/typography/components/heading/H.astro";
 import Text from "~/typography/components/text/Text.astro";
 import Link from "~/triggers/components/link/Link.astro";
-import Header from "~/layout/components/header/Header.astro";
+import Icon from "~/assets/components/icon/Icon.astro";
+import type { SvgName } from "~/shared/icons";
+import Navbar from "~/nav/components/navbar/Navbar.astro";
+import NavbarBrand from "~/nav/components/navbar/brand/NavbarBrand.astro";
+import NavbarContent from "~/nav/components/navbar/content/NavbarContent.astro";
+import Image from "~/assets/components/image/Image.astro";
+
+import Button from "~/triggers/components/button/Button.astro";
+import Tooltip from "~/overlays/components/tooltip/Tooltip.astro";
 
 interface Props {
   title: string;
@@ -14,15 +23,18 @@ interface Props {
   category?: string;
   status?: string;
   version?: string;
+  icon?: string;
   links?: {
     source?: string;
     figma?: string;
   };
+  prev?: { title: string; href: string } | undefined;
+  next?: { title: string; href: string } | undefined;
 }
 
-const { title, description, category, status, version, links } = Astro.props;
+const { title, description, category, status, version, icon, links, prev, next } = Astro.props;
 
-const breadcrumbItems = [{ id: "home", label: "Home", href: "/" }];
+const breadcrumbItems: BreadcrumbItemData[] = [{ id: "home", label: "Home", href: "/" }];
 
 if (category) {
   const categorySlug = category.toLowerCase().replace(/\s+/g, "-");
@@ -37,25 +49,36 @@ breadcrumbItems.push({ id: "current", label: title, active: true });
 ---
 
 <Layout title={`${title} | Dezign8 Docs`} description={description}>
-  <div class="docs-container">
-    <header class="docs-page-header">
-      <div
-        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;"
-      >
-        <Breadcrumbs
-          items={breadcrumbItems}
-          size="sm"
+  <Navbar slot="header">
+    <NavbarBrand slot="brand">
+      <Link class="logo__link" href="/">
+        <Image
+          src="/horizontal-blue.png"
+          alt="Dezign8 Logo"
+          style="height: 32px; width: auto; display: block;"
         />
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <ThemeToggle variant="ghost" color="neutral" />
-          <Link class="logo__link" href="/"
-            ><img
-              src="/icon-blue-transparent.png"
-              alt="Dezign8 Logo"
-              style="height: 32px; width: auto; display: block;"
-            /></Link
-          >
-        </div>
+      </Link>
+    </NavbarBrand>
+    <NavbarContent>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <Link href="/docs">Docs</Link>
+        <Link href="/components">Components</Link>
+        <Link href="/">
+          <Icon name="home" size="md" /> Home
+        </Link>
+        <ThemeToggle variant="ghost" color="neutral" />
+      </div>
+    </NavbarContent>
+  </Navbar>
+  <Breadcrumbs items={breadcrumbItems} size="xs" />
+  <div class="docs-container">
+    <header class="docs-content-header" style="margin-bottom: 2rem;">
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        {icon && <Icon name={icon as SvgName} size="xl" />}
+        <H level={1} size="h1" weight="bold" color="primary">
+          {title}
+        </H>
       </div>
 
       {
@@ -68,12 +91,6 @@ breadcrumbItems.push({ id: "current", label: title, active: true });
         )
       }
 
-      <!-- <h1
-        style="font-size: var(--fs--3xl); font-weight: var(--weight--bold); margin-bottom: 0.5rem;"
-      > -->
-      <H level={1} size="h1" weight="bold" color="primary">
-        {title}
-      </H>
       {
         description && (
           <Text size="md" fontStyle="oblique" color="muted">
@@ -100,8 +117,51 @@ breadcrumbItems.push({ id: "current", label: title, active: true });
       }
     </header>
 
+    <div style="margin-bottom: 1.5rem;">
+    </div>
+
     <main class="docs-content">
       <slot />
     </main>
+
+    {(prev || next) && (
+      <nav class="docs-footer-nav" aria-label="Pagination">
+        {prev ? (
+          <a href={prev.href} class="docs-footer-link prev">
+            <Icon name="arrow-left" size="sm" />
+            <span class="label">Previous</span>
+            <span class="title">{prev.title}</span>
+          </a>
+        ) : <div />}
+        
+        {next ? (
+          <a href={next.href} class="docs-footer-link next">
+            <span class="label">Next</span>
+            <span class="title">{next.title}</span>
+            <Icon name="arrow-right" size="sm" />
+          </a>
+        ) : <div />}
+      </nav>
+    )}
   </div>
+
+  {prev && (
+    <div class="docs-floating-nav prev">
+      <Tooltip content={prev.title} placement="right">
+        <Button href={prev.href} variant="ghost" iconOnly aria-label={`Previous: ${prev.title}`}>
+          <Icon name="chevron-left" />
+        </Button>
+      </Tooltip>
+    </div>
+  )}
+
+  {next && (
+    <div class="docs-floating-nav next">
+      <Tooltip content={next.title} placement="left">
+        <Button href={next.href} variant="ghost" iconOnly aria-label={`Next: ${next.title}`}>
+          <Icon name="chevron-right" />
+        </Button>
+      </Tooltip>
+    </div>
+  )}
 </Layout>

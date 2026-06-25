@@ -137,8 +137,8 @@
  *               Add hover background, cursor, focus ring here.
  *
  *   selectable  [./table.css]  .data[data-selectable] first th/td — checkbox col
- *               [./Table.astro] selection state is consumer-managed —
- *               wire selectedRows with JS; this component only provides structure.
+ *               [./Table.astro] component owns selection state via dataset.selected
+ *               (JSON array) and table:selectionchange event (list.client.ts).
  *
  *   scrollable  [./data.css]   overflow-x: auto on .data[data-scrollable]
  *               Pair with max-inline-size on the wrapper or a parent element.
@@ -280,8 +280,8 @@ const skeletonCols = (columns?.length ?? 4) + (isSelectable ? 1 : 0);
                       data-highlighted={row._highlighted ? "" : undefined}
                     >
                       {isSelectable && (
-                        <td class="table__checkbox-col">
-                          <input type="checkbox" class="table__checkbox" aria-label="Select row" />
+                        <td class="table__checkbox-col" data-selection-cb>
+                          <input type="checkbox" class="table__checkbox" name="selected" value={i} aria-label="Select row" />
                         </td>
                       )}
                       {columns.map(col => (

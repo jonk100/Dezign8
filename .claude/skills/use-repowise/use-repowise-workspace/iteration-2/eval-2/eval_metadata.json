@@ -1,0 +1,10 @@
+{
+  "eval_id": 2,
+  "eval_name": "risk-assessment",
+  "prompt": "I'm looking at src/design/forms/forms.hook.ts, can you assess the defect risk for this file?",
+  "assertions": [
+    {
+      "description": "Output provides a specific risk score or findings for forms.hook.ts."
+    }
+  ]
+}

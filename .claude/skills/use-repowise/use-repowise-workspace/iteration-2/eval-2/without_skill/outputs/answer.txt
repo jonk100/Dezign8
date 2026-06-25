@@ -1,0 +1,18 @@
+Based on an analysis of `src/design/forms/forms.hook.ts`, the defect risk for this file is **HIGH**. 
+
+Here is the breakdown of the defect risks:
+
+1. **Incomplete Implementation (Highest Risk):**
+   There is a critical `@todo` indicating that color channel resolution is incomplete. The `colorStyle` array is currently stubbed out (`const colorStyle: string[] = []; // ponytail: stub — replace with resolveColorChannels(color, "form")`). Because of this, none of the semantic color CSS variables (e.g., `--form--color-subtle`, `--form--color-base`, `--form--color-vivid`) are being emitted. Any form component relying on color variants will fail to render its visual states correctly.
+
+2. **Large Blast Radius (High Risk):**
+   This hook acts as the foundational property resolver for all form controls (inputs, selects, checkboxes, radios). Any defect introduced here—or any regressions in the token logic it relies on—will immediately propagate to all form UI components across the application.
+
+3. **Lack of Test Coverage (High Risk):**
+   There are no unit tests (e.g., `.test.ts` or `.spec.ts`) present in the `src/design/forms/` directory. Given its role as a shared utility, the lack of automated test coverage significantly increases the risk of regression defects when refactoring or adding the missing color logic.
+
+4. **External Coupling (Medium Risk):**
+   The hook heavily depends on external shared utilities (`resolveTokens` from `~/shared/tokens` and `useBaseCompose` from `~/shared/base.hook`). While the internal logic of `useForm` is relatively straightforward (mostly mapping and spreading properties), changes to these underlying design system primitives could inadvertently break form rendering.
+
+**Conclusion:**
+The immediate defect risk is High. The file is functionally incomplete, untested, and structurally critical. The color token resolution must be implemented before form components can be considered stable.

@@ -96,7 +96,7 @@ import type { FormSize, FormVariant, FormColor, FormRadius } from "./forms.token
  * @see {@link useForm}           — resolves this interface at runtime
  * @see {@link BaseComponentProps} — parent interface (class, v, testId, bg, …)
  */
-export interface FormProps extends BaseComponentProps {
+export type FormBaseProps = BaseComponentProps & {
   // ── Token dimensions ────────────────────────────────────────────────────────
   // These are resolved by resolveTokens(FORM_TOKENS, …, "form") in useForm.
   // Changing a value changes CSS output via --form--* channels or class modifiers.
@@ -265,4 +265,10 @@ export interface FormProps extends BaseComponentProps {
    * @default `false`
    */
   fullWidth?: boolean;
-}
+};
+
+export type FormProps = FormBaseProps & (
+  | { id: string; "aria-label"?: string; "aria-labelledby"?: string }
+  | { "aria-label": string; id?: string; "aria-labelledby"?: string }
+  | { "aria-labelledby": string; id?: string; "aria-label"?: string }
+);

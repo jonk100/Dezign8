@@ -81,7 +81,6 @@ export function useCheckbox(props: CheckboxProps) {
       "data-indeterminate": isIndeterminate ? "" as const : undefined,
       disabled:             disabled  || undefined,
       required:             required  || undefined,
-      "aria-disabled":      disabled  ? "true" as const : undefined,
       "aria-required":      required  ? "true" as const : undefined,
       "aria-invalid":       invalid   ? "true" as const : undefined,
     },
