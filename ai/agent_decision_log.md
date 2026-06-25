@@ -7,6 +7,40 @@ _________________________________________________
 =================================================
 -----------------------------------------------
 
+## 2026/06/24 to 2026/06/24 - Antigravity session
+
+See:
+- [Session Summary](./antigravity_session_summary.md/624-624_async_io_css_vars_plugin.md)
+
+### New files
+- `ai/antigravity_session_summary.md/624-624_async_io_css_vars_plugin.md`
+
+### Updated files
+- `plugins/check-css-vars.ts`
+
+
+## 2026/06/24 — Token generation single source of truth
+
+### Decision
+`primitives.tokens.ts` now re-exports all scales from the generated file (`export * from "./primitives.tokens.generated"`) and retains only what can't be generated: shared dimensions (carry modifier/scope metadata), `COLOR_STEPS`, and `resolveColorChannels`.
+
+### What changed
+- `definitions/scales.ts` — added `TEXT_SIZE_FIXED` and four semantic `TEXT_COLOR` entries (`success`, `danger`, `warning`, `info`) that existed only in the hand-authored file
+- `primitives.tokens.generated.ts` — updated to match; regenerated automatically on `pnpm dev` / `pnpm build`
+- `primitives.tokens.ts` — stripped from 398 lines to ~115; all scale declarations replaced with `export * from "./primitives.tokens.generated"`
+
+### Result
+Adding a token now requires one change in `definitions/scales.ts`. It flows to the generated TS file on hot save and is available to all components through the re-export. The two-sources-of-truth problem is resolved.
+
+### Modified files
+```
+src/design/shared/definitions/scales.ts              — TEXT_SIZE_FIXED + TEXT_COLOR semantic entries
+src/design/shared/primitives.tokens.generated.ts     — updated to match scales.ts
+src/design/shared/primitives.tokens.ts               — re-exports generated; domain logic only
+```
+
+-----------------------------------------------
+
 ## 2026/06/24 - Implement Textarea, Switch, RadioGroup
 
 ### Components built

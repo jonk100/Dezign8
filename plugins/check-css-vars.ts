@@ -15,7 +15,7 @@
 // resolveTokens at runtime — valid even though no static file declares them.
 
 import type { Plugin }                from "vite";
-import { readFileSync, readdirSync, existsSync } from "fs";
+import { existsSync, promises as fs } from "fs";
 import { join, relative }            from "path";
 
 const GEN_FILE  = "src/styles/tokens.generated.css";
@@ -52,14 +52,23 @@ function varRefs(css: string): Set<string> {
   return s;
 }
 
-function* walkCSS(dir: string, skip: Set<string>): Generator<string> {
-  for (const e of readdirSync(dir, { withFileTypes: true })) {
-    const p = join(dir, e.name);
-    if (e.isDirectory()) {
-      if (!skip.has(p)) yield* walkCSS(p, skip);
-    } else if (e.name.endsWith(".css")) {
-      yield p;
-    }
+async function getCSSFiles(dir: string, skip: Set<string>): Promise<string[]> {
+  try {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    const paths = await Promise.all(
+      entries.map(async (e) => {
+        const p = join(dir, e.name);
+        if (e.isDirectory()) {
+          return skip.has(p) ? [] : await getCSSFiles(p, skip);
+        } else if (e.name.endsWith(".css")) {
+          return [p];
+        }
+        return [];
+      })
+    );
+    return paths.flat();
+  } catch {
+    return [];
   }
 }
 
@@ -69,14 +78,15 @@ type Findings = {
   skipped: boolean;
 };
 
-function scan(root: string): Findings {
+async function scan(root: string): Promise<Findings> {
   const undef = new Map<string, Set<string>>();
   const prim  = new Map<string, Set<string>>();
 
   const genPath = join(root, GEN_FILE);
   if (!existsSync(genPath)) return { undef, prim, skipped: true };
 
-  const genVars = decls(readFileSync(genPath, "utf8"));
+  const genVarsStr = await fs.readFile(genPath, "utf8");
+  const genVars = decls(genVarsStr);
   const isRaw   = (v: string) => !v.includes("--", 2) && RAW_PREFIXES.some(p => v.startsWith(p));
   const rawSet  = new Set([...genVars].filter(isRaw));
   const skip    = new Set(SKIP_DIRS.map(d => join(root, d)));
@@ -86,18 +96,21 @@ function scan(root: string): Findings {
     map.get(file)!.add(v);
   };
 
-  for (const d of SCAN_DIRS) {
-    const dir = join(root, d);
-    if (!existsSync(dir)) continue;
-    for (const file of walkCSS(dir, skip)) {
+  const cssFiles = (await Promise.all(
+    SCAN_DIRS.map(d => getCSSFiles(join(root, d), skip))
+  )).flat();
+
+  await Promise.all(
+    cssFiles.map(async (file) => {
       const rel = relative(root, file);
-      for (const v of varRefs(readFileSync(file, "utf8"))) {
+      const content = await fs.readFile(file, "utf8");
+      for (const v of varRefs(content)) {
         if (CHANNEL.test(v)) continue;                 // ✓ runtime channel
         if (!genVars.has(v)) record(undef, rel, v);    // ✗ undefined
         else if (rawSet.has(v)) record(prim, rel, v);  // ⚠ raw primitive
       }
-    }
-  }
+    })
+  );
 
   return { undef, prim, skipped: false };
 }
@@ -138,8 +151,8 @@ function report({ undef, prim }: Findings): void {
 export function checkCssVarsPlugin(): Plugin {
   let root: string;
 
-  const run = () => {
-    const result = scan(root);
+  const run = async () => {
+    const result = await scan(root);
     if (!result.skipped) report(result); // skip silently until tokens are generated
   };
 
@@ -152,14 +165,14 @@ export function checkCssVarsPlugin(): Plugin {
       root = config.root;
     },
 
-    buildStart() {
-      run();
+    async buildStart() {
+      await run();
     },
 
-    handleHotUpdate({ file }) {
+    async handleHotUpdate({ file }) {
       // Re-validate on any CSS change — component edits, and the generated
       // token file itself (a removed token can orphan a previously-valid ref).
-      if (file.endsWith(".css")) run();
+      if (file.endsWith(".css")) await run();
     },
   };
 }
