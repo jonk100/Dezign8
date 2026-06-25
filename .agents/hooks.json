@@ -1,0 +1,37 @@
+{
+  "no-new-deps": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command|write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          { "type": "command", "command": "scripts/hooks/block-deps.sh", "timeout": 10 }
+        ]
+      }
+    ]
+  },
+  "import-firewall": {
+    "PreToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          { "type": "command", "command": "scripts/hooks/import-firewall.sh", "timeout": 10 }
+        ]
+      }
+    ]
+  },
+  "lint-feedback": {
+    "PostInvocation": [
+      { "type": "command", "command": "scripts/hooks/lint-feedback.sh", "timeout": 120 }
+    ]
+  },
+  "check-on-stop": {
+    "Stop": [
+      { "type": "command", "command": "scripts/hooks/check-on-stop.sh", "timeout": 120 }
+    ]
+  },
+  "decision-log-gate": {
+    "Stop": [
+      { "type": "command", "command": "scripts/hooks/decision-log-gate.sh", "timeout": 10 }
+    ]
+  }
+}
