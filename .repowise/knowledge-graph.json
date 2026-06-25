@@ -14282,7 +14282,8 @@
       "depth": 0,
       "kind": "overview",
       "reason": "Start here for the end-to-end picture before diving into the code.",
-      "layer_id": "layer:application"
+      "layer_id": "layer:application",
+      "wikiPageIds": []
     },
     {
       "order": 2,
@@ -14292,7 +14293,8 @@
       "depth": 0,
       "kind": "code",
       "reason": "The walk's anchor \u2014 its imports fan out the widest in a repo with no single entry point.",
-      "layer_id": "layer:utility"
+      "layer_id": "layer:utility",
+      "wikiPageIds": []
     },
     {
       "order": 3,
@@ -14302,7 +14304,8 @@
       "depth": 1,
       "kind": "code",
       "reason": "Directly imported by the anchor above; a core collaborator.",
-      "layer_id": "layer:utility"
+      "layer_id": "layer:utility",
+      "wikiPageIds": []
     },
     {
       "order": 4,
@@ -14312,7 +14315,8 @@
       "depth": 1,
       "kind": "code",
       "reason": "Directly imported by the anchor above; a core collaborator.",
-      "layer_id": "layer:utility"
+      "layer_id": "layer:utility",
+      "wikiPageIds": []
     },
     {
       "order": 5,
@@ -14322,7 +14326,8 @@
       "depth": 1,
       "kind": "code",
       "reason": "Directly imported by the anchor above; a core collaborator.",
-      "layer_id": "layer:utility"
+      "layer_id": "layer:utility",
+      "wikiPageIds": []
     },
     {
       "order": 6,
@@ -14332,7 +14337,8 @@
       "depth": 1,
       "kind": "code",
       "reason": "Directly imported by the anchor above; a core collaborator.",
-      "layer_id": "layer:utility"
+      "layer_id": "layer:utility",
+      "wikiPageIds": []
     },
     {
       "order": 7,
@@ -14342,7 +14348,8 @@
       "depth": 2,
       "kind": "code",
       "reason": "Reached 2 imports deep \u2014 a supporting building block.",
-      "layer_id": "layer:utility"
+      "layer_id": "layer:utility",
+      "wikiPageIds": []
     },
     {
       "order": 8,
@@ -14352,7 +14359,8 @@
       "depth": 3,
       "kind": "code",
       "reason": "Not on the resolved import paths \u2014 import resolution is incomplete for this repo, so links may be missing.",
-      "layer_id": "layer:application"
+      "layer_id": "layer:application",
+      "wikiPageIds": []
     },
     {
       "order": 9,
@@ -14362,7 +14370,8 @@
       "depth": 3,
       "kind": "code",
       "reason": "Not on the resolved import paths \u2014 import resolution is incomplete for this repo, so links may be missing.",
-      "layer_id": "layer:application"
+      "layer_id": "layer:application",
+      "wikiPageIds": []
     },
     {
       "order": 10,
@@ -14372,7 +14381,8 @@
       "depth": 3,
       "kind": "code",
       "reason": "The Docs & Tooling layer's anchor \u2014 its most depended-on file.",
-      "layer_id": "layer:docs-tooling"
+      "layer_id": "layer:docs-tooling",
+      "wikiPageIds": []
     },
     {
       "order": 11,
@@ -14382,7 +14392,8 @@
       "depth": 3,
       "kind": "code",
       "reason": "The Data layer's anchor \u2014 its most depended-on file.",
-      "layer_id": "layer:data"
+      "layer_id": "layer:data",
+      "wikiPageIds": []
     },
     {
       "order": 12,
@@ -14392,7 +14403,8 @@
       "depth": 3,
       "kind": "code",
       "reason": "The UI layer's anchor \u2014 its most depended-on file.",
-      "layer_id": "layer:ui"
+      "layer_id": "layer:ui",
+      "wikiPageIds": []
     }
   ],
   "modules": [

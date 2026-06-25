@@ -99,3 +99,18 @@ export function resolveColorRole(role: ColorRole, channel: string): string[] {
     `--${channel}--text:   var(--${role}--text)`,
   ];
 }
+
+if (process.env.NODE_ENV === "development") {
+  const assert = (cond: boolean, msg: string) => { if (!cond) throw new Error(`resolveColorRole: ${msg}`); };
+  const _result = resolveColorRole("primary", "data--color");
+  assert(_result.length === 7, "7 channel strings emitted");
+  const _suffixes = ["subtle", "muted", "base", "vivid", "deep", "border", "text"] as const;
+  assert(
+    _suffixes.every((s, i) => (_result[i] ?? "").startsWith(`--data--color--${s}:`)),
+    "channel names: --{channel}--{suffix}",
+  );
+  assert(
+    _suffixes.every((s, i) => (_result[i] ?? "").includes(`var(--primary--${s})`)),
+    "var references: var(--{role}--{suffix})",
+  );
+}

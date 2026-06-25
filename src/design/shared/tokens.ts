@@ -258,3 +258,32 @@ export function resolveTokens<S extends TokenSpec>(
 
   return { style, classes };
 }
+
+// ponytail: simplified implementation; only iterates own enumerable spec keys
+if (process.env.NODE_ENV === "development") {
+  const assert = (cond: boolean, msg: string) => { if (!cond) throw new Error(`resolveTokens: ${msg}`); };
+
+  const _spec = defineTokens({
+    variant: dimension("variant", { solid: null, soft: null }, { modifier: true }),
+    size:    dimension("size",    { md: "var(--space-in--md)" }),
+    gap:     dimension("gap",     { md: "4px" }, { scope: "paper" }),
+  });
+
+  // modifier-only dim (null value) → class only, no CSS var
+  const _r1 = resolveTokens(_spec, { variant: "solid" }, "ns");
+  assert(_r1.classes.includes("ns--solid"), "modifier class emitted");
+  assert(_r1.style.length === 0,            "null value emits no CSS var");
+
+  // CSS-var dim, no modifier → style only, no class
+  const _r2 = resolveTokens(_spec, { size: "md" }, "ns");
+  assert(_r2.style[0] === "--ns--size: var(--space-in--md)", "CSS var emitted with correct channel");
+  assert(_r2.classes.length === 0, "no modifier class for non-modifier dim");
+
+  // scoped dim → channel uses scope, not prefix
+  const _r3 = resolveTokens(_spec, { gap: "md" }, "ns");
+  assert((_r3.style[0] ?? "").startsWith("--paper--gap:"), "dim.scope overrides prefix");
+
+  // empty selection → nothing emitted
+  const _r4 = resolveTokens(_spec, {}, "ns");
+  assert(_r4.style.length === 0 && _r4.classes.length === 0, "empty selection emits nothing");
+}

@@ -52,6 +52,7 @@ export function useTypography(props: TypographyProps) {
     clamp,
     truncate  = false,
     class: className,
+    style: consumerStyle,
     bg,
     m,
     ...base
@@ -76,6 +77,7 @@ export function useTypography(props: TypographyProps) {
         ...tokenStyle,
         clamp != null && `--typography--clamp: ${clamp}`,
         ...(bg ? resolveColorRole(bg, "layout--bg") : []),
+        consumerStyle,
       ],
     },
     base,

@@ -33,6 +33,15 @@ export function resolveButtonSize(size: ButtonSize): string[] {
   ];
 }
 
+if (process.env.NODE_ENV === "development") {
+  const assert = (cond: boolean, msg: string) => { if (!cond) throw new Error(`resolveButtonSize: ${msg}`); };
+  const _md = resolveButtonSize("md");
+  assert(_md.length === 4, "4 channels per size");
+  assert(_md.every(s => s.startsWith("--button--")), "all channels are button-scoped");
+  const _keys = ["p", "pi", "fs", "h"] as const;
+  assert(_keys.every((k, i) => (_md[i] ?? "").startsWith(`--button--${k}:`)), "channels in order: p, pi, fs, h");
+}
+
 /* ─── CONSTANTS ──────────────────────────────────────────── */
 
 export const BUTTON_TYPES   = ["button", "submit", "reset"] as const;

@@ -11,18 +11,18 @@
 > (documentation, ownership, history, decisions). **Always verify against
 > actual source files before making changes** — the index may be stale.
 
-Last indexed: 2026-06-25 (commit 5fc4919). Confidence: 100%.
+Last indexed: 2026-06-25 (commit fba369e). Confidence: 100%.
 ### Architecture
-repo is a comprehensive design system library that consumes raw design tokens and primitive styling definitions to transform them into a structured hierarchy of reusable TypeScript-based UI components, ultimately producing a standardized component library for consistent application interface development. The repository manages the full lifecycle of UI primitives, from low-level token definitions to high-level layout and surface components, ensuring type-safe and scalable design implementation. The repository exposes a modular API surface organized by functional domain:
-The architecture follows a layered design pattern that separates concerns between raw design tokens, property definitions, and functional UI components:
-**Health Note:** The repository is currently in an active development phase with high churn across core token files. Developers should be aware of the 38 identified "hotspots" where complexity and churn overlap, particularly within the primitives.tokens.ts and icon.hook.ts modules.
+repo is a design system component library that consumes design tokens and primitive style definitions to transform them into a modular suite of React-based layout, surface, and typography components for consistent UI rendering. The repository acts as a single source of truth for visual identity, orchestrating the flow from raw design tokens to high-level functional UI primitives. The library exposes its functionality through specialized sub-directories, each serving as a domain-specific entry point:
+The repository is structured as a hierarchical design system, organized by functional domain:
+The codebase maintains a clean separation of concerns, where visual styling is decoupled from component logic, allowing for rapid updates to the design system without requiring structural changes to the consuming applications.
 ### Key Modules
 | Module | Purpose |
 |--------|---------|
 | `src/design/data/components` | The data module serves as the presentation-layer abstraction for the design… |
 | `src/design/overlays/components` | The overlays module serves as the presentation layer's interaction subsystem… |
 | `src/design/assets/components` | The assets module serves as the design-system presentation layer of the… |
-| `src/design/feedback/components` | The feedback module serves as the presentation layer's notification and… |
+| `src/design/feedback/components` | The feedback module serves as the design system's state-representation layer… |
 | `src/design/nav/components` | The nav module serves as the UI navigation subsystem of the design system… |
 | `src/design/surfaces/components` | The surfaces module serves as the presentation layer of the design system… |
 | `src/design/triggers/components` | The triggers module serves as the interaction subsystem of the design system… |
@@ -65,25 +65,22 @@ The architecture follows a layered design pattern that separates concerns betwee
 ### Hotspots (High Churn)
 | File | Churn | 90d Commits | Owner |
 |------|-------|-------------|-------|
-| `src/design/shared/primitives.tokens.ts` | 99.8th %ile | 5 | Jon K |
-| `src/design/forms/forms.props.ts` | 99.6th %ile | 3 | Jon K |
-| `src/design/forms/components/input/input.props.ts` | 99.3th %ile | 3 | Jon K |
-| `src/content.config.ts` | 99.1th %ile | 4 | Jon K |
-| `src/design/forms/components/select/select.props.ts` | 98.2th %ile | 3 | Jon K |
+| `src/design/shared/primitives.tokens.ts` | 100.0th %ile | 6 | Jon K |
+| `src/design/forms/forms.props.ts` | 99.7th %ile | 3 | Jon K |
+| `src/design/forms/components/input/input.props.ts` | 99.5th %ile | 3 | Jon K |
+| `src/content.config.ts` | 98.9th %ile | 5 | Jon K |
+| `src/design/forms/forms.tokens.ts` | 98.5th %ile | 3 | Jon K |
 
 ## Code health
 Three signals: **defect risk** (the overall score), **maintainability** (smells that hurt readability/change-cost without predicting bugs), and **performance** (static performance RISK: I/O-in-loop / N+1 shapes that waste work, high-precision/low-recall). Maintainability and performance are co-equal views, never blended into the defect headline. See `docs/CODE_HEALTH.md`.
 
-Defect risk, Hotspot health: 8.71/10 (stable) ·
-Average: 9.87/10 ·
-Worst: 5.69/10 (`src/design/shared/primitives.tokens.ts`)
-Maintainability, Average: 9.9/10
+Defect risk, Hotspot health: 9.08/10 (stable) ·
+Average: 9.89/10 ·
+Worst: 6.72/10 (`src/design/surfaces/surface.hook.ts`)
+Maintainability, Average: 9.91/10
 Performance risk, Average: 9.99/10
 
 ### Critical biomarkers
-- `src/content.config.ts` — change entropy — impact −3.0
-- `src/design/shared/primitives.tokens.ts` — churn risk — impact −2.4
-- `src/design/feedback/feedback.tokens.ts` — untested hotspot — impact −2.0
 - `src/design/surfaces/surface.hook.ts` — brain method (useSurface) — impact −0.3
 
 ### Repowise MCP Tools

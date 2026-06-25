@@ -7,6 +7,27 @@ _________________________________________________
 =================================================
 -----------------------------------------------
 
+## 2026/06/25 - Backlog triage session
+
+### Decision audit: HIGH staleness items (repowise backlog queue)
+
+**`4fe1e0f3` — Add motion prop to all components via BaseComponentProps**  
+Verified against code: fully implemented. `motion?: MotionProp` in `BaseComponentProps`, `getMotionAttrs()` wired in `useBaseCompose`, `motion.css` + `mountMotionDismiss()` exist and are imported in Alert/Banner/Toast. No `animation?` prop found in any component (old name fully replaced). Staleness flag is a false positive — re-index will clear it. No code change required.
+
+**`5534a144` — Adding the plugins to generate tokens**  
+Verified: the "generated file completely unused" consequence in the decision is outdated. `primitives.tokens.generated.ts` is now imported and fully re-exported by `primitives.tokens.ts` (the facade). Components import from the facade, which uses the generated scales. The "two changes per token" problem is resolved for scale tokens — edit `definitions/scales.ts`, regeneration is automatic. `primitives.tokens.ts` still holds hand-authored domain logic (`resolveColorChannels`, dimension mappings) that can't be generated, so the facade is load-bearing, not temporary. Staleness flag is a false positive. No code change required.
+
+### Code fixes applied
+
+- `src/design/typography/typography.hook.ts`: Fixed `style` prop collision — consumer's inline `style` was falling into `...rest` and overriding token-derived CSS channel declarations. Extracted as `consumerStyle` and merged into the composed style array (applied last, so it wins conflicts intentionally).
+
+### Repowise decision queue: 13 of 15 queued decisions confirmed active
+
+- **Confirmed**: CSS nesting constraints, async CSS scan, native Drawer/Popover, native-first architecture, no React, no test framework, 5-file component structure, strict import direction, colocate typography scales, decouple data from nav props, re-export SelectOption, standardize audio variant vocabulary, BEM for typography — all verified accurate.
+- **Skipped (DB lock)**: `9a98af12` (audio variant vocab) and `76142953` (BEM typography) — repowise MCP server held SQLite locked; both are accurate and should be confirmed in the next session via `repowise decision confirm <id>`.
+
+-----------------------------------------------
+
 ## 2026/06/25 to 2026/06/25 - Antigravity session
 
 See:
