@@ -1,0 +1,10 @@
+{
+  "eval_id": 1,
+  "eval_name": "dead-code-analysis",
+  "prompt": "Is there any unused code in the src/design/surfaces directory?",
+  "assertions": [
+    {
+      "description": "Output correctly lists dead code in src/design/surfaces or confirms there is none."
+    }
+  ]
+}

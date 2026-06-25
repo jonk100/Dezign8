@@ -1,0 +1,3 @@
+According to the architectural decision `c4b4722f` ("Text component manually styles itself; no text.css file"), the `Text` component is a documented exception to the standard component quadruplet pattern (tokens, props, hook, CSS). It currently manually styles itself via `resolveTokens` and `resolveColorRole` directly, so it does not have a `text.css` file.
+
+However, the decision explicitly notes that adding "future variants (like all-caps truncate) would likely trigger need for text.css". Therefore, the rule is that if you add a new typography variant, you should create the missing `text.css` file and move the styling logic to follow the standard CSS cascade pattern used by other components.

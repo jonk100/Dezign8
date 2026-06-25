@@ -112,13 +112,13 @@
      xl  → card / panel rounding
      full → pill / capsule (toggle, tag)
   ────────────────────────────────────────────────────────── */
-  --radius--2xs:  calc(var(--size-00) / 2);    /*  4px */
-  --radius--xs:   var(--size-00);    /*  6px */
-  --radius--sm:   var(--size-01);    /*  8px */
-  --radius--md:   var(--size-02);    /* 10px */
-  --radius--lg:   var(--size-03);    /* 12.8px */
-  --radius--xl:   var(--size-04);    /* 20px */
-  --radius--2xl:  var(--size-06);    /* 24px */
+  --radius--2xs:  calc(var(--size-00) / 2);    /*  2px */
+  --radius--xs:   var(--size-00);              /*  4px */
+  --radius--sm:   var(--size-01);              /*  6px */
+  --radius--md:   var(--size-02);              /*  8px */
+  --radius--lg:   var(--size-03);              /* 10px */
+  --radius--xl:   var(--size-04);              /* ~11px */
+  --radius--2xl:  var(--size-06);              /* ~14px */
   --radius--full: var(--size-full);  /* 9999px */
 
   /* ─── CONTAINERS ──────────────────────────────────────────

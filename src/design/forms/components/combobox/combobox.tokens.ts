@@ -30,7 +30,7 @@
  * @see {@link FORM_TOKENS}      in `forms/forms.tokens.ts`
  * @see {@link ComboboxProps}    in `forms/combobox/combobox.props.ts`
  * @see {@link useCombobox}      in `forms/combobox/combobox.hook.ts`
- * @see {@link SelectOption}     in `forms/select/select.props.ts` — shared option type
+ * @see {@link ComboboxOption}   in `forms/combobox/combobox.props.ts` — shared option type
  *
  * @todo Multi-select (tag input) when needed. New component, new folder —
  *   this file stays unchanged.

@@ -25,9 +25,10 @@
  * COLOR CHANNEL STRATEGY
  * ─────────────────────────────────────────────────────────────────
  * color / bg / highlight all use COLOR_ROLE values
- * (e.g. "var(--token-color-primary)"). Component CSS then derives
- * tints via color-mix() for backgrounds and uses the role directly
- * for borders and text. This is the same pattern as --form--color-*.
+ * (e.g. "primary"). The useData hook uses resolveColorRole() to generate 
+ * a full suite of step channels (--data--bg--subtle, --data--bg--base, etc).
+ * Component CSS then consumes the subtle/muted step variables for background
+ * tints and uses the base/border steps for borders and text.
  */
 
 import { defineTokens, dimension, scale } from "~/shared/tokens";

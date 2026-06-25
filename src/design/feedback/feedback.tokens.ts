@@ -36,7 +36,7 @@
  */
 
 import { defineTokens, dimension, scale } from "~/shared/tokens";
-import { RADIUS_DIM, COLOR_DIM }          from "~/shared/primitives.tokens";
+import { RADIUS_DIM, COLOR_DIM, VARIANT_DIM } from "~/shared/primitives.tokens";
 
 // ─── SIZE ────────────────────────────────────────────────────────────────────
 //
@@ -59,24 +59,7 @@ const FEEDBACK_SIZE = scale({
   "2xl": null,
 });
 
-// ─── VARIANT ─────────────────────────────────────────────────────────────────
-//
-// Visual treatment. All `null` — modifier class only, no CSS var.
-// CSS rules per variant live in `feedback.css`.
-//
-// solid    → Filled bg at color-base. Opaque. Strong badges.
-// soft     → Light bg at color-subtle. Border at color-border. Chips, tags.
-// outlined → Transparent bg. Solid border at color-border.
-// ghost    → No border, no bg. Text-color only. Spinners.
-// dashed   → Dashed border. Transparent bg. Skeleton loaders, dashed progress.
 
-const FEEDBACK_VARIANT = scale({
-  solid:    null,
-  soft:     null,
-  outlined: null,
-  ghost:    null,
-  dashed:   null,
-});
 
 // ─── PLACEMENT ───────────────────────────────────────────────────────────────
 //
@@ -107,7 +90,7 @@ export type FeedbackPlacement =
  */
 export const FEEDBACK_TOKENS = defineTokens({
   size:    dimension("size",    FEEDBACK_SIZE,    { modifier: true }),
-  variant: dimension("variant", FEEDBACK_VARIANT, { modifier: true }),
+  variant: VARIANT_DIM,
   color:   COLOR_DIM,
   radius:  RADIUS_DIM,
 });

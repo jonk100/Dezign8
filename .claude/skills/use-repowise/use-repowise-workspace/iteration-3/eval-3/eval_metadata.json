@@ -1,0 +1,10 @@
+{
+  "eval_id": 3,
+  "eval_name": "exploration-search",
+  "prompt": "How does the token resolution system work in this repository? I'm specifically curious about how props are mapped to CSS custom properties.",
+  "assertions": [
+    {
+      "description": "Output accurately explains the token resolution system using repowise search context, rather than guessing or performing a manual multi-file search."
+    }
+  ]
+}

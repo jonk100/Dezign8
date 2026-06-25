@@ -63,7 +63,7 @@ export type { SelectOption as ComboboxOption };
  */
 export type ComboboxProps = FormProps & {
   id?: string;
-  options: SelectOption[];
+  options: ComboboxOption[];
   value?: string;
   placeholder?: string;
   caseSensitive?: boolean;

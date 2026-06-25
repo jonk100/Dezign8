@@ -31,21 +31,21 @@ import { composeClass } from "~/shared/base.hook";
  *   const { Tag, props } = useHeading({ level: 1, weight: "bold" });
  *   <Tag {...props}>Page Title</Tag>
  */
-  export function useHeading(props: HeadingProps) {
-    const {
-      level = HEADING_DEFAULTS.level,
-      class: className,
-      ...typographyProps
-    } = props;
-  
-    const { typographyAttributes } = useTypography({
-      ...typographyProps,
-      class: composeClass("h", `h--${level}`, className),
-    });
-  
-    return {
-      Tag:   `h${level}` as const,
-      props: typographyAttributes,
-    };
-  }
-  
+export function useHeading(props: HeadingProps) {
+  const {
+    level = HEADING_DEFAULTS.level,
+    class: className,
+    ...typographyProps
+  } = props;
+
+  const { typographyAttributes } = useTypography({
+    ...typographyProps,
+    class: composeClass("h", `h--${level}`, className),
+  });
+
+  return {
+    Tag:   `h${level}` as const,
+    props: typographyAttributes,
+  };
+}
+

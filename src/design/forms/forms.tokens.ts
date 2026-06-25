@@ -52,7 +52,7 @@
  */
 
 import { defineTokens, dimension, scale } from "~/shared/tokens";
-import { RADIUS_DIM, COLOR_DIM }          from "~/shared/primitives.tokens";
+import { RADIUS_DIM, COLOR_DIM, VARIANT_DIM } from "~/shared/primitives.tokens";
 
 // ─── SCALES (local to forms) ─────────────────────────────────────────────────
 //
@@ -93,40 +93,7 @@ const FORM_SIZE = scale({
   xl: "var(--form--xl)",
 });
 
-/**
- * Visual treatment variants for form controls.
- *
- * All values are `null` — this dimension emits a **class modifier only**
- * (e.g. `form--outlined`). No CSS custom property is written for variant.
- * All visual rules per variant live in `forms.css`.
- *
- * @remarks
- * **Naming convention:** These names match the control/trigger category exactly
- * (`outlined`, `soft`, `solid`, `ghost`, `dashed`) so that variant intent is
- * system-wide consistent. The _visual expression_ differs per category:
- *
- * | Variant    | Form expression                                               |
- * |------------|---------------------------------------------------------------|
- * | `outlined` | Transparent bg. Colored border on focus. Label sits outside.  |
- * | `soft`     | Muted fill bg (similar to Material "filled"). Light border.   |
- * | `solid`    | Color-role–filled bg. High visual weight. Label outside.      |
- * | `ghost`    | No border. No background. Minimal chrome.                     |
- * | `dashed`   | Dashed border. Transparent background.                        |
- *
- * @see `forms.css` — CSS rules implementing each variant
- * @see `color-css.md` — which color-step channels each variant reads
- * @see {@link FormVariant} — the derived union type
- *
- * @todo `boxed` — sharp radius + heavier border weight. Add `boxed: null`
- *   here and corresponding CSS rules in `forms.css`. No TS ripple.
- */
-const FORM_VARIANT = scale({
-  outlined: null,
-  soft:     null,
-  solid:    null,
-  ghost:    null,
-  dashed:   null,
-});
+
 
 // ─── SPEC ────────────────────────────────────────────────────────────────────
 
@@ -178,11 +145,11 @@ const FORM_VARIANT = scale({
  * @see {@link FormProps}  in `forms/forms.props.ts`  — prop surface
  * @see {@link useForm}    in `forms/forms.hook.ts`   — resolves this spec
  * @see {@link FORM_SIZE}    — the spatial size scale
- * @see {@link FORM_VARIANT} — the variant scale
+ * @see {@link VARIANT} — the variant scale
  */
 export const FORM_TOKENS = defineTokens({
   size:    dimension("size",    FORM_SIZE),
-  variant: dimension("variant", FORM_VARIANT, { modifier: true }),
+  variant: VARIANT_DIM,
   color:   COLOR_DIM,
   radius:  RADIUS_DIM,
 });
@@ -207,7 +174,7 @@ export type FormSize = keyof typeof FORM_TOKENS.size.values;
  * Derived from {@link FORM_TOKENS} — never hand-written.
  *
  * @default `"outlined"` — applied by {@link useForm} when prop is omitted
- * @see {@link FORM_VARIANT} for a description of each value's visual behavior
+ * @see {@link VARIANT} for a description of each value's visual behavior
  */
 export type FormVariant = keyof typeof FORM_TOKENS.variant.values;
 

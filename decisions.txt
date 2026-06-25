@@ -1,0 +1,155 @@
+                            Architectural Decisions                             
+┏━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━┓
+┃ ID       ┃ Title      ┃ Status     ┃ Source     ┃ Conf. ┃ Stale ┃ Created    ┃
+┡━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━┩
+│ b56158ba │ Use        │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ crypto.ra… │            │            │       │       │            │
+│          │ for ID     │            │            │       │       │            │
+│          │ generation │            │            │       │       │            │
+│ 9ceaa779 │ Use        │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ delegation │            │            │       │       │            │
+│          │ for form   │            │            │       │       │            │
+│          │ token      │            │            │       │       │            │
+│          │ resolution │            │            │       │       │            │
+│ 3c70cb67 │ Re-export  │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ SelectOpt… │            │            │       │       │            │
+│          │ for local  │            │            │       │       │            │
+│          │ API        │            │            │       │       │            │
+│ 8e738d56 │ Use        │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ node:vm    │            │            │       │       │            │
+│          │ for token  │            │            │       │       │            │
+│          │ evaluation │            │            │       │       │            │
+│ 98ffb2ce │ Use        │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ data-attr… │            │            │       │       │            │
+│          │ for state  │            │            │       │       │            │
+│          │ management │            │            │       │       │            │
+│ b3ab92a3 │ Use Vite   │ active     │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ plugin for │            │            │       │       │            │
+│          │ CSS        │            │            │       │       │            │
+│          │ generation │            │            │       │       │            │
+│ 9a98af12 │ Standardi… │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ audio      │            │            │       │       │            │
+│          │ variant    │            │            │       │       │            │
+│          │ vocabulary │            │            │       │       │            │
+│ 76142953 │ Use BEM    │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ for        │            │            │       │       │            │
+│          │ typography │            │            │       │       │            │
+│          │ styling    │            │            │       │       │            │
+│ fc618141 │ Use        │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ color-mix  │            │            │       │       │            │
+│          │ for        │            │            │       │       │            │
+│          │ background │            │            │       │       │            │
+│          │ tints      │            │            │       │       │            │
+│ 0c34a634 │ Use        │ proposed   │ llm_infer… │   39% │     - │ 2026-06-25 │
+│          │ checkState │            │            │       │       │            │
+│          │ over       │            │            │       │       │            │
+│          │ checked +  │            │            │       │       │            │
+│          │ indetermin │            │            │       │       │            │
+│ 44811be2 │ Use        │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ internal   │            │            │       │       │            │
+│          │ cast for   │            │            │       │       │            │
+│          │ discrimin… │            │            │       │       │            │
+│          │ unio       │            │            │       │       │            │
+│ 36f599e6 │ Use null   │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ values for │            │            │       │       │            │
+│          │ class-mod… │            │            │       │       │            │
+│ f8c7aa3e │ Colocate   │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ typograph… │            │            │       │       │            │
+│          │ scales     │            │            │       │       │            │
+│ 43539dde │ Use manual │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ dimension  │            │            │       │       │            │
+│          │ wrapping   │            │            │       │       │            │
+│ a131ab9c │ Decouple   │ proposed   │ llm_infer… │   46% │     - │ 2026-06-25 │
+│          │ data from  │            │            │       │       │            │
+│          │ navigation │            │            │       │       │            │
+│          │ props      │            │            │       │       │            │
+│ 69215dd4 │ Naming of  │ active     │ comment    │   57% │     - │ 2026-06-25 │
+│          │ fontStyle  │            │            │       │       │            │
+│          │ prop       │            │            │       │       │            │
+│ f087125d │ CSS        │ proposed   │ readme_mi… │   48% │     - │ 2026-06-25 │
+│          │ nesting    │            │            │       │       │            │
+│          │ and        │            │            │       │       │            │
+│          │ specifici… │            │            │       │       │            │
+│          │ constrain… │            │            │       │       │            │
+│ 6f02ba4c │ Strict     │ proposed   │ readme_mi… │   61% │     - │ 2026-06-25 │
+│          │ import     │            │            │       │       │            │
+│          │ direction  │            │            │       │       │            │
+│ 2a143a4d │ No test    │ proposed   │ readme_mi… │   57% │     - │ 2026-06-25 │
+│          │ framework  │            │            │       │       │            │
+│ f35c35ef │ No React   │ proposed   │ readme_mi… │   57% │     - │ 2026-06-25 │
+│          │ usage      │            │            │       │       │            │
+│ 5d8a14b6 │ Standardi… │ proposed   │ readme_mi… │   61% │     - │ 2026-06-25 │
+│          │ component  │            │            │       │       │            │
+│          │ file       │            │            │       │       │            │
+│          │ structure  │            │            │       │       │            │
+│ 5842bcd0 │ Zero       │ proposed   │ readme_mi… │   48% │     - │ 2026-06-25 │
+│          │ third-par… │            │            │       │       │            │
+│          │ dependency │            │            │       │       │            │
+│          │ policy     │            │            │       │       │            │
+│ d183ccc8 │ Native-fi… │ proposed   │ readme_mi… │   48% │     - │ 2026-06-25 │
+│          │ component  │            │            │       │       │            │
+│          │ architect… │            │            │       │       │            │
+│ 81a396d6 │ Implement  │ proposed   │ git_archa… │   62% │     - │ 2026-06-25 │
+│          │ Drawer and │            │            │       │       │            │
+│          │ Popover    │            │            │       │       │            │
+│          │ using      │            │            │       │       │            │
+│          │ nativ      │            │            │       │       │            │
+│ d1768d61 │ Convert    │ proposed   │ git_archa… │   62% │     - │ 2026-06-25 │
+│          │ CSS scan   │            │            │       │       │            │
+│          │ to async   │            │            │       │       │            │
+│          │ I/O        │            │            │       │       │            │
+│ 832ca2ef │ Link-or-b… │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ tag        │            │            │       │       │            │
+│          │ selection  │            │            │       │       │            │
+│          │ and        │            │            │       │       │            │
+│          │ disable    │            │            │       │       │            │
+│ 7bd4698f │ Separator  │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ color      │            │            │       │       │            │
+│          │ reads from │            │            │       │       │            │
+│          │ border     │            │            │       │       │            │
+│          │ namesp     │            │            │       │       │            │
+│ 2579113d │ size is a  │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ trigger    │            │            │       │       │            │
+│          │ category   │            │            │       │       │            │
+│          │ dimension, │            │            │       │       │            │
+│          │ no         │            │            │       │       │            │
+│ c4b4722f │ Text       │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ component  │            │            │       │       │            │
+│          │ manually   │            │            │       │       │            │
+│          │ styles     │            │            │       │       │            │
+│          │ itself; n  │            │            │       │       │            │
+│ 8dafe6a3 │ Prose      │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ manually   │            │            │       │       │            │
+│          │ constructs │            │            │       │       │            │
+│          │ CSS        │            │            │       │       │            │
+│          │ channel va │            │            │       │       │            │
+│ 89620b6a │ Keep       │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ category   │            │            │       │       │            │
+│          │ CSS        │            │            │       │       │            │
+│          │ hand-writ… │            │            │       │       │            │
+│          │ do not a   │            │            │       │       │            │
+│ 4fe1e0f3 │ Add motion │ active     │ cli        │  100% │   1.0 │ 2026-06-25 │
+│          │ prop to    │            │            │       │       │            │
+│          │ all        │            │            │       │       │            │
+│          │ components │            │            │       │       │            │
+│          │ via Ba     │            │            │       │       │            │
+│ f9dea4d8 │ loading    │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ prop moved │            │            │       │       │            │
+│          │ from       │            │            │       │       │            │
+│          │ DataProps  │            │            │       │       │            │
+│          │ to Bas     │            │            │       │       │            │
+│ 89bf679d │ Skeleton   │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ lives in   │            │            │       │       │            │
+│          │ shared/co… │            │            │       │       │            │
+│          │ no         │            │            │       │       │            │
+│ e5e354cf │ Selection  │ active     │ cli        │  100% │     - │ 2026-06-25 │
+│          │ State      │            │            │       │       │            │
+│          │ Ownership  │            │            │       │       │            │
+│ 5534a144 │ Adding the │ active     │ cli        │  100% │   1.0 │ 2026-06-25 │
+│          │ plugins to │            │            │       │       │            │
+│          │ generate   │            │            │       │       │            │
+│          │ tokens     │            │            │       │       │            │
+│ 4a6b62a9 │ Auto       │ deprecated │ cli        │  100% │     - │ 2026-06-25 │
+│          │ Generate   │            │            │       │       │            │
+│          │ Tokens     │            │            │       │       │            │
+└──────────┴────────────┴────────────┴────────────┴───────┴───────┴────────────┘

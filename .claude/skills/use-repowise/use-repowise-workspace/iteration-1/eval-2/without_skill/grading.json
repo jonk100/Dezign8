@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {
+      "text": "Output provides a specific risk score or findings for forms.hook.ts.",
+      "passed": true,
+      "evidence": "Agent manually reviewed the file and provided heuristics for the defect risk."
+    }
+  ]
+}

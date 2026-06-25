@@ -1,0 +1,23 @@
+Based on the codebase analysis (specifically `src/design/shared/tokens.ts` and `primitives.tokens.ts`), the token resolution system uses a runtime resolution engine to map component properties (props) to CSS custom properties and BEM-style class modifiers. 
+
+Here is a breakdown of how the system works and specifically how props map to CSS custom properties:
+
+### 1. The Building Blocks
+- **Scales:** Value dictionaries (e.g., `SPACE`, `RADIUS`) generated from definitions. They map semantic keys (like `"sm"`) to underlying CSS variable references (like `"var(--space-in--sm)"`).
+- **Dimensions:** Created using the `dimension()` function, they bind a specific semantic key (e.g., `"radius"`) to a scale. They can also define if the dimension should output a CSS custom property (via `key`), a class modifier (via `modifier`), or a specific namespace override (via `scope`).
+- **Token Specs:** A collection of dimensions (created with `defineTokens()` and extended with `composeTokens()`) that defines all the acceptable tokens (props) for a component or category.
+
+### 2. Runtime Resolution (`resolveTokens`)
+The mapping of props to CSS custom properties happens at runtime using the `resolveTokens()` function in `tokens.ts`. This function takes a token spec, the actual selected props passed by the consumer, and a CSS namespace prefix (e.g., `"trigger"`, `"surface"`).
+
+For each prop provided:
+1. **Lookup:** It looks up the corresponding dimension in the token spec.
+2. **Namespace:** It determines the namespace (`ns`), which is either the dimension's custom `scope` override or the provided `prefix`.
+3. **Value Resolution:** It looks up the resolved value from the scale (e.g., `"sm"` becomes `"var(--radius-sm)"`).
+4. **CSS Custom Property Mapping:** If the dimension defines a `key` and the resolved value is not `null`, it pushes a string formatted as `--{ns}--{dim.key}: {resolved}` to a style array. 
+   - *Example:* Passing `{ radius: "md" }` to a hook with prefix `"trigger"` maps to `--trigger--radius: var(--radius--md)`.
+5. **Class Modifier Mapping:** If `dim.modifier` is truthy, it additionally (or alternatively) generates a BEM class like `ns--value` (e.g., `.trigger--solid`) or `ns--modifier-value`.
+
+### 3. Application via Component Hooks
+The `resolveTokens()` function returns an object containing `{ style, classes }`. 
+The component category hooks (like `useTrigger`, `useSurface`, etc.) call this function and pass the resulting style strings and class strings to composition utilities (like `composeStyle` and `composeClass` found in `base.hook.ts`). These are ultimately applied to the HTML element as inline `style` rules and `className` attributes, allowing the static CSS files to read the locally scoped variables.

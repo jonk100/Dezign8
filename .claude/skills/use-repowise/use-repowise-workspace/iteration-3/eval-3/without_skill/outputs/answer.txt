@@ -1,0 +1,28 @@
+The token resolution system in this repository is designed as a type-safe token engine that translates component props into CSS custom properties and BEM-style modifier classes. It decouples the prop definitions from the CSS implementation.
+
+Here is a breakdown of how the system works and how props map to CSS custom properties:
+
+### 1. Scales and Dimensions (The Building Blocks)
+Tokens are authored in `primitives.tokens.ts`.
+- **Scales**: Maps of prop values to CSS variable references (e.g., `md: "var(--space-in--md)"`). If a value is `null`, it's meant to only generate a class modifier without emitting a CSS variable.
+- **Dimensions**: Built using the `dimension()` function, they bind a scale to a specific CSS channel key (e.g., `"radius"` or `"gap"`) and define optional rules, like whether to emit a BEM class modifier or use a custom namespace scope.
+
+### 2. Token Specs (`defineTokens` & `composeTokens`)
+Component and category tokens are assembled using `defineTokens` and `composeTokens`. This creates a `TokenSpec`, which is a named bag of dimensions that a specific component (e.g., a Button or a Trigger) allows. `pickValues` is also used to narrow down allowed values for a specific component (e.g., only allowing specific sizes).
+
+### 3. Resolution at Runtime (`resolveTokens`)
+In a component's hook, the core `resolveTokens` function (from `src/design/shared/tokens.ts`) is called with the component's `TokenSpec`, the selected `props`, and a CSS `prefix` (the component's namespace, e.g., `"trigger"`). 
+
+For every property provided in `props` that exists in the spec, the function determines the target namespace (`ns = dimension.scope ?? prefix`) and looks up the resolved CSS value:
+- **CSS Custom Properties**: If the dimension has a CSS channel key and the resolved value isn't `null`, it outputs an inline CSS variable declaration: `--{ns}--{key}: {resolved_value}`. 
+  *(Example: `{ radius: "md" }` mapped for a `"trigger"` prefix outputs `--trigger--radius: var(--radius--md)`)*
+- **Modifier Classes**: If the dimension sets `modifier: true` (or a string prefix), it generates a BEM class like `{ns}--{value}` or `{ns}--{modifier}-{value}`. 
+  *(Example: `{ color: "primary" }` on `"trigger"` outputs the class `trigger--primary`)*
+
+### 4. Specialized Resolvers
+There are also specialized resolution helpers for specific use-cases:
+- **`resolveSpacingStyles`** (in `spacing.props.ts`): Resolves shorthand layout props (`p`, `px`, `mt`, etc.) against the `SPACE` scale, mapping them directly to variables like `--{prefix}--px: var(--space-in--md)`.
+- **`resolveColorChannels`** (in `primitives.tokens.ts`): Takes a specific color role (e.g., `"primary"`) and expands it into all of its semantic steps (subtle, muted, base, vivid, deep, border, text), outputting a complete suite of variables like `--{prefix}--color-base: var(--primary--base)`.
+
+### 5. Final Output
+The component hook returns an object containing the generated `style` array (for the inline custom properties) and `classes` array (for modifier classes). These are then applied to the React component's DOM node, allowing the component's static stylesheet to read the passed `--{prefix}--{key}` channels.

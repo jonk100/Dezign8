@@ -1,0 +1,9 @@
+{
+  "expectations": [
+    {
+      "text": "Output explicitly mentions a typography decision from repowise or confirms there are none.",
+      "passed": false,
+      "evidence": "Agent looped infinitely and was cancelled before producing output."
+    }
+  ]
+}

@@ -111,6 +111,13 @@ export const SCALE_DEFS = {
     info:      null,
     neutral:   null,
   },
+  VARIANT: {
+    solid:    null,
+    soft:     null,
+    outlined: null,
+    ghost:    null,
+    dashed:   null,
+  },
   TEXT_COLOR: {
     primary:    "var(--text--primary)",
     secondary:  "var(--text--secondary)",

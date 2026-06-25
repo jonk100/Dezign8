@@ -1,0 +1,452 @@
+Unused files (244)
+ai/check-css-vars.mjs                                                       
+src/design/assets/asset.props.ts                                            
+src/design/assets/components/avatar-group/avatar-group.hook.ts              
+src/design/assets/components/avatar-group/avatar-group.props.ts             
+src/design/assets/components/avatar-group/avatar-group.tokens.ts            
+src/design/assets/components/avatar-group/AvatarGroup.astro                 
+src/design/assets/components/carousel/Carousel.astro                        
+src/design/assets/components/carousel/carousel.hook.ts                      
+src/design/assets/components/carousel/carousel.props.ts                     
+src/design/assets/components/carousel/carousel.tokens.ts                    
+src/design/assets/components/cropper/Cropper.astro                          
+src/design/assets/components/cropper/cropper.hook.ts                        
+src/design/assets/components/cropper/cropper.props.ts                       
+src/design/assets/components/cropper/cropper.tokens.ts                      
+src/design/assets/components/gallery-item/gallery-item.hook.ts              
+src/design/assets/components/gallery-item/gallery-item.props.ts             
+src/design/assets/components/gallery-item/gallery-item.tokens.ts            
+src/design/assets/components/gallery-item/GalleryItem.astro                 
+src/design/assets/components/gallery/Gallery.astro                          
+src/design/assets/components/gallery/gallery.hook.ts                        
+src/design/assets/components/gallery/gallery.props.ts                       
+src/design/assets/components/gallery/gallery.tokens.ts                      
+src/design/assets/components/video/Video.astro                              
+src/design/assets/components/video/video.hook.ts                            
+src/design/assets/components/video/video.props.ts                           
+src/design/assets/components/video/video.tokens.ts                          
+src/design/assets/components/waveform/Waveform.astro                        
+src/design/assets/components/waveform/waveform.hook.ts                      
+src/design/assets/components/waveform/waveform.props.ts                     
+src/design/assets/components/waveform/waveform.tokens.ts                    
+src/design/data/.roadmap/bar-chart/bar-chart.hook.ts                        
+src/design/data/.roadmap/bar-chart/bar-chart.props.ts                       
+src/design/data/.roadmap/bar-chart/bar-chart.tokens.ts                      
+src/design/data/.roadmap/bar-chart/BarChart.astro                           
+src/design/data/.roadmap/bento/Bento.astro                                  
+src/design/data/.roadmap/bento/bento.hook.ts                                
+src/design/data/.roadmap/bento/bento.props.ts                               
+src/design/data/.roadmap/bento/bento.tokens.ts                              
+src/design/data/.roadmap/description-list/description-list.hook.ts          
+src/design/data/.roadmap/description-list/description-list.props.ts         
+src/design/data/.roadmap/description-list/description-list.tokens.ts        
+src/design/data/.roadmap/description-list/DescriptionList.astro             
+src/design/data/.roadmap/event/Event.astro                                  
+src/design/data/.roadmap/event/event.hook.ts                                
+src/design/data/.roadmap/event/event.props.ts                               
+src/design/data/.roadmap/event/event.tokens.ts                              
+src/design/data/.roadmap/key-value-list/key-value-list.hook.ts              
+src/design/data/.roadmap/key-value-list/key-value-list.props.ts             
+src/design/data/.roadmap/key-value-list/key-value-list.tokens.ts            
+src/design/data/.roadmap/key-value-list/KeyValueList.astro                  
+src/design/data/.roadmap/key-value/key-value.hook.ts                        
+src/design/data/.roadmap/key-value/key-value.props.ts                       
+src/design/data/.roadmap/key-value/key-value.tokens.ts                      
+src/design/data/.roadmap/key-value/KeyValue.astro                           
+src/design/data/.roadmap/pie-chart/pie-chart.hook.ts                        
+src/design/data/.roadmap/pie-chart/pie-chart.props.ts                       
+src/design/data/.roadmap/pie-chart/pie-chart.tokens.ts                      
+src/design/data/.roadmap/pie-chart/PieChart.astro                           
+src/design/data/.roadmap/result-item/result-item.hook.ts                    
+src/design/data/.roadmap/result-item/result-item.props.ts                   
+src/design/data/.roadmap/result-item/result-item.tokens.ts                  
+src/design/data/.roadmap/result-item/ResultItem.astro                       
+src/design/data/.roadmap/sparkline/Sparkline.astro                          
+src/design/data/.roadmap/sparkline/sparkline.hook.ts                        
+src/design/data/.roadmap/sparkline/sparkline.props.ts                       
+src/design/data/.roadmap/sparkline/sparkline.tokens.ts                      
+src/design/data/.roadmap/timeline/Timeline.astro                            
+src/design/data/.roadmap/timeline/timeline.hook.ts                          
+src/design/data/.roadmap/timeline/timeline.props.ts                         
+src/design/data/.roadmap/timeline/timeline.tokens.ts                        
+src/design/data/components/feed/Feed.astro                                  
+src/design/data/components/feed/feed.hook.ts                                
+src/design/data/components/feed/feed.props.ts                               
+src/design/data/components/feed/feed.tokens.ts                              
+src/design/data/components/metric/Metric.astro                              
+src/design/data/components/metric/metric.hook.ts                            
+src/design/data/components/metric/metric.props.ts                           
+src/design/data/components/metric/metric.tokens.ts                          
+src/design/data/components/stat/Stat.astro                                  
+src/design/data/components/stat/stat.hook.ts                                
+src/design/data/components/stat/stat.props.ts                               
+src/design/data/components/stat/stat.tokens.ts                              
+src/design/feedback/components/dot/Dot.astro                                
+src/design/feedback/components/dot/dot.hook.ts                              
+src/design/feedback/components/dot/dot.props.ts                             
+src/design/feedback/components/dot/dot.tokens.ts                            
+src/design/feedback/components/empty-state/empty-state.hook.ts              
+src/design/feedback/components/empty-state/empty-state.props.ts             
+src/design/feedback/components/empty-state/empty-state.tokens.ts            
+src/design/feedback/components/empty-state/EmptyState.astro                 
+src/design/feedback/components/indicator/Indicator.astro                    
+src/design/feedback/components/indicator/indicator.hook.ts                  
+src/design/feedback/components/indicator/indicator.props.ts                 
+src/design/feedback/components/indicator/indicator.tokens.ts                
+src/design/feedback/components/skeleton/Skeleton.astro                      
+src/design/feedback/components/skeleton/skeleton.hook.ts                    
+src/design/feedback/components/skeleton/skeleton.props.ts                   
+src/design/feedback/components/skeleton/skeleton.tokens.ts                  
+src/design/feedback/feedback.tokens.test.ts                                 
+src/design/forms/components/color-picker/color-picker.hook.ts               
+src/design/forms/components/color-picker/color-picker.props.ts              
+src/design/forms/components/color-picker/color-picker.tokens.ts             
+src/design/forms/components/color-picker/ColorPicker.astro                  
+src/design/forms/components/date-picker/date-picker.hook.ts                 
+src/design/forms/components/date-picker/date-picker.props.ts                
+src/design/forms/components/date-picker/date-picker.tokens.ts               
+src/design/forms/components/date-picker/DatePicker.astro                    
+src/design/forms/components/field/field.tokens.ts                           
+src/design/forms/components/file-upload/file-upload.hook.ts                 
+src/design/forms/components/file-upload/file-upload.props.ts                
+src/design/forms/components/file-upload/file-upload.tokens.ts               
+src/design/forms/components/file-upload/FileUpload.astro                    
+src/design/forms/components/input-group/input-group.hook.ts                 
+src/design/forms/components/input-group/input-group.props.ts                
+src/design/forms/components/input-group/input-group.tokens.ts               
+src/design/forms/components/input-group/InputGroup.astro                    
+src/design/forms/components/multiselect/Multiselect.astro                   
+src/design/forms/components/multiselect/multiselect.hook.ts                 
+src/design/forms/components/multiselect/multiselect.props.ts                
+src/design/forms/components/multiselect/multiselect.tokens.ts               
+src/design/forms/components/number-input/number-input.hook.ts               
+src/design/forms/components/number-input/number-input.props.ts              
+src/design/forms/components/number-input/number-input.tokens.ts             
+src/design/forms/components/number-input/NumberInput.astro                  
+src/design/forms/components/radio-group/radio-group.hook.ts                 
+src/design/forms/components/radio-group/radio-group.props.ts                
+src/design/forms/components/radio-group/radio-group.tokens.ts               
+src/design/forms/components/radio-group/RadioGroup.astro                    
+src/design/forms/components/range-slider/range-slider.hook.ts               
+src/design/forms/components/range-slider/range-slider.props.ts              
+src/design/forms/components/range-slider/range-slider.tokens.ts             
+src/design/forms/components/range-slider/RangeSlider.astro                  
+src/design/forms/components/select/select.tokens.ts                         
+src/design/forms/components/slider/Slider.astro                             
+src/design/forms/components/slider/slider.hook.ts                           
+src/design/forms/components/slider/slider.props.ts                          
+src/design/forms/components/slider/slider.tokens.ts                         
+src/design/forms/components/switch/Switch.astro                             
+src/design/forms/components/switch/switch.hook.ts                           
+src/design/forms/components/switch/switch.props.ts                          
+src/design/forms/components/switch/switch.tokens.ts                         
+src/design/forms/components/textarea/Textarea.astro                         
+src/design/forms/components/textarea/textarea.hook.ts                       
+src/design/forms/components/textarea/textarea.props.ts                      
+src/design/forms/components/textarea/textarea.tokens.ts                     
+src/design/forms/components/time-picker/time-picker.hook.ts                 
+src/design/forms/components/time-picker/time-picker.props.ts                
+src/design/forms/components/time-picker/time-picker.tokens.ts               
+src/design/forms/components/time-picker/TimePicker.astro                    
+src/design/layout/components/center/index.ts                                
+src/design/layout/components/columns/Columns.astro                          
+src/design/layout/components/columns/columns.hook.ts                        
+src/design/layout/components/columns/columns.props.ts                       
+src/design/layout/components/columns/columns.tokens.ts                      
+src/design/layout/components/container/index.ts                             
+src/design/layout/components/flex/index.ts                                  
+src/design/layout/components/grid/index.ts                                  
+src/design/layout/components/inline/index.ts                                
+src/design/layout/components/screen/Screen.astro                            
+src/design/layout/components/screen/screen.hook.ts                          
+src/design/layout/components/screen/screen.props.ts                         
+src/design/layout/components/screen/screen.tokens.ts                        
+src/design/layout/components/separator/Separator.astro                      
+src/design/layout/components/separator/separator.hook.ts                    
+src/design/layout/components/spacer/Spacer.astro                            
+src/design/layout/components/spacer/spacer.hook.ts                          
+src/design/nav/components/breadcrumbs/breadcrumbs.tokens.ts                 
+src/design/nav/components/menu/menu.tokens.ts                               
+src/design/nav/components/navbar/navbar.tokens.ts                           
+src/design/nav/components/pagination/pagination.tokens.ts                   
+src/design/nav/components/stepper/stepper.tokens.ts                         
+src/design/nav/components/tabs/tabs.tokens.ts                               
+src/design/nav/components/toolbar/Toolbar.astro                             
+src/design/nav/components/toolbar/toolbar.hook.ts                           
+src/design/nav/components/toolbar/toolbar.props.ts                          
+src/design/nav/components/toolbar/toolbar.tokens.ts                         
+src/design/nav/components/tree-view/tree-view.hook.ts                       
+src/design/nav/components/tree-view/tree-view.props.ts                      
+src/design/nav/components/tree-view/tree-view.tokens.ts                     
+src/design/nav/components/tree-view/TreeView.astro                          
+src/design/overlays/components/backdrop/Backdrop.astro                      
+src/design/overlays/components/backdrop/backdrop.hook.ts                    
+src/design/overlays/components/backdrop/backdrop.props.ts                   
+src/design/overlays/components/backdrop/backdrop.tokens.ts                  
+src/design/overlays/components/context-menu/context-menu.hook.ts            
+src/design/overlays/components/context-menu/context-menu.props.ts           
+src/design/overlays/components/context-menu/context-menu.tokens.ts          
+src/design/overlays/components/context-menu/ContextMenu.astro               
+src/design/overlays/components/lightbox/Lightbox.astro                      
+src/design/overlays/components/lightbox/lightbox.hook.ts                    
+src/design/overlays/components/lightbox/lightbox.props.ts                   
+src/design/overlays/components/lightbox/lightbox.tokens.ts                  
+src/design/overlays/components/portal/Portal.astro                          
+src/design/overlays/components/portal/portal.hook.ts                        
+src/design/overlays/components/portal/portal.props.ts                       
+src/design/overlays/components/portal/portal.tokens.ts                      
+src/design/overlays/overlay.props.ts                                        
+src/design/shared/components/skeleton/Skeleton.astro                        
+src/design/shared/components/skeleton/skeleton.hook.ts                      
+src/design/shared/components/skeleton/skeleton.props.ts                     
+src/design/shared/components/skeleton/skeleton.tokens.ts                    
+src/design/shared/definitions/scales.ts                                     
+src/design/surfaces/components/card/index.ts                                
+src/design/surfaces/components/frame/frame.ts                               
+src/design/surfaces/components/frame/index.ts                               
+src/design/surfaces/components/index.ts                                     
+src/design/surfaces/components/panel/index.ts                               
+src/design/surfaces/components/paper/index.ts                               
+src/design/surfaces/components/section/index.ts                             
+src/design/surfaces/components/tile/index.ts                                
+src/design/surfaces/components/well/index.ts                                
+src/design/triggers/components/button-group/button-group.hook.ts            
+src/design/triggers/components/button-group/button-group.props.ts           
+src/design/triggers/components/button-group/button-group.tokens.ts          
+src/design/triggers/components/button-group/ButtonGroup.astro               
+src/design/triggers/components/button/index.ts                              
+src/design/triggers/components/command-palette/command-palette.hook.ts      
+src/design/triggers/components/command-palette/command-palette.props.ts     
+src/design/triggers/components/command-palette/command-palette.tokens.ts    
+src/design/triggers/components/command-palette/CommandPalette.astro         
+src/design/triggers/components/segmented-control/segmented-control.hook.ts  
+src/design/triggers/components/segmented-control/segmented-control.props.ts 
+src/design/triggers/components/segmented-control/segmented-control.tokens.ts
+src/design/triggers/components/segmented-control/SegmentedControl.astro     
+src/design/triggers/components/skip-link/skip-link.hook.ts                  
+src/design/triggers/components/skip-link/skip-link.props.ts                 
+src/design/triggers/components/skip-link/skip-link.tokens.ts                
+src/design/triggers/components/skip-link/SkipLink.astro                     
+src/design/typography/components/caption/Caption.astro                      
+src/design/typography/components/caption/caption.hook.ts                    
+src/design/typography/components/caption/caption.props.ts                   
+src/design/typography/components/caption/caption.tokens.ts                  
+src/design/typography/components/caption/index.ts                           
+src/design/typography/components/code/index.ts                              
+src/design/typography/components/kbd/Kbd.astro                              
+src/design/typography/components/kbd/kbd.hook.ts                            
+src/design/typography/components/kbd/kbd.props.ts                           
+src/design/typography/components/kbd/kbd.tokens.ts                          
+src/design/typography/components/label/index.ts                             
+src/design/typography/components/visually-hidden/visually-hidden.hook.ts    
+src/design/typography/components/visually-hidden/visually-hidden.props.ts   
+src/design/typography/components/visually-hidden/visually-hidden.tokens.ts  
+src/design/typography/components/visually-hidden/VisuallyHidden.astro       
+src/design/typography/typography.imports.astro                              
+Unused dependencies (1)
+@astrojs/check  package.json:16:6
+Unlisted dependencies (3)
+vite              plugins/check-css-vars.ts:17:44                                          
+vite              plugins/tokens.ts:3:55                                                   
+@floating-ui/dom  src/design/overlays/components/dropdown-menu/dropdown-menu.client.ts:1:54
+Unresolved imports (13)
+~/components/PropsApi  src/content/docs/layout/center.mdx:2:26     
+~/components/PropsApi  src/content/docs/layout/grid.mdx:2:26       
+~/layout               src/content/docs/layout/separator.mdx:1:40  
+~/components/Preview   src/content/docs/layout/separator.mdx:2:25  
+~/components/PropsApi  src/content/docs/layout/separator.mdx:3:26  
+~/layout               src/content/docs/layout/spacer.mdx:1:30     
+~/components/Preview   src/content/docs/layout/spacer.mdx:2:25     
+~/components/PropsApi  src/content/docs/layout/spacer.mdx:3:26     
+~/components/PropsApi  src/content/docs/surfaces/frame.mdx:2:26    
+~/components/PropsApi  src/content/docs/surfaces/panel.mdx:2:26    
+~/components/PropsApi  src/content/docs/surfaces/section.mdx:2:26  
+~/components/PropsApi  src/content/docs/typography/heading.mdx:2:26
+~/components/PropsApi  src/content/docs/typography/quote.mdx:3:26  
+Unused exports (52)
+makeDistortionCurve    function  src/design/assets/components/audio/audio.utils.ts:11:17                 
+ALERT_TOKENS                     src/design/feedback/components/alert/alert.tokens.ts:8:29               
+BADGE_TOKENS                     src/design/feedback/components/badge/badge.tokens.ts:22:29              
+BANNER_TOKENS                    src/design/feedback/components/banner/banner.tokens.ts:6:29             
+CHIP_TOKENS                      src/design/feedback/components/chip/chip.tokens.ts:3:29                 
+TAG_TOKENS                       src/design/feedback/components/tag/tag.tokens.ts:3:29                   
+TOAST_TOKENS                     src/design/feedback/components/toast/toast.tokens.ts:8:29               
+CHECKBOX_TOKENS                  src/design/forms/components/checkbox/checkbox.tokens.ts:42:25           
+CHECK_STATES                     src/design/forms/components/checkbox/checkbox.tokens.ts:82:14           
+LABEL_POSITIONS                  src/design/forms/components/checkbox/checkbox.tokens.ts:93:14           
+COMBOBOX_TOKENS                  src/design/forms/components/combobox/combobox.tokens.ts:47:25           
+INPUT_TOKENS                     src/design/forms/components/input/input.tokens.ts:56:25                 
+INPUT_TYPES                      src/design/forms/components/input/input.tokens.ts:99:14                 
+RADIO_TOKENS                     src/design/forms/components/radio/radio.tokens.ts:49:25                 
+LABEL_POSITIONS                  src/design/forms/components/radio/radio.tokens.ts:80:14                 
+SEARCH_TOKENS                    src/design/forms/components/search/search.tokens.ts:44:25               
+CONTAINER_SIZE                   src/design/layout/components/container/container.tokens.ts:4:14         
+FLEX_DIRECTION                   src/design/layout/components/flex/flex.tokens.ts:4:14                   
+FLEX_WRAP                        src/design/layout/components/flex/flex.tokens.ts:11:14                  
+FOOTER_TOKENS                    src/design/layout/components/footer/footer.tokens.ts:19:27              
+GRID_COLUMNS                     src/design/layout/components/grid/grid.tokens.ts:4:14                   
+HEADER_TOKENS                    src/design/layout/components/header/header.tokens.ts:19:27              
+ORIENTATION                      src/design/layout/components/separator/separator.tokens.ts:9:14         
+VARIANT                          src/design/layout/components/separator/separator.tokens.ts:10:14        
+STRENGTH                         src/design/layout/components/separator/separator.tokens.ts:11:14        
+ORIENTATION_DIM                  src/design/layout/components/separator/separator.tokens.ts:15:14        
+VARIANT_DIM                      src/design/layout/components/separator/separator.tokens.ts:18:14        
+STRENGTH_DIM                     src/design/layout/components/separator/separator.tokens.ts:19:14        
+SEPARATOR_DEFAULTS               src/design/layout/components/separator/separator.tokens.ts:29:14        
+SPACER_DEFAULTS                  src/design/layout/components/spacer/spacer.tokens.ts:7:14               
+alertDialog                      src/design/overlays/components/alert-dialog/alert-dialog.client.ts:47:14
+OVERLAY_TOKENS                   src/design/overlays/components/alert-dialog/alert-dialog.tokens.ts:1:10 
+drawer                           src/design/overlays/components/drawer/drawer.client.ts:65:14            
+modal                            src/design/overlays/components/modal/modal.client.ts:71:14              
+OVERLAY_TOKENS                   src/design/overlays/components/modal/modal.tokens.ts:1:10               
+popover                          src/design/overlays/components/popover/popover.client.ts:61:14          
+TOKEN_BLOCKS                     src/design/shared/primitives.definitions.ts:95:14                       
+LABEL_SIZE                       src/design/shared/primitives.tokens.generated.ts:66:14                  
+FAMILY_DIM                       src/design/shared/primitives.tokens.ts:28:14                            
+COLOR_STEPS                      src/design/shared/primitives.tokens.ts:49:14                            
+CARD_TOKENS                      src/design/surfaces/components/card/card.tokens.ts:8:28                 
+BUTTON_TOKENS                    src/design/triggers/components/button/button.tokens.ts:3:28             
+BUTTON_SIZE_MAP                  src/design/triggers/components/button/button.tokens.ts:13:14            
+BUTTON_TYPES                     src/design/triggers/components/button/button.tokens.ts:38:14            
+BUTTON_TARGETS                   src/design/triggers/components/button/button.tokens.ts:39:14            
+LINK_TOKENS                      src/design/triggers/components/link/link.tokens.ts:3:31                 
+LINK_UNDERLINE                   src/design/triggers/components/link/link.tokens.ts:20:14                
+THEME_TOGGLE_SIZE_MAP            src/design/triggers/components/theme-toggle/theme-toggle.tokens.ts:14:29
+THEME_STORAGE_KEY                src/design/triggers/components/theme-toggle/theme-toggle.tokens.ts:19:14
+HEADING_TOKENS                   src/design/typography/components/heading/heading.tokens.ts:24:14        
+QUOTE_TOKENS                     src/design/typography/components/quote/quote.tokens.ts:3:31             
+TEXT_TOKENS                      src/design/typography/components/text/text.tokens.ts:8:31               
+Unused exported types (133)
+CheckState       type       src/design/data/components/list/list.tokens.ts:29:15                    
+TableCellTag     type       src/design/data/components/table/table-parts.props.ts:39:13             
+BadgeMode        type       src/design/feedback/components/badge/badge.hook.ts:30:13                
+BadgeSize        type       src/design/feedback/components/badge/badge.tokens.ts:24:22              
+BadgeVariant     type       src/design/feedback/components/badge/badge.tokens.ts:25:22              
+BadgeColor       type       src/design/feedback/components/badge/badge.tokens.ts:26:22              
+BadgeRadius      type       src/design/feedback/components/badge/badge.tokens.ts:27:22              
+ChipSize         type       src/design/feedback/components/chip/chip.tokens.ts:5:22                 
+ChipVariant      type       src/design/feedback/components/chip/chip.tokens.ts:6:22                 
+ChipColor        type       src/design/feedback/components/chip/chip.tokens.ts:7:22                 
+ChipRadius       type       src/design/feedback/components/chip/chip.tokens.ts:8:22                 
+TagSize          type       src/design/feedback/components/tag/tag.tokens.ts:5:22                   
+TagVariant       type       src/design/feedback/components/tag/tag.tokens.ts:6:22                   
+TagColor         type       src/design/feedback/components/tag/tag.tokens.ts:7:22                   
+TagRadius        type       src/design/feedback/components/tag/tag.tokens.ts:8:22                   
+CheckboxSize     type       src/design/forms/components/checkbox/checkbox.tokens.ts:47:13           
+CheckboxVariant  type       src/design/forms/components/checkbox/checkbox.tokens.ts:49:13           
+CheckboxColor    type       src/design/forms/components/checkbox/checkbox.tokens.ts:51:13           
+CheckboxRadius   type       src/design/forms/components/checkbox/checkbox.tokens.ts:53:13           
+ComboboxSize     type       src/design/forms/components/combobox/combobox.tokens.ts:52:13           
+ComboboxVariant  type       src/design/forms/components/combobox/combobox.tokens.ts:54:13           
+ComboboxColor    type       src/design/forms/components/combobox/combobox.tokens.ts:56:13           
+ComboboxRadius   type       src/design/forms/components/combobox/combobox.tokens.ts:58:13           
+InputSize        type       src/design/forms/components/input/input.tokens.ts:63:13                 
+InputVariant     type       src/design/forms/components/input/input.tokens.ts:65:13                 
+InputColor       type       src/design/forms/components/input/input.tokens.ts:67:13                 
+InputRadius      type       src/design/forms/components/input/input.tokens.ts:69:13                 
+RadioSize        type       src/design/forms/components/radio/radio.tokens.ts:54:13                 
+RadioVariant     type       src/design/forms/components/radio/radio.tokens.ts:56:13                 
+RadioColor       type       src/design/forms/components/radio/radio.tokens.ts:58:13                 
+RadioRadius      type       src/design/forms/components/radio/radio.tokens.ts:60:13                 
+SearchSize       type       src/design/forms/components/search/search.tokens.ts:49:13               
+SearchVariant    type       src/design/forms/components/search/search.tokens.ts:51:13               
+SearchColor      type       src/design/forms/components/search/search.tokens.ts:53:13               
+SearchRadius     type       src/design/forms/components/search/search.tokens.ts:55:13               
+FormBaseProps    type       src/design/forms/forms.props.ts:99:13                                   
+BoxGap           type       src/design/layout/components/box/box.tokens.ts:23:28                    
+BoxAlign         type       src/design/layout/components/box/box.tokens.ts:23:51                    
+BoxJustify       type       src/design/layout/components/box/box.tokens.ts:23:78                    
+FooterGap        type       src/design/layout/components/footer/footer.tokens.ts:22:20              
+FooterAlign      type       src/design/layout/components/footer/footer.tokens.ts:23:20              
+FooterJustify    type       src/design/layout/components/footer/footer.tokens.ts:24:20              
+HeaderGap        type       src/design/layout/components/header/header.tokens.ts:22:20              
+HeaderAlign      type       src/design/layout/components/header/header.tokens.ts:23:20              
+HeaderJustify    type       src/design/layout/components/header/header.tokens.ts:24:20              
+Props            type       src/design/nav/components/breadcrumbs/Breadcrumbs.astro:15:13           
+Props            type       src/design/nav/components/breadcrumbs/item/BreadcrumbItem.astro:11:13   
+Props            type       src/design/nav/components/menu/item/MenuItem.astro:24:13                
+MenuItemData     interface  src/design/nav/components/menu/menu.props.ts:7:18                       
+Props            type       src/design/nav/components/navbar/brand/NavbarBrand.astro:9:13           
+Props            type       src/design/nav/components/navbar/content/NavbarContent.astro:10:13      
+Props            type       src/design/nav/components/navbar/Navbar.astro:12:13                     
+Props            type       src/design/nav/components/stepper/step/Step.astro:14:13                 
+Props            type       src/design/nav/components/stepper/Stepper.astro:15:13                   
+StepperItemData  interface  src/design/nav/components/stepper/stepper.props.ts:5:18                 
+Props            type       src/design/nav/components/tabs/group/TabGroup.astro:27:13               
+Props            type       src/design/nav/components/tabs/panel/TabPanel.astro:23:13               
+Props            type       src/design/nav/components/tabs/tab/Tab.astro:21:13                      
+TabData          interface  src/design/nav/components/tabs/tabs.props.ts:3:18                       
+OverlaySize      type       src/design/overlays/components/alert-dialog/alert-dialog.tokens.ts:2:15 
+OverlayVariant   type       src/design/overlays/components/alert-dialog/alert-dialog.tokens.ts:2:28 
+OverlayRadius    type       src/design/overlays/components/alert-dialog/alert-dialog.tokens.ts:2:44 
+OverlaySize      type       src/design/overlays/components/modal/modal.tokens.ts:2:15               
+OverlayVariant   type       src/design/overlays/components/modal/modal.tokens.ts:2:28               
+OverlayRadius    type       src/design/overlays/components/modal/modal.tokens.ts:2:44               
+SheetSide        type       src/design/overlays/components/sheet/sheet.props.ts:3:13                
+EnterName        type       src/design/shared/motion/motion.types.ts:10:13                          
+ExitName         type       src/design/shared/motion/motion.types.ts:21:13                          
+IdleName         type       src/design/shared/motion/motion.types.ts:32:13                          
+Radius           type       src/design/shared/primitives.tokens.generated.ts:36:13                  
+TextSize         type       src/design/shared/primitives.tokens.generated.ts:50:13                  
+TextSizeFixed    type       src/design/shared/primitives.tokens.generated.ts:64:13                  
+LabelSize        type       src/design/shared/primitives.tokens.generated.ts:75:13                  
+Weight           type       src/design/shared/primitives.tokens.generated.ts:87:13                  
+Family           type       src/design/shared/primitives.tokens.generated.ts:95:13                  
+Leading          type       src/design/shared/primitives.tokens.generated.ts:106:13                 
+Tracking         type       src/design/shared/primitives.tokens.generated.ts:116:13                 
+Variant          type       src/design/shared/primitives.tokens.generated.ts:140:13                 
+TextColor        type       src/design/shared/primitives.tokens.generated.ts:157:13                 
+Align            type       src/design/shared/primitives.tokens.generated.ts:167:13                 
+Justify          type       src/design/shared/primitives.tokens.generated.ts:178:13                 
+ColorSteps       type       src/design/shared/primitives.tokens.ts:37:13                            
+ColorStepsMap    type       src/design/shared/primitives.tokens.ts:47:13                            
+TokenDimension   type       src/design/shared/tokens.ts:62:13                                       
+VisualRegistry   interface  src/design/shared/visuals.ts:3:18                                       
+CardLayer        type       src/design/surfaces/components/card/card.tokens.ts:10:21                
+CardPadding      type       src/design/surfaces/components/card/card.tokens.ts:11:21                
+CardRadius       type       src/design/surfaces/components/card/card.tokens.ts:12:21                
+CardColor        type       src/design/surfaces/components/card/card.tokens.ts:13:21                
+FrameTag         type       src/design/surfaces/components/frame/frame.props.ts:4:13                
+PanelTag         type       src/design/surfaces/components/panel/panel.props.ts:4:13                
+SectionTag       type       src/design/surfaces/components/section/section.props.ts:4:13            
+TileTag          type       src/design/surfaces/components/tile/tile.props.ts:4:13                  
+WellTag          type       src/design/surfaces/components/well/well.props.ts:4:13                  
+SurfaceVariant   type       src/design/surfaces/surface.props.ts:7:13                               
+ButtonBaseProps  type       src/design/triggers/components/button/button.props.ts:12:13             
+ButtonVariant    type       src/design/triggers/components/button/button.tokens.ts:4:33             
+ButtonColor      type       src/design/triggers/components/button/button.tokens.ts:4:64             
+ButtonRadius     type       src/design/triggers/components/button/button.tokens.ts:4:94             
+LinkSize         type       src/design/triggers/components/link/link.tokens.ts:10:21                
+LinkWeight       type       src/design/triggers/components/link/link.tokens.ts:11:21                
+LinkColor        type       src/design/triggers/components/link/link.tokens.ts:12:21                
+LinkFamily       type       src/design/triggers/components/link/link.tokens.ts:13:21                
+Theme            type       src/design/triggers/components/theme-toggle/theme-toggle.tokens.ts:22:13
+CodeTag          type       src/design/typography/components/code/code.props.ts:4:13                
+PreTag           type       src/design/typography/components/code/code.props.ts:5:13                
+HeadingTag       type       src/design/typography/components/heading/heading.tokens.ts:35:13        
+ProseTag         type       src/design/typography/components/prose/prose.props.ts:4:13              
+QuoteSize        type       src/design/typography/components/quote/quote.tokens.ts:6:21             
+QuoteWeight      type       src/design/typography/components/quote/quote.tokens.ts:7:21             
+QuoteColor       type       src/design/typography/components/quote/quote.tokens.ts:8:21             
+QuoteAlign       type       src/design/typography/components/quote/quote.tokens.ts:9:21             
+QuoteLeading     type       src/design/typography/components/quote/quote.tokens.ts:10:21            
+QuoteTracking    type       src/design/typography/components/quote/quote.tokens.ts:11:21            
+QuoteFamily      type       src/design/typography/components/quote/quote.tokens.ts:12:21            
+QuoteTransform   type       src/design/typography/components/quote/quote.tokens.ts:13:21            
+QuoteWrap        type       src/design/typography/components/quote/quote.tokens.ts:14:21            
+QuoteDecoration  type       src/design/typography/components/quote/quote.tokens.ts:15:21            
+QuoteStyle       type       src/design/typography/components/quote/quote.tokens.ts:16:21            
+TextTag          type       src/design/typography/components/text/text.props.ts:4:13                
+TextSize         type       src/design/typography/components/text/text.tokens.ts:11:21              
+TextWeight       type       src/design/typography/components/text/text.tokens.ts:12:21              
+TextColor        type       src/design/typography/components/text/text.tokens.ts:13:21              
+TextAlign        type       src/design/typography/components/text/text.tokens.ts:14:21              
+TextLeading      type       src/design/typography/components/text/text.tokens.ts:15:21              
+TextTracking     type       src/design/typography/components/text/text.tokens.ts:16:21              
+TextFamily       type       src/design/typography/components/text/text.tokens.ts:17:21              
+TextTransform    type       src/design/typography/components/text/text.tokens.ts:18:21              
+TextWrap         type       src/design/typography/components/text/text.tokens.ts:19:21              
+TextDecoration   type       src/design/typography/components/text/text.tokens.ts:20:21              
+TextStyle        type       src/design/typography/components/text/text.tokens.ts:21:21              
+Props            interface  src/layouts/Head.astro:1:18                                             
+Props            interface  src/layouts/Layout.astro:8:18                                           

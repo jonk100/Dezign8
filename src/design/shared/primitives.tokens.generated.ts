@@ -129,6 +129,16 @@ export const COLOR_ROLE = scale({
 
 export type ColorRole = keyof typeof COLOR_ROLE;
 
+export const VARIANT = scale({
+  solid:    null,
+  soft:     null,
+  outlined: null,
+  ghost:    null,
+  dashed:   null,
+});
+
+export type Variant = keyof typeof VARIANT;
+
 export const TEXT_COLOR = scale({
   primary:    "var(--text--primary)",
   secondary:  "var(--text--secondary)",
