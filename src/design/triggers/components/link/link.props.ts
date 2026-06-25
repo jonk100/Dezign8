@@ -11,11 +11,11 @@ import type { LinkUnderline } from "./link.tokens";
  * allowing you to use sizes, weights, families, and colors directly on the link.
  */
 export interface LinkProps extends TypographyProps {
-  /** 
+  /**
    * The destination URL for the link.
-   * Required for semantic navigation.
+   * When omitted, renders as a placeholder link (no navigation).
    */
-  href:        string;
+  href?:       string;
   
   /** 
    * Specifies where to open the linked document.

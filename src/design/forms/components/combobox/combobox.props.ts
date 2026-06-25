@@ -26,7 +26,7 @@ import type { SelectOption } from "../select/select.props";
  *
  * @see {@link SelectOption} in `forms/select/select.props.ts`
  */
-export type { SelectOption as ComboboxOption };
+export type ComboboxOption = SelectOption;
 
 // ─── PROPS ────────────────────────────────────────────────────────────────────
 

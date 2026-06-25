@@ -36,7 +36,6 @@
  */
 
 import type { FeedbackProps }        from "./feedback.props";
-import type { m } from "../shared/base.props"
 import { FEEDBACK_TOKENS }           from "./feedback.tokens";
 import { resolveTokens }             from "~/shared/tokens";
 import { resolveColorChannels }      from "~/shared/primitives.tokens";

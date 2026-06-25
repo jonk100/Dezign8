@@ -52,14 +52,14 @@ const nextDisabled = currentPage >= totalPages;
   <ul class="nav__list">
     {showControls && (
       <li>
-        <Link 
-          href={prevDisabled ? undefined : generateUrl(currentPage - 1)} 
-          class="nav__item pagination__control" 
-          aria-label="Previous page" 
-          aria-disabled={prevDisabled ? "true" : undefined}
-          tabindex={prevDisabled ? -1 : undefined}
+        <Link
+          class="nav__item pagination__control"
+          aria-label="Previous page"
+          {...(!prevDisabled ? { href: generateUrl(currentPage - 1) } : {})}
+          {...(prevDisabled  ? { "aria-disabled": "true" }           : {})}
+          {...(prevDisabled  ? { tabindex: -1 }                      : {})}
         >
-          <ChevronLeft width={undefined} height={undefined} style="width: 1.25em; height: 1.25em;" aria-hidden="true" />
+          <ChevronLeft style="width: 1.25em; height: 1.25em;" aria-hidden="true" />
         </Link>
       </li>
     )}
@@ -72,17 +72,17 @@ const nextDisabled = currentPage >= totalPages;
           </li>
         );
       }
-      
+
       const pageNum = page as number;
       const isCurrent = pageNum === currentPage;
-      
+
       return (
         <li>
-          <Link 
-            href={isCurrent ? undefined : generateUrl(pageNum)} 
-            class="nav__item" 
-            aria-current={isCurrent ? "page" : undefined}
+          <Link
+            class="nav__item"
             aria-label={`Page ${pageNum}`}
+            {...(!isCurrent ? { href: generateUrl(pageNum) } : {})}
+            {...(isCurrent  ? { "aria-current": "page" }    : {})}
           >
             {pageNum}
           </Link>
@@ -92,14 +92,14 @@ const nextDisabled = currentPage >= totalPages;
 
     {showControls && (
       <li>
-        <Link 
-          href={nextDisabled ? undefined : generateUrl(currentPage + 1)} 
-          class="nav__item pagination__control" 
-          aria-label="Next page" 
-          aria-disabled={nextDisabled ? "true" : undefined}
-          tabindex={nextDisabled ? -1 : undefined}
+        <Link
+          class="nav__item pagination__control"
+          aria-label="Next page"
+          {...(!nextDisabled ? { href: generateUrl(currentPage + 1) } : {})}
+          {...(nextDisabled  ? { "aria-disabled": "true" }            : {})}
+          {...(nextDisabled  ? { tabindex: -1 }                       : {})}
         >
-          <ChevronRight width={undefined} height={undefined} style="width: 1.25em; height: 1.25em;" aria-hidden="true" />
+          <ChevronRight style="width: 1.25em; height: 1.25em;" aria-hidden="true" />
         </Link>
       </li>
     )}

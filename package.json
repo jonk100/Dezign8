@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/mdx": "^6.0.3",
+    "@floating-ui/dom": "^1.7.6",
     "astro": "^6.4.7",
     "typescript": "^6.0.3"
   },

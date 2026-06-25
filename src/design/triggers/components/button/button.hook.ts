@@ -18,7 +18,13 @@ export function useButton(props: ButtonProps) {
   } = props;
  
   const { Tag, triggerClass, triggerStyle, triggerAttrs, rest, size }
-    = useTrigger({ ...triggerProps, type, href, target, rel });
+    = useTrigger({
+      ...triggerProps,
+      type,
+      ...(href   !== undefined ? { href }   : {}),
+      ...(target !== undefined ? { target } : {}),
+      ...(rel    !== undefined ? { rel }    : {}),
+    });
     
   const sizeStyle = resolveButtonSize(size);
 

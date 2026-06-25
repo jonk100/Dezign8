@@ -25,7 +25,7 @@ function parseMotion(m: string): ParsedPhase[] {
         .split(",")
         .map((a) => {
           const [name, rawDur = "300", rawDelay = "0"] = a.trim().split("/");
-          return { name: name.trim(), duration: +rawDur, delay: +rawDelay, phase };
+          return { name: (name ?? "").trim(), duration: +rawDur, delay: +rawDelay, phase };
         });
 
       return [{ phase, anims }];

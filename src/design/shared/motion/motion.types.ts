@@ -51,7 +51,7 @@ export interface ParsedPhase {
 
 export interface MotionAttrs {
   /** Inline animation style for enter + idle (applied on mount). */
-  enterStyle?: string;
+  enterStyle?: string | undefined;
   /** data-* attrs for JS-triggered exit animation. */
   exitAttrs:   Record<string, string>;
 }

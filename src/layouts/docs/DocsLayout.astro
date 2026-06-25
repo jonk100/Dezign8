@@ -28,8 +28,8 @@ interface Props {
     source?: string;
     figma?: string;
   };
-  prev?: { title: string; href: string };
-  next?: { title: string; href: string };
+  prev?: { title: string; href: string } | undefined;
+  next?: { title: string; href: string } | undefined;
 }
 
 const { title, description, category, status, version, icon, links, prev, next } = Astro.props;

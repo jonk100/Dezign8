@@ -118,7 +118,7 @@ type SelectBaseProps = FormProps & {
  * Props for single-selection mode. `multiple` is absent or `false`.
  * Not exported — use {@link SelectProps}.
  */
-interface SelectSingleProps extends SelectBaseProps {
+type SelectSingleProps = SelectBaseProps & {
   /**
    * Absent or explicitly `false` selects single-value mode.
    * Renders a standard `<select>` element.
@@ -134,13 +134,13 @@ interface SelectSingleProps extends SelectBaseProps {
    * option or the `placeholder` if provided).
    */
   value?: string;
-}
+};
 
 /**
  * Props for multi-selection mode. `multiple` must be exactly `true`.
  * Not exported — use {@link SelectProps}.
  */
-interface SelectMultiProps extends SelectBaseProps {
+type SelectMultiProps = SelectBaseProps & {
   /**
    * `true` enables multi-selection mode.
    * Renders `<select multiple>` — the user can select multiple options
@@ -163,7 +163,7 @@ interface SelectMultiProps extends SelectBaseProps {
    * `undefined` means nothing is selected.
    */
   value?: string[];
-}
+};
 
 // ─── PUBLIC UNION TYPE ───────────────────────────────────────────────────────
 
