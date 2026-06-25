@@ -11,11 +11,12 @@
 > (documentation, ownership, history, decisions). **Always verify against
 > actual source files before making changes** — the index may be stale.
 
-Last indexed: 2026-06-25 (commit 8e9619b). Confidence: 100%.
+Last indexed: 2026-06-25 (commit c139a93). Confidence: 100%.
 ### Architecture
-repo is a comprehensive design system library that consumes raw design tokens and primitive style definitions to compile a modular, type-safe React component library, ultimately outputting a standardized UI toolkit for consistent application development. The repository serves as the single source of truth for visual identity, translating design specifications into functional layout, surface, and typography components. The library exposes its functionality through granular component exports, allowing for tree-shaking and optimized bundle sizes:
-The repository is structured around a "Token-to-Component" pipeline:
-The codebase maintains a high degree of stability with no high-churn/high-complexity hotspots, indicating a mature and well-factored component architecture.
+repo is a design system component library that consumes raw design tokens and style definitions to transform them into a standardized, type-safe React component suite, ultimately producing a modular UI package for consistent application development. The repository serves as the foundational layer for visual consistency, abstracting complex layout, surface, and typography logic into reusable primitives. The library exposes its functionality through granular entry points categorized by domain:
+The repository follows a layered architecture designed for scalability and strict visual adherence:
+**Health & Maintenance:**
+The codebase is currently in an active development phase with high modularity. While the repository contains 605 files and ~42k lines of code, the architecture maintains a clean separation of concerns, evidenced by the absence of high-churn, high-complexity hotspots.
 ### Key Modules
 | Module | Purpose |
 |--------|---------|
@@ -66,10 +67,10 @@ The codebase maintains a high degree of stability with no high-churn/high-comple
 | File | Churn | 90d Commits | Owner |
 |------|-------|-------------|-------|
 | `pnpm-lock.yaml` | 100.0th %ile | 6 | Jon K |
-| `ai/agent_decision_log.md` | 99.9th %ile | 11 | Jon K |
-| `src/design/shared/primitives.tokens.ts` | 99.7th %ile | 6 | Jon K |
-| `.repowise/knowledge-graph.json` | 99.6th %ile | 3 | Jon K |
-| `src/design/forms/forms.props.ts` | 99.3th %ile | 3 | Jon K |
+| `.repowise/.update.log` | 99.9th %ile | 3 | Jon K |
+| `ai/agent_decision_log.md` | 99.7th %ile | 12 | Jon K |
+| `src/design/shared/primitives.tokens.ts` | 99.6th %ile | 6 | Jon K |
+| `.repowise/knowledge-graph.json` | 99.5th %ile | 3 | Jon K |
 
 ## Code health
 Three signals: **defect risk** (the overall score), **maintainability** (smells that hurt readability/change-cost without predicting bugs), and **performance** (static performance RISK: I/O-in-loop / N+1 shapes that waste work, high-precision/low-recall). Maintainability and performance are co-equal views, never blended into the defect headline. See `docs/CODE_HEALTH.md`.
