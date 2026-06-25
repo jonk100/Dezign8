@@ -11,7 +11,7 @@
 > (documentation, ownership, history, decisions). **Always verify against
 > actual source files before making changes** — the index may be stale.
 
-Last indexed: 2026-06-25 (commit c139a93). Confidence: 100%.
+Last indexed: 2026-06-25 (commit 12f4c0b). Confidence: 100%.
 ### Architecture
 repo is a design system component library that consumes raw design tokens and style definitions to transform them into a standardized, type-safe React component suite, ultimately producing a modular UI package for consistent application development. The repository serves as the foundational layer for visual consistency, abstracting complex layout, surface, and typography logic into reusable primitives. The library exposes its functionality through granular entry points categorized by domain:
 The repository follows a layered architecture designed for scalability and strict visual adherence:
@@ -67,21 +67,23 @@ The codebase is currently in an active development phase with high modularity. W
 | File | Churn | 90d Commits | Owner |
 |------|-------|-------------|-------|
 | `pnpm-lock.yaml` | 100.0th %ile | 6 | Jon K |
-| `.repowise/.update.log` | 99.9th %ile | 3 | Jon K |
-| `ai/agent_decision_log.md` | 99.7th %ile | 12 | Jon K |
+| `.repowise/.update.log` | 99.9th %ile | 4 | Jon K |
+| `ai/agent_decision_log.md` | 99.8th %ile | 12 | Jon K |
 | `src/design/shared/primitives.tokens.ts` | 99.6th %ile | 6 | Jon K |
 | `.repowise/knowledge-graph.json` | 99.5th %ile | 3 | Jon K |
 
 ## Code health
 Three signals: **defect risk** (the overall score), **maintainability** (smells that hurt readability/change-cost without predicting bugs), and **performance** (static performance RISK: I/O-in-loop / N+1 shapes that waste work, high-precision/low-recall). Maintainability and performance are co-equal views, never blended into the defect headline. See `docs/CODE_HEALTH.md`.
 
-Defect risk, Hotspot health: 9.37/10 (stable) ·
-Average: 9.89/10 ·
+Defect risk, Hotspot health: 9.24/10 (stable) ·
+Average: 9.88/10 ·
 Worst: 6.72/10 (`src/design/surfaces/surface.hook.ts`)
 Maintainability, Average: 9.91/10
 Performance risk, Average: 9.99/10
 
 ### Critical biomarkers
+- `.claude/CLAUDE.md` — hidden coupling — impact −2.0
+- `.repowise/state.json` — hidden coupling — impact −2.0
 - `src/design/surfaces/surface.hook.ts` — brain method (useSurface) — impact −0.3
 
 ### Repowise MCP Tools
