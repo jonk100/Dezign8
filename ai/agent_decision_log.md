@@ -7,6 +7,50 @@ _________________________________________________
 =================================================
 -----------------------------------------------
 
+## 2026/06/25 — TypeScript typecheck: 18 errors fixed
+
+Ran `pnpm astro check` → 18 errors, 0 after fixes. All were pre-existing (not introduced this session).
+
+### Root causes and decisions
+
+- **`FormProps` is a union type** — `FormProps = FormBaseProps & (A | B | C)` distributes to a union. TypeScript disallows `interface X extends <union>`. Fixed `SelectSingleProps`/`SelectMultiProps` from `interface extends SelectBaseProps` → `type = SelectBaseProps & { ... }`. Same pattern will apply to any future internal branching types built on `FormProps`.
+
+- **`export type { X as Y }` does not create a local binding** — `combobox.props.ts` used `export type { SelectOption as ComboboxOption }` then used `ComboboxOption` inside the same file. The re-export syntax is outbound-only. Fixed to `export type ComboboxOption = SelectOption;` which creates both a local alias and an export.
+
+- **`exactOptionalPropertyTypes` + destructured optionals** — Destructuring `href`, `target`, `rel` from props yields `string | undefined`; spreading these into a function call sets the property explicitly to `undefined`, which violates the strict flag. Pattern fix: `...(href !== undefined ? { href } : {})`. Applied in `button.hook.ts` and `Pagination.astro`. Same pattern already existed in `breadcrumbs.ts` / `stepper.ts` — consistent.
+
+- **`ButtonProps` is a discriminated union** — `theme-toggle.hook.ts` destructures from `ThemeToggleProps = ButtonProps` (a union), making `...rest` a union spread. TypeScript can't re-correlate the extracted `iconOnly` with the correct union branch. Fix: cast the composed argument `as ThemeToggleProps`. The cast is safe — the runtime values are structurally correct; only inference fails.
+
+- **`enterStyle?: string` vs `exactOptionalPropertyTypes`** — `getMotionAttrs` returns `{ enterStyle: string | undefined }` but `MotionAttrs.enterStyle` was typed `?: string`. With the strict flag, `undefined` is only valid when the property is absent, not when it's explicitly present. Fixed by adding `| undefined` to the field: `enterStyle?: string | undefined`. This is the idiomatic declaration when a function legitimately returns both "absent" and "explicitly undefined".
+
+- **`noUncheckedIndexedAccess` + array destructure** — `const [name, ...] = str.split("/")` gives `name: string | undefined`. Applied `?? ""` fallback: `(name ?? "").trim()`.
+
+- **Invalid overlay variant defaults** — `DROPDOWN_MENU_DEFAULTS.variant = "elevated"` and `SHEET_DEFAULTS.variant = "solid"` are not in `OverlayVariant = "default" | "centered" | "fullscreen"`. Both changed to `"default"`. The defaults were aspirational — `"elevated"` and `"solid"` variants don't exist in `OVERLAY_TOKENS`; they'd silently do nothing at runtime.
+
+- **`Link.href` made optional** — `Pagination` passes `undefined` for disabled prev/next links (ARIA pattern: `aria-disabled="true"` + `tabindex="-1"`). `LinkProps.href` was required. Changed to optional; HTML `<a>` without `href` is a valid placeholder link.
+
+- **`@floating-ui/dom` installed** — `dropdown-menu.client.ts` imported from it; package was missing from `package.json`. Not a new dependency — it was already in use, just not declared.
+
+### Modified files
+```
+src/design/feedback/feedback.hook.ts               stray import removed
+src/design/forms/components/combobox/combobox.props.ts  re-export → type alias
+src/design/forms/components/select/select.props.ts      interface → type alias
+src/design/nav/components/pagination/Pagination.astro   conditional spreads
+src/design/overlays/components/dropdown-menu/DropdownItem.astro  conditional props + SvgName cast
+src/design/overlays/components/dropdown-menu/dropdown-menu.tokens.ts  variant: "default"
+src/design/overlays/components/sheet/sheet.tokens.ts    variant: "default"
+src/design/shared/motion/motion.types.ts            enterStyle?: string | undefined
+src/design/shared/motion/motion.utils.ts            (name ?? "").trim()
+src/design/triggers/components/button/button.hook.ts    conditional spreads for href/target/rel
+src/design/triggers/components/link/link.props.ts   href optional
+src/design/triggers/components/theme-toggle/theme-toggle.hook.ts  as ThemeToggleProps cast
+src/layouts/docs/DocsLayout.astro                   prev/next allow | undefined
+package.json + pnpm-lock.yaml                       @floating-ui/dom added
+```
+
+-----------------------------------------------
+
 ## 2026/06/25 - Backlog triage session
 
 ### Decision audit: HIGH staleness items (repowise backlog queue)
