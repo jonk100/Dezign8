@@ -1,0 +1,21 @@
+---
+import type { DropdownItemProps } from "./dropdown-menu.props";
+import Icon from "~/assets/components/icon/Icon.astro";
+
+const { href, icon, popovertarget, disabled } = Astro.props as DropdownItemProps;
+
+const Tag = href ? "a" : "button";
+const props = {
+  class: "dropdown-menu__item",
+  href,
+  popovertarget,
+  disabled,
+  type: href ? undefined : "button",
+};
+---
+
+<Tag {...props}>
+  {icon && <Icon name={icon} size="sm" class="dropdown-menu__item-icon" />}
+  <span class="dropdown-menu__item-label"><slot /></span>
+  {popovertarget && <Icon name="chevron-right" size="sm" class="dropdown-menu__item-chevron" />}
+</Tag>

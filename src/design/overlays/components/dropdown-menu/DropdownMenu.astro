@@ -1,0 +1,18 @@
+---
+import type { DropdownMenuProps } from "./dropdown-menu.props";
+import { useDropdownMenu } from "./dropdown-menu.hook";
+import "../../overlays.css";
+import "./dropdown-menu.css";
+
+const { popoverProps } = useDropdownMenu(Astro.props as DropdownMenuProps);
+---
+
+<div {...popoverProps}>
+  <slot />
+</div>
+
+<script>
+  import { initDropdownMenus } from "./dropdown-menu.client";
+  initDropdownMenus();
+  document.addEventListener("astro:after-swap", initDropdownMenus);
+</script>

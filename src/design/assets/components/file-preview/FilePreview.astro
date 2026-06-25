@@ -1,0 +1,36 @@
+---
+import type { FilePreviewProps } from "./file-preview.props";
+import { useFilePreview } from "./file-preview.hook";
+import "./file-preview.css";
+
+type Props = FilePreviewProps;
+
+const { name, src, ext: _ext, label, fileSize, removable, onRemove, props } =
+  useFilePreview(Astro.props as FilePreviewProps);
+---
+
+<div {...props}>
+  {src ? (
+    <img class="file-preview__thumb" src={src} alt={name} loading="lazy" />
+  ) : (
+    <div class="file-preview__icon" aria-hidden="true">{label}</div>
+  )}
+
+  <div class="file-preview__meta">
+    <span class="file-preview__name" title={name}>{name}</span>
+    {fileSize && <span class="file-preview__size">{fileSize}</span>}
+  </div>
+
+  {removable && (
+    <button
+      class="file-preview__remove"
+      type="button"
+      aria-label={`Remove ${name}`}
+      onclick={onRemove}
+    >
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+        <path d="M1 1l8 8M9 1l-8 8" />
+      </svg>
+    </button>
+  )}
+</div>

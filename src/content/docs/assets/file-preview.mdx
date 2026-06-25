@@ -1,0 +1,144 @@
+---
+title: FilePreview Component
+description: Compact file card showing a thumbnail or type badge, filename, and optional file size with a removable action.
+category: Assets
+status: stable
+icon: file-magnifyer
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/assets/components/file-preview"
+---
+import FilePreview from "../../../design/assets/components/file-preview/FilePreview.astro";
+
+## Overview
+
+`FilePreview` renders a compact representation of a file. It operates in two visual modes:
+
+- **Thumbnail** — when `src` is provided, renders an image preview.
+- **Type badge** — when no `src`, shows a colored label derived from the file extension (e.g. `PDF`, `MP3`, `TSX`).
+
+Both modes support two layout variants: **card** (vertical, equal-width tiles) and **strip** (horizontal row for list views). A `removable` flag optionally adds a dismiss button.
+
+---
+
+## Usage
+
+### Type Badge (no image)
+
+Pass `name` with an extension. The component auto-detects the type and applies an accent color.
+
+```astro
+<FilePreview name="report.pdf" fileSize="2.4 MB" />
+<FilePreview name="data.csv" fileSize="84 KB" />
+<FilePreview name="app.tsx" fileSize="12 KB" />
+<FilePreview name="track.mp3" fileSize="5.1 MB" />
+<FilePreview name="archive.zip" fileSize="32 MB" />
+```
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem; align-items: flex-start;">
+  <FilePreview name="report.pdf" fileSize="2.4 MB" />
+  <FilePreview name="data.csv" fileSize="84 KB" />
+  <FilePreview name="app.tsx" fileSize="12 KB" />
+  <FilePreview name="track.mp3" fileSize="5.1 MB" />
+  <FilePreview name="archive.zip" fileSize="32 MB" />
+  <FilePreview name="photo.webp" fileSize="640 KB" />
+</div>
+
+### Thumbnail (image preview)
+
+Provide `src` to render a cropped image thumbnail instead of the type badge.
+
+```astro
+<FilePreview name="shell_lounge.png" src="/shell_lounge.png" fileSize="1.1 MB" />
+```
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem; align-items: flex-start;">
+  <FilePreview name="shell_lounge.png" src="/shell_lounge.png" fileSize="1.1 MB" />
+  <FilePreview name="king_kong_bar.png" src="/king_kong_bar.png" fileSize="892 KB" />
+  <FilePreview name="mushrooms.webp" src="/design8_mushrooms1 (Edit).webp" fileSize="640 KB" />
+</div>
+
+### Sizes
+
+The `size` prop scales the entire component — both the icon/thumb area and text.
+
+```astro
+<FilePreview name="document.pdf" size="xs" />
+<FilePreview name="document.pdf" size="sm" />
+<FilePreview name="document.pdf" size="md" />
+<FilePreview name="document.pdf" size="lg" />
+<FilePreview name="document.pdf" size="xl" />
+```
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem; align-items: flex-end;">
+  <FilePreview name="document.pdf" size="xs" />
+  <FilePreview name="document.pdf" size="sm" />
+  <FilePreview name="document.pdf" size="md" />
+  <FilePreview name="document.pdf" size="lg" />
+  <FilePreview name="document.pdf" size="xl" />
+</div>
+
+### Strip Layout
+
+Use `layout="strip"` for list or table contexts where horizontal space is preferred.
+
+```astro
+<FilePreview name="report.pdf" fileSize="2.4 MB" layout="strip" />
+<FilePreview name="shell_lounge.png" src="/shell_lounge.png" fileSize="1.1 MB" layout="strip" />
+```
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem; max-width: 360px;">
+  <FilePreview name="report.pdf" fileSize="2.4 MB" layout="strip" />
+  <FilePreview name="data.csv" fileSize="84 KB" layout="strip" />
+  <FilePreview name="app.tsx" fileSize="12 KB" layout="strip" />
+  <FilePreview name="shell_lounge.png" src="/shell_lounge.png" fileSize="1.1 MB" layout="strip" />
+</div>
+
+### Removable
+
+Add `removable` to show a dismiss button that appears on hover. Wire up client-side behavior via `onRemove` (a JS expression string) or your own event delegation.
+
+```astro
+<FilePreview name="report.pdf" fileSize="2.4 MB" removable />
+<FilePreview name="photo.webp" src="/shell_lounge.png" fileSize="1.1 MB" removable />
+```
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--border--default); border-radius: var(--radius--md); margin-bottom: 1rem; align-items: flex-start;">
+  <FilePreview name="report.pdf" fileSize="2.4 MB" removable />
+  <FilePreview name="photo.webp" src="/shell_lounge.png" fileSize="1.1 MB" removable />
+  <FilePreview name="track.mp3" fileSize="5.1 MB" removable layout="strip" />
+</div>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `name` | `string` | — | File name with extension. Used to derive the type label. **(Required)** |
+| `src` | `string` | — | Image URL. Shows a thumbnail when provided. |
+| `fileSize` | `string` | — | Human-readable size string (e.g. `"2.4 MB"`). |
+| `layout` | `"card" \| "strip"` | `"card"` | Card stacks vertically; strip is a horizontal row. |
+| `size` | `FilePreviewSize` | `"md"` | `xs` `sm` `md` `lg` `xl` |
+| `radius` | `FilePreviewRadius` | `"md"` | Any design-system radius token. |
+| `removable` | `boolean` | `false` | Shows a dismiss `×` button on hover. |
+| `onRemove` | `string` | — | Inline JS expression for the dismiss button's `onclick`. |
+
+*Inherits all `BaseComponentProps`.*
+
+---
+
+## File Type Colors
+
+The component maps file extensions to one of five accent color classes:
+
+| Category | Extensions | Color |
+|---|---|---|
+| Image | jpg, jpeg, png, gif, webp, svg, avif | info |
+| Document | pdf, doc, docx, txt, md | danger |
+| Spreadsheet | xls, xlsx, csv | success |
+| Code | js, ts, jsx, tsx, html, css, json | accent |
+| Media | mp3, wav, mp4, mov | warning |
+| Archive | zip, gz, tar | neutral |
+
+Unknown extensions render a neutral `FILE` badge.

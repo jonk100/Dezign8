@@ -1,0 +1,269 @@
+/* audio.css — custom audio player */
+
+/*
+ * CSS channels written by useAudio:
+ *   --audio--radius              border-radius
+ *   --audio--color-subtle        bg for soft variant
+ *   --audio--color-muted         hover bg for soft
+ *   --audio--color-base          play button fill; solid variant bg
+ *   --audio--color-vivid         play button hover
+ *   --audio--color-deep          play button active
+ *   --audio--color-border        border for outlined/soft variants
+ *   --audio--color-text          text on non-solid backgrounds
+ */
+
+.audio {
+  display:          flex;
+  flex-direction:   column;
+  gap:              var(--space-in--xs);
+  border-radius:    var(--audio--radius, var(--radius--md));
+  padding:          var(--audio--padding, var(--space-in--sm));
+  color:            var(--text--primary);
+  font-size:        var(--fsf--sm);
+  width:            100%;
+  border:           1px solid transparent;
+  transition:       background-color 150ms ease, border-color 150ms ease;
+}
+
+/* ── variant: chrome treatment ───────────────────────────── */
+
+.audio--soft {
+  background-color: var(--audio--color-subtle);
+  border-color:     var(--audio--color-border);
+}
+
+.audio--outlined {
+  background-color: transparent;
+  border-color:     var(--audio--color-border);
+}
+
+.audio--solid {
+  background-color: var(--audio--color-base);
+  border-color:     var(--audio--color-base);
+  color:            var(--text--on-color);
+}
+
+/* play button inverts on solid — container is already the accent color */
+.audio--solid .audio__play-btn {
+  background: rgba(0, 0, 0, 0.2);
+}
+.audio--solid .audio__play-btn:hover  { background: rgba(0, 0, 0, 0.3); }
+.audio--solid .audio__play-btn:active { background: rgba(0, 0, 0, 0.4); }
+
+.audio--ghost {
+  background-color: transparent;
+  border-color:     transparent;
+}
+
+/* ── size scale vars (read by sub-elements below) ────────── */
+
+.audio {
+  --audio--btn-size:    2.25rem;
+  --audio--thumb-size:  14px;
+  --audio--track-h:     4px;
+  --audio--vol-w:       72px;
+}
+
+/* ── size modifiers ──────────────────────────────────────── */
+
+.audio--sm {
+  font-size:            var(--fsf--xs);
+  gap:                  var(--space-in--2xs);
+  padding:              var(--space-in--xs);
+  --audio--btn-size:    1.75rem;
+  --audio--thumb-size:  10px;
+  --audio--track-h:     3px;
+  --audio--vol-w:       56px;
+}
+
+.audio--sm .audio__controls { gap: var(--space-in--2xs); }
+
+.audio--lg {
+  font-size:            var(--fsf--md);
+  gap:                  var(--space-in--sm);
+  padding:              var(--space-in--md);
+  --audio--btn-size:    2.75rem;
+  --audio--thumb-size:  18px;
+  --audio--track-h:     5px;
+  --audio--vol-w:       96px;
+}
+
+/* ── layout: compact — single row ───────────────────────── */
+
+.audio--layout-compact {
+  flex-direction: row;
+  align-items:    center;
+}
+
+.audio--layout-compact .audio__seek-row,
+.audio--layout-compact .audio__time {
+  flex: 1;
+}
+
+/* ── layout: minimal — hide secondary row ────────────────── */
+
+.audio--layout-minimal .audio__secondary {
+  display: none;
+}
+
+/* ── top row: controls + time ────────────────────────────── */
+
+.audio__controls {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-in--xs);
+}
+
+.audio__play-btn {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           var(--audio--btn-size);
+  height:          var(--audio--btn-size);
+  border-radius:   50%;
+  border:          none;
+  background:      var(--audio--color-base);
+  color:           var(--text--on-color);
+  cursor:          pointer;
+  flex-shrink:     0;
+  transition:      background 0.15s;
+}
+
+.audio__play-btn:hover  { background: var(--audio--color-vivid); }
+.audio__play-btn:active { background: var(--audio--color-deep);  }
+
+.audio__play-btn .icon {
+  display:        flex;
+  align-items:    center;
+  pointer-events: none;
+}
+
+.audio__time {
+  margin-left:  auto;
+  white-space:  nowrap;
+  color:        var(--text--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── seek bar ────────────────────────────────────────────── */
+
+.audio__seek-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-in--xs);
+}
+
+.audio__seek {
+  flex:              1;
+  -webkit-appearance: none;
+  appearance:        none;
+  height:            var(--audio--track-h);
+  border-radius:     var(--radius--full);
+  background:        var(--border--subtle);
+  cursor:            pointer;
+  outline:           none;
+}
+
+.audio__seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance:         none;
+  width:              var(--audio--thumb-size);
+  height:             var(--audio--thumb-size);
+  border-radius:      50%;
+  background:         var(--audio--color-base);
+  cursor:             pointer;
+  transition:         transform 0.1s;
+}
+
+.audio__seek::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.audio__seek::-moz-range-thumb {
+  width:        var(--audio--thumb-size);
+  height:       var(--audio--thumb-size);
+  border-radius: 50%;
+  background:   var(--primary--base);
+  border:       none;
+  cursor:       pointer;
+}
+
+/* progress fill via inline linear-gradient set by JS */
+
+/* ── bottom row: volume + rate ───────────────────────────── */
+
+.audio__secondary {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-in--sm);
+  flex-wrap:   wrap;
+}
+
+.audio__volume,
+.audio__rate {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-in--2xs);
+  color:       var(--text--muted);
+}
+
+.audio__volume-slider,
+.audio__rate-select {
+  -webkit-appearance: none;
+  appearance:         none;
+  cursor:             pointer;
+  background:         var(--border--subtle);
+  border-radius:      var(--radius--full);
+}
+
+.audio__volume-slider {
+  width:  var(--audio--vol-w);
+  height: var(--audio--track-h);
+}
+
+.audio__volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance:         none;
+  width:              var(--audio--thumb-size);
+  height:             var(--audio--thumb-size);
+  border-radius:      50%;
+  background:         var(--audio--color-base);
+  cursor:             pointer;
+}
+
+.audio__volume-slider::-moz-range-thumb {
+  width:         var(--audio--thumb-size);
+  height:        var(--audio--thumb-size);
+  border-radius: 50%;
+  background:    var(--primary--base);
+  border:        none;
+  cursor:        pointer;
+}
+
+.audio__rate-select {
+  background:  var(--bg--3);
+  border:      1px solid var(--border--subtle);
+  border-radius: var(--radius--sm);
+  color:       var(--text--primary);
+  font-size:   var(--fsf--xs);
+  padding:     0.1rem 0.25rem;
+}
+
+/* ── intercom badge ──────────────────────────────────────── */
+
+.audio__intercom-badge {
+  font-size:    var(--fsf--xs);
+  color:        var(--warning--text);
+  background:   var(--warning--subtle);
+  border:       1px solid var(--warning--border);
+  border-radius: var(--radius--full);
+  padding:      0.1rem 0.5rem;
+  margin-left:  auto;
+}
+
+/* ── redact indicator ────────────────────────────────────── */
+
+.audio__seek-row[data-redact] .audio__seek {
+  /* JS overlays the fill; just ensure no browser-default fill fights it */
+  background: transparent;
+}

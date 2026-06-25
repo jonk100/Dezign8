@@ -37,14 +37,14 @@ type Props = TabsProps;
 const { tabsProps, items, activeId } = useTabs(Astro.props);
 ---
 
-<div {...tabsProps}>
+<div {...tabsProps as Record<string, unknown>}>
   {items ? (
     items.map(item => (
-      <Tab 
-        id={item.id} 
-        disabled={item.disabled}
-        active={activeId ? activeId === item.id : item.active}
-        href={item.href}
+      <Tab
+        id={item.id}
+        {...(item.disabled !== undefined ? { disabled: item.disabled } : {})}
+        {...((activeId ? activeId === item.id : item.active) !== undefined ? { active: activeId ? activeId === item.id : item.active } : {})}
+        {...(item.href ? { href: item.href } : {})}
       >
         {item.label}
       </Tab>

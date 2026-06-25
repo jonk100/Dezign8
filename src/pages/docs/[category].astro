@@ -8,6 +8,7 @@ import Quote from '~/typography/components/quote/Quote.astro';
 import H from '~/typography/components/heading/H.astro';
 import Table from '~/data/components/table/Table.astro';
 import Image from '~/assets/components/image/Image.astro';
+import Text from '~/typography/components/text/Text.astro';
 
 export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
@@ -15,52 +16,55 @@ export async function getStaticPaths() {
   // A category doc is one where the filename matches the directory name, e.g., typography/typography
   const categoryDocs = allDocs.filter((doc: any) => {
       const parts = doc.id.split('/');
-      // Remove extension if present in id
       const name = parts[parts.length - 1].replace(/\.mdx?$/, '');
-      return parts.length >= 2 && parts[parts.length - 2] === name;
+      return parts.length >= 2 && parts[parts.length - 2] === name && doc.data.category;
+  });
+
+  categoryDocs.sort((a: any, b: any) => {
+    const catA = (a.data.category || '').toLowerCase();
+    const catB = (b.data.category || '').toLowerCase();
+    return catA.localeCompare(catB);
   });
   
-  return categoryDocs.map((catDoc: any) => {
+  return categoryDocs.map((catDoc: any, index: number) => {
       const categoryName = catDoc.data.category;
-      if (!categoryName) return null;
-      
       const slugified = categoryName.toLowerCase().replace(/\s+/g, '-');
       const components = allDocs.filter((d: any) => 
           d.data.category === categoryName && d.id !== catDoc.id
       );
+
+      const prevEntry = index > 0 ? categoryDocs[index - 1] : null;
+      const nextEntry = index < categoryDocs.length - 1 ? categoryDocs[index + 1] : null;
       
       return {
           params: { category: slugified },
           props: { 
               categoryName, 
               components,
-              docEntry: catDoc
+              docEntry: catDoc,
+              prevEntry,
+              nextEntry
           }
       };
-  }).filter(Boolean);
+  });
 }
 
 const mdxComponents = {
-  code: Code,
-  pre: Pre,
-  blockquote: Quote,
   table: Table,
   img: Image,
-  h1: H,
-  h2: H,
-  h3: H,
-  h4: H,
-  h5: H,
-  h6: H,
+  Text,
 };
 
-const { categoryName, components, docEntry } = Astro.props as { categoryName: string, components: any[], docEntry: any };
+const { categoryName, components, docEntry, prevEntry, nextEntry } = Astro.props as { categoryName: string, components: any[], docEntry: any, prevEntry?: any, nextEntry?: any };
 
 const { Content } = await render(docEntry);
 const { title = `${categoryName} Category`, description = `Index of components in the ${categoryName} category.` } = docEntry.data;
+
+const prev = prevEntry ? { title: prevEntry.data.title || prevEntry.data.category, href: `/docs/${prevEntry.data.category.toLowerCase().replace(/\s+/g, '-')}` } : undefined;
+const next = nextEntry ? { title: nextEntry.data.title || nextEntry.data.category, href: `/docs/${nextEntry.data.category.toLowerCase().replace(/\s+/g, '-')}` } : undefined;
 ---
 
-<DocsLayout title={title} description={description}>
+<DocsLayout title={title} description={description} prev={prev} next={next}>
   {components.length > 0 && (
     <div class="component-table-wrapper">
       <table class="component-table">

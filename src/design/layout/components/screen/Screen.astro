@@ -1,0 +1,12 @@
+---
+import type { ScreenProps } from "./screen.props";
+import { useScreen } from "./screen.hook";
+
+import "./screen.css";
+
+const { Tag, props } = useScreen(Astro.props as ScreenProps);
+---
+
+<Tag {...props}>
+  <slot />
+</Tag>

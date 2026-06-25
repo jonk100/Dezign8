@@ -27,6 +27,10 @@
       "@overlays/*": ["src/design/overlays/*"],
       "@nav/*": ["src/design/nav/*"],
 
+      // assets:
+      "#icon/*": ["src/design/assets/components/icon/*"],
+      "#image/*": ["src/design/assets/components/image/*"],
+      "#audio/*": ["src/design/assets/components/audio/*"],
 
       // Typography:
       "#text/*": ["src/design/typography/components/text/*"],
@@ -48,6 +52,7 @@
       "#textarea/*": ["src/design/forms/components/textarea/*"],
 
       // Feedback:
+      "#alert/*": ["src/design/feedback/components/alert/*"],
       "#badge/*": ["src/design/feedback/components/badge/*"],
       "#banner/*": ["src/design/feedback/components/banner/*"],
       "#dot/*": ["src/design/feedback/components/dot/*"],
@@ -60,6 +65,7 @@
       "#skeleton/*": ["src/design/feedback/components/skeleton/*"],
       "#toast/*": ["src/design/feedback/components/toast/*"],
 
+
       // layout:
       "#box/*": ["src/design/layout/components/box/*"],
       "#container/*": ["src/design/layout/components/container/*"],
@@ -71,7 +77,16 @@
       "#inline/*": ["src/design/layout/components/inline/*"],
       "#separator/*": ["src/design/layout/components/separator/*"],
       "#spacer/*": ["src/design/layout/components/spacer/*"],
-      
+
+      // nav:
+      "#navbar/*": ["src/design/nav/components/navbar/*"],
+      "#breadcrumbs/*": ["src/design/nav/components/breadcrumbs/*"],
+      "#pagination/*": ["src/design/nav/components/pagination/*"],
+      "#tabs/*": ["src/design/nav/components/tabs/*"],
+      "#menu/*": ["src/design/nav/components/menu/*"],
+      "#dropdown/*": ["src/design/nav/components/dropdown/*"],
+      "#toolbar/*": ["src/design/nav/components/toolbar/*"],
+
       // surfaces:
       "#card/*": ["src/design/surfaces/components/card/*"],
       "#frame/*": ["src/design/surfaces/components/frame/*"],
@@ -80,6 +95,13 @@
       "#section/*": ["src/design/surfaces/components/section/*"],
       "#tile/*": ["src/design/surfaces/components/tile/*"],
       "#well/*": ["src/design/surfaces/components/well/*"],
+
+      // triggers
+      "#button/*": ["src/design/triggers/components/button/*"],
+      "#button-group/*": ["src/design/triggers/components/button-group/*"],
+      "#command-palette/*": ["src/design/triggers/components/command-palette/*"],
+      "#link/*": ["src/design/triggers/components/link/*"],
+
     }
   }
 }

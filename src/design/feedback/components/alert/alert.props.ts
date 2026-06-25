@@ -3,7 +3,7 @@
 import type { FeedbackProps } from "../../feedback.props";
 import type { AlertColor, AlertRadius, AlertVariant } from "./alert.tokens";
 
-export interface AlertProps extends Omit<FeedbackProps, "color" | "variant" | "radius" | "size" | "pulse" | "placement"> {
+export interface AlertProps extends Omit<FeedbackProps, "color" | "variant" | "radius" | "pulse" | "placement"> {
   /** Visual treatment. @default "soft" */
   variant?: AlertVariant;
 
@@ -12,13 +12,6 @@ export interface AlertProps extends Omit<FeedbackProps, "color" | "variant" | "r
 
   /** Border radius. @default "md" */
   radius?: AlertRadius;
-
-  /**
-   * Adds a dismiss button. The consumer must wire up JS to hide the alert
-   * (e.g. `document.querySelector('.alert').remove()`). When set, an
-   * `aria-label` is emitted on the dismiss button for screen reader users.
-   * @default false
-   */
   dismissible?: boolean;
 
   /**

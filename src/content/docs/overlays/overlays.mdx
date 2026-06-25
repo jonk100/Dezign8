@@ -1,0 +1,172 @@
+---
+title: Overlays Category
+description: Native dialog-based overlays with a shared size, variant, and radius token layer and a consistent declarative open/close API.
+category: Overlays
+status: stable
+---
+
+## Overview
+
+The Overlays category provides components that render content above the page using the native `<dialog>` element. Every dialog-based component (`Modal`, `AlertDialog`) shares a common token layer, a shared CSS file (`overlays.css`), and the same data-attribute open/close API pattern. `Tooltip` is the exception — it is a CSS-only hover overlay with no dialog element.
+
+---
+
+## Architecture
+
+### The shared hook
+
+`useOverlays` is the category hook. It resolves the three shared token dimensions (`size`, `variant`, `radius`) into CSS channels and modifier classes, then delegates to `useBaseCompose` for base prop handling. The returned attributes are spread onto the `<dialog>` element.
+
+```
+useOverlays(OverlaysProps)
+       ↓
+resolveTokens(OVERLAY_TOKENS, { size, variant, radius }, "overlay")
+       ↓
+{ overlayClass, overlayStyle, overlayAttrs, rest }
+```
+
+Component hooks call `useOverlays`, then compose the component-specific class on top:
+
+```ts
+// modal.hook.ts
+const { overlayClass, overlayStyle, overlayAttrs, rest } = useOverlays({ size, variant, ...base });
+
+return {
+  dialogProps: {
+    class: composeClass(overlayClass, "modal"),  // "overlay overlay--size-md overlay--variant-default modal"
+    style: overlayStyle,
+    ...overlayAttrs,
+    ...rest,
+    "aria-labelledby": title ? `${id}-title` : undefined,
+  },
+};
+```
+
+The final element carries both the shared `overlay` class (reads shared token channels) and the component class (`modal` or `alert-dialog`) for component-specific inner layout rules.
+
+### Shared CSS
+
+`overlays.css` owns everything shared between `Modal` and `AlertDialog`:
+
+- Entry/exit animation (`overlays-in` keyframe + `@starting-style`)
+- Panel chrome: background, border, shadow, radius
+- Size modifier classes: `overlay--size-xs` through `overlay--size-full`
+- Variant modifier classes: `overlay--variant-default` (10dvh from top), `overlay--variant-centered` (margin: auto)
+- `::backdrop` styles: frosted-glass blur
+- Inner layout regions: `.__header`, `.__body`, `.__footer`
+
+Component CSS files (`modal.css`, `alert-dialog.css`) only add component-specific overrides.
+
+---
+
+## Shared Token Dimensions
+
+All dialog components accept these three props, resolved by `useOverlays`:
+
+| Prop | Output | Description |
+|---|---|---|
+| `size` | class: `overlay--size-md` | Max panel width (360px–960px or 100dvw). |
+| `variant` | class: `overlay--variant-default` | Vertical placement of the panel. |
+| `radius` | `--overlay--radius: var(--radius--lg)` | Border radius of the panel. |
+
+### Size
+
+Controls the panel's `max-width` via `min()` to preserve 95dvw on narrow viewports.
+
+| Value | Max width |
+|---|---|
+| `xs` | 360px |
+| `sm` | 480px |
+| `md` | 600px (Modal default) |
+| `lg` | 760px |
+| `xl` | 960px |
+| `full` | 100dvw × 100dvh, no radius, no border |
+
+### Variant
+
+Controls vertical placement. The `default` variant pins the panel near the top of the viewport, which keeps the title visible and leaves breathing room below. `centered` uses `margin: auto` to vertically center the panel — appropriate for short, focused prompts like `AlertDialog`.
+
+| Value | Placement | Default for |
+|---|---|---|
+| `default` | 10dvh from top, horizontally centered | Modal |
+| `centered` | Vertically and horizontally centered | AlertDialog |
+| `fullscreen` | Use `size="full"` instead — `fullscreen` is a named variant alias | — |
+
+---
+
+## Native `<dialog>` Foundation
+
+All dialog-based overlays use `dialog.showModal()` to open. This gives three things for free:
+
+1. **Focus trapping** — keyboard focus stays inside the dialog until it closes.
+2. **Background inertness** — `aria-hidden` and `inert` are set on the rest of the page by the browser.
+3. **Top-layer stacking** — the dialog always renders above all other content regardless of `z-index`.
+
+The `Escape` key triggers the native `cancel` event. Components either allow this (Modal default) or suppress it (`dialog.addEventListener("cancel", e => e.preventDefault())`) depending on their semantic contract.
+
+---
+
+## Open / Close API
+
+### Declarative data attributes
+
+The simplest way to open and close — no script required on the page:
+
+```html
+<!-- open from anywhere -->
+<button data-modal-open="my-modal">Open</button>
+
+<!-- close from inside the dialog (actions slot) -->
+<button data-modal-close="my-modal">Cancel</button>
+```
+
+AlertDialog uses its own attribute namespace:
+
+```html
+<button data-alert-dialog-close="confirm-dialog">Cancel</button>
+<button data-alert-dialog-confirm="confirm-dialog">Confirm</button>
+```
+
+Both `data-alert-dialog-close` and `data-alert-dialog-confirm` close the dialog. The distinction is semantic — add a click handler before the dialog closes if you need to run a side effect on confirm.
+
+### Programmatic API
+
+Each component ships a controller for imperative use:
+
+```ts
+import { modal }       from "@/design/overlays/components/modal/modal.client";
+import { alertDialog } from "@/design/overlays/components/alert-dialog/alert-dialog.client";
+
+modal.open("my-modal");
+modal.close("my-modal");
+
+alertDialog.open("confirm-dialog");
+alertDialog.close("confirm-dialog");
+```
+
+### Window events
+
+Both controllers dispatch events on `window` so unrelated parts of the page can react:
+
+```ts
+window.addEventListener("modal:open",          (e) => console.log(e.detail.id));
+window.addEventListener("modal:close",         (e) => console.log(e.detail.id));
+window.addEventListener("alert-dialog:open",   (e) => console.log(e.detail.id));
+window.addEventListener("alert-dialog:close",  (e) => console.log(e.detail.id));
+```
+
+---
+
+## Choosing the right component
+
+| | `Modal` | `AlertDialog` | `Tooltip` |
+|---|---|---|---|
+| Element | `<dialog>` | `<dialog>` | CSS wrapper |
+| Opens via | `showModal()` | `showModal()` | `:hover` / `:focus-within` |
+| Close button | Yes | No | — |
+| Backdrop dismiss | Yes (default) | No | — |
+| Escape to close | Yes (default) | No (default) | — |
+| ARIA role | `dialog` | `alertdialog` | `tooltip` |
+| Default size | `md` (600px) | `sm` (480px) | content-sized |
+| Default placement | Top-aligned | Centered | Above trigger |
+| Use when | Forms, detail views, any dismissible overlay | Destructive or irreversible confirmations | Brief explanatory text on hover/focus |

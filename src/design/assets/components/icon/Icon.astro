@@ -1,4 +1,13 @@
 ---
+/**
+ * A wrapper for Astro's SVGComponent with an icon registry and generated types
+ * 
+ * @example
+ * ```astro
+ * <Icon name="home" />
+ * ```
+ * 
+ */
 import type { IconProps } from "./icon.props";
 import { useIcon } from "./icon.hook";
 import { icons } from "~/shared/icons";
@@ -9,7 +18,7 @@ type Props = IconProps;
 const { name, props: iconProps } = useIcon(Astro.props);
 
 // Retrieve the corresponding SVG component from the registry
-const SvgIcon = icons[name];
+const SvgIcon = (icons as Record<string, typeof icons[keyof typeof icons]>)[name];
 
 if (!SvgIcon) {
   throw new Error(`Icon "${name}" not found in the registry. Did you forget to add it to src/design/shared/icons?`);

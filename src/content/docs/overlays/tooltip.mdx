@@ -1,0 +1,119 @@
+---
+title: Tooltip
+description: A brief, non-interactive text overlay that appears on hover or focus to provide contextual information.
+category: Overlays
+status: stable
+icon: tooltip
+---
+import Tooltip from "../../../design/overlays/components/tooltip/Tooltip.astro";
+
+## Overview
+
+`Tooltip` is a pure CSS component that wraps an element and displays brief supplementary text when the user hovers over or focuses the trigger. It is ideal for explaining icon-only buttons or clarifying brief terms.
+
+Defaults: `placement="top"`.
+
+---
+
+## Usage
+
+### Basic
+
+Wrap the trigger element with the `<Tooltip>` component and provide the `content` prop.
+
+```astro
+---
+import Tooltip from "@/design/overlays/components/tooltip/Tooltip.astro";
+import Button from "@/design/triggers/components/button/Button.astro";
+import Icon from "@/assets/components/icon/Icon.astro";
+---
+
+<Tooltip content="Settings">
+  <Button iconOnly aria-label="Settings" variant="ghost">
+    <Icon name="settings" />
+  </Button>
+</Tooltip>
+```
+
+<div style={{ padding: "2rem 0", display: "flex", justifyContent: "center" }}>
+  <Tooltip content="Settings">
+    <button style={{ padding: "0.5rem", borderRadius: "0.375rem" }} aria-label="Settings">
+      Hover me
+    </button>
+  </Tooltip>
+</div>
+
+### Placements
+
+Use the `placement` prop to position the tooltip relative to its trigger. 
+Available options: `"top"`, `"bottom"`, `"left"`, `"right"`.
+
+```astro
+<Tooltip content="Top placement" placement="top">
+  <button>Top</button>
+</Tooltip>
+
+<Tooltip content="Bottom placement" placement="bottom">
+  <button>Bottom</button>
+</Tooltip>
+
+<Tooltip content="Left placement" placement="left">
+  <button>Left</button>
+</Tooltip>
+
+<Tooltip content="Right placement" placement="right">
+  <button>Right</button>
+</Tooltip>
+```
+
+<div style={{ display: "flex", gap: "2rem", padding: "2rem 0", justifyContent: "center", flexWrap: "wrap" }}>
+  <Tooltip content="Top placement" placement="top">
+    <button style={{ padding: "0.5rem", borderRadius: "0.375rem" }}>Top</button>
+  </Tooltip>
+
+  <Tooltip content="Bottom placement" placement="bottom">
+    <button style={{ padding: "0.5rem", borderRadius: "0.375rem" }}>Bottom</button>
+  </Tooltip>
+
+  <Tooltip content="Left placement" placement="left">
+    <button style={{ padding: "0.5rem", borderRadius: "0.375rem" }}>Left</button>
+  </Tooltip>
+
+  <Tooltip content="Right placement" placement="right">
+    <button style={{ padding: "0.5rem", borderRadius: "0.375rem" }}>Right</button>
+  </Tooltip>
+</div>
+
+### Radius
+
+You can override the border radius of the tooltip box using the `radius` prop.
+
+```astro
+<Tooltip content="No radius" radius="none">…</Tooltip>
+<Tooltip content="Small radius" radius="sm">…</Tooltip>
+<Tooltip content="Full radius" radius="full">…</Tooltip>
+```
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `content` | `string` | — | **Required.** The text content to display inside the tooltip. |
+| `placement` | `"top" \| "bottom" \| "left" \| "right"` | `"top"` | Which side of the trigger the tooltip appears on. |
+| `radius` | `RadiusToken` | — | Border radius override for the tooltip bubble. |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| default | The trigger element(s). The tooltip is positioned relative to the bounds of the slot content. |
+
+---
+
+## Accessibility
+
+- Renders a visually hidden `<span role="tooltip">` that becomes visible on `:hover` and `:focus-within` using CSS.
+- Automatically handles keyboard focus because it reacts to `:focus-within` on the wrapper. Ensure the trigger element (e.g. `<button>` or `<a>`) inside the default slot is natively focusable.
+- The `content` prop is purely visual. **Always provide an `aria-label` or visually hidden `<label>` on the trigger element itself** if the trigger lacks text. Do not rely on the tooltip content for screen reader accessible names.

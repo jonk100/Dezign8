@@ -36,6 +36,7 @@
  */
 
 import type { FeedbackProps }        from "./feedback.props";
+import type { m } from "../shared/base.props"
 import { FEEDBACK_TOKENS }           from "./feedback.tokens";
 import { resolveTokens }             from "~/shared/tokens";
 import { resolveColorChannels }      from "~/shared/primitives.tokens";
@@ -90,11 +91,8 @@ export function useFeedback(props: FeedbackProps) {
     pulse     = false,
     placement,
     class: className,
-    v:     _v,
-    testId: _testId,
     bg,
-    animation,
-    ...rest
+    ...base   // v, testId, loading, spacing, motion, id, style, html attrs
   } = props;
 
   // ── Token resolution ───────────────────────────────────────────────────────
@@ -132,13 +130,12 @@ export function useFeedback(props: FeedbackProps) {
 
   // ── Class + style composition ──────────────────────────────────────────────
 
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest, spacing } = useBaseCompose(
     {
       className: [
         "feedback",
         ...tokenClasses,                        // feedback--soft, feedback--neutral, feedback--md
         pulse     && "feedback--pulse",         // CSS: animation loop
-        animation && `animate-${animation}`,
         className,
       ],
       style: [
@@ -147,7 +144,7 @@ export function useFeedback(props: FeedbackProps) {
         bg && `--local--bg: ${bg}`,             // escape-hatch background
       ],
     },
-    props,
+    base,
   );
 
   return {
@@ -158,5 +155,6 @@ export function useFeedback(props: FeedbackProps) {
       ...dataAttrs,
     },
     rest,
+    spacing,
   };
 }

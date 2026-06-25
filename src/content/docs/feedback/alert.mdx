@@ -3,6 +3,7 @@ title: Alert Component
 description: An inline block-level status message with optional icon, title, actions, and dismiss button.
 category: Feedback
 status: stable
+icon: alert
 ---
 import Alert from "../../../design/feedback/components/alert/Alert.astro";
 
@@ -21,36 +22,50 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
 ```astro
 <Alert>Your changes have been saved.</Alert>
 ```
-
-<Alert>Your changes have been saved.</Alert>
+<Alert color="warning" size="xl"><Text>Your changes have been saved.</Text></Alert>
 
 ### Colors
 
 ```astro
-<Alert color="neutral">Neutral info message.</Alert>
-<Alert color="info">New features are available in this release.</Alert>
-<Alert color="success">Your account has been verified.</Alert>
-<Alert color="warning">Your trial expires in 3 days.</Alert>
-<Alert color="danger">Payment failed. Please update your billing details.</Alert>
+<Stack gap="lg">
+  <Alert color="neutral">Neutral info message.</Alert>
+  <Alert color="info">New features are available in this release.</Alert>
+  <Alert color="success">Your account has been verified.</Alert>
+  <Alert color="warning">Your trial expires in 3 days.</Alert>
+  <Alert color="danger">Payment failed. Please update your billing details.</Alert>
+</Stack>
 ```
-
-<Alert color="neutral">Neutral info message.</Alert>
-<Alert color="info">New features are available in this release.</Alert>
-<Alert color="success">Your account has been verified.</Alert>
-<Alert color="warning">Your trial expires in 3 days.</Alert>
-<Alert color="danger">Payment failed. Please update your billing details.</Alert>
+<Stack gap="lg">
+  <Alert color="neutral">Neutral info message.</Alert>
+  <Alert color="info">New features are available in this release.</Alert>
+  <Alert color="success">Your account has been verified.</Alert>
+  <Alert color="warning">Your trial expires in 3 days.</Alert>
+  <Alert color="danger">Payment failed. Please update your billing details.</Alert>
+</Stack>
 
 ### Variants
 
 ```astro
-<Alert color="danger" variant="soft">Soft (default)</Alert>
-<Alert color="danger" variant="solid">Solid</Alert>
-<Alert color="danger" variant="outlined">Outlined</Alert>
+<Stack gap="md">
+  <Alert size="2xl" color="danger" variant="soft">Soft (default)</Alert>
+  <Alert size="xl" color="danger" variant="solid">Solid</Alert>
+  <Alert size="lg" color="danger" variant="outlined">Outlined</Alert>
+  <Alert size="md" color="danger" variant="ghost">Outlined</Alert>
+  <Alert size="sm" color="danger" variant="dashed">Dashed</Alert>
+  <Alert size="xs" color="secondary" variant="soft">Soft</Alert>
+  <Alert size="2xs" color="secondary" variant="solid">Solid</Alert>
+</Stack>
 ```
 
-<Alert color="danger" variant="soft">Soft (default)</Alert>
-<Alert color="danger" variant="solid">Solid</Alert>
-<Alert color="danger" variant="outlined">Outlined</Alert>
+<Stack gap="md">
+<Alert size="2xl" color="danger" variant="soft">Soft (default)</Alert>
+<Alert size="xl" color="danger" variant="solid">Solid</Alert>
+<Alert size="lg" color="danger" variant="outlined">Outlined</Alert>
+<Alert size="md" color="danger" variant="ghost">Outlined</Alert>
+<Alert size="sm" color="danger" variant="dashed">Dashed</Alert>
+<Alert size="xs" color="secondary" variant="soft">Soft</Alert>
+<Alert size="2xs" color="secondary" variant="solid">Solid</Alert>
+</Stack>
 
 ### With title
 
@@ -104,8 +119,6 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
 
 ### Dismissible
 
-The dismiss button is rendered but you must wire up the hide behavior in your own script (e.g. `btn.closest('.alert').remove()`).
-
 ```astro
 <Alert color="neutral" dismissible>
   This alert can be dismissed.
@@ -146,10 +159,12 @@ The dismiss button is rendered but you must wire up the hide behavior in your ow
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
+| `size` | `FeedbackSize` | `"md"` | Controls font-size and padding. |
 | `variant` | `FeedbackVariant` | `"soft"` | Visual treatment. |
 | `color` | `FeedbackColor` | `"neutral"` | Color role. Affects ARIA role. |
 | `radius` | `FeedbackRadius` | `"md"` | Border radius. |
-| `dismissible` | `boolean` | `false` | Renders a dismiss button. Wire up click behavior in your script. |
+| `p` / `px` / `py` / `pt` / `pr` / `pb` / `pl` | `Space` | — | Override padding on all or individual sides. Takes precedence over `size`. |
+| `dismissible` | `boolean` | `false` | Renders a dismiss button. |
 | `dismissLabel` | `string` | `"Dismiss"` | `aria-label` for the dismiss button. |
 
 ## Slots

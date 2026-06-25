@@ -1,0 +1,28 @@
+---
+import type { ToastProps } from "./toast.props";
+import { useToast }        from "./toast.hook";
+import Icon from "~/assets/components/icon/Icon.astro";
+import "../../feedback.css";
+import "./toast.css";
+
+const { props, title, dismissible, dismissLabel } = useToast(Astro.props as ToastProps);
+---
+<div {...props}>
+  {Astro.slots.has("icon") && (
+    <div class="toast__icon" aria-hidden="true"><slot name="icon" /></div>
+  )}
+  <div class="toast__body">
+    {title && <div class="toast__title">{title}</div>}
+    <slot />
+  </div>
+  {dismissible && (
+    <button class="toast__dismiss" type="button" aria-label={dismissLabel} data-dismiss>
+      <Icon name="x" size="sm" />
+    </button>
+  )}
+</div>
+
+<script>
+  import { mountMotionDismiss } from "~/shared/motion/motion.dismiss";
+  mountMotionDismiss();
+</script>

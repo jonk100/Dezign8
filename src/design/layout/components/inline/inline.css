@@ -1,7 +1,9 @@
 .inline {
   display: inline-flex;
+  flex-direction: row;
   align-items: center;
   vertical-align: middle;
+  gap: var(--inline--gap);
   /* Trick to prevent the inline elements from breaking onto a new line independently */
   white-space: nowrap;
 }
@@ -10,3 +12,5 @@
   /* Restore normal wrapping for child elements that might contain long text */
   white-space: normal;
 }
+
+

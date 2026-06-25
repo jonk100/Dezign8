@@ -34,6 +34,7 @@ export function useTile(props: TileProps) {
     layer,
     padding,
     ...surfaceProps,
+    disabled: isDisabled,
   });
 
   return {
@@ -51,10 +52,9 @@ export function useTile(props: TileProps) {
       style: surfaceStyle,
       ...surfaceAttrs,
       href,
-      role:           isToggle ? "button" : undefined,
+      role:           isToggle ? ("button" as const) : undefined,
       tabindex:       isInteractive ? (isDisabled ? -1 : 0) : undefined,
       "aria-pressed": isToggle ? String(selected) : undefined,
-      "aria-disabled":isDisabled ? "true" : undefined,
       ...rest,
     },
   };

@@ -110,8 +110,11 @@ shared/primitives.tokens.ts
 - Boolean props emit class modifiers directly, not through `resolveTokens`.
 - HTML attributes (`href`, `type`, `target`) are passed through as-is —
   they never touch `resolveTokens`.
-- Behaviour props (`interactive`, `selectable`, `disabled`) produce
-  `data-*` and `aria-*` attributes directly in the hook.
+- Behaviour props (`interactive`, `selectable`) produce `data-*` and `aria-*`
+  attributes directly in the hook.
+- `disabled` is the exception: pass `disabled: isDisabled` in `BaseComposeOptions`
+  to `useBaseCompose` — it emits `aria-disabled` + `data-disabled` automatically.
+  Pass the **computed** value (e.g. `!isLink && disabled`) not the raw prop.
 - `resolveTokens` is called **once** per hook with the component's own tokens.
 - One-off props that bypass the token system (`bg`, `animation`) are
   applied manually after `resolveTokens`.

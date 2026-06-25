@@ -246,7 +246,6 @@ export function useSelect(props: SelectProps) {
     multiple:        isMulti   || undefined,
     disabled:        disabled  || undefined,
     required:        required  || undefined,
-    "aria-disabled": disabled  ? "true" as const : undefined,
     "aria-required": required  ? "true" as const : undefined,
     "aria-invalid":  invalid   ? "true" as const : undefined,
   };

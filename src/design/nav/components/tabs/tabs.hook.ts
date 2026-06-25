@@ -34,7 +34,7 @@ export function useTabs(props: TabsProps) {
     tabsProps: {
       ...resolvedNavProps,
       class: tabsClass,
-      role: "tablist",
+      role: "tablist" as const,
       "aria-orientation": navProps.orientation
     },
     items,

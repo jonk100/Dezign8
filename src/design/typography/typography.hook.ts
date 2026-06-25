@@ -52,11 +52,9 @@ export function useTypography(props: TypographyProps) {
     clamp,
     truncate  = false,
     class: className,
-    v:        _v,
-    testId:   _testId,
     bg,
-    animation,
-    ...rest
+    m,
+    ...base
   } = props;
 
   const { style: tokenStyle, classes: tokenClasses } = resolveTokens(
@@ -65,14 +63,13 @@ export function useTypography(props: TypographyProps) {
     "typography",
   );
 
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest } = useBaseCompose(
     {
       className: [
         "typography",
         ...tokenClasses,
         clamp != null && "typography--clamped",
         truncate && "typography--truncate",
-        animation && `animate-${animation}`,
         className,
       ],
       style: [
@@ -81,7 +78,7 @@ export function useTypography(props: TypographyProps) {
         ...(bg ? resolveColorRole(bg, "layout--bg") : []),
       ],
     },
-    props,
+    base,
   );
 
   return {

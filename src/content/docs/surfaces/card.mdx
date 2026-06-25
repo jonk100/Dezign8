@@ -3,9 +3,11 @@ title: Card Component
 description: Bounded content container. Supports a media region, body, and footer via named slots, plus link, interactive, and selectable behaviors.
 category: Surfaces
 status: stable
+icon: card
 ---
 
 import Card from "~/surfaces/components/card/Card.astro";
+import Button from "~/triggers/components/button/Button.astro";
 
 ## Overview
 
@@ -56,13 +58,13 @@ Use the `media` slot for edge-to-edge images at the top of the card. The `paddin
 The `footer` slot is rendered at the bottom of the card and receives a top border.
 
 <div style="margin-bottom: 2rem; max-width: 400px;">
-  <Card variant="outlined" padding="md">
+  <Card variant="outlined" padding="md" id="demo-card-1">
     <h3 style="margin-top: 0;">Task Complete</h3>
     <p style="margin: 0;">You have finished all items.</p>
     <div slot="footer" style="display: flex; justify-content: flex-end; gap: 0.5rem; align-items: center;">
       <span style="margin-right: auto; color: var(--text--muted); font-size: 0.875rem;">Just now</span>
-      <button style="background: transparent; border: 1px solid var(--border--default); padding: 0.25rem 0.5rem; border-radius: var(--radius--sm);">Undo</button>
-      <button style="background: var(--primary--base); color: white; border: none; padding: 0.25rem 0.5rem; border-radius: var(--radius--sm);">Dismiss</button>
+      <Button variant="outlined" size="sm" onclick="alert('Undo clicked!')">Undo</Button>
+      <Button color="primary" size="sm" onclick="const c=document.getElementById('demo-card-1'); c.style.display='none'; setTimeout(()=>c.style.display='', 3000)">Dismiss</Button>
     </div>
   </Card>
 </div>

@@ -209,6 +209,9 @@ export function pickValues<
  *
  * Channel name composition:
  *   `--{ns}--{dim.key}`  where ns = dim.scope ?? prefix
+ *   e.g. `--trigger--color: var(--color-primary)`, `.trigger--primary`
+ *   e.g. `stack--gap`, `.stack--gap-md`
+ *   e.g. `.inline--align-center`
  *
  * @param spec     - The token spec to resolve against (category or component).
  * @param selected - The prop values chosen by the consumer. Unset props are skipped.

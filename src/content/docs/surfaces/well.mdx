@@ -3,6 +3,7 @@ title: Well Component
 description: Inset content container with a sunken appearance relative to its context.
 category: Surfaces
 status: stable
+icon: well
 ---
 
 import Well from "~/surfaces/components/well/Well.astro";
@@ -31,7 +32,7 @@ import Well from "~/surfaces/components/well/Well.astro";
 
 The `Well` component intelligently darkens relative to its parent container using `color-mix`. Notice how the Well inside the soft-tinted Card is slightly darker than the Card itself, without needing explicit color props.
 
-<div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+```astro
   <!-- Placed directly on the page (layer 0) -->
   <div style="flex: 1; padding: 1rem; border: 1px solid var(--border--subtle); border-radius: var(--radius--md);">
     <p>On the page:</p>
@@ -39,15 +40,29 @@ The `Well` component intelligently darkens relative to its parent container usin
       <span style="font-size: 0.875rem;">Inset background</span>
     </Well>
   </div>
+```
+  <div style="flex: 1; padding: 1rem; border: 1px solid var(--border--subtle); border-radius: var(--radius--md);">
+    <p>On the page:</p>
+    <Well padding="md" radius="sm">
+      <span style="font-size: 0.875rem;">Inset background</span>
+    </Well>
+  </div>
 
+```astro
   <!-- Placed inside a soft primary container -->
+  <Paper bg="primary--subtle" padding="md" radius="md">
+    <p>Inside tinted container:</p>
+    <Well padding="md" radius="sm">
+      <span style="font-size: 0.875rem;">Inset background (adaptive)</span>
+    </Well>
+  </Paper>
+```
   <div class="surface surface--soft" style="--surface--color--subtle: var(--primary--subtle); flex: 1; padding: 1rem; border-radius: var(--radius--md);">
     <p>Inside tinted container:</p>
     <Well padding="md" radius="sm">
       <span style="font-size: 0.875rem;">Inset background (adaptive)</span>
     </Well>
   </div>
-</div>
 
 ```astro
 <!-- On the page context -->

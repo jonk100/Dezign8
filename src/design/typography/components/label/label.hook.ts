@@ -98,8 +98,7 @@ export function useLabel(props: LabelProps) {
     v:        _v,
     testId:   _testId,
     bg,
-    animation,
-    ...rest
+    ...base
   } = props;
 
   // ── Token resolution ─────────────────────────────────────────────────────
@@ -113,7 +112,7 @@ export function useLabel(props: LabelProps) {
     "typography",
   );
 
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
     {
       className: [
         "typography",
@@ -121,7 +120,6 @@ export function useLabel(props: LabelProps) {
         ...tokenClasses,
         clamp    != null && "typography--clamped",
         truncate          && "typography--truncate",
-        animation         && `animate-${animation}`,
         className,
       ],
       style: [
@@ -130,7 +128,7 @@ export function useLabel(props: LabelProps) {
         bg            && `--typography--bg: ${bg}`,
       ],
     },
-    props,
+    base,
   );
 
   return {
@@ -139,12 +137,13 @@ export function useLabel(props: LabelProps) {
       class: cls,
       style,
       ...attrs,
-      ...rest,
+      ...restAttrs,
       // `for` is explicitly re-applied after rest so it's not shadowed.
       // In Astro (HTML attribute mode), `for` is correct — no `htmlFor`.
       for: htmlFor,
     },
     // Returned separately for Label.astro's conditional asterisk rendering
     required,
+    spacing,
   };
 }

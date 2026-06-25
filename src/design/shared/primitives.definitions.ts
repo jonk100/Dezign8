@@ -58,8 +58,8 @@ const SEMANTIC_MISC: Record<string, string> = {
   "z--below":    "var(--z-n1)",  "z--base":     "var(--z-0)",
   "z--raised":   "var(--z-10)",  "z--dropdown": "var(--z-100)",
   "z--sticky":   "var(--z-200)", "z--overlay":  "var(--z-300)",
-  "z--modal":    "var(--z-400)", "z--toast":    "var(--z-500)",
-  "z--top":      "var(--z-999)",
+  "z--tooltip":  "var(--z-400)", "z--modal":    "var(--z-400)",
+  "z--toast":    "var(--z-500)", "z--top":      "var(--z-999)",
 };
 
 // ─── LAYER 2: THEMES ─────────────────────────────────────

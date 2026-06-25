@@ -60,7 +60,20 @@
   opacity: 1;
 }
 
-.combobox__control:focus { outline: none; }
+.combobox__control:focus,
+.combobox__control:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Suppress Chrome autofill background and text color changes */
+.combobox__control:-webkit-autofill,
+.combobox__control:-webkit-autofill:hover,
+.combobox__control:-webkit-autofill:focus,
+.combobox__control:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text--primary);
+}
 
 /* ─── DROPDOWN ARROW ───────────────────────────────────────── */
 

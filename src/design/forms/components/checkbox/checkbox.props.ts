@@ -42,38 +42,9 @@ import type { CheckState, LabelPosition } from "./checkbox.tokens";
  * <Checkbox name="tag" value="ts" variant="outlined">TypeScript</Checkbox>
  * ```
  */
-export interface CheckboxProps extends FormProps {
-  /**
-   * The `id` placed on the inner `<input type="checkbox">` for
-   * `aria-describedby` wiring. Not needed for label association —
-   * the `<label>` wrapper handles that automatically.
-   */
+export type CheckboxProps = FormProps & {
   id?: string;
-
-  /**
-   * The visual and submitted state of the checkbox.
-   *
-   * - `"checked"`       — box is ticked; `checked` attribute present on input
-   * - `"unchecked"`     — box is empty; `checked` attribute absent (default)
-   * - `"indeterminate"` — dash shown; `.indeterminate` DOM property set via script
-   *
-   * `undefined` is identical to `"unchecked"`.
-   *
-   * @default `"unchecked"`
-   * @see {@link CheckState}
-   */
   checkState?: CheckState;
-
-  /**
-   * The string submitted under `name` when the checkbox is in the
-   * `"checked"` state. Defaults to `"on"` in HTML when omitted.
-   */
   value?: string;
-
-  /**
-   * Position of the label slot relative to the indicator.
-   * @default `"end"` — `[■] Label`
-   * @see {@link LabelPosition}
-   */
   labelPosition?: LabelPosition;
-}
+};

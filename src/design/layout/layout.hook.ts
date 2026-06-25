@@ -30,8 +30,7 @@ export function useLayout(props: LayoutProps) {
     v:      _v,
     testId: _testId,
     bg,
-    animation,
-    ...rest
+    ...base
   } = props;
 
   // Resolve standard layout dimension tokens (e.g., flex alignments, gap)
@@ -48,12 +47,11 @@ export function useLayout(props: LayoutProps) {
   );
 
   // Compose the final classes and styles, merging with any provided custom class/style
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
     {
       className: [
         "layout",
         ...tokenClasses,
-        animation && `animate-${animation}`,
         className,
       ],
       style: [
@@ -62,13 +60,14 @@ export function useLayout(props: LayoutProps) {
         ...(bg ? resolveColorRole(bg, "layout--bg") : []),
       ],
     },
-    props,
+    base,
   );
 
   return {
     layoutClass:  cls,
     layoutStyle:  style,
     layoutAttrs:  attrs,
-    rest,
+    rest: restAttrs,
+    spacing,
   };
 }

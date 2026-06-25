@@ -33,6 +33,7 @@ export function useCard(props: CardProps) {
     layer,
     outlined,
     ...surfaceProps,
+    disabled: isDisabled,
   });
 
   return {
@@ -57,7 +58,6 @@ export function useCard(props: CardProps) {
       role:            isToggle      ? "button"        : undefined,
       tabindex:        isInteractive ? (isDisabled ? -1 : 0) : undefined,
       "aria-pressed":  isToggle      ? String(selected) : undefined,
-      "aria-disabled": isDisabled    ? "true"           : undefined,
       // data attr mirrors aria-pressed for clean CSS targeting
       "data-selected": isToggle      ? String(selected) : undefined,
     },

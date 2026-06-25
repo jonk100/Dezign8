@@ -10,17 +10,16 @@ export function useIcon(props: IconProps) {
     name,
     size = ICON_DEFAULTS.size,
     class: className,
-    ...rest
-  } = props;
+    ...base } = props;
 
   const { style: tokenStyle, classes: tokenClasses } = resolveTokens(ICON_TOKENS, { size }, "icon");
 
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest } = useBaseCompose(
     {
       className: ["icon", ...tokenClasses, className],
       style: tokenStyle,
     },
-    props,
+    base,
   );
 
   return {

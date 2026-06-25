@@ -24,8 +24,8 @@ const { breadcrumbsProps, items, separatorIcon, separatorText, IconComponent } =
       items.map((item, index) => {
         const isLast = index === items.length - 1;
         return (
-          <BreadcrumbItem 
-            href={item.href}
+          <BreadcrumbItem
+            {...(item.href ? { href: item.href } : {})}
             active={item.active || isLast}
             isLast={isLast}
           >

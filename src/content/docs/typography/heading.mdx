@@ -3,11 +3,14 @@ title: Heading Component
 description: Semantic typography component for rendering section headings with appropriate hierarchy and visual styles.
 category: Typography
 status: stable
+icon: heading
 version: 0.1.0
 links:
   source: "https://github.com/jonk100/Dezign8/tree/main/src/design/typography/components/heading"
 ---
 import Heading from "~/typography/components/heading/H.astro";
+import { PropsApi } from "~/components/PropsApi";
+import { HeadingProps } from "~/typography/components/heading/heading.props";
 
 ## Overview
 
@@ -37,3 +40,19 @@ Headings can also take semantic color roles.
   <Heading level={3} color="secondary">Secondary Heading</Heading>
   <Heading level={3} color="success">Success Heading</Heading>
 </div>
+
+### Custom Weights and Sizes
+Use the `weight` and `size` props to override the default typography values while maintaining semantic levels.
+
+```astro
+<Heading level={2} weight="black">Black Weight Heading</Heading>
+<Heading level={3} size="xl">Overridden Size Heading</Heading>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+  <Heading level={2} weight="black">Black Weight Heading</Heading>
+  <Heading level={3} size="xl">Overridden Size Heading</Heading>
+</div>
+
+## Props API
+
+<PropsApi props={HeadingProps} />

@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Stack from "#stack/Stack.astro";
+import H from "#heading/H.astro";
+import Text from "#text/Text.astro";
+import Button from "#button/Button.astro";
+import Label from "#label/Label.astro";
+import Inline from "#inline/Inline.astro";
+import Section from "#section/Section.astro";
+import Link from "#link/Link.astro";
+import Navbar from "#navbar/Navbar.astro";
+import Image from "#image/Image.astro";
+import Container from "#container/Container.astro";
+import Icon from "#icon/Icon.astro";
+
+const title = "Settings";
+const description = "Manage your account settings.";
+const category = "Settings";
+const status = "stable";
+
+const settings = [
+  { label: "Profile", href: "/settings/profile" },
+  { label: "Account", href: "/settings/account" },
+  { label: "Billing", href: "/settings/billing" },
+  { label: "Security", href: "/settings/security" },
+];
+---
+
+<Layout title={title} description={description}>
+  <Navbar slot="header">
+    <Image slot="brand" src="/horizontal-blue.png" width={200} alt="Dezign8 Logo" />
+    <Link href="/" icon="home">Home</Link>
+  </Navbar>
+  <Section>
+    <Stack gap="lg" class="items-center" m="lg">
+      <H level="1" align="center" decoration="underline" tracking="wide" color="tertiary">{title}</H>
+
+      <Text color="danger" align="center" fontStyle="oblique">{description}</Text>  
+      <Inline my="2xl" gap="2xl" >
+        <Stack gap="lg" class="items-center">
+          <Text size="xs">System Settings</Text>
+            {settings.map(s => (
+              <Button size="md" variant="soft" href={s.href}>
+                {s.label}
+              </Button>
+            ))}
+        </Stack>
+        <Stack gap="lg" class="items-center">
+          <Text size="xs">Profile Settings</Text>
+            {settings.map(s => (
+              <Button variant="outlined" href={s.href}>
+                {s.label}
+              </Button>
+            ))}
+        </Stack>
+        <Stack gap="lg" class="items-center">
+          <Text size="sm">Friendly Settings</Text>
+            {settings.map(s => (
+              <Button variant="solid" href={s.href}>
+                {s.label}
+              </Button>
+            ))}
+        </Stack>
+        <Stack gap="lg" class="items-center">
+          <Text size="sm">Fruit Settings</Text>
+            {settings.map(s => (
+              <Button variant="ghost" href={s.href}>
+                {s.label}
+              </Button>
+            ))}
+        </Stack>
+      </Inline>
+    </Stack>
+  </Section>
+</Layout>

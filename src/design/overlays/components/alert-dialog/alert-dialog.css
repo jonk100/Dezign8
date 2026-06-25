@@ -1,0 +1,8 @@
+/* alert-dialog.css — minimal; shared chrome lives in overlays.css */
+
+.alert-dialog__description {
+  margin:      0;
+  font-size:   var(--fsf--sm);
+  color:       var(--text--secondary);
+  line-height: var(--leading--md);
+}

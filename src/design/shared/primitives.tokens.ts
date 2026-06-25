@@ -1,294 +1,35 @@
 // design/shared/primitives.tokens.ts
-/**
- * Cross-cutting value scales and the dimensions built from them.
- * A scale is authored exactly once here. Categories assemble specs from
- * these (and may pickValues() to narrow a slice).
- *
- * Dimensions carry the channel `key`; the channel PREFIX comes from whoever
- * resolves the spec, so `GAP` emits `--layout-gap` under layout and
- * `--surface-gap` under a surface — same dimension, no re-authoring.
- *
- */
-
-// design/shared/primitives.tokens.ts
-
-import { scale, dimension } from "./tokens";
-
-/* ─── SCALES ─────────────────────────────────────────────── */
-
-export const SPACE = scale({
-  none:  "0",
-  "2xs": "var(--space-in--2xs)",
-  xs:    "var(--space-in--xs)",
-  sm:    "var(--space-in--sm)",
-  md:    "var(--space-in--md)",
-  lg:    "var(--space-in--lg)",
-  xl:    "var(--space-in--xl)",
-  "2xl": "var(--space-in--2xl)",
-});
-
-export const RADIUS = scale({
-  none:  "var(--radius--none)",
-  "2xs": "var(--radius--2xs)",
-  xs:    "var(--radius--xs)",
-  sm:    "var(--radius--sm)",
-  md:    "var(--radius--md)",
-  lg:    "var(--radius--lg)",
-  xl:    "var(--radius--xl)",
-  "2xl": "var(--radius--2xl)",
-  full:  "var(--radius--full)",
-});
-
-export const TEXT_SIZE = scale({
-  "2xs": "var(--fs--2xs)",
-  xs:    "var(--fs--xs)",
-  sm:    "var(--fs--sm)",
-  md:    "var(--fs--md)",
-  lg:    "var(--fs--lg)",
-  xl:    "var(--fs--xl)",
-  "2xl": "var(--fs--2xl)",
-  "3xl": "var(--fs--3xl)",
-  "4xl": "var(--fs--4xl)",
-});
-
-/**
- * Fixed (non-responsive) font-size scale for UI elements that live
- * _inside_ components and must not reflow with viewport changes.
- *
- * **When to use `TEXT_SIZE_FIXED` vs {@link TEXT_SIZE}:**
- *
- * | Scale             | Token prefix | Intended for                                      |
- * |-------------------|--------------|---------------------------------------------------|
- * | `TEXT_SIZE`       | `--fs--*`    | Body text, headings — may use `clamp()` for fluid |
- * | `TEXT_SIZE_FIXED` | `--fsf--*`   | Labels, captions, badges, form helper text        |
- *
- * Use `TEXT_SIZE_FIXED` any time the element:
- * - Sits inside a component with constrained space (form field, badge, chip)
- * - Must stay at a predictable fixed size regardless of viewport
- * - Would break layout if it grew with the page's fluid type scale
- *
- * @remarks
- * The `f` suffix in `--fsf--*` stands for "fixed" and distinguishes these
- * vars from the responsive `--fs--*` vars in `vars.css` / `tokens.css`.
- * Define both families in your global token file.
- *
- * Approximate pixel values (example — set your own in `vars.css`):
- * ```
- * 2xs → 10px   xs → 11px   sm → 12px   md → 14px   lg → 16px
- * xl  → 18px   2xl → 20px  3xl → 24px  4xl → 28px
- * ```
- *
- * @example
- * ```ts
- * // In typography/label/label.tokens.ts
- * import { TEXT_SIZE_FIXED } from "~/shared/primitives.tokens";
- *
- * export const LABEL_TOKENS = composeTokens(TYPOGRAPHY_TOKENS, {
- *   size: pickValues(
- *     dimension("size", TEXT_SIZE_FIXED),
- *     ["xs", "sm", "md", "lg", "xl"] as const,
- *   ),
- * });
- * ```
- *
- * @see {@link TEXT_SIZE}  — responsive counterpart
- * @see {@link TextSizeFixed} — the derived union type
- */
-export const TEXT_SIZE_FIXED = scale({
-  "2xs": "var(--fsf--2xs)",
-  xs:    "var(--fsf--xs)",
-  sm:    "var(--fsf--sm)",
-  md:    "var(--fsf--md)",
-  lg:    "var(--fsf--lg)",
-  xl:    "var(--fsf--xl)",
-  "2xl": "var(--fsf--2xl)",
-  "3xl": "var(--fsf--3xl)",
-  "4xl": "var(--fsf--4xl)",
-});
-
-// ─────────────────────────────────────────────────────────────────
-// INSERT IN: DERIVED TYPES section (after existing type exports)
-// ─────────────────────────────────────────────────────────────────
-
-
-
-
-// ─────────────────────────────────────────────────────────────────
-// AMEND: COLOR_ROLE scale
 //
-// Per `color-typescript.md`, COLOR_ROLE values must be `null` so that
-// resolveTokens emits a class modifier ONLY (e.g. `.form--primary`) and
-// does NOT write a CSS custom property. The actual color-step channel
-// values (--form--color-base etc.) are written separately by
-// resolveColorChannels(role, prefix).
+// Scales are generated from definitions/scales.ts via plugins/tokens.ts.
+// This file re-exports them and adds the things that can't be generated:
+// dimensions (carry modifier/scope metadata that requires a human decision)
+// and the color-step utilities used by resolveColorChannels.
 //
-// Current file has:
-//   primary: "var(--token-color-primary)",  ← should be null
-//
-// Corrected version:
-// ─────────────────────────────────────────────────────────────────
+// TO ADD A SCALE VALUE: edit definitions/scales.ts only — one change, done.
+// TO ADD A DIMENSION:   add it below and reference the generated scale.
 
-/**
- * Color role scale. All values are intentionally `null`.
- *
- * This dimension emits a **class modifier only** (e.g. `.control--primary`,
- * `.form--danger`). No CSS custom property is written for the role itself.
- *
- * The seven color-step channels per role (`--{prefix}--color-base`,
- * `--{prefix}--color-subtle`, etc.) are written separately by
- * {@link resolveColorChannels}, which is called alongside
- * {@link resolveTokens} in category hooks.
- *
- * Having null values here keeps the two concerns cleanly separated:
- * - `resolveTokens`       → class modifier
- * - `resolveColorChannels` → CSS channel vars
- *
- * @remarks
- * To add a new color role: add `roleName: null` here, add its 7 steps
- * to `COLOR_STEPS`, and ensure `--roleName--{step}` vars exist in
- * `tokens-color.css` for both themes. No component files change.
- *
- * @see `color-typescript.md` — full implementation spec including COLOR_STEPS
- * @see `color-overview.md`   — role descriptions and usage guidance
- * @see {@link resolveColorChannels} — writes the actual channel vars
- *
- * @todo Implement {@link resolveColorChannels} and {@link COLOR_STEPS}
- *   in this file per the spec in `color-typescript.md`.
- */
-// export const COLOR_ROLE = scale({
-//   primary:   null,
-//   secondary: null,
-//   success:   null,
-//   warning:   null,
-//   danger:    null,
-//   neutral:   null,
-// });
+import { dimension } from "./tokens";
+import {
+  SPACE, RADIUS, ALIGN, JUSTIFY,
+  WEIGHT, FAMILY, LEADING, TRACKING,
+  COLOR_ROLE, TEXT_COLOR,
+} from "./primitives.tokens.generated";
+import type { ColorRole } from "./primitives.tokens.generated";
 
-// NOTE: After updating COLOR_ROLE, COLOR_DIM needs no change —
-// it is already defined as:
-//   export const COLOR_DIM = dimension("color", COLOR_ROLE, { modifier: true });
-// which is correct.
-
-export const LABEL_SIZE = scale({
-  "2xs": "var(--label--2xs)",
-  xs:    "var(--label--xs)",
-  sm:    "var(--label--sm)",
-  md:    "var(--label--md)",
-  lg:    "var(--label--lg)",
-  xl:    "var(--label--xl)",
-});
-
-export const WEIGHT = scale({
-  thin:     "var(--weight--thin)",
-  light:    "var(--weight--light)",
-  normal:   "var(--weight--normal)",
-  medium:   "var(--weight--medium)",
-  semibold: "var(--weight--semibold)",
-  bold:     "var(--weight--bold)",
-  black:    "var(--weight--black)",
-});
-
-export const FAMILY = scale({
-  sans:  "var(--family--sans)",
-  serif: "var(--family--serif)",
-  mono:  "var(--family--mono)",
-});
-
-export const LEADING = scale({
-  none:    "var(--leading--none)",
-  tight:   "var(--leading--tight)",
-  snug:    "var(--leading--snug)",
-  normal:  "var(--leading--normal)",
-  relaxed: "var(--leading--relaxed)",
-  loose:   "var(--leading--loose)",
-});
-
-export const TRACKING = scale({
-  tight:  "var(--tracking--tight)",
-  normal: "var(--tracking--normal)",
-  wide:   "var(--tracking--wide)",
-  wider:  "var(--tracking--wider)",
-  caps:   "var(--tracking--caps)",
-});
-
-export const ALIGN = scale({
-  start:    "flex-start",
-  center:   "center",
-  end:      "flex-end",
-  stretch:  "stretch",
-  baseline: "baseline",
-});
-
-export const JUSTIFY = scale({
-  start:   "flex-start",
-  center:  "center",
-  end:     "flex-end",
-  between: "space-between",
-  around:  "space-around",
-  evenly:  "space-evenly",
-});
-
-export const COLOR_ROLE = scale({
-  primary:   null,
-  secondary: null,
-  tertiary:  null,
-  accent:    null,
-  danger:    null,
-  warning:   null,
-  success:   null,
-  info:      null,
-  neutral:   null,
-});
-
-export const TEXT_COLOR = scale({
-  primary:   "var(--text--primary)",
-  secondary: "var(--text--secondary)",
-  muted:      "var(--text--muted)",   
-  tertiary:  "var(--text--tertiary)",
-  disabled:  "var(--text--disabled)",
-  inverse:   "var(--text--inverse)",
-  "on-color": "var(--text--on-color)",
-  inherit:   "inherit",
-  success:   "var(--success--text)",
-  danger:    "var(--danger--text)",
-  warning:   "var(--warning--text)",
-  info:      "var(--info--text)",
-});
+export * from "./primitives.tokens.generated";
 
 /* ─── SHARED DIMENSIONS ──────────────────────────────────── */
 
-export const GAP         = dimension("gap",      SPACE);
-export const RADIUS_DIM  = dimension("radius",   RADIUS);
-export const ALIGN_DIM   = dimension("align",    ALIGN);
-export const JUSTIFY_DIM = dimension("justify",  JUSTIFY);
-export const WEIGHT_DIM  = dimension("weight",   WEIGHT);
-export const FAMILY_DIM  = dimension("family",   FAMILY);
-export const LEADING_DIM = dimension("leading",  LEADING);
-export const TRACKING_DIM= dimension("tracking", TRACKING);
-export const COLOR_DIM   = dimension("color",    COLOR_ROLE, { modifier: true });
-export const TEXT_COLOR_DIM = dimension("color", TEXT_COLOR);
-
-/* ─── DERIVED TYPES ──────────────────────────────────────── */
-
-export type Space     = keyof typeof SPACE;
-export type Radius    = keyof typeof RADIUS;
-export type TextSize  = keyof typeof TEXT_SIZE;
-/**
- * Valid values for the fixed font-size scale.
- * Derived from {@link TEXT_SIZE_FIXED} — never hand-written.
- *
- * @see {@link TextSize} — responsive counterpart
- */
-export type TextSizeFixed = keyof typeof TEXT_SIZE_FIXED;
-export type LabelSize = keyof typeof LABEL_SIZE;
-export type Weight    = keyof typeof WEIGHT;
-export type Family    = keyof typeof FAMILY;
-export type Leading   = keyof typeof LEADING;
-export type Tracking  = keyof typeof TRACKING;
-export type Align     = keyof typeof ALIGN;
-export type Justify   = keyof typeof JUSTIFY;
-export type ColorRole = keyof typeof COLOR_ROLE;
-export type TextColor = keyof typeof TEXT_COLOR;
+export const GAP           = dimension("gap",      SPACE);
+export const RADIUS_DIM    = dimension("radius",   RADIUS);
+export const ALIGN_DIM     = dimension("align",    ALIGN);
+export const JUSTIFY_DIM   = dimension("justify",  JUSTIFY);
+export const WEIGHT_DIM    = dimension("weight",   WEIGHT);
+export const FAMILY_DIM    = dimension("family",   FAMILY);
+export const LEADING_DIM   = dimension("leading",  LEADING);
+export const TRACKING_DIM  = dimension("tracking", TRACKING);
+export const COLOR_DIM     = dimension("color",    COLOR_ROLE, { modifier: true });
+export const TEXT_COLOR_DIM = dimension("color",   TEXT_COLOR);
 
 /* ─── COLOR STEPS ────────────────────────────────────────── */
 

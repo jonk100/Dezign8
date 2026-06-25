@@ -1,0 +1,58 @@
+---
+/**
+ * Switch
+ *
+ * Toggle switch for binary on/off state. Rendered as a styled
+ * `<input type="checkbox" role="switch">` inside a `<label>`.
+ *
+ * STRUCTURE
+ * ─────────────────────────────────────────────────────────────────────────
+ *   <label class="form switch …">
+ *     <input class="switch__control" type="checkbox" role="switch" />
+ *     <span  class="switch__track"   aria-hidden>
+ *       <span class="switch__thumb"></span>
+ *     </span>
+ *     <span  class="switch__label"><slot /></span>
+ *   </label>
+ *
+ * DOM order is fixed: hidden input → track → label slot.
+ * `labelPosition` changes VISUAL order via CSS flex-direction only.
+ * This keeps the ~ sibling combinator state rules functional.
+ *
+ * @example
+ * <!-- Basic on/off toggle -->
+ * <Switch name="notifications">Enable notifications</Switch>
+ *
+ * @example
+ * <!-- Pre-checked with custom color -->
+ * <Switch name="dark-mode" checked color="primary">Dark mode</Switch>
+ *
+ * @example
+ * <!-- Label to the left -->
+ * <Switch name="autosave" labelPosition="start">Autosave</Switch>
+ *
+ * @see switch.hook.ts  — resolves props to { Tag, props, inputAttrs }
+ * @see switch.props.ts — full prop type reference
+ * @see switch.css      — track, thumb, and layout styles
+ * @see forms.css       — shared variant and state styles
+ */
+
+import type { SwitchProps } from "./switch.props";
+import { useSwitch }        from "./switch.hook";
+import "~/forms/forms.css";
+import "./switch.css";
+
+const { Tag, props, inputAttrs } = useSwitch(Astro.props as SwitchProps);
+---
+
+<Tag {...props}>
+  <input class="switch__control" {...inputAttrs} />
+  <span class="switch__track" aria-hidden="true">
+    <span class="switch__thumb"></span>
+  </span>
+  {Astro.slots.has("default") && (
+    <span class="switch__label">
+      <slot />
+    </span>
+  )}
+</Tag>

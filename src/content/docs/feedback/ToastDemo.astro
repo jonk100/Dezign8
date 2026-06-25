@@ -1,0 +1,41 @@
+---
+---
+<div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; padding: 1rem; border: 1px solid var(--border--subtle); border-radius: var(--radius--md);">
+  <button class="button button--solid button--success" id="demo-toast-success">Success Toast</button>
+  <button class="button button--solid button--danger" id="demo-toast-error">Error Toast</button>
+  <button class="button button--soft button--warning" id="demo-toast-warning">Warning Toast</button>
+  <button class="button button--outlined button--info" id="demo-toast-info">Info (8s)</button>
+  <button class="button button--solid button--primary" id="demo-toast-custom">Custom (Top Right)</button>
+</div>
+
+<script>
+  import { toast } from "../../../design/feedback/components/toast/toast.client";
+  
+  document.getElementById('demo-toast-success')?.addEventListener('click', () => {
+    toast.success("Workspace saved.");
+  });
+  
+  document.getElementById('demo-toast-error')?.addEventListener('click', () => {
+    toast.error("Failed to save — please try again.", { title: "Save error" });
+  });
+  
+  document.getElementById('demo-toast-warning')?.addEventListener('click', () => {
+    toast.warning("You have unsaved changes.");
+  });
+  
+  document.getElementById('demo-toast-info')?.addEventListener('click', () => {
+    toast.info("A new version is available.", { duration: 8000 });
+  });
+  
+  document.getElementById('demo-toast-custom')?.addEventListener('click', () => {
+    toast.show({
+      message:     "Custom toast triggered from the demo.",
+      title:       "Heads up",
+      color:       "primary",
+      variant:     "solid",
+      duration:    6000,
+      dismissible: true,
+      position:    "top-end",
+    });
+  });
+</script>

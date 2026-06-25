@@ -2,10 +2,6 @@
 
 ## Components by Usage
 
-### Tier 1 - Ubiquitous (The Anatomy of the Web)
-
-These are the foundational building blocks. Nearly every single web page, from a basic blog to a complex web app, uses these components.
-
 - [x] 01. `Text` (typography) - 
 - [x] 02. `Heading` (typography) -
 - [x] 03. `Link` (nav) -
@@ -19,11 +15,6 @@ These are the foundational building blocks. Nearly every single web page, from a
 - [x] 11. `Header` (layout) - 
 - [x] 12. `Footer` (layout) - 
 - [x] 13. `List` (data) - 
-
-### Tier 2 - Very Common (Standard Web Design)
-
-These components are standard for forms, typical data display, and basic navigation. You will find them on the vast majority of commercial and informational websites.
-
 - [x] 16. `Input` (form) - 
 - [x] 17. `Label` (typography) - Form field label. Associates with a control via `for`. | `for`, `required`, `size`, `weight`, `uppercase` |
 - [x] 18. `Checkbox` (form) - Single boolean checkbox with label. | `checked`, `defaultChecked`, `indeterminate`, `value`, `label` |
@@ -31,12 +22,17 @@ These components are standard for forms, typical data display, and basic navigat
 - [x] 20. `Select` (form) - Dropdown for selecting one option from a list. | `value`, `options`, `placeholder`, `size`, `invalid` |
 - [x] 22. `Search` (form) - Search input with clear button and optional debounce. | `value`, `onSearch`, `debounce`, `placeholder`, `size` |
 - [x] 24. `Menu` (nav) - 
+- [x] 25. `Card` (surface) - 
+- [x] 26. `Separator` (layout) - 
+- [x] 27. `Table` (data) -
+### Tier 2 - Very Common (Standard Web Design)
 
-- [ ] 21. `Textarea` (form) - 
-- [ ] 23. `Navbar` (nav) - 
-- [ ] 25. `Card` (surface) - 
-- [ ] 26. `Separator` (layout) - 
-- [x] 27. `Table` (data) - 
+These components are standard for forms, typical data display, and basic navigation. You will find them on the vast majority of commercial and informational websites.
+
+
+- [x] 21. `Textarea` (form) - 
+- [x] 23. `Navbar` (nav) - 
+ 
 
 ### Tier 3 - Common (Modern Web Applications)
 
@@ -49,22 +45,22 @@ This tier represents the shift from static websites to interactive web applicati
 - [x] 45. `Badge` (feedback) - 
 - [x] 46. `Spinner` (feedback) - 
 
-- [ ] 28. `Stack` (layout) - 
-- [ ] 29. `Spacer, ` (layout) - 
-- [ ] 31. `Panel` (surface) - 
-- [ ] 32. `Caption` (typography) - 
+- [x] 28. `Stack` (layout) - 
+- [x] 29. `Spacer, ` (layout) - 
+- [x] 31. `Panel` (surface) - 
+- [x] 32. `Caption` (typography) - 
 - [ ] 34. `InputGroup` (form) - 
-- [ ] 35. `RadioGroup` (form) - 
+- [x] 35. `RadioGroup` (form) - 
 - [ ] 36. `ButtonGroup` (form) - 
-- [ ] 37. `Modal` (overlay) - 
+- [x] 37. `Modal` (overlay) - 
 - [ ] 39. `DropdownMenu` (overlay) - 
 - [ ] 40. `Popover` (overlay) - 
 - [ ] 41. `Tooltip` (overlay) - 
-- [ ] 42. `Breadcrumbs` (nav) - 
-- [ ] 44. `Avatar` (assets) - 
-- [ ] 47. `Video` (assets) - 
-- [ ] 48. `banner` (feedback) - 
-- [ ] 49. `Feedback` (feedback) -
+- [x] 42. `Breadcrumbs` (nav) - 
+- [x] 44. `Avatar` (assets) - 
+- [x] 47. `Video` (assets) - 
+- [x] 48. `banner` (feedback) - 
+
 
 ### Tier 4: Specialized (Dashboards & Complex Forms)
 
@@ -73,24 +69,24 @@ These components are used heavily in SaaS (Software as a Service) platforms, adm
 - [x] 68. `Progress` (feedback) - 
 - [x] 72. `ThemeToggle` (trigger) -
 
-- [ ] 50. `Switch` (form) - Toggle switch for binary on/off state. | `checked`, `defaultChecked`, `onChange`, `size`, `label` |
+- [x] 50. `Switch` (form) - Toggle switch for binary on/off state. | `checked`, `defaultChecked`, `onChange`, `size`, `label` |
 - [ ] 51. `Slider` (form) - 
 - [ ] 52. `RangeSlider` (form) - 
 - [ ] 53. `DatePicker` (form) - 
-- [ ] 54. `Combobox` (form) - 
+- [x] 54. `Combobox` (form) - 
 - [ ] 55. `FileUpload` (form) - 
 - [ ] 56. `Stat` (data) - 
-- [ ] 57. `Metric` (data) - 
-- [ ] 58. `BarChart` (data) - 
-- [ ] 59. `PieChart` (data) - 
-- [ ] 60. `Timeline` (data) - 
-- [ ] 61. `Drawer` (overlay) - 
-- [ ] 62. `Sheet` (overlay) - 
+                              <!-- - [ ] 57. `Metric` (data) - 
+                              - [ ] 58. `BarChart` (data) - 
+                              - [ ] 59. `PieChart` (data) - 
+                              - [ ] 60. `Timeline` (data) -  -->
+- [x] 61. `Drawer` (overlay) - 
+- [x] 62. `Sheet` (overlay) - 
 - [ ] 63. `Backdrop` (overlay) - 
 - [ ] 64. `Toast` (feedback) - 
 - [ ] 65. `ToastRegion` (feedback) - 
-- [ ] 66. `AlertDialog` (overlay) - 
-- [ ] 67. `Skeleton` (feedback) - 
+- [x] 66. `AlertDialog` (overlay) - 
+- [x] 67. `Skeleton` (feedback) - 
 - [ ] 69. `EmptyState` (feedback) - 
 - [ ] 70. `Carousel` (data) - 
 - [ ] 71. `Gallery` (data) - 
@@ -111,16 +107,16 @@ These components are highly specialized. They are only used when a specific feat
 - [ ] 79. `Portal` (overlay) - 
 - [ ] 80. `CommandPalette` (overlay) - 
 - [ ] 81. `Kbd` (typography) - 
-- [ ] 82. `Code` (typography) - 
+- [x] 82. `Code` (typography) - 
 - [ ] 83. `BentoGrid` (layout) - 
 - [ ] 84. `BentoCell` (layout) - 
 - [ ] 85. `AspectRatio` (layout) - 
-- [ ] 86. `Screen` (layout) - 
+- [x] 86. `Screen` (layout) - 
 - [ ] 87. `Columns` (layout) - 
-- [ ] 89. `Well` (layout) - 
-- [ ] 90. `Tile` (layout) - 
-- [ ] 91. `Paper` (layout) - 
-- [ ] 92. `Frame` (layout) - 
+- [x] 89. `Well` (layout) - 
+- [x] 90. `Tile` (layout) - 
+- [x] 91. `Paper` (layout) - 
+- [x] 92. `Frame` (layout) - 
 - [ ] 93. `TreeView` (data) - 
 - [ ] 94. `Feed` (data) - 
 - [ ] 95. `Event` (data) - 
@@ -130,17 +126,17 @@ These components are highly specialized. They are only used when a specific feat
 - [ ] 99. `DescriptionList` (data) - 
 - [ ] 100. `Sparkline` (data) - 
 - [ ] 101. `Indicator` (feedback) - 
-- [ ] 102. `Dot` (feedback) - 
-- [ ] 103. `Chip` (feedback) - 
-- [ ] 104. `Tag` (feedback) - 
+- [x] 102. `Dot` (feedback) - 
+- [x] 103. `Chip` (feedback) - 
+- [x] 104. `Tag` (feedback) - 
 - [ ] 105. `AvatarGroup` (assets) - 
 - [ ] 106. `Waveform` (assets) - 
 - [ ] 107. `Cropper` (assets) - 
 - [ ] 108. `Lightbox` (assets) - 
-- [ ] 109. `Audio` (assets) - 
-- [ ] 110. `FilePreview` (assets) - 
+- [x] 109. `Audio` (assets) - 
+- [x] 110. `FilePreview` (assets) - 
 - [ ] 111. `GalleryItem` (assets) - 
-- [ ] 112. `Prose` (typography) - 
+- [x] 112. `Prose` (typography) - 
 - [ ] 114. `Toolbar` (nav) - 
 - [ ] 115. `Stepper` (nav) - 
 - [ ] 116. `ContextMenu` (overlay) -

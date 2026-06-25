@@ -1,0 +1,40 @@
+---
+import type { AlertDialogProps } from "./alert-dialog.props";
+import { useAlertDialog } from "./alert-dialog.hook";
+import Text from "~/typography/components/text/Text.astro";
+import Prose from "~/typography/components/prose/Prose.astro";
+import "../../overlays.css";
+import "./alert-dialog.css";
+
+const { dialogProps, title, titleId, description, descriptionId } = useAlertDialog(Astro.props as AlertDialogProps);
+---
+
+<dialog {...dialogProps}>
+  <div class="alert-dialog__header">
+    <h2 id={titleId} class="alert-dialog__title">{title}</h2>
+  </div>
+
+  {description && (
+    <div class="alert-dialog__body">
+      <Text id={descriptionId} class="alert-dialog__description">{description}</Text>
+    </div>
+  )}
+
+  {!description && Astro.slots.has("default") && (
+    <div class="alert-dialog__body">
+      <Prose size="sm">
+        <slot />
+      </Prose>
+    </div>
+  )}
+
+  <div class="alert-dialog__footer">
+    <slot name="actions" />
+  </div>
+</dialog>
+
+<script>
+  import { initAlertDialogs } from "./alert-dialog.client";
+  initAlertDialogs();
+  document.addEventListener("astro:after-swap", initAlertDialogs);
+</script>

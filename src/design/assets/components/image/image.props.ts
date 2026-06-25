@@ -13,7 +13,7 @@ export interface ImageProps extends BaseComponentProps {
   /** object-fit behaviour. @default 'cover' */
   fit?:      ImageFit;
   /** Native loading strategy. @default 'lazy' */
-  loading?:  "lazy" | "eager";
+  imgLoading?:  "lazy" | "eager";
   /** Border radius. */
   radius?:   ImageRadius;
   /** Intrinsic width. */

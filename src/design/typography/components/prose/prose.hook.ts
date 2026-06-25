@@ -26,7 +26,7 @@ export function useProse(props: ProseProps) {
     Tag,
     props: {
       ...typographyAttributes,
-      class: composeClass(typographyAttributes.class, "prose"),
+      class: composeClass(typographyAttributes.class, "typography--cascade prose"),
     },
   };
 }

@@ -1,0 +1,9 @@
+---
+import type { TooltipProps } from "./tooltip.props";
+import { useTooltip } from "./tooltip.hook";
+import "./tooltip.css";
+
+const { wrapperProps, content } = useTooltip(Astro.props as TooltipProps);
+---
+
+<span {...wrapperProps}><slot /><span class="tooltip__content" role="tooltip">{content}</span></span>

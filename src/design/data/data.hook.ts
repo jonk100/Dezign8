@@ -69,8 +69,7 @@ export function useData(props: DataProps) {
     style: consumerStyle,  // goes on the wrapper; see note above
     v:        _v,
     testId:   _testId,
-    animation,
-    ...rest
+    ...base
   } = props;
 
   // ── Token dimensions ────────────────────────────────────────
@@ -94,14 +93,13 @@ export function useData(props: DataProps) {
     : undefined;
 
   // ── Compose ─────────────────────────────────────────────────
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
     {
       className: [
         "data",
         ...tokenClasses,
         striped  && "data--striped",
         bordered && "data--bordered",
-        animation && `animate-${animation}`,
         className,
       ],
       style: [
@@ -117,7 +115,7 @@ export function useData(props: DataProps) {
         ...(scrollable              ? { "data-scrollable":  "true"    } : {}),
       },
     },
-    props,
+    base,
   );
 
   return {
@@ -125,6 +123,7 @@ export function useData(props: DataProps) {
     dataStyle: style || undefined,
     dataAttrs: attrs,
     caption,
-    rest,
+    rest: restAttrs,
+    spacing,
   };
 }

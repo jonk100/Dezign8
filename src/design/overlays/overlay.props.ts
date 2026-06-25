@@ -15,6 +15,10 @@
  * @prop hasBackdrop - Whether to render a dimming scrim behind the component.
  * @prop portalTarget - Specific DOM node to portal into. THOUGHT: Defaults to document.body, but crucial to expose if you are building inside an iframe or a Shadow DOM environment where `document.body` is isolated.
  */
+import type { BaseComponentProps } from "~/shared/base.props";
+
+type OverlayAnimation = "fade" | "slide-up" | "slide-down" | "scale";
+
 export interface OverlayProps extends BaseComponentProps {
   isOpen:              boolean;
   defaultOpen?:        boolean;

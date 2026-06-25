@@ -1,0 +1,209 @@
+---
+title: Audio Component
+description: Custom audio player with seek, volume, and playback rate controls. Supports censor beep redaction, intercom filter, and native pitch preservation.
+category: Assets
+status: experimental
+icon: player
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/assets/components/audio"
+---
+import Audio from "../../../design/assets/components/audio/Audio.astro";
+
+export const DEMO_SRC = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+
+## Overview
+
+`Audio` wraps a native `<audio>` element with a fully custom UI. The browser owns all playback state — this component adds a styled seek bar, volume slider, playback rate picker, and an optional Web Audio effects chain.
+
+**Creative modes:**
+
+- **`redactSegments`** — mutes `[start, end]` second ranges and overlays a 1 kHz censor beep
+- **`intercomMode`** — 3.4 kHz low-pass + soft-clip distortion for a walkie-talkie feel
+- **`preservePitch`** — defaults `true` (native browser behaviour); set `false` for the chipmunk/slow-mo effect when changing speed
+
+## Usage & Examples
+
+### Basic Player
+
+```astro
+<Audio src="/audio/track.mp3" label="Track" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; max-width: 480px;">
+  <Audio src={DEMO_SRC} label="Demo track" />
+</div>
+
+### Sizes
+
+```astro
+<Audio src="/audio/track.mp3" size="sm" label="Small" />
+<Audio src="/audio/track.mp3" size="md" label="Medium (default)" />
+<Audio src="/audio/track.mp3" size="lg" label="Large" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem; max-width: 480px;">
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">sm</p>
+    <Audio src={DEMO_SRC} size="sm" label="Small player" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">md (default)</p>
+    <Audio src={DEMO_SRC} size="md" label="Medium player" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">lg</p>
+    <Audio src={DEMO_SRC} size="lg" label="Large player" />
+  </div>
+</div>
+
+### Visual Variants
+
+`variant` controls the container chrome — mirrors the `solid / soft / outlined / ghost` vocabulary used across triggers and feedback components.
+
+```astro
+<Audio src="/audio/track.mp3" variant="soft"     label="Soft (default)" />
+<Audio src="/audio/track.mp3" variant="outlined"  label="Outlined" />
+<Audio src="/audio/track.mp3" variant="solid"     label="Solid" />
+<Audio src="/audio/track.mp3" variant="ghost"     label="Ghost" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem; max-width: 480px;">
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">soft (default)</p>
+    <Audio src={DEMO_SRC} variant="soft" label="Soft player" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">outlined</p>
+    <Audio src={DEMO_SRC} variant="outlined" label="Outlined player" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">solid</p>
+    <Audio src={DEMO_SRC} variant="solid" label="Solid player" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">ghost</p>
+    <Audio src={DEMO_SRC} variant="ghost" label="Ghost player" />
+  </div>
+</div>
+
+### Color
+
+`color` tints the play button, seek bar, and volume thumb. Works across all variants.
+
+```astro
+<Audio src="/audio/track.mp3" color="primary"   label="Primary" />
+<Audio src="/audio/track.mp3" color="success"   label="Success" />
+<Audio src="/audio/track.mp3" color="danger"    label="Danger" />
+<Audio src="/audio/track.mp3" color="secondary" label="Secondary" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem; max-width: 480px;">
+  <Audio src={DEMO_SRC} color="primary"   label="Primary" />
+  <Audio src={DEMO_SRC} color="success"   label="Success" />
+  <Audio src={DEMO_SRC} color="danger"    label="Danger" />
+  <Audio src={DEMO_SRC} color="secondary" label="Secondary" />
+</div>
+
+### Layout
+
+`layout` controls row arrangement without affecting the color treatment.
+
+```astro
+<Audio src="/audio/track.mp3" layout="minimal" label="Minimal" />
+<Audio src="/audio/track.mp3" layout="compact" label="Compact" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem; max-width: 480px;">
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">minimal — seek only, no volume/rate</p>
+    <Audio src={DEMO_SRC} layout="minimal" label="Minimal player" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">compact — single row</p>
+    <Audio src={DEMO_SRC} layout="compact" label="Compact player" />
+  </div>
+</div>
+
+### Redact Segments
+
+Time ranges (seconds) to mute and replace with a 1 kHz censor beep. Useful for content moderation, bleeping profanity, or redacting sensitive information.
+
+```astro
+<Audio
+  src="/audio/interview.mp3"
+  label="Redacted interview"
+  redactSegments={[[5, 8], [20, 23]]}
+/>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; max-width: 480px;">
+  <Audio src={DEMO_SRC} label="Redacted — beep at 0:05–0:08 and 0:20–0:23" redactSegments={[[5, 8], [20, 23]]} />
+  <p style="margin-top: 0.75rem; font-size: var(--fsf--xs); color: var(--text--muted);">Seek to 0:05 or 0:20 to hear the beep.</p>
+</div>
+
+### Intercom Mode
+
+Applies a telephone-band low-pass filter (3.4 kHz cutoff) and soft-clip distortion. The `INTERCOM` badge appears in the controls row when active.
+
+```astro
+<Audio src="/audio/voice.mp3" label="Radio transmission" intercomMode />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; max-width: 480px;">
+  <Audio src={DEMO_SRC} label="Intercom transmission" intercomMode />
+</div>
+
+### Pitch & Speed
+
+By default (`preservePitch={true}`) changing the rate slider keeps pitch constant — the browser handles this natively. Set `preservePitch={false}` to let pitch shift with speed (chipmunk at 2×, slow-mo drone at 0.5×).
+
+```astro
+{/* Default: pitch locked */}
+<Audio src="/audio/voice.mp3" label="Pitch locked" />
+
+{/* Chipmunk / slow-mo */}
+<Audio src="/audio/voice.mp3" label="Raw pitch shift" preservePitch={false} />
+```
+<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem; max-width: 480px;">
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">Pitch locked (default) — try 2× speed</p>
+    <Audio src={DEMO_SRC} label="Pitch locked" />
+  </div>
+  <div>
+    <p style="margin-bottom: 0.5rem; font-size: var(--fsf--xs); color: var(--text--muted);">Raw pitch shift — try 2× for chipmunk, 0.5× for drone</p>
+    <Audio src={DEMO_SRC} label="Raw pitch shift" preservePitch={false} />
+  </div>
+</div>
+
+### With Radius
+
+```astro
+<Audio src="/audio/track.mp3" radius="full" label="Pill player" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; max-width: 480px;">
+  <Audio src={DEMO_SRC} radius="full" label="Pill player" />
+</div>
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | `string` | — | Audio source URL. Required. |
+| `label` | `string` | `"Audio player"` | Accessible `aria-label` for the player container. |
+| `preload` | `"none" \| "metadata" \| "auto"` | `"metadata"` | Native preload hint. |
+| `autoPlay` | `boolean` | — | Autoplay on load (requires `muted` on most browsers). |
+| `loop` | `boolean` | — | Loop playback. |
+| `muted` | `boolean` | — | Start muted. |
+| `volume` | `number` | `1` | Initial volume 0–1. |
+| `playbackRate` | `number` | `1` | Initial playback rate. |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Size preset. |
+| `variant` | `"soft" \| "outlined" \| "solid" \| "ghost"` | `"soft"` | Visual chrome treatment. |
+| `layout` | `"default" \| "minimal" \| "compact"` | `"default"` | `minimal` hides volume + rate row; `compact` collapses to one row. |
+| `color` | `ColorRole` | `"primary"` | Tints play button, seek bar, and volume thumb. |
+| `radius` | `Radius` | — | Border radius override. |
+| `redactSegments` | `[number, number][]` | — | Censor beep over these `[start, end]` second ranges. |
+| `intercomMode` | `boolean` | — | Telephone low-pass + distortion filter. |
+| `preservePitch` | `boolean` | `true` | Keep pitch constant as rate changes. `false` = chipmunk/slow-mo. |
+
+*Inherits `BaseComponentProps`.*
+
+## Design Notes
+
+- **Lazy AudioContext** — the Web Audio graph is built on first play, inside the click handler. Browsers block `AudioContext` creation outside a user gesture (autoplay policy).
+- **`redactSegments` + `intercomMode` are additive** — both can be active on the same player simultaneously.
+- **`preservesPitch` is native** — `HTMLMediaElement.preservesPitch` defaults `true` in all modern browsers. The prop just surfaces that toggle; no custom pitch processing is needed.
+- **View Transitions** — the player re-initialises on `astro:after-swap` so it survives client-side navigation.

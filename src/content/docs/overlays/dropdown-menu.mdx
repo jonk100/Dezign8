@@ -1,0 +1,80 @@
+---
+title: Dropdown Menu
+description: A contextual menu displayed triggered by a user action, providing a list of actions or options.
+category: Overlays
+status: stable
+icon: menu
+---
+
+import DropdownMenu from "~/overlays/components/dropdown-menu/DropdownMenu.astro";
+import DropdownItem from "~/overlays/components/dropdown-menu/DropdownItem.astro";
+import Button from "~/triggers/components/button/Button.astro";
+
+## Overview
+
+`DropdownMenu` is built natively on the HTML `popover` API, providing lightweight, accessible, zero-hydration top-layer menus with built-in click-outside-to-close behavior.
+
+## Examples
+
+### Basic Usage
+
+Use the `popovertarget` attribute on a `Button` to connect it to a `DropdownMenu`.
+
+<div style="margin-bottom: 2rem; min-height: 200px;">
+  <Button popovertarget="demo-dropdown-1">Options</Button>
+  
+  <DropdownMenu id="demo-dropdown-1">
+    <DropdownItem icon="avatar">Profile</DropdownItem>
+    <DropdownItem icon="panel">Settings</DropdownItem>
+    <DropdownItem icon="card" disabled>Billing (Unavailable)</DropdownItem>
+    <div style="height: 1px; background: var(--border--subtle); margin: 4px 0;"></div>
+    <DropdownItem icon="arrow-right">Log out</DropdownItem>
+  </DropdownMenu>
+</div>
+
+```astro
+<Button popovertarget="my-menu">Options</Button>
+
+<DropdownMenu id="my-menu">
+  <DropdownItem icon="avatar">Profile</DropdownItem>
+  <DropdownItem icon="panel">Settings</DropdownItem>
+  <div class="divider"></div>
+  <DropdownItem icon="arrow-right">Log out</DropdownItem>
+</DropdownMenu>
+```
+
+### Submenus (Nested Popovers)
+
+Native popovers support infinite nesting! By putting `popovertarget` on a `DropdownItem`, you can trigger a nested submenu that opens to the right. 
+
+<div style="margin-bottom: 2rem; min-height: 250px;">
+  <Button popovertarget="demo-dropdown-main">Share</Button>
+  
+  <DropdownMenu id="demo-dropdown-main">
+    <DropdownItem icon="link">Copy link</DropdownItem>
+    <DropdownItem icon="info">Email</DropdownItem>
+    <DropdownItem popovertarget="demo-dropdown-sub" icon="arrow-up-right">
+      Social Media
+    </DropdownItem>
+  </DropdownMenu>
+  
+  <DropdownMenu id="demo-dropdown-sub">
+    <DropdownItem>Twitter</DropdownItem>
+    <DropdownItem>LinkedIn</DropdownItem>
+    <DropdownItem>Facebook</DropdownItem>
+  </DropdownMenu>
+</div>
+
+```astro
+<Button popovertarget="main-menu">Share</Button>
+
+<DropdownMenu id="main-menu">
+  <DropdownItem icon="link">Copy link</DropdownItem>
+  <DropdownItem popovertarget="sub-menu" icon="arrow-up-right">Social Media</DropdownItem>
+</DropdownMenu>
+
+<DropdownMenu id="sub-menu">
+  <DropdownItem>Twitter</DropdownItem>
+  <DropdownItem>LinkedIn</DropdownItem>
+</DropdownMenu>
+```

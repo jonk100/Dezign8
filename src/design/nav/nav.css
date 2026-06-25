@@ -40,7 +40,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--space-in--xl);
   background: transparent;
   border: none;
   font-family: inherit;
@@ -68,19 +68,24 @@
 }
 
 /* Compound Sizes */
+.nav.nav--xs .nav__item {
+  font-size: var(--fs--xs);
+  padding: var(--padding--xs) var(--padding--lg);
+}
+
 .nav.nav--sm .nav__item {
-  font-size: var(--fs--sm, 0.875rem);
-  padding: 0.25rem 0.75rem;
+  font-size: var(--fs--sm);
+  padding: var(--padding--sm) var(--padding--lg);
 }
 
 .nav.nav--md .nav__item {
-  font-size: var(--fs--base, 1rem);
-  padding: 0.5rem 1rem;
+  font-size: var(--fs--base);
+  padding: var(--padding--md) var(--padding--lg);
 }
 
 .nav.nav--lg .nav__item {
-  font-size: var(--fs--lg, 1.125rem);
-  padding: 0.75rem 1.25rem;
+  font-size: var(--fs--lg);
+  padding: var(--padding--lg) var(--padding--lg);
 }
 
 /* 

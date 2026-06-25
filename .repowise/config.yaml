@@ -1,0 +1,7 @@
+distill:
+  commands:
+    enabled: true
+mcp:
+  tools:
+  - +get_dependency_path
+  - +get_execution_flows

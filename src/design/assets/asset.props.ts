@@ -15,16 +15,18 @@
  * @prop onError - Callback fired on media failure.
  * @prop crossOrigin - CORS settings for fetching external media.
  */
+import type { BaseComponentProps } from "~/shared/base.props";
+
 export interface AssetProps extends BaseComponentProps {
   src:              string;
   alt:              string;
   fallbackSrc?:     string;
-  fallbackElement?: HTMLAttributes;
-  loading?:         "lazy" | "eager";
+  fallbackElement?: unknown;
+  load?:            "lazy" | "eager";
   fit?:             "cover" | "contain" | "fill" | "none";
   position?:        string;
   ratio?:           number;
-  onLoad?:          (e: SyntheticEvent) => void;
-  onError?:         (e: SyntheticEvent) => void;
+  onLoad?:          (e: Event) => void;
+  onError?:         (e: Event) => void;
   crossOrigin?:     "anonymous" | "use-credentials";
 }

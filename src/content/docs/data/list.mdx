@@ -1,0 +1,266 @@
+---
+title: List Component
+description: A flexible component for displaying ordered or unordered item collections, with data-driven and compound rendering modes, full color channel support, and interactive states.
+category: Data
+status: stable
+icon: list
+version: 0.1.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/data/list"
+---
+import List from "/home/jk/Code/dezign8/src/design/data/components/list/List.astro";
+import Avatar from "/home/jk/Code/dezign8/src/design/assets/components/avatar/Avatar.astro";
+import Badge from "/home/jk/Code/dezign8/src/design/feedback/components/badge/Badge.astro";
+
+export const users = [
+  { id: 1, name: "Alice Chen", role: "Design Lead", status: "online", avatar: "/dezign83.png" },
+  { id: 2, name: "Marcus Webb", role: "Engineer", status: "offline", initials: "MW" },
+  { id: 3, name: "Priya Nair", role: "Product", status: "away", initials: "PN" },
+  { id: 4, name: "James Smith", role: "QA", status: "online", initials: "JS", _highlighted: true },
+];
+
+export const itemFields = {
+  primary: "name",
+  secondary: "role",
+};
+
+## Overview
+
+`List` is a primary component for displaying collections of items. It supports two rendering modes — data-driven for simplicity and compound for full structural control — and inherits all data category props: color channels, density, variants, and behavioral states.
+
+## Usage & Examples
+
+### Basic data-driven
+
+Pass `data` and `itemFields` to let List handle rendering. `itemFields` maps keys from your data objects to the primary and secondary text lines in each list item.
+
+```astro
+<List
+  data={users}
+  itemFields={{ primary: "name", secondary: "role" }}
+/>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <List data={users} itemFields={itemFields} />
+</div>
+
+### Ordered List
+
+Pass `ordered` to render an `<ol>` instead of the default `<ul>`.
+
+```astro
+<List
+  data={users}
+  itemFields={itemFields}
+  ordered
+/>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <List data={users} itemFields={itemFields} ordered />
+</div>
+
+### Color & variant
+
+```astro
+<List data={users} itemFields={itemFields} color="secondary" variant="soft" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <List data={users} itemFields={itemFields} color="secondary" variant="soft" />
+</div>
+
+### Striped & bordered
+
+```astro
+<List data={users} itemFields={itemFields} color="primary" striped />
+<List data={users} itemFields={itemFields} bordered />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <List data={users} itemFields={itemFields} caption="Striped" color="primary" striped />
+  <List data={users} itemFields={itemFields} caption="Bordered" bordered />
+</div>
+
+### Density
+
+```astro
+<List data={users} itemFields={itemFields} caption="Compact" size="compact" />
+<List data={users} itemFields={itemFields} caption="Comfortable" size="comfortable" />
+<List data={users} itemFields={itemFields} caption="Spacious" size="spacious" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem;">
+  <List data={users} itemFields={itemFields} caption="Compact"     size="compact"     variant="outlined" />
+  <List data={users} itemFields={itemFields} caption="Comfortable" size="comfortable" variant="outlined" />
+  <List data={users} itemFields={itemFields} caption="Spacious"    size="spacious"    variant="outlined" />
+</div>
+
+### Interactive items
+
+```astro
+<List data={users} itemFields={itemFields} color="primary" interactive />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <List data={users} itemFields={itemFields} color="primary" interactive />
+</div>
+
+### Selectable items
+
+Checkboxes are rendered automatically. Wire selection state via `list:selectionchange` event on the wrapper.
+
+```astro
+<List data={users} itemFields={itemFields} color="primary" selectable />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <List data={users} itemFields={itemFields} color="primary" selectable />
+</div>
+
+```js
+// Listen for selection changes on the wrapper element
+document.querySelector('[data-selectable]')
+  .addEventListener('list:selectionchange', e => {
+    const { selected, all, none } = e.detail;
+    // selected → number[] of selected row indices
+    const selectedItems = selected.map(i => users[i]);
+  });
+```
+
+### Loading state
+
+When `loading` is true, the list is replaced with a skeleton shimmer.
+
+```astro
+<List loading />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <List loading />
+</div>
+
+### Empty state
+
+```astro
+<List data={[]} empty="No users match your filters" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <List data={[]} empty="No users match your filters" />
+</div>
+
+Use the `empty` slot for a custom empty state with richer content:
+
+```astro
+<List data={[]}>
+  <div slot="empty" style="padding: 2rem; text-align: center;">
+    <p>No users found</p>
+    <a href="/users/new">Add a user</a>
+  </div>
+</List>
+```
+
+### Compound mode
+
+
+```astro
+<List color="primary" variant="outlined" striped>
+    <Avatar slot="start" initials="AC" status="online" />
+    <div>
+      <p style="font-weight: 500; margin:0;">Alice Chen</p>
+      <p style="font-size: 0.875rem; color: var(--text--secondary); margin:0;">Design Lead</p>
+    </div>
+    <Badge slot="end" color="success" variant="soft">Active</Badge>
+    <Avatar slot="start" initials="MW" status="offline" />
+    <div>
+      <p style="font-weight: 500; margin:0;">Marcus Webb</p>
+      <p style="font-size: 0.875rem; color: var(--text--secondary); margin:0;">Engineer</p>
+    </div>
+    <Badge slot="end" color="neutral" variant="outlined">Inactive</Badge>
+</List>
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <List color="primary" variant="outlined" striped>
+      <Avatar slot="start" initials="AC" status="online" />
+      <div>
+        <p style="font-weight: 500; margin:0;">Alice Chen</p>
+        <p style="font-size: 0.875rem; color: var(--text--secondary); margin:0;">Design Lead</p>
+      </div>
+      <Badge slot="end" color="success" variant="soft">Active</Badge>
+      <Avatar slot="start" initials="MW" status="offline" />
+      <div>
+        <p style="font-weight: 500; margin:0;">Marcus Webb</p>
+        <p style="font-size: 0.875rem; color: var(--text--secondary); margin:0;">Engineer</p>
+      </div>
+      <Badge slot="end" color="neutral" variant="outlined">Inactive</Badge>
+  </List>
+</div>
+
+---
+
+## Props API
+
+### List Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `data` | `ItemData[]` | — | Item records. Omit for compound mode. |
+| `itemFields` | `{ primary: string, secondary?: string }` | — | Key mapping for data-driven mode. |
+| `ordered` | `boolean` | `false` | Renders an `<ol>` instead of a `<ul>`. |
+
+### Inherited Data Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `color` | `ColorRole` | — | Primary accent: borders, hover bg, selection indicators. |
+| `bg` | `ColorRole` | — | Background tint: container fill, striped items. |
+| `highlight` | `ColorRole` | — | Highlighted item accent (left border + subtle bg). |
+| `variant` | `"plain" \| "outlined" \| "soft" \| "elevated"` | `"plain"` | Container decoration. |
+| `size` | `"compact" \| "comfortable" \| "spacious"` | — | Item density. Scales padding proportionally. |
+| `caption` | `string` | — | Semantic `<caption>` element for accessibility. |
+| `loading` | `boolean` | — | Shows skeleton shimmer. Replaces list content with placeholder items. |
+| `empty` | `boolean \| string` | — | Empty state. String overrides default message. Use `empty` slot for rich content. |
+| `striped` | `boolean` | — | Alternating even-item background tint. |
+| `bordered` | `boolean` | — | Borders between all items. |
+| `interactive` | `boolean` | — | Hover bg + pointer cursor on list items. |
+| `selectable` | `boolean` | — | Renders a checkbox on each item. Fires `list:selectionchange` on the wrapper. |
+| `scrollable` | `boolean` | — | Enables vertical scroll (`overflow-y: auto`) on the wrapper. |
+
+### ListItem Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `highlighted` | `boolean` | `false` | Applies the `--data--highlight--*` color channels for emphasis. |
+| `href` | `string` | — | Renders the list item as an `<a>` tag. |
+
+### Slots (List)
+
+| Slot | Replaces | Notes |
+|---|---|---|
+| `default` | Data-driven `<li>`s | Use for compound mode with `<ListItem>` children. |
+| `empty` | Default empty message | Any content; shown when `data.length === 0`. |
+
+### Slots (ListItem)
+
+| Slot | Description |
+|---|---|
+| `start` | Content at the start of the item (e.g., Avatar, Icon). |
+| `default` | Main content area, typically for text. |
+| `end` | Content at the end of the item (e.g., Badge, Button, timestamp). |
+
+### `list:selectionchange` event
+
+Fired on the wrapper `<div>` when any checkbox changes state.
+
+```ts
+event.detail: {
+  selected: number[];  // 0-based indices of selected items
+  all:  boolean;       // true when every item is selected
+  none: boolean;       // true when no items are selected
+}
+```
+
+---
+
+## Design Decisions
+
+**Wrapper div for scrollability.** `overflow: auto` on `<ul>` or `<ol>` can have inconsistent behavior. The wrapper `<div>` carries the `.data` class and all category-level styles; CSS vars cascade down into the list naturally.
+
+**Selection state is always consumer-managed.** The component renders selection UI from the `selectable` prop but never reads or stores state itself. It emits the `list:selectionchange` event, and the consumer stores the state.
+
+**Data-driven mode is for simple cases.** The `itemFields` prop handles the common use case of a primary and secondary line of text. For anything more complex (custom icons per item, complex action buttons), use compound mode with `<ListItem>` and its slots for full control.
+
+**`_highlighted` key in data-driven mode.** Adding `_highlighted: true` to an item record in your `data` array marks that item with `data-highlighted`, which `list.css` styles using the `--data--highlight--*` channels. In compound mode, pass the `highlighted` prop to `<ListItem>` directly.

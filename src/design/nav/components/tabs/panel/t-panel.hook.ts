@@ -5,7 +5,7 @@ export function useTabPanel(props: TabPanelProps) {
 
   return {
     tabPanelProps: {
-      role: "tabpanel",
+      role: "tabpanel" as const,
       id: `panel-${id}`,
       "data-panel-for": id,
       "aria-labelledby": `tab-${id}`,

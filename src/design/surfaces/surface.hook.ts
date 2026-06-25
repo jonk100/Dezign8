@@ -57,8 +57,7 @@ export function useSurface(props: SurfaceProps) {
     v:        _v,
     testId:   _testId,
     loading:  _loading,
-    animation,
-    ...rest
+    ...base
   } = props;
 
   let layer = propsLayer ?? "0";
@@ -98,14 +97,13 @@ export function useSurface(props: SurfaceProps) {
   const shadowOverride = shadow ? `--surface--shadow: ${shadow}` : null;
   const blurVar        = glass  ? `--surface--blur: ${blur}`     : null;
 
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
     {
       className: [
         "surface",
         ...tokenClasses,
         outlined  && "surface--outlined",
         glass     && "surface--glass",
-        animation && `animate-${animation}`,
         className,
       ],
       style: [
@@ -118,13 +116,14 @@ export function useSurface(props: SurfaceProps) {
         consumerStyle,
       ],
     },
-    props,
+    base,
   );
 
   return {
     surfaceClass: cls,
     surfaceStyle: style,
     surfaceAttrs: attrs,
-    rest,
+    rest: restAttrs,
+    spacing,
   };
 }

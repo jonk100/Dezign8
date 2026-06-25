@@ -211,33 +211,41 @@ token dimension. If it's on/off → boolean, emits a class.
  
 Behaviour props (`interactive`, `selectable`, `disabled`, `href`) produce
 `data-*`, `aria-*`, and structural attributes. They never touch the token system.
+
+`disabled` is special: `useBaseCompose` emits `aria-disabled="true"` and
+`data-disabled=""` automatically when passed `disabled: isDisabled` in options.
+Pass the **computed** disabled state (e.g. `!isLink && disabled`) so link cards
+don't get spuriously marked disabled.
  
 ```ts
 // card.hook.ts
 const isLink        = Boolean(href);
 const isToggle      = !isLink && selectable;
 const isInteractive = !isLink && (interactive || selectable);
+const isDisabled    = !isLink && disabled;
+
+// pass computed disabled into useSurface → flows to useBaseCompose
+const { surfaceClass, surfaceStyle, surfaceAttrs, rest } = useSurface({
+  ...surfaceProps,
+  disabled: isDisabled,   // ← useBaseCompose emits aria-disabled + data-disabled
+});
  
 return {
   Tag: isLink ? "a" : as,
   props: {
-    …surfaceAttributes,
-    "data-card":        isInteractive ? ""      : undefined,
-    "data-selectable":  isToggle      ? "true"  : undefined,
-    "data-selected":    isToggle      ? String(selected) : undefined,
-    "data-disabled":    isDisabled    ? "true"  : undefined,
-    role:               isInteractive ? "button" : undefined,
-    tabindex:           isInteractive ? (isDisabled ? -1 : 0) : undefined,
-    "aria-pressed":     isToggle      ? String(selected) : undefined,
-    "aria-disabled":    isDisabled    ? "true"  : undefined,
+    …surfaceAttrs,        // aria-disabled + data-disabled already here
+    role:           isInteractive ? "button"        : undefined,
+    tabindex:       isInteractive ? (isDisabled ? -1 : 0) : undefined,
+    "aria-pressed": isToggle      ? String(selected) : undefined,
+    "data-selected":isToggle      ? String(selected) : undefined,
   },
 };
 ```
  
 CSS then selects on the data attributes:
 ```css
-.card:is(a, [data-interactive]):hover { transform: translateY(-2px); }
-.card[data-selected="true"]           { border-color: var(--token-border-selected); }
+.card[data-disabled]      { pointer-events: none; opacity: 0.5; }
+.card[data-selected="true"]{ border-color: var(--token-border-selected); }
 ```
  
 ---

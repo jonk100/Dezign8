@@ -1,4 +1,4 @@
-// design/feedback/skeleton/skeleton.hook.ts
+// design/shared/components/skeleton/skeleton.hook.ts
 
 import type { SkeletonProps }              from "./skeleton.props";
 import { SKELETON_TOKENS, SKELETON_DEFAULTS } from "./skeleton.tokens";
@@ -15,8 +15,7 @@ export function useSkeleton(props: SkeletonProps) {
     ratio,
     radius,
     class: className,
-    ...rest
-  } = props;
+    ...base } = props;
 
   const { style: tokenStyle, classes: tokenClasses } = resolveTokens(
     SKELETON_TOKENS,
@@ -33,7 +32,7 @@ export function useSkeleton(props: SkeletonProps) {
     ratio  && `aspect-ratio: ${ratio}`,
   ].filter(Boolean).join("; ");
 
-  const { className: cls, style, attrs } = useBaseCompose(
+  const { className: cls, style, attrs, rest } = useBaseCompose(
     {
       className: [
         "skeleton",
@@ -46,7 +45,7 @@ export function useSkeleton(props: SkeletonProps) {
         inlineStyle,
       ],
     },
-    props,
+    base,
   );
 
   return {

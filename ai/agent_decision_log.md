@@ -7,6 +7,63 @@ _________________________________________________
 =================================================
 -----------------------------------------------
 
+## 2026/06/24 - Implement Textarea, Switch, RadioGroup
+
+### Components built
+- **Textarea** (Tier 2, #21) — wrapper+control pattern (same as Input). Single `<textarea class="textarea__control">` inside `<div class="form textarea …">`. `resize` prop emits `--textarea--resize` CSS var directly rather than via `resolveTokens` since `useForm` already handles all other FORM_TOKENS dimensions.
+- **Switch** (Tier 4, #50) — label-wrapper pattern (same as Checkbox). Hidden `<input type="checkbox" role="switch">` + CSS track+thumb with `calc()`-proportional sizing from `--form--size`. Thumb travel = `0.54 × --form--size`.
+- **RadioGroup** (Tier 3, #35) — `dezign8-radio-group` Web Component wrapping `<fieldset>` + `<legend>`. `connectedCallback` propagates `data-name` → `name` attribute on all child `input[type="radio"]`. Pattern mirrors Navbar web component.
+
+### Key decisions
+- Textarea uses wrapper div (not bare `<textarea>`) to avoid `display: flex` override complexity from `.form` base class — consistent with Input.
+- RadioGroup uses web component (option b from advisor) rather than pure SSR fieldset, because the `@todo` in radio.tokens.ts explicitly calls for name/value ownership. JS-dependent; documented in JSDoc.
+- Switch skips ahead of InputGroup/ButtonGroup (Tier 3) — simpler, self-contained, and avoids the Tier 3 items that depend on other components being finalized first.
+
+### Checklist updated
+- `[x]` Textarea #21, Navbar #23 (already implemented), RadioGroup #35, Switch #50
+
+---
+
+## 2026/06/24 to 2026/06/24 - Antigravity session
+
+See:
+- [Session Summary](./antigravity_session_summary.md/0624-0624_icons_and_input_fixes.md)
+
+### New files
+- `src/design/shared/icons/tabs.svg`
+- `src/design/shared/icons/stepper.svg`
+- `src/design/shared/icons/pagination.svg`
+- `src/design/shared/icons/navbar.svg`
+- `src/design/shared/icons/breadcrumbs.svg`
+- `src/design/shared/icons/header.svg`
+- `src/design/shared/icons/footer.svg`
+- `src/design/shared/icons/heading.svg`
+- `src/design/shared/icons/label.svg`
+- `src/design/shared/icons/quote.svg`
+- `src/design/shared/icons/field.svg`
+- `src/design/shared/icons/flex.svg`
+
+### Updated files
+- `src/design/shared/icons/index.ts`
+- `src/design/forms/components/input/input.css`
+- `src/design/forms/components/select/select.css`
+- `src/design/forms/components/search/search.css`
+- `src/design/forms/components/combobox/combobox.css`
+- `src/content/docs/layout/footer.mdx`
+- `src/content/docs/layout/header.mdx`
+- `src/content/docs/layout/flex.mdx`
+- `src/content/docs/nav/breadcrumbs.mdx`
+- `src/content/docs/nav/navbar.mdx`
+- `src/content/docs/nav/pagination.mdx`
+- `src/content/docs/nav/stepper.mdx`
+- `src/content/docs/nav/tabs.mdx`
+- `src/content/docs/typography/heading.mdx`
+- `src/content/docs/typography/label.mdx`
+- `src/content/docs/typography/quote.mdx`
+- `src/content/docs/forms/field.mdx`
+
+-----------------------------------------------
+
 ## 2026/06/24 — Icon fill bug + DocsLayout header refinements
 
 ### Decisions
