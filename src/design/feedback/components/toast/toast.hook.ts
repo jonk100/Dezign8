@@ -16,6 +16,7 @@ export function useToast(props: ToastProps) {
     dismissible  = TOAST_DEFAULTS.dismissible,
     dismissLabel = "Dismiss",
     title,
+    icon,
     ...feedbackProps
   } = props;
 

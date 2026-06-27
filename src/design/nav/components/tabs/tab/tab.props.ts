@@ -1,6 +1,7 @@
 import type { HTMLAttributes } from "astro/types";
+import type { IconProps } from "~/shared/icon.props";
 
-export interface TabProps extends HTMLAttributes<"button" | "a"> {
+export interface TabProps extends HTMLAttributes<"button" | "a">, IconProps {
   /** The unique ID of the tab, must match the TabPanel it controls */
   id: string;
   /** Whether the tab is currently active (mostly for uncontrolled setups) */

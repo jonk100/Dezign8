@@ -131,6 +131,7 @@ export function useInput(props: InputProps) {
     maxLength,
     pattern,
     autocomplete,
+    icon,
     ...formProps
   } = props;
 

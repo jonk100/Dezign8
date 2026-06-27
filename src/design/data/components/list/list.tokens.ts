@@ -25,6 +25,7 @@
 
 import { defineTokens, dimension, scale } from "~/shared/tokens";
 import type { CheckState }               from "~/forms/components/checkbox/checkbox.tokens";
+import type { SvgName } from "~/shared/icons";
 
 export type { CheckState };
 
@@ -91,7 +92,7 @@ export interface ListItem {
    * Icon name from the project icon registry.
    * Rendered as a leading icon before the label.
    */
-  icon?: string;
+  icon?: SvgName;
 
   /**
    * Check state for to-do / checklist items.

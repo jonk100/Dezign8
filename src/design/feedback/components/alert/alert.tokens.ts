@@ -24,12 +24,13 @@ const {
 xxs === SPACE["2xs"];
 xxl === SPACE["2xl"];
 
-export const ALERT_SIZE_MAP: Record<FeedbackSize, { fontSize: string; p: string }> = {
-  "2xs": { fontSize: "var(--fsf--xs)",  p: xxs },
-  xs: { fontSize: "var(--fs--2xs)", p: SPACE.xs },
-  sm: { fontSize: "var(--fs--xs)",  p: SPACE.sm },
-  md: { fontSize: "var(--fs--sm)",  p: SPACE.md },
-  lg: { fontSize: "var(--fs--md)",  p: SPACE.md },
-  xl: { fontSize: "var(--fs--lg)",  p: SPACE.md },
-  "2xl": { fontSize: "var(--fs--xl)", p: xxl },
+export const ALERT_SIZE_MAP: Record<FeedbackSize, { fontSize: string; p: string; gap: string }> = {
+  "2xs": { fontSize: "var(--fsf--xs)",  p: xxs, gap: SPACE["2xs"] },
+  xs: { fontSize: "var(--fs--2xs)", p: SPACE.xs, gap: SPACE.xs },
+  sm: { fontSize: "var(--fs--xs)",  p: SPACE.sm, gap: SPACE.xs },
+  md: { fontSize: "var(--fs--sm)",  p: SPACE.md, gap: SPACE.sm },
+  lg: { fontSize: "var(--fs--md)",  p: SPACE.md, gap: SPACE.sm },
+  xl: { fontSize: "var(--fs--lg)",  p: SPACE.md, gap: SPACE.md },
+  "2xl": { fontSize: "var(--fs--xl)", p: xxl, gap: SPACE.md },
 };
+

@@ -1,0 +1,29 @@
+---
+/**
+ * Dot
+ *
+ * A tiny status or presence indicator dot.
+ *
+ * @example
+ * <!-- Standard red/error status dot -->
+ * <Dot color="danger" />
+ *
+ * @example
+ * <!-- Pulsing green/online dot -->
+ * <Dot color="success" pulse />
+ *
+ * @example
+ * <!-- Outlined dot -->
+ * <Dot variant="outlined" color="primary" />
+ */
+import type { DotProps } from "./dot.props";
+import { useDot }        from "./dot.hook";
+import "../../feedback.css";
+import "./dot.css";
+
+type Props = DotProps;
+
+const { Tag, props } = useDot(Astro.props as DotProps);
+---
+
+<Tag {...props as Record<string, unknown>} />

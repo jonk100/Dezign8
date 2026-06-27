@@ -1,4 +1,5 @@
 import type { NavProps } from "../../nav.props";
+import type { SvgName } from "~/shared/icons";
 
 export interface TabData {
   /** Unique ID for the tab, must match the TabPanel it controls */
@@ -11,6 +12,8 @@ export interface TabData {
   href?: string;
   /** Whether the tab is currently active (mostly for uncontrolled setups) */
   active?: boolean;
+  /** Leading icon for the tab */
+  icon?: SvgName;
 }
 
 export interface TabsProps extends NavProps {

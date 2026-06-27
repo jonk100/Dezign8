@@ -2,7 +2,15 @@
 import type { TypographyProps } from "../../typography.props";
 import type { HeadingLevel, HeadingWeight } from "./heading.tokens";
 
-export interface HeadingProps extends TypographyProps {
+declare module "~/shared/visuals" {
+  interface VisualRegistry {
+    h1: true; h2: true; h3: true; h4: true; h5: true; h6: true;
+  }
+}
+
+import type { IconProps } from "~/shared/icon.props";
+
+export interface HeadingProps extends TypographyProps, IconProps {
   /**
    * Semantic heading level — controls the rendered element (h1–h6).
    * Choose based on document structure, not visual size.

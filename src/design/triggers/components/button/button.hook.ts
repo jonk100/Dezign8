@@ -12,6 +12,7 @@ export function useButton(props: ButtonProps) {
     href,
     target,
     rel,
+    icon,
     iconOnly  = BUTTON_DEFAULTS.iconOnly,
     fullWidth = BUTTON_DEFAULTS.fullWidth,
     ...triggerProps

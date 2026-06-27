@@ -55,15 +55,17 @@
 
 import type { BadgeProps } from "./badge.props";
 import { useBadge }        from "./badge.hook";
-import "../../feedback.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "../../feedback.css";
 import "./badge.css";
 
 type Props = BadgeProps;
 
 const { Tag, props, mode, displayCount } = useBadge(Astro.props as BadgeProps);
+const { icon } = Astro.props;
 ---
 
 <Tag {...props as Record<string, unknown>}>
+  {icon && <Icon name={icon} />}
   {mode === "count" && displayCount}
   {mode === "label" && <slot />}
   {/* dot mode — no content */}

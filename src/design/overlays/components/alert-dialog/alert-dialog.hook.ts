@@ -9,6 +9,7 @@ export function useAlertDialog(props: AlertDialogProps) {
     title,
     description,
     closeOnEsc = ALERT_DIALOG_DEFAULTS.closeOnEsc,
+    icon,
     ...overlayProps } = props;
 
   const { overlayClass, overlayStyle, overlayAttrs, rest } = useOverlays({

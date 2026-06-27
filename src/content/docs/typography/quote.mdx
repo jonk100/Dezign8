@@ -1,62 +1,90 @@
 ---
-title: Quote Component
-description: Semantic typography component for blockquotes, pull quotes, and inline quotes.
+title: Quote
+description: Semantic quote component for blockquotes, pull quotes, and inline quotes.
 category: Typography
 status: stable
 icon: quote
-version: 0.1.0
-links:
-  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/typography/components/quote"
 ---
 import Quote from "../../../design/typography/components/quote/Quote.astro";
 import Text from "../../../design/typography/components/text/Text.astro";
-import { PropsApi } from "~/components/PropsApi";
-import { QuoteProps } from "../../../design/typography/components/quote/quote.props";
 
 ## Overview
 
-The `<Quote />` component handles semantic quotes in your application. It automatically maps to `<blockquote>` or `<q>` based on the visual `type` you provide, ensuring screen-readers and visual presentation are always aligned.
+`Quote` automatically maps to `<blockquote>` or `<q>` based on `type`, keeping semantic HTML and visual presentation aligned. The `cite` prop sets the standard `cite` attribute on the rendered element.
 
-## Usage & Examples
+Default: `type="block"`.
 
-### Block Quote (Default)
-Standard blockquotes render as `<blockquote>` with slightly muted, italic text.
+---
+
+## Usage
+
+### Block quote (default)
+
+Renders `<blockquote>` with muted, italic text and a left border.
 
 ```astro
-<Quote type="block" cite="https://example.com">
-  "Simplicity is the ultimate sophistication."
+<Quote cite="https://example.com">
+  Simplicity is the ultimate sophistication.
 </Quote>
 ```
-  <Quote type="block" cite="https://example.com">
-    "Simplicity is the ultimate sophistication."
-  </Quote>
 
-### Pull Quote
-Pull quotes are prominent, larger text blocks used to highlight key excerpts in editorial content. Renders as a `<blockquote>` with centered, balanced, and larger text.
+<Quote cite="https://example.com">
+  Simplicity is the ultimate sophistication.
+</Quote>
+
+---
+
+### Pull quote
+
+Prominent, larger centered text for highlighting key excerpts in editorial content. Still renders as `<blockquote>`.
 
 ```astro
 <Quote type="pull">
-  "The best code is the code never written."
+  The best code is the code never written.
 </Quote>
 ```
-  <Quote type="pull">
-    "The best code is the code never written."
-  </Quote>
 
-### Inline Quote
-For quoting within the flow of a paragraph. Renders as a `<q>` tag, inheriting the surrounding text properties but retaining italic styling.
+<Quote type="pull">
+  The best code is the code never written.
+</Quote>
+
+---
+
+### Inline quote
+
+For quoting within a paragraph. Renders as `<q>`, which browsers wrap in typographic quotation marks.
 
 ```astro
 <Text>
   As the architect said, <Quote type="inline">we should probably delete that</Quote>, and I agreed.
 </Text>
 ```
-  <Text>
-    As the architect said, <Quote type="inline">we should probably delete that</Quote>, and I agreed.
-  </Text>
+
+<Text>
+  As the architect said, <Quote type="inline">we should probably delete that</Quote>, and I agreed.
+</Text>
+
+---
 
 ## Props API
 
-<PropsApi props={QuoteProps} />
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `type` | `"block" \| "pull" \| "inline"` | `"block"` | Visual style and semantic element. `block`/`pull` → `<blockquote>`, `inline` → `<q>`. |
+| `cite` | `string` | `undefined` | URL of the quote source. Sets the `cite` HTML attribute. |
 
-*Inherits all `TypographyProps` and `BaseComponentProps`.*
+Inherits all `TypographyProps` (`size`, `weight`, `color`, `align`, `leading`, `fam`, etc.) and `BaseComponentProps`.
+
+---
+
+## Accessibility
+
+- `block` and `pull` render as `<blockquote>` — screen readers announce these as block quotes.
+- `inline` renders as `<q>`, which browsers surround with quotation marks. Do not manually add quotation marks in the slot content.
+- Use `cite` to attribute the source where possible.
+
+---
+
+## Related
+
+- **Text** — body copy for surrounding prose.

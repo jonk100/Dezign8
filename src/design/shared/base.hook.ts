@@ -30,11 +30,17 @@ export function useBaseCompose(
   base?: BaseComponentProps,
 ) {
   // Strip all known non-DOM base props so they never appear as HTML attributes.
-  // Spacing props are returned in `spacing` so component hooks can consume them
-  // without re-destructuring from their own props.
+  // Spacing props (p/m/pt/etc.) are stripped here and returned in `spacing`, but
+  // NOT automatically applied — unlike motion/bg/v which are handled here.
+  // To wire spacing up in a component hook:
+  //   1. Destructure spacing props from your props before passing `...base` here
+  //   2. Call resolveSpacingStyles({ p, px, … }, "component-prefix") from spacing.props.ts
+  //   3. Spread the result into the `style` array passed to useBaseCompose
+  //   4. Add padding/margin var() reads to the component's CSS (see layout.css for the pattern)
   const {
     v, testId, loading: baseLoading, disabled: baseDisabled, bg,
-    motion,
+    motion, mDistance, action, target,
+    class: baseClass, style: baseStyle,
     p, px, py, pt, pr, pb, pl,
     m, mx, my, mt, mr, mb, ml,
     ...rest
@@ -44,14 +50,25 @@ export function useBaseCompose(
   const isLoading  = options.loading  ?? baseLoading;
 
   const motionData = motion ? getMotionAttrs(motion) : null;
+  const motionStyles: string[] = [];
+  
+  if (mDistance) {
+    if (mDistance.startsWith("x") && !isNaN(Number(mDistance.slice(1)))) {
+      motionStyles.push(`--m--scale: ${mDistance.slice(1)}`);
+    } else {
+      motionStyles.push(`--m--dist: ${mDistance}`);
+    }
+  }
 
-  const className = composeClass(...(options.className ?? []));
-  const style     = composeStyle(...(options.style ?? []), motionData?.enterStyle);
+  const className = composeClass(...(options.className ?? []), baseClass);
+  const style     = composeStyle(...(options.style ?? []), motionData?.enterStyle, ...motionStyles, baseStyle);
   const attrs: Record<string, unknown> = {
     ...(v          ? { "data-visual":  v }      : {}),
     ...(testId     ? { "data-testid":  testId } : {}),
     ...(isLoading  ? { "data-loading": "true", "aria-busy": "true" } : {}),
     ...(isDisabled ? { "aria-disabled": "true", "data-disabled": "" } : {}),
+    ...(action     ? { "data-action":  action } : {}),
+    ...(target     ? { "data-target":  target } : {}),
     // data-motion: presence flag for @media (prefers-reduced-motion) in motion.css
     ...(motionData ? { "data-motion":  "" }     : {}),
     // data-m-exit + data-m-exit-dur: read by mountMotionDismiss()

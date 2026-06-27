@@ -3,14 +3,20 @@ import type { AlertDialogProps } from "./alert-dialog.props";
 import { useAlertDialog } from "./alert-dialog.hook";
 import Text from "~/typography/components/text/Text.astro";
 import Prose from "~/typography/components/prose/Prose.astro";
-import "../../overlays.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "../../overlays.css";
 import "./alert-dialog.css";
 
 const { dialogProps, title, titleId, description, descriptionId } = useAlertDialog(Astro.props as AlertDialogProps);
+const { icon } = Astro.props;
 ---
 
 <dialog {...dialogProps}>
   <div class="alert-dialog__header">
+    {icon && (
+      <div class="alert-dialog__icon" aria-hidden="true">
+        <Icon name={icon} />
+      </div>
+    )}
     <h2 id={titleId} class="alert-dialog__title">{title}</h2>
   </div>
 

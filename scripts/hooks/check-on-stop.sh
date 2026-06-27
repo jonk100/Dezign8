@@ -3,6 +3,7 @@
 # to re-enter the loop with the failures attached; any other output allows the stop.
 # Bails out after a few attempts so a genuinely unfixable failure can't loop forever.
 set -euo pipefail
+cd "$(dirname "$0")/../.."
 
 IN="$(cat)"
 exec_num=$(printf '%s' "$IN" | jq -r '.executionNum // 0')

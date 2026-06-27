@@ -1,6 +1,6 @@
 ---
 title: Kbd
-description: Displays a keyboard key or key combination.
+description: Displays a keyboard key or key combination styled as a key cap.
 category: Typography
 status: stable
 icon: keyboard
@@ -9,7 +9,9 @@ import Kbd from "../../../design/typography/components/kbd/Kbd.astro";
 
 ## Overview
 
-`Kbd` renders a `<kbd>` element styled as a key cap — monospace font, subtle border with a slightly thicker bottom edge, and a muted background. Use it to represent keyboard shortcuts, key names, or input sequences.
+`Kbd` renders a `<kbd>` element with monospace font, a subtle border, slightly thicker bottom edge (to suggest a physical key), and a muted background. Use it to represent keyboard shortcuts, key names, or input sequences.
+
+Defaults: `size="xs"`, `fam="mono"`.
 
 ---
 
@@ -19,13 +21,29 @@ import Kbd from "../../../design/typography/components/kbd/Kbd.astro";
 
 ```astro
 <Kbd>Enter</Kbd>
+<Kbd>Esc</Kbd>
+<Kbd>Tab</Kbd>
 ```
 
+<div style="display: flex; gap: 0.5rem; align-items: center;">
+  <Kbd>Enter</Kbd>
+  <Kbd>Esc</Kbd>
+  <Kbd>Tab</Kbd>
+</div>
+
+---
+
 ### Key combination
+
+Wrap each key separately and place `+` between them in prose.
 
 ```astro
 <Kbd>⌘</Kbd> + <Kbd>K</Kbd>
 ```
+
+<Kbd>⌘</Kbd> + <Kbd>K</Kbd>
+
+---
 
 ### Inline with text
 
@@ -33,13 +51,35 @@ import Kbd from "../../../design/typography/components/kbd/Kbd.astro";
 Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to save.
 ```
 
+Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to save.
+
+---
+
+### Icon keys
+
+Use `icon` to render a symbol key (arrow keys, special symbols).
+
+```astro
+<Kbd icon="arrow-up" />
+<Kbd icon="arrow-down" />
+<Kbd icon="command" />
+```
+
 ---
 
 ## Props API
 
-`Kbd` accepts all standard [Typography props](/docs/typography/typography) — `size`, `color`, `weight`, etc. — with these defaults:
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `TextSize` | `"xs"` | Font size scale step. |
+| `fam` | `Family` | `"mono"` | Font family. |
+| `icon` | `SvgName` | `undefined` | Icon rendered inside the key cap instead of (or alongside) slot content. |
 
-| Prop | Default | Description |
-|---|---|---|
-| `size` | `"xs"` | Font scale step. |
-| `fam` | `"mono"` | Font family. |
+Inherits all remaining `TypographyProps` (`color`, `weight`, `align`, etc.) and `BaseComponentProps`.
+
+---
+
+## Related
+
+- **Text** — body text.
+- **Badge** — small inline label for counts or status.

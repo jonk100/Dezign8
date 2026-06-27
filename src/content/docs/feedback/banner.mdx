@@ -107,10 +107,13 @@ Sticks to the top of the viewport on scroll via `position: sticky; top: 0` and `
 | `variant` | `FeedbackVariant` | `"soft"` | Visual treatment. |
 | `color` | `FeedbackColor` | `"neutral"` | Color role. |
 | `radius` | `FeedbackRadius` | `"none"` | Border radius. `"none"` = edge-to-edge. |
+| `icon` | `SvgName` | `undefined` | Leading icon rendered before the message content. |
 | `sticky` | `boolean` | `false` | Sticks to viewport top on scroll. |
 | `dismissible` | `boolean` | `false` | Renders a dismiss button. Wire up click in your script. |
 | `dismissLabel` | `string` | `"Dismiss"` | `aria-label` for the dismiss button. |
 | `aria-label` | `string` | `"Page notification"` | Landmark label for screen readers. Override when purpose is specific. |
+
+Note: `size`, `pulse`, and `placement` are not supported on Banner.
 
 ## Slots
 
@@ -126,3 +129,10 @@ Sticks to the top of the viewport on scroll via `position: sticky; top: 0` and `
 - `role="region"` makes the banner a named landmark. Override `aria-label` when the default `"Page notification"` isn't specific enough (e.g. `aria-label="Cookie consent"`).
 - The dismiss button always has an `aria-label` (default: `"Dismiss"`). Override with `dismissLabel` when context is ambiguous.
 - For cookie consent or legal notices, consider whether the banner should be announced immediately — if so, add `aria-live="polite"` directly via the `class` passthrough.
+
+---
+
+## Related
+
+- **Alert** — inline status message in content flow.
+- **Toast** — transient corner notification.

@@ -3,7 +3,9 @@
 import type { FeedbackProps } from "../../feedback.props";
 import type { BannerColor, BannerRadius, BannerVariant } from "./banner.tokens";
 
-export interface BannerProps extends Omit<FeedbackProps, "color" | "variant" | "radius" | "size" | "pulse" | "placement"> {
+import type { IconProps } from "~/shared/icon.props";
+
+export interface BannerProps extends Omit<FeedbackProps, "color" | "variant" | "radius" | "size" | "pulse" | "placement">, IconProps {
   /** Visual treatment. @default "soft" */
   variant?: BannerVariant;
 

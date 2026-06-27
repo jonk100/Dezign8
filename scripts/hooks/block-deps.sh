@@ -32,8 +32,8 @@ case "$name" in
             .toolCall.args.ReplacementContent,
             (.toolCall.args.ReplacementChunks // [] | map(.ReplacementContent) | join("\n")) ]
           | map(select(. != null)) | join("\n")')
-        if printf '%s' "$content" | grep -Eqi '"(react|react-dom|preact)"'; then
-          deny "React/Preact in package.json blocked — never use React (AGENTS.MD)."
+        if printf '%s' "$content" | grep -Eqi '"(react|react-dom|preact|solid-js|vue|svelte)"'; then
+          deny "Framework dependency in package.json blocked — this is an Astro + pure CSS system (AGENTS.MD)."
         fi
         ask "Editing package.json. If this adds a dependency: no new deps unless unavoidable (AGENTS.MD). Confirm?" ;;
     esac

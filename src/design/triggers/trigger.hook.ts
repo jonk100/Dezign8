@@ -53,7 +53,9 @@ export function useTrigger(props: TriggerProps) {
       disabled: isDisabled,
       loading,
     },
-    base,
+    // Pass target into base so useBaseCompose can emit data-target for the action system.
+    // For link buttons target is also used below as the HTML anchor attribute.
+    { ...base, ...(target !== undefined ? { target } : {}) },
   );
 
   const Tag = isLink ? "a" : "button";

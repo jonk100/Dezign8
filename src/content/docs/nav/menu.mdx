@@ -26,7 +26,7 @@ The fastest way to build a menu is to pass an array of `items`. The component wi
   variant="soft"
   items={[
     { id: 'dashboard', label: 'Dashboard', href: '#dashboard', icon: 'home', active: true },
-    { id: 'analytics', label: 'Analytics', href: '#analytics', icon: 'settings' },
+    { id: 'analytics', label: 'Analytics', href: '#/Analytics', icon: 'settings' },
     { id: 'users', label: 'Users', href: '#users', disabled: true }
   ]} 
 />
@@ -37,7 +37,7 @@ The fastest way to build a menu is to pass an array of `items`. The component wi
     variant="soft"
     items={[
       { id: 'dashboard', label: 'Dashboard', href: '#dashboard', icon: 'home', active: true },
-      { id: 'analytics', label: 'Analytics', href: '#analytics', icon: 'settings' },
+      { id: 'analytics', label: 'Analytics', href: '#/Analytics', icon: 'settings' },
       { id: 'users', label: 'Users', href: '#users', disabled: true }
     ]} 
   />
@@ -108,3 +108,20 @@ Menus inherit all the standard `NavProps`. This means you can easily switch visu
 | `disabled` | `boolean` | `false` | If true, visually disables the item and prevents interaction. |
 
 *`<Menu>` inherits all shared `NavProps` (size, variant, color, radius).*
+
+
+### Icon Integration
+
+This component supports the **Hybrid Icon Composition** architecture. You can easily add an icon by passing the `icon` prop, or use the `<Icon>` component inside slots for more advanced layouts.
+
+```astro
+<!-- Basic prop usage -->
+<Menu icon="star">Content</Menu>
+
+<!-- Advanced slot usage -->
+<Menu>
+  Content <Icon name="chevron-right" />
+</Menu>
+```
+
+For more details, see the [Icon component documentation](/assets/icon).

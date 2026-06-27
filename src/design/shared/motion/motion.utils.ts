@@ -43,15 +43,11 @@ function buildAnim(a: ParsedAnim): string {
 
 // ── Public API ─────────────────────────────────────────────────────────────
 
-/**
- * Parses the `m` prop and returns:
- * - `enterStyle`  — inline `animation:` value for mount-time animations (enter + idle)
- * - `exitAttrs`   — data attributes the JS dismiss handler reads to play the exit
- *
- * Called by `useBaseCompose`; no need to call directly in component hooks.
- */
 export function getMotionAttrs(m: string): MotionAttrs {
-  const phases    = parseMotion(m);
+  const isScroll = m.includes("scroll");
+  const cleanM = m.replace(/\b(scroll)\b/g, "").trim();
+
+  const phases    = parseMotion(cleanM);
   const enterPhase = phases.find((p) => p.phase === "enter");
   const exitPhase  = phases.find((p) => p.phase === "exit");
   const idlePhase  = phases.find((p) => p.phase === "idle");
@@ -62,12 +58,28 @@ export function getMotionAttrs(m: string): MotionAttrs {
     ...(idlePhase?.anims  ?? []),
   ];
 
+  const enterAnimStr = mountAnims.map(buildAnim).join(", ");
+  
+  // If scroll, we don't inline the enterStyle, we defer it to data attributes
   const enterStyle =
-    mountAnims.length > 0
-      ? `animation: ${mountAnims.map(buildAnim).join(", ")}`
+    !isScroll && mountAnims.length > 0
+      ? `animation: ${enterAnimStr}`
       : undefined;
 
   const exitAttrs: Record<string, string> = {};
+  
+  if (mountAnims.length > 0) {
+    exitAttrs["data-m-enter"] = enterAnimStr;
+  }
+  
+  if (isScroll) {
+    exitAttrs["data-m-scroll"] = "";
+    if (mountAnims.length > 0) {
+      // Start hidden so it can fade/animate in via intersection observer
+      exitAttrs["data-m-hidden"] = "true";
+    }
+  }
+
   if (exitPhase) {
     const exitAnimStr = exitPhase.anims.map(buildAnim).join(", ");
     const maxDur      = Math.max(...exitPhase.anims.map((a) => a.duration + a.delay));

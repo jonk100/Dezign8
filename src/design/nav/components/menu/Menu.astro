@@ -50,7 +50,7 @@ const { menuProps, items, activeId } = useMenu(Astro.props);
           <MenuItem 
             id={item.id}
             href={item.href}
-            icon={item.icon}
+            {...(item.icon !== undefined ? { icon: item.icon } : {})}
             disabled={item.disabled}
             active={activeId === item.id || activeId === item.href}
           >
@@ -63,7 +63,7 @@ const { menuProps, items, activeId } = useMenu(Astro.props);
                   <MenuItem 
                     id={child.id}
                     href={child.href}
-                    icon={child.icon}
+                    {...(child.icon !== undefined ? { icon: child.icon } : {})}
                     disabled={child.disabled}
                     active={activeId === child.id || activeId === child.href}
                   >

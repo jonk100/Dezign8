@@ -102,3 +102,20 @@ For full control over individual items (e.g., adding custom icons or badges), yo
 | `isLast` | `boolean` | `false` | If true, hides the separator slot after this item. |
 
 *`<Breadcrumbs>` inherits all shared `NavProps` (size, variant, color, radius).*
+
+
+### Icon Integration
+
+This component supports the **Hybrid Icon Composition** architecture. You can easily add an icon by passing the `icon` prop, or use the `<Icon>` component inside slots for more advanced layouts.
+
+```astro
+<!-- Basic prop usage -->
+<Breadcrumbs icon="star">Content</Breadcrumbs>
+
+<!-- Advanced slot usage -->
+<Breadcrumbs>
+  Content <Icon name="chevron-right" />
+</Breadcrumbs>
+```
+
+For more details, see the [Icon component documentation](/assets/icon).

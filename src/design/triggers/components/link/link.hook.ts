@@ -26,6 +26,7 @@ export function useLink(props: LinkProps) {
     rel,
     external    = false,
     underline   = LINK_DEFAULTS.underline,
+    icon,
     class: className,
     ...typographyProps
   } = props;

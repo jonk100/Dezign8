@@ -83,8 +83,10 @@ import "../../feedback.css";
 import "./banner.css";
 
 const { props, dismissible, dismissLabel } = useBanner(Astro.props as BannerProps);
+const { icon } = Astro.props;
 ---
 <div {...props}>
+  {icon && <Icon name={icon} />}
   <div class="banner__content"><slot /></div>
   {Astro.slots.has("actions") && (
     <div class="banner__actions"><slot name="actions" /></div>

@@ -4,7 +4,7 @@
       {
         "matcher": "run_command|write_to_file|replace_file_content|multi_replace_file_content",
         "hooks": [
-          { "type": "command", "command": "scripts/hooks/block-deps.sh", "timeout": 10 }
+          { "type": "command", "command": "bash /home/jk/Code/dezign8/scripts/hooks/block-deps.sh", "timeout": 10 }
         ]
       }
     ]
@@ -14,7 +14,7 @@
       {
         "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
         "hooks": [
-          { "type": "command", "command": "scripts/hooks/import-firewall.sh", "timeout": 10 }
+          { "type": "command", "command": "bash /home/jk/Code/dezign8/scripts/hooks/import-firewall.sh", "timeout": 10 }
         ]
       }
     ]
@@ -24,7 +24,7 @@
       {
         "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
         "hooks": [
-          { "type": "command", "command": "scripts/hooks/css-guard.sh", "timeout": 10 }
+          { "type": "command", "command": "bash /home/jk/Code/dezign8/scripts/hooks/css-guard.sh", "timeout": 10 }
         ]
       }
     ]
@@ -34,29 +34,29 @@
       {
         "matcher": "write_to_file",
         "hooks": [
-          { "type": "command", "command": "scripts/hooks/component-shape.sh", "timeout": 10 }
+          { "type": "command", "command": "bash /home/jk/Code/dezign8/scripts/hooks/component-shape.sh", "timeout": 10 }
         ]
       }
     ]
   },
   "rules-reminder": {
     "PreInvocation": [
-      { "type": "command", "command": "scripts/hooks/rules-reminder.sh", "timeout": 10 }
+      { "type": "command", "command": "bash -c 'echo \"{\\\"injectSteps\\\":[{\\\"ephemeralMessage\\\":\\\"Design system rules (CLAUDE.md / AGENTS.MD):\\\\n• No React — Astro + pure CSS only.\\\\n• 5-file component shape: .tokens.ts → .props.ts → .hook.ts → .css → .astro\\\\n• Import direction: shared → category → component. .css files import nothing.\\\\n• CSS: no !important, max 2 levels of nesting, modifier classes for static booleans, data-* for JS-toggled state.\\\\n• No new dependencies unless unavoidable. No abstractions beyond the task.\\\\n• src/design/ changes → newest-first entry in ai/agent_decision_log.md + commit.\\\"}]}\"'", "timeout": 10 }
     ]
   },
   "lint-feedback": {
     "PostInvocation": [
-      { "type": "command", "command": "scripts/hooks/lint-feedback.sh", "timeout": 120 }
+      { "type": "command", "command": "bash /home/jk/Code/dezign8/scripts/hooks/lint-feedback.sh", "timeout": 120 }
     ]
   },
   "check-on-stop": {
     "Stop": [
-      { "type": "command", "command": "scripts/hooks/check-on-stop.sh", "timeout": 120 }
+      { "type": "command", "command": "bash /home/jk/Code/dezign8/scripts/hooks/check-on-stop.sh", "timeout": 120 }
     ]
   },
   "decision-log-gate": {
     "Stop": [
-      { "type": "command", "command": "scripts/hooks/decision-log-gate.sh", "timeout": 10 }
+      { "type": "command", "command": "bash /home/jk/Code/dezign8/scripts/hooks/decision-log-gate.sh", "timeout": 10 }
     ]
   }
 }

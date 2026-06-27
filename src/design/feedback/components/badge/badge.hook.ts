@@ -27,7 +27,7 @@ import { BADGE_DEFAULTS }   from "./badge.tokens";
 import { useFeedback }      from "../../feedback.hook";
 import { composeClass }     from "~/shared/base.hook";
 
-export type BadgeMode = "dot" | "count" | "label";
+export type BadgeMode = "dot" | "count" | "label" | "icon";
 
 /**
  * Resolves {@link BadgeProps} into the props `Badge.astro` spreads.
@@ -42,14 +42,17 @@ export type BadgeMode = "dot" | "count" | "label";
 export function useBadge(props: BadgeProps) {
   const {
     count,
-    max     = BADGE_DEFAULTS.max,
-    dot     = BADGE_DEFAULTS.dot,
+    max       = BADGE_DEFAULTS.max,
+    dot       = BADGE_DEFAULTS.dot,
+    icon,
+    iconOnly  = false,
     ...feedbackProps
   } = props;
 
   // ── Rendering mode ──────────────────────────────────────────────────────
   const mode: BadgeMode =
     dot              ? "dot"
+    : iconOnly       ? "icon"
     : count !== undefined ? "count"
     : "label";
 
@@ -77,6 +80,7 @@ export function useBadge(props: BadgeProps) {
         feedbackClass,
         "badge",
         dot && "badge--dot",
+        iconOnly && "badge--icon-only",
       ),
       style:               feedbackStyle,
       "aria-label":        mode === "dot" ? (feedbackProps["aria-label"] as string | undefined) : undefined,

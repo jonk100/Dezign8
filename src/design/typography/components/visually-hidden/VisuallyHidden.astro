@@ -1,0 +1,25 @@
+---
+/**
+ * VisuallyHidden
+ *
+ * Hides children visually while keeping them accessible to assistive
+ * technology (screen readers).
+ *
+ * @example
+ * ```astro
+ * <button>
+ *   <Icon name="search" />
+ *   <VisuallyHidden>Search site</VisuallyHidden>
+ * </button>
+ * ```
+ */
+import type { VisuallyHiddenProps } from "./visually-hidden.props";
+import { useVisuallyHidden } from "./visually-hidden.hook";
+import "./visually-hidden.css";
+
+type Props = VisuallyHiddenProps;
+
+const { Tag, props } = useVisuallyHidden(Astro.props as VisuallyHiddenProps);
+---
+
+<Tag {...props as Record<string, unknown>}><slot /></Tag>

@@ -1,10 +1,10 @@
 ---
 import Head from "./Head.astro";
 import "../design/styles/global.css";
-import Header from "#header/Header.astro";
-import Container from "#container/Container.astro";
-import Section from "#section/Section.astro";
-
+import Header from "~/layout_/header/Header.astro";
+import Footer from "~/layout_/footer/Footer.astro";
+import Container from "~/layout_/container/Container.astro";
+import Paper from "~/surfaces_/paper/Paper.astro";
 
 export interface Props {
   title?: string | undefined;
@@ -18,27 +18,42 @@ const { title, description, image } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Automatically injects advanced SEO and meta tags -->
     <Head title={title} description={description} image={image}>
-    <!-- Pass-through for any page-specific head injections -->
-    <slot name="head" />
+      <slot name="head" />
+    </Head>
   </head>
   <body>
-    <Header>
+    <Header class="header-component">
       <slot name="header" />
     </Header>
     <Container>
-      <slot name="hero" />
+      <Paper class="hero--wrapper">
+        <slot name="hero" />
+      </Paper>
+      <main>
+        <Paper class="main-top--wrapper">
+          <slot name="main-top" />
+        </Paper>
+        <Paper class="main--wrapper">
+          <slot />
+        </Paper>
+        <Paper class="main-bottom--wrapper">
+          <slot name="main-bottom" />
+        </Paper>
+      </main>
+      <Paper class="zero--wrapper">
+        <slot name="zero" />
+      </Paper>
     </Container>
-    <!-- Main content area -->
-    <main>
-      <slot name="main-top" />
-        <slot />
-      <slot name="main-bottom" />
-    </main>
-    
-    <!-- Bottom-level layout slots -->
-    <slot name="zero" />
-    <slot name="footer" />
+    <script>
+      import { mountMotionScroll } from "~/shared/motion/motion.scroll";
+      import { mountActions, mountCopyButtons } from "~/shared/actions/actions.global";
+      mountMotionScroll();
+      mountActions();
+      mountCopyButtons();
+    </script>
   </body>
+  <Footer>
+    <slot name="footer" />
+  </Footer>
 </html>

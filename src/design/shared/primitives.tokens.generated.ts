@@ -21,6 +21,20 @@ export const SPACE = scale({
 
 export type Space = keyof typeof SPACE;
 
+export const SPACE_OUT = scale({
+  none:  "0",
+  "2xs": "var(--space-out--2xs)",
+  xs:    "var(--space-out--xs)",
+  sm:    "var(--space-out--sm)",
+  md:    "var(--space-out--md)",
+  lg:    "var(--space-out--lg)",
+  xl:    "var(--space-out--xl)",
+  "2xl": "var(--space-out--2xl)",
+  "3xl": "var(--space-out--3xl)",
+});
+
+export type SpaceOut = keyof typeof SPACE_OUT;
+
 export const RADIUS = scale({
   none:  "var(--radius--none)",
   "2xs": "var(--radius--2xs)",

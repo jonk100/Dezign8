@@ -10,6 +10,8 @@ export interface BreadcrumbItemData {
   href?: string;
   /** Whether this is the active/current page */
   active?: boolean;
+  /** Optional icon to display next to the label */
+  icon?: SvgName;
 }
 
 export interface BreadcrumbsProps extends NavProps {

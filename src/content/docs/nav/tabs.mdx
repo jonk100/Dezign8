@@ -122,3 +122,20 @@ If you want the visual aesthetic of Tabs but clicking them should just act like 
 | `active` | `boolean` | `false` | If true, the panel is visible by default. |
 
 *`<Tabs>` inherits all shared `NavProps` (size, variant, color, radius).*
+
+
+### Icon Integration
+
+This component supports the **Hybrid Icon Composition** architecture. You can easily add an icon by passing the `icon` prop, or use the `<Icon>` component inside slots for more advanced layouts.
+
+```astro
+<!-- Basic prop usage -->
+<Tabs icon="star">Content</Tabs>
+
+<!-- Advanced slot usage -->
+<Tabs>
+  Content <Icon name="chevron-right" />
+</Tabs>
+```
+
+For more details, see the [Icon component documentation](/assets/icon).

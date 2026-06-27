@@ -1,0 +1,107 @@
+---
+title: Stat
+description: Displays a single key numeric value with a label. Ideal for KPIs and dashboard figures.
+category: Data
+status: stable
+---
+import Stat from "../../../design/data/components/stat/Stat.astro";
+
+## Overview
+
+`Stat` highlights one number — a count, percentage, or measurement — alongside a brief label. Use it on dashboards, summary panels, or anywhere a single figure needs to stand out.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+<Stat value="24k" label="Total users" />
+<Stat value="98.5%" label="Uptime" />
+```
+
+<Stat value="24k" label="Total users" />
+
+---
+
+### Icon
+
+```astro
+<Stat icon="users" value="24k" label="Total users" />
+<Stat icon="trending-up" value="+12%" label="Growth" color="success" />
+```
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+  <Stat icon="users" value="24k" label="Total users" />
+</div>
+
+---
+
+### Variants
+
+```astro
+<Stat value="12" label="Components" variant="outlined" color="primary" />
+<Stat value="10" label="Categories" variant="soft" color="secondary" />
+<Stat value="8" label="Surfaces" variant="elevated" color="tertiary" />
+```
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+  <Stat value="12" label="Components" variant="outlined" color="primary" />
+  <Stat value="10" label="Categories" variant="soft" color="secondary" />
+  <Stat value="8" label="Surfaces" variant="elevated" />
+</div>
+
+---
+
+### Slots
+
+Use slots for complex value or label content.
+
+```astro
+<Stat>
+  <span slot="value" style="color: var(--primary--base);">1,024</span>
+  <span slot="label">Active sessions <small>(last 24h)</small></span>
+</Stat>
+```
+
+---
+
+### Loading
+
+```astro
+<Stat loading />
+```
+
+<Stat loading />
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string \| number` | `undefined` | The primary value to display. Also available as a slot. |
+| `label` | `string` | `undefined` | Descriptive label beneath the value. Also available as a slot. |
+| `icon` | `SvgName` | `undefined` | Icon rendered alongside the value. |
+| `variant` | `"plain" \| "outlined" \| "soft" \| "elevated"` | `"plain"` | Container decoration. |
+| `color` | `ColorRole` | `undefined` | Accent color role applied to the value text. |
+| `bg` | `ColorRole` | `undefined` | Background tint color role. |
+| `loading` | `boolean` | `false` | Shows skeleton placeholder. |
+| `caption` | `string` | `undefined` | Accessible label for screen readers when no visible heading precedes the stat. |
+
+All `BaseComponentProps` are also accepted.
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| `value` | Primary figure. Replaces the `value` prop when used. |
+| `label` | Descriptive label. Replaces the `label` prop when used. |
+
+---
+
+## Related
+
+- **Metric** — richer compound component with trend indicator and description.
+- **Feed** — time-series data list.

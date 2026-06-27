@@ -1,8 +1,6 @@
 import { useNav } from "../../nav.hook";
 import type { BreadcrumbsProps } from "./breadcrumbs.props";
 
-import { icons } from "~/shared/icons";
-
 const BREADCRUMBS_DEFAULTS = {
   size: "md",
   variant: "ghost"
@@ -28,7 +26,6 @@ export function useBreadcrumbs(props: BreadcrumbsProps) {
     },
     items,
     separatorIcon,
-    separatorText,
-    IconComponent: separatorIcon ? icons[separatorIcon] : null
+    separatorText
   };
 }

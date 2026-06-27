@@ -18,6 +18,11 @@
   line-height: var(--leading--none);
 }
 
+.tag--icon-only {
+  aspect-ratio: 1;
+  padding-inline: 0;
+}
+
 /* ─── SIZE MAPPING ────────────────────────────────────────── */
 
 /* XS: micro label */

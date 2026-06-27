@@ -1,0 +1,65 @@
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--data--size) * 0.5);
+  padding: var(--data--size); /* usually metrics are cards, padding them makes sense */
+}
+
+.metric__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-in--md);
+}
+
+.metric__label {
+  font-size: var(--fs--sm);
+  font-weight: 500;
+  color: var(--text--default);
+}
+
+.metric__value-group {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-in--sm);
+}
+
+.metric__value {
+  font-size: calc(var(--data--size) * 2);
+  line-height: 1;
+  font-weight: 600;
+  color: var(--data--color--text, var(--text--default));
+  letter-spacing: -0.01em;
+}
+
+.metric__trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--fs--sm);
+  font-weight: 500;
+}
+
+.metric__trend--up {
+  color: var(--success--text);
+}
+
+.metric__trend--down {
+  color: var(--danger--text);
+}
+
+.metric__trend--neutral {
+  color: var(--text--muted);
+}
+
+.metric__description {
+  font-size: var(--fs--sm);
+  color: var(--text--muted);
+  line-height: 1.5;
+}
+
+.metric[data-loading] .metric__header,
+.metric[data-loading] .metric__value-group,
+.metric[data-loading] .metric__description {
+  opacity: 0.7; /* handled visually by skeleton */
+}

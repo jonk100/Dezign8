@@ -3,8 +3,7 @@
 import type { SurfaceProps }                      from "./surface.props";
 import { SURFACE_TOKENS }                         from "./surface.tokens";
 import { resolveTokens }                          from "~/shared/tokens";
-import { resolveColorRole, useBaseCompose,
-         composeClass, composeStyle }             from "~/shared/base.hook";
+import { resolveColorRole, useBaseCompose }             from "~/shared/base.hook";
 
 /**
  * Hook: `useSurface`

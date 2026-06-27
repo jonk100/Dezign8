@@ -84,7 +84,9 @@ import type { InputType }   from "./input.tokens";
  * @see {@link INPUT_DEFAULTS} — which props have defaults and what they are
  * @see {@link useInput}       — hook that resolves these props to HTML attributes
  */
-export type InputProps = FormProps & {
+import type { IconProps } from "~/shared/icon.props";
+
+export type InputProps = FormProps & IconProps & {
   id?: string;
   type?: InputType;
   value?: string;

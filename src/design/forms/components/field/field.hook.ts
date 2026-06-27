@@ -74,6 +74,7 @@ export function useField(props: FieldProps) {
     id,
     invalid  = false,
     required = false,
+    icon,
     class: className,
     ...rest
   } = props;
@@ -100,6 +101,7 @@ export function useField(props: FieldProps) {
     Tag: "div" as const,
     // id is returned separately — it goes on hint/error elements, not the wrapper
     id,
+    icon,
     props: {
       class: cls,
       style: style || undefined,

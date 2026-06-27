@@ -28,7 +28,7 @@ It renders as an accessible `role="status"` element with a visually-hidden label
 <Spinner size="xs" />
 <Spinner size="2xs" />
 ```
-<div class="not-content" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '2rem' }}>
+<div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem;">
   <Spinner color="secondary" size="2xl" />
   <Spinner color="success" size="xl" />
   <Spinner size="lg" />
@@ -101,7 +101,7 @@ Spinners are `inline-flex` and easily align with surrounding text:
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `size` | `FeedbackSize` | `"md"` | Sets the `--spinner--size` (diameter) from `xs` (14px) to `xl` (48px). |
-| `color` | `FeedbackColor` | `"primary"` | Color role applied via `currentColor` to the SVG. |
+| `color` | `ColorRole \| "inherit"` | `"primary"` | Color role. Use `"inherit"` inside buttons or text to match surrounding color. |
 | `variant` | `FeedbackVariant` | `"ghost"` | Overrides the default to remove background/borders. |
 
 ---

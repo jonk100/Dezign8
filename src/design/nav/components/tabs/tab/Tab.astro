@@ -18,12 +18,14 @@
  */
 import { useTab } from "./tab.hook";
 import type { TabProps } from "./tab.props";
-
+import Icon from "~/assets/components/icon/Icon.astro";
 export type Props = TabProps;
 
 const { Tag, tabProps } = useTab(Astro.props as TabProps);
+const { icon } = Astro.props;
 ---
 
 <Tag {...tabProps}>
+  {icon && <Icon name={icon} />}
   <slot />
 </Tag>

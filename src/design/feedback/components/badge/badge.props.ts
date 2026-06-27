@@ -51,7 +51,9 @@ import type { FeedbackProps } from "../../feedback.props";
  * </div>
  * ```
  */
-export interface BadgeProps extends FeedbackProps {
+import type { IconProps } from "~/shared/icon.props";
+
+export interface BadgeProps extends FeedbackProps, IconProps {
   /**
    * Numeric count to display.
    *
@@ -80,4 +82,10 @@ export interface BadgeProps extends FeedbackProps {
    * @default `false`
    */
   dot?: boolean;
+
+  /**
+   * Renders the badge as a small circle or square containing only an icon.
+   * Hides the count and slot content.
+   */
+  iconOnly?: boolean;
 }

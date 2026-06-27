@@ -1,0 +1,23 @@
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--data--size) * 0.25);
+}
+
+.stat__value {
+  font-size: calc(var(--data--size) * 2.5);
+  line-height: 1;
+  font-weight: 600;
+  color: var(--data--color--text, var(--text--default));
+  letter-spacing: -0.02em;
+}
+
+.stat__label {
+  font-size: var(--fs--sm);
+  color: var(--text--muted);
+}
+
+.stat[data-loading] .stat__value,
+.stat[data-loading] .stat__label {
+  opacity: 0.7; /* skeleton handles the visual */
+}

@@ -3,7 +3,7 @@
 import type { SkeletonProps }              from "./skeleton.props";
 import { SKELETON_TOKENS, SKELETON_DEFAULTS } from "./skeleton.tokens";
 import { resolveTokens }                   from "~/shared/tokens";
-import { useBaseCompose, composeClass, composeStyle } from "~/shared/base.hook";
+import { useBaseCompose } from "~/shared/base.hook";
 
 export function useSkeleton(props: SkeletonProps) {
   const {

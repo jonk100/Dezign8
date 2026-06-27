@@ -190,6 +190,7 @@ For an icon or flag inside the field boundary before the value text:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
+| `icon` | `SvgName` | `undefined` | Leading icon. Automatically placed in the `start` slot. |
 | `options` | `SelectOption[]` | required | The list of options to render as `<option>` elements. |
 | `value` | `string` \| `string[]` | — | Currently selected value(s). Narrows based on `multiple`. |
 | `placeholder` | `string` | — | Prepends a `<option value="" disabled>` shown when nothing is selected. |
@@ -278,3 +279,10 @@ The hook uses an internal cast for destructuring (TypeScript cannot cleanly dest
 - **Option styling**: The browser's native option list cannot be styled with CSS across all platforms. Background color and font on `<option>` elements are partially supported in some browsers but not others.
 - **Multi-select UX**: Native `<select multiple>` has poor discoverability. Consider using it only for forms where users are expected to understand the multi-select pattern (e.g. admin interfaces), or replace it with a future `Combobox` for public-facing forms.
 - **`optgroup` support**: Option groups are not yet implemented. The `@todo` in `select.tokens.ts` tracks this. Adding it requires a `SelectOptionGroup` type and a template update to `Select.astro` — no hook changes needed.
+
+
+## Related
+
+- **Input** — single-line text entry with the same slot and icon API.
+- **Field** — accessibility wrapper for pairing Select with Label and helper text.
+- **Combobox** — searchable select with custom option rendering.

@@ -39,7 +39,7 @@
  * @see `forms/combobox/Combobox.astro` — renders the full structure
  */
 
-import type { ComboboxProps, ComboboxOption } from "./combobox.props";
+import type { ComboboxProps } from "./combobox.props";
 import { COMBOBOX_DEFAULTS }                  from "./combobox.tokens";
 import { useForm }                            from "~f/forms.hook";
 import { composeClass }                       from "~/shared/base.hook";

@@ -9,18 +9,23 @@
     "dev": "astro dev --open",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "auto:icons": "tsx src/design/shared/scripts/generate-icons.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/mdx": "^6.0.3",
     "@floating-ui/dom": "^1.7.6",
-    "astro": "^6.4.7",
+    "astro": "^6.4.8",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@types/node": "^25.9.3",
-    "tsx": "^4.22.4"
+    "@types/node": "^25.9.4",
+    "@typescript-eslint/parser": "^8.62.0",
+    "eslint": "^10.5.0",
+    "eslint-plugin-astro": "^2.1.1",
+    "tsx": "^4.22.4",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }

@@ -11,7 +11,7 @@
   font-weight:     var(--typography--weight, var(--weight--light));
   color:           var(--typography--color, var(--text--layer-1));
   text-align:      var(--typography--align);
-  line-height:     var(--typography--leading, var(--leading--relaxed));
+  line-height:     var(--typography--leading);
   letter-spacing:  var(--typography--tracking);
   font-family:     var(--typography--fam);
   text-transform:  var(--typography--transform);
@@ -25,11 +25,11 @@
 
 /* Cascade typography variables down to raw HTML elements that don't have the .typography class */
 .typography--cascade :is(h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, blockquote, pre, code, table, th, td) {
-  font-size:       var(--typography--size, inherit);
+  font-size:       var(--typography--size);
   font-weight:     var(--typography--weight, inherit);
   color:           var(--typography--color, inherit);
-  text-align:      var(--typography--align, inherit);
-  line-height:     var(--typography--leading, inherit);
+  text-align:      var(--typography--align);
+  line-height:     var(--typography--leading);
   letter-spacing:  var(--typography--tracking, inherit);
   font-family:     var(--typography--fam, inherit);
   text-transform:  var(--typography--transform, inherit);

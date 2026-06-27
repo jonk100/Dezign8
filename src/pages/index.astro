@@ -1,6 +1,32 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/docs/DocsLayout.astro';
+import Prose from '~/typography/components/prose/Prose.astro';
+import Table from '~/data/components/table/Table.astro';
+import Image from '~/assets/components/image/Image.astro';
+import Text from '~/typography/components/text/Text.astro';
+import Stack from '~/layout/components/stack/Stack.astro';
+import Code from '~/typography/components/code/Code.astro';
+import Link from '~/triggers/components/link/Link.astro';
+
+// Live component counts via glob — excludes .roadmap and parts/ sub-components
+const allComponents   = import.meta.glob('../design/*/components/**/*.astro');
+const roadmapOrParts  = (p: string) => p.includes('/.roadmap/') || p.includes('/parts/');
+const componentPaths  = Object.keys(allComponents).filter(p => !roadmapOrParts(p));
+
+const categories = ['assets','data','feedback','forms','layout','nav','overlays','surfaces','triggers','typography'] as const;
+
+const categoryStats = categories.map(cat => ({
+  name: cat,
+  label: cat.charAt(0).toUpperCase() + cat.slice(1),
+  components: componentPaths.filter(p => p.includes(`/design/${cat}/`)).length,
+  props: Object.keys(import.meta.glob('../design/*/components/**/*.props.ts')).filter(p => p.includes(`/design/${cat}/`)).length,
+}));
+
+const totalComponents = componentPaths.length;
+const allProps        = import.meta.glob('../design/**/*.props.ts');
+const sharedProps     = Object.keys(allProps).filter(p => p.includes('/shared/')).length;
+const totalProps      = Object.keys(allProps).length - sharedProps;
 
 const allDocs = await getCollection('docs');
 
@@ -24,6 +50,14 @@ allDocs.forEach((doc: any) => {
 	}
 });
 
+const mdxComponents = {
+  table: Table,
+  img: Image,
+  code: Code,
+  Text,
+  Stack,
+};
+
 const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) => ({
 	name,
 	slug: name.toLowerCase().replace(/\s+/g, '-'),
@@ -31,16 +65,49 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 })).sort((a, b) => a.name.localeCompare(b.name));
 ---
 
-<Layout title="Dezign8 Component Library">
+<Layout title="Component Library" showTitle={false}>
+	<Prose>
 	<section class="container">
-		<img src="/horizontal-blue.png" alt="Dezign8 Logo" style="height: 48px; margin-bottom: 1rem; display: block;" />
-		<p class="subtitle">Available components, organized by design category.</p>
-		
+		<Image as="h1" v="image" src="/horizontal-blue.png" alt="Dezign8 Logo" mb="3xl" />
+		<Text size="xl" color="tertiary">Interface Emitter for Smooth Browsing.</Text>
+
+		<!-- ── TOP-LINE STATS ──────────────────────────────────── -->
+		<div class="stat-hero">
+			<div class="stat-hero__item stat-hero__item--primary">
+				<span class="stat-hero__num">{totalComponents}</span>
+				<span class="stat-hero__label">Total Components</span>
+			</div>
+			<div class="stat-hero__item">
+				<span class="stat-hero__num">{totalProps}</span>
+				<span class="stat-hero__label">Prop Interfaces</span>
+			</div>
+			<div class="stat-hero__item">
+				<span class="stat-hero__num">{sharedProps}</span>
+				<span class="stat-hero__label">Shared Base Props</span>
+			</div>
+			<div class="stat-hero__item">
+				<span class="stat-hero__num">{categories.length}</span>
+				<span class="stat-hero__label">Categories</span>
+			</div>
+		</div>
+
+		<!-- ── PER-CATEGORY BREAKDOWN ─────────────────────────── -->
+		<div class="stat-grid">
+			{categoryStats.map(s => (
+				<a href={`/docs/${s.name}`} class="stat-card">
+					<span class="stat-card__num">{s.components}</span>
+					<span class="stat-card__name">{s.label}</span>
+					<span class="stat-card__sub">{s.props} prop file{s.props !== 1 ? 's' : ''}</span>
+					<div class="stat-card__bar" style={`--fill: ${Math.round((s.components / totalComponents) * 100)}%`}></div>
+				</a>
+			))}
+		</div>
+
 		<div class="categories-list">
 			{categorizedLists.map(cat => (
 				<div class="category-group">
 					<h2 class="category-title">
-						<a href={`/docs/${cat.slug}`} class="category-link">{cat.name}</a>
+						<Link v="h2" href={`/docs/${cat.slug}`} class="category-link">{cat.name}</Link>
 					</h2>
 					{cat.categoryDoc && cat.categoryDoc.frontmatter?.description && (
 						<p class="category-desc">{cat.categoryDoc.frontmatter.description}</p>
@@ -64,35 +131,33 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 			)}
 		</div>
 	</section>
+	</Prose>
 </Layout>
 
 <style>
-	.container {
+	/* .container {
 		max-width: 800px;
 		margin: 0 auto;
 		padding: 2rem 1rem;
-	}
-	h1 {
+	} */
+	/* h1 {
 		font-size: var(--fs--3xl, 2.5rem);
 		font-weight: var(--weight--bold, 700);
+		line-height: var(--leading--none);
 		margin-bottom: 0.5rem;
-	}
-	.subtitle {
-		font-size: var(--fs--lg, 1.125rem);
-		color: var(--text--secondary, #6b7280);
-		margin-bottom: 3rem;
-	}
-	
+	} */
+	/* .subtitle {
+		font-size: var(--fs--lg);
+		color: var(--text--secondary);
+		margin-bottom: var(--space-out--lg);
+	} */
 	.categories-list {
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
 	}
 	
-	.category-title {
-		margin: 0 0 0.5rem 0;
-		font-size: var(--fs--2xl, 1.5rem);
-	}
+
 	
 	.category-link {
 		color: var(--text--layer-3);
@@ -149,5 +214,121 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 	
 	.desc.empty {
 		font-style: italic;
+	}
+
+	/* ── STAT HERO ─────────────────────────────────────────── */
+
+	.stat-hero {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.stat-hero__item {
+		background: var(--bg--1);
+		border: 1px solid var(--border--subtle);
+		border-radius: var(--radius--xl);
+		padding: 1.25rem 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		box-shadow: var(--shadow--xs);
+	}
+
+	.stat-hero__item--primary {
+		background: var(--primary--subtle);
+		border-color: var(--primary--border);
+	}
+
+	.stat-hero__num {
+		font-size: clamp(2rem, 3vi, 3.2rem);
+		font-weight: var(--weight--black);
+		line-height: 1;
+		color: var(--text--layer-1);
+		letter-spacing: var(--tracking--tight);
+	}
+
+	.stat-hero__item--primary .stat-hero__num {
+		color: var(--primary--text);
+	}
+
+	.stat-hero__label {
+		font-size: var(--fs--xs);
+		font-weight: var(--weight--semibold);
+		color: var(--text--muted);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	/* ── STAT GRID ─────────────────────────────────────────── */
+
+	.stat-grid {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 0.75rem;
+		margin-bottom: 3rem;
+	}
+
+	.stat-card {
+		background: var(--bg--1);
+		border: 1px solid var(--border--subtle);
+		border-radius: var(--radius--lg);
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		text-decoration: none;
+		color: inherit;
+		position: relative;
+		overflow: hidden;
+		transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+	}
+
+	.stat-card:hover {
+		border-color: var(--primary--border);
+		box-shadow: var(--shadow--md);
+		transform: translateY(-2px);
+	}
+
+	.stat-card__num {
+		font-size: 1.9rem;
+		font-weight: var(--weight--black);
+		line-height: 1;
+		color: var(--text--layer-1);
+		letter-spacing: var(--tracking--tight);
+	}
+
+	.stat-card__name {
+		font-size: var(--fs--xs);
+		font-weight: var(--weight--semibold);
+		color: var(--text--layer-2);
+		margin-top: 0.25rem;
+	}
+
+	.stat-card__sub {
+		font-size: var(--fs--xs);
+		color: var(--text--muted);
+	}
+
+	.stat-card__bar {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 3px;
+		width: var(--fill, 0%);
+		background: var(--primary--vivid);
+		border-radius: 0 2px 0 0;
+		opacity: 0.6;
+		transition: opacity 0.15s;
+	}
+
+	.stat-card:hover .stat-card__bar {
+		opacity: 1;
+	}
+
+	@media (max-width: 700px) {
+		.stat-hero { grid-template-columns: repeat(2, 1fr); }
+		.stat-grid  { grid-template-columns: repeat(2, 1fr); }
 	}
 </style>

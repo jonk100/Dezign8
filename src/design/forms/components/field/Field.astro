@@ -75,14 +75,15 @@
 
 import type { FieldProps } from "./field.props";
 import { useField }        from "./field.hook";
-import "./field.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "./field.css";
 
-const { Tag, id, props } = useField(Astro.props as FieldProps);
+const { Tag, id, icon, props } = useField(Astro.props as FieldProps);
 ---
 
 <Tag {...props}>
   {Astro.slots.has("label") && (
     <div class="field__label">
+      {icon && <Icon name={icon} />}
       <slot name="label" />
     </div>
   )}

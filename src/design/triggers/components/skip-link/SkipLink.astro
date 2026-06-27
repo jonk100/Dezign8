@@ -1,0 +1,23 @@
+---
+/**
+ * SkipLink
+ *
+ * An accessible skip link that allows keyboard users to bypass navigation
+ * and jump directly to the main content. Visually hidden by default,
+ * transitions to the top of the viewport when focused.
+ *
+ * @example
+ * <!-- Jump to #main-content -->
+ * <SkipLink target="main-content" />
+ */
+import type { SkipLinkProps } from "./skip-link.props";
+import { useSkipLink }        from "./skip-link.hook";
+import "../../trigger.css";
+import "./skip-link.css";
+
+type Props = SkipLinkProps;
+
+const { Tag, props, label } = useSkipLink(Astro.props as SkipLinkProps);
+---
+
+<Tag {...props as Record<string, unknown>}>{label}</Tag>

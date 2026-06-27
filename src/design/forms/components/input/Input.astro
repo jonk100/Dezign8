@@ -57,16 +57,17 @@
 
 import type { InputProps } from "./input.props";
 import { useInput }        from "./input.hook";
-import "../../forms.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "../../forms.css";
 import "./input.css";
 
 const { Tag, props, inputAttrs } = useInput(Astro.props as InputProps);
+const { icon } = Astro.props;
 ---
 
 <Tag {...props}>
-  {Astro.slots.has("start") && (
+  {(icon || Astro.slots.has("start")) && (
     <div class="input__start">
-      <slot name="start" />
+      {icon ? <Icon name={icon} /> : <slot name="start" />}
     </div>
   )}
 

@@ -14,6 +14,7 @@ export function useBanner(props: BannerProps) {
     dismissible  = false,
     dismissLabel = "Dismiss",
     "aria-label": ariaLabel = "Page notification",
+    icon,
     ...feedbackProps
   } = props as BannerProps & { "aria-label"?: string };
 

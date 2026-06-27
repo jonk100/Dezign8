@@ -4,8 +4,8 @@ import type { Visual }       from "./visuals";
 import type { ColorRole }    from "./primitives.tokens";
 import type { SpacingProps } from "./spacing.props";
 import type { MotionProp }   from "./motion/motion.types";
-
-export interface BaseComponentProps extends SpacingProps {
+import type { AriaProps }    from "./aria.props";
+export interface BaseComponentProps extends SpacingProps, AriaProps {
   class?:    string;
   style?:    string;
   id?:       string;
@@ -27,6 +27,19 @@ export interface BaseComponentProps extends SpacingProps {
    */
   motion?:  MotionProp;
   /**
+   * Sets the travel distance for motion animations (slide, bounce).
+   * Can be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).
+   */
+  mDistance?: string;
+  /**
+   * Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').
+   */
+  action?: string;
+  /**
+   * Target selector for the action (e.g., '#my-id', 'closest .container').
+   */
+  target?: string;
+  /**
    * Whether the component is in a loading state.
    * Emits `data-loading="true"` on the root element via useBaseCompose.
    * Each component implements its own loading UI — typically <Skeleton />.
@@ -35,5 +48,5 @@ export interface BaseComponentProps extends SpacingProps {
   loading?: boolean;
   testId?:  string;
   v?:       Visual;
-  [key: string]: unknown;
+  [key: `data-${string}`]: string | number | boolean | undefined;
 }

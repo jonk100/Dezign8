@@ -1,5 +1,11 @@
 /* alert-dialog.css — minimal; shared chrome lives in overlays.css */
 
+.alert-dialog__icon {
+  font-size: var(--icon--size-xl, 24px);
+  color: var(--feedback--color-text, currentColor);
+  margin-bottom: var(--space-in--xs);
+}
+
 .alert-dialog__description {
   margin:      0;
   font-size:   var(--fsf--sm);

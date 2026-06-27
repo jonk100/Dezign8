@@ -12,10 +12,11 @@ import type { BreadcrumbsProps } from "./breadcrumbs.props";
 import BreadcrumbItem           from "./item/BreadcrumbItem.astro";
 import "../../nav.css";
 import "./breadcrumbs.css";
+import Icon from "~/assets/components/icon/Icon.astro";
 
 export type Props = BreadcrumbsProps;
 
-const { breadcrumbsProps, items, separatorIcon, separatorText, IconComponent } = useBreadcrumbs(Astro.props as BreadcrumbsProps);
+const { breadcrumbsProps, items, separatorIcon, separatorText } = useBreadcrumbs(Astro.props as BreadcrumbsProps);
 ---
 
 <nav {...breadcrumbsProps}>
@@ -28,12 +29,13 @@ const { breadcrumbsProps, items, separatorIcon, separatorText, IconComponent } =
             {...(item.href ? { href: item.href } : {})}
             active={item.active || isLast}
             isLast={isLast}
+            {...(item.icon !== undefined ? { icon: item.icon } : {})}
           >
             {item.label}
             
             <span slot="separator" class="breadcrumbs__separator" aria-hidden="true">
-              {IconComponent ? (
-                <IconComponent width={undefined} height={undefined} />
+              {separatorIcon ? (
+                <Icon name={separatorIcon} />
               ) : (
                 separatorText
               )}

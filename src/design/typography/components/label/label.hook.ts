@@ -78,6 +78,7 @@ export function useLabel(props: LabelProps) {
     // Label-specific props
     for: htmlFor,
     required = false,
+    icon,
     // Typography token props — with label-specific defaults
     size     = LABEL_DEFAULTS.size,
     weight   = LABEL_DEFAULTS.weight,

@@ -9,7 +9,9 @@ declare module "~/shared/visuals" {
   }
 }
 
-export type ButtonBaseProps = TriggerProps & {
+import type { IconProps } from "~/shared/icon.props";
+
+export type ButtonBaseProps = TriggerProps & IconProps & {
   /** HTML button type. @default 'button' */
   type?:      ButtonType;
   /** Renders as <a> when set. */

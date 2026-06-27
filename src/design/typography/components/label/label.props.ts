@@ -59,7 +59,9 @@ import type { LabelSize, LabelWeight } from "./label.tokens";
  * @see {@link TypographyProps} — inherited typography dimensions
  * @see {@link useLabel}        — resolves these props at runtime
  */
-export interface LabelProps extends TypographyProps {
+import type { IconProps } from "~/shared/icon.props";
+
+export interface LabelProps extends TypographyProps, IconProps {
   /**
    * The `id` of the form control this label is associated with.
    *

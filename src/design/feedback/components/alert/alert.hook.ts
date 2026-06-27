@@ -15,6 +15,7 @@ export function useAlert(props: AlertProps) {
     radius       = ALERT_DEFAULTS.radius,
     dismissible  = false,
     dismissLabel = "Dismiss",
+    icon,
     ...feedbackProps
   } = props;
 
@@ -26,6 +27,7 @@ export function useAlert(props: AlertProps) {
   const alertStyle = [
     `--alert--font-size: ${sizeMap.fontSize}`,
     `--alert--padding: ${sizeMap.p}`,
+    `--alert--gap: ${sizeMap.gap}`,
     ...resolveSpacingStyles(spacing, "alert"),
   ];
 

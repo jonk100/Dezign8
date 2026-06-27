@@ -1,140 +1,186 @@
 ---
-title: Button Component
-description: Interactive trigger element for forms and user actions.
+title: Button
+description: Interactive trigger element for forms and user actions. Renders as a button or anchor depending on whether href is provided.
 category: Triggers
 status: stable
 icon: button
-version: 0.1.0
-links:
-  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/triggers/components/button"
 ---
 import Button from "../../../design/triggers/components/button/Button.astro";
 
 ## Overview
 
-The `Button` component is the primary interactive element for user actions. It supports multiple sizes, visual variants, and automatically handles routing semantics if an `href` is provided.
+`Button` is the primary interactive element. It renders as `<button>` by default and automatically switches to `<a>` when an `href` is provided. All visual tokens (`variant`, `color`, `radius`) are shared with the trigger system.
 
-## Usage & Examples
+Defaults: `size="md"`, `variant="solid"`, `color="primary"`, `radius="md"`, `type="button"`.
 
-### Basic Button
+---
 
-```astro
-<Button>Click Me</Button>
-```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
-  <Button>Click Me</Button>
-</div>
+## Usage
 
-### Sizes
-The button component supports fluid padding and text mapping perfectly to the `label` and `space-in` design tokens.
+### Basic
 
 ```astro
-<Button size="xs">Extra Small</Button>
-<Button size="sm">Small</Button>
-<Button size="md">Medium (Default)</Button>
-<Button size="lg">Large</Button>
-<Button color="secondary" size="xl">Extra Large</Button>
+<Button>Save changes</Button>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
-  <Button size="xs">Extra Small</Button>
-  <Button size="sm">Small</Button>
-  <Button size="md">Medium (Default)</Button>
-  <Button size="lg">Large</Button>
-  <Button color="secondary" size="xl">Extra Large</Button>
-</div>
 
-### Variants & Colors
-Buttons inherit visual variants from the global `v` (visual) prop, composing structural styles with semantic color roles.
+<Button>Save changes</Button>
+
+---
+
+### Variant
 
 ```astro
-<!-- Solid Buttons -->
-<Button v="solid" color="primary">Primary</Button>
-<Button v="solid" color="secondary">Secondary</Button>
-<Button v="solid" color="accent">Accent</Button>
-<Button v="solid" color="danger">Danger</Button>
-<Button v="solid" color="success">Success</Button>
-
-<!-- Outlined Buttons -->
-<Button v="outlined" color="primary">Primary</Button>
-<Button v="outlined" color="secondary">Secondary</Button>
-<Button v="outlined" color="warning">Warning</Button>
-<Button v="outlined" color="info">Info</Button>
-
-<!-- Soft Buttons -->
-<Button v="soft" color="primary">Primary Soft</Button>
-<Button v="soft" color="danger">Danger Soft</Button>
-<Button v="soft" color="success">Success Soft</Button>
-
-<!-- Ghost Buttons -->
-<Button v="ghost" color="primary">Primary Ghost</Button>
-<Button v="ghost" color="secondary">Secondary Ghost</Button>
+<Button variant="solid"    color="primary">Solid</Button>
+<Button variant="outlined" color="primary">Outlined</Button>
+<Button variant="soft"     color="primary">Soft</Button>
+<Button variant="ghost"    color="primary">Ghost</Button>
+<Button variant="dashed"   color="primary">Dashed</Button>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1.5rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1.5rem;">
-  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-    <Button v="solid" color="primary">Primary</Button>
-    <Button v="solid" color="secondary">Secondary</Button>
-    <Button v="solid" color="accent">Accent</Button>
-    <Button v="solid" color="danger">Danger</Button>
-    <Button v="solid" color="success">Success</Button>
-  </div>
-  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-    <Button v="outlined" color="primary">Primary</Button>
-    <Button v="outlined" color="secondary">Secondary</Button>
-    <Button v="outlined" color="warning">Warning</Button>
-    <Button v="outlined" color="info">Info</Button>
-  </div>
-  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-    <Button v="soft" color="primary">Primary Soft</Button>
-    <Button v="soft" color="danger">Danger Soft</Button>
-    <Button v="soft" color="success">Success Soft</Button>
-  </div>
-  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-    <Button v="ghost" color="primary">Primary Ghost</Button>
-    <Button v="ghost" color="secondary">Secondary Ghost</Button>
-  </div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+  <Button variant="solid"    color="primary">Solid</Button>
+  <Button variant="outlined" color="primary">Outlined</Button>
+  <Button variant="soft"     color="primary">Soft</Button>
+  <Button variant="ghost"    color="primary">Ghost</Button>
+  <Button variant="dashed"   color="primary">Dashed</Button>
 </div>
 
-### Layout Modifiers
+---
+
+### Color
 
 ```astro
-<!-- Full width button -->
-<Button fullWidth>Sign In</Button>
-
-<!-- Icon-only button (forces 1:1 aspect ratio) -->
-<Button iconOnly aria-label="Close">
-  X
-</Button>
+<Button color="primary">Primary</Button>
+<Button color="secondary">Secondary</Button>
+<Button color="accent">Accent</Button>
+<Button color="danger">Danger</Button>
+<Button color="success">Success</Button>
+<Button color="warning">Warning</Button>
+<Button color="info">Info</Button>
+<Button color="neutral">Neutral</Button>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;">
-  <div style="width: 100%; max-width: 400px;">
-    <Button fullWidth>Sign In</Button>
-  </div>
-  <Button iconOnly aria-label="Close">X</Button>
+
+<div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+  <Button color="primary">Primary</Button>
+  <Button color="secondary">Secondary</Button>
+  <Button color="accent">Accent</Button>
+  <Button color="danger">Danger</Button>
+  <Button color="success">Success</Button>
+  <Button color="warning">Warning</Button>
+  <Button color="info">Info</Button>
+  <Button color="neutral">Neutral</Button>
 </div>
 
-### Links vs Buttons
-If you provide an `href` prop, the Button automatically renders as an `<a>` tag while retaining button styling. If you use `target="_blank"`, it safely injects `rel="noopener noreferrer"`.
+---
+
+### Size
+
+Sizes range from `2xs` to `2xl`.
 
 ```astro
-<Button href="/dashboard">Go to Dashboard</Button>
-<Button href="https://google.com" target="_blank">External Link</Button>
+<Button size="2xs">2xs</Button>
+<Button size="xs">xs</Button>
+<Button size="sm">sm</Button>
+<Button size="md">md (default)</Button>
+<Button size="lg">lg</Button>
+<Button size="xl">xl</Button>
+<Button size="2xl">2xl</Button>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; gap: 1rem;">
-  <Button href="/dashboard">Go to Dashboard</Button>
-  <Button href="https://google.com" target="_blank">External Link</Button>
+
+<div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+  <Button size="2xs">2xs</Button>
+  <Button size="xs">xs</Button>
+  <Button size="sm">sm</Button>
+  <Button size="md">md</Button>
+  <Button size="lg">lg</Button>
+  <Button size="xl">xl</Button>
+  <Button size="2xl">2xl</Button>
 </div>
+
+---
+
+### Icon
+
+Pass `icon` to render a leading icon. For icon-only buttons, combine with `iconOnly` and always include `aria-label`.
+
+```astro
+<Button icon="plus">New item</Button>
+<Button icon="trash" color="danger" variant="soft">Delete</Button>
+<Button icon="settings" iconOnly aria-label="Settings" variant="ghost" />
+```
+
+<div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+  <Button icon="plus">New item</Button>
+  <Button icon="trash" color="danger" variant="soft">Delete</Button>
+  <Button icon="settings" iconOnly aria-label="Settings" variant="ghost" />
+</div>
+
+---
+
+### Layout modifiers
+
+```astro
+<Button fullWidth>Sign in</Button>
+```
+
+---
+
+### As link
+
+Provide `href` to render as `<a>` with button styling. `target="_blank"` automatically injects `rel="noopener noreferrer"`.
+
+```astro
+<Button href="/dashboard">Go to dashboard</Button>
+<Button href="https://example.com" target="_blank" variant="outlined">External</Button>
+```
+
+---
+
+### States
+
+```astro
+<Button disabled>Disabled</Button>
+<Button loading>Saving…</Button>
+```
+
+<div style="display: flex; gap: 0.75rem; align-items: center;">
+  <Button disabled>Disabled</Button>
+  <Button loading>Saving…</Button>
+</div>
+
+---
 
 ## Props API
 
-### Button Props
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `"solid" \| "outlined" \| "soft" \| "ghost" \| "dashed"` | `"solid"` | Visual treatment. |
+| `color` | `ColorRole` | `"primary"` | Semantic color role. |
+| `size` | `"2xs"…"2xl"` | `"md"` | Spatial scale. |
+| `radius` | `Radius` | `"md"` | Border radius. |
+| `icon` | `SvgName` | `undefined` | Leading icon rendered before the slot. |
+| `iconOnly` | `boolean` | `false` | Square aspect ratio, removes inline padding. Requires `aria-label`. |
+| `fullWidth` | `boolean` | `false` | Expands to 100% container width. |
+| `disabled` | `boolean` | `false` | Disables all interaction. |
+| `loading` | `boolean` | `false` | Shows loading state. |
+| `type` | `"button" \| "submit" \| "reset"` | `"button"` | HTML button type. |
+| `href` | `string` | `undefined` | Renders as `<a>` when set. |
+| `target` | `string` | `undefined` | Anchor target. |
+| `rel` | `string` | `undefined` | Anchor rel. Auto-set to `"noopener noreferrer"` when `target="_blank"`. |
 
-| Prop | Type | Description |
-|---|---|---|
-| `size` | `ButtonSize` | Controls padding and text size (`2xs` to `2xl`). Defaults to `md`. |
-| `type` | `"button" \| "submit" \| "reset"` | HTML button type. Defaults to `"button"`. |
-| `href` | `string` | If provided, renders as an anchor `<a>` tag. |
-| `target` | `string` | Standard HTML anchor target. |
-| `iconOnly` | `boolean` | Forces 1:1 aspect ratio and removes inline text padding. |
-| `fullWidth` | `boolean` | Expands to 100% of the parent container width. |
+All `BaseComponentProps` are also accepted (`class`, `style`, `id`, spacing props, etc.).
 
-*Inherits all `TriggerProps` and `BaseComponentProps`.*
+---
+
+## Accessibility
+
+- Use `iconOnly` buttons only with an explicit `aria-label` — the type system enforces this.
+- `disabled` sets both the HTML attribute and `data-disabled` for CSS targeting.
+- `loading` sets `data-loading` and should be paired with screen-reader text inside the slot if the label changes.
+
+---
+
+## Related
+
+- **Link** — text-style navigational element extending typography.
+- **Icon** — standalone icon component for composition inside the slot.

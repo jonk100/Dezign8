@@ -108,7 +108,9 @@ export type ResolvedSelectOption = SelectOption & {
  * Shared props for both select modes.
  * Not exported — use {@link SelectProps}.
  */
-type SelectBaseProps = FormProps & {
+import type { IconProps } from "~/shared/icon.props";
+
+type SelectBaseProps = FormProps & IconProps & {
   options: SelectOption[];
   placeholder?: string;
   id?: string;

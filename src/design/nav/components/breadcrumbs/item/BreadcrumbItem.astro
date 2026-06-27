@@ -4,18 +4,21 @@
  *
  * An individual item in a `<Breadcrumbs>` list.
  *
- * @see Breadcrumbs.astro
+ * @see {@link ./Breadcrumbs.astro}
  */
 import { useBreadcrumbItem } from "./b-item.hook";
 import type { BreadcrumbItemProps } from "./b-item.props";
+import Icon from "~/assets/components/icon/Icon.astro";
 
 export type Props = BreadcrumbItemProps;
 
 const { Tag, isLast, itemProps } = useBreadcrumbItem(Astro.props as BreadcrumbItemProps);
+const { icon } = Astro.props;
 ---
 
 <li class="breadcrumbs__item-wrapper">
   <Tag {...itemProps}>
+    {icon && <Icon name={icon} />}
     <slot />
   </Tag>
   {!isLast && (

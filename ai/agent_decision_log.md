@@ -320,7 +320,7 @@ CLAUDE.md / AGENTS.MD rules into automated gates.
   and force-asks on any dependency install; `import-firewall.sh` denies `.css` imports
   and sibling-component imports (the circular-dep rule).
 - **Firewall kept conservative**: only the two unambiguous violations hard-deny, to avoid
-  false positives on legit `~sh/`/`~st/` shared imports. Cross-category is left un-gated
+  false positives on legit `~sh/`/`~st/` shared imports. Cross-category is left ungated
   for now (upgrade path: add an `ask` branch keyed on the `~<alias>` prefix).
 - **Lint feedback on PostInvocation, not PostToolUse**: PostToolUse can only return `{}`
   (no feedback channel) and would run `astro check` on every edit. PostInvocation fires

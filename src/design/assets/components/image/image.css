@@ -4,9 +4,25 @@
   height: auto;
   border-radius: var(--image--radius);
   object-fit: var(--image--fit);
+
+  padding-inline:       var(--image--px, var(--image--p));
+  padding-block:        var(--image--py, var(--image--p));
+  padding-block-start:  var(--image--pt, var(--image--py, var(--image--p)));
+  padding-block-end:    var(--image--pb, var(--image--py, var(--image--p)));
+  padding-inline-start: var(--image--pl, var(--image--px, var(--image--p)));
+  padding-inline-end:   var(--image--pr, var(--image--px, var(--image--p)));
+
+  margin-inline:        var(--image--mx, var(--image--m));
+  margin-block:         var(--image--my, var(--image--m));
+  margin-block-start:   var(--image--mt, var(--image--my, var(--image--m)));
+  margin-block-end:     var(--image--mb, var(--image--my, var(--image--m)));
+  margin-inline-start:  var(--image--ml, var(--image--mx, var(--image--m)));
+  margin-inline-end:    var(--image--mr, var(--image--mx, var(--image--m)));
 }
 
 .image--ratio {
   aspect-ratio: var(--image--ratio);
   width: 100%;
 }
+
+

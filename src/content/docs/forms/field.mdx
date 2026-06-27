@@ -106,3 +106,21 @@ Inherits `BaseComponentProps` (`class`, `style`, `bg`, etc.).
 
 - **Structural layout**: `Field` uses `display: flex; flex-direction: column;` with a gap to separate the label, control, and message slots.
 - **`role="alert"`**: The `error` slot wrapper includes `role="alert"` so screen readers immediately announce validation errors when they appear.
+
+
+Icons are passed to the child components inside the field, not to `Field` itself:
+
+```astro
+<Field>
+  <Label slot="label" icon="info">Password</Label>
+  <Input icon="lock" type="password" />
+</Field>
+```
+
+---
+
+## Related
+
+- **Input** — single-line text control.
+- **Select** — dropdown control.
+- **Label** — label element with optional required indicator and icon.

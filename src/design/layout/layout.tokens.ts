@@ -17,7 +17,7 @@
  * layout.css via the cascade of var() fallbacks.
  */
 
-import { defineTokens, dimension, scale } from "~/shared/tokens";
+import { defineTokens } from "~/shared/tokens";
 import { GAP, ALIGN_DIM, JUSTIFY_DIM } from "~/shared/primitives.tokens";
 
 /**

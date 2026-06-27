@@ -1,4 +1,4 @@
-import { computePosition, flip, shift, offset } from "@floating-ui/dom";
+// dropdown-menu.client.ts — positioning is done natively; floating-ui import removed
 
 export function initDropdownMenus() {
   const dropdowns = document.querySelectorAll<HTMLElement>('.dropdown-menu');

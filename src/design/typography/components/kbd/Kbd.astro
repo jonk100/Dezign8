@@ -1,8 +1,12 @@
 ---
 import type { KbdProps } from "./kbd.props";
 import { useKbd } from "./kbd.hook";
-import "./kbd.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "./kbd.css";
 
 const { props } = useKbd(Astro.props as KbdProps);
+const { icon } = Astro.props;
 ---
-<kbd {...props}><slot /></kbd>
+<kbd {...props}>
+  {icon && <Icon name={icon} />}
+  <slot />
+</kbd>

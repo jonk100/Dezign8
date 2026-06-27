@@ -8,6 +8,7 @@ export function useKbd(props: KbdProps) {
   const {
     size = KBD_DEFAULTS.size,
     fam  = KBD_DEFAULTS.fam,
+    icon,
     ...typographyProps
   } = props;
 

@@ -58,12 +58,12 @@
   box-sizing: border-box;
 
   /* Spatial properties — all derived proportionally from --form--size */
-  min-block-size:  var(--form--size, 2.5rem);
-  padding-block:   calc(var(--form--size, 2.5rem) * 0.1);
-  padding-inline:  calc(var(--form--size, 2.5rem) * 0.1);
-  gap:             calc(var(--form--size, 2.5rem) * 0.2);
-  font-size:       calc(var(--form--size, 2.5rem) * 0.35);
-  border-radius:   var(--form--radius, var(--radius--md));
+  min-block-size: var(--form--size, 2.5rem);
+  padding-block: calc(var(--form--size, 2.5rem) * 0.1);
+  padding-inline: calc(var(--form--size, 2.5rem) * 0.1);
+  gap: calc(var(--form--size, 2.5rem) * 0.2);
+  font-size: calc(var(--form--size, 2.5rem) * 0.35);
+  border-radius: var(--form--radius, var(--radius--md));
 
   /* Inherit font from document — the control is part of the page's type */
   font-family: inherit;
@@ -71,9 +71,9 @@
   color: var(--text--primary);
 
   transition:
-    border-color     var(--transition--fast, 150ms ease),
+    border-color var(--transition--fast, 150ms ease),
     background-color var(--transition--fast, 150ms ease),
-    box-shadow       var(--transition--fast, 150ms ease);
+    box-shadow var(--transition--fast, 150ms ease);
 }
 
 /* ─── VARIANTS ─────────────────────────────────────────────── */
@@ -90,8 +90,7 @@
 
 .form--outlined:focus-within {
   border-color: var(--form--color-border, var(--primary--border));
-  box-shadow: 0 0 0 3px
-    color-mix(in oklch, var(--form--color-base, var(--primary--base)) 20%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--form--color-base, var(--primary--base)) 20%, transparent);
 }
 
 /* SOFT — muted fill at rest, border appears on focus */
@@ -149,22 +148,22 @@
 
 .form--invalid,
 .form[data-invalid] {
-  border-color: var(--danger--border) !important; /* overrides all variant border states */
+  border-color: var(--danger--border) !important;
+  /* overrides all variant border states */
 }
 
 .form[data-invalid]:focus-within {
   border-color: var(--danger--border);
-  box-shadow: 0 0 0 3px
-    color-mix(in oklch, var(--danger--base) 20%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--danger--base) 20%, transparent);
 }
 
 /* ─── DISABLED STATE ──────────────────────────────────────── */
 
 .form--disabled,
 .form[data-disabled] {
-  opacity:        var(--opacity--disabled, 0.45);
+  opacity: var(--opacity--disabled, 0.45);
   pointer-events: none;
-  cursor:         not-allowed;
+  cursor: not-allowed;
 }
 
 /* ─── FULL WIDTH ──────────────────────────────────────────── */
@@ -176,6 +175,7 @@
 /* ─── REDUCED MOTION ──────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+
   .form,
   [data-visual="form"] {
     transition: none;

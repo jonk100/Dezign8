@@ -6,6 +6,7 @@
 # feed results back to the model) and would also run on every single edit. PostInvocation fires
 # once per turn, which is the right cadence for an `astro check` pass and can inject steps.
 set -euo pipefail
+cd "$(dirname "$0")/../.."
 
 cat >/dev/null  # drain stdin (payload unused)
 

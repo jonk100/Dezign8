@@ -20,18 +20,19 @@
  */
 import { useMenuItem }        from "./m-item.hook";
 import type { MenuItemProps } from "./m-item.props";
-import "./m-item.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "./m-item.css";
 
 export type Props = MenuItemProps;
 
-const { Tag, IconComponent, menuItemProps } = useMenuItem(Astro.props as MenuItemProps);
+const { Tag, menuItemProps } = useMenuItem(Astro.props as MenuItemProps);
+const { icon } = Astro.props;
 ---
 
 <li class="menu__item-wrapper">
   <Tag {...menuItemProps}>
-    {IconComponent && (
+    {icon && (
       <span class="menu__icon" aria-hidden="true">
-        <IconComponent width={undefined} height={undefined} />
+        <Icon name={icon} />
       </span>
     )}
     <span class="menu__item-label"><slot /></span>

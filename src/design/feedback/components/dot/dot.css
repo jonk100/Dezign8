@@ -1,0 +1,16 @@
+/* design/feedback/dot/dot.css */
+
+.dot {
+  padding:    0;
+  min-width:  var(--dot--size);
+  min-height: var(--dot--size);
+  width:      var(--dot--size);
+  height:     var(--dot--size);
+}
+
+/* Size map for dot */
+.feedback--xs.dot { --dot--size: calc(var(--icon--size-xs) / 2); }
+.feedback--sm.dot { --dot--size: calc(var(--icon--size-sm) / 1.5); }
+.feedback--md.dot { --dot--size: var(--icon--size-md); }
+.feedback--lg.dot { --dot--size: var(--icon--size-lg); }
+.feedback--xl.dot { --dot--size: var(--icon--size-xl); }

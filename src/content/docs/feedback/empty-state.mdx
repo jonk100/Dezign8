@@ -1,0 +1,140 @@
+---
+title: EmptyState
+description: A centered placeholder shown when a region has no content — supports a large icon, title, description, and action slot.
+category: Feedback
+status: stable
+---
+import EmptyState from "../../../design/feedback/components/empty-state/EmptyState.astro";
+
+## Overview
+
+`EmptyState` fills a content region when there is nothing to display — an empty list, a filtered result set with no matches, or a feature that hasn't been set up yet. It stacks an optional icon, title, description, and actions slot in a centered column with a dashed border.
+
+Defaults: `size="md"`, `variant="soft"`, `color="neutral"`, `radius="md"`.
+
+---
+
+## Usage
+
+### Basic
+
+```astro
+---
+import EmptyState from "@/design/feedback/components/empty-state/EmptyState.astro";
+---
+<EmptyState
+  icon="inbox"
+  title="No messages"
+  description="When you receive a message it will appear here."
+/>
+```
+
+<EmptyState
+  icon="inbox"
+  title="No messages"
+  description="When you receive a message it will appear here."
+/>
+
+---
+
+### With Actions
+
+Place buttons or links in the `actions` slot. They render below the description with extra top spacing.
+
+```astro
+---
+import Button from "@/design/triggers/components/button/Button.astro";
+---
+<EmptyState
+  icon="folder-open"
+  title="No projects yet"
+  description="Create your first project to get started."
+>
+  <Button slot="actions" color="primary">New project</Button>
+</EmptyState>
+```
+
+---
+
+### Icon slot (custom icon)
+
+Omit `icon` and use the `icon` slot for a custom element — useful when you need a branded illustration or sized SVG.
+
+```astro
+<EmptyState title="Nothing here">
+  <img slot="icon" src="/art/empty.svg" alt="" width="80" />
+</EmptyState>
+```
+
+---
+
+### No icon
+
+Omit both `icon` and the `icon` slot for a text-only empty state.
+
+```astro
+<EmptyState
+  title="No results"
+  description="Try adjusting your filters."
+/>
+```
+
+<EmptyState title="No results" description="Try adjusting your filters." />
+
+---
+
+## Color
+
+```astro
+<EmptyState icon="search" color="neutral" title="No results" />
+<EmptyState icon="alert-circle" color="danger" title="Something went wrong" />
+<EmptyState icon="info" color="info" title="Nothing to review" />
+```
+
+| `color` | Use for |
+|---|---|
+| `neutral` | Generic empty states (default) |
+| `danger` | Error or failure states |
+| `warning` | Degraded or incomplete states |
+| `info` | Informational placeholders |
+| `success` | Completed or cleared states |
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | `SvgName` | `undefined` | Icon rendered centered above the title. |
+| `title` | `string` | `undefined` | Short heading line. |
+| `description` | `string` | `undefined` | Supporting text below the title. Also accepts slotted content. |
+| `color` | `FeedbackColor` | `"neutral"` | Semantic color role. |
+| `variant` | `FeedbackVariant` | `"soft"` | Visual treatment. |
+| `size` | `FeedbackSize` | `"md"` | Spatial scale. |
+| `radius` | `RadiusToken` | `"md"` | Border radius. |
+
+All `BaseComponentProps` are also accepted (`class`, `style`, `id`, spacing props, etc.).
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| default | Replaces `description` text when slotted content is provided. |
+| `icon` | Custom icon or illustration. Used when `icon` prop is omitted. |
+| `actions` | Buttons or links rendered below the description. |
+
+---
+
+## Accessibility
+
+- The empty state is a decorative region — it carries no implicit ARIA role.
+- The icon (prop or slot) is wrapped in a `div` without `aria-label`; keep the icon decorative and rely on `title` / `description` to communicate meaning.
+- If the empty state replaces a live region (e.g. a list that cleared), ensure the parent container has `aria-live="polite"` so screen readers announce the change.
+
+---
+
+## Related
+
+- **Alert** — inline status message for errors or warnings in content flow.
+- **Spinner** — loading indicator for in-progress fetches before content arrives.
+- **List** — the data component most commonly paired with an empty state fallback.

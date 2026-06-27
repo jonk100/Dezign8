@@ -45,6 +45,7 @@ const { tabsProps, items, activeId } = useTabs(Astro.props);
         {...(item.disabled !== undefined ? { disabled: item.disabled } : {})}
         {...((activeId ? activeId === item.id : item.active) !== undefined ? { active: activeId ? activeId === item.id : item.active } : {})}
         {...(item.href ? { href: item.href } : {})}
+        {...(item.icon ? { icon: item.icon } : {})}
       >
         {item.label}
       </Tab>

@@ -84,19 +84,20 @@
 
 import type { SelectProps } from "./select.props";
 import { useSelect } from "./select.hook";
-import "~/forms/forms.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "~/forms/forms.css";
 import "./select.css";
 
 const { Tag, props, selectAttrs, resolvedOptions, placeholder } = useSelect(
   Astro.props as SelectProps,
 );
+const { icon } = Astro.props;
 ---
 
 <Tag {...props}>
   {
-    Astro.slots.has("start") && (
+    (icon || Astro.slots.has("start")) && (
       <div class="select__start">
-        <slot name="start" />
+        {icon ? <Icon name={icon} /> : <slot name="start" />}
       </div>
     )
   }

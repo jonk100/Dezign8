@@ -1,0 +1,68 @@
+---
+title: Icon Component
+description: Centralized SVG icon component and hybrid composition architecture.
+category: Assets
+status: stable
+icon: star
+version: 0.1.0
+---
+
+## Overview
+
+The `Icon` component is a centralized way to render SVGs from the design system's icon registry. The entire design system is built around a **Hybrid Icon Composition** architecture, allowing both simplified prop-based usage and advanced slot-based composition.
+
+## Hybrid Composition Architecture
+
+Most core components (Buttons, Inputs, Alerts, etc.) extend the `IconProps` interface, giving them a standard `icon` prop. 
+
+### 1. Simple Prop-Based Usage
+
+When you pass the `icon` prop, the component automatically injects the `<Icon>` component into the optimal default position (usually leading/left-aligned) with the correct size and color inherited from the component.
+
+```astro
+<Button icon="search">Search</Button>
+<Input icon="mail" placeholder="Email" />
+<Alert icon="info">This is an alert</Alert>
+```
+
+### 2. Advanced Slot-Based Composition
+
+If you omit the `icon` prop, you can manually compose the `<Icon>` component within the component's slots. This is perfect for trailing icons, multiple icons, or icons with specific styling.
+
+```astro
+<!-- Trailing icon using a slot -->
+<Button>
+  Next <Icon name="chevron-right" />
+</Button>
+
+<!-- Form input with an interactive end icon -->
+<Input name="password" type="password">
+  <button slot="end" aria-label="Show password">
+    <Icon name="eye" />
+  </button>
+</Input>
+
+<!-- Multiple icons -->
+<Badge>
+  <Icon name="star" /> Pro Member <Icon name="check-circle" />
+</Badge>
+```
+
+## Supported Components
+
+The `IconProps` architecture is currently supported across the following components:
+- **Triggers**: Button, Link
+- **Typography**: Heading, Text, Label, Kbd
+- **Feedback**: Alert, Badge, Tag, Toast, EmptyState
+- **Data Display**: List (via ListItem), Metric, Stat
+- **Forms**: Input, Select, Field
+- **Overlays**: AlertDialog
+- **Nav**: Breadcrumbs, Menu, Tabs
+
+## Props API
+
+| Prop | Type | Description |
+|---|---|---|
+| `name` | `SvgName` | The strictly-typed name of the icon in the registry. |
+| `size` | `string` | Optional. Overrides the inherited font-size. |
+| `color` | `string` | Optional. Overrides the inherited color. |

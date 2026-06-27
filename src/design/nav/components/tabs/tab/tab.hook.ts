@@ -1,12 +1,13 @@
 import type { TabProps } from "./tab.props";
 
 export function useTab(props: TabProps) {
-  const { id, active, disabled, href, class: className, ...rest } = props;
+  const { id, active, disabled, href, icon, class: className, ...rest } = props;
 
   const Tag = href ? "a" : "button";
 
   return {
     Tag,
+    icon,
     tabProps: {
       id: `tab-${id}`,
       href,

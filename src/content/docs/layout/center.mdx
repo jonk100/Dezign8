@@ -2,9 +2,7 @@
 title: Center
 description: A utility component that centers its children horizontally and vertically.
 ---
-import { Center } from '~/layout/components/center/Center.astro';
-import { PropsApi } from '~/components/PropsApi';
-import { CenterProps } from '~/layout/components/center/center.props';
+import Center from '~/layout/components/center/Center.astro';
 
 # Center
 
@@ -15,7 +13,7 @@ The `Center` component is a specialized layout utility that centers its children
 Wrap any content in `<Center>` to align it perfectly in the middle of its container. The container must have a defined height for vertical centering to be visible.
 
   <Center p="md" bg="var(--bg--2)" style="min-height: 150px; border-radius: var(--radius--md);">
-    <span>Centered Content</span>
+    <Text>Centered Content</Text>
   </Center>
 
 ```astro

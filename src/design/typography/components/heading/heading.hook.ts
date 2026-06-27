@@ -34,6 +34,7 @@ import { composeClass } from "~/shared/base.hook";
 export function useHeading(props: HeadingProps) {
   const {
     level = HEADING_DEFAULTS.level,
+    icon,
     class: className,
     ...typographyProps
   } = props;

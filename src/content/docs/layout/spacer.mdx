@@ -3,10 +3,8 @@ title: Spacer
 description: A layout component that fills available space within a Flex container.
 icon: spacer
 ---
-import { Spacer, Flex } from '~/layout';
-import { Preview } from '~/components/Preview';
-import { PropsApi } from '~/components/PropsApi';
-import { SpacerProps } from '~/layout/components/spacer/spacer.props';
+import Spacer from '~/layout_/spacer/Spacer.astro';
+import Flex from '~/layout/components/flex/Flex.astro';
 
 # Spacer
 
@@ -16,13 +14,11 @@ A layout component that fills all available space within a Flex container. It's 
 
 The `Spacer` component is useful for pushing elements to opposite ends of a flex container. It will expand to take up any available space.
 
-<Preview>
   <Flex class="w-full" gap="md">
     <span>Start Item</span>
     <Spacer />
     <span>End Item</span>
   </Flex>
-</Preview>
 
 ```astro
 <Flex>
@@ -36,7 +32,6 @@ The `Spacer` component is useful for pushing elements to opposite ends of a flex
 
 A common use case is in a site header to separate the logo from the navigation links, ensuring they are aligned to the edges of the container.
 
-<Preview>
   <Flex class="w-full p-4 border border-dashed rounded-md" align="center" gap="md">
     <div class="font-bold">MyLogo</div>
     <Spacer />
@@ -46,8 +41,3 @@ A common use case is in a site header to separate the logo from the navigation l
       <a>Contact</a>
     </Flex>
   </Flex>
-</Preview>
-
-## Props API
-
-<PropsApi props={SpacerProps} />

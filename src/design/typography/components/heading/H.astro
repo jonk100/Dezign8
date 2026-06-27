@@ -1,10 +1,15 @@
 ---
 import type { HeadingProps } from "./heading.props";
 import { useHeading } from "./heading.hook";
+import Icon from "~/assets/components/icon/Icon.astro";
 import "../../typography.css";
 import "./heading.css";
 
 const { Tag, props } = useHeading(Astro.props as HeadingProps);
+const { icon } = Astro.props;
 ---
 
-<Tag {...props}><slot /></Tag>
+<Tag {...props}>
+  {icon && <Icon name={icon} />}
+  <slot />
+</Tag>

@@ -3,7 +3,9 @@
 import type { FeedbackProps } from "../../feedback.props";
 import type { ToastColor, ToastRadius, ToastVariant } from "./toast.tokens";
 
-export interface ToastProps extends Omit<FeedbackProps, "color" | "variant" | "radius" | "pulse" | "placement"> {
+import type { IconProps } from "~/shared/icon.props";
+
+export interface ToastProps extends Omit<FeedbackProps, "color" | "variant" | "radius" | "pulse" | "placement">, IconProps {
   /** Visual treatment. @default "soft" */
   variant?: ToastVariant;
 

@@ -2,13 +2,10 @@
 import { getCollection, render } from 'astro:content';
 import DocsLayout from '../../layouts/docs/DocsLayout.astro';
 import Prose from '~/typography/components/prose/Prose.astro';
-import Code from '~/typography/components/code/Code.astro';
-import Pre from '~/typography/components/code/Pre.astro';
-import Quote from '~/typography/components/quote/Quote.astro';
-import H from '~/typography/components/heading/H.astro';
 import Table from '~/data/components/table/Table.astro';
 import Image from '~/assets/components/image/Image.astro';
 import Text from '~/typography/components/text/Text.astro';
+import Code from '~/typography/components/code/Code.astro';
 
 export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
@@ -52,6 +49,7 @@ export async function getStaticPaths() {
 const mdxComponents = {
   table: Table,
   img: Image,
+  code: Code,
   Text,
 };
 

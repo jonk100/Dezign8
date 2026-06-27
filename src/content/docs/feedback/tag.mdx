@@ -94,19 +94,36 @@ A common pattern — pair `color` and `variant` for semantic meaning:
 
 ---
 
-## Props API
+### Icon
 
-### Inherited Feedback Props
+```astro
+<Tag icon="check" color="success">Verified</Tag>
+<Tag icon="alert-triangle" color="warning">Deprecated</Tag>
+<Tag icon="star" iconOnly color="primary" aria-label="Featured" />
+```
+
+---
+
+## Props API
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `variant` | `FeedbackVariant` | `"soft"` | Visual treatment. |
 | `color` | `FeedbackColor` | `"neutral"` | Color role. |
 | `size` | `FeedbackSize` | `"md"` | Size scale. |
-| `radius` | `FeedbackRadius` | `"sm"` | Border radius. Slightly rounded rather than pill. |
+| `radius` | `FeedbackRadius` | `"sm"` | Border radius. |
+| `icon` | `SvgName` | `undefined` | Leading icon. |
+| `iconOnly` | `boolean` | `false` | Square tag containing only the icon. Requires `aria-label`. |
 
 ---
 
 ## Accessibility
 
-`Tag` is a `<span>` with no role. Screen readers will read the text content inline. If a tag conveys critical status information (e.g., "Deprecated"), ensure the surrounding context makes that meaning clear, or supplement with an `aria-label` on the parent element.
+`Tag` is a `<span>` with no role. Screen readers read the text content inline. If a tag conveys critical status information (e.g., "Deprecated"), ensure surrounding context makes that clear, or add `aria-label` on the parent element. For `iconOnly` tags, always add `aria-label` on the tag itself.
+
+---
+
+## Related
+
+- **Badge** — count and dot indicators with overlay placement.
+- **Chip** — interactive (clickable/selectable) variant of a tag.

@@ -24,6 +24,7 @@ interface Props {
   status?: string;
   version?: string;
   icon?: string;
+  showTitle?: boolean;
   links?: {
     source?: string;
     figma?: string;
@@ -32,7 +33,7 @@ interface Props {
   next?: { title: string; href: string } | undefined;
 }
 
-const { title, description, category, status, version, icon, links, prev, next } = Astro.props;
+const { title, description, category, status, version, icon, showTitle = true, links, prev, next } = Astro.props;
 
 const breadcrumbItems: BreadcrumbItemData[] = [{ id: "home", label: "Home", href: "/" }];
 
@@ -74,12 +75,14 @@ breadcrumbItems.push({ id: "current", label: title, active: true });
   <div class="docs-container">
     <header class="docs-content-header" style="margin-bottom: 2rem;">
 
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        {icon && <Icon name={icon as SvgName} size="xl" />}
-        <H level={1} size="h1" weight="bold" color="primary">
-          {title}
-        </H>
-      </div>
+      {showTitle && (
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          {icon && <Icon name={icon as SvgName} size="xl" />}
+          <H level={1} size="h1" weight="bold" color="primary">
+            {title}
+          </H>
+        </div>
+      )}
 
       {
         (category || status || version) && (

@@ -21,7 +21,7 @@ open-github:
     #!/usr/bin/env bash
     set -euo pipefail
     # Convert the SSH remote URL (git@github.com:...) to an https:// URL and strip the trailing .git
-    remote=$(git config --get remote.origin.url | sed -E 's#git@github.com:#https://github.com/#; s#\.git$##')
+    remote=$(git config --get remote.origin.url | sed -E 's#git@github.com:~/https://github.com/#; s#\.git$##')
     xdg-open "$remote"
 
 # Fuzzy-pick a branch (local or remote) and check it out
@@ -206,4 +206,3 @@ import-recipe:
         echo "" >> justfile
         echo "✅ Extracted $recipe from $BUNDLE!"
     done
-

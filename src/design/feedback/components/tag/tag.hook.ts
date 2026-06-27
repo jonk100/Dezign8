@@ -11,6 +11,8 @@ export function useTag(props: TagProps) {
     color   = TAG_DEFAULTS.color,
     size    = TAG_DEFAULTS.size,
     radius  = TAG_DEFAULTS.radius,
+    icon,
+    iconOnly = false,
     ...rest
   } = props;
 
@@ -28,6 +30,7 @@ export function useTag(props: TagProps) {
       class: composeClass(
         feedbackClass,
         "tag",
+        iconOnly && "tag--icon-only",
       ),
       style: composeStyle(feedbackStyle),
       ...feedbackAttrs,

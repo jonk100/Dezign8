@@ -1,0 +1,44 @@
+---
+import type { ListItemProps } from "./list-item.props";
+import { useListItem } from "./list-item.hook";
+import Checkbox from "~/forms/components/checkbox/Checkbox.astro";
+import Link from "~/triggers/components/link/Link.astro";
+import Icon from "~/assets/components/icon/Icon.astro";
+type Props = ListItemProps;
+
+const { Tag, props, checkState, href, description, badge, disabled, icon } = useListItem(Astro.props);
+---
+<Tag {...props}>
+  {checkState !== undefined && (
+    <Checkbox
+      data-selection-cb
+      checkState={checkState}
+      disabled={disabled}
+      variant="ghost"
+    />
+  )}
+
+  {icon && checkState === undefined && (
+    <span class="list__icon" aria-hidden="true">
+      <Icon name={icon} />
+    </span>
+  )}
+
+  {href ? (
+    <Link class="list__link" href={href}>
+      <span class="list__content">
+        <span class="list__label"><slot /></span>
+        {description && <span class="list__description">{description}</span>}
+      </span>
+      {badge !== undefined && <span class="list__badge">{badge}</span>}
+    </Link>
+  ) : (
+    <>
+      <span class="list__content">
+        <span class="list__label"><slot /></span>
+        {description && <span class="list__description">{description}</span>}
+      </span>
+      {badge !== undefined && <span class="list__badge">{badge}</span>}
+    </>
+  )}
+</Tag>

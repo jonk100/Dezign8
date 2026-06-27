@@ -1,7 +1,7 @@
 /* design/typography/components/code/code.css */
 .code,
 .pre {
-  font-size: var(--fs--2xs);
+  font-size: var(--fs--lg);
   font-family: var(--mono);
   --typography--tracking: var(--tracking--wider);
 }
@@ -9,27 +9,65 @@
   background: var(--bg--4); /* Dark theme by default for code blocks */
   color: var(--text--inverse);
   padding: var(--space-in--lg);
-  border-radius: var(--radius--md);
+  /* padding-block-start: var(--space-in--3xl); */
+  /* padding-inline-end: var(--space-in--xl); */
+  border-radius: var(--radius--xs);
   overflow-x: auto;
-  margin-top: var(--space-in--2xl);
-  margin-bottom: var(--space-in--2xl);
-  line-height: var(--leading--loose);
+  margin-bottom: var(--space-out--md);
+  /* line-height: var(--leading--snug); */
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
-.code--inline {
-  background: var(--bg--2);
-  color: var(--warning--text); /* Distinct inline code color */
-  padding: var(--space-in--3xs) var(--space-in--md);
-  font-size: var(--fs--xs);
+.code.code--inline {
+  white-space:   nowrap;
+  text-wrap:     nowrap;
+  background:    var(--bg--4);
+  color:         var(--warning--text);
+  padding:       var(--space-in--3xs) var(--space-in--md);
+  font-size:     var(--fs--sm);
   border-radius: var(--radius--xs);
-  border: 1px solid var(--border--subtle);
-  font-weight: var(--weight--medium);
+  border:        1px solid var(--border--subtle);
+  font-weight:   var(--weight--medium);
 }
 
-/* If code is inside a pre block, reset the inline styles */
+/* ─── Copy button (injected by mountCopyButtons) ──────── */
+
+.pre-wrapper {
+  position: relative;
+}
+
+.pre-copy-btn {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  padding: var(--space-in--2xs) var(--space-in--sm);
+  font-size: var(--fs--xs);
+  font-family: var(--family--sans);
+  font-weight: var(--weight--medium);
+  color: var(--text--tertiary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius--sm);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  /* line-height: 1; */
+}
+
+.pre-copy-btn:hover {
+  color: var(--text--primary);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.pre-copy-btn[data-copied] {
+  color: var(--success--text);
+}
+
+/* ─── If code is inside a pre block, reset the inline styles ── */
 .pre > .code--inline,
 .code--block {
+  white-space: pre-wrap;
+  word-break: break-word;
   background: transparent;
   color: inherit;
   padding: 0;

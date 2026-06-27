@@ -32,8 +32,12 @@ export function mountMotionDismiss(): void {
     el.style.animation = exitAnim;
 
     setTimeout(() => {
-      el.hidden          = true;
-      el.style.animation = "";
+      // User requested maintaining size in DOM. 
+      // This leaves an empty space rather than collapsing.
+      el.style.visibility    = "hidden";
+      el.style.pointerEvents = "none";
+      el.style.animation     = "";
+      el.setAttribute("data-dismissed", "true");
     }, exitDur);
   });
 }

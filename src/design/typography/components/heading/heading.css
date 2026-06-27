@@ -33,44 +33,55 @@
 
 /* ─── LEVEL DEFAULTS ──────────────────────────────────────── */
 
-.h--1 {
+.h {
+  display: inline-flex;
+  align-items: center;
+}
+
+.h--1,
+[data-visual="h1"] {
   --typography--size:    var(--fs--4xl);
   --typography--weight:  var(--weight--bold);
-  --typography--leading: var(--leading--loose);
+  --typography--leading: var(--leading--snug);
   --typography--tracking:var(--tracking--tight);
 }
 
-.h--2 {
+.h--2,
+[data-visual="h2"] {
   --typography--size:    var(--fs--3xl);
   --typography--weight:  var(--weight--bold);
-  --typography--leading: var(--leading--relaxed);
-  --typography--tracking:var(--tracking--tight);
+  --typography--leading: var(--leading--snug);
+  --typography--tracking:var(--tracking--normal);
 }
 
-.h--3 {
+.h--3,
+[data-visual="h3"] {
   --typography--size:    var(--fs--2xl);
-  --typography--weight:  var(--weight--semibold);
-  --typography--leading: var(--leading--tight);
-  --typography--tracking:var(--tracking--tight);
-}
-
-.h--4 {
-  --typography--size:    var(--fs--xl);
-  --typography--weight:  var(--weight--semibold);
-  --typography--leading: var(--leading--snug);
-  --typography--tracking:var(--tracking--normal);
-}
-
-.h--5 {
-  --typography--size:    var(--fs--lg);
-  --typography--weight:  var(--weight--semibold);
-  --typography--leading: var(--leading--snug);
-  --typography--tracking:var(--tracking--normal);
-}
-
-.h--6 {
-  --typography--size:    var(--fs--md);
   --typography--weight:  var(--weight--semibold);
   --typography--leading: var(--leading--normal);
   --typography--tracking:var(--tracking--normal);
+}
+
+.h--4,
+[data-visual="h4"] {
+  --typography--size:    var(--fs--xl);
+  --typography--weight:  var(--weight--semibold);
+  --typography--leading: var(--leading--normal);
+  --typography--tracking:var(--tracking--normal);
+}
+
+.h--5,
+[data-visual="h5"] {
+  --typography--size:    var(--fs--lg);
+  --typography--weight:  var(--weight--medium);
+  --typography--leading: var(--leading--loose);
+  --typography--tracking:var(--tracking--wide);
+}
+
+.h--6,
+[data-visual="h6"] {
+  --typography--size:    var(--fs--md);
+  --typography--weight:  var(--weight--medium);
+  --typography--leading: var(--leading--loosel);
+  --typography--tracking:var(--tracking--wide);
 }

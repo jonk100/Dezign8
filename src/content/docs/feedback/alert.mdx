@@ -22,26 +22,24 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
 ```astro
 <Alert>Your changes have been saved.</Alert>
 ```
-<Alert color="warning" size="xl"><Text>Your changes have been saved.</Text></Alert>
+
+<Alert>Your changes have been saved.</Alert>
 
 ### Colors
 
 ```astro
-<Stack gap="lg">
-  <Alert color="neutral">Neutral info message.</Alert>
-  <Alert color="info">New features are available in this release.</Alert>
-  <Alert color="success">Your account has been verified.</Alert>
-  <Alert color="warning">Your trial expires in 3 days.</Alert>
-  <Alert color="danger">Payment failed. Please update your billing details.</Alert>
-</Stack>
+<Alert color="neutral">Neutral info message.</Alert>
+<Alert color="info">New features are available in this release.</Alert>
+<Alert color="success">Your account has been verified.</Alert>
+<Alert color="warning">Your trial expires in 3 days.</Alert>
+<Alert color="danger">Payment failed. Please update your billing details.</Alert>
 ```
-<Stack gap="lg">
-  <Alert color="neutral">Neutral info message.</Alert>
-  <Alert color="info">New features are available in this release.</Alert>
-  <Alert color="success">Your account has been verified.</Alert>
-  <Alert color="warning">Your trial expires in 3 days.</Alert>
-  <Alert color="danger">Payment failed. Please update your billing details.</Alert>
-</Stack>
+
+<Alert color="neutral">Neutral info message.</Alert>
+<Alert color="info">New features are available in this release.</Alert>
+<Alert color="success">Your account has been verified.</Alert>
+<Alert color="warning">Your trial expires in 3 days.</Alert>
+<Alert color="danger">Payment failed. Please update your billing details.</Alert>
 
 ### Variants
 
@@ -71,48 +69,42 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
 
 ```astro
 <Alert color="warning">
-  <Fragment slot="title">Storage almost full</Fragment>
-  You've used 90% of your storage quota. Delete files or upgrade your plan.
+  <span slot="title">Storage almost full</span>
+  <span>You've used 90% of your storage quota. Delete files or upgrade your plan.</span>
 </Alert>
 ```
 
 <Alert color="warning">
-  <Fragment slot="title">Storage almost full</Fragment>
-  You've used 90% of your storage quota. Delete files or upgrade your plan.
+  <span slot="title">Storage almost full</span>
+  <span>You've used 90% of your storage quota. Delete files or upgrade your plan.</span>
 </Alert>
 
 ### With icon
 
+Pass the `icon` prop for the common case. Use the `icon` slot for a custom SVG.
+
 ```astro
-<Alert color="success">
-  <svg slot="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  Profile updated successfully.
-</Alert>
+<Alert color="success" icon="check-circle">Profile updated successfully.</Alert>
+<Alert color="danger" icon="alert-circle">Payment failed. Please update your billing details.</Alert>
 ```
 
-<Alert color="success">
-  <svg slot="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  Profile updated successfully.
-</Alert>
+<Alert color="success" icon="check-circle">Profile updated successfully.</Alert>
+<Alert color="danger" icon="alert-circle">Payment failed. Please update your billing details.</Alert>
 
 ### With actions
 
 ```astro
 <Alert color="info">
-  <Fragment slot="title">Update available</Fragment>
-  A new version of the app is ready to install.
+  <span slot="title">Update available</span>
+  <span>A new version of the app is ready to install.</span>
   <a slot="actions" href="#">Install now</a>
   <a slot="actions" href="#">Release notes</a>
 </Alert>
 ```
 
 <Alert color="info">
-  <Fragment slot="title">Update available</Fragment>
-  A new version of the app is ready to install.
+  <span slot="title">Update available</span>
+  <span>A new version of the app is ready to install.</span>
   <a slot="actions" href="#">Install now</a>
   <a slot="actions" href="#">Release notes</a>
 </Alert>
@@ -121,12 +113,12 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
 
 ```astro
 <Alert color="neutral" dismissible>
-  This alert can be dismissed.
+  <span>This alert can be dismissed.</span>
 </Alert>
 ```
 
 <Alert color="neutral" dismissible>
-  This alert can be dismissed.
+  <span>This alert can be dismissed.</span>
 </Alert>
 
 ### Full example
@@ -137,8 +129,8 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
     <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
     <path d="M8 5v3M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
-  <Fragment slot="title">Action required</Fragment>
-  Your payment method is invalid. Update it to keep your subscription active.
+  <span slot="title">Action required</span>
+  <span>Your payment method is invalid. Update it to keep your subscription active.</span>
   <a slot="actions" href="#">Update billing</a>
 </Alert>
 ```
@@ -148,8 +140,8 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
     <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
     <path d="M8 5v3M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
-  <Fragment slot="title">Action required</Fragment>
-  Your payment method is invalid. Update it to keep your subscription active.
+  <span slot="title">Action required</span>
+  <span>Your payment method is invalid. Update it to keep your subscription active.</span>
   <a slot="actions" href="#">Update billing</a>
 </Alert>
 
@@ -163,9 +155,12 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
 | `variant` | `FeedbackVariant` | `"soft"` | Visual treatment. |
 | `color` | `FeedbackColor` | `"neutral"` | Color role. Affects ARIA role. |
 | `radius` | `FeedbackRadius` | `"md"` | Border radius. |
+| `icon` | `SvgName` | `undefined` | Leading icon. Mutually exclusive with the `icon` slot — prop takes precedence. |
 | `p` / `px` / `py` / `pt` / `pr` / `pb` / `pl` | `Space` | — | Override padding on all or individual sides. Takes precedence over `size`. |
 | `dismissible` | `boolean` | `false` | Renders a dismiss button. |
 | `dismissLabel` | `string` | `"Dismiss"` | `aria-label` for the dismiss button. |
+
+Note: `pulse` and `placement` are not supported on Alert — use `Badge` for overlaid indicators.
 
 ## Slots
 
@@ -184,3 +179,10 @@ Defaults: `variant="soft"`, `color="neutral"`, `radius="md"`.
 - `role="status"` is used for all other colors — polite announcement, non-interrupting.
 - If you render an alert server-side (present on page load), the live region announcement does not fire — that's browser behavior, not a bug.
 - The dismiss button always has an `aria-label` (default: `"Dismiss"`). Override with `dismissLabel` if the context is ambiguous.
+
+
+## Related
+
+- **Banner** — full-width page-level strip, not inline.
+- **Toast** — transient notification that auto-dismisses.
+- **AlertDialog** — blocking modal requiring an explicit user decision.

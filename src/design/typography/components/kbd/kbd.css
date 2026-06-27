@@ -2,6 +2,7 @@
 .kbd {
   display: inline-flex;
   align-items: center;
+  gap: 0.25em;
   font-family: var(--mono);
   font-size: var(--fs--xs);
   line-height: 1;

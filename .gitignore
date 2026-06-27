@@ -12,6 +12,14 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# ai stuff
+.repowise/**/*
+.solopreneur/
+src/content/misc/
+
+# test
+test.ts
+contract.test.ts
 
 # environment variables
 .env

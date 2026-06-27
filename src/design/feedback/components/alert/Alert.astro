@@ -89,10 +89,13 @@ import "../../feedback.css";
 import "./alert.css";
 
 const { props, dismissible, dismissLabel } = useAlert(Astro.props as AlertProps);
+const { icon } = Astro.props;
 ---
 <div {...props}>
-  {Astro.slots.has("icon") && (
-    <div class="alert__icon" aria-hidden="true"><slot name="icon" /></div>
+  {(icon || Astro.slots.has("icon")) && (
+    <div class="alert__icon" aria-hidden="true">
+      {icon ? <Icon name={icon} /> : <slot name="icon" />}
+    </div>
   )}
   <div class="alert__body">
     {Astro.slots.has("title") && (

@@ -46,8 +46,8 @@ if printf '%s' "$tgt" | grep -Eq '/design/[^/]+/components/[^/]+/'; then
     case "$s" in
       .*) norm=$(realpath -m "$dir/$s" 2>/dev/null || printf '%s' "$s") ;;
     esac
-    if printf '%s' "$norm" | grep -Eq 'components/[^/]+'; then
-      other=$(printf '%s' "$norm" | sed -E 's#.*components/([^/]+).*#\1#')
+    if printf '%s' "$norm" | grep -Eq '/design/[^/]+/components/[^/]+'; then
+      other=$(printf '%s' "$norm" | sed -E 's#.*/design/[^/]+/components/([^/]+).*#\1#')
       if [ -n "$other" ] && [ "$other" != "$comp" ]; then
         deny "Import-direction violation: '$s' reaches into sibling component '$other'. Components don't import from sibling components (CLAUDE.md)."
       fi

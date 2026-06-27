@@ -1,149 +1,136 @@
 ---
-title: Text Component
-description: A primitive typography component for rendering all text styles across the application with proper semantic tags and design tokens.
+title: Text
+description: Polymorphic body text component. Renders any inline or block text element with the full typography token set.
 category: Typography
 status: stable
 icon: text
-version: 0.1.0
-links:
-  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/typography/components/text"
 ---
 import Text from "../../../design/typography/components/text/Text.astro";
-import Box from "~/layout/components/box/Box.astro";
-import Paper from "~/surfaces/components/paper/Paper.astro";
 
 ## Overview
 
-The `Text` component acts as the foundational layer for all typography in the design system. Instead of sprinkling CSS font classes everywhere, developers use this component to guarantee alignment with global design tokens and responsive font sizing without worrying about the underlying CSS.
+`Text` is the go-to component for body copy, captions, labels, inline spans, and any other text that isn't a heading or keyboard key. It renders as `<p>` by default; change the element via `as`. All typography tokens are available as props.
 
-## Usage & Examples
+---
 
-### Basic Text
-By default, Text renders as a `<p>` tag inheriting global body typography.
+## Usage
 
-```astro
-<Text>This is a standard paragraph of text.</Text>
-```
-<Box>
-  <Paper>
-    <Text>This is a standard paragraph of text.</Text>
-  </Paper>
-</Box>
-
-### Sizes & Weights
-Leverage the typography tokens directly via props.
+### Basic
 
 ```astro
-<Text size="sm" weight="normal">Small text</Text>
-<Text size="md" weight="medium">Medium text</Text>
-<Text size="lg" weight="semibold">Large text</Text>
-<Text size="2xl" weight="bold">Heading-sized text</Text>
+<Text>Standard paragraph.</Text>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
-  <Text size="sm" weight="normal">Small text</Text>
-  <Text size="md" weight="medium">Medium text</Text>
-  <Text size="lg" weight="semibold">Large text</Text>
-  <Text size="2xl" weight="bold">Heading-sized text</Text>
+
+<Text>Standard paragraph.</Text>
+
+---
+
+### Tag
+
+```astro
+<Text as="span">Inline</Text>
+<Text as="figcaption">Caption below an image</Text>
+<Text as="strong">Bold semantic emphasis</Text>
+<Text as="address">123 Main St</Text>
+```
+
+Valid tags: `p`, `span`, `div`, `li`, `strong`, `em`, `del`, `ins`, `mark`, `small`, `figcaption`, `cite`, `legend`, `dt`, `dd`, `address`.
+
+---
+
+### Size and weight
+
+```astro
+<Text size="sm" weight="normal">Small normal</Text>
+<Text size="md" weight="medium">Medium medium</Text>
+<Text size="lg" weight="semibold">Large semibold</Text>
+<Text size="2xl" weight="bold">2xl bold</Text>
+```
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <Text size="sm" weight="normal">Small normal</Text>
+  <Text size="md" weight="medium">Medium medium</Text>
+  <Text size="lg" weight="semibold">Large semibold</Text>
+  <Text size="2xl" weight="bold">2xl bold</Text>
 </div>
 
-### Semantic Colors
+---
+
+### Color
 
 ```astro
-<Text color="primary">Primary text</Text>
-<Text color="secondary">Secondary text</Text>
-<Text color="muted">Muted tertiary text</Text>
-<Text color="danger">Error / Danger text</Text>
-<Text color="success">Success text</Text>
-<Text color="warning">Warning text</Text>
-<Text color="info">Info text</Text>
+<Text color="primary">Primary</Text>
+<Text color="secondary">Secondary</Text>
+<Text color="muted">Muted</Text>
+<Text color="danger">Danger</Text>
+<Text color="success">Success</Text>
+<Text color="warning">Warning</Text>
+<Text color="info">Info</Text>
+<Text color="disabled">Disabled</Text>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
-  <Text color="primary">Primary text</Text>
-  <Text color="secondary">Secondary text</Text>
-  <Text color="muted">Muted tertiary text</Text>
-  <Text color="danger">Error / Danger text</Text>
-  <Text color="success">Success text</Text>
-  <Text color="warning">Warning text</Text>
-  <Text color="info">Info text</Text>
-</div>
 
-### Truncation & Clamping
-Easily handle overflow text gracefully.
+---
+
+### Truncation
 
 ```astro
-<!-- Single line truncation with ellipsis -->
-<Text truncate>This is a really long line of text that will eventually run out of space...</Text>
+<!-- Single line -->
+<Text truncate>A very long line that will be clipped with an ellipsis…</Text>
 
-<!-- Multi-line clamp (e.g. max 3 lines) -->
+<!-- Multi-line clamp -->
 <Text clamp={3}>
-  This is a block of text that will span exactly three lines before it gets clamped with an ellipsis. This is great for card descriptions or article previews where vertical space is constrained.
+  Three lines max. After that, an ellipsis is shown. Great for card
+  descriptions or article previews where vertical space is limited.
 </Text>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem; max-width: 300px;">
-  <Text truncate>This is a really long line of text that will eventually run out of space...</Text>
-  <Text clamp={3}>
-    This is a block of text that will span exactly three lines before it gets clamped with an ellipsis. This is great for card descriptions or article previews where vertical space is constrained.
-  </Text>
-</div>
 
-### Alignment & Transformations
+---
+
+### Alignment and transforms
 
 ```astro
-<Text align="center">Centered text</Text>
+<Text align="center">Centered</Text>
 <Text transform="uppercase" tracking="wide">Uppercase tracked</Text>
+<Text fontStyle="italic">Italic</Text>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
-  <Text align="center">Centered text</Text>
-  <Text transform="uppercase" tracking="wide">Uppercase tracked</Text>
-</div>
 
-### Polymorphism (Changing the Tag)
-Change the underlying HTML element for SEO or semantics without affecting the default visual style (unless token props are provided).
+---
+
+### Icon
 
 ```astro
-<Text as="span">Inline text</Text>
-<Text as="label">Form label</Text>
-<Text as="figcaption">Image caption</Text>
+<Text icon="mail">jonk@example.com</Text>
+<Text icon="phone" size="sm" color="secondary">+1 555 0100</Text>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
-  <Text as="span">Inline text</Text>
-  <Text as="label">Form label</Text>
-  <Text as="figcaption">Image caption</Text>
-</div>
+
+---
 
 ## Props API
 
-### Typography Props
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `as` | `TextTag` | `"p"` | HTML element to render. |
+| `size` | `TextSize` | CSS default | Responsive font-size scale (`2xs`–`4xl`). |
+| `weight` | `Weight` | CSS default | `thin`, `light`, `normal`, `medium`, `semibold`, `bold`, `black`. |
+| `color` | `TextColor` | CSS default | Text color token. |
+| `align` | `Align` | CSS default | `start`, `center`, `end`. |
+| `leading` | `Leading` | CSS default | Line height: `none`, `tight`, `snug`, `normal`, `relaxed`, `loose`. |
+| `tracking` | `Tracking` | CSS default | Letter spacing: `tight`, `normal`, `wide`, `wider`, `caps`. |
+| `fam` | `Family` | CSS default | Font family: `sans`, `serif`, `mono`. |
+| `transform` | `TypeTransform` | CSS default | `uppercase`, `lowercase`, `capitalize`. |
+| `wrap` | `TypeWrap` | CSS default | Text wrapping behavior. |
+| `decoration` | `TypeDecoration` | CSS default | `underline`, `line-through`. |
+| `fontStyle` | `TypeStyle` | CSS default | `italic`, `oblique`. |
+| `clamp` | `number` | `undefined` | Limit text to N lines with ellipsis. |
+| `truncate` | `boolean` | `false` | Single-line clip with ellipsis. |
+| `icon` | `SvgName` | `undefined` | Leading icon rendered before the slot. |
 
-| Prop | Type | Description |
-|---|---|---|
-| `size` | `TypeSize` | The font scale mapping to design tokens. |
-| `weight` | `TypeWeight` | Font weight (e.g., bold, semibold, regular). |
-| `color` | `TypeColor` | Semantic text color. |
-| `align` | `TypeAlign` | Text alignment (left, center, right, justify). |
-| `leading` | `TypeLeading` | Line height. |
-| `tracking` | `TypeTracking` | Letter spacing. |
-| `fam` | `TypeFamily` | Font family (e.g., sans, serif, mono). |
-| `transform` | `TypeTransform` | Text transformation (uppercase, lowercase, capitalize). |
-| `wrap` | `TypeWrap` | Text wrapping behavior. |
-| `decoration` | `TypeDecoration` | Text decoration (underline, line-through). |
-| `fontStyle` | `TypeStyle` | `font-style` (named to avoid shadowing HTML `style`). |
-| `clamp` | `number` | Multi-line clamp — limits text to N lines with ellipsis. |
-| `truncate` | `boolean` | Single-line truncation with ellipsis. |
+All `BaseComponentProps` are also accepted (`class`, `style`, `id`, spacing props, etc.).
 
-### Inherited Base Props
+---
 
-All components also accept these global props from `BaseComponentProps`:
+## Related
 
-| Prop | Type | Description |
-|---|---|---|
-| `class` | `string` | Custom CSS classes. |
-| `style` | `string` | Inline CSS styles. |
-| `bg` | `string` | Background color utility. |
-| `[key: string]` | `unknown` | All standard HTML attributes natively pass through! |
-
-## Design Decisions
-
-- **No margin/padding built-in:** The `Text` component is purely for typography. Spacing should be handled by the parent `Layout` container to ensure predictable box models and flex layouts.
-- **Polymorphic:** It uses the `as` prop to remain semantically correct.
-- **Framework Agnostic:** Relies strictly on native `HTMLAttributes` and standard DOM properties.
+- **Heading** — semantic `h1`–`h6` with narrowed weight options.
+- **Label** — fixed-scale label for form fields.
+- **Kbd** — keyboard key display.

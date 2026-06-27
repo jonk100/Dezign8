@@ -19,13 +19,16 @@
 
 import type { LinkProps } from "./link.props";
 import { useLink } from "./link.hook";
+import Icon from "~/assets/components/icon/Icon.astro";
 import "./link.css";
 
 type Props = LinkProps;
 
 const { Tag, props: linkProps } = useLink(Astro.props);
+const { icon } = Astro.props;
 ---
 
 <Tag {...linkProps}>
+  {icon && <Icon name={icon} />}
   <slot />
 </Tag>

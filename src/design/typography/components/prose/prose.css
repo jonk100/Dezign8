@@ -51,16 +51,16 @@
   margin-block-start: 0;
 }
 
-.prose h1 {
+/* .prose h1 {
   --typography--size:    var(--fs--4xl);
   --typography--weight:  var(--weight--bold);
-  --typography--leading: var(--leading--loose);
+  --typography--leading: var(--leading--snug);
 }
 
 .prose h2 {
   --typography--size:    var(--fs--3xl);
   --typography--weight:  var(--weight--bold);
-  --typography--leading: var(--leading--relaxed);
+  --typography--leading: var(--leading--snug);
   border-block-end:  1px solid var(--border--subtle);
   padding-block-end: 0.3em;
 }
@@ -68,7 +68,7 @@
 .prose h3 {
   --typography--size:    var(--fs--2xl);
   --typography--weight:  var(--weight--semibold);
-  --typography--leading: var(--leading--tight);
+  --typography--leading: var(--leading--normal);
 }
 
 .prose h4 {
@@ -90,7 +90,7 @@
   --typography--weight:  var(--weight--semibold);
   --typography--leading: var(--leading--normal);
   --typography--tracking: var(--tracking--normal);
-}
+} */
 
 /* ─────────────────────────────────────────────────────────────────────────────
  * PARAGRAPHS
@@ -99,7 +99,7 @@
 .prose p {
   margin-block-start: 0;
   margin-block-end:   var(--prose--gap);
-  line-height:        var(--leading--normal);
+  /* line-height:        var(--leading--normal); */
   font-size:          var(--prose--font);
 }
 
@@ -170,44 +170,6 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
- * CODE  (mirrors code.css for unstyled <code> and <pre> from MDX)
- * ─────────────────────────────────────────────────────────────────────────── */
-
-.prose pre:not(.pre) {
-  background:    var(--bg--4);
-  color:         var(--text--inverse);
-  padding:       var(--space-in--lg);
-  border-radius: var(--radius--md);
-  overflow-x:    auto;
-  margin-block:  var(--prose--gap);
-  line-height:   var(--leading--relaxed);
-  box-shadow:    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-  --typography--size: var(--fs--sm);
-  --typography--fam:  var(--font--mono);
-}
-
-.prose code:not(.code) {
-  background:    var(--bg--4);
-  color:         var(--warning--text);
-  padding:       var(--space-in--2xs) var(--space-in--md);
-  font-size:     var(--fs--sm);
-  border-radius: var(--radius--xs);
-  border:        1px solid var(--border--subtle);
-  font-weight:   var(--weight--medium);
-  --typography--fam: var(--font--mono);
-}
-
-.prose pre:not(.pre) > code:not(.code) {
-  background:    transparent;
-  color:         inherit;
-  padding:       0;
-  border-radius: 0;
-  border:        none;
-  font-weight:   inherit;
-  font-size:     inherit;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
  * TABLES
  * ─────────────────────────────────────────────────────────────────────────── */
 
@@ -250,7 +212,7 @@
   max-width:     100%;
   height:        auto;
   border-radius: var(--radius--md);
-  margin-block:  var(--prose--gap);
+  margin-block:  var(--image--m, var(--image--my, var(--image--mb, var(--image--mt))));
   box-shadow:    var(--shadow--sm);
 }
 

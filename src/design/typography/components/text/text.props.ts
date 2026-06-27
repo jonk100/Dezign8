@@ -7,7 +7,9 @@ export type TextTag =
   | "figcaption" | "cite" | "legend"
   | "dt" | "dd" | "address";
 
-export interface TextProps extends TypographyProps {
+import type { IconProps } from "~/shared/icon.props";
+
+export interface TextProps extends TypographyProps, IconProps {
   /** HTML element to render as. @default 'p' */
   as?: TextTag;
 }

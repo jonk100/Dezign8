@@ -18,6 +18,13 @@
   }
 }
 
+/* ── SCROLL ANIMATIONS ─────────────────────────────────────── */
+
+[data-m-hidden="true"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 
 /* ════════════════════════════════════════════════════════════ */
 /*  SLIDE                                                       */
@@ -27,37 +34,37 @@
 /* ════════════════════════════════════════════════════════════ */
 
 @keyframes m-enter-slideUp {
-  from { transform: translateY(1.5rem);  opacity: 0; }
+  from { transform: translateY(calc(var(--m--dist, 1.5rem) * var(--m--scale, 1)));  opacity: 0; }
   to   { transform: translateY(0);       opacity: 1; }
 }
 @keyframes m-enter-slideDown {
-  from { transform: translateY(-1.5rem); opacity: 0; }
+  from { transform: translateY(calc(var(--m--dist, 1.5rem) * var(--m--scale, 1) * -1)); opacity: 0; }
   to   { transform: translateY(0);       opacity: 1; }
 }
 @keyframes m-enter-slideLeft {
-  from { transform: translateX(1.5rem);  opacity: 0; }
+  from { transform: translateX(calc(var(--m--dist, 1.5rem) * var(--m--scale, 1)));  opacity: 0; }
   to   { transform: translateX(0);       opacity: 1; }
 }
 @keyframes m-enter-slideRight {
-  from { transform: translateX(-1.5rem); opacity: 0; }
+  from { transform: translateX(calc(var(--m--dist, 1.5rem) * var(--m--scale, 1) * -1)); opacity: 0; }
   to   { transform: translateX(0);       opacity: 1; }
 }
 
 @keyframes m-exit-slideUp {
   from { transform: translateY(0);        opacity: 1; }
-  to   { transform: translateY(-1.5rem);  opacity: 0; }
+  to   { transform: translateY(calc(var(--m--dist, 1.5rem) * var(--m--scale, 1) * -1));  opacity: 0; }
 }
 @keyframes m-exit-slideDown {
   from { transform: translateY(0);       opacity: 1; }
-  to   { transform: translateY(1.5rem);  opacity: 0; }
+  to   { transform: translateY(calc(var(--m--dist, 1.5rem) * var(--m--scale, 1)));  opacity: 0; }
 }
 @keyframes m-exit-slideLeft {
   from { transform: translateX(0);        opacity: 1; }
-  to   { transform: translateX(-1.5rem);  opacity: 0; }
+  to   { transform: translateX(calc(var(--m--dist, 1.5rem) * var(--m--scale, 1) * -1));  opacity: 0; }
 }
 @keyframes m-exit-slideRight {
   from { transform: translateX(0);       opacity: 1; }
-  to   { transform: translateX(1.5rem);  opacity: 0; }
+  to   { transform: translateX(calc(var(--m--dist, 1.5rem) * var(--m--scale, 1)));  opacity: 0; }
 }
 
 
@@ -260,31 +267,31 @@
 /* ════════════════════════════════════════════════════════════ */
 
 @keyframes m-enter-bounceUp {
-  0%   { transform: translateY(2rem);    opacity: 0; }
-  60%  { transform: translateY(-0.4rem); opacity: 1; }
-  80%  { transform: translateY(0.2rem); }
-  90%  { transform: translateY(-0.1rem); }
+  0%   { transform: translateY(calc(var(--m--dist, 2rem) * var(--m--scale, 1)));    opacity: 0; }
+  60%  { transform: translateY(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * -0.2)); opacity: 1; }
+  80%  { transform: translateY(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * 0.1)); }
+  90%  { transform: translateY(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * -0.05)); }
   100% { transform: translateY(0); }
 }
 @keyframes m-enter-bounceDown {
-  0%   { transform: translateY(-2rem);  opacity: 0; }
-  60%  { transform: translateY(0.4rem); opacity: 1; }
-  80%  { transform: translateY(-0.2rem); }
-  90%  { transform: translateY(0.1rem); }
+  0%   { transform: translateY(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * -1));  opacity: 0; }
+  60%  { transform: translateY(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * 0.2)); opacity: 1; }
+  80%  { transform: translateY(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * -0.1)); }
+  90%  { transform: translateY(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * 0.05)); }
   100% { transform: translateY(0); }
 }
 @keyframes m-enter-bounceLeft {
-  0%   { transform: translateX(2rem);    opacity: 0; }
-  60%  { transform: translateX(-0.4rem); opacity: 1; }
-  80%  { transform: translateX(0.2rem); }
-  90%  { transform: translateX(-0.1rem); }
+  0%   { transform: translateX(calc(var(--m--dist, 2rem) * var(--m--scale, 1)));    opacity: 0; }
+  60%  { transform: translateX(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * -0.2)); opacity: 1; }
+  80%  { transform: translateX(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * 0.1)); }
+  90%  { transform: translateX(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * -0.05)); }
   100% { transform: translateX(0); }
 }
 @keyframes m-enter-bounceRight {
-  0%   { transform: translateX(-2rem);  opacity: 0; }
-  60%  { transform: translateX(0.4rem); opacity: 1; }
-  80%  { transform: translateX(-0.2rem); }
-  90%  { transform: translateX(0.1rem); }
+  0%   { transform: translateX(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * -1));  opacity: 0; }
+  60%  { transform: translateX(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * 0.2)); opacity: 1; }
+  80%  { transform: translateX(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * -0.1)); }
+  90%  { transform: translateX(calc(var(--m--dist, 2rem) * var(--m--scale, 1) * 0.05)); }
   100% { transform: translateX(0); }
 }
 
@@ -314,4 +321,15 @@
 @keyframes m-exit-disappear {
   from { transform: scale(1);    opacity: 1; }
   to   { transform: scale(0.88); opacity: 0; }
+}
+
+/* ── DOCS UTILS ────────────────────────────────────────────── */
+.restore-btn-wrapper {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.exit-wrapper:has([data-dismissed="true"]) .restore-btn-wrapper {
+  opacity: 1;
+  pointer-events: auto;
 }

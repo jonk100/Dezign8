@@ -2,6 +2,7 @@
 # Stop hook — if anything under src/design/ changed this session but ai/agent_decision_log.md
 # was not touched, send the agent back to log the decision (CLAUDE.md / AGENTS.MD).
 set -euo pipefail
+cd "$(dirname "$0")/../.."
 
 IN="$(cat)"
 exec_num=$(printf '%s' "$IN" | jq -r '.executionNum // 0')

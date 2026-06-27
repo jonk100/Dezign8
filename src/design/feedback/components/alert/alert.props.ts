@@ -3,7 +3,9 @@
 import type { FeedbackProps } from "../../feedback.props";
 import type { AlertColor, AlertRadius, AlertVariant } from "./alert.tokens";
 
-export interface AlertProps extends Omit<FeedbackProps, "color" | "variant" | "radius" | "pulse" | "placement"> {
+import type { IconProps } from "~/shared/icon.props";
+
+export interface AlertProps extends Omit<FeedbackProps, "color" | "variant" | "radius" | "pulse" | "placement">, IconProps {
   /** Visual treatment. @default "soft" */
   variant?: AlertVariant;
 

@@ -7,6 +7,16 @@ status: stable
 
 ## Overview
 
+import Stat from "~/data_/stat/Stat.astro";
+import Metric from "~/data_/metric/Metric.astro";
+
+<div class="not-content" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "2rem" }}>
+  <Metric value="55" label="Total Components" description="Across 10 categories" trend="+4" trendDirection="up" variant="soft" />
+  <Metric value="12" label="Shared Props" description="In the Data category" trend="Stable" trendDirection="neutral" variant="soft" />
+  <Stat value="8" label="Color Roles" variant="elevated" style={{ padding: "var(--space-md)" }} />
+  <Stat value="4" label="Container Variants" variant="outlined" style={{ padding: "var(--space-md)" }} />
+</div>
+
 The Data category provides components for displaying structured information: tables, lists, feeds, and standalone metrics. Every component inherits the same color channel system, density scale, and state props through a shared category hook — `useData` — which handles the common ground while each component hook layers its own structure on top.
 
 **Components in this category:**

@@ -1,0 +1,27 @@
+---
+import type { EmptyStateProps } from "./empty-state.props";
+import { useEmptyState } from "./empty-state.hook";
+import Icon from "~/assets/components/icon/Icon.astro";import "../../feedback.css";
+import "./empty-state.css";
+
+const { props, title, description } = useEmptyState(Astro.props as EmptyStateProps);
+const { icon } = Astro.props;
+---
+<div {...props}>
+  {(icon || Astro.slots.has("icon")) && (
+    <div class="empty-state__icon">
+      {icon ? <Icon name={icon} /> : <slot name="icon" />}
+    </div>
+  )}
+  {title && <div class="empty-state__title">{title}</div>}
+  {(description || Astro.slots.has("default")) && (
+    <div class="empty-state__description">
+      {description ? description : <slot />}
+    </div>
+  )}
+  {Astro.slots.has("actions") && (
+    <div class="empty-state__actions">
+      <slot name="actions" />
+    </div>
+  )}
+</div>

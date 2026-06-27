@@ -1,0 +1,89 @@
+---
+title: Feed
+description: Renders a chronological stream of events or activity with timeline connections.
+category: Data
+status: stable
+---
+
+import Feed from "~/design/data/components/feed/Feed.astro";
+
+## Overview
+
+The `Feed` component displays an array of `FeedItem` objects as a vertical (or horizontal) timeline of activity.
+
+```astro
+import Feed from "~/design/data/components/feed/Feed.astro";
+
+<Feed 
+  data={[
+    { title: "Commit pushed", timestamp: "2m ago", description: "Fixed a bug in Feed component." },
+    { title: "PR opened", timestamp: "10m ago" },
+    { title: "Issue #42 created", timestamp: "1h ago" }
+  ]} 
+/>
+```
+
+## Examples
+
+### Horizontal Orientation
+
+Set `orientation="horizontal"` to lay out the feed items horizontally.
+
+<div class="not-content">
+  <Feed 
+    orientation="horizontal"
+    data={[
+      { title: "Step 1", description: "Design" },
+      { title: "Step 2", description: "Develop" },
+      { title: "Step 3", description: "Deploy" }
+    ]} 
+  />
+</div>
+
+```astro
+<Feed 
+  orientation="horizontal"
+  data={[
+    { title: "Step 1", description: "Design" },
+    { title: "Step 2", description: "Develop" },
+    { title: "Step 3", description: "Deploy" }
+  ]} 
+/>
+```
+
+### Links in Feed Items
+
+Items can act as links by passing an `href` to the item object. The title will display link hover effects.
+
+<div class="not-content">
+  <Feed 
+    data={[
+      { title: "View latest release", href: "#", timestamp: "Today" },
+      { title: "Read the docs", href: "#", timestamp: "Yesterday" }
+    ]} 
+  />
+</div>
+
+```astro
+<Feed 
+  data={[
+    { title: "View latest release", href: "#", timestamp: "Today" },
+    { title: "Read the docs", href: "#", timestamp: "Yesterday" }
+  ]} 
+/>
+```
+
+### Loading & Empty States
+
+Like all data components, `Feed` supports `loading` and `empty` states out of the box.
+
+<div class="not-content">
+  <Feed loading />
+  <br/>
+  <Feed empty="No recent activity to show." />
+</div>
+
+```astro
+<Feed loading />
+<Feed empty="No recent activity to show." />
+```

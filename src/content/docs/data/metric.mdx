@@ -1,0 +1,88 @@
+---
+title: Metric
+description: A compound component for displaying key metrics with a value, description, and an optional trend indicator.
+category: Data
+status: stable
+---
+
+import Metric from "~/design/data/components/metric/Metric.astro";
+
+## Overview
+
+The `Metric` component is designed for rich data display. It can present a value, a label, a prose description, and a trend indicator (up, down, or neutral). It works well inside card layouts on dashboards.
+
+```astro
+import Metric from "~/design/data/components/metric/Metric.astro";
+
+<Metric 
+  value="84%" 
+  label="Engagement" 
+  description="3/4 people agree with this longer thing." 
+  trend="12%" 
+  trendDirection="up" 
+  variant="elevated" 
+/>
+```
+
+## Examples
+
+### Trend Directions
+
+The `trendDirection` prop alters the icon and color of the trend indicator.
+
+<div class="not-content" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
+  <Metric value="55" label="Total Components" description="Currently tracked in the system" trend="+4 this week" trendDirection="up" variant="outlined" />
+  <Metric value="12" label="Data Category Props" description="Shared across all 5 components" trend="Stable API" trendDirection="neutral" variant="outlined" />
+  <Metric value="10" label="Design Categories" description="Covering layout to typography" trend="1 roadmap pending" trendDirection="down" variant="outlined" />
+</div>
+
+```astro
+<Metric value="55" label="Total Components" description="Currently tracked in the system" trend="+4 this week" trendDirection="up" variant="outlined" />
+<Metric value="12" label="Data Category Props" description="Shared across all 5 components" trend="Stable API" trendDirection="neutral" variant="outlined" />
+<Metric value="10" label="Design Categories" description="Covering layout to typography" trend="1 roadmap pending" trendDirection="down" variant="outlined" />
+```
+
+### Loading State
+
+When `loading` is set, `Metric` displays skeleton placeholders for its content.
+
+<div class="not-content">
+  <Metric loading variant="outlined" />
+</div>
+
+```astro
+<Metric loading variant="outlined" />
+```
+
+### Custom Icons via Slots
+
+You can pass an icon using the `icon` slot.
+
+<div class="not-content">
+  <Metric value="99.9%" label="Uptime" variant="soft">
+    <svg slot="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+  </Metric>
+</div>
+
+```astro
+<Metric value="99.9%" label="Uptime" variant="soft">
+  <svg slot="icon" ... />
+</Metric>
+```
+
+
+### Icon Integration
+
+This component supports the **Hybrid Icon Composition** architecture. You can easily add an icon by passing the `icon` prop, or use the `<Icon>` component inside slots for more advanced layouts.
+
+```astro
+<!-- Basic prop usage -->
+<Metric icon="star">Content</Metric>
+
+<!-- Advanced slot usage -->
+<Metric>
+  Content <Icon name="chevron-right" />
+</Metric>
+```
+
+For more details, see the [Icon component documentation](/assets/icon).

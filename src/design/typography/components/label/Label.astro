@@ -59,13 +59,15 @@
 
 import type { LabelProps } from "./label.props";
 import { useLabel }        from "./label.hook";
-import "../../typography.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "../../typography.css";
 import "./label.css";
 
 const { Tag, props, required } = useLabel(Astro.props as LabelProps);
+const { icon } = Astro.props;
 ---
 
 <Tag {...props}>
+  {icon && <Icon name={icon} />}
   <slot />
   {required && (
     <span class="label__required" aria-hidden="true">*</span>

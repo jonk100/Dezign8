@@ -88,6 +88,8 @@ Use the `placement` prop to position the badge as an absolute overlay on the nea
 | `count` | `number` | — | Numeric value to display. Triggers Count mode. |
 | `max` | `number` | `99` | Maximum value before capping (e.g. `99+`). |
 | `dot` | `boolean` | `false` | Renders an empty circle indicator. Triggers Dot mode. |
+| `icon` | `SvgName` | `undefined` | Leading icon. Shown before count or slot content. |
+| `iconOnly` | `boolean` | `false` | Square badge containing only the icon. |
 
 ### Inherited Feedback Props
 
@@ -105,3 +107,9 @@ Use the `placement` prop to position the badge as an absolute overlay on the nea
 ## Accessibility
 
 When using **Dot mode**, provide an `aria-label` or visually hidden text elsewhere if the color alone conveys meaning (e.g., online status), as the empty `<span aria-hidden="true">` is ignored by screen readers unless explicitly labeled.
+
+
+## Related
+
+- **Tag** — non-interactive inline label for categories and metadata.
+- **Chip** — interactive (selectable) badge variant.

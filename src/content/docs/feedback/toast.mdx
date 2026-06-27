@@ -260,3 +260,20 @@ dismiss();
 - **Alert** — inline status message in content flow; persistent, not transient.
 - **Banner** — page-level persistent notice above or below content.
 - **AlertDialog** — blocking confirmation that requires an explicit choice.
+
+
+### Icon Integration
+
+This component supports the **Hybrid Icon Composition** architecture. You can easily add an icon by passing the `icon` prop, or use the `<Icon>` component inside slots for more advanced layouts.
+
+```astro
+<!-- Basic prop usage -->
+<Toast icon="star">Content</Toast>
+
+<!-- Advanced slot usage -->
+<Toast>
+  Content <Icon name="chevron-right" />
+</Toast>
+```
+
+For more details, see the [Icon component documentation](/assets/icon).

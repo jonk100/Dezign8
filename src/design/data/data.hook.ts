@@ -3,7 +3,7 @@
 import type { DataProps }                  from "./data.props";
 import { DATA_TOKENS }                     from "./data.tokens";
 import { resolveTokens }                   from "~/shared/tokens";
-import { resolveColorRole, useBaseCompose, composeClass } from "~/shared/base.hook";
+import { resolveColorRole, useBaseCompose } from "~/shared/base.hook";
 
 /**
  * Hook: `useData`

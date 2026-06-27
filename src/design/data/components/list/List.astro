@@ -144,7 +144,7 @@ import type { ListProps } from "./list.props";
 import { useList }        from "./list.hook";
 import Checkbox           from "~/forms/components/checkbox/Checkbox.astro";
 import Link               from "~/triggers/components/link/Link.astro";
-import "~/data/data.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "~/data/data.css";
 import "./list.css";
 
 type Props = ListProps;
@@ -204,7 +204,7 @@ const skeletonCount = 4;
             {/* Leading icon (only when no checkbox) */}
             {item.icon && item.checkState === undefined && (
               <span class="list__icon" aria-hidden="true">
-                {item.icon}
+                <Icon name={item.icon} />
               </span>
             )}
 

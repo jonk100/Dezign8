@@ -24,6 +24,10 @@
 /* ─── Base Badge layout ──────────────────────────────────────────────────── */
 
 .badge {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  gap:            0.25em;
   font-size:      var(--badge--font-size);
   font-weight:    var(--weight--semibold);
   padding-block:  var(--badge--padding-y);
@@ -32,6 +36,11 @@
   min-height:     var(--badge--height);
   text-align:     center;
   border:         2px solid var(--feedback--color-muted);
+}
+
+.badge--icon-only {
+  padding-inline: var(--badge--padding-y);
+  aspect-ratio: 1;
 }
 
 .feedback.badge {

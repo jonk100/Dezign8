@@ -3,6 +3,8 @@
 import type { TypographyProps } from "~ty/typography.props";
 import type { LinkUnderline } from "./link.tokens";
 
+import type { IconProps } from "~/shared/icon.props";
+
 /**
  * Interface: `LinkProps`
  * 
@@ -10,7 +12,7 @@ import type { LinkUnderline } from "./link.tokens";
  * Because links are primarily textual, this interface extends `TypographyProps`,
  * allowing you to use sizes, weights, families, and colors directly on the link.
  */
-export interface LinkProps extends TypographyProps {
+export interface LinkProps extends TypographyProps, IconProps {
   /**
    * The destination URL for the link.
    * When omitted, renders as a placeholder link (no navigation).

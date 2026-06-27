@@ -1,9 +1,15 @@
 ---
 import type { TextProps } from "./text.props";
 import { useText } from "./text.hook";
+import Icon from "~/assets/components/icon/Icon.astro";
 import "../../typography.css";
+import "./text.css";
 
 const { Tag, props } = useText(Astro.props as TextProps);
+const { icon } = Astro.props;
 ---
 
-<Tag {...props}><slot /></Tag>
+<Tag {...props}>
+  {icon && <Icon name={icon} />}
+  <slot />
+</Tag>

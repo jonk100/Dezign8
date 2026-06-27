@@ -206,6 +206,7 @@ export function useSelect(props: SelectProps) {
     placeholder,
     multiple:  _multiple,   // consumed above as isMulti; discard from formProps
     value:     _value,      // consumed above as rawValue; discard from formProps
+    icon,
     ...formProps
   } = props as unknown as SelectInternalBase;
 
@@ -214,7 +215,7 @@ export function useSelect(props: SelectProps) {
     formClass, formStyle, formAttrs,
     disabled, required, invalid,
     rest,
-  } = useForm(formProps as Parameters<typeof useForm>[0]);
+  } = useForm(formProps as unknown as Parameters<typeof useForm>[0]);
 
   // ── Resolve options with selected state ─────────────────────────────────
   //

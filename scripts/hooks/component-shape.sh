@@ -27,8 +27,9 @@ if ! printf '%s' "$tgt" | grep -Eq '/design/[^/]+/components/[^/]+/'; then
   allow
 fi
 
-dir=$(dirname "$tgt")
-comp=$(printf '%s' "$dir" | sed -E 's#.*/components/([^/]+)$#\1#')
+# Extract the component name directly from the path, not dirname, to handle nested subdirs.
+comp=$(printf '%s' "$tgt" | sed -E 's#.*/design/[^/]+/components/([^/]+)/.*#\1#')
+dir=$(printf '%s' "$tgt" | sed -E 's#(.*/design/[^/]+/components/[^/]+)/.*#\1#')
 # Capitalise first letter for the .astro file name.
 comp_cap="$(echo "${comp:0:1}" | tr '[:lower:]' '[:upper:]')${comp:1}"
 

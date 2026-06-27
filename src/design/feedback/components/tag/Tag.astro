@@ -1,13 +1,15 @@
 ---
 import type { TagProps } from "./tag.props";
 import { useTag } from "./tag.hook";
-import "../../feedback.css";
+import Icon from "~/assets/components/icon/Icon.astro";import "../../feedback.css";
 import "./tag.css";
 
 type Props = TagProps;
 
 const { Tag: TagElement, props: tagProps } = useTag(Astro.props);
+const { icon } = Astro.props;
 ---
 <TagElement {...tagProps}>
+  {icon && <Icon name={icon} />}
   <slot />
 </TagElement>

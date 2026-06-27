@@ -38,9 +38,14 @@ import IconAlertCircle from './alert-circle.svg';
 import IconAlertDialog from './alert-dialog.svg';
 import IconAlertTriangle from './alert-triangle.svg';
 import IconAlert from './alert.svg';
+import IconArrowDownLeft from './arrow-down-left.svg';
+import IconArrowDownRight from './arrow-down-right.svg';
+import IconArrowDown from './arrow-down.svg';
 import IconArrowLeft from './arrow-left.svg';
 import IconArrowRight from './arrow-right.svg';
+import IconArrowUpLeft from './arrow-up-left.svg';
 import IconArrowUpRight from './arrow-up-right.svg';
+import IconArrowUp from './arrow-up.svg';
 import IconAstro from './astro.svg';
 import IconAvatar from './avatar.svg';
 import IconBadgeGroup from './badge-group.svg';
@@ -80,6 +85,7 @@ import IconFilePreview from './file-preview.svg';
 import IconFlex from './flex.svg';
 import IconFooter from './footer.svg';
 import IconFrame from './frame.svg';
+import IconGift from './gift.svg';
 import IconGrid from './grid.svg';
 import IconHeader from './header.svg';
 import IconHeading from './heading.svg';
@@ -96,6 +102,7 @@ import IconJavascript from './javascript.svg';
 import IconJogBack from './jog-back.svg';
 import IconJogForward from './jog-forward.svg';
 import IconKeyValueList from './key-value-list.svg';
+import IconKeyboard from './keyboard.svg';
 import IconLabel from './label.svg';
 import IconLink from './link.svg';
 import IconList from './list.svg';
@@ -118,6 +125,8 @@ import IconPrevious from './previous.svg';
 import IconQuote from './quote.svg';
 import IconRadioGroup from './radio-group.svg';
 import IconRadio from './radio.svg';
+import IconRefreshCw from './refresh-cw.svg';
+import IconRefresh from './refresh.svg';
 import IconSearch from './search.svg';
 import IconSectionLabel from './section-label.svg';
 import IconSection from './section.svg';
@@ -130,10 +139,12 @@ import IconSpinnerThree from './spinner-three.svg';
 import IconSpinnerTwo from './spinner-two.svg';
 import IconSpinner from './spinner.svg';
 import IconStack from './stack.svg';
+import IconStar from './star.svg';
 import IconStepper from './stepper.svg';
 import IconStop from './stop.svg';
 import IconStrikethrough from './strikethrough.svg';
-import IconSwitch from './switch.svg';
+import IconSwitchOff from './switch-off.svg';
+import IconSwitchOn from './switch-on.svg';
 import IconTableCell from './table-cell.svg';
 import IconTableHead from './table-head.svg';
 import IconTableRow from './table-row.svg';
@@ -158,9 +169,14 @@ export const icons = {
   'alert-dialog': IconAlertDialog,
   'alert-triangle': IconAlertTriangle,
   'alert': IconAlert,
+  'arrow-down-left': IconArrowDownLeft,
+  'arrow-down-right': IconArrowDownRight,
+  'arrow-down': IconArrowDown,
   'arrow-left': IconArrowLeft,
   'arrow-right': IconArrowRight,
+  'arrow-up-left': IconArrowUpLeft,
   'arrow-up-right': IconArrowUpRight,
+  'arrow-up': IconArrowUp,
   'astro': IconAstro,
   'avatar': IconAvatar,
   'badge-group': IconBadgeGroup,
@@ -200,6 +216,7 @@ export const icons = {
   'flex': IconFlex,
   'footer': IconFooter,
   'frame': IconFrame,
+  'gift': IconGift,
   'grid': IconGrid,
   'header': IconHeader,
   'heading': IconHeading,
@@ -216,6 +233,7 @@ export const icons = {
   'jog-back': IconJogBack,
   'jog-forward': IconJogForward,
   'key-value-list': IconKeyValueList,
+  'keyboard': IconKeyboard,
   'label': IconLabel,
   'link': IconLink,
   'list': IconList,
@@ -238,6 +256,8 @@ export const icons = {
   'quote': IconQuote,
   'radio-group': IconRadioGroup,
   'radio': IconRadio,
+  'refresh-cw': IconRefreshCw,
+  'refresh': IconRefresh,
   'search': IconSearch,
   'section-label': IconSectionLabel,
   'section': IconSection,
@@ -250,10 +270,12 @@ export const icons = {
   'spinner-two': IconSpinnerTwo,
   'spinner': IconSpinner,
   'stack': IconStack,
+  'star': IconStar,
   'stepper': IconStepper,
   'stop': IconStop,
   'strikethrough': IconStrikethrough,
-  'switch': IconSwitch,
+  'switch-off': IconSwitchOff,
+  'switch-on': IconSwitchOn,
   'table-cell': IconTableCell,
   'table-head': IconTableHead,
   'table-row': IconTableRow,

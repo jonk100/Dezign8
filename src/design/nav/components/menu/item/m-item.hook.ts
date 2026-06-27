@@ -1,4 +1,3 @@
-import { icons } from "~/shared/icons";
 import type { MenuItemProps } from "./m-item.props";
 
 export function useMenuItem(props: MenuItemProps) {
@@ -6,11 +5,9 @@ export function useMenuItem(props: MenuItemProps) {
 
   const Tag = href ? "a" : "button";
   const typeAttr = href ? {} : { type: "button" };
-  const IconComponent = icon ? icons[icon] : null;
 
   return {
     Tag,
-    IconComponent,
     menuItemProps: {
       id,
       href,

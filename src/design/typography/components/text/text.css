@@ -1,0 +1,7 @@
+/* design/typography/components/text/text.css */
+
+.text--has-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375em;
+}

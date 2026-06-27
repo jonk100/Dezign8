@@ -40,7 +40,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-in--xl);
+  gap: var(--space-in--xs);
   background: transparent;
   border: none;
   font-family: inherit;

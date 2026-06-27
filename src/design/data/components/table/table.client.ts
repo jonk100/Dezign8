@@ -1,7 +1,6 @@
 // design/data/table/table.client.ts
 
 import { persistAndDispatch }  from "~/data/data.utils";
-import type { SelectionDetail } from "~/data/data.utils";
 
 /**
  * Client-side selection and sort manager for <Table />.

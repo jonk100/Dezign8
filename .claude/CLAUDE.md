@@ -11,7 +11,7 @@
 > (documentation, ownership, history, decisions). **Always verify against
 > actual source files before making changes** — the index may be stale.
 
-Last indexed: 2026-06-25 (commit 12f4c0b). Confidence: 100%.
+Last indexed: 2026-06-25 (commit b84f325). Confidence: 100%.
 ### Architecture
 repo is a design system component library that consumes raw design tokens and style definitions to transform them into a standardized, type-safe React component suite, ultimately producing a modular UI package for consistent application development. The repository serves as the foundational layer for visual consistency, abstracting complex layout, surface, and typography logic into reusable primitives. The library exposes its functionality through granular entry points categorized by domain:
 The repository follows a layered architecture designed for scalability and strict visual adherence:
@@ -67,16 +67,16 @@ The codebase is currently in an active development phase with high modularity. W
 | File | Churn | 90d Commits | Owner |
 |------|-------|-------------|-------|
 | `pnpm-lock.yaml` | 100.0th %ile | 6 | Jon K |
-| `.repowise/.update.log` | 99.9th %ile | 4 | Jon K |
-| `ai/agent_decision_log.md` | 99.8th %ile | 12 | Jon K |
+| `.repowise/.update.log` | 99.9th %ile | 5 | Jon K |
+| `ai/agent_decision_log.md` | 99.8th %ile | 14 | Jon K |
 | `src/design/shared/primitives.tokens.ts` | 99.6th %ile | 6 | Jon K |
 | `.repowise/knowledge-graph.json` | 99.5th %ile | 3 | Jon K |
 
 ## Code health
 Three signals: **defect risk** (the overall score), **maintainability** (smells that hurt readability/change-cost without predicting bugs), and **performance** (static performance RISK: I/O-in-loop / N+1 shapes that waste work, high-precision/low-recall). Maintainability and performance are co-equal views, never blended into the defect headline. See `docs/CODE_HEALTH.md`.
 
-Defect risk, Hotspot health: 9.24/10 (stable) ·
-Average: 9.88/10 ·
+Defect risk, Hotspot health: 9.29/10 (stable) ·
+Average: 9.89/10 ·
 Worst: 6.72/10 (`src/design/surfaces/surface.hook.ts`)
 Maintainability, Average: 9.91/10
 Performance risk, Average: 9.99/10
@@ -120,7 +120,7 @@ This repo has the Repowise MCP server configured. The tools below answer questio
 ### Output Distillation
 
 - Prefer `repowise distill <cmd>` for noisy commands — test runs, builds, `git status`/`log`/`diff`, searches, file listings. It runs the command unchanged (exit code preserved) and prints a compact, errors-first rendering; every error line survives.
-- Output may contain a marker like `[repowise#a1b2c3d4e5f6: 230 lines omitted (~6.1k tokens); restore: repowise expand a1b2c3d4e5f6]`. The omitted content is fully preserved — run `repowise expand <ref>` to retrieve it, or `repowise expand <ref> -q <regex>` for just the matching lines.
+- Output may contain a marker like `[repowise#/A1b2c3d4e5f6: 230 lines omitted (~6.1k tokens); restore: repowise expand a1b2c3d4e5f6]`. The omitted content is fully preserved — run `repowise expand <ref>` to retrieve it, or `repowise expand <ref> -q <regex>` for just the matching lines.
 - Never re-run a command to see omitted output; expand the marker instead.
 - For structure-level questions about a large indexed file ("what's in here", "which function handles X"), `get_context(["path"], include=["skeleton"])` returns the file with bodies elided — every signature plus the bodies of the most central symbols — at a fraction of the cost of a full Read.
 

@@ -2,7 +2,11 @@
 
 import type { FeedbackProps } from "../../feedback.props";
 
-export interface TagProps extends FeedbackProps {
-  // Tags currently have no component-specific props beyond the standard FeedbackProps
-  // The slot handles the text content.
+import type { IconProps } from "~/shared/icon.props";
+
+export interface TagProps extends FeedbackProps, IconProps {
+  /**
+   * Renders a square tag containing only an icon.
+   */
+  iconOnly?: boolean;
 }

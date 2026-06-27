@@ -47,6 +47,7 @@
  */
 
 import type { BaseComponentProps } from "~/shared/base.props";
+import type { IconProps } from "~/shared/icon.props";
 
 /**
  * Props for the `<Field>` component.
@@ -75,7 +76,7 @@ import type { BaseComponentProps } from "~/shared/base.props";
  * </Field>
  * ```
  */
-export interface FieldProps extends BaseComponentProps {
+export interface FieldProps extends BaseComponentProps, IconProps {
   /**
    * Base identifier for this field group.
    *

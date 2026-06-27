@@ -5,7 +5,6 @@ import { LAYOUT_TOKENS } from "./layout.tokens";
 import { resolveTokens } from "~/shared/tokens";
 import { resolveSpacingStyles } from "~/shared/spacing.props";
 import { useBaseCompose } from "~/shared/base.hook";
-import { COLOR_ROLE } from "~/shared/primitives.tokens";
 import { resolveColorRole } from "~/shared/base.hook";
 import "./layout.css";
 

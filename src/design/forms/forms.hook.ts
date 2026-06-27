@@ -72,7 +72,7 @@
  */
 
 import type { FormProps } from "./forms.props";
-import { FORM_TOKENS }   from "./forms.tokens";
+import { FORM_TOKENS } from "./forms.tokens";
 import { resolveTokens } from "~/shared/tokens";
 import { useBaseCompose } from "~/shared/base.hook";
 
@@ -144,17 +144,17 @@ import { useBaseCompose } from "~/shared/base.hook";
  */
 export function useForm(props: FormProps) {
   const {
-    size      = "md",
-    variant   = "outlined",
-    color     = "primary",
-    radius    = "md",
-    disabled  = false,
-    required  = false,
-    invalid   = false,
+    size = "md",
+    variant = "outlined",
+    color = "primary",
+    radius = "md",
+    disabled = false,
+    required = false,
+    invalid = false,
     fullWidth = false,
     class: className,
-    v:        _v,
-    testId:   _testId,
+    v: _v,
+    testId: _testId,
     bg,
     ...base
   } = props;
@@ -205,7 +205,7 @@ export function useForm(props: FormProps) {
   //   required={true}   only valid on <input>, <select>, <textarea>
   const ariaAttrs: Record<string, string> = {};
   if (required) { ariaAttrs["aria-required"] = "true"; }
-  if (invalid)  { ariaAttrs["aria-invalid"]  = "true"; ariaAttrs["data-invalid"]  = ""; }
+  if (invalid) { ariaAttrs["aria-invalid"] = "true"; ariaAttrs["data-invalid"] = ""; }
 
   // ── Class + style composition ─────────────────────────────────────────────
   const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
@@ -213,14 +213,14 @@ export function useForm(props: FormProps) {
       className: [
         "form",
         ...tokenClasses,                          // form--outlined, form--primary
-        disabled  && "form--disabled",            // CSS: pointer-events, opacity
-        invalid   && "form--invalid",             // CSS: error-state ring/border
+        disabled && "form--disabled",            // CSS: pointer-events, opacity
+        invalid && "form--invalid",             // CSS: error-state ring/border
         fullWidth && "form--full-width",          // CSS: width: 100%
         className,
       ],
       style: [
         ...tokenStyle,                            // --form--size, --form--radius
-        ...colorStyle,                            // --form--color-base, etc. (TODO)
+        ...colorStyle,                            // --form--color-base, etc. (@TODO)
         bg && `--local--bg: ${bg}`,               // escape-hatch background
       ],
       disabled,

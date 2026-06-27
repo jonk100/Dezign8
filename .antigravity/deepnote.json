@@ -1,0 +1,9 @@
+{
+  "mappings": {
+    "500c43e9-7603-49c3-bb9a-ac9a47787814": {
+      "environmentId": "bfc76448-06b2-4db5-8d73-0498639e8099",
+      "venvPath": "/home/jk/.config/Antigravity/User/globalStorage/deepnote.vscode-deepnote/deepnote-venvs/bfc76448-06b2-4db5-8d73-0498639e8099",
+      "pythonInterpreter": "/bin/python"
+    }
+  }
+}

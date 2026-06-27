@@ -1,58 +1,108 @@
 ---
-title: Heading Component
-description: Semantic typography component for rendering section headings with appropriate hierarchy and visual styles.
+title: Heading
+description: Semantic heading element (h1–h6) with independent visual size and weight control.
 category: Typography
 status: stable
 icon: heading
-version: 0.1.0
-links:
-  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/typography/components/heading"
 ---
-import Heading from "~/typography/components/heading/H.astro";
-import { PropsApi } from "~/components/PropsApi";
-import { HeadingProps } from "~/typography/components/heading/heading.props";
+import H from "../../../design/typography/components/heading/H.astro";
 
 ## Overview
 
-The `Heading` component renders semantic HTML headings (`h1` through `h6`) mapped directly to our typography tokens.
+`Heading` renders `h1`–`h6` based on the `level` prop. Visual size is controlled independently via the `size` prop, so you can use a level-1 heading with a small visual size for SEO without affecting appearance — or a large display size on a level-3 heading without promoting it in the document outline.
+
+Default: `level={2}`. Weight is narrowed to `semibold`, `bold`, or `black`.
+
+---
 
 ## Usage
 
-```astro
-<Heading level={1}>Page Title</Heading>
-<Heading level={2}>Section Title</Heading>
-```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem;">
-  <Heading level={1}>Page Title</Heading>
-  <Heading level={2}>Section Title</Heading>
-</div>
-
-### Semantic Colors
-Headings can also take semantic color roles.
+### Semantic levels
 
 ```astro
-<Heading level={3} color="primary">Primary Heading</Heading>
-<Heading level={3} color="secondary">Secondary Heading</Heading>
-<Heading level={3} color="success">Success Heading</Heading>
+<H level={1}>Page title</H>
+<H level={2}>Section title</H>
+<H level={3}>Subsection</H>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem;">
-  <Heading level={3} color="primary">Primary Heading</Heading>
-  <Heading level={3} color="secondary">Secondary Heading</Heading>
-  <Heading level={3} color="success">Success Heading</Heading>
+
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <H level={1}>Page title</H>
+  <H level={2}>Section title</H>
+  <H level={3}>Subsection</H>
 </div>
 
-### Custom Weights and Sizes
-Use the `weight` and `size` props to override the default typography values while maintaining semantic levels.
+---
+
+### Visual size independent of level
 
 ```astro
-<Heading level={2} weight="black">Black Weight Heading</Heading>
-<Heading level={3} size="xl">Overridden Size Heading</Heading>
+<!-- Large visual, level 3 in the document outline -->
+<H level={3} size="4xl">Display heading</H>
+
+<!-- Small visual on a level 1 (useful for sub-headings in complex layouts) -->
+<H level={1} size="sm">Compact h1</H>
 ```
-<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem;">
-  <Heading level={2} weight="black">Black Weight Heading</Heading>
-  <Heading level={3} size="xl">Overridden Size Heading</Heading>
+
+---
+
+### Weight
+
+```astro
+<H level={2} weight="semibold">Semibold</H>
+<H level={2} weight="bold">Bold (default)</H>
+<H level={2} weight="black">Black</H>
+```
+
+<div style="display: flex; flex-direction: column; gap: 0.25rem;">
+  <H level={2} weight="semibold">Semibold</H>
+  <H level={2} weight="bold">Bold</H>
+  <H level={2} weight="black">Black</H>
 </div>
+
+---
+
+### Color
+
+```astro
+<H level={2} color="primary">Primary</H>
+<H level={2} color="secondary">Secondary</H>
+<H level={2} color="muted">Muted</H>
+<H level={2} color="danger">Danger</H>
+```
+
+---
+
+### Icon
+
+```astro
+<H level={2} icon="star">Featured section</H>
+<H level={3} icon="alert-circle" color="danger">Warning</H>
+```
+
+---
 
 ## Props API
 
-<PropsApi props={HeadingProps} />
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `level` | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `2` | Semantic heading level — controls the rendered element. |
+| `weight` | `"semibold" \| "bold" \| "black"` | CSS default per level | Font weight. |
+| `icon` | `SvgName` | `undefined` | Leading icon rendered before the slot. |
+
+Inherits all `TypographyProps` (`size`, `color`, `align`, `leading`, `tracking`, `fam`, `transform`, `wrap`, `decoration`) and `BaseComponentProps`.
+
+Note: `clamp`, `truncate`, and `fontStyle` are intentionally omitted — they are not appropriate for headings.
+
+---
+
+## Accessibility
+
+- Always choose `level` based on document outline position, not visual size. Use `size` to control appearance.
+- Don't skip heading levels (e.g. going from `h1` directly to `h3`) as this breaks screen reader navigation.
+
+---
+
+## Related
+
+- **Text** — body copy and inline text elements.
+- **Label** — fixed-scale label for form fields.

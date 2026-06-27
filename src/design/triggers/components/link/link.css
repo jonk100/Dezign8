@@ -8,6 +8,9 @@
    ============================================================ */
 
 .link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375em;
   text-decoration: none;
   cursor: pointer;
   /* Smooth transition for color changes on hover, assuming typography handles the initial color */

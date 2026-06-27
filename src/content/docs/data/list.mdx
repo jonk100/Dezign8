@@ -264,3 +264,19 @@ event.detail: {
 **Data-driven mode is for simple cases.** The `itemFields` prop handles the common use case of a primary and secondary line of text. For anything more complex (custom icons per item, complex action buttons), use compound mode with `<ListItem>` and its slots for full control.
 
 **`_highlighted` key in data-driven mode.** Adding `_highlighted: true` to an item record in your `data` array marks that item with `data-highlighted`, which `list.css` styles using the `--data--highlight--*` channels. In compound mode, pass the `highlighted` prop to `<ListItem>` directly.
+
+### Icon Integration
+
+This component supports the **Hybrid Icon Composition** architecture. You can easily add an icon by passing the `icon` prop, or use the `<Icon>` component inside slots for more advanced layouts.
+
+```astro
+<!-- Basic prop usage -->
+<List icon="star">Content</List>
+
+<!-- Advanced slot usage -->
+<List>
+  Content <Icon name="chevron-right" />
+</List>
+```
+
+For more details, see the [Icon component documentation](/assets/icon).

@@ -20,8 +20,25 @@ content=$(printf '%s' "$IN" | jq -r '
   | map(select(. != null)) | join("\n")')
 [ -z "$content" ] && allow
 
-# Rule: no !important
-if printf '%s' "$content" | grep -Eq '!important'; then
+# Rule: no !important — strip block comments first to avoid false positives on docs/strings.
+clean_content=$(printf '%s' "$content" | awk '
+  BEGIN { in_comment=0 }
+  {
+    line = ""
+    for (i=1; i<=length($0); i++) {
+      c = substr($0, i, 1)
+      n = substr($0, i+1, 1)
+      if (in_comment) {
+        if (c == "*" && n == "/") { in_comment=0; i++ }
+        else { line = line " " }
+      } else {
+        if (c == "/" && n == "*") { in_comment=1; i++; line = line " " }
+        else { line = line c }
+      }
+    }
+    print line
+  }')
+if printf '%s' "$clean_content" | grep -Eq '!important'; then
   deny "No !important in CSS — use specificity and structure instead (CLAUDE.md)."
 fi
 

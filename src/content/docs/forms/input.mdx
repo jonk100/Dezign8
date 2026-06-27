@@ -123,6 +123,7 @@ The `start` and `end` named slots render inside the visual field boundary. Non-i
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
+| `icon` | `SvgName` | `undefined` | Leading icon. Automatically placed in the `start` slot. |
 | `type` | `InputType` | `"text"` | Native input type. One of `text`, `email`, `password`, `tel`, `url`, `number`, `search`. |
 | `id` | `string` | — | ID for the inner `<input>`. Required when using `<label for>` or `aria-describedby`. |
 | `value` | `string` | — | Initial or controlled value. |
@@ -196,3 +197,10 @@ Specialised `<input>` types are excluded from `Input` and handled by dedicated c
 | `radio` | `Radio` |
 | `hidden` | Plain `<input type="hidden">` |
 | `button`, `submit`, `reset` | `Button` |
+
+
+## Related
+
+- **Select** — dropdown control with the same slot and icon API.
+- **Field** — accessibility wrapper for pairing Input with Label and helper text.
+- **Search** — Input preconfigured for search with a clear button.

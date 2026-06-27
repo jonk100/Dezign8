@@ -1,0 +1,241 @@
+---
+title: Motion & Animation
+description: Declarative, utility-driven animation system built natively into the design system.
+category: Assets
+status: stable
+icon: zap
+version: 0.1.0
+---
+import Button from "../../../design/triggers/components/button/Button.astro";
+import Alert from "../../../design/feedback/components/alert/Alert.astro";
+import Badge from "../../../design/feedback/components/badge/Badge.astro";
+import Banner from "../../../design/feedback/components/banner/Banner.astro";
+import Tag from "../../../design/feedback/components/tag/Tag.astro";
+import Toast from "../../../design/feedback/components/toast/Toast.astro";
+import Skeleton from "../../../design/feedback/components/skeleton/Skeleton.astro";
+
+## Overview
+
+Dezign8 includes a powerful, hardware-accelerated motion system out of the box. Every single component in the design system extends `BaseComponentProps`, which means **every component supports the `m` (motion) prop**. 
+
+The API uses a clean, declarative syntax: `motion="{phase}:{name}/{duration}/{delay}"`
+
+- **Phases**: `enter` (on mount), `idle` (infinite loops), `exit` (on dismiss)
+- **Compound**: Chain multiple animations with commas (e.g. `shakeIn/300, fadeIn/200`)
+- **Accessibility**: Automatically stripped if the user has `prefers-reduced-motion: reduce`
+
+---
+
+## 1. Enter Animations (Mount)
+
+Enter animations trigger automatically when the element mounts in the DOM.
+
+### Slides & Fades
+Perfect for smooth, unobtrusive entrances.
+
+```astro
+<Alert color="info" motion="enter:slideLeft/400" mDistance="x4">
+  Slide in from the left
+</Alert>
+<Alert color="success" motion="enter:slideDown/400">
+  Slide in from the top
+</Alert>
+<Alert color="primary" motion="enter:fadeIn/600">
+  Fade in gently
+</Alert>
+```
+<div id="section-1" class="example-container" style="position: relative; display: flex; flex-direction: column; gap: 1rem; padding: 3rem 2rem 2rem; border: 1px solid var(--border--default); border-radius: 12px; background: var(--bg--canvas); overflow: hidden;">
+  <div style="position: absolute; top: 0.5rem; right: 0.5rem;">
+    <Button action="replay-motion" target="closest #section-1" icon="refresh-cw" variant="ghost" size="sm" color="neutral" iconOnly aria-label="Replay animations" />
+  </div>
+  <Alert color="info" motion="enter:slideLeft/600">Slide in from the left</Alert>
+  <Alert color="success" motion="enter:slideDown/600">Slide in from the top</Alert>
+  <Alert color="primary" motion="enter:fadeIn/800">Fade in gently</Alert>
+</div>
+
+### Bounces & Springs
+Add a bit of physics and playfulness to your UI.
+
+```astro
+<Button motion="enter:bounceUp/600">Bounce Up</Button>
+<Button color="secondary" motion="enter:bounceLeft/600">Bounce Left</Button>
+<Button color="accent" motion="enter:appear/400">Scale Appear</Button>
+```
+<div id="section-2" class="example-container" style="position: relative; display: flex; gap: 1rem; padding: 3rem 2rem 2rem; border: 1px solid var(--border--default); border-radius: 12px; background: var(--bg--canvas);">
+  <div style="position: absolute; top: 0.5rem; right: 0.5rem;">
+    <Button action="replay-motion" target="closest #section-2" icon="refresh-cw" variant="ghost" size="sm" color="neutral" iconOnly aria-label="Replay animations" />
+  </div>
+  <Button motion="enter:bounceUp/600">Bounce Up</Button>
+  <Button color="secondary" motion="enter:bounceLeft/600">Bounce Left</Button>
+  <Button color="accent" motion="enter:appear/400">Scale Appear</Button>
+</div>
+
+### Shakes, Spins & Stretches
+High-energy entrances for dramatic effect.
+
+```astro
+<Tag color="danger" motion="enter:shakeIn/500">Error Shake</Tag>
+<Tag color="warning" motion="enter:spinIn/600">Spin In</Tag>
+<Tag color="primary" motion="enter:stretchDown/400">Stretch Down</Tag>
+<Tag color="info" motion="enter:blinkIn/1000">Strobe/Blink In</Tag>
+```
+<div id="section-3" class="example-container" style="position: relative; display: flex; gap: 1rem; padding: 3rem 2rem 2rem; border: 1px solid var(--border--default); border-radius: 12px; background: var(--bg--canvas);">
+  <div style="position: absolute; top: 0.5rem; right: 0.5rem;">
+    <Button action="replay-motion" target="closest #section-3" icon="refresh-cw" variant="ghost" size="sm" color="neutral" iconOnly aria-label="Replay animations" />
+  </div>
+  <Tag color="danger" motion="enter:shakeIn/500" icon="alert-circle">Error Shake</Tag>
+  <Tag color="warning" motion="enter:spinIn/600" icon="star">Spin In</Tag>
+  <Tag color="primary" motion="enter:stretchDown/400" icon="arrow-down">Stretch Down</Tag>
+  <Tag color="info" motion="enter:blinkIn/1000" icon="zap">Strobe/Blink In</Tag>
+</div>
+
+---
+
+## 2. Idle Animations (Infinite)
+
+Idle animations loop forever. They are fantastic for drawing attention to specific CTAs, indicating a live state, or adding restless energy to an element.
+
+```astro
+<Badge color="danger" 
+  motion="idle:bounceInPlace/1500">
+  Live
+</Badge>
+<Badge color="warning" motion="idle:shakeInPlace/2000">
+  Pending...
+</Badge>
+<Button color="accent" motion="idle:shakeOnOff/3000">
+  Claim Reward!
+</Button>
+```
+<div id="section-4" class="example-container" style="position: relative; display: flex; gap: 2rem; align-items: center; padding: 3rem 2rem 2rem; border: 1px solid var(--border--default); border-radius: 12px; background: var(--bg--canvas);">
+  <div style="position: absolute; top: 0.5rem; right: 0.5rem;">
+    <Button action="replay-motion" target="closest #section-4" icon="refresh-cw" variant="ghost" size="sm" color="neutral" iconOnly aria-label="Replay animations" />
+  </div>
+  <Badge color="danger" motion="idle:bounceInPlace/1500">Live</Badge>
+  <Badge color="warning" motion="idle:shakeInPlace/2000">Pending...</Badge>
+  <Button color="accent" motion="idle:shakeOnOff/3000" icon="gift">Claim Reward!</Button>
+</div>
+
+---
+
+## 3. Exit Animations (Dismissible)
+
+Because you cannot natively animate an element that is being instantly removed from the DOM, Dezign8 handles this via **Delegated Dismiss**. 
+When a user clicks a button with the `data-dismiss` attribute, the system will read the `data-m-exit` attributes, play the animation, wait for it to finish, and *then* hide the element.
+
+*Click the X on these banners/toasts to see their exit animations!*
+
+```astro
+<Banner color="primary" dismissible motion="exit:slideUp/300">
+  This banner slides up and disappears when closed.
+</Banner>
+
+<Banner color="danger" dismissible motion="exit:shakeOut/400, fadeOut/400">
+  This error banner shakes violently before fading out.
+</Banner>
+
+<Toast title="Action Complete" color="success" dismissible motion="exit:slideRight/300">
+  This toast will slide off-screen to the right.
+</Toast>
+```
+
+<div class="example-container" style="display: flex; flex-direction: column; gap: 1rem; padding: 2rem; border: 1px solid var(--border--default); border-radius: 12px; background: var(--bg--canvas);">
+
+  <div id="exit-ex-1" class="exit-wrapper" style="display: grid;">
+    <Banner color="primary" dismissible motion="exit:slideUp/300" style="grid-area: 1/1;">
+      This banner slides up and disappears when closed.
+    </Banner>
+    <div class="restore-btn-wrapper" style="grid-area: 1/1; display: flex; align-items: center; justify-content: center; min-height: 3rem;">
+      <Button action="replay-motion" target="closest #exit-ex-1" variant="ghost" size="sm" icon="refresh-cw">Restore Banner</Button>
+    </div>
+  </div>
+
+  <div id="exit-ex-2" class="exit-wrapper" style="display: grid;">
+    <Banner color="danger" dismissible motion="exit:shakeOut/400, fadeOut/400" style="grid-area: 1/1;">
+      This error banner shakes violently before fading out.
+    </Banner>
+    <div class="restore-btn-wrapper" style="grid-area: 1/1; display: flex; align-items: center; justify-content: center; min-height: 3rem;">
+      <Button action="replay-motion" target="closest #exit-ex-2" variant="ghost" size="sm" icon="refresh-cw">Restore Error</Button>
+    </div>
+  </div>
+
+  <div id="exit-ex-3" class="exit-wrapper" style="display: grid; justify-items: end;">
+    <Toast title="Action Complete" color="success" dismissible motion="exit:slideRight/300" style="grid-area: 1/1;">
+      This toast will slide off-screen to the right.
+    </Toast>
+    <div class="restore-btn-wrapper" style="grid-area: 1/1; display: flex; align-items: center; justify-content: center; min-height: 3rem;">
+      <Button action="replay-motion" target="closest #exit-ex-3" variant="ghost" size="sm" icon="refresh-cw">Restore Toast</Button>
+    </div>
+  </div>
+</div>
+
+---
+
+---
+
+## 4. Scroll-Triggered Animations
+
+By default, `enter` animations play immediately on mount. If an element is far down the page, it will animate off-screen before you scroll to it! 
+
+You can fix this by adding the `scroll` keyword to your motion string. The element will remain hidden until you scroll it into view, and *then* the `enter` animation plays. It will also seamlessly repeat every time you scroll past it!
+
+```astro
+<Alert color="info" motion="scroll enter:slideLeft/600">
+  I animate in every time you scroll down to me.
+</Alert>
+```
+<div id="section-5" class="example-container" style="position: relative; display: flex; flex-direction: column; gap: 1rem; padding: 2rem; border: 1px solid var(--border--default); border-radius: 12px; background: var(--bg--canvas); overflow: hidden;">
+  <Alert color="info" motion="scroll enter:slideLeft/600">
+    I animate in every time you scroll down to me.
+  </Alert>
+</div>
+
+---
+
+## 5. Compound & Timing Adjustments
+
+You can chain multiple animations together in a single phase using commas, and you can tweak the `duration` and `delay` dynamically.
+Syntax: `name/duration/delay` (duration and delay in milliseconds).
+
+This is especially powerful when combined with `scroll` to create staggered entrances:
+
+```astro
+<div style="display: flex; gap: 1rem;">
+  <Button motion="scroll enter:slideUp/400/0, fadeIn/400/0">First</Button>
+  <Button motion="scroll enter:slideUp/400/200, fadeIn/400/200">Second</Button>
+  <Button motion="scroll enter:slideUp/400/400, fadeIn/400/400">Third</Button>
+</div>
+```
+<div id="section-6" class="example-container" style="position: relative; display: flex; gap: 1rem; padding: 2rem; border: 1px solid var(--border--default); border-radius: 12px; background: var(--bg--canvas); min-height: 120px; align-items: center; justify-content: center;">
+  <Button color="primary" motion="scroll enter:slideUp/400/0, fadeIn/400/0">First</Button>
+  <Button color="primary" motion="scroll enter:slideUp/400/200, fadeIn/400/200">Second</Button>
+  <Button color="primary" motion="scroll enter:slideUp/400/400, fadeIn/400/400">Third</Button>
+</div>
+
+---
+
+## 6. Customizing Travel Distance
+
+Animations that involve movement (like `slide` and `bounce`) use CSS variables for their translation distance. By default, slides move `1.5rem` and bounces move `2rem`. You can override this per element by setting `--m--dist` in the style attribute.
+
+```astro
+<div style="display: flex; gap: 1rem;">
+  <Alert color="info" motion="scroll enter:slideUp/600">Default (1.5rem)</Alert>
+  <Alert color="primary" style="--m--dist: 100px" motion="scroll enter:slideUp/600">Custom (100px)</Alert>
+</div>
+```
+<div id="section-7" class="example-container" style="position: relative; display: flex; gap: 1rem; padding: 2rem; border: 1px solid var(--border--default); border-radius: 12px; background: var(--bg--canvas); min-height: 150px; align-items: flex-start;">
+  <Alert color="info" motion="scroll enter:slideUp/600">Default (1.5rem)</Alert>
+  <Alert color="primary" style="--m--dist: 100px" motion="scroll enter:slideUp/600">Custom (100px)</Alert>
+</div>
+
+## Available Animations Reference
+
+**Slides:** `slideUp`, `slideDown`, `slideLeft`, `slideRight`  
+**Fades:** `fadeIn`, `fadeOut`  
+**Stretches:** `stretchUp`, `stretchDown`, `stretchLeft`, `stretchRight`  
+**Spins:** `spinIn`, `spinOut`, `spinUp`, `spinDown`, `spinLeft`, `spinRight`  
+**Shakes:** `shakeIn`, `shakeOut`, `shakeInfinite`, `shakeOnOff`, `shakeInPlace`  
+**Blinks:** `blinkIn`, `blinkOut`, `blinkUp`, `blinkDown`, `blinkLeft`, `blinkRight`  
+**Bounces:** `bounceUp`, `bounceDown`, `bounceLeft`, `bounceRight`, `bounceInPlace`  
+**Scaling:** `appear`, `disappear`  

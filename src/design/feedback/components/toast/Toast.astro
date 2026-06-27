@@ -6,10 +6,13 @@ import "../../feedback.css";
 import "./toast.css";
 
 const { props, title, dismissible, dismissLabel } = useToast(Astro.props as ToastProps);
+const { icon } = Astro.props;
 ---
 <div {...props}>
-  {Astro.slots.has("icon") && (
-    <div class="toast__icon" aria-hidden="true"><slot name="icon" /></div>
+  {(icon || Astro.slots.has("icon")) && (
+    <div class="toast__icon" aria-hidden="true">
+      {icon ? <Icon name={icon} /> : <slot name="icon" />}
+    </div>
   )}
   <div class="toast__body">
     {title && <div class="toast__title">{title}</div>}

@@ -7,6 +7,7 @@ import { composeClass } from "~/shared/base.hook";
 export function useText(props: TextProps) {
   const {
     as: Tag = TEXT_DEFAULTS.as,
+    icon,
     ...typographyProps
   } = props;
 
@@ -16,7 +17,7 @@ export function useText(props: TextProps) {
     Tag,
     props: {
       ...typographyAttributes,
-      class: composeClass(typographyAttributes.class, "text"),
+      class: composeClass(typographyAttributes.class, "text", icon ? "text--has-icon" : undefined),
     },
   };
 }

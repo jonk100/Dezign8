@@ -41,23 +41,23 @@
 /* ─── HIDDEN NATIVE INPUT ───────────────────────────────────── */
 
 .switch__control {
-  position:       absolute;
-  opacity:        0;
-  inline-size:    0;
-  block-size:     0;
+  position: absolute;
+  opacity: 0;
+  inline-size: 0;
+  block-size: 0;
   pointer-events: none;
 }
 
 /* ─── TRACK ──────────────────────────────────────────────────── */
 
 .switch__track {
-  position:    relative;
-  display:     inline-flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
   flex-shrink: 0;
 
-  inline-size:  calc(var(--form--size, 2.5rem) * 1.1);
-  block-size:   calc(var(--form--size, 2.5rem) * 0.6);
+  inline-size: calc(var(--form--size, 2.5rem) * 1.1);
+  block-size: calc(var(--form--size, 2.5rem) * 0.6);
   border-radius: 9999px;
 
   background-color: var(--border--default);
@@ -67,48 +67,48 @@
 /* ─── THUMB ──────────────────────────────────────────────────── */
 
 .switch__thumb {
-  position:      absolute;
+  position: absolute;
   inset-inline-start: calc(var(--form--size, 2.5rem) * 0.06);
 
-  inline-size:  calc(var(--form--size, 2.5rem) * 0.44);
-  block-size:   calc(var(--form--size, 2.5rem) * 0.44);
+  inline-size: calc(var(--form--size, 2.5rem) * 0.44);
+  block-size: calc(var(--form--size, 2.5rem) * 0.44);
   border-radius: 9999px;
 
-  background:  white;
-  box-shadow:  0 1px 3px rgba(0, 0, 0, 0.2);
-  transition:  transform var(--transition--fast, 150ms ease);
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition--fast, 150ms ease);
 }
 
 /* ─── CHECKED STATE ──────────────────────────────────────────── */
 
-.switch__control:checked ~ .switch__track {
+.switch__control:checked~.switch__track {
   background-color: var(--form--color-base, var(--primary--base));
 }
 
 /* travel = (1.1 − 0.44 − 0.12) × --form--size = 0.54 × --form--size */
-.switch__control:checked ~ .switch__track .switch__thumb {
+.switch__control:checked~.switch__track .switch__thumb {
   transform: translateX(calc(var(--form--size, 2.5rem) * 0.54));
 }
 
 /* ─── FOCUS VISIBLE ─────────────────────────────────────────── */
 
-.switch__control:focus-visible ~ .switch__track {
-  outline:        2px solid var(--form--color-base, var(--primary--base));
+.switch__control:focus-visible~.switch__track {
+  outline: 2px solid var(--form--color-base, var(--primary--base));
   outline-offset: 2px;
 }
 
 /* ─── LABEL ──────────────────────────────────────────────────── */
 
 .switch__label {
-  font-size:   inherit;
+  font-size: inherit;
   line-height: inherit;
-  color:       inherit;
+  color: inherit;
 }
 
 /* ─── LABEL POSITION MODIFIERS ───────────────────────────────── */
 
 .switch--start {
-  flex-direction:  row-reverse;
+  flex-direction: row-reverse;
   justify-content: flex-end;
 }
 
@@ -123,6 +123,7 @@
 /* ─── REDUCED MOTION ────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+
   .switch__track,
   .switch__thumb {
     transition: none;

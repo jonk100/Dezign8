@@ -1,0 +1,76 @@
+---
+/**
+ * Metric
+ *
+ * Renders a complex metric card with value, label, trend, and description.
+ *
+ * @example
+ * ```astro
+ * <Metric value="84%" label="Engagement" description="Up from last week" trend="12%" trendDirection="up" variant="elevated" />
+ * ```
+ */
+import type { MetricProps } from "./metric.props";
+import { useMetric } from "./metric.hook";
+import Skeleton from "~/shared/components/skeleton/Skeleton.astro";
+import Icon from "~/assets/components/icon/Icon.astro";import "~/shared/components/skeleton/skeleton.css";
+import "../../data.css";
+import "./metric.css";
+
+const { Tag, props, value, label, description, trend, trendDirection } = useMetric(Astro.props as MetricProps);
+const { icon } = Astro.props;
+const isLoading = "data-loading" in props;
+---
+<Tag {...props}>
+  {isLoading ? (
+    <>
+      <div class="metric__header">
+        <Skeleton variant="text" lines={1} style="width: 40%" />
+      </div>
+      <div class="metric__value-group" style="margin-top: 0.5rem">
+        <Skeleton variant="text" lines={1} style="height:2em; width:3em" />
+      </div>
+      <div class="metric__description" style="margin-top: 0.5rem">
+        <Skeleton variant="text" lines={2} />
+      </div>
+    </>
+  ) : (
+    <>
+      <div class="metric__header">
+        {Astro.slots.has("label") ? (
+          <div class="metric__label"><slot name="label" /></div>
+        ) : label ? (
+          <div class="metric__label">{label}</div>
+        ) : null}
+        
+        {(icon || Astro.slots.has("icon")) && (
+          <div class="metric__icon">
+            {icon ? <Icon name={icon} /> : <slot name="icon" />}
+          </div>
+        )}
+      </div>
+
+      <div class="metric__value-group">
+        {Astro.slots.has("value") ? (
+          <div class="metric__value"><slot name="value" /></div>
+        ) : value !== undefined ? (
+          <div class="metric__value">{value}</div>
+        ) : null}
+
+        {trend && (
+          <div class={`metric__trend metric__trend--${trendDirection || "neutral"}`}>
+            {trendDirection === "up" && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M6 2L2 6M6 2L10 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+            {trendDirection === "down" && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M6 10L2 6M6 10L10 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+            {trendDirection === "neutral" && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+            <span>{trend}</span>
+          </div>
+        )}
+      </div>
+
+      {Astro.slots.has("description") ? (
+        <div class="metric__description"><slot name="description" /></div>
+      ) : description ? (
+        <div class="metric__description">{description}</div>
+      ) : null}
+    </>
+  )}
+</Tag>

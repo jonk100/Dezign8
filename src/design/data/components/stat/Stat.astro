@@ -1,0 +1,51 @@
+---
+/**
+ * Stat
+ *
+ * Renders a single statistic (value and label).
+ *
+ * @example
+ * ```astro
+ * <Stat value="24k" label="Total Users" color="primary" />
+ * ```
+ */
+import type { StatProps } from "./stat.props";
+import { useStat } from "./stat.hook";
+import Skeleton from "~/shared/components/skeleton/Skeleton.astro";
+import Icon from "~/assets/components/icon/Icon.astro";import "~/shared/components/skeleton/skeleton.css";
+import "../../data.css";
+import "./stat.css";
+
+const { Tag, props, value, label } = useStat(Astro.props as StatProps);
+const { icon } = Astro.props;
+const isLoading = "data-loading" in props;
+---
+<Tag {...props}>
+  {isLoading ? (
+    <>
+      <Skeleton variant="text" lines={1} style="height:2em; width:3em" />
+      <Skeleton variant="text" lines={1} style="width:5em" />
+    </>
+  ) : (
+    <>
+      {(icon || Astro.slots.has("icon")) && (
+        <div class="stat__icon">
+          {icon ? <Icon name={icon} /> : <slot name="icon" />}
+        </div>
+      )}
+      {Astro.slots.has("value") ? (
+        <div class="stat__value"><slot name="value" /></div>
+      ) : value !== undefined ? (
+        <div class="stat__value">{value}</div>
+      ) : (
+        <div class="stat__value"><slot /></div>
+      )}
+      
+      {Astro.slots.has("label") ? (
+        <div class="stat__label"><slot name="label" /></div>
+      ) : label ? (
+        <div class="stat__label">{label}</div>
+      ) : null}
+    </>
+  )}
+</Tag>

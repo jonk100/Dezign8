@@ -194,3 +194,20 @@ Both close the dialog. The distinction is semantic — wire your own confirm log
 
 - **Modal** — general-purpose dialog overlay with close button and backdrop dismiss.
 - **Alert** — inline status message in content flow; no interaction required.
+
+
+### Icon Integration
+
+This component supports the **Hybrid Icon Composition** architecture. You can easily add an icon by passing the `icon` prop, or use the `<Icon>` component inside slots for more advanced layouts.
+
+```astro
+<!-- Basic prop usage -->
+<Alert-dialog icon="star">Content</Alert-dialog>
+
+<!-- Advanced slot usage -->
+<Alert-dialog>
+  Content <Icon name="chevron-right" />
+</Alert-dialog>
+```
+
+For more details, see the [Icon component documentation](/assets/icon).
