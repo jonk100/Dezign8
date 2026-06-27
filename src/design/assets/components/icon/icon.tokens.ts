@@ -6,6 +6,7 @@
  */
 
 import { defineTokens, dimension, scale } from "~/shared/tokens";
+import { ICON_COLOR_DIM } from "~/shared/primitives.tokens";
 
 // ─── SIZE ────────────────────────────────────────────────────────────────────
 //
@@ -33,11 +34,13 @@ const ICON_SIZE = scale({
 
 export const ICON_TOKENS = defineTokens({
   size: dimension("size", ICON_SIZE, { modifier: true }),
+  color: ICON_COLOR_DIM,
 });
 
 // ─── DERIVED TYPES ───────────────────────────────────────────────────────────
 
 export type IconSize = keyof typeof ICON_TOKENS.size.values;
+export type IconColor = keyof typeof ICON_TOKENS.color.values;
 
 /**
  * Opinionated defaults for the Icon component.

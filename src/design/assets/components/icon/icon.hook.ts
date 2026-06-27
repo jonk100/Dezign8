@@ -7,12 +7,20 @@ import { useBaseCompose } from "~/shared/base.hook";
 
 export function useIcon(props: IconProps) {
   const {
+    color,
     name,
     size = ICON_DEFAULTS.size,
     class: className,
     ...base } = props;
 
-  const { style: tokenStyle, classes: tokenClasses } = resolveTokens(ICON_TOKENS, { size }, "icon");
+  const { 
+    style: tokenStyle, 
+    classes: tokenClasses 
+  } = resolveTokens(
+    ICON_TOKENS, 
+    { size, color },
+    "icon"
+  );
 
   const { className: cls, style, attrs, rest } = useBaseCompose(
     {

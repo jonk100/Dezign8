@@ -1,7 +1,7 @@
 // design/assets/components/icon/icon.props.ts
 
 import type { BaseComponentProps } from "~/shared/base.props";
-import type { IconSize } from "./icon.tokens";
+import type { IconSize, IconColor } from "./icon.tokens";
 import type { SvgName } from "~/shared/icons";
 
 export interface IconProps extends BaseComponentProps {
@@ -16,4 +16,5 @@ export interface IconProps extends BaseComponentProps {
    * @default "md"
    */
   size?: IconSize;
+  color?: IconColor;
 }

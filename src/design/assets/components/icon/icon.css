@@ -8,6 +8,7 @@
   display: inline-block;
   vertical-align: middle;
   flex-shrink: 0;
+  color: var(--icon--color, inherit);
 }
 
 /* Ensure SVG matches the container size perfectly */
@@ -15,6 +16,7 @@
   display: block;
   width: 100%;
   height: 100%;
+  stroke: currentColor;
 }
 
 /* ─── SIZE MAPPING ────────────────────────────────────────── */

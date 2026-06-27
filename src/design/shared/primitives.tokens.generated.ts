@@ -170,6 +170,23 @@ export const TEXT_COLOR = scale({
 
 export type TextColor = keyof typeof TEXT_COLOR;
 
+export const ICON_COLOR = scale({
+  primary:    "var(--primary--deep)",
+  secondary:  "var(--secondary--deep)",
+  tertiary:   "var(--tertiary--deep)",
+  muted:      "var(--primary--muted)",
+  disabled:   "var(--primary--disabled)",
+  inverse:    "var(--primary--inverse)",
+  "on-color": "var(--primary--on-color)",
+  inherit:    "inherit",
+  success:    "var(--success--deep)",
+  danger:     "var(--danger--deep)",
+  warning:    "var(--warning--deep)",
+  info:       "var(--info--deep)",
+});
+
+export type IconColor = keyof typeof ICON_COLOR;
+
 export const ALIGN = scale({
   start:    "flex-start",
   center:   "center",

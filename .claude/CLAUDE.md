@@ -11,29 +11,14 @@
 > (documentation, ownership, history, decisions). **Always verify against
 > actual source files before making changes** — the index may be stale.
 
-Last indexed: 2026-06-25 (commit b84f325). Confidence: 100%.
+Last indexed: 2026-06-27 (commit 722bd68). Confidence: 100%.
 ### Architecture
 repo is a design system component library that consumes raw design tokens and style definitions to transform them into a standardized, type-safe React component suite, ultimately producing a modular UI package for consistent application development. The repository serves as the foundational layer for visual consistency, abstracting complex layout, surface, and typography logic into reusable primitives. The library exposes its functionality through granular entry points categorized by domain:
 The repository follows a layered architecture designed for scalability and strict visual adherence:
 **Health & Maintenance:**
 The codebase is currently in an active development phase with high modularity. While the repository contains 605 files and ~42k lines of code, the architecture maintains a clean separation of concerns, evidenced by the absence of high-churn, high-complexity hotspots.
-### Key Modules
-| Module | Purpose |
-|--------|---------|
-| `src/design/data/components` | The data module serves as the presentation-layer abstraction for the design… |
-| `src/design/overlays/components` | The overlays module serves as the presentation layer's interaction subsystem… |
-| `src/design/assets/components` | The assets module serves as the design-system presentation layer of the… |
-| `src/design/feedback/components` | The feedback module serves as the design system's state-representation layer… |
-| `src/design/nav/components` | The nav module serves as the UI navigation subsystem of the design system… |
-| `src/design/surfaces/components` | The surfaces module serves as the presentation layer of the design system… |
-| `src/design/triggers/components` | The triggers module serves as the component-level abstraction layer within the… |
-| `src/design/layout/components` | The layout module serves as the structural presentation layer of the design… |
-| `src/design/typography/components` | The typography module acts as the presentation logic layer of the design system… |
-| `src/design/forms/components` | The forms module serves as the design system's input orchestration layer — it… |
 ### Entry Points
 - `src/design/shared/definitions/index.ts`
-- `src/design/layout/components/grid/grid.props.ts`
-- `src/design/typography/components/quote/quote.props.ts`
 - `src/design/surfaces/components/card/index.ts`
 - `src/design/surfaces/components/frame/index.ts`
 - `src/design/surfaces/components/panel/index.ts`
@@ -41,6 +26,8 @@ The codebase is currently in an active development phase with high modularity. W
 - `src/design/surfaces/components/section/index.ts`
 - `src/design/surfaces/components/tile/index.ts`
 - `src/design/surfaces/components/well/index.ts`
+- `src/design/layout/components/center/index.ts`
+- `src/design/layout/components/container/index.ts`
 ### Tech Stack
 **Languages:** Node.js, TypeScript
 
@@ -48,12 +35,13 @@ The codebase is currently in an active development phase with high modularity. W
 ### Architectural Layers
 | Layer | Files | Purpose |
 |-------|-------|---------|
-| Design System Components | 358 | A comprehensive library of reusable UI components and their associated design… |
-| Data Visualization Modules | 36 | Logic and definitions for rendering data-driven charts, graphs, and… |
-| Project Environment Settings | 6 | Configuration files and metadata for local development tools, AI assistants… |
-| Shared Design Primitives | 23 | Core design definitions, motion utilities, and base styling constants used… |
-| Design System Specifications | 56 | Global property definitions and token schemas that define the visual language… |
-| Documentation and Plugins | 91 | A collection of MDX documentation files and build-time plugins used for content… |
+| UI | 358 |  |
+| Data | 36 |  |
+| Config | 67 |  |
+| Utility | 23 |  |
+| Application | 60 |  |
+| Docs & Tooling | 106 |  |
+| Test | 1 |  |
 
 ### Guided Tour (12 steps)
 1. `README.md` — Start here for the end-to-end picture before diving into the code.
@@ -66,24 +54,24 @@ The codebase is currently in an active development phase with high modularity. W
 ### Hotspots (High Churn)
 | File | Churn | 90d Commits | Owner |
 |------|-------|-------------|-------|
-| `pnpm-lock.yaml` | 100.0th %ile | 6 | Jon K |
-| `.repowise/.update.log` | 99.9th %ile | 5 | Jon K |
-| `ai/agent_decision_log.md` | 99.8th %ile | 14 | Jon K |
-| `src/design/shared/primitives.tokens.ts` | 99.6th %ile | 6 | Jon K |
-| `.repowise/knowledge-graph.json` | 99.5th %ile | 3 | Jon K |
+| `pnpm-lock.yaml` | 100.0th %ile | 7 | Jon K |
+| `.repowise/.update.log` | 99.9th %ile | 6 | Jon K |
+| `.repowise/knowledge-graph.json` | 99.8th %ile | 4 | Jon K |
+| `src/design/data/data_directory_index.md` | 99.7th %ile | 3 | Jon K |
+| `src/design/docs/docs_directory_index.md` | 99.5th %ile | 3 | Jon K |
 
 ## Code health
 Three signals: **defect risk** (the overall score), **maintainability** (smells that hurt readability/change-cost without predicting bugs), and **performance** (static performance RISK: I/O-in-loop / N+1 shapes that waste work, high-precision/low-recall). Maintainability and performance are co-equal views, never blended into the defect headline. See `docs/CODE_HEALTH.md`.
 
-Defect risk, Hotspot health: 9.29/10 (stable) ·
-Average: 9.89/10 ·
-Worst: 6.72/10 (`src/design/surfaces/surface.hook.ts`)
-Maintainability, Average: 9.91/10
-Performance risk, Average: 9.99/10
+Defect risk, Hotspot health: 8.79/10 (stable) ·
+Average: 9.45/10 ·
+Worst: 5.49/10 (`src/design/triggers/trigger.hook.ts`)
+Maintainability, Average: 9.94/10
+Performance risk, Average: 10.0/10
 
 ### Critical biomarkers
-- `.claude/CLAUDE.md` — hidden coupling — impact −2.0
-- `.repowise/state.json` — hidden coupling — impact −2.0
+- `src/design/forms/components/combobox/combobox.props.ts` — churn risk — impact −2.4
+- `src/design/shared/primitives.tokens.ts` — churn risk — impact −2.4
 - `src/design/surfaces/surface.hook.ts` — brain method (useSurface) — impact −0.3
 
 ### Repowise MCP Tools
@@ -120,13 +108,14 @@ This repo has the Repowise MCP server configured. The tools below answer questio
 ### Output Distillation
 
 - Prefer `repowise distill <cmd>` for noisy commands — test runs, builds, `git status`/`log`/`diff`, searches, file listings. It runs the command unchanged (exit code preserved) and prints a compact, errors-first rendering; every error line survives.
-- Output may contain a marker like `[repowise#/A1b2c3d4e5f6: 230 lines omitted (~6.1k tokens); restore: repowise expand a1b2c3d4e5f6]`. The omitted content is fully preserved — run `repowise expand <ref>` to retrieve it, or `repowise expand <ref> -q <regex>` for just the matching lines.
+- Output may contain a marker like `[repowise#a1b2c3d4e5f6: 230 lines omitted (~6.1k tokens); restore: repowise expand a1b2c3d4e5f6]`. The omitted content is fully preserved — run `repowise expand <ref>` to retrieve it, or `repowise expand <ref> -q <regex>` for just the matching lines.
 - Never re-run a command to see omitted output; expand the marker instead.
 - For structure-level questions about a large indexed file ("what's in here", "which function handles X"), `get_context(["path"], include=["skeleton"])` returns the file with bodies elided — every signature plus the bodies of the most central symbols — at a fraction of the cost of a full Read.
 
 ### Codebase Conventions
 **Commands:**
 - Build: `pnpm build`
+- Lint: `pnpm lint`
 - Dev: `pnpm dev`
 
 <!-- REPOWISE:END -->

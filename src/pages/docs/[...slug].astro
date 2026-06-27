@@ -7,6 +7,7 @@ import Image from '~/assets/components/image/Image.astro';
 import Text from '~/typography/components/text/Text.astro';
 import Stack from '~/layout/components/stack/Stack.astro';
 import Code from '~/typography/components/code/Code.astro';
+import H from '~/typography/components/heading/H.astro';
 
 export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
@@ -47,6 +48,12 @@ const mdxComponents = {
   table: Table,
   img: Image,
   code: Code,
+  h1: H,
+  h2: H,
+  h3: H,
+  h4: H,
+  h5: H,
+  h6: H,
   Text,
   Stack,
 };

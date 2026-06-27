@@ -12,7 +12,7 @@ import { dimension } from "./tokens";
 import {
   SPACE, RADIUS, ALIGN, JUSTIFY,
   WEIGHT, FAMILY, LEADING, TRACKING,
-  COLOR_ROLE, VARIANT, TEXT_COLOR,
+  COLOR_ROLE, VARIANT, TEXT_COLOR, ICON_COLOR,
 } from "./primitives.tokens.generated";
 import type { ColorRole } from "./primitives.tokens.generated";
 
@@ -31,6 +31,7 @@ export const TRACKING_DIM  = dimension("tracking", TRACKING);
 export const COLOR_DIM     = dimension("color",    COLOR_ROLE, { modifier: true });
 export const VARIANT_DIM   = dimension("variant",  VARIANT,    { modifier: true });
 export const TEXT_COLOR_DIM = dimension("color",   TEXT_COLOR);
+export const ICON_COLOR_DIM = dimension("color", ICON_COLOR);
 
 /* ─── COLOR STEPS ────────────────────────────────────────── */
 

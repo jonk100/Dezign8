@@ -58,7 +58,10 @@ export function useTypography(props: TypographyProps) {
     ...base
   } = props;
 
-  const { style: tokenStyle, classes: tokenClasses } = resolveTokens(
+  const { 
+    style: tokenStyle, 
+    classes: tokenClasses 
+  } = resolveTokens(
     TYPOGRAPHY_TOKENS,
     { size, weight, color, align, leading, tracking, fam, transform, wrap, decoration, style: fontStyle },
     "typography",
