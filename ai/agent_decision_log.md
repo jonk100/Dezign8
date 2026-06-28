@@ -1,6 +1,22 @@
 # Decision Log =======================
 ________________________________________
 - Document key decisions and changes made
+## 2026/06/28 to 2026/06/28 - Antigravity session
+
+[Indent Component API](antigravity_session_summary.md/628-628_indent_component_api.md)
+
+### New files
+* `src/design/typography/components/indent/indent.tokens.ts`
+* `src/design/typography/components/indent/indent.props.ts`
+* `src/design/typography/components/indent/indent.hook.ts`
+* `src/design/typography/components/indent/indent.css`
+* `src/design/typography/components/indent/Indent.astro`
+
+### Updated files
+*(None)*
+
+---
+
 ## 2026/06/27 to 2026/06/27 - Antigravity session
 
 [Map CSS lengths in ImageProps to inline styles](antigravity_session_summary.md/627-627_image_hook_style_mapping.md)
