@@ -6,6 +6,7 @@ import mdx from '@astrojs/mdx';
 import { defineConfig } from 'astro/config';
 import { tokensPlugin } from "./plugins/tokens"
 import { checkCssVarsPlugin } from "./plugins/check-css-vars";
+import { propsPlugin } from "./plugins/props";
 import { rehypeHeadingLevel } from "./src/plugins/rehype-heading-level.mjs";
 
 // https://astro.build/config
@@ -20,6 +21,7 @@ export default defineConfig({
       // Token generatiom
       tokensPlugin(),
       checkCssVarsPlugin(),
+      propsPlugin(),
       // eslint()
     ],
     resolve: {

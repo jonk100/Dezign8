@@ -208,12 +208,12 @@ export function useForm(props: FormProps) {
   if (invalid) { ariaAttrs["aria-invalid"] = "true"; ariaAttrs["data-invalid"] = ""; }
 
   // ── Class + style composition ─────────────────────────────────────────────
-  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs } = useBaseCompose(
     {
       className: [
         "form",
         ...tokenClasses,                          // form--outlined, form--primary
-        disabled && "form--disabled",            // CSS: pointer-events, opacity
+        disabled  && "form--disabled",            // CSS: pointer-events, opacity
         invalid && "form--invalid",             // CSS: error-state ring/border
         fullWidth && "form--full-width",          // CSS: width: 100%
         className,
@@ -242,6 +242,5 @@ export function useForm(props: FormProps) {
     required,
     invalid,
     rest: restAttrs,
-    spacing,
   };
 }

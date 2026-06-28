@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import DocsLayout from '../../layouts/docs/DocsLayout.astro';
+import PropsTable from '../../layouts/docs/PropsTable.astro';
 import Prose from '~/typography/components/prose/Prose.astro';
 import Table from '~/data/components/table/Table.astro';
 import Image from '~/assets/components/image/Image.astro';
@@ -58,7 +59,11 @@ const mdxComponents = {
   Stack,
 };
 
+// ponytail: simplified implementation; props.generated.json created by propsPlugin at build start
+const propsData = (await import('../../styles/props.generated.json')).default as any;
+
 const { title, description, category, status, version, icon, links } = entry.data;
+const componentProps = propsData[entry.id] ?? [];
 
 const prev = prevEntry ? { title: prevEntry.data.title, href: `/docs/${prevEntry.id}` } : undefined;
 const next = nextEntry ? { title: nextEntry.data.title, href: `/docs/${nextEntry.id}` } : undefined;
@@ -75,7 +80,11 @@ const next = nextEntry ? { title: nextEntry.data.title, href: `/docs/${nextEntry
   prev={prev}
   next={next}
 >
+  <!-- <H level={3}>
+    {title}
+  </H> -->
   <Prose>
     <Content components={mdxComponents} />
   </Prose>
+  <PropsTable props={componentProps} />
 </DocsLayout>

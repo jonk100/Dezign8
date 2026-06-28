@@ -34,6 +34,7 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
 
 
   // Interior spacing — padding, component gaps
+  "space-in--4xs": "calc(var(--size-00) / 2)",
   "space-in--3xs": "calc(var(--size-01) / 2)",
   "space-in--2xs":      "var(--size-00)",
   "space-in--xs":       "var(--size-01)",
@@ -46,6 +47,7 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "space-in--4xl":      "var(--size-12)",
   "space-in--5xl":      "var(--size-15)",
 
+  "padding--4xs": "var(--space-in--4xs)",
   "padding--3xs": "var(--space-in--3xs)",
   "padding--2xs": "var(--space-in--2xs)",
   "padding--xs":  "var(--space-in--xs)",
@@ -59,15 +61,15 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "padding--5xl": "var(--space-in--5xl)",
 
   // Exterior spacing — section margins, layout gaps
-  "space-out--3xs": "calc(var(--size-4) / 2)",
+  "space-out--3xs": "calc(var(--size-3) / 2)",
   "space-out--2xs":      "var(--size-0)",
   "space-out--xs":       "var(--size-2)",
   "space-out--sm":       "var(--size-4)",
   "space-out--md":       "var(--size-6)",
-  "space-out--lg":       "var(--size-9)",
-  "space-out--xl":       "var(--size-11)",
-  "space-out--2xl":      "var(--size-14)",
-  "space-out--3xl":      "var(--size-16)",
+  "space-out--lg":       "var(--size-8)",
+  "space-out--xl":       "var(--size-10)",
+  "space-out--2xl":      "var(--size-12)",
+  "space-out--3xl":      "var(--size-15)",
 
   "margin--3xs": "var(--space-out--3xs)",
   "margin--2xs": "var(--space-out--2xs)",

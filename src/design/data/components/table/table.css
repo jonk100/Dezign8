@@ -328,3 +328,49 @@
     transition: none;
   }
 }
+
+.component-table-wrapper {
+  margin: 2rem 0 3rem 0;
+  overflow-x: auto;
+}
+.component-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg--1);
+  border: 1px solid var(--border--default);
+  border-radius: var(--radius--md, 0.5rem);
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.component-table th, .component-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border--subtle);
+  text-align: left;
+  vertical-align: top;
+}
+.component-table th {
+  background: var(--bg--2);
+  font-weight: var(--weight--semibold, 600);
+  color: var(--text--layer-1);
+  font-size: var(--fs--sm, 0.875rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.component-table tr:last-child td {
+  border-bottom: none;
+}
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.clickable-row:hover {
+  background-color: var(--bg--2, #f9fafb);
+}
+.component-link {
+  color: var(--primary--text, #3b82f6);
+  text-decoration: none;
+  font-weight: var(--weight--medium, 500);
+}
+.clickable-row:hover .component-link {
+  text-decoration: underline;
+}

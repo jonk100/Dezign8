@@ -1,0 +1,157 @@
+/* props-table.css — auto-generated props documentation table */
+
+.props-section {
+  margin-block-start: var(--space-out--sm);
+}
+
+.props-section__heading {
+  font-size: var(--fs--xl);
+  font-weight: var(--weight--semibold);
+  color: var(--text--primary);
+  margin-block-end: var(--space-out--sm);
+}
+
+/* ─── GROUP (details/summary) ───────────────────────────────── */
+
+.props-group {
+  margin-block-end: var(--space-out--lg);
+  border: 1px solid var(--border--subtle, color-mix(in srgb, currentColor 12%, transparent));
+  border-radius: var(--radius--md);
+  overflow: hidden;
+}
+
+.props-group__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-in--xs);
+  padding: var(--space-in--sm) var(--space-in--md);
+  font-size: var(--fsf--xl);
+  font-weight: var(--weight--semibold);
+  font-family: var(--family--mono);
+  color: var(--text--secondary);
+  background: color-mix(in srgb, currentColor 4%, transparent);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+.props-group__label::-webkit-details-marker { display: none; }
+
+.props-group__label::before {
+  content: "▶";
+  font-size: 0.6em;
+  transition: transform 0.15s ease;
+}
+
+details[open] > .props-group__label::before {
+  transform: rotate(90deg);
+}
+
+.props-group--base > .props-group__label {
+  color: var(--text--muted);
+}
+
+/* ─── TABLE ─────────────────────────────────────────────────── */
+
+.props-table-wrap {
+  overflow-x: auto;
+}
+
+.props-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fsf--md);
+}
+
+.props-table thead tr {
+  background: color-mix(in srgb, currentColor 3%, transparent);
+}
+
+.props-table th {
+  padding: var(--space-in--xs) var(--space-in--md);
+  text-align: start;
+  font-size: var(--fsf--md);
+  font-weight: var(--weight--semibold);
+  color: var(--text--muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking--wider);
+  border-block-end: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  white-space: nowrap;
+}
+
+.props-table td {
+  padding: var(--space-in--xs) var(--space-in--md);
+  vertical-align: top;
+  border-block-end: 1px solid color-mix(in srgb, currentColor 6%, transparent);
+  color: var(--text--secondary);
+}
+
+.props-table tbody tr:last-child td {
+  border-block-end: none;
+}
+
+.props-table tbody tr:hover td {
+  background: color-mix(in srgb, currentColor 2%, transparent);
+}
+
+/* ─── COLUMN WIDTHS ─────────────────────────────────────────── */
+
+.col-name    { width: 19%; white-space: nowrap; }
+.col-type    { width: 25%; }
+.col-default { width: 10%; white-space: nowrap; }
+.col-wired   { width: 4%;  white-space: nowrap; text-align: center; }
+.col-desc    { width: 20%; }
+
+/* ─── CELL CONTENT ──────────────────────────────────────────── */
+
+.prop-name {
+  font-family: var(--family--mono);
+  font-size: var(--fsf--xl);
+  padding: var(--space-in--3xs) var(--space-in--sm);
+  border-radius: var(--radius--xs);
+}
+
+.prop-name--required {
+  color: var(--text--tertiary);
+  font-weight: var(--weight--bold);
+  background: color-mix(in srgb, var(--primary--muted) 90%, black);
+}
+
+.prop-name--optional {
+  color: var(--text--secondary);
+  background: color-mix(in srgb, currentColor 7%, transparent);
+}
+
+.prop-type {
+  font-family: var(--family--mono);
+  font-size: var(--fsf--xs);
+  color: var(--text--secondary);
+  word-break: break-all;
+}
+
+.prop-default {
+  font-family: var(--family--mono);
+  font-size: var(--fsf--2xl);
+  color: var(--text--tertiary);
+}
+
+.prop-empty {
+  color: var(--text--muted);
+  opacity: 0.5;
+}
+
+/* ─── WIRED INDICATOR ───────────────────────────────────────── */
+
+.wired-yes {
+  color: var(--success--text, #38a169);
+  font-weight: var(--weight--bold);
+}
+
+.wired-no {
+  color: var(--text--muted);
+  opacity: 0.4;
+}
+
+.row--unwired td {
+  opacity: 0.6;
+}

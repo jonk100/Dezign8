@@ -21,7 +21,6 @@ export function useTrigger(props: TriggerProps) {
     rel,
     class: className,
     bg,
-    m,
     ...base
   } = props;
 

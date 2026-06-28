@@ -1,13 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/docs/DocsLayout.astro';
-import Prose from '~/typography/components/prose/Prose.astro';
+
 import Table from '~/data/components/table/Table.astro';
 import Image from '~/assets/components/image/Image.astro';
 import Text from '~/typography/components/text/Text.astro';
 import Stack from '~/layout/components/stack/Stack.astro';
 import Code from '~/typography/components/code/Code.astro';
 import Link from '~/triggers/components/link/Link.astro';
+import Grid from '~/layout/components/grid/Grid.astro';
+import Stat from '~/data/components/stat/Stat.astro';
+import Box from '~/layout/components/box/Box.astro';
 
 // Live component counts via glob — excludes .roadmap and parts/ sub-components
 const allComponents   = import.meta.glob('../design/*/components/**/*.astro');
@@ -50,13 +53,7 @@ allDocs.forEach((doc: any) => {
 	}
 });
 
-const mdxComponents = {
-  table: Table,
-  img: Image,
-  code: Code,
-  Text,
-  Stack,
-};
+
 
 const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) => ({
 	name,
@@ -66,32 +63,23 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 ---
 
 <Layout title="Component Library" showTitle={false}>
-	<Prose>
 	<section class="container">
-		<Image as="h1" v="image" src="/horizontal-blue.png" alt="Dezign8 Logo" mb="3xl" />
-		<Text size="xl" color="tertiary">Interface Emitter for Smooth Browsing.</Text>
-
+		<Box mb="lg">
+			<Image fit="contain" as="h1" height="20px" src="/horizontal-blue.png" alt="Dezign8 Logo" mb="sm" ml="none" />
+			<Text size="lg" color="tertiary" weight="thin" fontStyle="oblique">Interface Emitter for Smooth Browsing.</Text>
+		</Box>
 		<!-- ── TOP-LINE STATS ──────────────────────────────────── -->
-		<div class="stat-hero">
-			<div class="stat-hero__item stat-hero__item--primary">
-				<span class="stat-hero__num">{totalComponents}</span>
-				<span class="stat-hero__label">Total Components</span>
-			</div>
-			<div class="stat-hero__item">
-				<span class="stat-hero__num">{totalProps}</span>
-				<span class="stat-hero__label">Prop Interfaces</span>
-			</div>
-			<div class="stat-hero__item">
-				<span class="stat-hero__num">{sharedProps}</span>
-				<span class="stat-hero__label">Shared Base Props</span>
-			</div>
-			<div class="stat-hero__item">
-				<span class="stat-hero__num">{categories.length}</span>
-				<span class="stat-hero__label">Categories</span>
-			</div>
-		</div>
+		<!-- <div class="stat-hero"> -->
+		<Grid columns="4" gap="lg" py="2xl" px="xs" >
+			<Stat value={totalComponents} label="Total Components" color="secondary" variant="outlined" size="lg" />
+			<Stat value={totalProps} label="Prop Interfaces" color="tertiary" variant="outlined" size="lg" />
+			<Stat value={sharedProps} label="Shared Base Props" color="warning" variant="outlined" size="lg" />
+			<Stat value={categories.length} label="Categories" color="primary" variant="outlined" size="lg" />
+		</Grid>
 
 		<!-- ── PER-CATEGORY BREAKDOWN ─────────────────────────── -->
+
+
 		<div class="stat-grid">
 			{categoryStats.map(s => (
 				<a href={`/docs/${s.name}`} class="stat-card">
@@ -131,5 +119,197 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 			)}
 		</div>
 	</section>
-	</Prose>
+
 </Layout>
+
+<style>
+	/* .container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 2rem 1rem;
+	} */
+	/* h1 {
+		font-size: var(--fs--3xl, 2.5rem);
+		font-weight: var(--weight--bold, 700);
+		line-height: var(--leading--none);
+		margin-bottom: 0.5rem;
+	} */
+	/* .subtitle {
+		font-size: var(--fs--lg);
+		color: var(--text--secondary);
+		margin-bottom: var(--space-out--lg);
+	} */
+	/* .categories-list {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+	
+
+	
+	.category-link {
+		color: var(--text--layer-3);
+		text-decoration: none;
+		border-bottom: 2px solid transparent;
+		transition: border-color 0.2s;
+	}
+	
+	.category-link:hover {
+		border-bottom-color: var(--primary--base, #3b82f6);
+	}
+	
+	.category-desc {
+		font-size: var(--fs--sm);
+		margin: 0 0 1.5rem 0;
+		color: var(--text--layer-1);
+		line-height: var(--leading--normal);
+	}
+	
+	.component-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 0 1rem;
+		border-left: 2px solid var(--border--subtle);
+	}
+	
+	.component-list li {
+		margin-bottom: 1.5rem;
+		padding-left: 1rem;
+	}
+	
+	.component-list li:last-child {
+		margin-bottom: 0;
+	}
+	
+	.component-link {
+		font-size: var(--fs--md);
+		font-weight: var(--weight--semibold);
+		color: var(--primary--text);
+		text-decoration: none;
+		display: inline-block;
+		margin-bottom: 0.25rem;
+	}
+	
+	.component-link:hover {
+		text-decoration: underline;
+	}
+	
+	.desc {
+		margin: 0;
+		color: var(--text--muted);
+		font-size: var(--fs--sm);
+	}
+	
+	.desc.empty {
+		font-style: italic;
+	} */
+
+	/* ── STAT HERO ─────────────────────────────────────────── */
+	
+	.stat-hero__item {
+		background: var(--bg--1);
+		border: 1px solid var(--border--subtle);
+		border-radius: var(--radius--xl);
+		padding: var(--space-in--md) var(--space-in--lg);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-in--2xl);
+		box-shadow: var(--shadow--lg);
+	}
+
+	.stat-hero__item--primary {
+		background: var(--primary--subtle);
+		border-color: var(--primary--border);
+	}
+
+	.stat-hero__num {
+		font-size: clamp(2rem, 3vi, 3.2rem);
+		font-weight: var(--weight--black);
+		line-height: 1;
+		color: var(--text--layer-1);
+		letter-spacing: var(--tracking--tight);
+	}
+
+	.stat-hero__item--primary .stat-hero__num {
+		color: var(--primary--text);
+	}
+
+	.stat-hero__label {
+		font-size: var(--fs--xs);
+		font-weight: var(--weight--semibold);
+		color: var(--text--muted);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	/* ── STAT GRID ─────────────────────────────────────────── */
+
+	.stat-grid {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 0.75rem;
+		margin-bottom: 3rem;
+	}
+
+	.stat-card {
+		background: var(--bg--1);
+		border: 1px solid var(--border--subtle);
+		border-radius: var(--radius--lg);
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		text-decoration: none;
+		color: inherit;
+		position: relative;
+		overflow: hidden;
+		transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+	}
+
+	.stat-card:hover {
+		border-color: var(--primary--border);
+		box-shadow: var(--shadow--md);
+		transform: translateY(-2px);
+	}
+
+	.stat-card__num {
+		font-size: 1.9rem;
+		font-weight: var(--weight--black);
+		line-height: 1;
+		color: var(--text--layer-1);
+		letter-spacing: var(--tracking--tight);
+	}
+
+	.stat-card__name {
+		font-size: var(--fs--xs);
+		font-weight: var(--weight--semibold);
+		color: var(--text--layer-2);
+		margin-top: 0.25rem;
+	}
+
+	.stat-card__sub {
+		font-size: var(--fs--xs);
+		color: var(--text--muted);
+	}
+
+	.stat-card__bar {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 3px;
+		width: var(--fill, 0%);
+		background: var(--primary--vivid);
+		border-radius: 0 2px 0 0;
+		opacity: 0.6;
+		transition: opacity 0.15s;
+	}
+
+	.stat-card:hover .stat-card__bar {
+		opacity: 1;
+	}
+
+	@media (max-width: 700px) {
+		.stat-hero { grid-template-columns: repeat(2, 1fr); }
+		.stat-grid  { grid-template-columns: repeat(2, 1fr); }
+	}
+</style>

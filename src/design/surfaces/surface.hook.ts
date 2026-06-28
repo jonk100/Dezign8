@@ -96,7 +96,7 @@ export function useSurface(props: SurfaceProps) {
   const shadowOverride = shadow ? `--surface--shadow: ${shadow}` : null;
   const blurVar        = glass  ? `--surface--blur: ${blur}`     : null;
 
-  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs } = useBaseCompose(
     {
       className: [
         "surface",
@@ -123,6 +123,5 @@ export function useSurface(props: SurfaceProps) {
     surfaceStyle: style,
     surfaceAttrs: attrs,
     rest: restAttrs,
-    spacing,
   };
 }

@@ -1,20 +1,29 @@
 .stat {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--data--size) * 0.25);
+  align-items: start;
+  justify-content: start;
+  
+  /* gap: calc(var(--data--size) * 1.25); */
+  /* padding: auto var(--space-in--md); */
 }
 
 .stat__value {
-  font-size: calc(var(--data--size) * 2.5);
+  font-size: calc(var(--data--size) * 7.5);
   line-height: 1;
-  font-weight: 600;
-  color: var(--data--color--text, var(--text--default));
-  letter-spacing: -0.02em;
+  font-weight: var(--weight--black);
+  color: var(--data--color--text);
+  font-family: var(--family--sans);
+  letter-spacing: calc(var(--tracking--loose) * 2);
+  line-height: var(--leading--none);
+  margin-left: 0.25em;
+  
 }
 
 .stat__label {
-  font-size: var(--fs--sm);
+  font-size: var(--fs--xs);
   color: var(--text--muted);
+  margin-left: var(--space-in--md);
 }
 
 .stat[data-loading] .stat__value,

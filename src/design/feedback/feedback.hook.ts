@@ -129,7 +129,7 @@ export function useFeedback(props: FeedbackProps) {
 
   // ── Class + style composition ──────────────────────────────────────────────
 
-  const { className: cls, style, attrs, rest, spacing } = useBaseCompose(
+  const { className: cls, style, attrs, rest } = useBaseCompose(
     {
       className: [
         "feedback",
@@ -154,6 +154,5 @@ export function useFeedback(props: FeedbackProps) {
       ...dataAttrs,
     },
     rest,
-    spacing,
   };
 }

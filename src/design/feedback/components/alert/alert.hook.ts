@@ -3,7 +3,6 @@
 import { useFeedback }                    from "../../feedback.hook";
 import { composeClass, composeStyle }     from "~sh/base.hook";
 import { ALERT_DEFAULTS, ALERT_SIZE_MAP } from "./alert.tokens";
-import { resolveSpacingStyles }           from "~/shared/spacing.props";
 import type { AlertSize }                 from "./alert.tokens";
 import type { AlertProps }                from "./alert.props";
 
@@ -19,7 +18,7 @@ export function useAlert(props: AlertProps) {
     ...feedbackProps
   } = props;
 
-  const { feedbackClass, feedbackStyle, feedbackAttrs, rest, spacing } =
+  const { feedbackClass, feedbackStyle, feedbackAttrs, rest } =
     useFeedback({ variant, color, radius, size: size as AlertSize, ...feedbackProps });
 
   const sizeMap = ALERT_SIZE_MAP[size as AlertSize];
@@ -28,7 +27,6 @@ export function useAlert(props: AlertProps) {
     `--alert--font-size: ${sizeMap.fontSize}`,
     `--alert--padding: ${sizeMap.p}`,
     `--alert--gap: ${sizeMap.gap}`,
-    ...resolveSpacingStyles(spacing, "alert"),
   ];
 
   return {

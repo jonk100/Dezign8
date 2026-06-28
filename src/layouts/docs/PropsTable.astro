@@ -1,0 +1,81 @@
+---
+import "./props-table.css";
+
+const BASE_IFACES = new Set(["BaseComponentProps", "SpacingProps", "AriaProps", "IconProps"]);
+
+interface PropInfo {
+  name:        string;
+  type:        string;
+  optional:    boolean;
+  description: string;
+  default?:    string;
+  from:        string;
+  wired:       boolean;
+}
+
+interface Props {
+  props?: PropInfo[];
+}
+
+const { props = [] } = Astro.props;
+
+// Group by `from`, preserving sort order emitted by the plugin
+const groups = new Map<string, PropInfo[]>();
+for (const prop of props) {
+  const arr = groups.get(prop.from) ?? [];
+  arr.push(prop);
+  groups.set(prop.from, arr);
+}
+---
+
+{props.length > 0 && (
+  <section class="props-section">
+    <h2 class="props-section__heading">Props</h2>
+
+    {Array.from(groups.entries()).map(([ifaceName, groupProps]) => {
+      const isBase = BASE_IFACES.has(ifaceName);
+      return (
+        <details class:list={["props-group", isBase && "props-group--base"]} open={!isBase}>
+          <summary class="props-group__label">{ifaceName}</summary>
+          <div class="props-table-wrap">
+            <table class="props-table">
+              <thead>
+                <tr>
+                  <th class="col-name">Prop</th>
+                  <th class="col-type">Type</th>
+                  <th class="col-default">Default</th>
+                  <th class="col-wired">Wired</th>
+                  <th class="col-desc">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {groupProps.map(p => (
+                  <tr class:list={[!p.wired && "row--unwired"]}>
+                    <td class="col-name">
+                      <code class:list={["prop-name", p.optional ? "prop-name--optional" : "prop-name--required"]}>
+                        {p.name}{p.optional ? "?" : ""}
+                      </code>
+                    </td>
+                    <td class="col-type"><code class="prop-type">{p.type}</code></td>
+                    <td class="col-default">
+                      {p.default ? <code class="prop-default">{p.default}</code> : <span class="prop-empty">—</span>}
+                    </td>
+                    <td class="col-wired">
+                      {p.wired
+                        ? <span class="wired-yes" title="Consumed by this component's hook">✓</span>
+                        : <span class="wired-no"  title="Inherited but not yet wired in this component">✗</span>
+                      }
+                    </td>
+                    <td class="col-desc">
+                      {p.description ? p.description : <span class="prop-empty">—</span>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      );
+    })}
+  </section>
+)}

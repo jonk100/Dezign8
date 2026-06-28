@@ -1,6 +1,13 @@
 import { composeTokens, dimension, scale } from "~/shared/tokens";
 import { LAYOUT_TOKENS } from "../../layout.tokens";
 
+/**
+ * Grid columns. Works like CSS grid-template-columns.
+ * @example
+ *   <Grid columns="repeat(auto-fit, minmax(10rem, 1fr))">
+ *     <span>…</span>
+ *   </Grid>
+ */
 export const GRID_COLUMNS = scale({
   1: "repeat(1, minmax(0, 1fr))",
   2: "repeat(2, minmax(0, 1fr))",

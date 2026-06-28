@@ -113,7 +113,7 @@ export function useLabel(props: LabelProps) {
     "typography",
   );
 
-  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs } = useBaseCompose(
     {
       className: [
         "typography",
@@ -145,6 +145,5 @@ export function useLabel(props: LabelProps) {
     },
     // Returned separately for Label.astro's conditional asterisk rendering
     required,
-    spacing,
   };
 }

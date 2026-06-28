@@ -26,7 +26,6 @@ export function useAudio(props: AudioProps) {
     preservePitch  = true,
     class: className,
     v:     _v,
-    m,
     ...base } = props;
 
   const { style: tokenStyle, classes: tokenClasses } = resolveTokens(

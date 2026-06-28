@@ -3,7 +3,6 @@
 import { useFeedback }                    from "../../feedback.hook";
 import { composeClass, composeStyle }     from "~sh/base.hook";
 import { TOAST_DEFAULTS, TOAST_SIZE_MAP } from "./toast.tokens";
-import { resolveSpacingStyles }           from "~/shared/spacing.props";
 import type { ToastSize }                 from "./toast.tokens";
 import type { ToastProps }                from "./toast.props";
 
@@ -20,7 +19,7 @@ export function useToast(props: ToastProps) {
     ...feedbackProps
   } = props;
 
-  const { feedbackClass, feedbackStyle, feedbackAttrs, rest, spacing } =
+  const { feedbackClass, feedbackStyle, feedbackAttrs, rest } =
     useFeedback({ variant, color, radius, size: size as ToastSize, ...feedbackProps });
 
   const sizeMap = TOAST_SIZE_MAP[size as ToastSize];
@@ -28,7 +27,6 @@ export function useToast(props: ToastProps) {
   const toastStyle = [
     `--toast--font-size: ${sizeMap.fontSize}`,
     `--toast--padding: ${sizeMap.p}`,
-    ...resolveSpacingStyles(spacing, "toast"),
   ];
 
   return {

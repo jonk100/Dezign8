@@ -46,7 +46,7 @@ export function useLayout(props: LayoutProps) {
   );
 
   // Compose the final classes and styles, merging with any provided custom class/style
-  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs } = useBaseCompose(
     {
       className: [
         "layout",
@@ -67,6 +67,5 @@ export function useLayout(props: LayoutProps) {
     layoutStyle:  style,
     layoutAttrs:  attrs,
     rest: restAttrs,
-    spacing,
   };
 }

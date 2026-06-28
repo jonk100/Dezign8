@@ -14,13 +14,12 @@ import type { SpacingProps } from "~/shared/spacing.props";
 import type { LayoutGap, LayoutAlign, LayoutJustify } from "./layout.tokens";
 
 export interface LayoutProps extends BaseComponentProps, SpacingProps {
-  /** 
-   * Controls the space between flex or grid items.
-   * Maps to the `--layout--gap` CSS variable.
-   * Uses values from the primitive `SPACE` token scale.
+  /**
+   * Uniform spacing between child elements via `gap` (flex/grid).
+   * Maps to `--layout--gap` CSS variable.
    */
   gap?:     LayoutGap;
-  
+
   /** 
    * Controls `align-items` for flex/grid containers.
    * Defines how items are aligned along the cross axis.

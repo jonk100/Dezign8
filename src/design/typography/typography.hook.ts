@@ -54,7 +54,6 @@ export function useTypography(props: TypographyProps) {
     class: className,
     style: consumerStyle,
     bg,
-    m,
     ...base
   } = props;
 

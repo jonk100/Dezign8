@@ -1,9 +1,10 @@
 // design/assets/image/image.props.ts
 
 import type { BaseComponentProps } from "~/shared/base.props";
+import type { SpacingProps }       from "~/shared/spacing.props";
 import type { ImageRadius, ImageRatio, ImageFit } from "./image.tokens";
 
-export interface ImageProps extends BaseComponentProps {
+export interface ImageProps extends BaseComponentProps, SpacingProps {
   /** Image source URL. */
   src:       string;
   /** Alt text. Pass empty string for decorative images. */
@@ -18,6 +19,8 @@ export interface ImageProps extends BaseComponentProps {
   radius?:   ImageRadius;
   /** Intrinsic width. */
   width?:    number | string;
-  /** Intrinsic height. */
+  /** Intrinsic height. 
+   * accepts a number or a string with a unit (e.g., "100px").
+   */
   height?:   number | string;
 }

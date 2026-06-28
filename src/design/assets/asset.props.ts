@@ -16,8 +16,9 @@
  * @prop crossOrigin - CORS settings for fetching external media.
  */
 import type { BaseComponentProps } from "~/shared/base.props";
+import type { SpacingProps }       from "~/shared/spacing.props";
 
-export interface AssetProps extends BaseComponentProps {
+export interface AssetProps extends BaseComponentProps, SpacingProps {
   src:              string;
   alt:              string;
   fallbackSrc?:     string;

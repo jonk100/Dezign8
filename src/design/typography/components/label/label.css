@@ -24,6 +24,13 @@
   display: inline-flex;
   align-items: baseline;
   gap: 0.2em;
+  letter-spacing: 0.05em;
+
+  text-transform: uppercase;
+  font-family: var(--family--sans);
+  font-weight: var(--weight--semibold);
+  color: var(--text--muted);
+  font-size: var(--fsf--xl);
 }
 
 /* Standalone label (no associated control) should not show pointer */

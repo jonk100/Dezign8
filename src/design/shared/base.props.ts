@@ -2,10 +2,10 @@
 
 import type { Visual }       from "./visuals";
 import type { ColorRole }    from "./primitives.tokens";
-import type { SpacingProps } from "./spacing.props";
+
 import type { MotionProp }   from "./motion/motion.types";
 import type { AriaProps }    from "./aria.props";
-export interface BaseComponentProps extends SpacingProps, AriaProps {
+export interface BaseComponentProps extends AriaProps {
   class?:    string;
   style?:    string;
   id?:       string;

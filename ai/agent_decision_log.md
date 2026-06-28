@@ -1,13 +1,61 @@
 # Decision Log =======================
 ________________________________________
 - Document key decisions and changes made
+## 2026/06/27 to 2026/06/28 - Antigravity session
+
+[SpacingProps Refactor](antigravity_session_summary.md/627-628_spacing_props_refactor.md)
+
+### New files
+*(None)*
+
+### Updated files
+* `src/design/shared/base.props.ts`
+* `src/design/shared/base.hook.ts`
+* `src/design/surfaces/surface.hook.ts`
+* `src/design/triggers/trigger.hook.ts`
+* `src/design/typography/typography.hook.ts`
+* `src/design/typography/components/label/label.hook.ts`
+* `src/design/feedback/feedback.hook.ts`
+* `src/design/forms/forms.hook.ts`
+* `src/design/layout/layout.hook.ts`
+* `src/design/data/data.hook.ts`
+* `src/design/feedback/components/alert/alert.hook.ts`
+* `src/design/feedback/components/toast/toast.hook.ts`
+* `src/design/assets/asset.props.ts`
+* `src/design/assets/components/image/image.props.ts`
+* `src/design/assets/components/audio/audio.hook.ts`
+* `src/design/docs/architecture.md`
+* `src/design/data/components/table/parts/TableCell.astro`
+* `src/layouts/docs/DocsLayout.astro`
+* `src/pages/index.astro`
+
+---
+
 - New entries on top 
 - `git add` and `git commit` after each entry
 _________________________________________________
 =================================================
 -----------------------------------------------
 
+## 2026/06/27 to 2026/06/27 - Antigravity session
+
+[Spacing cleanup, layout gap, useBaseCompose docs](./antigravity_session_summary.md/627-627_spacing_cleanup_layout_gap.md)
+
+### New files
+- `ai/antigravity_session_summary.md/627-627_spacing_cleanup_layout_gap.md`
+
+### Updated files
+- `src/design/shared/spacing.props.ts`
+- `src/design/shared/base.hook.ts`
+- `src/design/layout/layout.props.ts`
+- `src/design/layout/components/stack/stack.props.ts`
+- `src/layouts/Layout.astro`
+- `src/pages/docs/[...slug].astro`
+
+-----------------------------------------------
+
 ## 2026/06/25 to 2026/06/25 - Antigravity session
+
 
 [Repowise static analysis verifications](./antigravity_session_summary.md/625-625_repowise_static_analysis_verifications.md)
 

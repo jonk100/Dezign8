@@ -93,7 +93,7 @@ export function useData(props: DataProps) {
     : undefined;
 
   // ── Compose ─────────────────────────────────────────────────
-  const { className: cls, style, attrs, rest: restAttrs, spacing } = useBaseCompose(
+  const { className: cls, style, attrs, rest: restAttrs } = useBaseCompose(
     {
       className: [
         "data",
@@ -124,6 +124,5 @@ export function useData(props: DataProps) {
     dataAttrs: attrs,
     caption,
     rest: restAttrs,
-    spacing,
   };
 }

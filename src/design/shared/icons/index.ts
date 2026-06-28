@@ -79,6 +79,7 @@ import IconDebug from './debug.svg';
 import IconDescriptionList from './description-list.svg';
 import IconDivider from './divider.svg';
 import IconEvent from './event.svg';
+import IconFeedback from './feedback.svg';
 import IconField from './field.svg';
 import IconFileMagnifyer from './file-magnifyer.svg';
 import IconFilePreview from './file-preview.svg';
@@ -210,6 +211,7 @@ export const icons = {
   'description-list': IconDescriptionList,
   'divider': IconDivider,
   'event': IconEvent,
+  'feedback': IconFeedback,
   'field': IconField,
   'file-magnifyer': IconFileMagnifyer,
   'file-preview': IconFilePreview,

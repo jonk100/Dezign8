@@ -1,4 +1,6 @@
 .grid {
   display: grid;
   grid-template-columns: var(--grid--columns, none);
+  gap: var(--grid--gap, var(--space-in--md));
 }
+
