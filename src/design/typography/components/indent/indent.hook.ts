@@ -36,7 +36,7 @@ export function useIndent(props: IndentProps) {
   const finalClass = [cls, 'indent'].filter(Boolean).join(' ');
 
   // Final style
-  let finalStyle = `--indent-size: ${indentValue}`;
+  let finalStyle = `--indent--size: ${indentValue}`;
   if (typeof style === 'string') {
     finalStyle = `${style}; ${finalStyle}`;
   } else if (Array.isArray(style)) {

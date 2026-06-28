@@ -2,6 +2,6 @@
  * src/design/typography/components/indent/indent.css
  */
 .indent {
-  --indent-size: 0;
-  text-indent: var(--indent-size);
+  --indent--size: 0;
+  text-indent: var(--indent--size);
 }
