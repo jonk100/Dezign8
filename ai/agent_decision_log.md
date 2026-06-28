@@ -3,6 +3,18 @@ ________________________________________
 - Document key decisions and changes made
 ## 2026/06/27 to 2026/06/27 - Antigravity session
 
+[Map CSS lengths in ImageProps to inline styles](antigravity_session_summary.md/627-627_image_hook_style_mapping.md)
+
+### New files
+*(None)*
+
+### Updated files
+* `src/design/assets/components/image/image.hook.ts`
+
+---
+
+## 2026/06/27 to 2026/06/27 - Antigravity session
+
 [Fixed ImageProps in Image component](antigravity_session_summary.md/627-627_fixed_image_props.md)
 
 ### New files

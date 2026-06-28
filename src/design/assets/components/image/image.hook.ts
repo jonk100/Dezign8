@@ -33,6 +33,9 @@ export function useImage(props: ImageProps) {
     "image",
   );
 
+  const isCssValue = (val: string | number | undefined) => typeof val === "string" && Number.isNaN(Number(val));
+  const isHtmlValue = (val: string | number | undefined) => typeof val === "number" || (typeof val === "string" && !Number.isNaN(Number(val)));
+
   const { className: cls, style, attrs, rest } = useBaseCompose(
     {
       className: [
@@ -41,7 +44,12 @@ export function useImage(props: ImageProps) {
         ...tokenClasses,
         className,
       ],
-      style: [...tokenStyle, ...spacingStyle],
+      style: [
+        ...tokenStyle,
+        ...spacingStyle,
+        isCssValue(width) ? `width: ${width}` : undefined,
+        isCssValue(height) ? `height: ${height}` : undefined,
+      ],
     },
     base,
   );
@@ -55,8 +63,8 @@ export function useImage(props: ImageProps) {
       src,
       alt,
       loading: imgLoading,
-      width,
-      height,
+      width:   isHtmlValue(width) ? width : undefined,
+      height:  isHtmlValue(height) ? height : undefined,
     },
   };
 }
