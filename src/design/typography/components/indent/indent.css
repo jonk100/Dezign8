@@ -3,5 +3,5 @@
  */
 .indent {
   --indent-size: 0;
-  padding-left: var(--indent-size);
+  text-indent: var(--indent-size);
 }
