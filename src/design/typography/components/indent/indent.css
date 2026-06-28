@@ -1,0 +1,7 @@
+/**
+ * src/design/typography/components/indent/indent.css
+ */
+.indent {
+  --indent-size: 0;
+  padding-left: var(--indent-size);
+}

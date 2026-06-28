@@ -1,0 +1,32 @@
+---
+/**
+ * src/design/typography/components/indent/Indent.astro
+ * 
+ * A component that adds a left-indent to the text content.
+ * 
+ * @example
+ * ```astro
+ * <Indent prose="md"><Text>Press the button</Text></Indent>
+ * ```
+ * 
+ * @see indent.hook.ts   — resolves props to { Tag, props, type }
+ * @see typography.hook.ts — resolves props to { typographyAttributes }
+ * @see base.props.ts    — base component props
+ * @see typography.props.ts - typography-specific props, extends BaseComponentProps
+ * @see indent.props.ts  — full prop type reference extending TypographyProps
+ * @see typography.css   — shared typography styles
+ * @see indent.css       — indent-specific styles
+ */
+import type { IndentProps } from './indent.props';
+import { useIndent } from './indent.hook';
+import "~/typography/typography.css";
+import "./indent.css";
+
+type Props = IndentProps;
+
+const { Tag, props } = useIndent(Astro.props as IndentProps);
+---
+
+<Tag {...props}>
+  <slot />
+</Tag>
