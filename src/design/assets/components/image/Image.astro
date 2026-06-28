@@ -3,7 +3,9 @@ import type { ImageProps } from "./image.props";
 import { useImage } from "./image.hook";
 import "./image.css";
 
-const { props } = useImage(Astro.props as ImageProps);
+type Props = ImageProps;
+
+const { props } = useImage(Astro.props as Props);
 ---
 
 <img {...props} />

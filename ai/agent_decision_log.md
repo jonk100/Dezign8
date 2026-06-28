@@ -1,6 +1,18 @@
 # Decision Log =======================
 ________________________________________
 - Document key decisions and changes made
+## 2026/06/27 to 2026/06/27 - Antigravity session
+
+[Fixed ImageProps in Image component](antigravity_session_summary.md/627-627_fixed_image_props.md)
+
+### New files
+*(None)*
+
+### Updated files
+* `src/design/assets/components/image/Image.astro`
+
+---
+
 ## 2026/06/27 to 2026/06/28 - Antigravity session
 
 [SpacingProps Refactor](antigravity_session_summary.md/627-628_spacing_props_refactor.md)
