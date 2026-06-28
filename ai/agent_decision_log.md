@@ -13,7 +13,7 @@ ________________________________________
 * `src/design/typography/components/indent/Indent.astro`
 
 ### Updated files
-*(None)*
+* `src/design/typography/components/indent/indent.css` (swapped padding-left for text-indent)
 
 ---
 
