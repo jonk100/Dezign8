@@ -13,7 +13,8 @@ ________________________________________
 * `src/design/typography/components/indent/Indent.astro`
 
 ### Updated files
-* `src/design/typography/components/indent/indent.css` (swapped padding-left for text-indent)
+* `src/design/typography/components/indent/indent.css` (swapped padding-left for text-indent, renamed `--indent-size` to `--indent--size` to satisfy CSS var checker)
+* `src/design/typography/components/indent/indent.hook.ts` (renamed variable to `--indent--size`)
 
 ---
 
