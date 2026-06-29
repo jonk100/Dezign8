@@ -2,6 +2,17 @@
 
 These instructions must be followed by all AI agents operating in this repository.
 
+## Priorities
+
+When creating or updating components, prioritize:
+- developer experience
+- functionality
+- feature-rich system designs
+- simplicity
+- flexibility
+- aesthetics
+- creativity
+
 ## Core Behavioral Rules
 
 1. **Accuracy First**: Do not make stuff up or lie.
