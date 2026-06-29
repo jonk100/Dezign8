@@ -3,7 +3,7 @@
 import type { SurfaceProps }                      from "./surface.props";
 import { SURFACE_TOKENS }                         from "./surface.tokens";
 import { resolveTokens }                          from "~/shared/tokens";
-import { resolveColorRole, useBaseCompose }             from "~/shared/base.hook";
+import { useBaseCompose }             from "~/shared/base.hook";
 
 /**
  * Hook: `useSurface`
@@ -20,7 +20,7 @@ import { resolveColorRole, useBaseCompose }             from "~/shared/base.hook
  *   radius  → --surface--radius channel
  *
  * Color role channels (via resolveColorRole):
- *   color → --surface--color--{subtle|muted|base|vivid|deep|border|text}
+ *   bg → handled by useBaseCompose producing universal --bg--*
  *
  * Boolean modifiers (direct class emission):
  *   outlined → .surface--outlined (overrides layer border via CSS order)
@@ -50,7 +50,7 @@ export function useSurface(props: SurfaceProps) {
     shadow,
     padding  = "md",
     radius   = "md",
-    color,
+    bg,
     class:    className,
     style:    consumerStyle,
     v:        _v,
@@ -80,15 +80,12 @@ export function useSurface(props: SurfaceProps) {
     "surface",
   );
 
-  // Color role → seven CSS channel vars
-  const colorVars = color ? resolveColorRole(color, "surface--color") : [];
-
-  // When color is set, apply it visually based on variant:
+  // When bg is set, apply it visually based on variant:
   //   outlined / outlined+layer → tint the border
   //   everything else (soft, plain, layer defaults) → tint the background
   // Inline style beats the layer class rules, which is what we want.
-  const colorBgOverride     = color && !outlined ? `--surface--bg: var(--surface--color--subtle)`   : null;
-  const colorBorderOverride = color              ? `--surface--border: var(--surface--color--border)` : null;
+  const bgBgOverride     = bg && !outlined ? `--surface--bg: var(--bg--subtle)`   : null;
+  const bgBorderOverride = bg              ? `--surface--border: var(--bg--border)` : null;
 
   // Explicit overrides written as inline vars — beat the layer class rules.
   // shadow: consumer wants a different elevation than the layer default.
@@ -107,15 +104,14 @@ export function useSurface(props: SurfaceProps) {
       ],
       style: [
         ...tokenStyle,
-        ...colorVars,
-        colorBgOverride,
-        colorBorderOverride,
+        bgBgOverride,
+        bgBorderOverride,
         shadowOverride,
         blurVar,
         consumerStyle,
       ],
     },
-    base,
+    bg !== undefined ? { bg, ...base } : base,
   );
 
   return {

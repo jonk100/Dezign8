@@ -180,7 +180,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -188,7 +188,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -196,7 +196,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -204,7 +204,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -212,7 +212,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -448,7 +448,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -456,7 +456,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -464,7 +464,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -472,7 +472,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -480,7 +480,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -733,7 +733,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -741,7 +741,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -749,7 +749,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -757,7 +757,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -765,7 +765,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -976,7 +976,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -984,7 +984,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -992,7 +992,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1000,7 +1000,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1008,7 +1008,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1260,7 +1260,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1268,7 +1268,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1276,7 +1276,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1284,7 +1284,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1292,7 +1292,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1582,7 +1582,7 @@
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
       "optional": true,
-      "description": "Background color role.\n\nMaps to `--data--bg`. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
+      "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
       "wired": true
     },
@@ -1630,7 +1630,7 @@
       "name": "striped",
       "type": "boolean",
       "optional": true,
-      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--data--bg` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
+      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--bg--subtle` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
       "from": "DataProps",
       "wired": true
     },
@@ -1702,7 +1702,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1710,7 +1710,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1718,7 +1718,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1726,7 +1726,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1734,7 +1734,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -1914,7 +1914,7 @@
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
       "optional": true,
-      "description": "Background color role.\n\nMaps to `--data--bg`. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
+      "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
       "wired": true
     },
@@ -1962,7 +1962,7 @@
       "name": "striped",
       "type": "boolean",
       "optional": true,
-      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--data--bg` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
+      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--bg--subtle` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
       "from": "DataProps",
       "wired": true
     },
@@ -2034,7 +2034,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2042,7 +2042,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2050,7 +2050,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2058,7 +2058,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2066,7 +2066,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2260,7 +2260,7 @@
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
       "optional": true,
-      "description": "Background color role.\n\nMaps to `--data--bg`. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
+      "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
       "wired": true
     },
@@ -2308,7 +2308,7 @@
       "name": "striped",
       "type": "boolean",
       "optional": true,
-      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--data--bg` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
+      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--bg--subtle` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
       "from": "DataProps",
       "wired": true
     },
@@ -2380,7 +2380,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2388,7 +2388,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2396,7 +2396,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2404,7 +2404,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2412,7 +2412,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2590,7 +2590,7 @@
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
       "optional": true,
-      "description": "Background color role.\n\nMaps to `--data--bg`. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
+      "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
       "wired": true
     },
@@ -2638,7 +2638,7 @@
       "name": "striped",
       "type": "boolean",
       "optional": true,
-      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--data--bg` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
+      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--bg--subtle` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
       "from": "DataProps",
       "wired": true
     },
@@ -2710,7 +2710,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2718,7 +2718,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2726,7 +2726,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2734,7 +2734,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2742,7 +2742,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -2955,7 +2955,7 @@
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
       "optional": true,
-      "description": "Background color role.\n\nMaps to `--data--bg`. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
+      "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
       "wired": true
     },
@@ -3003,7 +3003,7 @@
       "name": "striped",
       "type": "boolean",
       "optional": true,
-      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--data--bg` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
+      "description": "Alternating row/item background tint.\n\nAdds `.data--striped` on the root; CSS applies `--bg--subtle` at low\nopacity to every even row/item. Improves scannability in dense lists.\n\nSupported by: Table, List, Feed.\nIgnored by: Stat, Metric (no row concept).",
       "from": "DataProps",
       "wired": true
     },
@@ -3075,7 +3075,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3083,7 +3083,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3091,7 +3091,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3099,7 +3099,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3107,7 +3107,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3346,7 +3346,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3354,7 +3354,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3362,7 +3362,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3370,7 +3370,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3378,7 +3378,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3660,7 +3660,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3668,7 +3668,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3676,7 +3676,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3684,7 +3684,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3692,7 +3692,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3940,7 +3940,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3948,7 +3948,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3956,7 +3956,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3964,7 +3964,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -3972,7 +3972,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4229,7 +4229,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4237,7 +4237,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4245,7 +4245,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4253,7 +4253,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4261,7 +4261,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4501,7 +4501,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4509,7 +4509,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4517,7 +4517,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4525,7 +4525,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4533,7 +4533,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4789,7 +4789,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4797,7 +4797,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4805,7 +4805,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4813,7 +4813,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -4821,7 +4821,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5113,7 +5113,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5121,7 +5121,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5129,7 +5129,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5137,7 +5137,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5145,7 +5145,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5391,7 +5391,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5399,7 +5399,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5407,7 +5407,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5415,7 +5415,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5423,7 +5423,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5699,7 +5699,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5707,7 +5707,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5715,7 +5715,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5723,7 +5723,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5731,7 +5731,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5979,7 +5979,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5987,7 +5987,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -5995,7 +5995,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6003,7 +6003,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6011,7 +6011,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6267,7 +6267,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6275,7 +6275,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6283,7 +6283,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6291,7 +6291,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6299,7 +6299,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6511,7 +6511,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6519,7 +6519,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6527,7 +6527,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6535,7 +6535,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6543,7 +6543,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6778,7 +6778,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6786,7 +6786,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6794,7 +6794,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6802,7 +6802,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -6810,7 +6810,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7141,7 +7141,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7149,7 +7149,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7157,7 +7157,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7165,7 +7165,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7173,7 +7173,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7513,7 +7513,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7521,7 +7521,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7529,7 +7529,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7537,7 +7537,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7545,7 +7545,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7894,7 +7894,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7902,7 +7902,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7910,7 +7910,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7918,7 +7918,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -7926,7 +7926,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8248,7 +8248,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8256,7 +8256,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8264,7 +8264,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8272,7 +8272,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8280,7 +8280,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8627,7 +8627,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8635,7 +8635,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8643,7 +8643,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8651,7 +8651,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8659,7 +8659,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8990,7 +8990,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -8998,7 +8998,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9006,7 +9006,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9014,7 +9014,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9022,7 +9022,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9353,7 +9353,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9361,7 +9361,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9369,7 +9369,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9377,7 +9377,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9385,7 +9385,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9740,7 +9740,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9748,7 +9748,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9756,7 +9756,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9764,7 +9764,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -9772,7 +9772,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10094,7 +10094,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10102,7 +10102,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10110,7 +10110,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10118,7 +10118,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10126,7 +10126,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10320,7 +10320,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10328,7 +10328,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10336,7 +10336,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10344,7 +10344,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10352,7 +10352,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10572,7 +10572,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10580,7 +10580,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10588,7 +10588,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10596,7 +10596,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10604,7 +10604,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -10863,7 +10863,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -10871,7 +10871,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -10879,7 +10879,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -10887,7 +10887,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -10895,7 +10895,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11147,7 +11147,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11155,7 +11155,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11163,7 +11163,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11171,7 +11171,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11179,7 +11179,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11438,7 +11438,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11446,7 +11446,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11454,7 +11454,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11462,7 +11462,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11470,7 +11470,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11747,7 +11747,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11755,7 +11755,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11763,7 +11763,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11771,7 +11771,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -11779,7 +11779,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12030,7 +12030,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12038,7 +12038,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12046,7 +12046,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12054,7 +12054,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12062,7 +12062,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12313,7 +12313,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12321,7 +12321,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12329,7 +12329,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12337,7 +12337,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12345,7 +12345,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -12579,7 +12579,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12587,7 +12587,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12595,7 +12595,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12603,7 +12603,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12611,7 +12611,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12845,7 +12845,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12853,7 +12853,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12861,7 +12861,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12869,7 +12869,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -12877,7 +12877,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13087,7 +13087,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13095,7 +13095,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13103,7 +13103,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13111,7 +13111,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13119,7 +13119,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13353,7 +13353,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13361,7 +13361,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13369,7 +13369,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13377,7 +13377,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13385,7 +13385,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13587,7 +13587,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13595,7 +13595,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13603,7 +13603,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13611,7 +13611,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13619,7 +13619,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13845,7 +13845,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13853,7 +13853,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13861,7 +13861,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13869,7 +13869,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -13877,7 +13877,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14087,7 +14087,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14095,7 +14095,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14103,7 +14103,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14111,7 +14111,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14119,7 +14119,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14365,7 +14365,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14373,7 +14373,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14381,7 +14381,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14389,7 +14389,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14397,7 +14397,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -14678,14 +14678,6 @@
       "default": "\"md\""
     },
     {
-      "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
-      "optional": true,
-      "description": "Color role. Drives --surface--color--* channels.\nUsed for tinted status surfaces, accent borders, color-keyed cards.",
-      "from": "SurfaceProps",
-      "wired": false
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -14721,7 +14713,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -14729,7 +14721,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -14737,7 +14729,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -14745,7 +14737,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -14984,14 +14976,6 @@
       "default": "\"md\""
     },
     {
-      "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
-      "optional": true,
-      "description": "Color role. Drives --surface--color--* channels.\nUsed for tinted status surfaces, accent borders, color-keyed cards.",
-      "from": "SurfaceProps",
-      "wired": false
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -15035,7 +15019,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15043,7 +15027,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15051,7 +15035,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15059,7 +15043,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15067,7 +15051,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15288,14 +15272,6 @@
       "default": "\"md\""
     },
     {
-      "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
-      "optional": true,
-      "description": "Color role. Drives --surface--color--* channels.\nUsed for tinted status surfaces, accent borders, color-keyed cards.",
-      "from": "SurfaceProps",
-      "wired": false
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -15339,7 +15315,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15347,7 +15323,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15355,7 +15331,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15363,7 +15339,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15371,7 +15347,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15619,14 +15595,6 @@
       "default": "\"md\""
     },
     {
-      "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
-      "optional": true,
-      "description": "Color role. Drives --surface--color--* channels.\nUsed for tinted status surfaces, accent borders, color-keyed cards.",
-      "from": "SurfaceProps",
-      "wired": false
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -15670,7 +15638,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15678,7 +15646,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15686,7 +15654,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15694,7 +15662,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15702,7 +15670,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15923,14 +15891,6 @@
       "default": "\"md\""
     },
     {
-      "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
-      "optional": true,
-      "description": "Color role. Drives --surface--color--* channels.\nUsed for tinted status surfaces, accent borders, color-keyed cards.",
-      "from": "SurfaceProps",
-      "wired": false
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -15974,7 +15934,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15982,7 +15942,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15990,7 +15950,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -15998,7 +15958,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16006,7 +15966,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16271,14 +16231,6 @@
       "default": "\"md\""
     },
     {
-      "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
-      "optional": true,
-      "description": "Color role. Drives --surface--color--* channels.\nUsed for tinted status surfaces, accent borders, color-keyed cards.",
-      "from": "SurfaceProps",
-      "wired": false
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -16314,7 +16266,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16322,7 +16274,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16330,7 +16282,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16338,7 +16290,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16346,7 +16298,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16567,14 +16519,6 @@
       "default": "\"md\""
     },
     {
-      "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
-      "optional": true,
-      "description": "Color role. Drives --surface--color--* channels.\nUsed for tinted status surfaces, accent borders, color-keyed cards.",
-      "from": "SurfaceProps",
-      "wired": false
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -16618,7 +16562,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16626,7 +16570,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16634,7 +16578,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16642,7 +16586,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16650,7 +16594,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16981,7 +16925,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16989,7 +16933,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -16997,7 +16941,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -17005,7 +16949,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -17287,7 +17231,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -17295,7 +17239,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -17303,7 +17247,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": false
     },
@@ -17633,7 +17577,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -17641,7 +17585,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -17649,7 +17593,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -17657,7 +17601,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -17665,7 +17609,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -17971,7 +17915,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -17979,7 +17923,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -17987,7 +17931,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -17995,7 +17939,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18003,7 +17947,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18303,7 +18247,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18311,7 +18255,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18319,7 +18263,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18327,7 +18271,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18335,7 +18279,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18481,6 +18425,352 @@
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
+      "wired": true
+    }
+  ],
+  "typography/indent": [
+    {
+      "name": "prose",
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"ng\"",
+      "optional": true,
+      "description": "",
+      "from": "IndentProps",
+      "wired": true
+    },
+    {
+      "name": "ui",
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"ng\"",
+      "optional": true,
+      "description": "",
+      "from": "IndentProps",
+      "wired": true
+    },
+    {
+      "name": "code",
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"ng\"",
+      "optional": true,
+      "description": "",
+      "from": "IndentProps",
+      "wired": true
+    },
+    {
+      "name": "size",
+      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "weight",
+      "type": "\"bold\" | \"normal\" | \"thin\" | \"light\" | \"medium\" | \"semibold\" | \"black\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "color",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "align",
+      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "leading",
+      "type": "\"none\" | \"normal\" | \"tight\" | \"snug\" | \"relaxed\" | \"loose\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "tracking",
+      "type": "\"wide\" | \"normal\" | \"tight\" | \"wider\" | \"caps\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "fam",
+      "type": "\"sans\" | \"serif\" | \"mono\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "transform",
+      "type": "\"none\" | \"upper\" | \"lower\" | \"capitalize\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "wrap",
+      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "decoration",
+      "type": "\"none\" | \"underline\" | \"line-through\" | \"overline\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "fontStyle",
+      "type": "\"italic\" | \"normal\" | \"oblique\"",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "clamp",
+      "type": "number",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "truncate",
+      "type": "boolean",
+      "optional": true,
+      "description": "",
+      "from": "TypographyProps",
+      "wired": true
+    },
+    {
+      "name": "class",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "style",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "bg",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "motion",
+      "type": "string",
+      "optional": true,
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "mDistance",
+      "type": "string",
+      "optional": true,
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "optional": true,
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "optional": true,
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "optional": true,
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "testId",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "v",
+      "type": "keyof VisualRegistry",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-description",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-details",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-roledescription",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-keyshortcuts",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-current",
+      "type": "boolean | \"false\" | \"true\" | \"page\" | \"step\" | \"location\" | \"date\" | \"time\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-controls",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-owns",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-flowto",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-live",
+      "type": "\"off\" | \"polite\" | \"assertive\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-atomic",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-relevant",
+      "type": "\"additions\" | \"additions removals\" | \"additions text\" | \"all\" | \"removals\" | \"removals additions\" | \"removals text\" | \"text\" | \"text additions\" | \"text removals\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
       "wired": true
     }
   ],
@@ -18633,7 +18923,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18641,7 +18931,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18649,7 +18939,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18657,7 +18947,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18665,7 +18955,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18982,7 +19272,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18990,7 +19280,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -18998,7 +19288,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19006,7 +19296,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19014,7 +19304,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19321,7 +19611,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19329,7 +19619,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19337,7 +19627,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19345,7 +19635,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19353,7 +19643,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19660,7 +19950,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19668,7 +19958,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19676,7 +19966,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19684,7 +19974,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19692,7 +19982,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19991,7 +20281,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -19999,7 +20289,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -20007,7 +20297,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -20015,7 +20305,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -20023,7 +20313,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -20226,7 +20516,7 @@
       "name": "motion",
       "type": "string",
       "optional": true,
-      "description": "Motion prop. Drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -20234,7 +20524,7 @@
       "name": "mDistance",
       "type": "string",
       "optional": true,
-      "description": "Sets the travel distance for motion animations (slide, bounce).\nCan be an absolute value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`).",
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -20242,7 +20532,7 @@
       "name": "action",
       "type": "string",
       "optional": true,
-      "description": "Declarative action to trigger on click (e.g., 'replay-motion', 'toggle-theme').",
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -20250,7 +20540,7 @@
       "name": "target",
       "type": "string",
       "optional": true,
-      "description": "Target selector for the action (e.g., '#my-id', 'closest .container').",
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
       "from": "BaseComponentProps",
       "wired": true
     },
@@ -20258,7 +20548,7 @@
       "name": "loading",
       "type": "boolean",
       "optional": true,
-      "description": "Whether the component is in a loading state.\nEmits `data-loading=\"true\"` on the root element via useBaseCompose.\nEach component implements its own loading UI — typically <Skeleton />.\nBadge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
       "from": "BaseComponentProps",
       "wired": true
     },

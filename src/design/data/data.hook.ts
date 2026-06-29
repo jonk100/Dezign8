@@ -82,7 +82,6 @@ export function useData(props: DataProps) {
   // ── Color role channels ─────────────────────────────────────
   const colorStyle: string[] = [
     ...(color     ? resolveColorRole(color,     "data--color")     : []),
-    ...(bg        ? resolveColorRole(bg,        "data--bg")        : []),
     ...(highlight ? resolveColorRole(highlight, "data--highlight") : []),
   ];
 
@@ -115,7 +114,7 @@ export function useData(props: DataProps) {
         ...(scrollable              ? { "data-scrollable":  "true"    } : {}),
       },
     },
-    base,
+    bg !== undefined ? { bg, ...base } : base,
   );
 
   return {

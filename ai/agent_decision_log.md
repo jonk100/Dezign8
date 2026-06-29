@@ -3,6 +3,53 @@ ________________________________________
 - Document key decisions and changes made
 ## 2026/06/28 to 2026/06/28 - Antigravity session
 
+[Unified Background Color Handling](antigravity_session_summary.md/628-628_unified_background_color_handling.md)
+
+### New files
+* `src/content/docs/shared/base-component-props.md`
+
+### Updated files
+* `src/design/shared/base.hook.ts`
+* `src/design/shared/base.props.ts`
+* `src/design/layout/layout.hook.ts`
+* `src/design/layout/components/box/box.css`
+* `src/design/layout/components/footer/footer.css`
+* `src/design/layout/components/header/header.css`
+* `src/design/surfaces/surface.props.ts`
+* `src/design/surfaces/surface.hook.ts`
+* `src/design/surfaces/components/card/card.css`
+* `src/design/surfaces/components/tile/tile.css`
+* `src/design/typography/typography.hook.ts`
+* `src/design/typography/typography.css`
+* `src/design/data/data.hook.ts`
+* `src/design/data/data.props.ts`
+* `src/design/data/data.tokens.ts`
+* `src/design/data/data.css`
+* `src/design/data/components/feed/feed.css`
+* `src/design/data/components/list/List.astro`
+* `src/design/data/components/list/list.css`
+* `src/design/data/components/table/Table.astro`
+* `src/design/data/components/table/table.css`
+
+---
+
+## 2026/06/28 to 2026/06/28 - Antigravity session
+
+[Automated Component Status & Verification Checklist](antigravity_session_summary.md/628-628_automate_component_status.md)
+
+### New files
+* `scripts/generate-component-status.ts`
+* `src/design/docs/component-status.md`
+* `src/design/docs/verification-checklist.md`
+
+### Updated files
+* `package.json`
+* `justfile`
+
+---
+
+## 2026/06/28 to 2026/06/28 - Antigravity session
+
 [Indent Component API](antigravity_session_summary.md/628-628_indent_component_api.md)
 
 ### New files

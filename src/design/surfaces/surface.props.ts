@@ -2,7 +2,7 @@
 
 import type { BaseComponentProps }                        from "~/shared/base.props";
 import type { SurfaceLayer, SurfacePadding,
-              SurfaceRadius, ColorRole }                  from "./surface.tokens";
+              SurfaceRadius }                  from "./surface.tokens";
 
 export type SurfaceVariant = "plain" | "outlined" | "soft" | "elevated" | "glass";
 
@@ -73,10 +73,4 @@ export interface SurfaceProps extends BaseComponentProps {
    * @default "md"
    */
   radius?: SurfaceRadius;
-
-  /**
-   * Color role. Drives --surface--color--* channels.
-   * Used for tinted status surfaces, accent borders, color-keyed cards.
-   */
-  color?: ColorRole;
 }

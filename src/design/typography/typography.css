@@ -18,7 +18,7 @@
   text-wrap:       var(--typography--wrap);
   text-decoration: var(--typography--decoration);
   font-style:      var(--typography--style);
-  background:      var(--typography--bg);
+  background:      var(--bg--subtle);
 }
 
 /* ─── MODIFIERS ───────────────────────────────────────────── */
@@ -36,7 +36,7 @@
   text-wrap:       var(--typography--wrap, inherit);
   text-decoration: var(--typography--decoration, inherit);
   font-style:      var(--typography--style, inherit);
-  background:      var(--typography--bg, inherit);
+  background:      var(--bg--subtle, inherit);
 }
 
 .typography--truncate {

@@ -30,7 +30,7 @@
   min-block-size: 4rem;
 
   /* Background: prefer the consumer-set channel, fall back to layer-1 elevation */
-  background: var(--layout--bg, var(--bg--1));
+  background: var(--bg--subtle, var(--bg--1));
 
   /* Hairline bottom border to visually separate header from page body */
   border-block-end: 1px solid var(--border--subtle, var(--border--default));

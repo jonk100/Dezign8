@@ -1,16 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/docs/DocsLayout.astro';
-
-import Table from '~/data/components/table/Table.astro';
-import Image from '~/assets/components/image/Image.astro';
-import Text from '~/typography/components/text/Text.astro';
-import Stack from '~/layout/components/stack/Stack.astro';
-import Code from '~/typography/components/code/Code.astro';
-import Link from '~/triggers/components/link/Link.astro';
-import Grid from '~/layout/components/grid/Grid.astro';
-import Stat from '~/data/components/stat/Stat.astro';
-import Box from '~/layout/components/box/Box.astro';
+import Indent from '~/typography_/indent/Indent.astro';
+import Image from '~/assets_/image/Image.astro';
+import Text from '~/typography_/text/Text.astro';
+import Link from '~/triggers_/link/Link.astro';
+import Grid from '~/layout_/grid/Grid.astro';
+import Stat from '~/data_/stat/Stat.astro';
+import Box from '~/layout_/box/Box.astro';
 
 // Live component counts via glob — excludes .roadmap and parts/ sub-components
 const allComponents   = import.meta.glob('../design/*/components/**/*.astro');
@@ -64,9 +61,9 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 
 <Layout title="Component Library" showTitle={false}>
 	<section class="container">
-		<Box mb="lg">
-			<Image fit="contain" as="h1" height="20px" src="/horizontal-blue.png" alt="Dezign8 Logo" mb="sm" ml="none" />
-			<Text size="lg" color="tertiary" weight="thin" fontStyle="oblique">Interface Emitter for Smooth Browsing.</Text>
+		<Box mb="md">
+			<Image src="/horizontal-blue.png" alt="Dezign8 Logo" mb="sm" mr="auto" height="100px" width="auto" fit="contain" />
+			<Indent ui="sm"><Text size="md" color="tertiary" weight="light" fontStyle="oblique">Interface Emitter for Smooth Browsing.</Text></Indent>
 		</Box>
 		<!-- ── TOP-LINE STATS ──────────────────────────────────── -->
 		<!-- <div class="stat-hero"> -->
@@ -128,18 +125,8 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 		margin: 0 auto;
 		padding: 2rem 1rem;
 	} */
-	/* h1 {
-		font-size: var(--fs--3xl, 2.5rem);
-		font-weight: var(--weight--bold, 700);
-		line-height: var(--leading--none);
-		margin-bottom: 0.5rem;
-	} */
-	/* .subtitle {
-		font-size: var(--fs--lg);
-		color: var(--text--secondary);
-		margin-bottom: var(--space-out--lg);
-	} */
-	/* .categories-list {
+
+	.categories-list {
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;

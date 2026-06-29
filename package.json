@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "clean:daily": "rm -rf dist .astro .vite && find . -type f -name '*_directory_index.md' -delete",
-    "auto:icons": "tsx src/design/shared/scripts/generate-icons.ts"
+    "auto:icons": "tsx src/design/shared/scripts/generate-icons.ts",
+    "status:components": "tsx scripts/generate-component-status.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",

@@ -17,12 +17,12 @@
 }
 
 .tile--selectable:hover {
-  border-color: var(--surface--color--border, var(--border--strong));
+  border-color: var(--bg--border, var(--border--strong));
 }
 
 .tile--selected {
-  border-color: var(--surface--color--base, var(--primary--base));
-  background-color: var(--surface--color--subtle, var(--primary--subtle));
+  border-color: var(--bg--base, var(--primary--base));
+  background-color: var(--bg--subtle, var(--primary--subtle));
 }
 
 .tile--disabled {

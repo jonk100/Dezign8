@@ -11,7 +11,7 @@
  * ─────────────────────────────────────────────────────────────────
  * color    → --data--color      borders, separators, or text accents
  *                               (varies per component)
- * bg       → --data--bg         container / row background tint
+ * bg       → --bg--*            container / row background tint
  * highlight→ --data--highlight  highlighted rows, pinned items,
  *                               current event, emphasis value
  * variant  → .data--{variant}  container decoration (class-only)
@@ -26,7 +26,7 @@
  * ─────────────────────────────────────────────────────────────────
  * color / bg / highlight all use COLOR_ROLE values
  * (e.g. "primary"). The useData hook uses resolveColorRole() to generate 
- * a full suite of step channels (--data--bg--subtle, --data--bg--base, etc).
+ * a full suite of step channels (--bg--subtle, --bg--base, etc).
  * Component CSS then consumes the subtle/muted step variables for background
  * tints and uses the base/border steps for borders and text.
  */

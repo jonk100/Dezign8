@@ -14,7 +14,7 @@
   border-radius: var(--box--radius);
   
   /* Layout can pass down a background property */
-  background: var(--layout--bg, transparent);
+  background: var(--bg--subtle, transparent);
   
   /* Flexbox fallback context if gap/align/justify are used.
      Ideally layout.css handles layout mechanisms, but setting flex

@@ -11,7 +11,7 @@
 > (documentation, ownership, history, decisions). **Always verify against
 > actual source files before making changes** — the index may be stale.
 
-Last indexed: 2026-06-27 (commit 745d673). Confidence: 100%.
+Last indexed: 2026-06-28 (commit 67ea107). Confidence: 100%.
 ### Architecture
 repo is a design system component library that consumes raw design tokens and style definitions to transform them into a standardized, type-safe React component suite, ultimately producing a modular UI package for consistent application development. The repository serves as the foundational layer for visual consistency, abstracting complex layout, surface, and typography logic into reusable primitives. The library exposes its functionality through granular entry points categorized by domain:
 The repository follows a layered architecture designed for scalability and strict visual adherence:
@@ -56,21 +56,23 @@ The codebase is currently in an active development phase with high modularity. W
 |------|-------|-------------|-------|
 | `pnpm-lock.yaml` | 100.0th %ile | 7 | Jon K |
 | `.repowise/.update.log` | 99.9th %ile | 6 | Jon K |
-| `.repowise/knowledge-graph.json` | 99.8th %ile | 4 | Jon K |
-| `src/design/data/data_directory_index.md` | 99.7th %ile | 3 | Jon K |
-| `src/design/docs/docs_directory_index.md` | 99.5th %ile | 3 | Jon K |
+| `src/design/docs/docs_directory_index.md` | 99.8th %ile | 4 | Jon K |
+| `src/design/data/data_directory_index.md` | 99.7th %ile | 4 | Jon K |
+| `src/design/feedback/feedback_directory_index.md` | 99.6th %ile | 4 | Jon K |
 
 ## Code health
 Three signals: **defect risk** (the overall score), **maintainability** (smells that hurt readability/change-cost without predicting bugs), and **performance** (static performance RISK: I/O-in-loop / N+1 shapes that waste work, high-precision/low-recall). Maintainability and performance are co-equal views, never blended into the defect headline. See `docs/CODE_HEALTH.md`.
 
-Defect risk, Hotspot health: 8.79/10 (stable) ·
-Average: 9.45/10 ·
-Worst: 5.49/10 (`src/design/triggers/trigger.hook.ts`)
+Defect risk, Hotspot health: 9.01/10 (stable) ·
+Average: 9.41/10 ·
+Worst: 2.69/10 (`src/design/triggers/trigger.hook.ts`)
 Maintainability, Average: 9.94/10
-Performance risk, Average: 10.0/10
+Performance risk, Average: 9.99/10
 
 ### Critical biomarkers
 - `src/design/forms/components/combobox/combobox.props.ts` — churn risk — impact −2.4
+- `src/design/feedback/feedback.hook.ts` — untested hotspot — impact −2.0
+- `src/design/triggers/trigger.hook.ts` — brain method (useTrigger) — impact −0.6
 - `src/design/surfaces/surface.hook.ts` — brain method (useSurface) — impact −0.3
 
 ### Repowise MCP Tools

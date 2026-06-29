@@ -77,7 +77,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: var(--radius--full);
-  background-color: var(--data--bg--subtle, var(--surface--1));
+  background-color: var(--bg--subtle, var(--surface--1));
   color: var(--data--color--text, var(--text--default));
   border: 2px solid var(--surface--0); /* cut out the line behind it */
 }

@@ -10,9 +10,16 @@ links:
 ---
 import Image from "../../../design/assets/components/image/Image.astro";
 
+```astro
+<Image src="/shell_lounge.png" alt="Shell Lounge" />
+```
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md, 8px); margin-bottom: 1rem;">
+  <Image src="/shell_lounge.png" alt="Shell Lounge" />
+</div>
+
 ## Overview
 
-The `Image` component is a robust wrapper around the native HTML `<img>` element. It provides a standardized way to handle aspect ratios, object fit, and border radii using design tokens.
+The `Image` component is a wrapper around the native HTML `<img>` element. It aims to provide a more intuitive way of handling size, aspect ratio, object fit, and border radii via props. It defaults to lazy loading and prioritizes accessible, responsive images.
 
 ## Usage & Examples
 

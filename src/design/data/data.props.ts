@@ -70,7 +70,7 @@ export interface DataProps extends BaseComponentProps {
   /**
    * Background color role.
    *
-   * Maps to `--data--bg`. Applied as a tint (typically via color-mix()
+   * Maps to `--bg--*` variables. Applied as a tint (typically via color-mix()
    * at ~10–15% opacity) so it reads as a subtle wash, not a solid fill.
    * Override with `variant="soft"` for a more intentional filled look.
    */
@@ -159,7 +159,7 @@ export interface DataProps extends BaseComponentProps {
   /**
    * Alternating row/item background tint.
    *
-   * Adds `.data--striped` on the root; CSS applies `--data--bg` at low
+   * Adds `.data--striped` on the root; CSS applies `--bg--subtle` at low
    * opacity to every even row/item. Improves scannability in dense lists.
    *
    * Supported by: Table, List, Feed.

@@ -19,9 +19,9 @@
 .prose {
   /* ─── PROSE CHANNELS ──────────────────────────────────────── */
   --prose--max-width:         65ch;
-  --prose--gap:               var(--space-out--md);
-  --prose--gap-heading:       var(--space-out--md);
-  --prose--gap-heading-after: var(--space-out--md);
+  --prose--gap:               var(--space-in--md);
+  --prose--gap-heading:       var(--space-in--lg);
+  --prose--gap-heading-after: var(--space-in--xl);
   --prose--indent:            var(--space-in--xl);
   --prose--font:               var(--fs--md);
 }

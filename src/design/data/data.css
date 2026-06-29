@@ -68,7 +68,7 @@
 }
 
 .data--soft {
-  background-color: var(--data--bg--subtle, var(--surface--2));
+  background-color: var(--bg--subtle, var(--surface--2));
   border-radius: var(--radius--md);
 }
 

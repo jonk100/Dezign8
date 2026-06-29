@@ -326,9 +326,17 @@ export function useBaseCompose(
 ) {
   // Strip all known non-DOM base props so they never appear as HTML attributes.
   const {
-    v, testId, loading: baseLoading, disabled: baseDisabled, bg,
-    motion, mDistance, action, target,
-    class: baseClass, style: baseStyle,
+    v, 
+    bg,
+    motion, 
+    mDistance, 
+    action, 
+    target,
+    testId,
+    loading: baseLoading, 
+    disabled: baseDisabled, 
+    class: baseClass, 
+    style: baseStyle,
     ...rest
   } = (base ?? {}) as BaseComponentProps;
 
@@ -346,8 +354,10 @@ export function useBaseCompose(
     }
   }
 
+  const bgVars = bg ? resolveColorRole(bg, "bg") : [];
+
   const className = composeClass(...(options.className ?? []), baseClass);
-  const style     = composeStyle(...(options.style ?? []), motionData?.enterStyle, ...motionStyles, baseStyle);
+  const style     = composeStyle(...(options.style ?? []), ...bgVars, motionData?.enterStyle, ...motionStyles, baseStyle);
   const attrs: Record<string, unknown> = {
     ...(v          ? { "data-visual":  v }      : {}),
     ...(testId     ? { "data-testid":  testId } : {}),

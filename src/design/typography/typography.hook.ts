@@ -4,7 +4,6 @@ import type { TypographyProps } from "./typography.props";
 import { TYPOGRAPHY_TOKENS } from "./typography.tokens";
 import { resolveTokens } from "~/shared/tokens";
 import { useBaseCompose } from "~/shared/base.hook";
-import { resolveColorRole } from "~/shared/base.hook";
 
 /**
  * Resolves typography token props into inline CSS custom properties and
@@ -78,11 +77,10 @@ export function useTypography(props: TypographyProps) {
       style: [
         ...tokenStyle,
         clamp != null && `--typography--clamp: ${clamp}`,
-        ...(bg ? resolveColorRole(bg, "layout--bg") : []),
         consumerStyle,
       ],
     },
-    base,
+    bg !== undefined ? { bg, ...base } : base,
   );
 
   return {

@@ -73,7 +73,7 @@ breadcrumbItems.push({ id: "current", label: title, active: true });
       </div>
     </NavbarContent>
   </Navbar>
-  <Breadcrumbs items={breadcrumbItems} size="xs" />
+  <Breadcrumbs items={breadcrumbItems} size="sm" />
   <div class="docs-container">
 
       {showTitle && (
@@ -97,7 +97,7 @@ breadcrumbItems.push({ id: "current", label: title, active: true });
 
       {
         description && (
-        <Inline my="xl">
+        <Inline my="md" px="lg">
           <Text size="lg" fontStyle="oblique" color="muted">
             {description}
           </Text>

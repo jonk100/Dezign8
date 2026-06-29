@@ -5,7 +5,6 @@ import { LAYOUT_TOKENS } from "./layout.tokens";
 import { resolveTokens } from "~/shared/tokens";
 import { resolveSpacingStyles } from "~/shared/spacing.props";
 import { useBaseCompose } from "~/shared/base.hook";
-import { resolveColorRole } from "~/shared/base.hook";
 import "./layout.css";
 
 /**
@@ -28,7 +27,6 @@ export function useLayout(props: LayoutProps) {
     class: className,
     v:      _v,
     testId: _testId,
-    bg,
     ...base
   } = props;
 
@@ -56,7 +54,6 @@ export function useLayout(props: LayoutProps) {
       style: [
         ...tokenStyle,
         ...spacingStyle,
-        ...(bg ? resolveColorRole(bg, "layout--bg") : []),
       ],
     },
     base,

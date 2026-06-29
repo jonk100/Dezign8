@@ -176,7 +176,7 @@
 /* ─── STRIPED ────────────────────────────────────────────────── */
 
 .data--striped .list__item:nth-child(even) {
-  background-color: var(--data--bg--subtle, var(--bg--2));
+  background-color: var(--bg--subtle, var(--bg--2));
 }
 
 /* ─── BORDERED ───────────────────────────────────────────────── */

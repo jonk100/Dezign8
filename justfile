@@ -1,5 +1,7 @@
 set shell := ["zsh", "-ic"]
 
+# Cleanup
+
 # Output dtree of the current directory
 [group('ai')]
 ai-dtree:
@@ -141,6 +143,11 @@ outdated:
 [group('project')]
 lint-fix:
     pnpm lint --fix
+
+# Generate component status list and verification checklist
+[group('project')]
+component-status:
+    npx tsx scripts/generate-component-status.ts
 
 # Auto-fix lint issues, then hand any leftovers to Claude Code
 [group('project')]
