@@ -8,11 +8,13 @@ ________________________________________
 
 ### New files
 * `src/pages/docs/system/[...slug].astro`
+* `src/pages/docs/system/index.astro`
 * `src/content/system/size-scale.mdx`
 * `ai/antigravity_session_summary.md/629-629_size_scale_documentation.md`
 
 ### Updated files
 * `src/content.config.ts`
+* `src/pages/index.astro`
 
 ---
 

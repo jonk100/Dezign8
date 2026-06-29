@@ -27,9 +27,11 @@ The user requested a documentation page detailing how the unified size scale wor
 
 ## New Files
 - `src/pages/docs/system/[...slug].astro`
+- `src/pages/docs/system/index.astro`
 - `src/content/system/size-scale.mdx`
 - `ai/antigravity_session_summary.md/629-629_size_scale_documentation.md`
 
 ## Updated Files
 - `src/content.config.ts`
+- `src/pages/index.astro`
 - `ai/agent_decision_log.md`

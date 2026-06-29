@@ -29,6 +29,7 @@ const sharedProps     = Object.keys(allProps).filter(p => p.includes('/shared/')
 const totalProps      = Object.keys(allProps).length - sharedProps;
 
 const allDocs = await getCollection('docs');
+const allSystemDocs = await getCollection('system');
 
 const categoriesMap = new Map<string, { categoryDoc: any, components: any[] }>();
 
@@ -50,7 +51,20 @@ allDocs.forEach((doc: any) => {
 	}
 });
 
-
+if (allSystemDocs.length > 0) {
+	categoriesMap.set('System', {
+		categoryDoc: {
+			frontmatter: {
+				title: 'System Specifications',
+				description: 'Core system tokens, architecture, motion, and color specifications.'
+			}
+		},
+		components: allSystemDocs.map((doc: any) => ({
+			...doc,
+			customHref: `/docs/system/${doc.id}`
+		}))
+	});
+}
 
 const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) => ({
 	name,
@@ -101,7 +115,7 @@ const categorizedLists = Array.from(categoriesMap.entries()).map(([name, data]) 
 					<ul class="component-list">
 						{cat.components.length > 0 ? cat.components.map((doc: any) => (
 							<li>
-								<a href={`/docs/${doc.id}`} class="component-link">↳ {doc.data.title}</a>
+								<a href={doc.customHref ?? `/docs/${doc.id}`} class="component-link">↳ {doc.data.title}</a>
 								<p class="desc">{doc.data.description}</p>
 							</li>
 						)) : (
