@@ -19,6 +19,8 @@ Base component props shared by all components. The following props are handled b
 * **`action`**: emits `data-action`
 * **`target`**: emits `data-target`
 * **`v`**: emits `data-visual`
+* **Spacing Props**: shorthand properties for padding and margins (see [Spacing Props](./spacing-props.md))
+* **ARIA Props**: accessibility properties for screen readers and assistive tech (see [ARIA Props](./aria-props.md))
 
 ---
 

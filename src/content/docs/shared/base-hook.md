@@ -63,6 +63,7 @@ The shared foundation every component hook runs through. `useBaseCompose` takes 
 
 | param | what goes here |
 |---|---|
+| `options.prefix` | (Optional) prefix used for scoping spacing CSS variables (e.g., `"layout"`). If omitted, it is automatically derived from the first non-empty string in `options.className`, falling back to `"base"`. |
 | `options.className` | Array of class tokens this hook has built. Falsy values are filtered out automatically. |
 | `options.style` | Array of inline style tokens (CSS-variable assignments). Joined with `"; "`. |
 | `options.attrs` | Extra `data-*` or `aria-*` attributes the hook wants to add. |
@@ -77,7 +78,7 @@ The shared foundation every component hook runs through. `useBaseCompose` takes 
 | `className` | `string` | Final space-separated class string. Spread as `class={className}`. |
 | `style` | `string` | Final semicolon-separated inline style string. |
 | `attrs` | `object` | All data/aria attributes. Spread with `{...attrs}`. |
-| `rest` | `object` | Remaining native HTML attributes not consumed by the hook or `useBaseCompose`. |
+| `rest` | `object` | Remaining native HTML attributes not consumed by the hook or `useBaseCompose` (spacing props are stripped and not included here). |
 
 ---
 
@@ -96,18 +97,15 @@ const { className: cls, style, attrs, rest } = useBaseCompose({
 }, base);
 ```
 
-### Pattern 2 — Token classes + token styles + color channels + spacing
+### Pattern 2 — Token classes + token styles + color channels
 **Used by:** `useLayout`, `useFeedback`, `useData`, `useForms`.
-Adds color role channels (`resolveColorRole`) and spacing styles (`resolveSpacingStyles`).
+`useBaseCompose` resolves spacing styles automatically using the component's name as a prefix. You can also inject color role channels (`resolveColorRole`).
 
 ```typescript
-const spacingStyle = resolveSpacingStyles({ p, mx }, "layout");
-
 const { className: cls, style, attrs, rest } = useBaseCompose({
   className: ["layout", ...tokenClasses, className],
   style: [
     ...tokenStyle,
-    ...spacingStyle,
     ...(bg ? resolveColorRole(bg, "layout--bg") : []),
   ],
 }, base);
