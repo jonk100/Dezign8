@@ -1,3 +1,23 @@
+## 2026/06/29 to 2026/06/29 - User configuration encapsulation
+
+See:
+- [Session Summary](./antigravity_session_summary.md/629-629_encapsulate_design_config.md)
+
+### New files
+```
+src/design/.config/
+src/design/integration.ts
+```
+
+### Updated files
+```
+astro.config.mjs
+tsconfig.json
+package.json
+```
+
+---
+
 ## 2026/06/29 to 2026/06/29 - Antigravity session
 
 [Session Summary](file:///home/jk/Code/dezign8/ai/antigravity_session_summary.md/629-629_cli_build_and_alias_fix.md)

@@ -1,25 +1,28 @@
 set shell := ["zsh", "-ic"]
 
-# Cleanup
+# Daily Cleanup
+[group('pnpm')]
+clean:
+    pnpm clean:daily
 
 # Output dtree of the current directory
-[group('ai')]
-ai-dtree:
+[group('ctxt')]
+dtree:
     dtree
 
 # create a directory_index.md file for the current directory
-[group('ai')]
-ai-admd:
+[group('ctxt')]
+admd:
     admd .
 
 # Open Claude Code in the current repo
-[group('open')]
-open-claude:
+[group('ai--')]
+claude:
     claude
 
 # Open the repo's GitHub page in the browser
-[group('open')]
-open-github:
+[group('chro')]
+gh-repo:
     #!/usr/bin/env bash
     set -euo pipefail
     # Convert the SSH remote URL (git@github.com:...) to an https:// URL and strip the trailing .git
@@ -27,8 +30,8 @@ open-github:
     xdg-open "$remote"
 
 # Fuzzy-pick a branch (local or remote) and check it out
-[group('git')]
-git-branch:
+[group('git-')]
+g-branch:
     #!/usr/bin/env bash
     set -euo pipefail
     # List all branches, strip the leading "* " / spaces, then pick one with fzf
@@ -37,14 +40,14 @@ git-branch:
     [ -n "$branch" ] && git checkout "${branch##remotes/origin/}"
 
 # Browse the last 30 commits with a graph + diff preview
-[group('git')]
-git-log:
+[group('git-')]
+g-log:
     # fzf preview extracts the commit hash from the selected line and runs git show on it
     git log --oneline --graph --decorate -30 | fzf --prompt="Log > " --preview 'git show $(echo {} | grep -o "[a-f0-9]\{7,\}" | head -1)'
 
 # add, commit
-[group('git')]
-git-commit:
+[group('git-')]
+g-commit:
     #!/usr/bin/env bash
     set -euo pipefail
     git status --short
@@ -59,58 +62,53 @@ git-commit:
     
 
 # Deploy to Cloudflare via Wrangler
-[group('deploy')]
-deploy-cloudflare:
+[group('dply')]
+d-cloudflare:
     wrangler deploy
 
 # Deploy to Netlify production
-[group('deploy')]
-deploy-netlify:
+[group('dply')]
+d-netlify:
     netlify deploy --prod
-    
-# Remove build output and installed dependencies
-[group('project')]
-clean:
-    rm -rf dist node_modules
 
 # Wipe node_modules + lockfile and reinstall dependencies from scratch
-[group('project')]
+[group('proj')]
 reset:
     rm -rf node_modules pnpm-lock.yaml && pnpm install
 
 # Run typecheck and lint together
-[group('project')]
+[group('pnpm')]
 check:
     pnpm astro check && pnpm lint
 
 # Run dev server
-[group('project')]
+[group('pnpm')]
 dev:
     pnpm dev
 
 # Watch .ts/.astro files and re-run check on every change
-[group('project')]
+[group('proj')]
 watch:
     watchexec -e ts,tsx,astro -- just check
     
 # Fuzzy-find any file in the repo and open it in default editor, with a syntax-highlighted preview
-[group('edit')]
-edit-file:
+[group('file')]
+f-edit:
     #!/usr/bin/env bash
     set -euo pipefail
     file=$(find . -type f -not -path './node_modules/*' -not -path './.git/*' | fzf --prompt="Edit > " --preview 'bat --color=always --style=numbers {}')
     [ -n "$file" ] && xdg-open "$file"
     
 # Fuzzy-search recent zsh history and re-run whatever you pick
-[group('shell')]
-history:
+[group('zsh-')]
+z-hist:
     #!/usr/bin/env zsh
     set -euo pipefail
     cmd=$(tac ~/.zsh_history | sed -E 's/^: [0-9]+:[0-9]+;//' | fzf --prompt="History > " --no-sort)
     [[ -n "$cmd" ]] && eval "$cmd"
     
 # Kill whatever's listening on the given port
-[group('project')]
+[group('proj')]
 port-kill:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -130,27 +128,27 @@ port-kill:
     fi
     
 # Find TODO/FIXME comments across the codebase
-[group('project')]
-todo-scan:
+[group('proj')]
+todo:
     grep -rn --exclude-dir=node_modules --exclude-dir=.git -E 'TODO|FIXME' --include='*.ts' --include='*.astro' --include='*.css' . || echo "No TODOs found"
     
 # Check for outdated pnpm dependencies
-[group('project')]
+[group('pnpm')]
 outdated:
     pnpm outdated
     
 # Auto-fix lint and formatting issues
-[group('project')]
+[group('pnpm')]
 lint-fix:
     pnpm lint --fix
 
 # Generate component status list and verification checklist
-[group('project')]
+[group('proj')]
 component-status:
-    npx tsx scripts/generate-component-status.ts
+    pnpm status:components
 
 # Auto-fix lint issues, then hand any leftovers to Claude Code
-[group('project')]
+[group('proj')]
 lint-fix-ai:
 	#!/usr/bin/env bash
 	set -euo pipefail
@@ -161,7 +159,7 @@ lint-fix-ai:
 	    echo "Lint is clean."
 	fi
 
-[group('project')]
+[group('proj')]
 import-recipe:
     #!/usr/bin/env bash
     set -euo pipefail

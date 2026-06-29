@@ -53,9 +53,9 @@ This tier represents the shift from static websites to interactive web applicati
 - [x] 35. `RadioGroup` (form) - 
 - [ ] 36. `ButtonGroup` (form) - 
 - [x] 37. `Modal` (overlay) - 
-- [ ] 39. `DropdownMenu` (overlay) - 
-- [ ] 40. `Popover` (overlay) - 
-- [ ] 41. `Tooltip` (overlay) - 
+- [x] 39. `DropdownMenu` (overlay) - 
+- [x] 40. `Popover` (overlay) - 
+- [x] 41. `Tooltip` (overlay) - 
 - [x] 42. `Breadcrumbs` (nav) - 
 - [x] 44. `Avatar` (assets) - 
 - [x] 47. `Video` (assets) - 
@@ -68,55 +68,51 @@ These components are used heavily in SaaS (Software as a Service) platforms, adm
 
 - [x] 68. `Progress` (feedback) - 
 - [x] 72. `ThemeToggle` (trigger) -
-
-- [x] 50. `Switch` (form) - Toggle switch for binary on/off state. | `checked`, `defaultChecked`, `onChange`, `size`, `label` |
-- [ ] 51. `Slider` (form) - 
-- [ ] 52. `RangeSlider` (form) - 
-- [ ] 53. `DatePicker` (form) - 
 - [x] 54. `Combobox` (form) - 
-- [ ] 55. `FileUpload` (form) - 
-- [ ] 56. `Stat` (data) - 
-                              <!-- - [ ] 57. `Metric` (data) - 
-                              - [ ] 58. `BarChart` (data) - 
-                              - [ ] 59. `PieChart` (data) - 
-                              - [ ] 60. `Timeline` (data) -  -->
+- [x] 56. `Stat` (data) - 
 - [x] 61. `Drawer` (overlay) - 
 - [x] 62. `Sheet` (overlay) - 
-- [ ] 63. `Backdrop` (overlay) - 
-- [ ] 64. `Toast` (feedback) - 
-- [ ] 65. `ToastRegion` (feedback) - 
+- [x] 64. `Toast` (feedback) - 
 - [x] 66. `AlertDialog` (overlay) - 
+- [x] 50. `Switch` (form) - Toggle switch for binary on/off state. | `checked`, `defaultChecked`, `onChange`, `size`, `label` |
 - [x] 67. `Skeleton` (feedback) - 
-- [ ] 69. `EmptyState` (feedback) - 
-- [ ] 70. `Carousel` (data) - 
-- [ ] 71. `Gallery` (data) - 
-
-### Tier 5: Niche (Highly Specific Use Cases)
-
-These components are highly specialized. They are only used when a specific feature demands them (like audio editing, specialized data picking, or niche layout styles).
-
+- [x] 69. `EmptyState` (feedback) - 
 - [x] 88. `Inline` (layout) - 
 - [x] 75. `Multiselect` (form) - 
 - [x] 113. `Quote` (typography) - 
-
-- [ ] 73. `ColorPicker` (form) - 
-- [ ] 74. `TimePicker` (form) - 
-- [ ] 76. `SegmentedControl` (form) - 
-- [ ] 77. `VisuallyHidden` (accessibility) - 
-- [ ] 78. `SkipLink` (nav) - 
-- [ ] 79. `Portal` (overlay) - 
-- [ ] 80. `CommandPalette` (overlay) - 
-- [x] 81. `Kbd` (typography) - 
-- [x] 82. `Code` (typography) - 
-- [ ] 83. `BentoGrid` (layout) - 
-- [ ] 84. `BentoCell` (layout) - 
-- [ ] 85. `AspectRatio` (layout) - 
-- [x] 86. `Screen` (layout) - 
-- [ ] 87. `Columns` (layout) - 
+- [x] 76. `SegmentedControl` (form) - 
+- [x] 77. `VisuallyHidden` (accessibility) - 
 - [x] 89. `Well` (layout) - 
 - [x] 90. `Tile` (layout) - 
 - [x] 91. `Paper` (layout) - 
 - [x] 92. `Frame` (layout) - 
+- [x] 81. `Kbd` (typography) - 
+- [x] 82. `Code` (typography) - 
+- [x] 86. `Screen` (layout) - 
+- [x] 102. `Dot` (feedback) - 
+- [x] 103. `Chip` (feedback) - 
+- [x] 104. `Tag` (feedback) -
+- [x] 109. `Audio` (assets) - 
+- [x] 110. `FilePreview` (assets) - 
+- [x] 112. `Prose` (typography) - 
+
+- [ ] 51. `Slider` (form) - 
+- [ ] 52. `RangeSlider` (form) - 
+- [ ] 53. `DatePicker` (form) - 
+- [ ] 55. `FileUpload` (form) - 
+- [ ] 63. `Backdrop` (overlay) - 
+- [ ] 65. `ToastRegion` (feedback) - 
+- [ ] 70. `Carousel` (data) - 
+- [ ] 71. `Gallery` (data) - 
+- [ ] 73. `ColorPicker` (form) - 
+- [ ] 74. `TimePicker` (form) - 
+- [ ] 78. `SkipLink` (nav) - 
+- [ ] 79. `Portal` (overlay) - 
+- [ ] 80. `CommandPalette` (overlay) - 
+- [ ] 83. `BentoGrid` (layout) - 
+- [ ] 84. `BentoCell` (layout) - 
+- [ ] 85. `AspectRatio` (layout) - 
+- [ ] 87. `Columns` (layout) - 
 - [ ] 93. `TreeView` (data) - 
 - [ ] 94. `Feed` (data) - 
 - [ ] 95. `Event` (data) - 
@@ -126,17 +122,11 @@ These components are highly specialized. They are only used when a specific feat
 - [ ] 99. `DescriptionList` (data) - 
 - [ ] 100. `Sparkline` (data) - 
 - [ ] 101. `Indicator` (feedback) - 
-- [x] 102. `Dot` (feedback) - 
-- [x] 103. `Chip` (feedback) - 
-- [x] 104. `Tag` (feedback) - 
 - [ ] 105. `AvatarGroup` (assets) - 
 - [ ] 106. `Waveform` (assets) - 
 - [ ] 107. `Cropper` (assets) - 
-- [ ] 108. `Lightbox` (assets) - 
-- [x] 109. `Audio` (assets) - 
-- [x] 110. `FilePreview` (assets) - 
+- [ ] 108. `Lightbox` (assets) -
 - [ ] 111. `GalleryItem` (assets) - 
-- [x] 112. `Prose` (typography) - 
 - [ ] 114. `Toolbar` (nav) - 
 - [ ] 115. `Stepper` (nav) - 
 - [ ] 116. `ContextMenu` (overlay) -
