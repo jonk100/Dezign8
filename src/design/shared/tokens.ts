@@ -224,11 +224,11 @@ export function pickValues<
  *
  * @example
  *   resolveTokens(TRIGGER_TOKENS, { variant: "solid", color: "primary", radius: "md" }, "trigger")
- *   // style:   ["--trigger--radius: var(--radius--md)"]
- *   // classes: ["trigger--solid", "trigger--primary"]
+ *   //* style:   ["--trigger--radius: var(--radius--md)"]
+ *   //* classes: ["trigger--solid", "trigger--primary"]
  *   //
- *   // Note: color has null values → no CSS var emitted, only the modifier class.
- *   // Note: radius has no modifier → no class emitted, only the CSS var.
+ *   //* Note: color has null values → no CSS var emitted, only the modifier class.
+ *   //* Note: radius has no modifier → no class emitted, only the CSS var.
  */
 export function resolveTokens<S extends TokenSpec>(
   spec: S,

@@ -2,6 +2,30 @@
 ________________________________________
 - Document key decisions and changes made
 
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
+[document_design_components](antigravity_session_summary.md/629-629_document_design_components.md)
+
+### New files
+* `ai/antigravity_session_summary.md/629-629_document_design_components.md`
+* `src/content/docs/typography/indent.mdx`
+* `src/content/docs/typography/visually-hidden.mdx`
+* `src/content/docs/typography/code.mdx`
+* `src/content/docs/feedback/dot.mdx`
+* `src/content/docs/layout/inline.mdx`
+* `src/content/docs/layout/screen.mdx`
+
+### Updated files
+* `src/design/layout/components/screen/screen.hook.ts`
+* `src/content/docs/data/feed.mdx`
+* `src/content/docs/data/metric.mdx`
+* `src/content/docs/data/stat.mdx`
+* `src/content/docs/feedback/empty-state.mdx`
+* `src/content/docs/triggers/button.mdx`
+* `src/content/docs/nav/menu.mdx`
+
+---
+
 ## 2026/06/28 to 2026/06/29 - Antigravity session
 
 [clean_deleted_legacy_docs](antigravity_session_summary.md/628-629_clean_deleted_legacy_docs.md)
