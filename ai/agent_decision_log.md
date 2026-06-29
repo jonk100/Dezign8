@@ -1,7 +1,62 @@
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
+[Session Summary](file:///home/jk/Code/dezign8/ai/antigravity_session_summary.md/629-629_cli_build_and_alias_fix.md)
+
+### New files
+- None
+
+### Updated files
+- tsconfig.paths.json
+
+---
+
 # Decision Log =======================
 ________________________________________
 - Document key decisions and changes made
 
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
+[astro_integration](antigravity_session_summary.md/629-629_astro_integration.md)
+
+### New files
+* `src/design/integration.ts`
+* `ai/antigravity_session_summary.md/629-629_astro_integration.md`
+
+### Updated files
+* `astro.config.mjs`
+
+---
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
+[remove_floating_ui](antigravity_session_summary.md/629-629_remove_floating_ui.md)
+
+### New files
+* `ai/antigravity_session_summary.md/629-629_remove_floating_ui.md`
+
+### Updated files
+* `package.json`
+* `pnpm-lock.yaml`
+
+---
+
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
+[encapsulate_design_config](antigravity_session_summary.md/629-629_encapsulate_design_config.md)
+
+### New files
+* `src/design/.config/tsconfig.paths.json`
+* `src/design/.config/vite-aliases.ts`
+* `ai/antigravity_session_summary.md/629-629_encapsulate_design_config.md`
+
+### Updated files
+* `tsconfig.json`
+* `astro.config.mjs`
+
+### Deleted files
+* `tsconfig.paths.json` (moved)
+* `plugins/` (moved)
+
+---
 ## 2026/06/29 to 2026/06/29 - Antigravity session
 
 [size_scale_documentation](antigravity_session_summary.md/629-629_size_scale_documentation.md)
