@@ -3,7 +3,6 @@
 import type { LayoutProps } from "./layout.props";
 import { LAYOUT_TOKENS } from "./layout.tokens";
 import { resolveTokens } from "~/shared/tokens";
-import { resolveSpacingStyles } from "~/shared/spacing.props";
 import { useBaseCompose } from "~/shared/base.hook";
 import "./layout.css";
 
@@ -22,8 +21,6 @@ export function useLayout(props: LayoutProps) {
     gap,
     align,
     justify,
-    p, px, py, pt, pr, pb, pl,
-    m, mx, my, mt, mr, mb, ml,
     class: className,
     v:      _v,
     testId: _testId,
@@ -37,12 +34,6 @@ export function useLayout(props: LayoutProps) {
     "layout",
   );
 
-  // Resolve spacing shorthand properties (p, m, pt, mx, etc.) into CSS variables
-  const spacingStyle = resolveSpacingStyles(
-    { p, px, py, pt, pr, pb, pl, m, mx, my, mt, mr, mb, ml },
-    "layout",
-  );
-
   // Compose the final classes and styles, merging with any provided custom class/style
   const { className: cls, style, attrs, rest: restAttrs } = useBaseCompose(
     {
@@ -53,7 +44,6 @@ export function useLayout(props: LayoutProps) {
       ],
       style: [
         ...tokenStyle,
-        ...spacingStyle,
       ],
     },
     base,

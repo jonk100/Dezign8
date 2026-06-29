@@ -3,6 +3,7 @@
 import type { Visual }       from "./visuals";
 import type { ColorRole }    from "./primitives.tokens";
 
+import type { SpacingProps } from "./spacing.props";
 import type { MotionProp }   from "./motion/motion.types";
 import type { AriaProps }    from "./aria.props";
 
@@ -19,7 +20,7 @@ import type { AriaProps }    from "./aria.props";
  * - `target`: emits `data-target`
  * - `v`: emits `data-visual`
  */
-export interface BaseComponentProps extends AriaProps {
+export interface BaseComponentProps extends SpacingProps, AriaProps {
   class?:    string;
   style?:    string;
   id?:       string;

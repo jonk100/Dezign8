@@ -4,6 +4,21 @@ ________________________________________
 
 ## 2026/06/28 to 2026/06/29 - Antigravity session
 
+[spacing_props_hook_integration](antigravity_session_summary.md/628-629_spacing_props_hook_integration.md)
+
+### New files
+* `ai/antigravity_session_summary.md/628-629_spacing_props_hook_integration.md`
+
+### Updated files
+* `src/design/shared/base.props.ts`
+* `src/design/shared/base.hook.ts`
+* `src/design/layout/layout.hook.ts`
+* `src/design/assets/components/image/image.hook.ts`
+
+---
+
+## 2026/06/28 to 2026/06/29 - Antigravity session
+
 [base_hook_docs_frontmatter](antigravity_session_summary.md/628-629_base_hook_docs_frontmatter.md)
 
 ### New files

@@ -4,7 +4,6 @@ import type { ImageProps } from "./image.props";
 import { IMAGE_TOKENS, IMAGE_DEFAULTS } from "./image.tokens";
 import { resolveTokens } from "~/shared/tokens";
 import { useBaseCompose } from "~/shared/base.hook";
-import { resolveSpacingStyles } from "~/shared/spacing.props";
 
 export function useImage(props: ImageProps) {
   const {
@@ -18,18 +17,11 @@ export function useImage(props: ImageProps) {
     height,
     class: className,
     v:      _v,
-    p, px, py, pt, pr, pb, pl,
-    m, mx, my, mt, mr, mb, ml,
     ...base } = props;
 
   const { style: tokenStyle, classes: tokenClasses } = resolveTokens(
     IMAGE_TOKENS,
     { radius, ratio, fit },
-    "image",
-  );
-
-  const spacingStyle = resolveSpacingStyles(
-    { p, px, py, pt, pr, pb, pl, m, mx, my, mt, mr, mb, ml },
     "image",
   );
 
@@ -46,7 +38,6 @@ export function useImage(props: ImageProps) {
       ],
       style: [
         ...tokenStyle,
-        ...spacingStyle,
         isCssValue(width) ? `width: ${width}` : undefined,
         isCssValue(height) ? `height: ${height}` : undefined,
       ],

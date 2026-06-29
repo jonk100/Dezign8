@@ -3,11 +3,13 @@
 import type { BaseComponentProps } from "./base.props";
 import type { ColorRole }          from "./primitives.tokens";
 import { getMotionAttrs }          from "./motion/motion.utils";
+import { resolveSpacingStyles }    from "./spacing.props";
 
 export type ClassToken = string | false | null | undefined;
 export type StyleToken = string | false | null | undefined;
 
 export interface BaseComposeOptions {
+  prefix?:    string;
   className?: ClassToken[];
   style?:     StyleToken[];
   attrs?:     Record<string, unknown>;
@@ -337,6 +339,9 @@ export function useBaseCompose(
     disabled: baseDisabled, 
     class: baseClass, 
     style: baseStyle,
+    // Extract spacing props
+    p, px, py, pt, pr, pb, pl,
+    m, mx, my, mt, mr, mb, ml,
     ...rest
   } = (base ?? {}) as BaseComponentProps;
 
@@ -355,9 +360,25 @@ export function useBaseCompose(
   }
 
   const bgVars = bg ? resolveColorRole(bg, "bg") : [];
+ 
+  // Determine component prefix automatically from options.prefix or the first className token
+  const classPrefix = options.className?.find(c => typeof c === "string" && c.length > 0) || "base";
+  const prefix = options.prefix ?? classPrefix;
+
+  const spacingStyles = resolveSpacingStyles(
+    { p, px, py, pt, pr, pb, pl, m, mx, my, mt, mr, mb, ml },
+    prefix
+  );
 
   const className = composeClass(...(options.className ?? []), baseClass);
-  const style     = composeStyle(...(options.style ?? []), ...bgVars, motionData?.enterStyle, ...motionStyles, baseStyle);
+  const style     = composeStyle(
+    ...(options.style ?? []),
+    ...bgVars,
+    ...spacingStyles,
+    motionData?.enterStyle,
+    ...motionStyles,
+    baseStyle
+  );
   const attrs: Record<string, unknown> = {
     ...(v          ? { "data-visual":  v }      : {}),
     ...(testId     ? { "data-testid":  testId } : {}),
