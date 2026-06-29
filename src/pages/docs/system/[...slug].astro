@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from 'astro:content';
+import DocsLayout from '../../../layouts/docs/DocsLayout.astro';
+import Prose from '~/typography/components/prose/Prose.astro';
+import Table from '~/data/components/table/Table.astro';
+import Image from '~/assets/components/image/Image.astro';
+import Code from '~/typography/components/code/Code.astro';
+import H from '~/typography/components/heading/H.astro';
+
+export async function getStaticPaths() {
+  const systemDocs = await getCollection('system');
+  
+  return systemDocs.map((entry: any, index: number) => {
+    const prevEntry = index > 0 ? systemDocs[index - 1] : null;
+    const nextEntry = index < systemDocs.length - 1 ? systemDocs[index + 1] : null;
+    
+    return {
+      params: { slug: entry.id },
+      props: { entry, prevEntry, nextEntry },
+    };
+  });
+}
+
+const { entry, prevEntry, nextEntry } = Astro.props as { entry: any, prevEntry?: any, nextEntry?: any };
+const { Content } = await render(entry);
+
+const mdxComponents = {
+  table: Table,
+  img: Image,
+  code: Code,
+  h1: H,
+  h2: H,
+  h3: H,
+  h4: H,
+  h5: H,
+  h6: H,
+};
+
+const { title, description, category, status, version } = entry.data;
+
+const prev = prevEntry ? { title: prevEntry.data.title, href: `/docs/system/${prevEntry.id}` } : undefined;
+const next = nextEntry ? { title: nextEntry.data.title, href: `/docs/system/${nextEntry.id}` } : undefined;
+---
+
+<DocsLayout
+  title={title}
+  description={description}
+  category={category}
+  status={status}
+  version={version}
+  prev={prev}
+  next={next}
+>
+  <Prose>
+    <Content components={mdxComponents} />
+  </Prose>
+</DocsLayout>

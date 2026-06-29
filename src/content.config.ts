@@ -55,4 +55,16 @@ const wiki = defineCollection({
   })
 });
 
-export const collections = { docs, wiki };
+const system = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/system" }),
+  schema: z.object({
+    title: z.string().describe("The title of the system specification or guidelines."),
+    description: z.string().describe("A brief overview of what this system doc explains."),
+    category: z.enum(['Tokens', 'Architecture', 'Motion', 'Color']).default('Tokens').describe("The subsystem domain."),
+    status: z.enum(['draft', 'experimental', 'stable', 'deprecated']).default('draft'),
+    version: z.string().optional(),
+    updated: z.coerce.date().optional(),
+  })
+});
+
+export const collections = { docs, wiki, system };

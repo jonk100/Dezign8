@@ -4,6 +4,20 @@ ________________________________________
 
 ## 2026/06/29 to 2026/06/29 - Antigravity session
 
+[size_scale_documentation](antigravity_session_summary.md/629-629_size_scale_documentation.md)
+
+### New files
+* `src/pages/docs/system/[...slug].astro`
+* `src/content/system/size-scale.mdx`
+* `ai/antigravity_session_summary.md/629-629_size_scale_documentation.md`
+
+### Updated files
+* `src/content.config.ts`
+
+---
+
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
 [size_token_consolidation](antigravity_session_summary.md/629-629_size_token_consolidation.md)
 
 ### New files

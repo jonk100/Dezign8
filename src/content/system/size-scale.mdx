@@ -1,0 +1,78 @@
+---
+title: Unified Size Scale
+description: Specification and guidelines for the 12-step unified size scale, mapping, and resolution utilities.
+category: Tokens
+status: stable
+version: 0.0.1
+---
+
+# Unified Size Scale
+
+The design system standardizes all size-related dimensions (spacing, padding, margins, borders, radii, typography, and control elements) under a single, unified 12-step scale. 
+
+By sharing the same step names across all domains, we minimize cognitive load for developers while maintaining the flexibility to tune actual physical sizes independently per domain.
+
+---
+
+## The 12-Step Scale
+
+The scale contains exactly 12 steps, ordered from smallest to largest:
+
+```
+3xs  →  2xs  →  xs  →  sm  →  md  →  lg  →  xl  →  2xl  →  3xl  →  4xl  →  5xl  →  6xl
+```
+
+* **UI Components** (like Button, Badge, and Input) generally expose a narrowed subset of the scale—typically `2xs` through `2xl`—for standard layout integration.
+* **Layout and spacing utilities** (like `Box` or `Grid` margins/padding) can leverage the full scale up to `6xl` for macro-layout positioning.
+
+---
+
+## Fluid vs. Fixed Font Scales
+
+Typography size changes behave differently depending on the context:
+
+1. **Fluid Font Sizes (`fs--*`)**: Used for page copy, layout headings, and article text. These sizes map to CSS `clamp()` functions (e.g., `fs--xs` through `fs--6xl`) that grow dynamically based on the viewport width.
+2. **Fixed Font Sizes (`fsf--*` or `label--*`)**: Used for text inside structured UI controls (like buttons, badges, input tags, and helper texts). These map to static `rem`/`px` values so that structural components remain stable regardless of viewport scaling.
+
+---
+
+## Component Sizing coordination
+
+A component's `size` prop acts as a coordinator. For example, when a consumer writes `<Button size="md">`, the button's internal size map resolves `md` to a combination of spacing, height, and typography step choices:
+
+```ts
+export const BUTTON_SIZE_MAP = {
+  // Button "md" coordinates:
+  md: { 
+    p:  "var(--space-in--md)",    // maps to interior spacing md
+    pi: "var(--space-in--md)",    // maps to interior spacing md
+    fs: "var(--fs--sm)",          // maps to typography scale sm (for balance)
+    h:  "var(--ui-height--md)",   // maps to component height md
+  }
+}
+```
+
+---
+
+## Centralized Sizing Resolution (`resolveComponentSizes`)
+
+To prevent components from writing custom resolver functions and duplicating assertions, size mappings are fully declarative and resolved using the shared helper in `src/design/shared/base.tokens.ts`:
+
+```ts
+import { resolveComponentSizes } from "~/shared/base.tokens";
+import { BUTTON_SIZE_MAP } from "./button.tokens";
+
+// In button.hook.ts:
+const sizeStyle = resolveComponentSizes("button", size, BUTTON_SIZE_MAP);
+```
+
+This automatically generates the corresponding CSS custom properties prefixed by the component's namespace:
+```css
+/* Emitted as inline styles on the element: */
+--button--p: var(--space-in--md);
+--button--pi: var(--space-in--md);
+--button--fs: var(--fs--sm);
+--button--h: var(--ui-height--md);
+```
+
+Component stylesheets (`button.css`) read these custom properties, keeping style values entirely decoupled from component logic.
