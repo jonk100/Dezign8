@@ -1,0 +1,236 @@
+# Component Architecture
+
+This document describes the component architecture used in this design system. All components follow a strict, decoupled multi-file shape to isolate concerns (tokens, TypeScript types, layout/state hooks, scoped CSS, and HTML templates).
+
+---
+
+## The 5+ File Structure
+
+Every component is colocated within its own directory and comprises the following files:
+
+```
+design/
+  category/
+    components/
+      button/
+        button.tokens.ts   # Token scales, options, and defaults
+        button.props.ts    # TypeScript interface definitions
+        button.hook.ts     # Business logic, state, and class resolution
+        button.css         # Component-specific styles and CSS channels
+        Button.astro       # Astro template markup (usually 3 lines)
+        index.ts           # Barrel file for exports
+        button.client.ts   # (Optional) Client-side behavior scripts
+```
+
+This multi-file division ensures that concerns are fully separated, CSS can be processed statically, and templates contain zero logic.
+
+---
+
+## 1. Tokens File (`*.tokens.ts`)
+
+The tokens file defines the component's vocabulary. It maps props to design system scales using `defineTokens` or `composeTokens`, and specifies the default properties for the component.
+
+### Example: `button.tokens.ts`
+```typescript
+import { defineTokens, dimension, pickValues } from "~/shared/tokens";
+import { SPACE, COLOR_STEPS } from "~/shared/primitives.tokens";
+
+// Define tokens specific to the button
+export const BUTTON_TOKENS = defineTokens({
+  size: dimension("size", {
+    xs: "var(--space-xs)",
+    sm: "var(--space-sm)",
+    md: "var(--space-md)",
+    lg: "var(--space-lg)",
+  }),
+  variant: dimension("variant", {
+    solid: "solid",
+    outlined: "outlined",
+    ghost: "ghost",
+  }),
+});
+
+export const BUTTON_DEFAULTS = {
+  size: "md" as const,
+  variant: "solid" as const,
+  type: "button" as const,
+};
+```
+
+---
+
+## 2. Props File (`*.props.ts`)
+
+The props file contains type definitions only. It imports the tokens and derives the type unions directly from them, ensuring that type definitions remain perfectly in sync with the actual tokens.
+
+### Example: `button.props.ts`
+```typescript
+import type { BaseComponentProps } from "~/shared/base.props";
+import type { BUTTON_TOKENS } from "./button.tokens";
+
+// Derive scales from token keys
+export type ButtonSize = keyof typeof BUTTON_TOKENS.size.values;
+export type ButtonVariant = keyof typeof BUTTON_TOKENS.variant.values;
+
+export interface ButtonProps extends BaseComponentProps {
+  /** Size scale of the button. @default "md" */
+  size?: ButtonSize;
+  /** Visual variant. @default "solid" */
+  variant?: ButtonVariant;
+  /** HTML button type. @default "button" */
+  type?: "button" | "submit" | "reset";
+  /** URL to navigate to. If set, renders as an <a> anchor tag instead of a <button>. */
+  href?: string;
+  /** Anchor target. */
+  target?: string;
+}
+```
+
+---
+
+## 3. Hook File (`*.hook.ts`)
+
+The hook file translates component properties into resolved class names, style variables, HTML attributes, and pass-through props. 
+
+* The hook **never** imports or uses React.
+* It calls `useBaseCompose` exactly once to handle global properties (spacing, motion, colors, `v`, `testId`, etc.).
+* Spacing props are stripped automatically by `useBaseCompose` and applied as CSS custom variables to the root element.
+
+### Example: `button.hook.ts`
+```typescript
+import type { ButtonProps } from "./button.props";
+import { BUTTON_DEFAULTS, BUTTON_TOKENS } from "./button.tokens";
+import { resolveTokens } from "~/shared/tokens";
+import { useBaseCompose, composeClass, composeStyle } from "~/shared/base.hook";
+
+export function useButton(props: ButtonProps) {
+  const {
+    size = BUTTON_DEFAULTS.size,
+    variant = BUTTON_DEFAULTS.variant,
+    type = BUTTON_DEFAULTS.type,
+    href,
+    target,
+    class: className,
+    ...base
+  } = props;
+
+  // Resolve design tokens to CSS variables and BEM modifiers
+  const { style: tokenStyle, classes: tokenClasses } = resolveTokens(
+    BUTTON_TOKENS,
+    { size, variant },
+    "button"
+  );
+
+  const isLink = Boolean(href);
+
+  // Call useBaseCompose to merge component styles with global base props (spacing, motion, etc.)
+  const { className: cls, style, attrs, rest } = useBaseCompose(
+    {
+      className: [
+        "button",
+        `button--${variant}`,
+        ...tokenClasses,
+        className,
+      ],
+      style: [
+        ...tokenStyle,
+      ],
+    },
+    base
+  );
+
+  return {
+    Tag: isLink ? ("a" as const) : ("button" as const),
+    props: {
+      class: cls,
+      style: style || undefined,
+      type: !isLink ? type : undefined,
+      href: isLink ? href : undefined,
+      target: isLink ? target : undefined,
+      ...attrs,
+      ...rest,
+    },
+  };
+}
+```
+
+---
+
+## 4. Scoped CSS File (`*.css`)
+
+Component styles are written in pure CSS. They consume the scoped custom properties generated by `resolveTokens` and `useBaseCompose`.
+
+* Scoped variable naming follows a double-dash pattern: `--{prefix}--{key}`.
+* Spacing shorthand variables are prefixed by component (e.g., `--button--pt` falls back to `--button--py` and `--button--p`).
+
+### Example: `button.css`
+```css
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+
+  /* Consume scoped spacing variables generated automatically */
+  padding:             var(--button--p, var(--space-sm) var(--space-md));
+  padding-block-start: var(--button--pt, var(--button--py, var(--button--p)));
+  padding-block-end:   var(--button--pb, var(--button--py, var(--button--p)));
+  padding-inline-start:var(--button--pl, var(--button--px, var(--button--p)));
+  padding-inline-end:  var(--button--pr, var(--button--px, var(--button--p)));
+  
+  margin-block-start:  var(--button--mt, var(--button--my, var(--button--m)));
+  margin-block-end:    var(--button--mb, var(--button--my, var(--button--m)));
+
+  /* Consume token channels */
+  font-size: var(--button-size, var(--fs-base));
+  border-radius: var(--button-radius, var(--radius-md));
+}
+
+.button--solid {
+  background-color: var(--button-bg, var(--primary-base));
+  color: var(--button-text, var(--text-on-primary));
+}
+
+.button--outlined {
+  background-color: transparent;
+  border-color: var(--button-border, var(--border-strong));
+  color: var(--button-text, var(--text-primary));
+}
+```
+
+---
+
+## 5. Astro Template File (`*.astro`)
+
+Astro components contain minimal logic. They import the CSS stylesheet, pass Astro props into the hook, and spread the resolved attributes onto the returned tag.
+
+### Example: `Button.astro`
+```astro
+---
+import type { ButtonProps } from "./button.props";
+import { useButton } from "./button.hook";
+import "./button.css";
+
+const { Tag, props } = useButton(Astro.props as ButtonProps);
+---
+<Tag {...props}><slot /></Tag>
+```
+
+---
+
+## Architectural Rules & Import Flow
+
+To prevent circular dependency graphs and keep the codebase simple:
+
+1. **Import Flow Direction:**
+   `shared` → `category` → `component`
+   * Shared files cannot import category or component files.
+   * Category files cannot import component files.
+   * Components under the same category cannot import each other.
+2. **No CSS Imports:**
+   CSS files must not `@import` other component CSS files. Scopes must remain isolated.
+3. **No React Elements:**
+   Do not import or use React in any files under `src/design/`. The UI is server-side rendered (SSR) first and behavior-driven via client-side scripts.
