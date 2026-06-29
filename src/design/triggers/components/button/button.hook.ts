@@ -18,7 +18,7 @@ export function useButton(props: ButtonProps) {
     ...triggerProps
   } = props;
  
-  const { Tag, triggerClass, triggerStyle, triggerAttrs, rest, size }
+  const { Tag, triggerClass, triggerStyle, triggerAttrs, rest }
     = useTrigger({
       ...triggerProps,
       type,
@@ -27,7 +27,20 @@ export function useButton(props: ButtonProps) {
       ...(rel    !== undefined ? { rel }    : {}),
     });
     
-  const sizeStyle = resolveComponentSizes("button", size as ButtonSize, BUTTON_SIZE_MAP);
+  const sizeStyle = props.size !== undefined
+    ? resolveComponentSizes("button", props.size as ButtonSize, BUTTON_SIZE_MAP)
+    : [];
+
+  let finalStyle = triggerStyle
+    ? triggerStyle.split(";").map(s => s.trim()).filter(Boolean)
+    : [];
+
+  if (props.color === undefined) {
+    finalStyle = finalStyle.filter(s => !s.startsWith("--trigger--color-"));
+  }
+  if (props.radius === undefined) {
+    finalStyle = finalStyle.filter(s => !s.startsWith("--trigger--radius:"));
+  }
 
   return {
     Tag,
@@ -35,12 +48,12 @@ export function useButton(props: ButtonProps) {
       class: composeClass(
         triggerClass,
         "button",
-        `button--${size}`,
+        props.size && `button--${props.size}`,
         iconOnly  && "button--icon-only",
         fullWidth && "button--full-width",
       ),
       style: composeStyle(
-        triggerStyle,
+        ...finalStyle,
         ...sizeStyle,
       ),
       ...triggerAttrs,

@@ -1,3 +1,14 @@
+## 2026/06/29 to 2026/06/29 - Bug fix
+
+- Fixed `composeStyle` arguments spread in `button.hook.ts`.
+
+### Updated files
+```
+src/design/triggers/components/button/button.hook.ts
+```
+
+---
+
 ## 2026/06/29 to 2026/06/29 - User configuration encapsulation
 
 See:
