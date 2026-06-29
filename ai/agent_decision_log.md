@@ -4,6 +4,33 @@ ________________________________________
 
 ## 2026/06/29 to 2026/06/29 - Antigravity session
 
+[size_token_consolidation](antigravity_session_summary.md/629-629_size_token_consolidation.md)
+
+### New files
+* `src/design/shared/base.tokens.ts`
+* `ai/antigravity_session_summary.md/629-629_size_token_consolidation.md`
+
+### Updated files
+* `src/design/shared/definitions/scales.ts`
+* `src/design/shared/definitions/size.ts`
+* `src/design/triggers/trigger.tokens.ts`
+* `src/design/feedback/feedback.tokens.ts`
+* `src/design/triggers/components/button/button.tokens.ts`
+* `src/design/triggers/components/button/button.hook.ts`
+* `src/design/feedback/components/badge/badge.css`
+* `src/design/feedback/components/alert/alert.tokens.ts`
+* `src/design/feedback/components/alert/alert.hook.ts`
+* `src/design/feedback/components/toast/toast.tokens.ts`
+* `src/design/feedback/components/spinner/spinner.css`
+* `src/design/assets/components/avatar/avatar.tokens.ts`
+* `src/design/assets/components/icon/icon.tokens.ts`
+* `src/design/assets/components/icon/icon.css`
+* `package.json`
+
+---
+
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
 [document_design_components](antigravity_session_summary.md/629-629_document_design_components.md)
 
 ### New files

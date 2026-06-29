@@ -50,6 +50,22 @@
 
 /* ─── Size map ───────────────────────────────────────────────────────────── */
 
+.feedback--3xs.badge {
+  --badge--font-size:  var(--fsf--3xs);
+  --badge--padding-y:  calc(var(--space-in--3xs) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--3xs) / 1.5);
+  --badge--min-width:  calc(var(--icon--size-3xs) * 1.5);
+  --badge--height:     calc(var(--icon--size-3xs) * 0.75);
+}
+
+.feedback--2xs.badge {
+  --badge--font-size:  var(--fsf--2xs);
+  --badge--padding-y:  calc(var(--space-in--2xs) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--2xs) / 1.5);
+  --badge--min-width:  calc(var(--icon--size-2xs) * 1.5);
+  --badge--height:     var(--icon--size-3xs);
+}
+
 .feedback--xs.badge {
   --badge--font-size:  var(--fsf--xs);
   --badge--padding-y:  calc(var(--space-in--xs) / 2.5);
@@ -90,6 +106,46 @@
   --badge--height:     calc(var(--icon--size-lg) / 1.25);
 }
 
+.feedback--2xl.badge {
+  --badge--font-size:  var(--fsf--2xl);
+  --badge--padding-y:  calc(var(--space-in--2xl) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--2xl) / 1.25);
+  --badge--min-width:  calc(var(--icon--size-2xl) * 1.5);
+  --badge--height:     var(--icon--size-lg);
+}
+
+.feedback--3xl.badge {
+  --badge--font-size:  var(--fsf--3xl);
+  --badge--padding-y:  calc(var(--space-in--3xl) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--3xl) / 1.25);
+  --badge--min-width:  calc(var(--icon--size-3xl) * 1.5);
+  --badge--height:     var(--icon--size-xl);
+}
+
+.feedback--4xl.badge {
+  --badge--font-size:  var(--fsf--4xl);
+  --badge--padding-y:  calc(var(--space-in--4xl) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--4xl) / 1.25);
+  --badge--min-width:  calc(var(--icon--size-4xl) * 1.5);
+  --badge--height:     var(--icon--size-2xl);
+}
+
+.feedback--5xl.badge {
+  --badge--font-size:  var(--fsf--5xl);
+  --badge--padding-y:  calc(var(--space-in--5xl) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--5xl) / 1.25);
+  --badge--min-width:  calc(var(--icon--size-5xl) * 1.5);
+  --badge--height:     var(--icon--size-3xl);
+}
+
+.feedback--6xl.badge {
+  --badge--font-size:  var(--fsf--6xl);
+  --badge--padding-y:  calc(var(--space-in--6xl) / 2.5);
+  --badge--padding-x:  calc(var(--space-in--6xl) / 1.25);
+  --badge--min-width:  calc(var(--icon--size-6xl) * 1.5);
+  --badge--height:     var(--icon--size-4xl);
+}
+
 /* ─── Dot mode ───────────────────────────────────────────────────────────── */
 
 
@@ -103,8 +159,15 @@
 }
 
 /* Size map for dot mode */
+.feedback--3xs.badge--dot { --badge--dot-size: calc(var(--icon--size-3xs) / 2); }
+.feedback--2xs.badge--dot { --badge--dot-size: calc(var(--icon--size-2xs) / 2); }
 .feedback--xs.badge--dot { --badge--dot-size: calc(var(--icon--size-xs) / 2); }
 .feedback--sm.badge--dot { --badge--dot-size: calc(var(--icon--size-sm) / 1.5); }
 .feedback--md.badge--dot { --badge--dot-size: var(--icon--size-md);  }
 .feedback--lg.badge--dot { --badge--dot-size: var(--icon--size-lg); }
 .feedback--xl.badge--dot { --badge--dot-size: var(--icon--size-xl); }
+.feedback--2xl.badge--dot { --badge--dot-size: var(--icon--size-2xl); }
+.feedback--3xl.badge--dot { --badge--dot-size: var(--icon--size-3xl); }
+.feedback--4xl.badge--dot { --badge--dot-size: var(--icon--size-4xl); }
+.feedback--5xl.badge--dot { --badge--dot-size: var(--icon--size-5xl); }
+.feedback--6xl.badge--dot { --badge--dot-size: var(--icon--size-6xl); }

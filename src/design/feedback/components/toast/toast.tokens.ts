@@ -1,13 +1,12 @@
 // design/feedback/components/toast/toast.tokens.ts
 
 import { FEEDBACK_TOKENS }                                     from "../../feedback.tokens";
-import { SPACE }                                               from "~/shared/primitives.tokens";
 import type { FeedbackColor, FeedbackRadius, FeedbackVariant,
               FeedbackSize }                                   from "../../feedback.tokens";
 
 export { FEEDBACK_TOKENS as TOAST_TOKENS };
 export type { FeedbackColor as ToastColor, FeedbackVariant as ToastVariant,
-              FeedbackRadius as ToastRadius, FeedbackSize as ToastSize };
+              FeedbackRadius as ToastRadius };
 
 export type ToastPosition =
   | "top-start" | "top-center" | "top-end"
@@ -23,17 +22,19 @@ export const TOAST_DEFAULTS = {
   position:    "bottom-end"   as ToastPosition,
 } as const;
 
-const {
-  "2xs": xxs,
-  "2xl": xxl,
-} = SPACE;
+export type ToastSize = FeedbackSize;
 
-export const TOAST_SIZE_MAP: Record<FeedbackSize, { fontSize: string; p: string }> = {
-  "2xs": { fontSize: "var(--fsf--xs)",  p: xxs },
-  xs:   { fontSize: "var(--fsf--xs)",   p: SPACE.xs },
-  sm:   { fontSize: "var(--fsf--sm)",   p: SPACE.sm },
-  md:   { fontSize: "var(--fsf--sm)",   p: SPACE.md },
-  lg:   { fontSize: "var(--fsf--md)",   p: SPACE.md },
-  xl:   { fontSize: "var(--fsf--lg)",   p: SPACE.md },
-  "2xl": { fontSize: "var(--fsf--xl)", p: xxl },
+export const TOAST_SIZE_MAP: Record<ToastSize, { fontSize: string; p: string }> = {
+  "3xs": { fontSize: "var(--fsf--3xs)",  p: "var(--space-in--3xs)" },
+  "2xs": { fontSize: "var(--fsf--xs)",   p: "var(--space-in--2xs)" },
+  xs:    { fontSize: "var(--fsf--xs)",   p: "var(--space-in--xs)" },
+  sm:    { fontSize: "var(--fsf--sm)",   p: "var(--space-in--sm)" },
+  md:    { fontSize: "var(--fsf--sm)",   p: "var(--space-in--md)" },
+  lg:    { fontSize: "var(--fsf--md)",   p: "var(--space-in--md)" },
+  xl:    { fontSize: "var(--fsf--lg)",   p: "var(--space-in--md)" },
+  "2xl": { fontSize: "var(--fsf--xl)",   p: "var(--space-in--2xl)" },
+  "3xl": { fontSize: "var(--fsf--2xl)",  p: "var(--space-in--3xl)" },
+  "4xl": { fontSize: "var(--fsf--3xl)",  p: "var(--space-in--4xl)" },
+  "5xl": { fontSize: "var(--fsf--4xl)",  p: "var(--space-in--5xl)" },
+  "6xl": { fontSize: "var(--fsf--5xl)",  p: "var(--space-in--6xl)" },
 };

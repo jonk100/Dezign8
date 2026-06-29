@@ -14,6 +14,7 @@ import { RADIUS_DIM } from "~/shared/primitives.tokens";
  */
 
 const AVATAR_SIZE = scale({
+  "3xs": "var(--avatar--size-3xs, 1rem)",
   "2xs": "var(--avatar--size-2xs, 1.25rem)",
   xs:    "var(--avatar--size-xs,  1.5rem)",
   sm:    "var(--avatar--size-sm,  2rem)",
@@ -21,6 +22,10 @@ const AVATAR_SIZE = scale({
   lg:    "var(--avatar--size-lg,  3rem)",
   xl:    "var(--avatar--size-xl,  3.75rem)",
   "2xl": "var(--avatar--size-2xl, 5rem)",
+  "3xl": "var(--avatar--size-3xl, 6rem)",
+  "4xl": "var(--avatar--size-4xl, 8rem)",
+  "5xl": "var(--avatar--size-5xl, 10rem)",
+  "6xl": "var(--avatar--size-6xl, 12rem)",
 });
 
 const AVATAR_STATUS = scale({

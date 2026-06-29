@@ -38,6 +38,7 @@ const VARIANT = dimension(
 );
 
 const SIZE = scale({
+  "3xs": null,
   "2xs": null,
   xs:    null,
   sm:    null,
@@ -45,6 +46,10 @@ const SIZE = scale({
   lg:    null,
   xl:    null,
   "2xl": null,
+  "3xl": null,
+  "4xl": null,
+  "5xl": null,
+  "6xl": null,
 });
 
 export const TRIGGER_TOKENS = defineTokens({

@@ -62,6 +62,7 @@
   color: inherit !important;
 }
 
+.feedback--3xs.spinner { --spinner--size: var(--icon--size-3xs); }
 .feedback--2xs.spinner { --spinner--size: var(--icon--size-2xs); }
 .feedback--xs.spinner { --spinner--size: var(--icon--size-xs); }
 .feedback--sm.spinner { --spinner--size: var(--icon--size-sm); }
@@ -69,6 +70,10 @@
 .feedback--lg.spinner { --spinner--size: var(--icon--size-lg); }
 .feedback--xl.spinner { --spinner--size: var(--icon--size-xl); }
 .feedback--2xl.spinner { --spinner--size: var(--icon--size-2xl); } 
+.feedback--3xl.spinner { --spinner--size: var(--icon--size-3xl); } 
+.feedback--4xl.spinner { --spinner--size: var(--icon--size-4xl); } 
+.feedback--5xl.spinner { --spinner--size: var(--icon--size-5xl); } 
+.feedback--6xl.spinner { --spinner--size: var(--icon--size-6xl); }
 
 /* ─── sr-only (visually hidden but accessible) ───────────────────────────── */
 

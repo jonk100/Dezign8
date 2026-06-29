@@ -22,6 +22,11 @@
 /* ─── SIZE MAPPING ────────────────────────────────────────── */
 /* These sizes map directly from the tokens to width/height */
 
+.icon--3xs {
+  width: var(--icon--size-3xs);
+  height: var(--icon--size-3xs);
+}
+
 .icon--2xs {
   width: var(--icon--size-2xs);
   height: var(--icon--size-2xs);
@@ -55,4 +60,24 @@
 .icon--2xl {
   width: var(--icon--size-2xl);
   height: var(--icon--size-2xl);
+}
+
+.icon--3xl {
+  width: var(--icon--size-3xl);
+  height: var(--icon--size-3xl);
+}
+
+.icon--4xl {
+  width: var(--icon--size-4xl);
+  height: var(--icon--size-4xl);
+}
+
+.icon--5xl {
+  width: var(--icon--size-5xl);
+  height: var(--icon--size-5xl);
+}
+
+.icon--6xl {
+  width: var(--icon--size-6xl);
+  height: var(--icon--size-6xl);
 }

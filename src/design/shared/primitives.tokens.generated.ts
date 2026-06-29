@@ -9,6 +9,7 @@ import { scale } from "~/shared/tokens";
 
 export const SPACE = scale({
   none:  "0",
+  "3xs": "var(--space-in--3xs)",
   "2xs": "var(--space-in--2xs)",
   xs:    "var(--space-in--xs)",
   sm:    "var(--space-in--sm)",
@@ -17,12 +18,16 @@ export const SPACE = scale({
   xl:    "var(--space-in--xl)",
   "2xl": "var(--space-in--2xl)",
   "3xl": "var(--space-in--3xl)",
+  "4xl": "var(--space-in--4xl)",
+  "5xl": "var(--space-in--5xl)",
+  "6xl": "var(--space-in--6xl)",
 });
 
 export type Space = keyof typeof SPACE;
 
 export const SPACE_OUT = scale({
   none:  "0",
+  "3xs": "var(--space-out--3xs)",
   "2xs": "var(--space-out--2xs)",
   xs:    "var(--space-out--xs)",
   sm:    "var(--space-out--sm)",
@@ -31,12 +36,16 @@ export const SPACE_OUT = scale({
   xl:    "var(--space-out--xl)",
   "2xl": "var(--space-out--2xl)",
   "3xl": "var(--space-out--3xl)",
+  "4xl": "var(--space-out--4xl)",
+  "5xl": "var(--space-out--5xl)",
+  "6xl": "var(--space-out--6xl)",
 });
 
 export type SpaceOut = keyof typeof SPACE_OUT;
 
 export const RADIUS = scale({
   none:  "var(--radius--none)",
+  "3xs": "var(--radius--3xs)",
   "2xs": "var(--radius--2xs)",
   xs:    "var(--radius--xs)",
   sm:    "var(--radius--sm)",
@@ -44,12 +53,17 @@ export const RADIUS = scale({
   lg:    "var(--radius--lg)",
   xl:    "var(--radius--xl)",
   "2xl": "var(--radius--2xl)",
+  "3xl": "var(--radius--3xl)",
+  "4xl": "var(--radius--4xl)",
+  "5xl": "var(--radius--5xl)",
+  "6xl": "var(--radius--6xl)",
   full:  "var(--radius--full)",
 });
 
 export type Radius = keyof typeof RADIUS;
 
 export const TEXT_SIZE = scale({
+  "3xs": "var(--fs--3xs)",
   "2xs": "var(--fs--2xs)",
   xs:    "var(--fs--xs)",
   sm:    "var(--fs--sm)",
@@ -59,11 +73,14 @@ export const TEXT_SIZE = scale({
   "2xl": "var(--fs--2xl)",
   "3xl": "var(--fs--3xl)",
   "4xl": "var(--fs--4xl)",
+  "5xl": "var(--fs--5xl)",
+  "6xl": "var(--fs--6xl)",
 });
 
 export type TextSize = keyof typeof TEXT_SIZE;
 
 export const TEXT_SIZE_FIXED = scale({
+  "3xs": "var(--fsf--3xs)",
   "2xs": "var(--fsf--2xs)",
   xs:    "var(--fsf--xs)",
   sm:    "var(--fsf--sm)",
@@ -73,17 +90,25 @@ export const TEXT_SIZE_FIXED = scale({
   "2xl": "var(--fsf--2xl)",
   "3xl": "var(--fsf--3xl)",
   "4xl": "var(--fsf--4xl)",
+  "5xl": "var(--fsf--5xl)",
+  "6xl": "var(--fsf--6xl)",
 });
 
 export type TextSizeFixed = keyof typeof TEXT_SIZE_FIXED;
 
 export const LABEL_SIZE = scale({
+  "3xs": "var(--label--3xs)",
   "2xs": "var(--label--2xs)",
   xs:    "var(--label--xs)",
   sm:    "var(--label--sm)",
   md:    "var(--label--md)",
   lg:    "var(--label--lg)",
   xl:    "var(--label--xl)",
+  "2xl": "var(--label--2xl)",
+  "3xl": "var(--label--3xl)",
+  "4xl": "var(--label--4xl)",
+  "5xl": "var(--label--5xl)",
+  "6xl": "var(--label--6xl)",
 });
 
 export type LabelSize = keyof typeof LABEL_SIZE;

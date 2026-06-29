@@ -5,6 +5,7 @@ import { composeClass, composeStyle }     from "~sh/base.hook";
 import { ALERT_DEFAULTS, ALERT_SIZE_MAP } from "./alert.tokens";
 import type { AlertSize }                 from "./alert.tokens";
 import type { AlertProps }                from "./alert.props";
+import { resolveComponentSizes }          from "~/shared/base.tokens";
 
 export function useAlert(props: AlertProps) {
   const {
@@ -21,13 +22,7 @@ export function useAlert(props: AlertProps) {
   const { feedbackClass, feedbackStyle, feedbackAttrs, rest } =
     useFeedback({ variant, color, radius, size: size as AlertSize, ...feedbackProps });
 
-  const sizeMap = ALERT_SIZE_MAP[size as AlertSize];
-
-  const alertStyle = [
-    `--alert--font-size: ${sizeMap.fontSize}`,
-    `--alert--padding: ${sizeMap.p}`,
-    `--alert--gap: ${sizeMap.gap}`,
-  ];
+  const alertStyle = resolveComponentSizes("alert", size as AlertSize, ALERT_SIZE_MAP);
 
   return {
     props: {

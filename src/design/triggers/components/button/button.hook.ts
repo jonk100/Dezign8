@@ -1,9 +1,9 @@
-// design/triggers/button/button.hook.ts
-
 import type { ButtonProps } from "./button.props";
-import { BUTTON_DEFAULTS, resolveButtonSize } from "./button.tokens";
+import { BUTTON_DEFAULTS, BUTTON_SIZE_MAP } from "./button.tokens";
+import type { ButtonSize } from "./button.tokens";
 import { useTrigger } from "../../trigger.hook";
 import { composeClass, composeStyle } from "~/shared/base.hook";
+import { resolveComponentSizes } from "~/shared/base.tokens";
 
  
 export function useButton(props: ButtonProps) {
@@ -27,7 +27,7 @@ export function useButton(props: ButtonProps) {
       ...(rel    !== undefined ? { rel }    : {}),
     });
     
-  const sizeStyle = resolveButtonSize(size);
+  const sizeStyle = resolveComponentSizes("button", size as ButtonSize, BUTTON_SIZE_MAP);
 
   return {
     Tag,

@@ -1,5 +1,6 @@
 export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   // Fluid font sizes
+  "fs--3xs": "calc(var(--size-0) * 0.75)",
   "fs--2xs": "var(--size-0)", 
   "fs--xs":  "var(--size-1)", 
   "fs--sm":  "var(--size-2)",
@@ -10,8 +11,10 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "fs--3xl": "var(--size-7)", 
   "fs--4xl": "var(--size-8)",
   "fs--5xl": "var(--size-9)",
+  "fs--6xl": "var(--size-10)",
 
   // Fixed font sizes (UI labels)
+  "label--3xs": "calc(var(--size-02) * 0.75)",
   "label--2xs": "var(--size-02)", 
   "label--xs":  "var(--size-03)", 
   "label--sm":  "var(--size-04)",
@@ -21,7 +24,10 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "label--2xl": "var(--size-08)", 
   "label--3xl": "var(--size-09)", 
   "label--4xl": "var(--size-8)",
+  "label--5xl": "var(--size-9)",
+  "label--6xl": "var(--size-10)",
 
+  "fsf--3xs": "calc(var(--size-01) * 0.75)",
   "fsf--2xs": "var(--size-01)", 
   "fsf--xs":  "var(--size-02)", 
   "fsf--sm":  "var(--size-03)",
@@ -31,6 +37,8 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "fsf--2xl": "var(--size-08)",
   "fsf--3xl": "var(--size-09)",
   "fsf--4xl": "var(--size-8)",
+  "fsf--5xl": "var(--size-9)",
+  "fsf--6xl": "var(--size-10)",
 
 
   // Interior spacing — padding, component gaps
@@ -46,6 +54,7 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "space-in--3xl":      "var(--size-10)",
   "space-in--4xl":      "var(--size-12)",
   "space-in--5xl":      "var(--size-15)",
+  "space-in--6xl":      "var(--size-17)",
 
   "padding--4xs": "var(--space-in--4xs)",
   "padding--3xs": "var(--space-in--3xs)",
@@ -59,6 +68,7 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "padding--3xl": "var(--space-in--3xl)",
   "padding--4xl": "var(--space-in--4xl)",
   "padding--5xl": "var(--space-in--5xl)",
+  "padding--6xl": "var(--space-in--6xl)",
 
   // Exterior spacing — section margins, layout gaps
   "space-out--3xs": "calc(var(--size-3) / 2)",
@@ -70,6 +80,9 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "space-out--xl":       "var(--size-10)",
   "space-out--2xl":      "var(--size-12)",
   "space-out--3xl":      "var(--size-15)",
+  "space-out--4xl":      "var(--size-16)",
+  "space-out--5xl":      "var(--size-17)",
+  "space-out--6xl":      "calc(var(--size-17) * 1.5)",
 
   "margin--3xs": "var(--space-out--3xs)",
   "margin--2xs": "var(--space-out--2xs)",
@@ -80,8 +93,12 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "margin--xl":  "var(--space-out--xl)",
   "margin--2xl": "var(--space-out--2xl)",
   "margin--3xl": "var(--space-out--3xl)",
+  "margin--4xl": "var(--space-out--4xl)",
+  "margin--5xl": "var(--space-out--5xl)",
+  "margin--6xl": "var(--space-out--6xl)",
 
   // Border radius
+  "radius--3xs":  "calc(var(--size-00) / 4)",
   "radius--2xs":  "calc(var(--size-00) / 3)",
   "radius--xs":   "calc(var(--size-00) / 2)",
   "radius--sm":        "var(--size-00)",
@@ -89,6 +106,10 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "radius--lg":        "var(--size-02)",
   "radius--xl":        "var(--size-04)",
   "radius--2xl":       "var(--size-07)",
+  "radius--3xl":       "var(--size-08)",
+  "radius--4xl":       "var(--size-09)",
+  "radius--5xl":       "var(--size-10)",
+  "radius--6xl":       "var(--size-12)",
   "radius--full":      "var(--size-full)",
 
   // Containers
@@ -110,8 +131,13 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "ui-height--lg":  "var(--size-08)", 
   "ui-height--xl":  "var(--size-09)",
   "ui-height--2xl": "var(--size-10)",
+  "ui-height--3xl": "var(--size-11)",
+  "ui-height--4xl": "var(--size-12)",
+  "ui-height--5xl": "var(--size-13)",
+  "ui-height--6xl": "var(--size-14)",
 
   // Icon sizes
+  "icon-size--3xs": "calc(var(--size-1) * 0.75)",
   "icon-size--2xs": "var(--size-1)", 
   "icon-size--xs":  "var(--size-2)",
   "icon-size--sm":  "var(--size-3)", 
@@ -119,7 +145,12 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "icon-size--lg":  "var(--size-6)", 
   "icon-size--xl":  "var(--size-8)",
   "icon-size--2xl": "var(--size-10)",
+  "icon-size--3xl": "var(--size-12)",
+  "icon-size--4xl": "var(--size-13)",
+  "icon-size--5xl": "var(--size-14)",
+  "icon-size--6xl": "var(--size-15)",
 
+  "icon--size-3xs": "calc(var(--size-1) * 0.75)",
   "icon--size-2xs": "var(--size-1)", 
   "icon--size-xs":  "var(--size-2)",
   "icon--size-sm":  "var(--size-3)", 
@@ -127,4 +158,8 @@ export const SEMANTIC_SIZE_TOKENS: Record<string, string> = {
   "icon--size-lg":  "var(--size-6)", 
   "icon--size-xl":  "var(--size-8)",
   "icon--size-2xl": "var(--size-10)",
+  "icon--size-3xl": "var(--size-12)",
+  "icon--size-4xl": "var(--size-13)",
+  "icon--size-5xl": "var(--size-14)",
+  "icon--size-6xl": "var(--size-15)",
 };

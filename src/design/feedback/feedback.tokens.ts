@@ -50,13 +50,18 @@ import { RADIUS_DIM, COLOR_DIM, VARIANT_DIM } from "~/shared/primitives.tokens";
 // xl  → Hero progress display, large status indicator
 
 const FEEDBACK_SIZE = scale({
+  "3xs": null,
   "2xs": null,
-  xs:  null,
-  sm:  null,
-  md:  null,
-  lg:  null,
-  xl:  null,
+  xs:    null,
+  sm:    null,
+  md:    null,
+  lg:    null,
+  xl:    null,
   "2xl": null,
+  "3xl": null,
+  "4xl": null,
+  "5xl": null,
+  "6xl": null,
 });
 
 

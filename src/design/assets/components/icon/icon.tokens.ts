@@ -21,13 +21,18 @@ import { ICON_COLOR_DIM } from "~/shared/primitives.tokens";
 // 2xl -> var(--icon--size-2xl)
 
 const ICON_SIZE = scale({
+  "3xs": null,
   "2xs": null,
-  xs: null,
-  sm: null,
-  md: null,
-  lg: null,
-  xl: null,
+  xs:    null,
+  sm:    null,
+  md:    null,
+  lg:    null,
+  xl:    null,
   "2xl": null,
+  "3xl": null,
+  "4xl": null,
+  "5xl": null,
+  "6xl": null,
 });
 
 // ─── SPEC ────────────────────────────────────────────────────────────────────
