@@ -4,6 +4,28 @@ ________________________________________
 
 ## 2026/06/28 to 2026/06/29 - Antigravity session
 
+[clean_deleted_legacy_docs](antigravity_session_summary.md/628-629_clean_deleted_legacy_docs.md)
+
+### New files
+* `ai/antigravity_session_summary.md/628-629_clean_deleted_legacy_docs.md`
+
+### Updated files
+*(None)*
+
+### Deleted files
+* `src/design/docs/architecture.md`
+* `src/design/docs/color-system.md`
+* `src/design/docs/component-catalog-tentative.md`
+* `src/design/docs/component-status.md`
+* `src/design/docs/creating-components.md`
+* `src/design/docs/on-control-size.md`
+* `src/design/docs/patterns.md`
+* `src/design/docs/rules.md`
+
+---
+
+## 2026/06/28 to 2026/06/29 - Antigravity session
+
 [spacing_props_hook_integration](antigravity_session_summary.md/628-629_spacing_props_hook_integration.md)
 
 ### New files
