@@ -11,7 +11,7 @@
 > (documentation, ownership, history, decisions). **Always verify against
 > actual source files before making changes** — the index may be stale.
 
-Last indexed: 2026-06-28 (commit 67ea107). Confidence: 100%.
+Last indexed: 2026-06-29 (commit 3dc891b). Confidence: 100%.
 ### Architecture
 repo is a design system component library that consumes raw design tokens and style definitions to transform them into a standardized, type-safe React component suite, ultimately producing a modular UI package for consistent application development. The repository serves as the foundational layer for visual consistency, abstracting complex layout, surface, and typography logic into reusable primitives. The library exposes its functionality through granular entry points categorized by domain:
 The repository follows a layered architecture designed for scalability and strict visual adherence:
@@ -26,8 +26,8 @@ The codebase is currently in an active development phase with high modularity. W
 - `src/design/surfaces/components/section/index.ts`
 - `src/design/surfaces/components/tile/index.ts`
 - `src/design/surfaces/components/well/index.ts`
+- `scripts/generate-component-status.ts`
 - `src/design/layout/components/center/index.ts`
-- `src/design/layout/components/container/index.ts`
 ### Tech Stack
 **Languages:** Node.js, TypeScript
 
@@ -63,17 +63,18 @@ The codebase is currently in an active development phase with high modularity. W
 ## Code health
 Three signals: **defect risk** (the overall score), **maintainability** (smells that hurt readability/change-cost without predicting bugs), and **performance** (static performance RISK: I/O-in-loop / N+1 shapes that waste work, high-precision/low-recall). Maintainability and performance are co-equal views, never blended into the defect headline. See `docs/CODE_HEALTH.md`.
 
-Defect risk, Hotspot health: 9.01/10 (stable) ·
-Average: 9.41/10 ·
+Defect risk, Hotspot health: 8.98/10 (stable) ·
+Average: 9.61/10 ·
 Worst: 2.69/10 (`src/design/triggers/trigger.hook.ts`)
-Maintainability, Average: 9.94/10
+Maintainability, Average: 9.95/10
 Performance risk, Average: 9.99/10
 
 ### Critical biomarkers
 - `src/design/forms/components/combobox/combobox.props.ts` — churn risk — impact −2.4
 - `src/design/feedback/feedback.hook.ts` — untested hotspot — impact −2.0
+- `src/design/surfaces/surface.hook.ts` — untested hotspot — impact −2.0
+- `src/design/typography/typography.hook.ts` — untested hotspot — impact −2.0
 - `src/design/triggers/trigger.hook.ts` — brain method (useTrigger) — impact −0.6
-- `src/design/surfaces/surface.hook.ts` — brain method (useSurface) — impact −0.3
 
 ### Repowise MCP Tools
 

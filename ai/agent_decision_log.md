@@ -1,6 +1,19 @@
 # Decision Log =======================
 ________________________________________
 - Document key decisions and changes made
+
+## 2026/06/28 to 2026/06/29 - Antigravity session
+
+[base_hook_docs_frontmatter](antigravity_session_summary.md/628-629_base_hook_docs_frontmatter.md)
+
+### New files
+*(None)*
+
+### Updated files
+* `src/content/docs/shared/base-hook.md`
+
+---
+
 ## 2026/06/28 to 2026/06/28 - Antigravity session
 
 [Unified Background Color Handling](antigravity_session_summary.md/628-628_unified_background_color_handling.md)

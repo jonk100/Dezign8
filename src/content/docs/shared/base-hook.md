@@ -1,4 +1,11 @@
+---
+title: Base Composition Hooks
+description: Documentation for base composition hooks and utilities, including useBaseCompose.
+category: Core
+status: stable
+---
 # Base Composition Hooks (`base.hook.ts`)
+
 
 These hooks and utilities form the shared foundation that every component hook in the design system runs through. 
 
