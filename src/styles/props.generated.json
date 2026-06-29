@@ -105,7 +105,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "AudioProps",
@@ -492,7 +492,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Avatar size.",
       "from": "AvatarProps",
@@ -501,7 +501,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "AvatarProps",
@@ -890,7 +890,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "FilePreviewProps",
@@ -1253,7 +1253,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "The size of the icon. Maps to `--icon-size-*` CSS properties.",
       "from": "IconProps",
@@ -1642,7 +1642,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "ImageProps",
@@ -4277,7 +4277,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "AlertProps",
@@ -4303,7 +4303,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -4684,7 +4684,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -4711,7 +4711,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the component. Writes `--feedback--radius`.",
       "from": "FeedbackProps",
@@ -5094,7 +5094,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "BannerProps",
@@ -5477,7 +5477,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -5504,7 +5504,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the component. Writes `--feedback--radius`.",
       "from": "FeedbackProps",
@@ -5861,7 +5861,7 @@
   "feedback/dot": [
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -5888,7 +5888,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the component. Writes `--feedback--radius`.",
       "from": "FeedbackProps",
@@ -6261,7 +6261,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -6288,7 +6288,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the component. Writes `--feedback--radius`.",
       "from": "FeedbackProps",
@@ -6697,7 +6697,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -6724,7 +6724,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the component. Writes `--feedback--radius`.",
       "from": "FeedbackProps",
@@ -7124,7 +7124,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius. Overrides the per-variant default.\nUseful when the skeleton must match the shape it replaces.\n`avatar` ignores this — it is always a circle.",
       "from": "SkeletonProps",
@@ -7516,7 +7516,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the component. Writes `--feedback--radius`.",
       "from": "FeedbackProps",
@@ -7525,7 +7525,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -7899,7 +7899,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -7926,7 +7926,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the component. Writes `--feedback--radius`.",
       "from": "FeedbackProps",
@@ -8309,7 +8309,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "ToastProps",
@@ -8344,7 +8344,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Visual scale of the component.\n\nModifier-class only — each component maps this to its own spatial channels\n(font-size, padding, diameter, track height) via a lookup table in its hook.",
       "from": "FeedbackProps",
@@ -9056,7 +9056,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Visual border radius. \nTaps into the `RADIUS_DIM` token scale.",
       "from": "BoxProps",
@@ -9064,7 +9064,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -9427,7 +9427,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -9799,7 +9799,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -10180,7 +10180,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -10534,7 +10534,7 @@
   "layout/footer": [
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -10913,7 +10913,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -11276,7 +11276,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -11639,7 +11639,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -12026,7 +12026,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Uniform spacing between child elements via `gap` (flex/grid).\nMaps to `--layout--gap` CSS variable.",
       "from": "LayoutProps",
@@ -13081,7 +13081,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Spacing between stacked children.",
       "from": "StackProps",
@@ -13484,7 +13484,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the control or its active indicator.",
       "from": "NavProps",
@@ -13880,7 +13880,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the control or its active indicator.",
       "from": "NavProps",
@@ -14283,7 +14283,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the control or its active indicator.",
       "from": "NavProps",
@@ -14688,7 +14688,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the control or its active indicator.",
       "from": "NavProps",
@@ -15108,7 +15108,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the control or its active indicator.",
       "from": "NavProps",
@@ -15494,7 +15494,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border-radius of the control or its active indicator.",
       "from": "NavProps",
@@ -15897,7 +15897,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "",
       "from": "OverlaysProps",
@@ -16629,7 +16629,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "",
       "from": "OverlaysProps",
@@ -17007,7 +17007,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "",
       "from": "OverlaysProps",
@@ -17353,7 +17353,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "",
       "from": "PopoverProps",
@@ -17723,7 +17723,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "",
       "from": "OverlaysProps",
@@ -18069,7 +18069,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "",
       "from": "TooltipProps",
@@ -18450,7 +18450,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius. Overrides the per-variant default.\nUseful when the skeleton must match the shape it replaces.\n`avatar` ignores this — it is always a circle.",
       "from": "SkeletonProps",
@@ -18917,7 +18917,7 @@
     },
     {
       "name": "padding",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Inner padding applied uniformly.",
       "from": "SurfaceProps",
@@ -18926,7 +18926,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "SurfaceProps",
@@ -19327,7 +19327,7 @@
     },
     {
       "name": "padding",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Inner padding applied uniformly.",
       "from": "SurfaceProps",
@@ -19336,7 +19336,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "SurfaceProps",
@@ -19735,7 +19735,7 @@
     },
     {
       "name": "padding",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Inner padding applied uniformly.",
       "from": "SurfaceProps",
@@ -19744,7 +19744,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "SurfaceProps",
@@ -20101,7 +20101,7 @@
     },
     {
       "name": "gap",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Gap between stacked children. Only meaningful when stack=true.",
       "from": "PaperProps",
@@ -20170,7 +20170,7 @@
     },
     {
       "name": "padding",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Inner padding applied uniformly.",
       "from": "SurfaceProps",
@@ -20179,7 +20179,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "SurfaceProps",
@@ -20578,7 +20578,7 @@
     },
     {
       "name": "padding",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Inner padding applied uniformly.",
       "from": "SurfaceProps",
@@ -20587,7 +20587,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "SurfaceProps",
@@ -21030,7 +21030,7 @@
     },
     {
       "name": "padding",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Inner padding applied uniformly.",
       "from": "SurfaceProps",
@@ -21039,7 +21039,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "SurfaceProps",
@@ -21430,7 +21430,7 @@
     },
     {
       "name": "padding",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Inner padding applied uniformly.",
       "from": "SurfaceProps",
@@ -21439,7 +21439,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "SurfaceProps",
@@ -21819,7 +21819,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -22289,7 +22289,7 @@
     },
     {
       "name": "radius",
-      "type": "\"none\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
       "optional": true,
       "description": "Border radius.",
       "from": "TriggerProps",
@@ -22316,7 +22316,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TriggerProps",
@@ -22695,7 +22695,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -23145,7 +23145,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -23597,7 +23597,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24055,7 +24055,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24489,7 +24489,7 @@
   "typography/kbd": [
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24948,7 +24948,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "Font size — uses the fixed scale ({@link TEXT_SIZE_FIXED }), not the\nresponsive scale ({@link TEXT_SIZE }) used by Text and Heading.",
       "from": "LabelProps",
@@ -25401,7 +25401,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -25852,7 +25852,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -26295,7 +26295,7 @@
     },
     {
       "name": "size",
-      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\"",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",

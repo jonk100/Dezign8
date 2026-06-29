@@ -13,7 +13,7 @@ import { rehypeHeadingLevel } from "./src/plugins/rehype-heading-level.mjs";
 export default defineConfig({
   integrations: [
     mdx({
-      // rehypePlugins: [rehypeHeadingLevel]
+      rehypePlugins: [rehypeHeadingLevel]
     }),
   ],
   vite: {
@@ -28,28 +28,6 @@ export default defineConfig({
       alias: {
         "~": path.resolve("./src/design"),
         "@": path.resolve("./src"),
-        "~sh": path.resolve("./src/design/shared"),
-        "~st": path.resolve("./src/design/styles"),
-        "~l": path.resolve("./src/design/layout"),
-        "~ty": path.resolve("./src/design/typography"),
-        "~tr": path.resolve("./src/design/triggers"),
-        "~a": path.resolve("./src/design/assets"),
-        "~f": path.resolve("./src/design/forms"),
-        "~fb": path.resolve("./src/design/feedback"),
-        "~su": path.resolve("./src/design/surfaces"),
-        "~da": path.resolve("./src/design/data"),
-        "~o": path.resolve("./src/design/overlays"),
-        "~n": path.resolve("./src/design/nav"),
-        "@layout": path.resolve("./src/design/layout"),
-        "@typography": path.resolve("./src/design/typography"),
-        "@triggers": path.resolve("./src/design/triggers"),
-        "@assets": path.resolve("./src/design/assets"),
-        "@forms": path.resolve("./src/design/forms"),
-        "@feedback": path.resolve("./src/design/feedback"),
-        "@surfaces": path.resolve("./src/design/surfaces"),
-        "@data": path.resolve("./src/design/data"),
-        "@overlays": path.resolve("./src/design/overlays"),
-        "@nav": path.resolve("./src/design/nav"),
         "~/assets_/": path.resolve("./src/design/assets/components/"),
         "~/data_/": path.resolve("./src/design/data/components/"),
         "~/feedback_/": path.resolve("./src/design/feedback/components/"),

@@ -1,11 +1,11 @@
 ---
 import { getCollection, render } from 'astro:content';
 import DocsLayout from '../../../layouts/docs/DocsLayout.astro';
-import Prose from '~/typography/components/prose/Prose.astro';
-import Table from '~/data/components/table/Table.astro';
+import Prose from '~/typography_/prose/Prose.astro';
+import Table from '~/data_/table/Table.astro';
 import Image from '~/assets/components/image/Image.astro';
-import Code from '~/typography/components/code/Code.astro';
-import H from '~/typography/components/heading/H.astro';
+import Code from '~/typography_/code/Code.astro';
+import H from '~/typography_/heading/H.astro';
 
 export async function getStaticPaths() {
   const systemDocs = await getCollection('system');
