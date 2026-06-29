@@ -1,0 +1,95 @@
+---
+title: Code & Pre
+description: Components for displaying inline code snippets and preformatted text blocks.
+category: Typography
+status: stable
+icon: code-tags
+---
+import Code from "../../../design/typography/components/code/Code.astro";
+import Pre from "../../../design/typography/components/code/Pre.astro";
+
+## Overview
+
+The `Code` and `Pre` components are designed to present code fragments and preformatted text consistently. `Code` handles inline code syntax, while `Pre` wraps multi-line code blocks and retains formatting (like whitespace, indentation, and carriage returns).
+
+---
+
+## Usage
+
+### Inline Code
+
+Use `<Code>` without additional flags to present an inline code fragment.
+
+```astro
+Install the design system using <Code>pnpm add dezign8</Code> in your project root.
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  Install the design system using <Code>pnpm add dezign8</Code> in your project root.
+</div>
+
+---
+
+### Standalone Code Block
+
+Use the `block` prop to render a standalone `<Code>` element. This is useful when you want block-level code representation but don't need the full preformatted behavior of `<Pre>`.
+
+```astro
+<Code block>pnpm install && pnpm dev</Code>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Code block>pnpm install && pnpm dev</Code>
+</div>
+
+---
+
+### Preformatted Text Block
+
+Use `<Pre>` to wrap code blocks where preserving indentation, multiple spaces, and newlines is required. You can nest `<Code>` inside `<Pre>` for semantic code-block markup.
+
+```astro
+<Pre>
+<Code>
+function hello() {
+  console.log("Hello, world!");
+}
+</Code>
+</Pre>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Pre>
+    <Code>
+function hello() {
+  console.log("Hello, world!");
+}
+    </Code>
+  </Pre>
+</div>
+
+---
+
+## Props API
+
+### Code Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `as` | `"code" \| "span" \| "kbd"` | `"code"` | The HTML tag to render as. |
+| `block` | `boolean` | `false` | When true, renders the code fragment as a block element. |
+
+### Pre Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `as` | `"pre" \| "div"` | `"pre"` | The HTML tag to render as. |
+
+Both components inherit all remaining `TypographyProps` (`size`, `weight`, `color`, `fam`, etc.).
+
+---
+
+## Related
+
+- **Kbd** — for rendering keyboard inputs and shortcut keys.
+- **Text** — for body text and paragraph typography.

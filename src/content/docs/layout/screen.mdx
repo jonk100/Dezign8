@@ -1,0 +1,74 @@
+---
+title: Screen Layout
+description: A viewport-sized layout primitive that serves as the root container for a page or full-screen view.
+category: Layout
+status: stable
+icon: monitor
+---
+import Screen from "../../../design/layout/components/screen/Screen.astro";
+import Text from "../../../design/typography/components/text/Text.astro";
+
+## Overview
+
+The `Screen` component represents a full page-level or viewport-sized area. It serves as the top-level boundary for layouts (e.g., a dashboard wrapper, login view, or error page), managing full-screen heights, content alignment, and scrolling overflow behaviors.
+
+---
+
+## Usage
+
+### Full-Viewport Screen
+
+By default, the screen renders with a minimum height of `100vh` and standard container padding.
+
+```astro
+<Screen height="full">
+  <header>Header content</header>
+  <main>Main content</main>
+  <footer>Footer content</footer>
+</Screen>
+```
+
+---
+
+### Centered Login / Split Card View
+
+You can use the `centered` prop to align children in the center of the viewport (both vertically and horizontally).
+
+```astro
+<Screen height="full" centered="all">
+  <div style="background: var(--bg--2); padding: 2rem; border-radius: var(--radius--md); border: 1px solid var(--border--default);">
+    <Text size="xl" weight="bold">Log In</Text>
+    <!-- Login Form -->
+  </div>
+</Screen>
+```
+
+<div style="border: 1px solid var(--border--default); border-radius: var(--radius--md); overflow: hidden;">
+  <Screen height="auto" centered="all" style="min-height: 200px; padding: 2rem;">
+    <div style="background: var(--bg--2); padding: 1rem; border-radius: var(--radius--md); border: 1px solid var(--border--default);">
+      <Text size="lg" weight="bold">Log In</Text>
+      <Text size="sm" color="muted">Please enter your credentials.</Text>
+    </div>
+  </Screen>
+</div>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `as` | `ScreenTag` | `"div"` | The HTML tag to render as (`"div" \| "section" \| "article" \| "main" \| "span"`). |
+| `height` | `PageHeight` | `"full"` | Minimum height layout token (`"full" \| "90vh" \| "auto"`). |
+| `overflow` | `OverflowOptions`| `"auto"` | Scrolling overflow behavior (`"auto" \| "hidden" \| "scroll" \| "visible"`). |
+| `centered` | `PageCentered` | `"none"` | Alignment centering behavior (`"all" \| "none" \| "x" \| "y"`). |
+
+Inherits all remaining `LayoutProps` (`gap`, `align`, `justify`) and standard `BaseComponentProps` / `SpacingProps` shorthands.
+
+---
+
+## Related
+
+- **Container** — a width-capped layout primitive for keeping page widths responsive.
+- **Section** — a block layout divider for grouping related sections within a screen.
+- **Box** — the fundamental spacing primitive.

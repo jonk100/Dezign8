@@ -36,11 +36,21 @@ export function useScreen(props: ScreenProps) {
     "screen",
   );
 
+  const centeredClasses = [];
+  if (centered === "all" || centered === "x") centeredClasses.push("screen--centered-x");
+  if (centered === "all" || centered === "y") centeredClasses.push("screen--centered-y");
+
+  const heightVal = height === "full" ? "100vh" : height;
+  const screenStyle = [
+    `--screen--height: ${heightVal}`,
+    `--screen--overflow: ${overflow}`,
+  ];
+
   return {
     Tag,
     props: {
-      class: composeClass(layoutClass, "screen", ...tokenClasses),
-      style: composeStyle(layoutStyle, ...tokenStyle),
+      class: composeClass(layoutClass, "screen", ...tokenClasses, ...centeredClasses),
+      style: composeStyle(layoutStyle, ...tokenStyle, ...screenStyle),
       ...layoutAttrs,
       ...rest,
     },

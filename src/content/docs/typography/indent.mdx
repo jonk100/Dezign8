@@ -1,0 +1,123 @@
+---
+title: Indent
+description: A component that adds a left indent to text content, customizable by style context (prose, UI, or code).
+category: Typography
+status: stable
+icon: format-indent-increase
+---
+import Indent from "../../../design/typography/components/indent/Indent.astro";
+import Text from "../../../design/typography/components/text/Text.astro";
+
+## Overview
+
+The `Indent` component applies a configurable first-line indentation to its text contents. It features three contextual modes—`prose`, `ui`, and `code`—each mapped to appropriate typographical units (`em` or `ch`) to ensure indents match the visual rhythm of the surroundings.
+
+---
+
+## Usage
+
+### Prose Indent
+
+Use the `prose` prop for body text. It uses `em` spacing tokens to scale relative to the element's current font size.
+
+```astro
+<Indent prose="md">
+  <Text>
+    This paragraph has a standard prose indent. It is visually separated from 
+    the surrounding text using a traditional book-style paragraph indent.
+  </Text>
+</Indent>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Indent prose="md">
+    <Text>
+      This paragraph has a standard prose indent. It is visually separated from 
+      the surrounding text using a traditional book-style paragraph indent.
+    </Text>
+  </Indent>
+</div>
+
+---
+
+### UI Indent
+
+Use the `ui` prop for form layouts, settings panels, or user interfaces where alignment with fixed-character grids is desired. It uses character-width (`ch`) spacing.
+
+```astro
+<Indent ui="lg">
+  <Text>This text is indented by 6 characters, suitable for alignment in a user interface.</Text>
+</Indent>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Indent ui="lg">
+    <Text>This text is indented by 6 characters, suitable for alignment in a user interface.</Text>
+  </Indent>
+</div>
+
+---
+
+### Code Indent
+
+Use the `code` prop to indent mono-spaced or code snippets. It scales with `ch` characters relative to monospace fonts.
+
+```astro
+<Indent code="sm">
+  <Text fam="mono">const x = 42;</Text>
+</Indent>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Indent code="sm">
+    <Text fam="mono">const x = 42;</Text>
+  </Indent>
+</div>
+
+---
+
+### Negative Indent ("Outdent")
+
+The `"ng"` size token allows negative indentation (hanging indent or "outdent"), projecting the first line to the left of the block.
+
+```astro
+<Indent prose="ng">
+  <Text>This paragraph starts with a negative indent, causing the first line to hang out to the left.</Text>
+</Indent>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; padding-left: 2.5rem; border-radius: var(--radius--md);">
+  <Indent prose="ng">
+    <Text>This paragraph starts with a negative indent, causing the first line to hang out to the left.</Text>
+  </Indent>
+</div>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `prose` | `IndentSize` | `"md"` | Applies a prose indent (scaled in `em`). |
+| `ui` | `IndentSize` | `undefined` | Applies a user interface indent (scaled in `ch`). |
+| `code` | `IndentSize` | `undefined` | Applies a code/monospace indent (scaled in `ch`). |
+
+> [!IMPORTANT]
+> The `Indent` component only accepts **one** of the context props (`prose`, `ui`, or `code`) at a time. Specifying more than one will throw an error at build/render time.
+
+### IndentSize Options
+
+- `"ng"`: Negative outdent (`-1em`, `-2ch`, or `-1ch` depending on mode)
+- `"xs"`: Extra small indent (`1em` or `1ch`)
+- `"sm"`: Small indent (`1.5em` or `2ch`)
+- `"md"`: Medium indent (`2em`, `4ch`, or `3ch`)
+- `"lg"`: Large indent (`3em`, `6ch`, or `4ch`)
+- `"xl"`: Extra large indent (`4em`, `8ch`, or `5ch`)
+
+---
+
+## Related
+
+- **Text** — the primary typography component for body text.
+- **Kbd** — for keyboard inputs and shortcuts.
+- **Heading** — for titles and page headings.

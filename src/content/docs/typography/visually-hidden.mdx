@@ -1,0 +1,63 @@
+---
+title: Visually Hidden
+description: Hides content visually while keeping it fully accessible to screen readers.
+category: Typography
+status: stable
+icon: eye-off
+---
+import VisuallyHidden from "../../../design/typography/components/visually-hidden/VisuallyHidden.astro";
+
+## Overview
+
+The `VisuallyHidden` component is an accessibility (a11y) primitive. It hides text or elements from the visual screen layout while leaving them fully discoverable and readable by assistive technologies (such as screen readers). This is a crucial tool for providing descriptive context or off-screen announcements without cluttering the visual UI.
+
+---
+
+## Usage
+
+### Providing Screen Reader Only Context
+
+Use `VisuallyHidden` to add explanatory text next to graphical icons that do not contain visible labels.
+
+```astro
+<button>
+  <svg>...</svg>
+  <VisuallyHidden>Close settings panel</VisuallyHidden>
+</button>
+```
+
+---
+
+### Custom Container Element
+
+By default, `VisuallyHidden` renders as a `<span>`. If you need it to act as a block or grouping element, you can use the `as` prop to render it as a `<div>`.
+
+```astro
+<VisuallyHidden as="div">
+  This block is completely hidden from visual viewports but fully accessible in the accessibility tree.
+</VisuallyHidden>
+```
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `as` | `"span" \| "div"` | `"span"` | The HTML tag to render as. |
+
+Inherits all remaining `BaseComponentProps` (`class`, `style`, `bg`, `testId`, etc.).
+
+---
+
+## Design Decisions
+
+- **CSS-Only Offscreen Positioning**: The component uses absolute positioning with a dimensions footprint of `1px x 1px` and negative margins to remove it from the visual document flow without using `display: none` or `visibility: hidden` (which would remove it from screen readers as well).
+- **No Overrides**: CSS overrides on the `.visually-hidden` class are restricted with `!important` declarations to ensure styling frameworks or accidental cascades cannot accidentally restore visibility to hidden elements.
+
+---
+
+## Related
+
+- **VisuallyHidden** is often paired with raw icon elements or icon-only buttons to satisfy accessibility requirements.
+- **Label** — for accessible form input labelling.

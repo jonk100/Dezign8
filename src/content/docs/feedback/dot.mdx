@@ -1,0 +1,125 @@
+---
+title: Dot Component
+description: A tiny presence, status, or notification indicator dot. Supports absolute placement and pulse animations.
+category: Feedback
+status: stable
+icon: circle-small
+---
+import Dot from "../../../design/feedback/components/dot/Dot.astro";
+
+## Overview
+
+The `Dot` component is a lightweight visual indicator, ideal for communicating simple presence, status roles (e.g., online/offline), or unread notifications. It renders as an empty circle and inherits properties from the shared `FeedbackProps` spec.
+
+Unlike the `Badge` component, `Dot` carries no textual content or icons, making it perfect for minimal layouts or placement on top of avatar elements.
+
+---
+
+## Usage
+
+### Basic Status Dot
+
+```astro
+<Dot color="success" />
+<Dot color="danger" />
+<Dot color="warning" />
+```
+
+<div style="display: flex; gap: 0.5rem; align-items: center; border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Dot color="success" />
+  <Dot color="danger" />
+  <Dot color="warning" />
+</div>
+
+---
+
+### Size Variations
+
+The dot size can be mapped to any of the design system's feedback scale values.
+
+```astro
+<Dot size="xs" color="primary" />
+<Dot size="sm" color="primary" />
+<Dot size="md" color="primary" />
+<Dot size="lg" color="primary" />
+<Dot size="xl" color="primary" />
+```
+
+<div style="display: flex; gap: 0.8rem; align-items: center; border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Dot size="xs" color="primary" />
+  <Dot size="sm" color="primary" />
+  <Dot size="md" color="primary" />
+  <Dot size="lg" color="primary" />
+  <Dot size="xl" color="primary" />
+</div>
+
+---
+
+### Pulsing Animation
+
+Use the `pulse` prop to apply an interactive infinite pulsing visual effect, drawing attention to live or active states.
+
+```astro
+<Dot color="success" pulse />
+<Dot color="danger" pulse />
+```
+
+<div style="display: flex; gap: 0.8rem; align-items: center; border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Dot color="success" pulse />
+  <Dot color="danger" pulse />
+</div>
+
+---
+
+### Overlay Placement
+
+Use `placement` to position the dot relative to a parent element (which must have a relative or absolute position).
+
+```astro
+<div style="position: relative; display: inline-block;">
+  <span style="display: block; width: 40px; height: 40px; background: var(--bg--4); border-radius: 50%;"></span>
+  <Dot color="success" placement="top-end" pulse />
+</div>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <div style="position: relative; display: inline-block;">
+    <span style="display: block; width: 40px; height: 40px; background: var(--bg--4); border-radius: 50%;"></span>
+    <Dot color="success" placement="top-end" pulse />
+  </div>
+</div>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `FeedbackSize` | `"md"` | The size scale mapping of the dot. |
+| `variant` | `FeedbackVariant` | `"solid"` | The visual treatment (solid, outlined, soft, dashed, ghost). |
+| `color` | `FeedbackColor` | `"neutral"` | Color theme (success, danger, warning, primary, etc.). |
+| `radius` | `FeedbackRadius` | `"full"` | Corner radius config. |
+| `pulse` | `boolean` | `false` | Loops a soft pulse animation. |
+| `placement` | `FeedbackPlacement` | — | Overlay positioning (`"top-start"`, `"top-end"`, `"bottom-start"`, `"bottom-end"`). |
+
+---
+
+## Accessibility
+
+The `Dot` component has `aria-hidden="true"` baked in by default, as it is a purely decorative element. If the dot conveys a semantic state (e.g., "User is active"), make sure to supplement it with visually hidden text (`VisuallyHidden`) or an `aria-label` on the parent container.
+
+```astro
+<div>
+  <span>John Doe</span>
+  <Dot color="success" />
+  <VisuallyHidden>(Online)</VisuallyHidden>
+</div>
+```
+
+---
+
+## Related
+
+- **Badge** — used when indicator needs to display numbers or text.
+- **Avatar** — often decorated with status dots.
+- **Chip** — for interactive status toggles.

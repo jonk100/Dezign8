@@ -1,0 +1,96 @@
+---
+title: Inline Layout
+description: A layout primitive for grouping items horizontally in a single row with consistent token-driven gaps.
+category: Layout
+status: stable
+icon: distribute-horizontal-left
+---
+import Inline from "../../../design/layout/components/inline/Inline.astro";
+import Box from "../../../design/layout/components/box/Box.astro";
+
+## Overview
+
+The `Inline` component is a layout primitive built on CSS `inline-flex`. It aligns its child elements horizontally in a single line, applying vertical centering and standard gap spacing. It is optimized for small, inline structures like icon-label pairs, tags lists, or button rows.
+
+---
+
+## Usage
+
+### Basic Horizontal Grouping
+
+By default, `Inline` wraps its children in a `<span>` with `display: inline-flex` and vertical alignment centered.
+
+```astro
+<Inline gap="md">
+  <span>Status:</span>
+  <strong>Active</strong>
+</Inline>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Inline gap="md">
+    <span>Status:</span>
+    <strong>Active</strong>
+  </Inline>
+</div>
+
+---
+
+### Custom Gap Spacing
+
+Use the `gap` prop to control the horizontal space between items using the layout system's spacing tokens.
+
+```astro
+<Inline gap="xs">
+  <span style="width: 10px; height: 10px; background: red; border-radius: 50%;"></span>
+  <span>Alert</span>
+</Inline>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Inline gap="xs">
+    <span style="width: 10px; height: 10px; background: red; border-radius: 50%;"></span>
+    <span>Alert</span>
+  </Inline>
+</div>
+
+---
+
+### Semantic Polymorphism
+
+You can customize the HTML container element using the `as` prop to render tags like `div`, `ul`, `ol`, or `nav`.
+
+```astro
+<Inline as="ul" gap="lg">
+  <li><a href="#home">Home</a></li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#contact">Contact</a></li>
+</Inline>
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md);">
+  <Inline as="ul" gap="lg" style="list-style: none; margin: 0; padding: 0;">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </Inline>
+</div>
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `as` | `InlineTag` | `"span"` | The HTML tag to render as (`"span" \| "div" \| "ul" \| "ol" \| "nav"`). |
+| `gap` | `InlineGap` | `"md"` | Gap space between children. |
+
+Inherits all remaining `LayoutProps` (`align`, `justify`) and standard `BaseComponentProps` / `SpacingProps` shorthands.
+
+---
+
+## Related
+
+- **Flex** — for full block-level multi-row/column flexbox control.
+- **Stack** — for vertical item layouts.
+- **Spacer** — for variable manual space insertion.
