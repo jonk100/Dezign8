@@ -144,3 +144,24 @@ The default radius is `full` (circle). Use `radius="sm"` or `radius="md"` for a 
 - The root `<span>` receives `aria-label` from `alt` or `initials` when provided.
 - In icon-only mode with no `alt`, the SVG carries `aria-hidden="true"` — wrap in a labeled container if context is needed.
 - Status dot color alone doesn't convey meaning to assistive tech — pair with an `aria-label` or visually-hidden text when status matters to the user.
+
+---
+
+## AvatarGroup
+
+`AvatarGroup` is a layout container that stacks multiple avatars horizontally with overlapping spacing. It utilizes the design system's `Flex` component under the hood and applies specific negative margins to create the overlap effect.
+
+```astro
+import AvatarGroup from "../../../design/assets/components/avatar-group/AvatarGroup.astro";
+
+<AvatarGroup>
+  <Avatar src="/dezign83.png" alt="User 1" size="md" />
+  <Avatar src="/dezign83.png" alt="User 2" size="md" />
+  <Avatar src="/dezign83.png" alt="User 3" size="md" />
+  <Avatar initials="+3" size="md" />
+</AvatarGroup>
+```
+
+### Overflow Indicator
+
+Astro components cannot dynamically inspect slotted content on the server to automatically count hidden avatars. Therefore, `AvatarGroup` acts purely as a visual layout wrapper. To show an overflow indicator, manually append an `<Avatar>` containing initials (e.g. `"+3"`) as the final child.

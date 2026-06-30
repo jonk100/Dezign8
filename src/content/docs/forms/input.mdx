@@ -204,3 +204,25 @@ Specialised `<input>` types are excluded from `Input` and handled by dedicated c
 - **Select** — dropdown control with the same slot and icon API.
 - **Field** — accessibility wrapper for pairing Input with Label and helper text.
 - **Search** — Input preconfigured for search with a clear button.
+
+---
+
+## InputGroup
+
+`InputGroup` is a layout container used to visually join form controls (`Input`, `Select`, `Button`) by removing the internal spacing and borders between them. It utilizes the `Flex` component. When using the `connected="true"` property, it removes internal border radii and uses overlapping borders for a seamless grouping.
+
+```astro
+import InputGroup from "../../../design/forms/components/input-group/InputGroup.astro";
+import InputAddon from "../../../design/forms/components/input-addon/InputAddon.astro";
+import Button from "../../../design/triggers/components/button/Button.astro";
+
+<InputGroup connected>
+  <InputAddon>https://</InputAddon>
+  <Input name="website" placeholder="dezign8.com" />
+  <Button variant="solid" color="primary">Go</Button>
+</InputGroup>
+```
+
+### InputAddon
+
+`InputAddon` is a purely visual element used as a prefix or suffix within an `InputGroup`. It shares the same height, padding, and border radius tokens as the standard `Input` but uses a muted gray background to indicate that it is static, non-editable text.

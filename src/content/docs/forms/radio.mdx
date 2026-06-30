@@ -29,12 +29,24 @@ Like the Checkbox, it renders as a `<label>` wrapping a hidden native `<input ty
 
 ### Radio Group
 
-Pass the same `name` to all Radio instances in a group. Each should have a distinct `value`. Pass `checked` to the initially-selected option.
+The `RadioGroup` component acts as a semantic wrapper for a group of `Radio` buttons. It renders a `<fieldset>` and `<legend>` for accessibility, and it automatically propagates the `name` prop to all descendent radio inputs via a Web Component on the client side. The layout relies on the `Flex` component and can be oriented vertically (default) or horizontally.
 
 ```astro
-<Radio name="plan" value="free" checked>Free</Radio>
-<Radio name="plan" value="pro">Pro</Radio>
-<Radio name="plan" value="enterprise">Enterprise</Radio>
+import RadioGroup from "../../../design/forms/components/radio-group/RadioGroup.astro";
+
+<!-- Vertical group (default) -->
+<RadioGroup name="plan" legend="Payment Plan">
+  <Radio value="free" checked>Free</Radio>
+  <Radio value="pro">Pro</Radio>
+  <Radio value="enterprise">Enterprise</Radio>
+</RadioGroup>
+
+<!-- Horizontal group -->
+<RadioGroup name="size" legend="Size" layout="horizontal">
+  <Radio value="sm">Small</Radio>
+  <Radio value="md">Medium</Radio>
+  <Radio value="lg">Large</Radio>
+</RadioGroup>
 ```
 <div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
   <Radio name="plan" value="free" checked>Free</Radio>
