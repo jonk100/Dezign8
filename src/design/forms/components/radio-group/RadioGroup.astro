@@ -35,17 +35,22 @@
 
 import type { RadioGroupProps } from "./radio-group.props";
 import { useRadioGroup }        from "./radio-group.hook";
+import Flex                     from "~/layout/components/flex/Flex.astro";
 import "./radio-group.css";
 
-const { groupProps, legend } = useRadioGroup(Astro.props as RadioGroupProps);
+const { groupProps, legend, layout } = useRadioGroup(Astro.props as RadioGroupProps);
 ---
 
 <dezign8-radio-group {...groupProps}>
   <fieldset class="radio-group__fieldset">
     {legend && <legend class="radio-group__legend">{legend}</legend>}
-    <div class="radio-group__options">
+    <Flex 
+      class="radio-group__options"
+      direction={layout === "horizontal" ? "row" : "column"}
+      wrap={layout === "horizontal" ? "wrap" : "nowrap"}
+    >
       <slot />
-    </div>
+    </Flex>
   </fieldset>
 </dezign8-radio-group>
 

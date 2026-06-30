@@ -1,11 +1,11 @@
 import type { AstroIntegration } from "astro";
-import { tokensPlugin } from "./.config/plugins/tokens.ts";
-import { checkCssVarsPlugin } from "./.config/plugins/check-css-vars.ts";
-import { propsPlugin } from "./.config/plugins/props.ts";
-import { designAliases } from "./.config/vite-aliases.ts";
+import { tokensPlugin } from "./.config/plugins/tokens";
+import { checkCssVarsPlugin } from "./.config/plugins/check-css-vars";
+import { propsPlugin } from "./.config/plugins/props";
+import { designAliases } from "./.config/vite-aliases";
 import fs from "node:fs";
 
-export default function dezign8(): AstroIntegration {
+export function dezign8(): AstroIntegration {
   return {
     name: "dezign8",
     hooks: {
@@ -45,3 +45,5 @@ export default function dezign8(): AstroIntegration {
     }
   };
 }
+
+export default dezign8;

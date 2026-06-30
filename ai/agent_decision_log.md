@@ -1,3 +1,14 @@
+## 2026/06/30 to 2026/06/30 - Antigravity session (RadioGroup Refactor)
+
+Refactored `RadioGroup` to use the `Flex` component instead of standard div/css layouts for consistency across the codebase.
+
+### Updated files
+```
+src/design/forms/components/radio-group/RadioGroup.astro
+src/design/forms/components/radio-group/radio-group.hook.ts
+src/design/forms/components/radio-group/radio-group.css
+```
+
 ## 2026/06/29 to 2026/06/30 - Antigravity session
 [629-630_avatar_and_input_group.md](file:///home/jk/Code/dezign8/ai/antigravity_session_summary.md/629-630_avatar_and_input_group.md)
 ### New files

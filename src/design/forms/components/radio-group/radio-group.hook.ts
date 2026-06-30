@@ -35,5 +35,6 @@ export function useRadioGroup(props: RadioGroupProps) {
       ...rest,
     },
     legend,
+    layout,
   };
 }
