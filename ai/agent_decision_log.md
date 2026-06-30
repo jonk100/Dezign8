@@ -1,3 +1,66 @@
+## 2026/06/29 to 2026/06/30 - Antigravity session
+[629-630_avatar_and_input_group.md](file:///home/jk/Code/dezign8/ai/antigravity_session_summary.md/629-630_avatar_and_input_group.md)
+### New files
+```
+src/design/forms/components/input-addon/input-addon.tokens.ts
+src/design/forms/components/input-addon/input-addon.props.ts
+src/design/forms/components/input-addon/input-addon.hook.ts
+src/design/forms/components/input-addon/input-addon.css
+src/design/forms/components/input-addon/InputAddon.astro
+src/design/forms/components/input-addon/index.ts
+```
+### Updated files
+```
+src/design/assets/components/avatar-group/avatar-group.tokens.ts
+src/design/assets/components/avatar-group/avatar-group.props.ts
+src/design/assets/components/avatar-group/avatar-group.hook.ts
+src/design/assets/components/avatar-group/avatar-group.css
+src/design/assets/components/avatar-group/AvatarGroup.astro
+src/design/assets/components/avatar-group/index.ts
+src/design/forms/components/input-group/input-group.tokens.ts
+src/design/forms/components/input-group/input-group.props.ts
+src/design/forms/components/input-group/input-group.hook.ts
+src/design/forms/components/input-group/input-group.css
+src/design/forms/components/input-group/InputGroup.astro
+src/design/forms/components/input-group/index.ts
+```
+
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
+[Session Summary](./antigravity_session_summary.md/629-629_button_group_component.md)
+
+### New files
+```
+src/design/triggers/components/button-group/ButtonGroup.astro
+src/design/triggers/components/button-group/button-group.css
+src/design/triggers/components/button-group/button-group.props.ts
+src/design/triggers/components/button-group/button-group.tokens.ts
+src/design/triggers/components/button-group/button-group.hook.ts
+src/design/triggers/components/button-group/index.ts
+src/design/triggers/components/button-group/hooks/semantic.hook.ts
+src/design/triggers/components/button-group/hooks/control.hook.ts
+src/design/triggers/components/button-group/hooks/toggle.hook.ts
+src/design/triggers/components/button-group/hooks/toolbar.hook.ts
+src/design/triggers/components/button-group/hooks/split.hook.ts
+src/design/triggers/components/button-group/utils/keyboard.ts
+src/design/triggers/components/button-group/utils/aria.ts
+src/design/triggers/components/button-group/utils/focus.ts
+src/design/triggers/components/button-group/client/client.utils.ts
+src/design/triggers/components/button-group/client/control.client.ts
+src/design/triggers/components/button-group/client/toggle.client.ts
+src/design/triggers/components/button-group/client/toolbar.client.ts
+```
+
+### Updated files
+```
+src/design/triggers/components/button/button.hook.ts
+src/design/triggers/components/button/button.css
+src/design/triggers/trigger.css
+src/content/docs/triggers/button.mdx
+```
+
+---
+
 ## 2026/06/29 to 2026/06/29 - Bug fix
 
 - Fixed `composeStyle` arguments spread in `button.hook.ts`.
@@ -8,6 +71,7 @@ src/design/triggers/components/button/button.hook.ts
 ```
 
 ---
+
 
 ## 2026/06/29 to 2026/06/29 - User configuration encapsulation
 
@@ -45,6 +109,19 @@ package.json
 ________________________________________
 - Document key decisions and changes made
 
+## 2026/06/29 to 2026/06/29 - Antigravity session
+
+[move_generated_css](antigravity_session_summary.md/629-629_move_generated_css.md)
+
+### New files
+* `ai/antigravity_session_summary.md/629-629_move_generated_css.md`
+
+### Updated files
+* `src/design/.config/plugins/tokens.ts`
+* `src/design/.config/plugins/check-css-vars.ts`
+* `src/design/styles/global.css`
+
+---
 ## 2026/06/29 to 2026/06/29 - Antigravity session
 
 [astro_integration](antigravity_session_summary.md/629-629_astro_integration.md)

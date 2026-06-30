@@ -18,7 +18,7 @@ import type { Plugin }                from "vite";
 import { existsSync, promises as fs } from "fs";
 import { join, relative }            from "path";
 
-const GEN_FILE  = "src/styles/tokens.generated.css";
+const GEN_FILE  = "src/design/styles/tokens.generated.css";
 const SCAN_DIRS = ["src/design"];
 const SKIP_DIRS = ["src/design/styles"]; // definition files, not consumers
 

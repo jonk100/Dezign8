@@ -1,0 +1,19 @@
+---
+import type { InputGroupProps } from "./input-group.props";
+import { useInputGroup } from "./input-group.hook";
+import Flex from "~/layout/components/flex/Flex.astro";
+import "./input-group.css";
+
+const { props, styles, className, attrs } = useInputGroup(Astro.props as InputGroupProps);
+---
+<Flex
+  class={className}
+  style={styles}
+  direction={attrs["data-orientation"] === "vertical" ? "column" : "row"}
+  wrap="nowrap"
+  align="stretch"
+  {...attrs}
+  {...props}
+>
+  <slot />
+</Flex>

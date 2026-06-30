@@ -1,0 +1,20 @@
+.dz-input-addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--input-addon--padding-x, var(--space-in--md));
+  white-space: nowrap;
+  
+  /* Use common input border styling */
+  border: var(--border--width, 1px) solid var(--border--default);
+  border-radius: var(--radius--md);
+  
+  /* Gray background for addons */
+  background: var(--bg--2, #f5f5f5);
+  color: var(--text--secondary, #666);
+  
+  /* Shared height with input */
+  height: var(--input--height, 2.5rem);
+  font-size: var(--text--size--sm, 0.875rem);
+  font-family: inherit;
+}

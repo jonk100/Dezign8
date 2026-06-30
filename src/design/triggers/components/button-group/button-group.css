@@ -1,0 +1,448 @@
+/* ============================================================
+   button-group.css
+   ─────────────────────────────────────────────────────────────
+   Container styles and cascading properties for ButtonGroup.
+   ============================================================ */
+
+.button-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-in--xs, 8px);
+}
+
+.button-group--horizontal {
+  flex-direction: row;
+  align-items: center;
+}
+
+.button-group--vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* ─── RESPONSIVENESS ──────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .button-group--horizontal:not([class*="button-group--grid-"]) {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > .button:first-child,
+  .button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > [data-visual="button"]:first-child {
+    border-radius: var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md)) 0 0;
+  }
+
+  .button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > .button:last-child,
+  .button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > [data-visual="button"]:last-child {
+    border-radius: 0 0 var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md));
+  }
+
+  .button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > .button:not(:first-child) {
+    margin-inline-start: 0;
+    margin-block-start: -1px;
+  }
+}
+
+/* ─── GROUPED BORDERS & RADIUSES ──────────────────────────── */
+
+.button-group--grouped {
+  gap: 0;
+}
+
+/* Horizontal grouped rules */
+.button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > .button:first-child,
+.button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > [data-visual="button"]:first-child {
+  border-radius: var(--button-group--radius, var(--radius--md)) 0 0 var(--button-group--radius, var(--radius--md));
+}
+
+.button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > .button:last-child,
+.button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > [data-visual="button"]:last-child {
+  border-radius: 0 var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md)) 0;
+}
+
+.button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > .button:not(:first-child):not(:last-child),
+.button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > [data-visual="button"]:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.button-group--grouped.button-group--horizontal:not([class*="button-group--grid-"]) > .button:not(:first-child) {
+  margin-inline-start: -1px;
+}
+
+/* Vertical grouped rules */
+.button-group--grouped.button-group--vertical > .button:first-child,
+.button-group--grouped.button-group--vertical > [data-visual="button"]:first-child {
+  border-radius: var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md)) 0 0;
+}
+
+.button-group--grouped.button-group--vertical > .button:last-child,
+.button-group--grouped.button-group--vertical > [data-visual="button"]:last-child {
+  border-radius: 0 0 var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md));
+}
+
+.button-group--grouped.button-group--vertical > .button:not(:first-child):not(:last-child),
+.button-group--grouped.button-group--vertical > [data-visual="button"]:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.button-group--grouped.button-group--vertical > .button:not(:first-child) {
+  margin-block-start: -1px;
+}
+
+/* ─── SIZE CASCADE ────────────────────────────────────────── */
+
+.button-group--size-2xs {
+  --button-group--p: var(--space-in--3xs);
+  --button-group--pi: var(--space-in--2xs);
+  --button-group--fs: var(--fs--3xs);
+  --button-group--h: var(--ui-height--2xs);
+}
+.button-group--size-xs {
+  --button-group--p: var(--space-in--2xs);
+  --button-group--pi: var(--space-in--xs);
+  --button-group--fs: var(--fs--2xs);
+  --button-group--h: var(--ui-height--xs);
+}
+.button-group--size-sm {
+  --button-group--p: var(--space-in--xs);
+  --button-group--pi: var(--space-in--sm);
+  --button-group--fs: var(--fs--xs);
+  --button-group--h: var(--ui-height--sm);
+}
+.button-group--size-md {
+  --button-group--p: var(--space-in--md);
+  --button-group--pi: var(--space-in--md);
+  --button-group--fs: var(--fs--sm);
+  --button-group--h: var(--ui-height--md);
+}
+.button-group--size-lg {
+  --button-group--p: var(--space-in--md);
+  --button-group--pi: var(--space-in--lg);
+  --button-group--fs: var(--fs--md);
+  --button-group--h: var(--ui-height--lg);
+}
+.button-group--size-xl {
+  --button-group--p: var(--space-in--lg);
+  --button-group--pi: var(--space-in--xl);
+  --button-group--fs: var(--fs--lg);
+  --button-group--h: var(--ui-height--xl);
+}
+.button-group--size-2xl {
+  --button-group--p: var(--space-in--lg);
+  --button-group--pi: var(--space-in--2xl);
+  --button-group--fs: var(--fs--xl);
+  --button-group--h: var(--ui-height--2xl);
+}
+
+/* ─── COLOR CASCADE ───────────────────────────────────────── */
+
+.button-group--color-primary {
+  --button-group--color-base: var(--primary--base);
+  --button-group--color-subtle: var(--primary--subtle);
+  --button-group--color-muted: var(--primary--muted);
+  --button-group--color-vivid: var(--primary--vivid);
+  --button-group--color-deep: var(--primary--deep);
+  --button-group--color-border: var(--primary--border);
+  --button-group--color-text: var(--primary--text);
+}
+.button-group--color-secondary {
+  --button-group--color-base: var(--secondary--base);
+  --button-group--color-subtle: var(--secondary--subtle);
+  --button-group--color-muted: var(--secondary--muted);
+  --button-group--color-vivid: var(--secondary--vivid);
+  --button-group--color-deep: var(--secondary--deep);
+  --button-group--color-border: var(--secondary--border);
+  --button-group--color-text: var(--secondary--text);
+}
+.button-group--color-accent {
+  --button-group--color-base: var(--accent--base);
+  --button-group--color-subtle: var(--accent--subtle);
+  --button-group--color-muted: var(--accent--muted);
+  --button-group--color-vivid: var(--accent--vivid);
+  --button-group--color-deep: var(--accent--deep);
+  --button-group--color-border: var(--accent--border);
+  --button-group--color-text: var(--accent--text);
+}
+.button-group--color-tertiary {
+  --button-group--color-base: var(--tertiary--base);
+  --button-group--color-subtle: var(--tertiary--subtle);
+  --button-group--color-muted: var(--tertiary--muted);
+  --button-group--color-vivid: var(--tertiary--vivid);
+  --button-group--color-deep: var(--tertiary--deep);
+  --button-group--color-border: var(--tertiary--border);
+  --button-group--color-text: var(--tertiary--text);
+}
+.button-group--color-danger {
+  --button-group--color-base: var(--danger--base);
+  --button-group--color-subtle: var(--danger--subtle);
+  --button-group--color-muted: var(--danger--muted);
+  --button-group--color-vivid: var(--danger--base);
+  --button-group--color-deep: var(--danger--text);
+  --button-group--color-border: var(--danger--border);
+  --button-group--color-text: var(--danger--text);
+}
+.button-group--color-warning {
+  --button-group--color-base: var(--warning--base);
+  --button-group--color-subtle: var(--warning--subtle);
+  --button-group--color-muted: var(--warning--muted);
+  --button-group--color-vivid: var(--warning--base);
+  --button-group--color-deep: var(--warning--text);
+  --button-group--color-border: var(--warning--border);
+  --button-group--color-text: var(--warning--text);
+}
+.button-group--color-success {
+  --button-group--color-base: var(--success--base);
+  --button-group--color-subtle: var(--success--subtle);
+  --button-group--color-muted: var(--success--muted);
+  --button-group--color-vivid: var(--success--base);
+  --button-group--color-deep: var(--success--text);
+  --button-group--color-border: var(--success--border);
+  --button-group--color-text: var(--success--text);
+}
+.button-group--color-info {
+  --button-group--color-base: var(--info--base);
+  --button-group--color-subtle: var(--info--subtle);
+  --button-group--color-muted: var(--info--muted);
+  --button-group--color-vivid: var(--info--base);
+  --button-group--color-deep: var(--info--text);
+  --button-group--color-border: var(--info--border);
+  --button-group--color-text: var(--info--text);
+}
+.button-group--color-neutral {
+  --button-group--color-base: var(--border--strong);
+  --button-group--color-subtle: var(--bg--3);
+  --button-group--color-muted: var(--bg--4);
+  --button-group--color-vivid: var(--border--strong);
+  --button-group--color-deep: var(--text--secondary);
+  --button-group--color-border: var(--border--default);
+  --button-group--color-text: var(--text--secondary);
+}
+
+/* ─── RADIUS CASCADE ──────────────────────────────────────── */
+
+.button-group--radius-xs  { --button-group--radius: var(--radius--xs); }
+.button-group--radius-sm  { --button-group--radius: var(--radius--sm); }
+.button-group--radius-md  { --button-group--radius: var(--radius--md); }
+.button-group--radius-lg  { --button-group--radius: var(--radius--lg); }
+.button-group--radius-xl  { --button-group--radius: var(--radius--xl); }
+.button-group--radius-2xl { --button-group--radius: var(--radius--2xl); }
+.button-group--radius-none { --button-group--radius: 0px; }
+.button-group--radius-full { --button-group--radius: 9999px; }
+
+/* ─── VARIANT CASCADE OVERRIDES ────────────────────────────── */
+
+/* Outlined Overrides */
+.button-group--variant-outlined > .button:not([class*="button--variant-"]) {
+  background-color: transparent;
+  border: var(--border--thin) solid var(--trigger--color-border);
+  color: var(--trigger--color-text);
+}
+.button-group--variant-outlined > .button:not([class*="button--variant-"]):hover:not([data-disabled]):not([data-loading]) {
+  background-color: var(--trigger--color-subtle);
+}
+.button-group--variant-outlined > .button:not([class*="button--variant-"]):active:not([data-disabled]):not([data-loading]) {
+  border-color: var(--trigger--color-base);
+  transform: scale(0.99);
+}
+
+/* Ghost Overrides */
+.button-group--variant-ghost > .button:not([class*="button--variant-"]) {
+  background-color: transparent;
+  border: none;
+  color: var(--trigger--color-text);
+}
+.button-group--variant-ghost > .button:not([class*="button--variant-"]):hover:not([data-disabled]):not([data-loading]) {
+  background-color: var(--trigger--color-subtle);
+}
+.button-group--variant-ghost > .button:not([class*="button--variant-"]):active:not([data-disabled]):not([data-loading]) {
+  background-color: var(--trigger--color-muted);
+  transform: scale(0.99);
+}
+
+/* Soft Overrides */
+.button-group--variant-soft > .button:not([class*="button--variant-"]) {
+  background-color: var(--trigger--color-subtle);
+  border: none;
+  color: var(--trigger--color-text);
+}
+.button-group--variant-soft > .button:not([class*="button--variant-"]):hover:not([data-disabled]):not([data-loading]) {
+  background-color: var(--trigger--color-muted);
+}
+.button-group--variant-soft > .button:not([class*="button--variant-"]):active:not([data-disabled]):not([data-loading]) {
+  color: var(--trigger--color-deep);
+  transform: scale(0.99);
+}
+
+/* Dashed Overrides */
+.button-group--variant-dashed > .button:not([class*="button--variant-"]) {
+  background-color: transparent;
+  border: var(--border--thin) dashed var(--trigger--color-border);
+  color: var(--trigger--color-text);
+}
+.button-group--variant-dashed > .button:not([class*="button--variant-"]):hover:not([data-disabled]):not([data-loading]) {
+  background-color: var(--trigger--color-subtle);
+}
+
+/* ─── GRID PRESETS ────────────────────────────────────────── */
+
+/* 2x2 Grid */
+.button-group--grid-22 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.button-group--grouped.button-group--grid-22 > .button {
+  border-radius: 0;
+  margin-inline-start: -1px;
+  margin-block-start: -1px;
+}
+.button-group--grouped.button-group--grid-22 > .button:nth-child(1) {
+  border-radius: var(--button-group--radius, var(--radius--md)) 0 0 0;
+}
+.button-group--grouped.button-group--grid-22 > .button:nth-child(2) {
+  border-radius: 0 var(--button-group--radius, var(--radius--md)) 0 0;
+}
+.button-group--grouped.button-group--grid-22 > .button:nth-child(3) {
+  border-radius: 0 0 0 var(--button-group--radius, var(--radius--md));
+}
+.button-group--grouped.button-group--grid-22 > .button:nth-child(4) {
+  border-radius: 0 0 var(--button-group--radius, var(--radius--md)) 0;
+}
+
+/* 3x3 Grid (max 2 rows of 3) */
+.button-group--grid-33 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.button-group--grouped.button-group--grid-33 > .button {
+  border-radius: 0;
+  margin-inline-start: -1px;
+  margin-block-start: -1px;
+}
+.button-group--grouped.button-group--grid-33 > .button:nth-child(1) {
+  border-radius: var(--button-group--radius, var(--radius--md)) 0 0 0;
+}
+.button-group--grouped.button-group--grid-33 > .button:nth-child(3) {
+  border-radius: 0 var(--button-group--radius, var(--radius--md)) 0 0;
+}
+.button-group--grouped.button-group--grid-33 > .button:nth-child(4) {
+  border-radius: 0 0 0 var(--button-group--radius, var(--radius--md));
+}
+.button-group--grouped.button-group--grid-33 > .button:nth-child(6) {
+  border-radius: 0 0 var(--button-group--radius, var(--radius--md)) 0;
+}
+
+/* 4x4 Grid */
+.button-group--grid-44 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.button-group--grouped.button-group--grid-44 > .button {
+  border-radius: 0;
+  margin-inline-start: -1px;
+  margin-block-start: -1px;
+}
+.button-group--grouped.button-group--grid-44 > .button:nth-child(1) {
+  border-radius: var(--button-group--radius, var(--radius--md)) 0 0 0;
+}
+.button-group--grouped.button-group--grid-44 > .button:nth-child(4) {
+  border-radius: 0 var(--button-group--radius, var(--radius--md)) 0 0;
+}
+.button-group--grouped.button-group--grid-44 > .button:nth-child(5) {
+  border-radius: 0 0 0 var(--button-group--radius, var(--radius--md));
+}
+.button-group--grouped.button-group--grid-44 > .button:nth-child(8) {
+  border-radius: 0 0 var(--button-group--radius, var(--radius--md)) 0;
+}
+
+/* 3 rows of 2 (222) */
+.button-group--grid-222 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.button-group--grouped.button-group--grid-222 > .button {
+  border-radius: 0;
+  margin-inline-start: -1px;
+  margin-block-start: -1px;
+}
+.button-group--grouped.button-group--grid-222 > .button:nth-child(1) {
+  border-radius: var(--button-group--radius, var(--radius--md)) 0 0 0;
+}
+.button-group--grouped.button-group--grid-222 > .button:nth-child(2) {
+  border-radius: 0 var(--button-group--radius, var(--radius--md)) 0 0;
+}
+.button-group--grouped.button-group--grid-222 > .button:nth-child(5) {
+  border-radius: 0 0 0 var(--button-group--radius, var(--radius--md));
+}
+.button-group--grouped.button-group--grid-222 > .button:nth-child(6) {
+  border-radius: 0 0 var(--button-group--radius, var(--radius--md)) 0;
+}
+
+/* 1-3-1 Grid */
+.button-group--grid-131 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.button-group--grid-131 > *:nth-child(1),
+.button-group--grid-131 > *:nth-child(5) {
+  grid-column: span 3;
+}
+.button-group--grouped.button-group--grid-131 > .button {
+  border-radius: 0;
+  margin-inline-start: -1px;
+  margin-block-start: -1px;
+}
+.button-group--grouped.button-group--grid-131 > .button:nth-child(1) {
+  border-radius: var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md)) 0 0;
+}
+.button-group--grouped.button-group--grid-131 > .button:nth-child(5) {
+  border-radius: 0 0 var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md));
+}
+
+/* 1-4-1 Grid */
+.button-group--grid-141 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.button-group--grid-141 > *:nth-child(1),
+.button-group--grid-141 > *:nth-child(6) {
+  grid-column: span 4;
+}
+.button-group--grouped.button-group--grid-141 > .button {
+  border-radius: 0;
+  margin-inline-start: -1px;
+  margin-block-start: -1px;
+}
+.button-group--grouped.button-group--grid-141 > .button:nth-child(1) {
+  border-radius: var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md)) 0 0;
+}
+.button-group--grouped.button-group--grid-141 > .button:nth-child(6) {
+  border-radius: 0 0 var(--button-group--radius, var(--radius--md)) var(--button-group--radius, var(--radius--md));
+}
+
+/* 2-1-2 Grid */
+.button-group--grid-212 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.button-group--grid-212 > *:nth-child(3) {
+  grid-column: span 2;
+}
+.button-group--grouped.button-group--grid-212 > .button {
+  border-radius: 0;
+  margin-inline-start: -1px;
+  margin-block-start: -1px;
+}
+.button-group--grouped.button-group--grid-212 > .button:nth-child(1) {
+  border-radius: var(--button-group--radius, var(--radius--md)) 0 0 0;
+}
+.button-group--grouped.button-group--grid-212 > .button:nth-child(2) {
+  border-radius: 0 var(--button-group--radius, var(--radius--md)) 0 0;
+}
+.button-group--grouped.button-group--grid-212 > .button:nth-child(4) {
+  border-radius: 0 0 0 var(--button-group--radius, var(--radius--md));
+}
+.button-group--grouped.button-group--grid-212 > .button:nth-child(5) {
+  border-radius: 0 0 var(--button-group--radius, var(--radius--md)) 0;
+}

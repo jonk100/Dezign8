@@ -845,6 +845,396 @@
       "wired": true
     }
   ],
+  "assets/avatar-group": [
+    {
+      "name": "size",
+      "type": "AvatarSizeString",
+      "optional": true,
+      "description": "Size passed down to all avatars via CSS custom property.",
+      "from": "AvatarGroupProps",
+      "wired": true
+    },
+    {
+      "name": "spacing",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
+      "optional": true,
+      "description": "Negative spacing between avatars.",
+      "from": "AvatarGroupProps",
+      "wired": true,
+      "default": "\"sm\""
+    },
+    {
+      "name": "direction",
+      "type": "\"row\" | \"col\" | \"row-rev\" | \"col-rev\"",
+      "optional": true,
+      "description": "Flex direction.",
+      "from": "FlexProps",
+      "wired": false,
+      "default": "\"row\""
+    },
+    {
+      "name": "wrap",
+      "type": "\"wrap\" | \"nowrap\" | \"wrap-rev\"",
+      "optional": true,
+      "description": "Flex wrap behavior.",
+      "from": "FlexProps",
+      "wired": false,
+      "default": "\"nowrap\""
+    },
+    {
+      "name": "as",
+      "type": "FlexTag",
+      "optional": true,
+      "description": "HTML tag to render as.",
+      "from": "FlexProps",
+      "wired": false,
+      "default": "\"div\""
+    },
+    {
+      "name": "align",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
+      "optional": true,
+      "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
+      "from": "LayoutProps",
+      "wired": false
+    },
+    {
+      "name": "justify",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "optional": true,
+      "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
+      "from": "LayoutProps",
+      "wired": false
+    },
+    {
+      "name": "class",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "style",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "bg",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "motion",
+      "type": "string",
+      "optional": true,
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "mDistance",
+      "type": "string",
+      "optional": true,
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "optional": true,
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "optional": true,
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "optional": true,
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "testId",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "v",
+      "type": "keyof VisualRegistry",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "p",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, all sides.",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "px",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, inline axis (l/r).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "py",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, block axis (t/b).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pt",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding top (block-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pr",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding right (inline-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pb",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding bottom (block-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pl",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding left (inline-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "m",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, all sides.",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mx",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, inline axis (l/r).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "my",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, block axis (t/b).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mt",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin top (block-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mr",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin right (inline-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mb",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin bottom (block-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "ml",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin left (inline-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-description",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-details",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-roledescription",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-keyshortcuts",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-current",
+      "type": "boolean | \"false\" | \"true\" | \"page\" | \"step\" | \"location\" | \"date\" | \"time\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-controls",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-owns",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-flowto",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-live",
+      "type": "\"off\" | \"polite\" | \"assertive\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-atomic",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-relevant",
+      "type": "\"additions\" | \"additions removals\" | \"additions text\" | \"all\" | \"removals\" | \"removals additions\" | \"removals text\" | \"text\" | \"text additions\" | \"text removals\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    }
+  ],
   "assets/file-preview": [
     {
       "name": "name",
@@ -1245,7 +1635,7 @@
   "assets/icon": [
     {
       "name": "name",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": false,
       "description": "The name of the SVG icon to render.\nMust match a valid key in `src/design/shared/icons/index.ts`.",
       "from": "IconProps",
@@ -1262,7 +1652,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "IconProps",
@@ -3338,7 +3728,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -3780,7 +4170,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -4311,14 +4701,6 @@
       "default": "`\"md\"`"
     },
     {
-      "name": "disabled",
-      "type": "boolean",
-      "optional": true,
-      "description": "",
-      "from": "BaseComponentProps",
-      "wired": true
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -4345,6 +4727,14 @@
     {
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -4640,7 +5030,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -5066,7 +5456,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -5129,14 +5519,6 @@
       "default": "\"Dismiss\""
     },
     {
-      "name": "disabled",
-      "type": "boolean",
-      "optional": true,
-      "description": "",
-      "from": "BaseComponentProps",
-      "wired": true
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -5163,6 +5545,14 @@
     {
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -5458,7 +5848,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -6643,7 +7033,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -7498,7 +7888,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Icon from the Dezign8 icon registry (`shared/icons`).\n\nAccepts any `SvgName` key from the generated registry. The SVG component\nis rendered inside the spinner and rotates on the same animation.\n\nThree spinner variants are available out of the box:\n- `\"spinner\"`       — single arc (default)\n- `\"spinner-two\"`   — dual-arc with opacity contrast\n- `\"spinner-three\"` — triple arc\n\nAny other icon in the registry can be used for creative loading states.",
       "from": "SpinnerProps",
@@ -7560,14 +7950,6 @@
       "default": "`undefined` (inline)"
     },
     {
-      "name": "disabled",
-      "type": "boolean",
-      "optional": true,
-      "description": "",
-      "from": "BaseComponentProps",
-      "wired": true
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -7594,6 +7976,14 @@
     {
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -8281,7 +8671,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -8352,14 +8742,6 @@
       "default": "`\"md\"`"
     },
     {
-      "name": "disabled",
-      "type": "boolean",
-      "optional": true,
-      "description": "",
-      "from": "BaseComponentProps",
-      "wired": true
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -8386,6 +8768,14 @@
     {
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -8681,7 +9071,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -9037,10 +9427,731 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
+      "wired": true
+    }
+  ],
+  "forms/input-addon": [
+    {
+      "name": "class",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "style",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "bg",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "motion",
+      "type": "string",
+      "optional": true,
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "mDistance",
+      "type": "string",
+      "optional": true,
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "optional": true,
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "optional": true,
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "optional": true,
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "testId",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "v",
+      "type": "keyof VisualRegistry",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "p",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, all sides.",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "px",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, inline axis (l/r).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "py",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, block axis (t/b).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pt",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding top (block-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pr",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding right (inline-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pb",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding bottom (block-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pl",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding left (inline-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "m",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, all sides.",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mx",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, inline axis (l/r).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "my",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, block axis (t/b).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mt",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin top (block-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mr",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin right (inline-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mb",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin bottom (block-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "ml",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin left (inline-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-description",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-details",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-roledescription",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-keyshortcuts",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-current",
+      "type": "boolean | \"false\" | \"true\" | \"page\" | \"step\" | \"location\" | \"date\" | \"time\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-controls",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-owns",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-flowto",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-live",
+      "type": "\"off\" | \"polite\" | \"assertive\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-atomic",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-relevant",
+      "type": "\"additions\" | \"additions removals\" | \"additions text\" | \"all\" | \"removals\" | \"removals additions\" | \"removals text\" | \"text\" | \"text additions\" | \"text removals\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    }
+  ],
+  "forms/input-group": [
+    {
+      "name": "orientation",
+      "type": "InputGroupOrientation",
+      "optional": true,
+      "description": "Orientation of the layout.",
+      "from": "InputGroupProps",
+      "wired": true,
+      "default": "\"horizontal\""
+    },
+    {
+      "name": "connected",
+      "type": "boolean",
+      "optional": true,
+      "description": "Whether the fields should visually join together.",
+      "from": "InputGroupProps",
+      "wired": true,
+      "default": "true"
+    },
+    {
+      "name": "spacing",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
+      "optional": true,
+      "description": "Spacing between fields (only applies when connected is false).",
+      "from": "InputGroupProps",
+      "wired": true,
+      "default": "\"sm\""
+    },
+    {
+      "name": "wrap",
+      "type": "\"wrap\" | \"nowrap\" | \"wrap-rev\"",
+      "optional": true,
+      "description": "Flex wrap behavior.",
+      "from": "FlexProps",
+      "wired": false,
+      "default": "\"nowrap\""
+    },
+    {
+      "name": "as",
+      "type": "FlexTag",
+      "optional": true,
+      "description": "HTML tag to render as.",
+      "from": "FlexProps",
+      "wired": true,
+      "default": "\"div\""
+    },
+    {
+      "name": "align",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
+      "optional": true,
+      "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
+      "from": "LayoutProps",
+      "wired": false
+    },
+    {
+      "name": "justify",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "optional": true,
+      "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
+      "from": "LayoutProps",
+      "wired": false
+    },
+    {
+      "name": "class",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "style",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "bg",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "motion",
+      "type": "string",
+      "optional": true,
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "mDistance",
+      "type": "string",
+      "optional": true,
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "optional": true,
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "optional": true,
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "optional": true,
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "testId",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "v",
+      "type": "keyof VisualRegistry",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "p",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, all sides.",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "px",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, inline axis (l/r).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "py",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, block axis (t/b).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pt",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding top (block-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pr",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding right (inline-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pb",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding bottom (block-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pl",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding left (inline-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "m",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, all sides.",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mx",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, inline axis (l/r).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "my",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, block axis (t/b).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mt",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin top (block-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mr",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin right (inline-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mb",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin bottom (block-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "ml",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin left (inline-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-description",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-details",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-roledescription",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-keyshortcuts",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-current",
+      "type": "boolean | \"false\" | \"true\" | \"page\" | \"step\" | \"location\" | \"date\" | \"time\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-controls",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-owns",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-flowto",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-live",
+      "type": "\"off\" | \"polite\" | \"assertive\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-atomic",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-relevant",
+      "type": "\"additions\" | \"additions removals\" | \"additions text\" | \"all\" | \"removals\" | \"removals additions\" | \"removals text\" | \"text\" | \"text additions\" | \"text removals\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
       "wired": true
     }
   ],
@@ -9072,7 +10183,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -9080,7 +10191,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -9435,7 +10546,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -9443,7 +10554,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -9807,7 +10918,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -9815,7 +10926,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -10188,7 +11299,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -10196,7 +11307,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -10542,7 +11653,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -10550,7 +11661,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -10921,7 +12032,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -10929,7 +12040,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -11284,7 +12395,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -11292,7 +12403,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -11647,7 +12758,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -11655,7 +12766,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -12034,7 +13145,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "Controls `align-items` for flex/grid containers.\nDefines how items are aligned along the cross axis.",
       "from": "LayoutProps",
@@ -12042,7 +13153,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "Controls `justify-content` for flex/grid containers.\nDefines how items are aligned along the main axis.",
       "from": "LayoutProps",
@@ -13090,7 +14201,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"stretch\" | \"baseline\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"stretch\" | \"baseline\"",
       "optional": true,
       "description": "",
       "from": "StackProps",
@@ -13098,7 +14209,7 @@
     },
     {
       "name": "justify",
-      "type": "\"center\" | \"start\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
+      "type": "\"start\" | \"center\" | \"end\" | \"between\" | \"around\" | \"evenly\"",
       "optional": true,
       "description": "",
       "from": "StackProps",
@@ -13444,7 +14555,7 @@
     },
     {
       "name": "separatorIcon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to use as a separator instead of standard text",
       "from": "BreadcrumbsProps",
@@ -14728,14 +15839,6 @@
       "default": "\"horizontal\""
     },
     {
-      "name": "disabled",
-      "type": "boolean",
-      "optional": true,
-      "description": "",
-      "from": "BaseComponentProps",
-      "wired": false
-    },
-    {
       "name": "class",
       "type": "string",
       "optional": true,
@@ -14762,6 +15865,14 @@
     {
       "name": "bg",
       "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -16225,7 +17336,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -21775,6 +22886,402 @@
       "wired": true
     }
   ],
+  "triggers/button-group": [
+    {
+      "name": "for",
+      "type": "ButtonGroupFor",
+      "optional": false,
+      "description": "Defines the type/behavior of the button group.",
+      "from": "ButtonGroupPropsBase",
+      "wired": true
+    },
+    {
+      "name": "grouped",
+      "type": "boolean",
+      "optional": true,
+      "description": "Whether the buttons should visually join together.",
+      "from": "ButtonGroupPropsBase",
+      "wired": true,
+      "default": "true (false if for=\"cluster\")"
+    },
+    {
+      "name": "orientation",
+      "type": "ButtonGroupOrientation",
+      "optional": true,
+      "description": "Orientation of the layout.",
+      "from": "ButtonGroupPropsBase",
+      "wired": true,
+      "default": "\"horizontal\""
+    },
+    {
+      "name": "size",
+      "type": "\"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\"",
+      "optional": true,
+      "description": "Size step overriding all child buttons.",
+      "from": "ButtonGroupPropsBase",
+      "wired": true
+    },
+    {
+      "name": "variant",
+      "type": "\"solid\" | \"soft\" | \"outlined\" | \"ghost\" | \"dashed\"",
+      "optional": true,
+      "description": "Visual variant overriding all child buttons.",
+      "from": "ButtonGroupPropsBase",
+      "wired": true
+    },
+    {
+      "name": "color",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "Color role overriding all child buttons.",
+      "from": "ButtonGroupPropsBase",
+      "wired": true
+    },
+    {
+      "name": "radius",
+      "type": "\"none\" | \"3xs\" | \"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
+      "optional": true,
+      "description": "Border radius overriding all child buttons.",
+      "from": "ButtonGroupPropsBase",
+      "wired": true
+    },
+    {
+      "name": "grid",
+      "type": "ButtonGroupGridPreset",
+      "optional": true,
+      "description": "Static grid layout preset.",
+      "from": "ButtonGroupPropsBase",
+      "wired": true
+    },
+    {
+      "name": "class",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "style",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "bg",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "motion",
+      "type": "string",
+      "optional": true,
+      "description": "`motion` drives enter, exit, and idle animations on any component.\n\nSyntax: `{phase}:{name}[/{duration}[/{delay}]][,…][ …]`",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "mDistance",
+      "type": "string",
+      "optional": true,
+      "description": "`mDistance` sets the travel distance for motion animations like slide, bounce.\n\n- accepts a value (e.g. `100px`, `50vw`) or a multiplier (`x2`, `x3`)\nof the default prop.",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "optional": true,
+      "description": "`action` triggers a declarative action (defined in ./actions)\n   based on something like a click (e.g., 'replay-motion', 'toggle-theme').",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "optional": true,
+      "description": "`target` targets the action to a specific element \n   (e.g., '#my-id', 'closest .container').",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "optional": true,
+      "description": "`loading` if the component is in a loading state.\n- emits `data-loading=\"true\"` on the root element via useBaseCompose.\n- each component implements its own loading UI — typically <Skeleton />.\n- Badge, Button, Avatar etc. can render a skeleton shape of themselves.",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "testId",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "v",
+      "type": "keyof VisualRegistry",
+      "optional": true,
+      "description": "",
+      "from": "BaseComponentProps",
+      "wired": true
+    },
+    {
+      "name": "p",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, all sides.",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "px",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, inline axis (l/r).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "py",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding, block axis (t/b).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pt",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding top (block-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pr",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding right (inline-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pb",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding bottom (block-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "pl",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Padding left (inline-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "m",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, all sides.",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mx",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, inline axis (l/r).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "my",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin, block axis (t/b).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mt",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin top (block-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mr",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin right (inline-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "mb",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin bottom (block-end).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "ml",
+      "type": "SpaceValue",
+      "optional": true,
+      "description": "Margin left (inline-start).",
+      "from": "SpacingProps",
+      "wired": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-description",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-details",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-roledescription",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-keyshortcuts",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-current",
+      "type": "boolean | \"false\" | \"true\" | \"page\" | \"step\" | \"location\" | \"date\" | \"time\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-controls",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-owns",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-flowto",
+      "type": "string",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-live",
+      "type": "\"off\" | \"polite\" | \"assertive\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-atomic",
+      "type": "boolean | \"false\" | \"true\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    },
+    {
+      "name": "aria-relevant",
+      "type": "\"additions\" | \"additions removals\" | \"additions text\" | \"all\" | \"removals\" | \"removals additions\" | \"removals text\" | \"text\" | \"text additions\" | \"text removals\"",
+      "optional": true,
+      "description": "",
+      "from": "AriaProps",
+      "wired": true
+    }
+  ],
   "triggers/link": [
     {
       "name": "href",
@@ -21835,7 +23342,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -21843,7 +23350,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -21883,7 +23390,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -22243,7 +23750,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -22711,7 +24218,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -22719,7 +24226,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -22759,7 +24266,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -23161,7 +24668,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -23169,7 +24676,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -23209,7 +24716,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -23605,7 +25112,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -23613,7 +25120,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -23653,7 +25160,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24021,7 +25528,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -24071,7 +25578,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24079,7 +25586,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24119,7 +25626,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24505,7 +26012,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24513,7 +26020,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24553,7 +26060,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24921,7 +26428,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -24966,7 +26473,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -24974,7 +26481,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -25014,7 +26521,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -25382,7 +26889,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -25417,7 +26924,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -25425,7 +26932,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -25465,7 +26972,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -25868,7 +27375,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -25876,7 +27383,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -25916,7 +27423,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -26311,7 +27818,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"muted\" | \"disabled\" | \"inverse\" | \"on-color\" | \"inherit\"",
+      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"disabled\" | \"muted\" | \"inverse\" | \"on-color\" | \"inherit\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -26319,7 +27826,7 @@
     },
     {
       "name": "align",
-      "type": "\"center\" | \"start\" | \"end\" | \"justify\"",
+      "type": "\"justify\" | \"start\" | \"center\" | \"end\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -26359,7 +27866,7 @@
     },
     {
       "name": "wrap",
-      "type": "\"normal\" | \"nowrap\" | \"balance\" | \"pretty\"",
+      "type": "\"nowrap\" | \"normal\" | \"balance\" | \"pretty\"",
       "optional": true,
       "description": "",
       "from": "TypographyProps",
@@ -26727,7 +28234,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | ... 117 more ... | \"zap…",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",

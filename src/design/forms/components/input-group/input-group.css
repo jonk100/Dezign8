@@ -1,0 +1,50 @@
+.dz-input-group {
+  /* Default gap when not connected */
+  gap: var(--input-group--spacing, var(--space-in--sm));
+}
+
+/* ==========================================================================
+   CONNECTED MODE
+   When fields are visually joined, they collapse borders and radii
+   ========================================================================== */
+
+/* Remove gap in connected mode */
+.dz-input-group[data-connected="true"] {
+  gap: 0;
+}
+
+/* 
+  Target children inside a connected input group.
+  Since we don't know the exact wrapper classes, we target direct children.
+*/
+
+/* Horizontal layout (default) */
+.dz-input-group[data-orientation="horizontal"][data-connected="true"] > :not(:first-child) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  margin-inline-start: -1px; /* Overlap borders to prevent double thickness */
+}
+
+.dz-input-group[data-orientation="horizontal"][data-connected="true"] > :not(:last-child) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+/* Vertical layout */
+.dz-input-group[data-orientation="vertical"][data-connected="true"] > :not(:first-child) {
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+  margin-block-start: -1px; /* Overlap borders */
+}
+
+.dz-input-group[data-orientation="vertical"][data-connected="true"] > :not(:last-child) {
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+/* Ensure the hovered/focused element comes to the front so its full border is visible */
+.dz-input-group[data-connected="true"] > *:hover,
+.dz-input-group[data-connected="true"] > *:focus-within {
+  z-index: 10;
+  position: relative;
+}

@@ -6,6 +6,7 @@ status: stable
 icon: button
 ---
 import Button from "../../../design/triggers/components/button/Button.astro";
+import ButtonGroup from "../../../design/triggers/components/button-group/ButtonGroup.astro";
 
 ## Overview
 
@@ -150,7 +151,203 @@ Provide `href` to render as `<a>` with button styling. `target="_blank"` automat
 
 ---
 
+## Button Group
+
+`ButtonGroup` groups related buttons with shared borders, consistent sizing, and cohesive motions. It supports different layouts, states, and accessibility semantics via the `for` prop.
+
+### Basic Grouping
+
+```astro
+<ButtonGroup for="semantic">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem;">
+  <ButtonGroup for="semantic">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </ButtonGroup>
+</div>
+
+---
+
+### Size and Color Cascades
+
+Properties set on the parent `ButtonGroup` automatically cascade to the children. Standalone buttons inside inherit the group's properties, while child buttons with explicit props override the cascade.
+
+```astro
+<ButtonGroup for="semantic" size="sm" variant="outlined" color="success">
+  <Button>Accept</Button>
+  <Button>Verify</Button>
+  <Button color="neutral">Skip</Button> {/* explicit child override */}
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem;">
+  <ButtonGroup for="semantic" size="sm" variant="outlined" color="success">
+    <Button>Accept</Button>
+    <Button>Verify</Button>
+    <Button color="neutral">Skip</Button>
+  </ButtonGroup>
+</div>
+
+---
+
+### Segmented Control
+
+Use `for="control"` for segmented controls. It manages active selection state like a radio group (only one button active at a time) and supports full keyboard arrow key navigation. Pass `name` and `value` to support form submissions.
+
+```astro
+<ButtonGroup for="control" name="player" value="play">
+  <Button value="play" icon="play" iconOnly aria-label="Play" />
+  <Button value="pause" icon="pause" iconOnly aria-label="Pause" />
+  <Button value="stop" icon="stop" iconOnly aria-label="Stop" />
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem;">
+  <ButtonGroup for="control" name="player" value="play">
+    <Button value="play" icon="play" iconOnly aria-label="Play" />
+    <Button value="pause" icon="pause" iconOnly aria-label="Pause" />
+    <Button value="stop" icon="stop" iconOnly aria-label="Stop" />
+  </ButtonGroup>
+</div>
+
+---
+
+### Toolbar
+
+Use `for="toolbar"` for edit-style toolbars. It implements WAI-ARIA toolbar keyboard navigation (only the active/last-focused item is focusable via Tab, and arrow keys shift focus).
+
+```astro
+<ButtonGroup for="toolbar" aria-label="Text formatting">
+  <Button icon="bold" iconOnly aria-label="Bold" variant="ghost" />
+  <Button icon="italic" iconOnly aria-label="Italic" variant="ghost" />
+  <Button icon="underline" iconOnly aria-label="Underline" variant="ghost" />
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem;">
+  <ButtonGroup for="toolbar" aria-label="Text formatting">
+    <Button icon="bold" iconOnly aria-label="Bold" variant="ghost" />
+    <Button icon="italic" iconOnly aria-label="Italic" variant="ghost" />
+    <Button icon="underline" iconOnly aria-label="Underline" variant="ghost" />
+  </ButtonGroup>
+</div>
+
+---
+
+### Split Button
+
+Use `for="split"` to group a primary action button and a secondary options dropdown trigger button.
+
+```astro
+<ButtonGroup for="split">
+  <Button>Save Action</Button>
+  <Button icon="chevron-down" iconOnly aria-label="Save options" />
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem;">
+  <ButtonGroup for="split">
+    <Button>Save Action</Button>
+    <Button icon="chevron-down" iconOnly aria-label="Save options" />
+  </ButtonGroup>
+</div>
+
+---
+
+### Multi-select Toggle Group
+
+Use `for="toggle"` for toggle button groups. Each button can be toggled independently (like checkbox controls).
+
+```astro
+<ButtonGroup for="toggle" name="formats" values={["bold"]}>
+  <Button value="bold">Bold</Button>
+  <Button value="italic">Italic</Button>
+  <Button value="strikethrough">Strikethrough</Button>
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem;">
+  <ButtonGroup for="toggle" name="formats" values={["bold"]}>
+    <Button value="bold">Bold</Button>
+    <Button value="italic">Italic</Button>
+    <Button value="strikethrough">Strikethrough</Button>
+  </ButtonGroup>
+</div>
+
+---
+
+### Actions Cluster
+
+Use `for="cluster"` to align cancel/confirm actions. It disables border merging (`grouped={false}`) by default.
+
+```astro
+<ButtonGroup for="cluster">
+  <Button variant="ghost">Cancel</Button>
+  <Button color="danger">Confirm Delete</Button>
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem;">
+  <ButtonGroup for="cluster">
+    <Button variant="ghost">Cancel</Button>
+    <Button color="danger">Confirm Delete</Button>
+  </ButtonGroup>
+</div>
+
+---
+
+### Static Grid Presets
+
+For grid-style layouts, pass the `grid` preset. Common grid alignments round outer corners and square inner corners.
+
+```astro
+<ButtonGroup for="semantic" grid="33" size="sm">
+  <Button>A</Button><Button>B</Button><Button>C</Button>
+  <Button>D</Button><Button>E</Button><Button>F</Button>
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem;">
+  <ButtonGroup for="semantic" grid="33" size="sm">
+    <Button>A</Button><Button>B</Button><Button>C</Button>
+    <Button>D</Button><Button>E</Button><Button>F</Button>
+  </ButtonGroup>
+</div>
+
+---
+
+### Vertical Orientation
+
+Set `orientation="vertical"` to stack the group vertically.
+
+```astro
+<ButtonGroup for="semantic" orientation="vertical" size="sm">
+  <Button>Home</Button>
+  <Button>Profile</Button>
+  <Button>Settings</Button>
+</ButtonGroup>
+```
+
+<div style="margin-block-end: 1.5rem; display: inline-flex;">
+  <ButtonGroup for="semantic" orientation="vertical" size="sm">
+    <Button>Home</Button>
+    <Button>Profile</Button>
+    <Button>Settings</Button>
+  </ButtonGroup>
+</div>
+
+---
+
 ## Props API
+
+### Button Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
@@ -167,6 +364,22 @@ Provide `href` to render as `<a>` with button styling. `target="_blank"` automat
 | `href` | `string` | `undefined` | Renders as `<a>` when set. |
 | `target` | `string` | `undefined` | Anchor target. |
 | `rel` | `string` | `undefined` | Anchor rel. Auto-set to `"noopener noreferrer"` when `target="_blank"`. |
+
+### ButtonGroup Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `for` | `"semantic" \| "control" \| "toolbar" \| "split" \| "toggle" \| "cluster"` | *Required* | Defines the layout behavior and accessibility role. |
+| `grouped` | `boolean` | `true` | Collapses child borders and aligns border-radiuses. (Defaults to `false` for `for="cluster"` or with custom `grid`). |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Alignment of the button group. Automatically stacks vertically on narrow screens. |
+| `grid` | `"22" \| "33" \| "44" \| "222" \| "131" \| "141" \| "212"` | `undefined` | Grid layout preset aligning child buttons into fixed rows. |
+| `size` | `"2xs"…"2xl"` | `undefined` | Size step cascading to all child buttons. |
+| `color` | `ColorRole` | `undefined` | Semantic color role cascading to all child buttons. |
+| `variant` | `TriggerVariant` | `undefined` | Visual variant style cascading to all child buttons. |
+| `radius` | `Radius` | `undefined` | Border radius cascading to all child buttons. |
+| `value` | `string` | `undefined` | Initial active selection value. Only used when `for="control"`. |
+| `values` | `string[]` | `undefined` | Initial active selection values. Only used when `for="toggle"`. |
+| `name` | `string` | `undefined` | Form input name. Creates hidden inputs to participate in HTML form submission. Only used when `for="control"` or `for="toggle"`. |
 
 All `BaseComponentProps` are also accepted (`class`, `style`, `id`, spacing props, etc.).
 

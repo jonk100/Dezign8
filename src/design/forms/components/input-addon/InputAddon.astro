@@ -1,0 +1,10 @@
+---
+import type { InputAddonProps } from "./input-addon.props";
+import { useInputAddon } from "./input-addon.hook";
+import "./input-addon.css";
+
+const { props, className } = useInputAddon(Astro.props as InputAddonProps);
+---
+<div class={className} {...props}>
+  <slot />
+</div>

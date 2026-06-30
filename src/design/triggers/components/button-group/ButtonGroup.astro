@@ -1,0 +1,27 @@
+---
+import type { ButtonGroupProps } from "./button-group.props";
+import { useButtonGroup } from "./button-group.hook";
+import "./button-group.css";
+
+const { Tag, props } = useButtonGroup(Astro.props as ButtonGroupProps);
+const { for: forType, name, value, values } = Astro.props as any;
+
+const isControl = forType === "control";
+const isToggle = forType === "toggle";
+---
+
+<Tag {...props}>
+  {isControl && name && (
+    <input type="hidden" name={name} value={value ?? ""} />
+  )}
+  {isToggle && name && Array.isArray(values) && values.map(val => (
+    <input type="hidden" name={name} value={val} />
+  ))}
+  <slot />
+</Tag>
+
+<script>
+  import "./client/control.client.ts";
+  import "./client/toggle.client.ts";
+  import "./client/toolbar.client.ts";
+</script>

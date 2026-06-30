@@ -12,7 +12,9 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "exactOptionalPropertyTypes": true,
-    "types": ["astro/client"]
+    "types": ["astro/client"],
+    "jsx": "preserve",
+
   },
   "include": [
     "src/**/*",

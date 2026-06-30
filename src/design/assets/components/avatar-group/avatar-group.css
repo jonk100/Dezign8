@@ -1,0 +1,27 @@
+.dz-avatar-group {
+  --avatar-group--ring-width: 2px;
+  --avatar-group--ring-color: var(--bg--1, #ffffff);
+}
+
+/* 
+  Target all direct children that are avatars.
+  We use the modifier to ensure they overlap.
+*/
+.dz-avatar-group > :not(:first-child) {
+  margin-left: calc(var(--avatar-group--spacing, var(--space-in--sm)) * -1);
+}
+
+/* 
+  Give all avatars in the group a ring so they don't blend together.
+*/
+.dz-avatar-group > * {
+  box-shadow: 0 0 0 var(--avatar-group--ring-width) var(--avatar-group--ring-color);
+  position: relative;
+}
+
+/*
+  Bring hovered avatars to the front.
+*/
+.dz-avatar-group > *:hover {
+  z-index: 10;
+}

@@ -7,6 +7,15 @@
 
 .trigger,
 [data-visual="trigger"] {
+  --trigger--radius: var(--button-group--radius, var(--radius--md));
+  --trigger--color-base: var(--button-group--color-base, var(--primary--base));
+  --trigger--color-subtle: var(--button-group--color-subtle, var(--primary--subtle));
+  --trigger--color-muted: var(--button-group--color-muted, var(--primary--muted));
+  --trigger--color-vivid: var(--button-group--color-vivid, var(--primary--vivid));
+  --trigger--color-deep: var(--button-group--color-deep, var(--primary--deep));
+  --trigger--color-border: var(--button-group--color-border, var(--primary--border));
+  --trigger--color-text: var(--button-group--color-text, var(--primary--text));
+
   border-radius: var(--trigger--radius);
   cursor: pointer;
   transition:

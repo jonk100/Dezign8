@@ -8,7 +8,7 @@ import type { TokenBlock }                        from "../src/design/shared/pri
 
 const DEFS_FILE   = "src/design/shared/primitives.definitions.ts";
 const SCALES_FILE = "src/design/shared/definitions/scales.ts";
-const CSS_OUT     = "src/styles/tokens.generated.css";
+const CSS_OUT     = "src/design/styles/tokens.generated.css";
 const TS_OUT      = "src/design/shared/primitives.tokens.generated.ts";
 
 // ─── CSS GENERATOR ───────────────────────────────────────────

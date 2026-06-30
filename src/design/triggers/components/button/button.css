@@ -15,10 +15,10 @@
   align-items: center;
   justify-content: center;
   gap: calc(var(--button--p) * 0.75);
-  padding-block:  var(--button--p);
-  padding-inline: var(--button--pi);
-  min-height:     var(--button--h);
-  font-size:      var(--button--fs);
+  padding-block:  var(--button--p, var(--button-group--p, var(--space-in--md)));
+  padding-inline: var(--button--pi, var(--button-group--pi, var(--space-in--md)));
+  min-height:     var(--button--h, var(--button-group--h, var(--ui-height--md)));
+  font-size:      var(--button--fs, var(--button-group--fs, var(--fs--sm)));
   font-weight:    var(--weight--medium);
   line-height: 1;
   white-space: nowrap;

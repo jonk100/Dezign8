@@ -1,0 +1,11 @@
+---
+import type { AvatarGroupProps } from "./avatar-group.props";
+import { useAvatarGroup } from "./avatar-group.hook";
+import Flex from "~/layout/components/flex/Flex.astro";
+import "./avatar-group.css";
+
+const { props, styles, className } = useAvatarGroup(Astro.props as AvatarGroupProps);
+---
+<Flex class={className} style={styles} direction="row" wrap="nowrap" align="center" {...props}>
+  <slot />
+</Flex>
