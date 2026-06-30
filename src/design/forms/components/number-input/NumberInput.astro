@@ -1,0 +1,18 @@
+---
+// design/forms/number-input/NumberInput.astro
+
+import type { NumberInputProps } from "./number-input.props";
+import { useNumberInput } from "./number-input.hook";
+import "./number-input.css";
+
+const { Tag, props, inputAttrs } = useNumberInput(Astro.props as NumberInputProps);
+---
+<Tag {...props}>
+  {Astro.slots.has("start") && (
+    <div class="number-input__start"><slot name="start" /></div>
+  )}
+  <input class="number-input__control" {...inputAttrs} />
+  {Astro.slots.has("end") && (
+    <div class="number-input__end"><slot name="end" /></div>
+  )}
+</Tag>

@@ -1,0 +1,70 @@
+/* design/forms/number-input/number-input.css */
+
+.number-input {
+  cursor: text;
+}
+
+.number-input__control {
+  flex: 1;
+  min-inline-size: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.number-input__control::placeholder {
+  color: var(--text--tertiary, var(--text--secondary));
+  opacity: 1;
+}
+
+.number-input__control:focus,
+.number-input__control:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Hide native controls if data-controls="false" */
+.number-input[data-controls="false"] .number-input__control::-webkit-inner-spin-button,
+.number-input[data-controls="false"] .number-input__control::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.number-input[data-controls="false"] .number-input__control {
+  -moz-appearance: textfield;
+}
+
+/* Slots */
+.number-input__start,
+.number-input__end {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text--secondary);
+  pointer-events: none;
+}
+
+.number-input__end button,
+.number-input__end a,
+.number-input__start button,
+.number-input__start a {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Readonly */
+.number-input:has(.number-input__control[readonly]) {
+  cursor: default;
+}
+
+.number-input__control[readonly]::placeholder {
+  color: var(--text--tertiary, var(--text--secondary));
+}

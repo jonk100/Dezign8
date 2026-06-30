@@ -162,7 +162,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -542,7 +542,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -932,7 +932,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -1329,7 +1329,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -1684,7 +1684,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -2080,7 +2080,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -2410,7 +2410,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Primary accent color role.\n\nMaps to `--data--color` on the component root.\n- Table:      cell / header border color\n- List / Feed: item separator color\n- Timeline:   connector line + node color\n- Stat/Metric: value text accent",
       "from": "DataProps",
@@ -2418,7 +2418,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
@@ -2426,7 +2426,7 @@
     },
     {
       "name": "highlight",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Highlight color role.\n\nMaps to `--data--highlight`. Applied to a specific sub-element\nper component: highlighted/pinned rows in Table and List, the\ncurrent event in Timeline/Feed, the emphasis figure in Stat/Metric.\nHas no effect on components with no highlight concept.",
       "from": "DataProps",
@@ -2854,7 +2854,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Primary accent color role.\n\nMaps to `--data--color` on the component root.\n- Table:      cell / header border color\n- List / Feed: item separator color\n- Timeline:   connector line + node color\n- Stat/Metric: value text accent",
       "from": "DataProps",
@@ -2862,7 +2862,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
@@ -2870,7 +2870,7 @@
     },
     {
       "name": "highlight",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Highlight color role.\n\nMaps to `--data--highlight`. Applied to a specific sub-element\nper component: highlighted/pinned rows in Table and List, the\ncurrent event in Timeline/Feed, the emphasis figure in Stat/Metric.\nHas no effect on components with no highlight concept.",
       "from": "DataProps",
@@ -3312,7 +3312,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Primary accent color role.\n\nMaps to `--data--color` on the component root.\n- Table:      cell / header border color\n- List / Feed: item separator color\n- Timeline:   connector line + node color\n- Stat/Metric: value text accent",
       "from": "DataProps",
@@ -3320,7 +3320,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
@@ -3328,7 +3328,7 @@
     },
     {
       "name": "highlight",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Highlight color role.\n\nMaps to `--data--highlight`. Applied to a specific sub-element\nper component: highlighted/pinned rows in Table and List, the\ncurrent event in Timeline/Feed, the emphasis figure in Stat/Metric.\nHas no effect on components with no highlight concept.",
       "from": "DataProps",
@@ -3754,7 +3754,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Primary accent color role.\n\nMaps to `--data--color` on the component root.\n- Table:      cell / header border color\n- List / Feed: item separator color\n- Timeline:   connector line + node color\n- Stat/Metric: value text accent",
       "from": "DataProps",
@@ -3762,7 +3762,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
@@ -3770,7 +3770,7 @@
     },
     {
       "name": "highlight",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Highlight color role.\n\nMaps to `--data--highlight`. Applied to a specific sub-element\nper component: highlighted/pinned rows in Table and List, the\ncurrent event in Timeline/Feed, the emphasis figure in Stat/Metric.\nHas no effect on components with no highlight concept.",
       "from": "DataProps",
@@ -4231,7 +4231,7 @@
     },
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Primary accent color role.\n\nMaps to `--data--color` on the component root.\n- Table:      cell / header border color\n- List / Feed: item separator color\n- Timeline:   connector line + node color\n- Stat/Metric: value text accent",
       "from": "DataProps",
@@ -4239,7 +4239,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Background color role.\n\nMaps to `--bg--*` variables. Applied as a tint (typically via color-mix()\nat ~10–15% opacity) so it reads as a subtle wash, not a solid fill.\nOverride with `variant=\"soft\"` for a more intentional filled look.",
       "from": "DataProps",
@@ -4247,7 +4247,7 @@
     },
     {
       "name": "highlight",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "Highlight color role.\n\nMaps to `--data--highlight`. Applied to a specific sub-element\nper component: highlighted/pinned rows in Table and List, the\ncurrent event in Timeline/Feed, the emphasis figure in Stat/Metric.\nHas no effect on components with no highlight concept.",
       "from": "DataProps",
@@ -4726,7 +4726,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -5152,7 +5152,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -5544,7 +5544,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -5945,7 +5945,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -6329,7 +6329,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -6729,7 +6729,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -7165,7 +7165,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -7555,7 +7555,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -7861,7 +7861,7 @@
   "feedback/spinner": [
     {
       "name": "color",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\" | \"inherit\"",
+      "type": "ColorRole | \"inherit\"",
       "optional": true,
       "description": "Color of the spinner.\n\nAccepts any standard semantic `ColorRole` (primary, danger, etc).\nFor a spinner that sits inside a button or text block, use `\"inherit\"`\nso it automatically matches the surrounding text color.",
       "from": "SpinnerProps",
@@ -7975,7 +7975,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -8367,7 +8367,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -8767,7 +8767,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -9123,7 +9123,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -9461,7 +9461,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -9852,7 +9852,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -10223,7 +10223,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -10586,7 +10586,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -10958,7 +10958,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -11339,7 +11339,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -11693,7 +11693,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -12072,7 +12072,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -12435,7 +12435,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -12798,7 +12798,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -13185,7 +13185,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -13539,7 +13539,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -13877,7 +13877,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -14241,7 +14241,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -14644,7 +14644,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -15040,7 +15040,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -15443,7 +15443,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -15864,7 +15864,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -16259,7 +16259,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -16654,7 +16654,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -17032,7 +17032,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -17410,7 +17410,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -17764,7 +17764,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -18142,7 +18142,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -18488,7 +18488,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -18858,7 +18858,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -19212,7 +19212,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -19602,7 +19602,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -20070,7 +20070,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -20480,7 +20480,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -20888,7 +20888,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -21323,7 +21323,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -21731,7 +21731,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -22183,7 +22183,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -22583,7 +22583,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -22979,7 +22979,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -23454,7 +23454,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -23880,7 +23880,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -24330,7 +24330,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -24780,7 +24780,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -25224,7 +25224,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -25690,7 +25690,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -26124,7 +26124,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -26585,7 +26585,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -27036,7 +27036,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -27487,7 +27487,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -27930,7 +27930,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",
@@ -28277,7 +28277,7 @@
     },
     {
       "name": "bg",
-      "type": "\"primary\" | \"secondary\" | \"tertiary\" | \"accent\" | \"danger\" | \"warning\" | \"success\" | \"info\" | \"neutral\"",
+      "type": "ColorRole",
       "optional": true,
       "description": "",
       "from": "BaseComponentProps",

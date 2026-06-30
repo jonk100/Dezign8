@@ -9,7 +9,7 @@
 import { useTypography } from "../../typography.hook";
 import type { CaptionProps } from "./caption.props";
 import { CAPTION_DEFAULTS } from "./caption.tokens";
-import { composeClass } from "~/shared/base.hook";
+import { composeClass } from "../../../shared/base.hook";
 
 export function useCaption(props: CaptionProps) {
   const {

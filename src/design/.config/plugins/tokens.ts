@@ -80,7 +80,7 @@ function buildTS(scaleDefs: Record<string, Record<string, string | null>>): stri
       .join("\n");
 
     lines.push(`export const ${name} = scale({\n${pairs}\n});\n`);
-    lines.push(`export type ${typeName} = keyof typeof ${name};\n`);
+    lines.push(`export type ${typeName} = Extract<keyof typeof ${name}, string>;\n`);
   }
 
   return lines.join("\n");
