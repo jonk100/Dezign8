@@ -211,3 +211,10 @@ import-recipe:
         echo "" >> justfile
         echo "✅ Extracted $recipe from $BUNDLE!"
     done
+
+# @recipe: todo-scan
+# @desc: Find TODO/FIXME comments across the codebase
+[group('project')]
+todo-scan:
+    grep -rn --exclude-dir=node_modules --exclude-dir=.git -E 'TODO|FIXME' --include='*.ts' --include='*.astro' --include='*.css' . || echo "No TODOs found"
+

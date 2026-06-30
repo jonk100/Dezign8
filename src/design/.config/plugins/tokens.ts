@@ -4,7 +4,7 @@ import type { Plugin }                           from "vite";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { resolve, dirname }                       from "path";
 import vm                                         from "node:vm";
-import type { TokenBlock }                        from "../src/design/shared/primitives.definitions";
+import type { TokenBlock }                        from "../../shared/primitives.definitions";
 
 const DEFS_FILE   = "src/design/shared/primitives.definitions.ts";
 const SCALES_FILE = "src/design/shared/definitions/scales.ts";

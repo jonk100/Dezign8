@@ -1,3 +1,15 @@
+## 2026/06/30 to 2026/06/30 - Antigravity session (Fix tokens plugin import)
+
+Fixed a broken import path in `src/design/.config/plugins/tokens.ts`.
+
+[Session Summary](file:///home/jk/Code/dezign8/ai/antigravity_session_summary.md/630-630_fix_tokens_plugin_import.md)
+
+### New files
+- None
+
+### Updated files
+- src/design/.config/plugins/tokens.ts
+
 ## 2026/06/30 to 2026/06/30 - Antigravity session (Astro Check Fixes)
 
 Fixed a TypeScript unused import warning (`ts(6133)`) caught by `pnpm astro check` and cleaned up import formatting.
