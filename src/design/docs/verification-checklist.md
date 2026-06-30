@@ -73,7 +73,8 @@ Use it to verify the status of components manually and check what files/prop imp
 - [ ] Documentation file exists
 - [ ] Documentation status is 'stable' (Current: `none`)
 - Prop Verification:
-  - No custom props declared in `avatar-group.props.ts`.
+  - [x] `size` is implemented
+  - [x] `spacing` is implemented
 
 ### `carousel`
 - Status: 🟡 **Draft**
@@ -133,19 +134,6 @@ Use it to verify the status of components manually and check what files/prop imp
 - [ ] Documentation status is 'stable' (Current: `none`)
 - Prop Verification:
   - No custom props declared in `gallery.props.ts`.
-
-### `gallery-item`
-- Status: 🟡 **Draft**
-- [x] Directory exists
-- [x] `gallery-item.tokens.ts`
-- [x] `gallery-item.props.ts`
-- [x] `gallery-item.hook.ts`
-- [x] `gallery-item.css`
-- [x] `.astro` component (GalleryItem.astro)
-- [ ] Documentation file exists
-- [ ] Documentation status is 'stable' (Current: `none`)
-- Prop Verification:
-  - No custom props declared in `gallery-item.props.ts`.
 
 ### `icon`
 - Status: 🟢 **Done**
@@ -364,15 +352,15 @@ Use it to verify the status of components manually and check what files/prop imp
   - [x] `as` is implemented
 
 ### `dot`
-- Status: 🟡 **Draft**
+- Status: 🟢 **Done**
 - [x] Directory exists
 - [x] `dot.tokens.ts`
 - [x] `dot.props.ts`
 - [x] `dot.hook.ts`
 - [x] `dot.css`
 - [x] `.astro` component (Dot.astro)
-- [ ] Documentation file exists
-- [ ] Documentation status is 'stable' (Current: `none`)
+- [x] Documentation file exists
+- [x] Documentation status is 'stable' (Current: `stable`)
 - Prop Verification:
   - No custom props declared in `dot.props.ts`.
 
@@ -609,6 +597,19 @@ Use it to verify the status of components manually and check what files/prop imp
   - [x] `pattern` is implemented
   - [x] `autocomplete` is implemented
 
+### `input-addon`
+- Status: 🟡 **Draft**
+- [x] Directory exists
+- [x] `input-addon.tokens.ts`
+- [x] `input-addon.props.ts`
+- [x] `input-addon.hook.ts`
+- [x] `input-addon.css`
+- [x] `.astro` component (InputAddon.astro)
+- [ ] Documentation file exists
+- [ ] Documentation status is 'stable' (Current: `none`)
+- Prop Verification:
+  - No custom props declared in `input-addon.props.ts`.
+
 ### `input-group`
 - Status: 🟡 **Draft**
 - [x] Directory exists
@@ -620,7 +621,9 @@ Use it to verify the status of components manually and check what files/prop imp
 - [ ] Documentation file exists
 - [ ] Documentation status is 'stable' (Current: `none`)
 - Prop Verification:
-  - No custom props declared in `input-group.props.ts`.
+  - [x] `orientation` is implemented
+  - [x] `connected` is implemented
+  - [x] `spacing` is implemented
 
 ### `multiselect`
 - Status: 🟡 **Draft**
@@ -912,28 +915,28 @@ Use it to verify the status of components manually and check what files/prop imp
   - [x] `sticky` is implemented
 
 ### `inline`
-- Status: 🟡 **Draft**
+- Status: 🟢 **Done**
 - [x] Directory exists
 - [x] `inline.tokens.ts`
 - [x] `inline.props.ts`
 - [x] `inline.hook.ts`
 - [x] `inline.css`
 - [x] `.astro` component (Inline.astro)
-- [ ] Documentation file exists
-- [ ] Documentation status is 'stable' (Current: `none`)
+- [x] Documentation file exists
+- [x] Documentation status is 'stable' (Current: `stable`)
 - Prop Verification:
   - [x] `as` is implemented
 
 ### `screen`
-- Status: 🟡 **Draft**
+- Status: 🟢 **Done**
 - [x] Directory exists
 - [x] `screen.tokens.ts`
 - [x] `screen.props.ts`
 - [x] `screen.hook.ts`
 - [x] `screen.css`
 - [x] `.astro` component (Screen.astro)
-- [ ] Documentation file exists
-- [ ] Documentation status is 'stable' (Current: `none`)
+- [x] Documentation file exists
+- [x] Documentation status is 'stable' (Current: `stable`)
 - Prop Verification:
   - [x] `as` is implemented
   - [x] `height` is implemented
@@ -1295,6 +1298,39 @@ Use it to verify the status of components manually and check what files/prop imp
 
 ## Shared
 
+### `aria-props`
+- Status: ⚪ *Planned*
+- [ ] Directory created under `src/design/shared/components/aria-props`
+- [ ] `aria-props.tokens.ts`
+- [ ] `aria-props.props.ts`
+- [ ] `aria-props.hook.ts`
+- [ ] `aria-props.css`
+- [ ] `.astro` component
+- [x] Documentation file exists
+- [ ] Documentation status is 'stable' (Current: `stable`)
+
+### `base-component-props`
+- Status: ⚪ *Planned*
+- [ ] Directory created under `src/design/shared/components/base-component-props`
+- [ ] `base-component-props.tokens.ts`
+- [ ] `base-component-props.props.ts`
+- [ ] `base-component-props.hook.ts`
+- [ ] `base-component-props.css`
+- [ ] `.astro` component
+- [x] Documentation file exists
+- [ ] Documentation status is 'stable' (Current: `draft`)
+
+### `base-hook`
+- Status: ⚪ *Planned*
+- [ ] Directory created under `src/design/shared/components/base-hook`
+- [ ] `base-hook.tokens.ts`
+- [ ] `base-hook.props.ts`
+- [ ] `base-hook.hook.ts`
+- [ ] `base-hook.css`
+- [ ] `.astro` component
+- [x] Documentation file exists
+- [ ] Documentation status is 'stable' (Current: `stable`)
+
 ### `skeleton`
 - Status: 🟡 **Draft**
 - [x] Directory exists
@@ -1313,6 +1349,17 @@ Use it to verify the status of components manually and check what files/prop imp
   - [x] `ratio` is implemented
   - [x] `radius` is implemented
   - [x] `animated` is implemented
+
+### `spacing-props`
+- Status: ⚪ *Planned*
+- [ ] Directory created under `src/design/shared/components/spacing-props`
+- [ ] `spacing-props.tokens.ts`
+- [ ] `spacing-props.props.ts`
+- [ ] `spacing-props.hook.ts`
+- [ ] `spacing-props.css`
+- [ ] `.astro` component
+- [x] Documentation file exists
+- [ ] Documentation status is 'stable' (Current: `stable`)
 
 
 ## Surfaces
@@ -1457,7 +1504,18 @@ Use it to verify the status of components manually and check what files/prop imp
 - [ ] Documentation file exists
 - [ ] Documentation status is 'stable' (Current: `none`)
 - Prop Verification:
-  - No custom props declared in `button-group.props.ts`.
+  - [x] `for` is implemented
+  - [x] `grouped` is implemented
+  - [x] `orientation` is implemented
+  - [x] `size` is implemented
+  - [x] `variant` is implemented
+  - [x] `color` is implemented
+  - [x] `radius` is implemented
+  - [x] `grid` is implemented
+  - [x] `value` is implemented
+  - [x] `name` is implemented
+  - [x] `values` is implemented
+  - [x] `aria-label` is implemented
 
 ### `command-palette`
 - Status: 🟡 **Draft**
@@ -1550,15 +1608,15 @@ Use it to verify the status of components manually and check what files/prop imp
   - [x] `rule` is implemented
 
 ### `code`
-- Status: 🟡 **Draft**
+- Status: 🟢 **Done**
 - [x] Directory exists
 - [x] `code.tokens.ts`
 - [x] `code.props.ts`
 - [x] `code.hook.ts`
 - [x] `code.css`
 - [x] `.astro` component (Code.astro)
-- [ ] Documentation file exists
-- [ ] Documentation status is 'stable' (Current: `none`)
+- [x] Documentation file exists
+- [x] Documentation status is 'stable' (Current: `stable`)
 - Prop Verification:
   - [x] `as` is implemented
   - [x] `block` is implemented
@@ -1578,15 +1636,15 @@ Use it to verify the status of components manually and check what files/prop imp
   - [x] `weight` is implemented
 
 ### `indent`
-- Status: 🟡 **Draft**
+- Status: 🟢 **Done**
 - [x] Directory exists
 - [x] `indent.tokens.ts`
 - [x] `indent.props.ts`
 - [x] `indent.hook.ts`
 - [x] `indent.css`
 - [x] `.astro` component (Indent.astro)
-- [ ] Documentation file exists
-- [ ] Documentation status is 'stable' (Current: `none`)
+- [x] Documentation file exists
+- [x] Documentation status is 'stable' (Current: `stable`)
 - Prop Verification:
   - [x] `prose` is implemented
   - [x] `ui` is implemented
@@ -1662,15 +1720,15 @@ Use it to verify the status of components manually and check what files/prop imp
   - [x] `as` is implemented
 
 ### `visually-hidden`
-- Status: 🟡 **Draft**
+- Status: 🟢 **Done**
 - [x] Directory exists
 - [x] `visually-hidden.tokens.ts`
 - [x] `visually-hidden.props.ts`
 - [x] `visually-hidden.hook.ts`
 - [x] `visually-hidden.css`
 - [x] `.astro` component (VisuallyHidden.astro)
-- [ ] Documentation file exists
-- [ ] Documentation status is 'stable' (Current: `none`)
+- [x] Documentation file exists
+- [x] Documentation status is 'stable' (Current: `stable`)
 - Prop Verification:
   - [x] `as` is implemented
 
