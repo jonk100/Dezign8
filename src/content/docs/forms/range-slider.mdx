@@ -1,0 +1,52 @@
+---
+title: Range Slider Component
+description: A dual-thumb range control utilizing native inputs and pure CSS.
+category: Forms
+status: stable
+icon: slider
+version: 0.3.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/forms/components/range-slider"
+---
+import RangeSlider from "../../../design/forms/components/range-slider/RangeSlider.astro";
+
+## Overview
+
+The `RangeSlider` provides a dual-thumb selection for `[min, max]` intervals. Since native HTML does not support multi-thumb `<input type="range">`, this component uses a clever DOM structure: two overlapping native range inputs wrapped in a relative container.
+
+A lightweight Web Component (`<dezign8-range-slider>`) intercepts inputs to ensure the start thumb cannot cross the end thumb, and updates CSS variables to paint the visual track between them.
+
+## Usage & Examples
+
+### Basic Usage
+
+Pass a tuple of two numbers to the `value` prop to set the initial start and end points.
+
+```astro
+<RangeSlider name="price" value={[20, 80]} min={0} max={100} />
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <RangeSlider name="price" value={[20, 80]} min={0} max={100} />
+</div>
+
+### Disabled State
+
+```astro
+<RangeSlider name="price_disabled" value={[30, 70]} disabled />
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <RangeSlider name="price_disabled" value={[30, 70]} disabled />
+</div>
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `[number, number]` | `[0, 100]` | The tuple representing the start and end thumbs. |
+| `min` | `number` | `0` | The absolute minimum value of the track. |
+| `max` | `number` | `100` | The absolute maximum value of the track. |
+| `step` | `number` | `1` | The step interval. |
+
+*Inherits all `FormProps` (size, variant, color, radius, disabled, required, invalid, name, fullWidth) and `BaseComponentProps`.*

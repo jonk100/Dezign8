@@ -1,0 +1,93 @@
+/* ============================================================
+   slider.css
+   ============================================================ */
+
+.slider {
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* Override forms.css padding since the track is inside */
+  padding: 0;
+  border: none;
+  background: transparent;
+  width: 100%;
+  min-height: var(--form--size);
+}
+
+/* Dynamic track fill */
+dezign8-slider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.slider__control {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: var(--slider--track-height, var(--space--1));
+  border-radius: var(--radius--full);
+  outline: none;
+  margin: 0;
+  cursor: pointer;
+  
+  /* Fallback track color */
+  background: var(--border--default);
+}
+
+dezign8-slider .slider__control {
+  background: linear-gradient(
+    to right,
+    var(--form--color-base) 0%,
+    var(--form--color-base) calc(var(--slider--fill, 0) * 100%),
+    var(--border--default) calc(var(--slider--fill, 0) * 100%),
+    var(--border--default) 100%
+  );
+}
+
+/* Chrome/Safari/Edge Thumb */
+.slider__control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--slider--thumb-size, var(--space--4));
+  height: var(--slider--thumb-size, var(--space--4));
+  border-radius: var(--radius--full);
+  background: var(--bg--1);
+  border: 2px solid var(--form--color-base);
+  cursor: pointer;
+  transition: transform 0.1s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.slider__control:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--form--color-base);
+  outline-offset: 2px;
+}
+
+/* Firefox Thumb */
+.slider__control::-moz-range-thumb {
+  width: var(--slider--thumb-size, var(--space--4));
+  height: var(--slider--thumb-size, var(--space--4));
+  border-radius: var(--radius--full);
+  background: var(--bg--1);
+  border: 2px solid var(--form--color-base);
+  cursor: pointer;
+  transition: transform 0.1s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.slider__control:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--form--color-base);
+  outline-offset: 2px;
+}
+
+/* Disabled State */
+.slider[data-disabled] .slider__control,
+.slider[data-disabled] .slider__control::-webkit-slider-thumb,
+.slider[data-disabled] .slider__control::-moz-range-thumb {
+  cursor: not-allowed;
+}
+
+.slider[data-disabled] {
+  opacity: 0.5;
+}

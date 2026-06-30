@@ -1,0 +1,52 @@
+---
+title: Slider Component
+description: A native, accessible input range control with dynamic track coloring.
+category: Forms
+status: stable
+icon: slider
+version: 0.3.0
+links:
+  source: "https://github.com/jonk100/Dezign8/tree/main/src/design/forms/components/slider"
+---
+import Slider from "../../../design/forms/components/slider/Slider.astro";
+
+## Overview
+
+The `Slider` component is an accessible, native `<input type="range">` enhanced with a custom design system thumb and a dynamically colored track fill.
+
+A lightweight, 0-dependency Web Component (`<dezign8-slider>`) is used to sync the native input's value to a CSS variable, allowing pure CSS track filling without React or external libraries.
+
+## Usage & Examples
+
+### Basic Usage
+
+```astro
+<Slider name="volume" value={50} min={0} max={100} />
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Slider name="volume" value={50} min={0} max={100} />
+</div>
+
+### Form Integration
+
+It inherits all form properties, meaning it supports `disabled` and `invalid` states out of the box.
+
+```astro
+<Slider name="disabled_example" value={25} disabled />
+```
+
+<div style="border: 1px solid var(--border--default); padding: 1rem; border-radius: var(--radius--md); margin-bottom: 1rem;">
+  <Slider name="disabled_example" value={25} disabled />
+</div>
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | — | The initial value of the slider. |
+| `min` | `number` | `0` | The minimum value allowed. |
+| `max` | `number` | `100` | The maximum value allowed. |
+| `step` | `number` | `1` | The step interval. |
+
+*Inherits all `FormProps` (size, variant, color, radius, disabled, required, invalid, name, fullWidth) and `BaseComponentProps`.*

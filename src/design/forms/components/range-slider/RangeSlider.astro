@@ -1,0 +1,81 @@
+---
+import type { RangeSliderProps } from "./range-slider.props";
+import { useRangeSlider } from "./range-slider.hook";
+import "./range-slider.css";
+
+const { Tag, props, startInputAttrs, endInputAttrs } = useRangeSlider(Astro.props as RangeSliderProps);
+---
+
+<Tag {...props}>
+  <dezign8-range-slider>
+    <div class="range-slider__track-bg"></div>
+    <div class="range-slider__track-fill"></div>
+    <input class="range-slider__control range-slider__control--start" {...startInputAttrs} />
+    <input class="range-slider__control range-slider__control--end" {...endInputAttrs} />
+  </dezign8-range-slider>
+</Tag>
+
+<script>
+  class Dezign8RangeSlider extends HTMLElement {
+    startInput: HTMLInputElement | null = null;
+    endInput: HTMLInputElement | null = null;
+
+    connectedCallback() {
+      this.startInput = this.querySelector('.range-slider__control--start');
+      this.endInput = this.querySelector('.range-slider__control--end');
+      
+      if (!this.startInput || !this.endInput) return;
+      
+      this.updateFill();
+      this.startInput.addEventListener('input', this.handleStartInput.bind(this));
+      this.endInput.addEventListener('input', this.handleEndInput.bind(this));
+    }
+
+    disconnectedCallback() {
+      if (!this.startInput || !this.endInput) return;
+      this.startInput.removeEventListener('input', this.handleStartInput.bind(this));
+      this.endInput.removeEventListener('input', this.handleEndInput.bind(this));
+    }
+
+    handleStartInput() {
+      if (!this.startInput || !this.endInput) return;
+      const startVal = Number(this.startInput.value);
+      const endVal = Number(this.endInput.value);
+      
+      if (startVal > endVal) {
+        this.startInput.value = String(endVal);
+      }
+      this.updateFill();
+    }
+
+    handleEndInput() {
+      if (!this.startInput || !this.endInput) return;
+      const startVal = Number(this.startInput.value);
+      const endVal = Number(this.endInput.value);
+      
+      if (endVal < startVal) {
+        this.endInput.value = String(startVal);
+      }
+      this.updateFill();
+    }
+
+    updateFill() {
+      if (!this.startInput || !this.endInput) return;
+      const min = Number(this.startInput.min) || 0;
+      const max = Number(this.startInput.max) || 100;
+      
+      const startVal = Number(this.startInput.value);
+      const endVal = Number(this.endInput.value);
+      
+      const startFill = (startVal - min) / (max - min);
+      const endFill = (endVal - min) / (max - min);
+      
+      this.style.setProperty('--range-slider--start', String(startFill));
+      this.style.setProperty('--range-slider--end', String(endFill));
+    }
+  }
+
+  if (!customElements.get("dezign8-range-slider")) {
+    customElements.define("dezign8-range-slider", Dezign8RangeSlider);
+  }
+</script>

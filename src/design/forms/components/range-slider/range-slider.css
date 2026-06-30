@@ -1,0 +1,124 @@
+/* ============================================================
+   range-slider.css
+   ============================================================ */
+
+.range-slider {
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* Override forms.css padding since the track is inside */
+  padding: 0;
+  border: none;
+  background: transparent;
+  width: 100%;
+  min-height: var(--form--size);
+}
+
+dezign8-range-slider {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--range-slider--thumb-size, var(--space--4));
+}
+
+.range-slider__track-bg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: var(--range-slider--track-height, var(--space--1));
+  transform: translateY(-50%);
+  background: var(--border--default);
+  border-radius: var(--radius--full);
+}
+
+.range-slider__track-fill {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--range-slider--start, 0) * 100%);
+  right: calc(100% - (var(--range-slider--end, 1) * 100%));
+  height: var(--range-slider--track-height, var(--space--1));
+  transform: translateY(-50%);
+  background: var(--form--color-base);
+  border-radius: var(--radius--full);
+}
+
+.range-slider__control {
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: var(--range-slider--thumb-size, var(--space--4));
+  transform: translateY(-50%);
+  background: transparent;
+  margin: 0;
+  outline: none;
+  /* Crucial: let clicks pass through to the other slider if overlapping */
+  pointer-events: none;
+}
+
+/* Chrome/Safari/Edge Thumb */
+.range-slider__control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--range-slider--thumb-size, var(--space--4));
+  height: var(--range-slider--thumb-size, var(--space--4));
+  border-radius: var(--radius--full);
+  background: var(--bg--1);
+  border: 2px solid var(--form--color-base);
+  cursor: pointer;
+  pointer-events: auto; /* re-enable interaction on thumb */
+  transition: transform 0.1s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  /* Place on top when active */
+  position: relative;
+  z-index: 1;
+}
+
+.range-slider__control:focus-visible::-webkit-slider-thumb,
+.range-slider__control:active::-webkit-slider-thumb {
+  z-index: 2;
+}
+
+.range-slider__control:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--form--color-base);
+  outline-offset: 2px;
+}
+
+/* Firefox Thumb */
+.range-slider__control::-moz-range-thumb {
+  width: var(--range-slider--thumb-size, var(--space--4));
+  height: var(--range-slider--thumb-size, var(--space--4));
+  border-radius: var(--radius--full);
+  background: var(--bg--1);
+  border: 2px solid var(--form--color-base);
+  cursor: pointer;
+  pointer-events: auto; /* re-enable interaction on thumb */
+  transition: transform 0.1s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.range-slider__control:focus-visible::-moz-range-thumb,
+.range-slider__control:active::-moz-range-thumb {
+  z-index: 2;
+}
+
+.range-slider__control:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--form--color-base);
+  outline-offset: 2px;
+}
+
+/* Disabled State */
+.range-slider[data-disabled] .range-slider__control::-webkit-slider-thumb,
+.range-slider[data-disabled] .range-slider__control::-moz-range-thumb {
+  cursor: not-allowed;
+}
+
+.range-slider[data-disabled] {
+  opacity: 0.5;
+}

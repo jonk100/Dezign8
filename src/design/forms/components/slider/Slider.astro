@@ -1,0 +1,44 @@
+---
+import type { SliderProps } from "./slider.props";
+import { useSlider } from "./slider.hook";
+import "./slider.css";
+
+const { Tag, props, inputAttrs } = useSlider(Astro.props as SliderProps);
+---
+
+<Tag {...props}>
+  <dezign8-slider>
+    <input class="slider__control" {...inputAttrs} />
+  </dezign8-slider>
+</Tag>
+
+<script>
+  class Dezign8Slider extends HTMLElement {
+    input: HTMLInputElement | null = null;
+
+    connectedCallback() {
+      this.input = this.querySelector('input');
+      if (!this.input) return;
+      this.updateFill();
+      this.input.addEventListener('input', this.updateFill.bind(this));
+    }
+
+    disconnectedCallback() {
+      if (!this.input) return;
+      this.input.removeEventListener('input', this.updateFill.bind(this));
+    }
+
+    updateFill() {
+      if (!this.input) return;
+      const min = Number(this.input.min) || 0;
+      const max = Number(this.input.max) || 100;
+      const val = Number(this.input.value);
+      const fill = (val - min) / (max - min);
+      this.style.setProperty('--slider--fill', String(fill));
+    }
+  }
+
+  if (!customElements.get("dezign8-slider")) {
+    customElements.define("dezign8-slider", Dezign8Slider);
+  }
+</script>

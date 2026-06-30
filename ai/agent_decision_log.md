@@ -1,3 +1,33 @@
+## 2026/06/30 to 2026/06/30 - Antigravity session (Slider & RangeSlider)
+
+Implemented `Slider` and `RangeSlider` components using native inputs and pure CSS.
+- The `Slider` component leverages a lightweight Web Component `<dezign8-slider>` to synchronize a CSS variable (`--slider--fill`) for dynamic track coloring.
+- The `RangeSlider` component overlaps two native `<input type="range">` elements, utilizing a Web Component `<dezign8-range-slider>` to manage crossover and update visual track boundaries.
+- Upgraded `Checkbox` from experimental to stable.
+
+### New files
+```
+src/design/forms/components/slider/Slider.astro
+src/design/forms/components/slider/slider.css
+src/design/forms/components/slider/slider.hook.ts
+src/design/forms/components/slider/slider.props.ts
+src/design/forms/components/slider/slider.tokens.ts
+src/design/forms/components/slider/index.ts
+src/content/docs/forms/slider.mdx
+src/design/forms/components/range-slider/RangeSlider.astro
+src/design/forms/components/range-slider/range-slider.css
+src/design/forms/components/range-slider/range-slider.hook.ts
+src/design/forms/components/range-slider/range-slider.props.ts
+src/design/forms/components/range-slider/range-slider.tokens.ts
+src/design/forms/components/range-slider/index.ts
+src/content/docs/forms/range-slider.mdx
+```
+
+### Updated files
+```
+src/content/docs/forms/checkbox.mdx
+```
+
 ## 2026/06/30 to 2026/06/30 - Antigravity session (Multiselect Removal)
 
 Removed the draft `Multiselect` component files and documentation, as its functionality has been absorbed into the `Select` component.
