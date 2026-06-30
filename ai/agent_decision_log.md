@@ -1,3 +1,17 @@
+## 2026/06/30 to 2026/06/30 - Antigravity session (Multiselect Removal)
+
+Removed the draft `Multiselect` component files and documentation, as its functionality has been absorbed into the `Select` component.
+
+### Deleted files
+```
+src/design/forms/components/multiselect/Multiselect.astro
+src/design/forms/components/multiselect/multiselect.hook.ts
+src/design/forms/components/multiselect/multiselect.props.ts
+src/design/forms/components/multiselect/multiselect.tokens.ts
+src/design/forms/components/multiselect/multiselect.css
+src/content/docs/forms/multiselect.mdx
+```
+
 ## 2026/06/30 to 2026/06/30 - Antigravity session (Component Status Update)
 
 Ran `pnpm status:components` to generate the latest component status and verification checklist documents.
