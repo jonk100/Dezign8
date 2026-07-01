@@ -41,8 +41,7 @@
 /* 1  */    export { default as Checkbox } from     "./forms/components/checkbox/Checkbox.astro";
 /* 2  */    export { default as ColorPicker } from  "./forms/components/color-picker/ColorPicker.astro";
 /* 3  */    export { default as Combobox } from     "./forms/components/combobox/Combobox.astro";
-/* 4  */    export { default as Composition } from    "./forms/components/composition/Composition.astro";
-/* 5  */    export { default as DatePicker } from   "./forms/components/date-picker/DatePicker.astro";
+/* 4  */    export { default as DatePicker } from   "./forms/components/date-picker/DatePicker.astro";
 /* 6  */    export { default as Field } from         "./forms/components/field/Field.astro";
 /* 7  */    export { default as FileUpload } from   "./forms/components/file-upload/FileUpload.astro";
 /* 8  */    export { default as Input } from         "./forms/components/input/Input.astro";
