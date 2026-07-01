@@ -1,3 +1,10 @@
+## 2026/07/01 to 2026/07/01 - Claude Code session (Fix Heading barrel export name)
+
+The barrel export in `src/design/index.ts` aliased the Heading component's default export to `Heading`, but the component's actual public name is `H` — its source file is `H.astro`, and the docs page (`src/content/docs/typography/heading.mdx`) imports and uses it as `H` throughout. Downstream consumer VanillAstro imported `{ H }` from `dezign8/components` per the docs and got `undefined` since only `Heading` was exported. Renamed the barrel export to `H`; nothing else in the repo imported `Heading` from the barrel.
+
+### Updated files
+- src/design/index.ts
+
 ## 2026/07/01 to 2026/07/01 - Claude Code session (Fix broken styles.ts entry point)
 
 Fixed two broken CSS import paths in the published `dezign8` package's global style entry, surfaced by a Vite SSR failure in a downstream consumer (VanillAstro, `dezign8@0.0.10`).
