@@ -11,7 +11,7 @@
 /* 5  */    export { default as Cropper } from      "./assets/components/cropper/Cropper.astro";
 /* 6  */    export { default as FilePreview } from  "./assets/components/file-preview/FilePreview.astro";
 /* 7  */    export { default as Gallery } from      "./assets/components/gallery/Gallery.astro";
-/* 8  */    export { default as GalleryItem } from  "./assets/components/gallery-item/GalleryItem.astro";
+/* 8  */    export { default as GalleryItem } from  "./assets/components/gallery/gallery-item/GalleryItem.astro";
 /* 9  */    export { default as Icon } from         "./assets/components/icon/Icon.astro";
 /* 10 */    export { default as Image } from        "./assets/components/image/Image.astro";
 /* 11 */    export { default as Video } from        "./assets/components/video/Video.astro";
