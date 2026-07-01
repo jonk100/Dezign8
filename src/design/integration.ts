@@ -39,12 +39,14 @@ export function dezign8(): AstroIntegration {
           const tsconfigPath = new URL("tsconfig.json", config.root);
           if (fs.existsSync(tsconfigPath)) {
             const content = fs.readFileSync(tsconfigPath, "utf-8");
-            const expectedPath = "./src/design/.config/tsconfig.paths.json";
-            
-            if (!content.includes(expectedPath)) {
+
+            if (!content.includes("tsconfig.paths.json")) {
+              const suggestedPath = isExternalConsumer
+                ? "dezign8/.config/tsconfig.paths.json"
+                : "./src/design/.config/tsconfig.paths.json";
               logger.warn(
                 `Your tsconfig.json does not extend the design system paths.\n` +
-                `To fix editor imports, add "${expectedPath}" to the "extends" array in your tsconfig.json.`
+                `To fix editor imports, add "${suggestedPath}" to the "extends" array in your tsconfig.json.`
               );
             }
           }
