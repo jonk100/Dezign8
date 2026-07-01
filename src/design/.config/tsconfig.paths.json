@@ -1,66 +1,66 @@
 {
   "compilerOptions": {
-    "baseUrl": "../../..",
+    "baseUrl": "..",
     "paths": {
       "~/*": [
-        "src/design/*"
+        "*"
       ],
       "~sh/*": [
-        "src/design/shared/*"
+        "shared/*"
       ],
       "~st/*": [
-        "src/design/styles/*"
+        "styles/*"
       ],
       "~l/*": [
-        "src/design/layout/*"
+        "layout/*"
       ],
       "~ty/*": [
-        "src/design/typography/*"
+        "typography/*"
       ],
       "~tr/*": [
-        "src/design/triggers/*"
+        "triggers/*"
       ],
       "~a/*": [
-        "src/design/assets/*"
+        "assets/*"
       ],
       "~f/*": [
-        "src/design/forms/*"
+        "forms/*"
       ],
       "@/*": [
-        "src/*"
+        "../*"
       ],
       "~/assets_/*": [
-        "src/design/assets/components/*"
+        "assets/components/*"
       ],
       "~/data_/*": [
-        "src/design/data/components/*"
+        "data/components/*"
       ],
       "~/feedback_/*": [
-        "src/design/feedback/components/*"
+        "feedback/components/*"
       ],
       "~/forms_/*": [
-        "src/design/forms/components/*"
+        "forms/components/*"
       ],
       "~/layout_/*": [
-        "src/design/layout/components/*"
+        "layout/components/*"
       ],
       "~/nav_/*": [
-        "src/design/nav/components/*"
+        "nav/components/*"
       ],
       "~/overlays_/*": [
-        "src/design/overlays/components/*"
+        "overlays/components/*"
       ],
       "~/shared_/*": [
-        "src/design/shared/components/*"
+        "shared/components/*"
       ],
       "~/surfaces_/*": [
-        "src/design/surfaces/components/*"
+        "surfaces/components/*"
       ],
       "~/triggers_/*": [
-        "src/design/triggers/components/*"
+        "triggers/components/*"
       ],
       "~/typography_/*": [
-        "src/design/typography/components/*"
+        "typography/components/*"
       ]
     }
   }
