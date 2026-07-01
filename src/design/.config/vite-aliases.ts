@@ -8,9 +8,10 @@ const designDir = path.resolve(__dirname, '..');
 // The src directory is one level up from design
 const srcDir = path.resolve(designDir, '..');
 
+// More specific aliases must come before "~" and "@": Vite's object-form
+// resolve.alias matches in insertion order and takes the first prefix match,
+// not the most specific one, so a catch-all listed first would shadow these.
 export const designAliases = {
-  "~": designDir,
-  "@": srcDir,
   "~/assets_/": path.resolve(designDir, "assets/components/"),
   "~/data_/": path.resolve(designDir, "data/components/"),
   "~/feedback_/": path.resolve(designDir, "feedback/components/"),
@@ -22,4 +23,6 @@ export const designAliases = {
   "~/surfaces_/": path.resolve(designDir, "surfaces/components/"),
   "~/triggers_/": path.resolve(designDir, "triggers/components/"),
   "~/typography_/": path.resolve(designDir, "typography/components/"),
+  "~": designDir,
+  "@": srcDir,
 };
