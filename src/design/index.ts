@@ -120,7 +120,7 @@
 // Typography
 /* 1  */    export { default as Caption } from      "./typography/components/caption/Caption.astro";
 /* 2  */    export { default as Code } from         "./typography/components/code/Code.astro";
-/* 3  */    export { default as Heading } from      "./typography/components/heading/Heading.astro";
+/* 3  */    export { default as Heading } from      "./typography/components/heading/H.astro";
 /* 4  */    export { default as Indent } from       "./typography/components/indent/Indent.astro";
 /* 5  */    export { default as Kbd } from          "./typography/components/kbd/Kbd.astro";
 /* 6  */    export { default as Label } from        "./typography/components/label/Label.astro";
