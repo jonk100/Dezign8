@@ -1635,7 +1635,7 @@
   "assets/icon": [
     {
       "name": "name",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": false,
       "description": "The name of the SVG icon to render.\nMust match a valid key in `src/design/shared/icons/index.ts`.",
       "from": "IconProps",
@@ -3728,7 +3728,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -4170,7 +4170,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -5030,7 +5030,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -5456,7 +5456,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -5848,7 +5848,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -7033,7 +7033,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -7888,7 +7888,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Icon from the Dezign8 icon registry (`shared/icons`).\n\nAccepts any `SvgName` key from the generated registry. The SVG component\nis rendered inside the spinner and rotates on the same animation.\n\nThree spinner variants are available out of the box:\n- `\"spinner\"`       — single arc (default)\n- `\"spinner-two\"`   — dual-arc with opacity contrast\n- `\"spinner-three\"` — triple arc\n\nAny other icon in the registry can be used for creative loading states.",
       "from": "SpinnerProps",
@@ -8671,7 +8671,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -9071,7 +9071,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -9427,7 +9427,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -14555,7 +14555,7 @@
     },
     {
       "name": "separatorIcon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to use as a separator instead of standard text",
       "from": "BreadcrumbsProps",
@@ -17336,7 +17336,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -23750,7 +23750,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -25528,7 +25528,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -26428,7 +26428,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -26889,7 +26889,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",
@@ -28234,7 +28234,7 @@
     },
     {
       "name": "icon",
-      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 116 more ... | \"zap\"",
+      "type": "\"info\" | \"text\" | \"center\" | \"header\" | \"footer\" | \"section\" | \"card\" | \"alert-circle\" | \"alert-dialog\" | \"alert-triangle\" | \"alert\" | \"arrow-down-left\" | \"arrow-down-right\" | ... 123 more ... | \"zap\"",
       "optional": true,
       "description": "Optional icon to render inside the component.",
       "from": "IconProps",

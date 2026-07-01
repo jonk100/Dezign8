@@ -70,6 +70,7 @@ import IconChevronDown from './chevron-down.svg';
 import IconChevronLeft from './chevron-left.svg';
 import IconChevronRight from './chevron-right.svg';
 import IconChevronUp from './chevron-up.svg';
+import IconClose from './close.svg';
 import IconCode from './code.svg';
 import IconColumns from './columns.svg';
 import IconCombobox from './combobox.svg';
@@ -107,7 +108,9 @@ import IconKeyboard from './keyboard.svg';
 import IconLabel from './label.svg';
 import IconLink from './link.svg';
 import IconList from './list.svg';
+import IconMaximize from './maximize.svg';
 import IconMenu from './menu.svg';
+import IconMinimize from './minimize.svg';
 import IconModal from './modal.svg';
 import IconNavbar from './navbar.svg';
 import IconNext from './next.svg';
@@ -126,6 +129,7 @@ import IconPrevious from './previous.svg';
 import IconQuote from './quote.svg';
 import IconRadioGroup from './radio-group.svg';
 import IconRadio from './radio.svg';
+import IconRangeSlider from './range-slider.svg';
 import IconRefreshCw from './refresh-cw.svg';
 import IconRefresh from './refresh.svg';
 import IconSearch from './search.svg';
@@ -134,6 +138,7 @@ import IconSection from './section.svg';
 import IconSelect from './select.svg';
 import IconSheet from './sheet.svg';
 import IconSkeleton from './skeleton.svg';
+import IconSlider from './slider.svg';
 import IconSpacer from './spacer.svg';
 import IconSparkline from './sparkline.svg';
 import IconSpinnerThree from './spinner-three.svg';
@@ -161,6 +166,8 @@ import IconTooltip from './tooltip.svg';
 import IconTreeView from './tree-view.svg';
 import IconTypescript from './typescript.svg';
 import IconUnderline from './underline.svg';
+import IconVisuallyHiddenAlt from './visually-hidden-alt.svg';
+import IconVisuallyHidden from './visually-hidden.svg';
 import IconWell from './well.svg';
 import IconX from './x.svg';
 import IconZap from './zap.svg';
@@ -202,6 +209,7 @@ export const icons = {
   'chevron-left': IconChevronLeft,
   'chevron-right': IconChevronRight,
   'chevron-up': IconChevronUp,
+  'close': IconClose,
   'code': IconCode,
   'columns': IconColumns,
   'combobox': IconCombobox,
@@ -239,7 +247,9 @@ export const icons = {
   'label': IconLabel,
   'link': IconLink,
   'list': IconList,
+  'maximize': IconMaximize,
   'menu': IconMenu,
+  'minimize': IconMinimize,
   'modal': IconModal,
   'navbar': IconNavbar,
   'next': IconNext,
@@ -258,6 +268,7 @@ export const icons = {
   'quote': IconQuote,
   'radio-group': IconRadioGroup,
   'radio': IconRadio,
+  'range-slider': IconRangeSlider,
   'refresh-cw': IconRefreshCw,
   'refresh': IconRefresh,
   'search': IconSearch,
@@ -266,6 +277,7 @@ export const icons = {
   'select': IconSelect,
   'sheet': IconSheet,
   'skeleton': IconSkeleton,
+  'slider': IconSlider,
   'spacer': IconSpacer,
   'sparkline': IconSparkline,
   'spinner-three': IconSpinnerThree,
@@ -293,6 +305,8 @@ export const icons = {
   'tree-view': IconTreeView,
   'typescript': IconTypescript,
   'underline': IconUnderline,
+  'visually-hidden-alt': IconVisuallyHiddenAlt,
+  'visually-hidden': IconVisuallyHidden,
   'well': IconWell,
   'x': IconX,
   'zap': IconZap
