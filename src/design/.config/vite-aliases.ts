@@ -30,6 +30,17 @@ export const designAliases = {
   "~/surfaces_/": withTrailingSlash(path.resolve(designDir, "surfaces/components/")),
   "~/triggers_/": withTrailingSlash(path.resolve(designDir, "triggers/components/")),
   "~/typography_/": withTrailingSlash(path.resolve(designDir, "typography/components/")),
+  // Short category aliases — mirror .config/tsconfig.paths.json, which only
+  // covers TypeScript type-checking. These are the runtime equivalents,
+  // needed because Astro's built-in tsconfig-paths resolution only reads
+  // the *consuming* project's own tsconfig, never one inside a dependency.
+  "~sh/": withTrailingSlash(path.resolve(designDir, "shared/")),
+  "~st/": withTrailingSlash(path.resolve(designDir, "styles/")),
+  "~l/": withTrailingSlash(path.resolve(designDir, "layout/")),
+  "~ty/": withTrailingSlash(path.resolve(designDir, "typography/")),
+  "~tr/": withTrailingSlash(path.resolve(designDir, "triggers/")),
+  "~a/": withTrailingSlash(path.resolve(designDir, "assets/")),
+  "~f/": withTrailingSlash(path.resolve(designDir, "forms/")),
   "~": designDir,
   "@": srcDir,
 };
