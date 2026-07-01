@@ -3,13 +3,18 @@
 import type { Plugin }                           from "vite";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { resolve, dirname }                       from "path";
+import { fileURLToPath }                          from "node:url";
 import vm                                         from "node:vm";
 import type { TokenBlock }                        from "../../shared/primitives.definitions";
 
-const DEFS_FILE   = "src/design/shared/primitives.definitions.ts";
-const SCALES_FILE = "src/design/shared/definitions/scales.ts";
-const CSS_OUT     = "src/design/styles/tokens.generated.css";
-const TS_OUT      = "src/design/shared/primitives.tokens.generated.ts";
+// Resolve relative to this plugin's own install location (not config.root),
+// so it works whether dezign8 is the app itself or an installed dependency.
+const designDir = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
+
+const DEFS_FILE   = "shared/primitives.definitions.ts";
+const SCALES_FILE = "shared/definitions/scales.ts";
+const CSS_OUT     = "styles/tokens.generated.css";
+const TS_OUT      = "shared/primitives.tokens.generated.ts";
 
 // ─── CSS GENERATOR ───────────────────────────────────────────
 
@@ -256,11 +261,11 @@ export function tokensPlugin(): Plugin {
     name:    "dezign8-tokens",
     enforce: "pre",
 
-    configResolved(config) {
-      defsPath   = resolve(config.root, DEFS_FILE);
-      scalesPath = resolve(config.root, SCALES_FILE);
-      cssOut     = resolve(config.root, CSS_OUT);
-      tsOut      = resolve(config.root, TS_OUT);
+    configResolved() {
+      defsPath   = resolve(designDir, DEFS_FILE);
+      scalesPath = resolve(designDir, SCALES_FILE);
+      cssOut     = resolve(designDir, CSS_OUT);
+      tsOut      = resolve(designDir, TS_OUT);
     },
 
     buildStart() {

@@ -4,6 +4,15 @@ import { checkCssVarsPlugin } from "./.config/plugins/check-css-vars";
 import { propsPlugin } from "./.config/plugins/props";
 import { designAliases } from "./.config/vite-aliases";
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+// propsPlugin generates docs specific to the dezign8 app itself (a props
+// report written into its own content collection) — only run it when this
+// package is the app being developed, not when installed as a dependency.
+const isExternalConsumer = fileURLToPath(import.meta.url).includes(
+  `${path.sep}node_modules${path.sep}`,
+);
 
 export function dezign8(): AstroIntegration {
   return {
@@ -11,13 +20,14 @@ export function dezign8(): AstroIntegration {
     hooks: {
       "astro:config:setup": ({ updateConfig, config, logger }) => {
         // 1. Inject the Vite plugins and aliases automatically
+        const plugins = [tokensPlugin(), checkCssVarsPlugin()];
+        if (!isExternalConsumer) {
+          plugins.push(propsPlugin());
+        }
+
         updateConfig({
           vite: {
-            plugins: [
-              tokensPlugin(),
-              checkCssVarsPlugin(),
-              propsPlugin(),
-            ],
+            plugins,
             resolve: {
               alias: designAliases
             }

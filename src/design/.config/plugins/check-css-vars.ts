@@ -16,11 +16,16 @@
 
 import type { Plugin }                from "vite";
 import { existsSync, promises as fs } from "fs";
-import { join, relative }            from "path";
+import { join, relative, dirname }   from "path";
+import { fileURLToPath }             from "node:url";
 
-const GEN_FILE  = "src/design/styles/tokens.generated.css";
-const SCAN_DIRS = ["src/design"];
-const SKIP_DIRS = ["src/design/styles"]; // definition files, not consumers
+// Resolve relative to this plugin's own install location (not config.root),
+// so it works whether dezign8 is the app itself or an installed dependency.
+const designDir = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+
+const GEN_FILE  = "styles/tokens.generated.css";
+const SCAN_DIRS = ["."];
+const SKIP_DIRS = ["styles"]; // definition files, not consumers
 
 // Raw primitive prefixes — component CSS must use semantic aliases instead.
 // e.g. --blur-3 → --blur--sm | --slate-18 → --text--primary | --ease-out → --ease--out
@@ -161,8 +166,8 @@ export function checkCssVarsPlugin(): Plugin {
     // run after dezign8-tokens (enforce: "pre") writes tokens.generated.css
     enforce: "post",
 
-    configResolved(config) {
-      root = config.root;
+    configResolved() {
+      root = designDir;
     },
 
     async buildStart() {
