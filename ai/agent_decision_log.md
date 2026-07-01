@@ -1,3 +1,15 @@
+## 2026/07/01 to 2026/07/01 - Claude Code session (Fix broken styles.ts entry point)
+
+Fixed two broken CSS import paths in the published `dezign8` package's global style entry, surfaced by a Vite SSR failure in a downstream consumer (VanillAstro, `dezign8@0.0.10`).
+- `src/design/styles.ts` imported `./styles/tokens/tokens.css` (nonexistent nested folder) — corrected to `./styles/tokens.css`.
+- `src/design/styles/global.css` imported `../../styles/tokens.generated.css`, which escapes the package root (`src/design/`, per `src/design/package.json`) into `src/styles/` — a path that doesn't exist once installed via npm/pnpm. Corrected to `./tokens.generated.css`, which is identical content already vendored inside the package.
+
+Both bugs were introduced in `fe51359` when `styles.ts` was first added. Downstream consumers won't see the fix until the package is republished and the dependency is bumped — not done here since publishing wasn't requested.
+
+### Updated files
+- src/design/styles.ts
+- src/design/styles/global.css
+
 ## 2026/06/30 to 2026/06/30 - Antigravity session (Fix tokens plugin import)
 
 Fixed a broken import path in `src/design/.config/plugins/tokens.ts`.

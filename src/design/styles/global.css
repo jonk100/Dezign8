@@ -21,7 +21,7 @@
 @import "./vars.css";
 @import "./tokens.css";
 @import "./color.tokens.css"; */
-@import "../../styles/tokens.generated.css";
+@import "./tokens.generated.css";
 @import url("../shared/motion/motion.css");
 
 /* ─── BOX MODEL ───────────────────────────────────────────── */
