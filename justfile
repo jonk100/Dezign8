@@ -218,3 +218,24 @@ import-recipe:
 todo-scan:
     grep -rn --exclude-dir=node_modules --exclude-dir=.git -E 'TODO|FIXME' --include='*.ts' --include='*.astro' --include='*.css' . || echo "No TODOs found"
 
+
+# @recipe: history
+# @desc: Fuzzy-search recent zsh history and re-run whatever you pick
+[group('shell')]
+history:
+    #!/usr/bin/env zsh
+    set -euo pipefail
+    cmd=$(tac ~/.zsh_history | sed -E 's/^: [0-9]+:[0-9]+;//' | fzf --prompt="History > " --no-sort)
+    [[ -n "$cmd" ]] && eval "$cmd"
+
+# Added by jk publish
+git-push_super:
+    #!/usr/bin/env bash
+    git add .
+    read -p "Enter commit message: " msg
+    if [ -n "$msg" ]; then
+        git commit -m "$msg"
+        git push --follow-tags
+    else
+        echo "Commit cancelled (empty message)."
+    fi
